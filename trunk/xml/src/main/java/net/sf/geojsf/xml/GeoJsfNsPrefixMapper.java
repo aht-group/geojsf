@@ -1,0 +1,23 @@
+package net.sf.geojsf.xml;
+
+import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
+
+import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
+
+public class GeoJsfNsPrefixMapper extends NamespacePrefixMapper implements NsPrefixMapperInterface
+{
+    public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix)
+    {
+    	if("http://geojsf.sf.net".equals(namespaceUri) ){return "geojsf";}
+    	if("http://geojsf.sf.net/openlayers".equals(namespaceUri) ){return "ol";}
+        return suggestion;
+    }
+
+    public String[] getPreDeclaredNamespaceUris()
+    {
+    	String[] result = new String[3];
+    	result[2] = "http://geojsf.sf.net";
+    	result = new String[0];
+        return result;
+    }
+}
