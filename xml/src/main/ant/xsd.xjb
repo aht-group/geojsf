@@ -10,4 +10,10 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
+        <jxb:bindings schemaLocation="../xsd/geojsf/openlayers.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="net.sf.geojsf.xml.openlayers"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
 </jxb:bindings>

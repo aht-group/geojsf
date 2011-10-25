@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://geojsf.sf.net/openlayers"
+    xmlns:ol="http://geojsf.sf.net/openlayers"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb">
+    <xsd:element name="repository">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ol:layers" maxOccurs="1"/>
+                <xsd:element ref="ol:views" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="layers">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="ol:layer" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="wms" type="xsd:string"/>
+			<xsd:attribute name="wcs" type="xsd:string"/>
+		</xsd:complexType>
+    </xsd:element>
+    <xsd:element name="layer">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ol:legend" maxOccurs="1"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="workspace" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="visible" type="xsd:boolean"/>
+            <xsd:attribute name="showLegend" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="legend">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="url" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="views">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ol:view" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="view">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ol:layer" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="x" type="xsd:double"/>
+            <xsd:attribute name="y" type="xsd:double"/>
+            <xsd:attribute name="zoom" type="xsd:int"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
