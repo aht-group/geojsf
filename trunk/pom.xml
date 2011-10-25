@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+    	<groupId>org.sonatype.oss</groupId>
+    	<artifactId>oss-parent</artifactId>
+    	<version>7</version>
+	</parent>
+	     
+	<groupId>net.sf.geojsf</groupId>
+	<artifactId>geojsf</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>GeoJSF</name>
+	<url>http://sourceforge.net/projects/geojsf</url>
+
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
+        <jboss.home>${env.JBOSS_HOME}</jboss.home>
+        <jboss.domain>default</jboss.domain>
+        <arquillian.version>1.0.0.Alpha5</arquillian.version>
+        <jboss-javaee6-spec.version>1.0.0.Final</jboss-javaee6-spec.version>
+    </properties>
+
+	<licenses>
+		<license>
+			<name>GNU General Public License</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+    	<connection>scm:svn:https://svn.code.sf.net/p/geojsf/svn/trunk/</connection>
+    	<developerConnection>scm:svn:https://svn.code.sf.net/p/geojsf/svn/trunk/</developerConnection>
+    	<url>https://svn.code.sf.net/p/geojsf/svn/trunk/</url>
+	</scm>
+	
+	<developers>
+		<developer>
+			<id>1</id>
+			<name>Thorsten Kisner</name>
+			<email>thorsten-k@sourceforge.net</email>
+		</developer>
+	</developers>
+
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	
+	<issueManagement>
+	</issueManagement>
+
+	<modules>
+		<module>util</module>
+		<module>xml</module>
+  </modules>
+ 
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+	
+	<repositories>
+    
+        <repository>
+			<id>sonatype.snapshot</id>
+			<name>Sonatype Snapshot Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+			<releases><enabled>false</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+		</repository>
+		
+    </repositories>
+
+</project>
