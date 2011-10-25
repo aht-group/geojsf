@@ -22,6 +22,8 @@
         <jboss.domain>default</jboss.domain>
         <arquillian.version>1.0.0.Alpha5</arquillian.version>
         <jboss-javaee6-spec.version>1.0.0.Final</jboss-javaee6-spec.version>
+        <junit.version>4.9</junit.version>
+        <exlp.version>0.1.3-SNAPSHOT</exlp.version>
     </properties>
 
 	<licenses>
