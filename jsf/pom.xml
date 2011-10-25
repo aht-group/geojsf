@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
 	</parent>
 	
-    <artifactId>geojsf-JSF</artifactId>
+    <artifactId>geojsf-jsf</artifactId>
     <packaging>jar</packaging>
     <name>GeoJSF - JSF</name>
    
