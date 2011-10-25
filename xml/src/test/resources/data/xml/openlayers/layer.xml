@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ol:layer xmlns:ol="http://geojsf.sf.net/openlayers" id="1" code="myCode" workspace="myWorkspace" name="myName" visible="true" showLegend="true">
+    <ol:legend id="1" url="myUrl"/>
+</ol:layer>
