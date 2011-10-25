@@ -57,6 +57,7 @@
 	<modules>
 		<module>util</module>
 		<module>xml</module>
+		<module>jsf</module>
   </modules>
  
 	<dependencyManagement>
