@@ -16,6 +16,7 @@
 	<url>http://sourceforge.net/projects/geojsf</url>
 
 	<properties>
+		<geojsf.version>0.1.0-SNAPSHOT</geojsf.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
         <jboss.home>${env.JBOSS_HOME}</jboss.home>
@@ -24,6 +25,7 @@
         <jboss-javaee6-spec.version>1.0.0.Final</jboss-javaee6-spec.version>
         <junit.version>4.9</junit.version>
         <exlp.version>0.1.3-SNAPSHOT</exlp.version>
+        <commons-logging.version>1.1.1</commons-logging.version>
     </properties>
 
 	<licenses>

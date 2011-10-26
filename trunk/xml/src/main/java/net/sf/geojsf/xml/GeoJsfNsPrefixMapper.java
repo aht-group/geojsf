@@ -10,6 +10,7 @@ public class GeoJsfNsPrefixMapper extends NamespacePrefixMapper implements NsPre
     {
     	if("http://geojsf.sf.net".equals(namespaceUri) ){return "geojsf";}
     	if("http://geojsf.sf.net/openlayers".equals(namespaceUri) ){return "ol";}
+    	if("http://www.opengis.net/gml".equals(namespaceUri) ){return "gml";}
         return suggestion;
     }
 

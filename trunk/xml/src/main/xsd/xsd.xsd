@@ -2,12 +2,14 @@
 <xsd:schema targetNamespace="http://geojsf.sf.net"
     xmlns:geojsf="http://geojsf.sf.net"
     xmlns:ol="http://geojsf.sf.net/openlayers"
+    xmlns:gml="http://www.opengis.net/gml"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
     xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
     jaxb:extensionBindingPrefixes="xjc"
     jaxb:version="2.0">
     <xsd:import namespace="http://geojsf.sf.net/openlayers" schemaLocation="geojsf/openlayers.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="geojsf/gml.xsd"/>
     <xsd:annotation>
         <xsd:appinfo>
             <jaxb:globalBindings generateIsSetMethod="true">
