@@ -37,9 +37,9 @@ public class OpenLayers implements Serializable
 		logger.trace("Layer File: "+layerFile);
 		try
 		{
-			Repository jaxbLayers = (Repository)JaxbUtil.loadJAXB(layerFile, Repository.class);
-			view = OpenLayersXpath.getView(jaxbLayers.getViews(), viewCode);
-			wmsLayer = new OlWmsLayer(jaxbLayers.getLayers(),view);
+			Repository repository = (Repository)JaxbUtil.loadJAXB(layerFile, Repository.class);
+			view = OpenLayersXpath.getView(repository, viewCode);
+			wmsLayer = new OlWmsLayer(repository.getLayers(),view);
 		}
 		catch (FileNotFoundException e) {logger.error(e);}
 		catch (ExlpXpathNotFoundException e) {logger.error(e);}
