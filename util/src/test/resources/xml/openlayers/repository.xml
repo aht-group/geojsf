@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<repository xmlns="http://geojsf.sf.net/openlayers">
+    <layers wms="http://wms" wcs="http://wfs">
+        <layer code="l1" workspace="w1" name="name1"/>
+        <layer code="l2" workspace="w2" name="name2"/>
+        <layer code="l3" workspace="w3" name="name3"/>
+    </layers>
+    <views>
+        <view code="v1" x="15" y="12" zoom="5">
+            <layer code="l1" visible="true" showLegend="true"/>
+            <layer code="l2" visible="true" showLegend="true"/>
+        </view>
+    </views>   
+</repository>
