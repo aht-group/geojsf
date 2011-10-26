@@ -22,4 +22,10 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
+    <jxb:bindings schemaLocation="../xsd/geojsf/ogc.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="net.sf.geojsf.xml.ogc"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
 </jxb:bindings>

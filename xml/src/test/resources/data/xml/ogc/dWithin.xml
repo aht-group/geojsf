@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DWithin xmlns="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml">
+    <PropertyName>myValue</PropertyName>
+    <gml:Point srsName="mySrsName"/>
+    <Distance units="myUnits">myValue</Distance>
+</DWithin>
