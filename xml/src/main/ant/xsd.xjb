@@ -28,4 +28,10 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
+    <jxb:bindings schemaLocation="../xsd/geojsf/wfs.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="net.sf.geojsf.xml.wfs"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
 </jxb:bindings>
