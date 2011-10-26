@@ -1,4 +1,4 @@
-package net.sf.geojsf.util.openlayers;
+package net.sf.geojsf.util;
 
 import java.io.Serializable;
 
