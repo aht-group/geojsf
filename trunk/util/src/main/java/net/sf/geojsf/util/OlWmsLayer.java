@@ -117,14 +117,14 @@ public class OlWmsLayer implements Serializable
 /*			boolean keyContaines = layerControl.getMapSelectedItems().containsKey(key);
 			
 			if(keyContaines && layerControl.getMapSelectedItems().get(key))
-			{
+*/			{
 				sb.append(layer.getWorkspace());
 				sb.append(":");
 				sb.append(layer.getCode());
 				sb.append(",");
 				oneVisible = true;
 			}
-*/		}
+		}
 		if(oneVisible){sb = sb.deleteCharAt(sb.length()-1);}
 		params.setLayers(sb.toString());
 		params.setFormat("image/png");

@@ -48,6 +48,20 @@ public class OpenLayers implements Serializable
 		click = new OlClick();
 		searchRadius = new OlSearchRadius();
 	}
+	
+	public OpenLayers(Repository repository, String viewCode)
+	{
+		try
+		{
+			view = OpenLayersXpath.getView(repository, viewCode);
+			wmsLayer = new OlWmsLayer(repository.getLayers(),view);
+		}
+		catch (ExlpXpathNotFoundException e) {logger.error(e);}
+		catch (ExlpXpathNotUniqueException e) {logger.error(e);}
+		
+		click = new OlClick();
+		searchRadius = new OlSearchRadius();
+	}
 		
 	// >>>>>>>>>>>>>>>>>>>>Getters and Setters<<<<<<<<<<<<<<<<<<<
 		
