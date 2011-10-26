@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.opengis.net/gml"
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="Point">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="gml:coordinates" maxOccurs="1"/>
+            </xsd:sequence>
+            <xsd:attribute name="srsName" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="coordinates">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

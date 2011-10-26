@@ -27,7 +27,18 @@
 	</build>
 	
 	<dependencies>
-	       
+		<dependency>
+   	   		<groupId>commons-logging</groupId>
+   	   		<artifactId>commons-logging</artifactId>
+   	   		<version>${commons-logging.version}</version>
+   	   		<type>jar</type>
+   	   	</dependency>
+   	   	<dependency>
+   	   		<groupId>net.sf.geojsf</groupId>
+   	   		<artifactId>geojsf-xml</artifactId>
+   	   		<version>${geojsf.version}</version>
+   	   		<type>jar</type>
+   	   	</dependency>
 	</dependencies>
    
 </project>
