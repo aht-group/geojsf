@@ -10,9 +10,14 @@
 	</parent>
 	
     <artifactId>geojsf-jsf</artifactId>
-    <packaging>jar</packaging>
     <name>GeoJSF - JSF</name>
    
+   <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jboss.home>/Applications/jboss-6.1.0.Final</jboss.home>
+		<jboss.domain>default</jboss.domain>
+	</properties>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -23,11 +28,41 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jboss-maven-plugin</artifactId>
+				<version>1.4.1</version>
+				<configuration>
+					<jbossHome>${jboss.home}</jbossHome>
+					<serverName>${jboss.domain}</serverName>
+					<fileNames>
+						<fileName>${project.build.directory}/${project.build.finalName}.war</fileName>
+					</fileNames>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	
 	<dependencies>
-	       
+	     <dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<version>1.0.0.Final</version>
+			<scope>provided</scope>
+			<type>pom</type>
+		</dependency>  
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.0.0.GA</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
    
+	<packaging>war</packaging>
 </project>
