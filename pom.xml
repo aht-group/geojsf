@@ -73,9 +73,10 @@
 	</issueManagement>
 
 	<modules>
+		<module>component</module>
+		<module>demo</module>
 		<module>util</module>
-		<module>xml</module>
-		<module>jsf</module>
+		<module>xml</module>		
   </modules>
  
 	<dependencyManagement>
