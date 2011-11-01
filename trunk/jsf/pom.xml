@@ -11,21 +11,17 @@
 	
     <artifactId>geojsf-jsf</artifactId>
     <name>GeoJSF - JSF</name>
-   
-   <properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jboss.home>/Applications/jboss-6.1.0.Final</jboss.home>
-		<jboss.domain>default</jboss.domain>
-	</properties>
 	
 	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<inherited>true</inherited>
+				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>${compiler-source.version}</source>
+					<target>${compiler-target.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -60,7 +56,7 @@
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<version>${jstl.version}</version>
 		</dependency>
 	</dependencies>
    
