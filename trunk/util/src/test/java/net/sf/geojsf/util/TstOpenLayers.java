@@ -11,12 +11,12 @@ import net.sf.geojsf.xml.openlayers.View;
 import net.sf.geojsf.xml.openlayers.Views;
 import net.sf.geojsf.xml.xpath.OpenLayersXpath;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TstOpenLayers
 {
-	static Log logger = LogFactory.getLog(TstOpenLayers.class);
+	final static Logger logger = LoggerFactory.getLogger(TstOpenLayers.class);
 	
 	private Repository repo;
 

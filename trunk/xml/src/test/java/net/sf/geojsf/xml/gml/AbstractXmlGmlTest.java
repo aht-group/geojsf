@@ -4,12 +4,12 @@ import java.io.File;
 
 import net.sf.geojsf.test.AbstractGeoJsfXmlTest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractXmlGmlTest extends AbstractGeoJsfXmlTest
 {
-	static Log logger = LogFactory.getLog(AbstractXmlGmlTest.class);	
+	final static Logger logger = LoggerFactory.getLogger(AbstractXmlGmlTest.class);	
 	
 	protected static final String rootDir = "src/test/resources/data/xml/gml";
 	protected static File fXml;

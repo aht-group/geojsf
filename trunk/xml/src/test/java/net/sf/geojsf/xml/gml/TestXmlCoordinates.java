@@ -6,14 +6,14 @@ import java.io.FileNotFoundException;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.geojsf.test.GeoJsfXmlTstBootstrap;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestXmlCoordinates extends AbstractXmlGmlTest
 {
-	static Log logger = LogFactory.getLog(TestXmlCoordinates.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlCoordinates.class);
 	
 	@BeforeClass
 	public static void initFiles()

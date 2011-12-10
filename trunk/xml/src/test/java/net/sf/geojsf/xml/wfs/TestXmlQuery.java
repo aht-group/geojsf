@@ -8,14 +8,14 @@ import net.sf.geojsf.test.GeoJsfXmlTstBootstrap;
 import net.sf.geojsf.xml.ogc.TestXmlFilter;
 import net.sf.geojsf.xml.ogc.TestXmlPropertyName;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestXmlQuery extends AbstractXmlWfsTest
 {
-	static Log logger = LogFactory.getLog(TestXmlQuery.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlQuery.class);
 	
 	@BeforeClass
 	public static void initFiles()

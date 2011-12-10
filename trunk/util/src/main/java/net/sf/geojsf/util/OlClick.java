@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 import net.sf.geojsf.xml.gml.Coordinates;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OlClick implements Serializable
 {
-	static Log logger = LogFactory.getLog(OlClick.class);
+	final static Logger logger = LoggerFactory.getLogger(OlClick.class);
 	
 	public static final long serialVersionUID=1;
 	

@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 import net.sf.geojsf.xml.ogc.Distance;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OlSearchRadius implements Serializable
 {
-	static Log logger = LogFactory.getLog(OlSearchRadius.class);
+	final static Logger logger = LoggerFactory.getLogger(OlSearchRadius.class);
 	
 	public static final long serialVersionUID=1;
 	

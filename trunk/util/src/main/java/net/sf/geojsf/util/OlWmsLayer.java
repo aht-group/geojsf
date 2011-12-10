@@ -12,12 +12,12 @@ import net.sf.geojsf.xml.openlayers.Layer;
 import net.sf.geojsf.xml.openlayers.Layers;
 import net.sf.geojsf.xml.openlayers.View;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OlWmsLayer implements Serializable
 {
-	static Log logger = LogFactory.getLog(OlWmsLayer.class);
+	final static Logger logger = LoggerFactory.getLogger(OlWmsLayer.class);
 	
 	public static final long serialVersionUID=1;
 	

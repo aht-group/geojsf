@@ -16,6 +16,7 @@
 	<url>http://sourceforge.net/projects/geojsf</url>
 
 	<properties>
+		<my.build.directory>target</my.build.directory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
         <jboss.home>${env.JBOSS_HOME}</jboss.home>
@@ -23,7 +24,7 @@
         <arquillian.version>1.0.0.Alpha5</arquillian.version>
         <jboss-javaee6-spec.version>1.0.0.Final</jboss-javaee6-spec.version>
         <junit.version>4.9</junit.version>
-        <exlp.version>0.1.3</exlp.version>
+        <exlp.version>0.1.5-SNAPSHOT</exlp.version>
         <commons-logging.version>1.1.1</commons-logging.version>
         <jstl.version>1.2</jstl.version>
         <commons-configuration.version>1.6</commons-configuration.version>
@@ -63,6 +64,31 @@
 			<email>hhemmer@uni-wuppertal.de</email>
 		</developer>
 	</developers>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.4</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jaxb-api</artifactId>
+				<version>2.2.2</version>
+			</dependency>
+			<dependency>
+  				<groupId>com.sun.xml.bind</groupId>
+    			<artifactId>jaxb-impl</artifactId>
+    			<version>2.2.2</version>
+    		</dependency>
+    		<dependency>
+ 				<groupId>com.sun.xml.bind</groupId>
+    			<artifactId>jaxb-xjc</artifactId>
+    			<version>2.2.2</version>
+  			</dependency>
+  		</dependencies>
+  	</dependencyManagement>
 
 	<prerequisites>
 		<maven>2.0.9</maven>
@@ -77,15 +103,9 @@
 		<module>demo</module>
 		<module>util</module>
 		<module>xml</module>		
-  </modules>
- 
-	<dependencyManagement>
-		<dependencies>
-		</dependencies>
-	</dependencyManagement>
-	
+	</modules>
+
 	<repositories>
-    
         <repository>
 			<id>sonatype.snapshot</id>
 			<name>Sonatype Snapshot Repository</name>
@@ -102,5 +122,41 @@
 		</repository>
 		
     </repositories>
+
+		
+	<build>
+		<plugins>
+			<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-enforcer-plugin</artifactId>
+        		<version>1.0.1</version>
+        		<executions>
+          			<execution>
+            			<id>enforce-banned-dependencies</id>
+            			<goals><goal>enforce</goal></goals>
+            			<configuration>
+              				<rules>
+                				<bannedDependencies>
+                  					<excludes>
+                    					<exclude>commons-logging:commons-logging</exclude>
+                  					</excludes>
+                				</bannedDependencies>
+              				</rules>
+              				<fail>true</fail>
+            			</configuration>
+          			</execution>
+        		</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+       		<id>ram</id>
+       		<build>
+       			<directory>${my.build.directory}</directory>
+       		</build>
+   		</profile> 
+	</profiles>
 
 </project>
