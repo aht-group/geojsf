@@ -8,12 +8,12 @@ import net.sf.geojsf.xml.openlayers.Repository;
 import net.sf.geojsf.xml.openlayers.View;
 
 import org.apache.commons.jxpath.JXPathContext;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OpenLayersXpath
 {
-	static Log logger = LogFactory.getLog(OpenLayersXpath.class);
+	final static Logger logger = LoggerFactory.getLogger(OpenLayersXpath.class);
 		
 	public static synchronized View getView(Repository repo,String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{

@@ -29,12 +29,6 @@
 	</build>
 	
 	<dependencies>
-		<dependency>
-   	   		<groupId>commons-logging</groupId>
-   	   		<artifactId>commons-logging</artifactId>
-   	   		<version>${commons-logging.version}</version>
-   	   		<type>jar</type>
-   	   	</dependency>
    	   	<dependency>
    	   		<groupId>net.sf.geojsf</groupId>
    	   		<artifactId>geojsf-xml</artifactId>
@@ -47,6 +41,12 @@
    	   		<version>${commons-configuration.version}</version>
    	   		<type>jar</type>
    	   		<scope>compile</scope>
+   	   		<exclusions>
+   	   			<exclusion>
+   	   				<artifactId>commons-logging</artifactId>
+   	   				<groupId>commons-logging</groupId>
+   	   			</exclusion>
+   	   		</exclusions>
    	   	</dependency>
    	   	<dependency>
    	   		<groupId>net.sf.exlp</groupId>
@@ -54,6 +54,10 @@
    	   		<version>${exlp.version}</version>
    	   		<type>pom</type>
    	   		<scope>compile</scope>
+   	   	</dependency>
+   	   	<dependency>
+   	   		<groupId>org.slf4j</groupId>
+   	   		<artifactId>slf4j-api</artifactId>
    	   	</dependency>
 	</dependencies>
    

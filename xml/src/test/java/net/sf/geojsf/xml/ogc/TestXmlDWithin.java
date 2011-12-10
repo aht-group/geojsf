@@ -7,14 +7,14 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.geojsf.test.GeoJsfXmlTstBootstrap;
 import net.sf.geojsf.xml.gml.TestXmlPoint;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestXmlDWithin extends AbstractXmlOgcTest
 {
-	static Log logger = LogFactory.getLog(TestXmlDWithin.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlDWithin.class);
 	
 	@BeforeClass
 	public static void initFiles()

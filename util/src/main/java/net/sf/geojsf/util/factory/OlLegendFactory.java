@@ -5,12 +5,12 @@ import java.io.Serializable;
 import net.sf.geojsf.xml.openlayers.Layer;
 import net.sf.geojsf.xml.openlayers.Legend;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OlLegendFactory implements Serializable
 {
-	static Log logger = LogFactory.getLog(OlLegendFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(OlLegendFactory.class);
 	
 	public static final long serialVersionUID=1;
 	
