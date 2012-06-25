@@ -6,6 +6,12 @@
     
     <jxb:bindings schemaLocation="../xsd/xsd.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
+            <jxb:package name="net.sf.geojsf.xml"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+    	<jxb:bindings schemaLocation="../xsd/geojsf/geojsf.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
             <jxb:package name="net.sf.geojsf.xml.geojsf"/>
         </jxb:schemaBindings>
     </jxb:bindings>
