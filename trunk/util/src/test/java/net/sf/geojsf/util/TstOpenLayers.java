@@ -29,15 +29,15 @@ public class TstOpenLayers
 	
 	public void debug()
 	{
-		JaxbUtil.debug(this.getClass(),repo);
+		JaxbUtil.debug(repo);
 	}
 	
 	public void view(String viewCode) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{
 		Views views = repo.getViews();
-		JaxbUtil.debug(this.getClass(),views);
+		JaxbUtil.debug(views);
 		View view = OpenLayersXpath.getView(repo, viewCode);
-		JaxbUtil.debug(this.getClass(),view);
+		JaxbUtil.debug(view);
 	}
 	
 	public void testOpenLayers(String viewCode)
