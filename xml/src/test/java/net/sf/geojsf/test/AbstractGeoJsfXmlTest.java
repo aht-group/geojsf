@@ -20,8 +20,6 @@ public class AbstractGeoJsfXmlTest
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfXmlTest.class);
 	
-	private GeoJsfNsPrefixMapper nsPrefixMapper;
-	
 	@BeforeClass
     public static void initLogger()
 	{
@@ -29,6 +27,12 @@ public class AbstractGeoJsfXmlTest
 		loggerInit.addAltPath("src/test/resources/config");
 		loggerInit.init();
     }
+	
+	@BeforeClass
+	public static void initPrefixMapper()
+	{
+		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
+	}
 	
 	protected static Collection<Object[]> initFileNames(String srcDir, String fileSuffix)
 	{
@@ -45,12 +49,6 @@ public class AbstractGeoJsfXmlTest
 		return c;
 	}
 	
-	protected GeoJsfNsPrefixMapper getPrefixMapper()
-	{
-		if(nsPrefixMapper==null){nsPrefixMapper = new GeoJsfNsPrefixMapper();}
-		return nsPrefixMapper;
-	}
-	
 	protected void assertJaxbEquals(Object expected, Object actual)
 	{
 		Assert.assertEquals("XML-ref differes from XML-test",JaxbUtil.toString(expected),JaxbUtil.toString(actual));
@@ -59,8 +57,8 @@ public class AbstractGeoJsfXmlTest
 	protected void save(Object xml, File f)
 	{
 		logger.debug("Saving Reference XML");
-		JaxbUtil.debug(xml, getPrefixMapper());
-    	JaxbUtil.save(f, xml, getPrefixMapper(), true);
+		JaxbUtil.debug(xml);
+    	JaxbUtil.save(f, xml, true);
 	}
 	
 	protected static XMLGregorianCalendar getDefaultXmlDate()
