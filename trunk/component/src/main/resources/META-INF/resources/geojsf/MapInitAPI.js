@@ -2,7 +2,7 @@
  var panZoomBar;
  
 function __addLoadEvent(func) {
-    Event.observe(window, "load", func ); 
+    OpenLayers.Event.observe(window, "load", func ); 
 }
 
 function __addClickHandler() {
