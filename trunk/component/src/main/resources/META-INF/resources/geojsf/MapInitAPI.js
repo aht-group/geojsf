@@ -38,8 +38,7 @@ function __addClickHandler() {
 }
  
 function __initMapDiv(mapDiv,msOptions) {
-	OpenLayers.ImgPath='geojsf/images/';
-    map = new OpenLayers.Map(mapDiv,msOptions);
+	map = new OpenLayers.Map(mapDiv,msOptions);
     map.addControl(new OpenLayers.Control.Navigation({'zoomWheelEnabled': false}));
     var click = new OpenLayers.Control.Click();
     map.addControl(click);
