@@ -39,13 +39,13 @@
 	 	<div id="#{cc.attrs.moverview}" style="width:#{cc.attrs.moverviewy}px;height:#{cc.attrs.moverviewx}px" />
 	 </c:if>
 	 <c:choose>
-	 <c:when test="#{!empty cc.attrs.imagePath}">
+	 <c:when test="#{!empty initParam['geojsf.THEME']}">
 	 	<h:outputScript>
         var mloptions = #{cc.attrs.layerOptions};
         var mcoptions = #{cc.attrs.mapOptions};
          function __initOL() {
         	__addClickHandler();
-        	OpenLayers.ImgPath='#{cc.attrs.imagePath}/';
+        	OpenLayers.ImgPath='#{initParam['geojsf.THEME']}/';
             __initMapDiv("#{cc.attrs.clientId}",mcoptions);
             __initMapLayers("#{cc.attrs.serviceName}","#{cc.attrs.serviceURL}","#{cc.attrs.centerX}","#{cc.attrs.centerY}","#{cc.attrs.zoomLevel}",mloptions);
             }
