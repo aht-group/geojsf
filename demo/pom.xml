@@ -14,6 +14,7 @@
 	<packaging>war</packaging>
 	
 	<build>
+	    <finalName>geojsf</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
