@@ -3,6 +3,7 @@ package net.sf.geojsf.xml.openlayers;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.geojsf.test.GeoJsfXmlTstBootstrap;
 
@@ -44,6 +45,7 @@ public class TestXmlLayer extends AbstractXmlOpenlayersTest
     	if(withChilds)
     	{
     		xml.setLegend(TestXmlLegend.create(false));
+    		xml.setLangs(new Langs());
     	}
     	
     	return xml;
