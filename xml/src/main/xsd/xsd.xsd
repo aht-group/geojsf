@@ -6,6 +6,7 @@
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:ogc="http://www.opengis.net/ogc"
     xmlns:wfs="http://www.opengis.net/wfs"
+    xmlns:us="http://ahtutils.aht-group.com/status"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
     xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
@@ -16,6 +17,7 @@
     <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="geojsf/gml.xsd"/>
     <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="geojsf/ogc.xsd"/>
     <xsd:import namespace="http://www.opengis.net/wfs" schemaLocation="geojsf/wfs.xsd"/>
+    <xsd:import namespace="http://ahtutils.aht-group.com/status" schemaLocation="../../../../../ahtutils/xml/src/main/xsd/aht/status.xsd"/>
     <xsd:annotation>
         <xsd:appinfo>
             <jaxb:globalBindings generateIsSetMethod="true">
