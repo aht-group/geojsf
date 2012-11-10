@@ -24,6 +24,11 @@
                 <artifactId>geojsf-util</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>net.sf.geojsf</groupId>
+                <artifactId>geojsf-interfaces</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 		    
 		    <!-- Manages BOMs -->
 		    <dependency>
