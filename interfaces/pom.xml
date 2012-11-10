@@ -13,21 +13,13 @@
     <packaging>jar</packaging>
     <name>GeoJSF - Interfaces</name>
 
-	<dependencyManagement>
-		
-	</dependencyManagement>
-
 	<dependencies>
 		<dependency>
-		   <groupId>org.jboss.spec</groupId>
-		   <artifactId>jboss-javaee-6.0</artifactId>
-		   <version>${jboss-javaee6-spec.version}</version>
-		   <type>pom</type>
-		   <scope>provided</scope>
-		</dependency>
-
-	</dependencies>
-
-
+        	<groupId>net.sf.geojsf</groupId>
+         	<artifactId>geojsf-bom</artifactId>
+         	<type>bom</type>
+       		<version>${project.version}</version>
+      	</dependency>
+   	</dependencies>
 
 </project>
