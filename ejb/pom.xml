@@ -11,16 +11,9 @@
 	
     <artifactId>geojsf-ejb</artifactId>
     <packaging>jar</packaging>
-    <name>GeoJSF - Entities</name>
+    <name>GeoJSF - EJB</name>
    
-	<dependencies>
-		<dependency>
-        	<groupId>net.sf.geojsf</groupId>
-         	<artifactId>geojsf-bom</artifactId>
-         	<type>bom</type>
-       		<version>${project.version}</version>
-      	</dependency>
-   	</dependencies>
+
 
    <build>
       <plugins>
