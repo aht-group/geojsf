@@ -32,4 +32,38 @@
       </plugins>
    </build>
    
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>net.sf.geojsf</groupId>
+				<artifactId>geojsf-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+		
+	<dependencies>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-interfaces</artifactId>
+		</dependency>
+		<dependency>
+   	   		<groupId>org.slf4j</groupId>
+   	   		<artifactId>slf4j-api</artifactId>
+   	   	</dependency>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.geojsf</groupId>
+			<artifactId>geojsf-interfaces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.geojsf</groupId>
+			<artifactId>geojsf-xml</artifactId>
+		</dependency>
+	</dependencies>
 </project>
