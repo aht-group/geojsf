@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ofx:section xmlns:ofx="http://www.openfuxml.org" id="postgresql">
+    <ofx:title>GeoServer</ofx:title>
+    <ofx:section>
+        <ofx:title>JBoss-AS7 WAR</ofx:title>
+        <ofx:paragraph>
+            1. Isolate the WAR 
+            Creating a specific classloading definition file for theGeoServer WAR by putting the file jboss-classloading.xml defined as below into the geoserver.war/WEB-INF directory.
+            
+            <classloading xmlns="urn:jboss:classloading:1.0" 
+                name="geoserver.war" 
+                domain="GeoServerDomain" 
+                export-all="NON_EMPTY" 
+                import-all="true">
+            </classloading>
+            
+            2. Remove the following jars from geoserver.war/WEB-INF/lib directory 
+            servlet-api-2.5.jar 
+            stax-api-1.0.1.jar 
+            xalan-2.7.0.jar 
+            xercesImpl-2.6.2.jar 
+            xml-apis-1.3.04.jar 
+            xml-apis-xerces-2.7.1.jar 
+            
+        </ofx:paragraph>
+    </ofx:section>
+</ofx:section>
