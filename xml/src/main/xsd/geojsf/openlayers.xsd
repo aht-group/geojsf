@@ -11,7 +11,17 @@
             <xsd:sequence>
                 <xsd:element ref="ol:layers" maxOccurs="1"/>
                 <xsd:element ref="ol:views" maxOccurs="1"/>
+                <xsd:element ref="ol:service" maxOccurs="unbounded"/>
             </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="service">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="url" type="xsd:string"/>
+            <xsd:attribute name="wms" type="xsd:string"/>
+            <xsd:attribute name="wcs" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
 	<xsd:element name="layers">

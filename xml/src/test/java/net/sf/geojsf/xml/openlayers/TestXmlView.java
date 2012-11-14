@@ -25,12 +25,11 @@ public class TestXmlView extends AbstractXmlOpenlayersTest
     @Test
     public void test() throws FileNotFoundException
     {
-    	View actual = create();
-    	View expected = (View)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), View.class);
+    	View actual = create(true);
+    	View expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), View.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    private static View create() {return create(true);}
     public static View create(boolean withChilds)
     {
     	View xml = new View();
@@ -49,7 +48,7 @@ public class TestXmlView extends AbstractXmlOpenlayersTest
     	return xml;
     }
     
-    public void save() {save(create(), fXml);}
+    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {

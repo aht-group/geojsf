@@ -26,12 +26,11 @@ public class TestXmlLayer extends AbstractXmlOpenlayersTest
     @Test
     public void test() throws FileNotFoundException
     {
-    	Layer actual = create();
-    	Layer expected = (Layer)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Layer.class);
+    	Layer actual = create(true);
+    	Layer expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Layer.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    private static Layer create() {return create(true);}
     public static Layer create(boolean withChilds)
     {
     	Layer xml = new Layer();
@@ -51,7 +50,7 @@ public class TestXmlLayer extends AbstractXmlOpenlayersTest
     	return xml;
     }
     
-    public void save() {save(create(), fXml);}
+    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {
