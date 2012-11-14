@@ -22,6 +22,7 @@
     <ofx:section>
         <ofx:title>Database</ofx:title>
         <ofx:paragraph>
+            /opt/local/lib/postgresql92/bin/psql -U postgres
             DROP DATABASE lis;
             CREATE USER myUser WITH PASSWORD 'myPwd';
             CREATE DATABASE myDb OWNER myUser ENCODING 'UTF8';
