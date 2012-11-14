@@ -12,7 +12,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 public interface GeoJsfView<L extends UtilsLang,D extends UtilsDescription,LAYER extends GeoJsfLayer<L,D>>
 			extends EjbWithId,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
 {
-	public static final String extractId = "geoJsfLayerView";
+	public static final String extractId = "geoJsfView";
 	
 	List<LAYER> getLayer();
 	void setLayer(List<LAYER> layer);

@@ -1,5 +1,7 @@
 package net.sf.geojsf.db;
 
+import java.util.List;
+
 import net.sf.ahtutils.controller.factory.ejb.status.EjbDescriptionFactory;
 import net.sf.ahtutils.controller.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
@@ -88,20 +90,33 @@ public class DbViewInit <L extends UtilsLang,
 			
 			try
 			{
-//				ejb.setName(ejbLangFactory.getLangMap(view.getLangs()));
+				ejb.setName(ejbLangFactory.getLangMap(view.getLangs()));
 //				aclCategory.setDescription(ejbDescriptionFactory.create(category.getDescriptions()));
-				ejb=(VIEW)fSecurity.update(ejb);
-				
+				ejb=fSecurity.update(ejb);
+				iuLayers(ejb,view.getLayer());
 			}
 			catch (UtilsContraintViolationException e) {logger.error("",e);}
-//			catch (InstantiationException e) {logger.error("",e);}
-//			catch (IllegalAccessException e) {logger.error("",e);}
-//			catch (UtilsIntegrityException e) {logger.error("",e);}
+			catch (InstantiationException e) {logger.error("",e);}
+			catch (IllegalAccessException e) {logger.error("",e);}
+			catch (UtilsIntegrityException e) {logger.error("",e);}
 			catch (UtilsLockingException e) {logger.error("",e);}
+			catch (UtilsNotFoundException e) {logger.error("",e);}
 		}
 		
 		ejbUpdater.remove(fSecurity);
 		logger.trace("initUpdateUsecaseCategories finished");
-
+	}
+	
+	private void iuLayers(VIEW view, List<Layer> layers) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException
+	{
+		view.getLayer().clear();
+		view = fSecurity.update(view);
+		logger.info("Layer: "+view.getLayer().size());
+		for(Layer layer : layers)
+		{
+			view.getLayer().add(fSecurity.fByCode(cLayer, layer.getCode()));
+		}
+		view = fSecurity.update(view);
+		logger.info("Layer: "+view.getLayer().size());
 	}
 }
