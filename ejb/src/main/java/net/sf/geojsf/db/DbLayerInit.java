@@ -12,6 +12,7 @@ import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
+import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.xml.openlayers.Layer;
 import net.sf.geojsf.xml.openlayers.Layers;
 
@@ -20,7 +21,8 @@ import org.slf4j.LoggerFactory;
 
 public class DbLayerInit <L extends UtilsLang,
  							D extends UtilsDescription,
- 							LAYER extends GeoJsfLayer<L,D>>
+ 							LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
+ 							SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbLayerInit.class);
 	
@@ -42,11 +44,12 @@ public class DbLayerInit <L extends UtilsLang,
 	
 	public static <L extends UtilsLang,
 	   			   D extends UtilsDescription, 
-	   			   LAYER extends GeoJsfLayer<L,D>>
-		DbLayerInit<L,D,LAYER>
+	   			   LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
+	   			SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
+		DbLayerInit<L,D,LAYER,SERVICE>
 		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, UtilsSecurityFacade fAcl)
 	{
-		return new DbLayerInit<L,D,LAYER>(cL,cD,cLayer,fAcl);
+		return new DbLayerInit<L,D,LAYER,SERVICE>(cL,cD,cLayer,fAcl);
 	}
 	
 	
