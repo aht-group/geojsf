@@ -39,6 +39,11 @@ public class TestXmlService extends AbstractXmlOpenlayersTest
     	xml.setWms("wms");
     	xml.setWcs("wcs");
     	    	
+    	if(withChilds)
+    	{
+    		xml.getLayer().add(TestXmlLayer.create(false));xml.getLayer().add(TestXmlLayer.create(false));
+    	}
+    	
     	return xml;
     }
     

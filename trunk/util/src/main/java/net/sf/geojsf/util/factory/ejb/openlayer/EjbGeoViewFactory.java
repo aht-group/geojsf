@@ -10,27 +10,35 @@ import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoViewFactory<L extends UtilsLang,D extends UtilsDescription,LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
+public class EjbGeoViewFactory<L extends UtilsLang,
+								D extends UtilsDescription,
+								LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
+								VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,
+								SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoViewFactory.class);
 	
-	final Class<VIEW> clService;
+	final Class<VIEW> clView;
 	
-    public EjbGeoViewFactory(final Class<VIEW> clService)
+    public EjbGeoViewFactory(final Class<VIEW> clView)
     {
-        this.clService = clService;
+        this.clView = clView;
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
-    	EjbGeoViewFactory<L,D,LAYER,VIEW,SERVICE> factory(final Class<VIEW> clService)
+    public static <L extends UtilsLang,
+    				D extends UtilsDescription,
+    				LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
+    				VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,
+    				SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
+    	EjbGeoViewFactory<L,D,LAYER,VIEW,SERVICE> factory(final Class<VIEW> clView)
     {
-        return new EjbGeoViewFactory<L,D,LAYER,VIEW,SERVICE>(clService);
+        return new EjbGeoViewFactory<L,D,LAYER,VIEW,SERVICE>(clView);
     }
 	
 	public VIEW create(String code) throws UtilsIntegrityException
 	{
 		VIEW ejb;
-		try {ejb = clService.newInstance();}
+		try {ejb = clView.newInstance();}
 		catch (InstantiationException e) {throw new UtilsIntegrityException(e.getMessage());}
 		catch (IllegalAccessException e) {throw new UtilsIntegrityException(e.getMessage());}
 		ejb.setCode(code);
