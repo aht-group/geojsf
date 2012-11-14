@@ -45,6 +45,7 @@ public class TestXmlLayer extends AbstractXmlOpenlayersTest
     	{
     		xml.setLegend(TestXmlLegend.create(false));
     		xml.setLangs(new Langs());
+    		xml.setService(TestXmlService.create(false));
     	}
     	
     	return xml;

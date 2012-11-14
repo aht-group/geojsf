@@ -114,12 +114,12 @@ public class DbViewInit <L extends UtilsLang,
 	{
 		view.getLayer().clear();
 		view = fSecurity.update(view);
-		logger.info("Layer: "+view.getLayer().size());
+		logger.trace("Layer: "+view.getLayer().size());
 		for(Layer layer : layers)
 		{
 			view.getLayer().add(fSecurity.fByCode(cLayer, layer.getCode()));
 		}
 		view = fSecurity.update(view);
-		logger.info("Layer: "+view.getLayer().size());
+		logger.trace("Layer: "+view.getLayer().size());
 	}
 }
