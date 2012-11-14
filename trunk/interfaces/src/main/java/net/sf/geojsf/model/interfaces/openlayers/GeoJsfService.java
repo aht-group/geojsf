@@ -1,5 +1,7 @@
 package net.sf.geojsf.model.interfaces.openlayers;
 
+import java.util.List;
+
 import net.sf.ahtutils.model.interfaces.EjbWithCode;
 import net.sf.ahtutils.model.interfaces.EjbWithId;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
@@ -13,7 +15,10 @@ public interface GeoJsfService<L extends UtilsLang,
 {
 	public static final String extractId = "geoJsfService";
 	
-//	List<LAYER> getLayer();
-//	void setLayer(List<LAYER> layer);
+	String getUrl();
+	void setUrl(String url);
+	
+	List<LAYER> getLayer();
+	void setLayer(List<LAYER> layer);
 	
 }
