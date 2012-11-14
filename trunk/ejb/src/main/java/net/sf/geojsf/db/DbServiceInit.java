@@ -18,9 +18,9 @@ import org.slf4j.LoggerFactory;
 
 public class DbServiceInit <L extends UtilsLang,
  							D extends UtilsDescription,
- 							LAYER extends GeoJsfLayer<L,D>,
- 							VIEW extends GeoJsfView<L,D,LAYER>,
- 							SERVICE extends GeoJsfService<L,D,LAYER>>
+ 							LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
+ 							VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,
+ 							SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbServiceInit.class);
 	
@@ -37,9 +37,9 @@ public class DbServiceInit <L extends UtilsLang,
 	
 	public static <L extends UtilsLang,
 	   			   D extends UtilsDescription, 
-	   			   LAYER extends GeoJsfLayer<L,D>,
-	   			   VIEW extends GeoJsfView<L,D,LAYER>,
-	   			   SERVICE extends GeoJsfService<L,D,LAYER>>
+	   			   LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
+	   			   VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,
+	   			   SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
 		DbServiceInit<L,D,LAYER,VIEW,SERVICE>
 		factory(final Class<SERVICE> cService, UtilsSecurityFacade fAcl)
 	{
