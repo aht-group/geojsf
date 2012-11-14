@@ -29,8 +29,8 @@ public class DbViewInit <L extends UtilsLang,
 {
 	final static Logger logger = LoggerFactory.getLogger(DbViewInit.class);
 	
+	private final Class<VIEW> cView;
     private final Class<LAYER> cLayer;
-    private final Class<VIEW> cView;
     
     private UtilsSecurityFacade fSecurity;
     private EjbLangFactory<L> ejbLangFactory;
