@@ -24,12 +24,11 @@ public class TestXmlRepository extends AbstractXmlOpenlayersTest
     @Test
     public void test() throws FileNotFoundException
     {
-    	Repository actual = create();
+    	Repository actual = create(true);
     	Repository expected = (Repository)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Repository.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    private static Repository create() {return create(true);}
     public static Repository create(boolean withChilds)
     {
     	Repository xml = new Repository();
@@ -38,12 +37,13 @@ public class TestXmlRepository extends AbstractXmlOpenlayersTest
     	{
     		xml.setViews(TestXmlViews.create(false));
     		xml.setLayers(TestXmlLayers.create(false));
+    		xml.getService().add(TestXmlService.create(false));xml.getService().add(TestXmlService.create(false));
     	}
     	
     	return xml;
     }
     
-    public void save() {save(create(), fXml);}
+    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {

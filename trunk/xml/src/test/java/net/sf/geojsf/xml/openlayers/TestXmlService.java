@@ -11,35 +11,34 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlLayers extends AbstractXmlOpenlayersTest
+
+public class TestXmlService extends AbstractXmlOpenlayersTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlLayers.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlService.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,"layers.xml");
+		fXml = new File(rootDir,Service.class.getSimpleName()+".xml");
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Layers actual = create(true);
-    	Layers expected = (Layers)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Layers.class);
+    	Service actual = create(true);
+    	Service expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Service.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Layers create(boolean withChilds)
+    public static Service create(boolean withChilds)
     {
-    	Layers xml = new Layers();
-    	xml.setWms("myWms");
-    	xml.setWcs("myWcs");
-     	
-    	if(withChilds)
-    	{
-    		xml.getLayer().add(TestXmlLayer.create(false));
-    	}
-    	
+    	Service xml = new Service();
+    	xml.setId(1);
+    	xml.setCode("myCode");
+    	xml.setUrl("http://geojsf.sf.net");
+    	xml.setWms("wms");
+    	xml.setWcs("wcs");
+    	    	
     	return xml;
     }
     
@@ -49,8 +48,8 @@ public class TestXmlLayers extends AbstractXmlOpenlayersTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlLayers.initFiles();	
-		TestXmlLayers test = new TestXmlLayers();
+		TestXmlService.initFiles();	
+		TestXmlService test = new TestXmlService();
 		test.save();
     }
 }

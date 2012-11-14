@@ -25,12 +25,11 @@ public class TestXmlLegend extends AbstractXmlOpenlayersTest
     @Test
     public void test() throws FileNotFoundException
     {
-    	Legend actual = create();
-    	Legend expected = (Legend)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Legend.class);
+    	Legend actual = create(true);
+    	Legend expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Legend.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    private static Legend create() {return create(true);}
     public static Legend create(boolean withChilds)
     {
     	Legend xml = new Legend();
@@ -40,7 +39,7 @@ public class TestXmlLegend extends AbstractXmlOpenlayersTest
     	return xml;
     }
     
-    public void save() {save(create(), fXml);}
+    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {

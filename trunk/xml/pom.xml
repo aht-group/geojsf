@@ -85,6 +85,11 @@
    	   		<artifactId>ahtutils-xml</artifactId>
    	   	</dependency>
 
+   	   	<dependency>
+   	   		<groupId>net.sf.ahtutils</groupId>
+   	   		<artifactId>ahtutils-test</artifactId>
+   	   		<scope>test</scope>
+   	   	</dependency>
 	</dependencies>
    
 </project>
