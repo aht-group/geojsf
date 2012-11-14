@@ -2,4 +2,5 @@
 <ol:layer xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ol="http://geojsf.sf.net/openlayers" id="1" code="myCode" workspace="myWorkspace" name="myName" visible="true" showLegend="true">
     <us:langs/>
     <ol:legend id="1" url="myUrl"/>
+    <ol:service id="1" code="myCode" url="http://geojsf.sf.net" wms="wms" wcs="wcs"/>
 </ol:layer>

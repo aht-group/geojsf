@@ -27,14 +27,16 @@ public class DbLayerInit <L extends UtilsLang,
 	final static Logger logger = LoggerFactory.getLogger(DbLayerInit.class);
 	
     private final Class<LAYER> cLayer;
+    private final Class<SERVICE> cService;
     
     private UtilsSecurityFacade fSecurity;
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     
-    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, UtilsSecurityFacade fAcl)
+    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService, UtilsSecurityFacade fAcl)
 	{       
         this.cLayer = cLayer;
+        this.cService = cService;
         
         this.fSecurity=fAcl;
 		
@@ -47,13 +49,11 @@ public class DbLayerInit <L extends UtilsLang,
 	   			   LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
 	   			SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
 		DbLayerInit<L,D,LAYER,SERVICE>
-		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, UtilsSecurityFacade fAcl)
+		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService,UtilsSecurityFacade fAcl)
 	{
-		return new DbLayerInit<L,D,LAYER,SERVICE>(cL,cD,cLayer,fAcl);
+		return new DbLayerInit<L,D,LAYER,SERVICE>(cL,cD,cLayer,cService,fAcl);
 	}
-	
-	
-	
+
 	public void iuLayer(Layers layers) throws UtilsConfigurationException
 	{
 		logger.debug("i/u "+Layers.class.getSimpleName()+" with "+layers.getLayer().size()+" "+Layer.class.getSimpleName());
@@ -79,25 +79,30 @@ public class DbLayerInit <L extends UtilsLang,
 				{
 					ejb = cLayer.newInstance();
 					ejb.setCode(layer.getCode());
+					ejb.setService(fSecurity.fByCode(cService, layer.getService().getCode()));
 					ejb = (LAYER)fSecurity.persist(ejb);
 				}
 				catch (InstantiationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 				catch (IllegalAccessException e2) {throw new UtilsConfigurationException(e2.getMessage());}
-				catch (UtilsContraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}	
+				catch (UtilsContraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
+				catch (UtilsNotFoundException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 			}
 			
 			try
 			{
 				ejb.setName(ejbLangFactory.getLangMap(layer.getLangs()));
 //				aclCategory.setDescription(ejbDescriptionFactory.create(category.getDescriptions()));
-				ejb=(LAYER)fSecurity.update(ejb);
 				
+				ejb.setService(fSecurity.fByCode(cService, layer.getService().getCode()));
+				
+				ejb=(LAYER)fSecurity.update(ejb);
 			}
 			catch (UtilsContraintViolationException e) {logger.error("",e);}
 			catch (InstantiationException e) {logger.error("",e);}
 			catch (IllegalAccessException e) {logger.error("",e);}
 			catch (UtilsIntegrityException e) {logger.error("",e);}
 			catch (UtilsLockingException e) {logger.error("",e);}
+			catch (UtilsNotFoundException e) {logger.error("",e);}
 		}
 		
 		updateLayer.remove(fSecurity);
