@@ -10,8 +10,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import net.sf.ahtutils.jsf.menu.MenuFactory;
-import net.sf.ahtutils.web.mbean.util.AbstractIconBean;
-import net.sf.ahtutils.xml.access.Access;
 import net.sf.ahtutils.xml.navigation.Menu;
 import net.sf.exlp.util.xml.JaxbUtil;
 
@@ -29,27 +27,39 @@ public class MenuBean implements Serializable
 //	@Inject private Identity identity;
 //	@Inject private String localeCode;
 	
-	private static final String rootMain = "rootMain";
+	private static final String rootMain = "root";
 	private Map<String,Menu> mapMenu;
 	
 	private MenuFactory mfMain;
 	
+	private String test;
+	
+	public String getTest() {
+		return test;
+	}
+
+	public void setTest(String test) {
+		this.test = test;
+	}
+
 	@PostConstruct
     public void init() throws FileNotFoundException
     {
-		logger.info("@PostConstruct");
+		
+		logger.error("@PostConstruct");
 
 		mapMenu = new Hashtable<String,Menu>();
-		Access xmlAccess = JaxbUtil.loadJAXB(this.getClass().getClassLoader(),"/views.xml", Access.class);
 		Menu xmlMenuMain = JaxbUtil.loadJAXB(this.getClass().getClassLoader(),"/menu.xml", Menu.class);
+		test="hello Bean";
 		
-		if(logger.isInfoEnabled())
+		if(logger.isTraceEnabled())
 		{
 			logger.info("main.root="+rootMain);
 		}
 
-		mfMain = new MenuFactory(xmlMenuMain,xmlAccess,"en",rootMain);
+		mfMain = new MenuFactory(xmlMenuMain,"en",rootMain);
 		mfMain.setAlwaysUpToLevel(99);
+		mfMain.setContextRoot("geojsf");
     }
 	
 	private Menu createMenu(String code,MenuFactory mf)
