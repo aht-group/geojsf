@@ -30,8 +30,13 @@ function __addClickHandler() {
          }, 
 
          trigger: function(e) {
-             var lonlat = map.getLonLatFromViewPortPx(e.xy);
-             geoJsfClick(lonlat.lon,lonlat.lat,map.getResolution(),map.getScale());
+         //    var lonlat = map.getLonLatFromViewPortPx(e.xy);
+         //    geoJsfClick(lonlat.lon,lonlat.lat,map.getResolution(),map.getScale());
+        	 var evObj = document.createEvent('HTMLEvents');
+        	 document.body.addEventListener('mapclick', function(e){ alert(e.lonlat); },true);
+        	 evObj.lonlat = map.getLonLatFromViewPortPx(e.xy);
+        	 evObj.initEvent('mapclick', true, true);
+        	 document.body.dispatchEvent(evObj);
          }
 
      });

@@ -24,6 +24,9 @@
      <composite:attribute name="moverviewy" default="149"/>
      <composite:attribute name="width" default="100%"/>
      <composite:attribute name="height" default="400"/>
+     <composite:clientBehavior name="mapclick" 
+                              event="mapclick"
+                            targets="#{cc.clientId}"/>
    </composite:interface>
         
   <composite:implementation>
@@ -45,7 +48,7 @@
         var mcoptions = #{cc.attrs.mapOptions};
          function __initOL() {
         	__addClickHandler();
-        	OpenLayers.ImgPath='#{initParam['geojsf.THEME']}/';
+        	OpenLayers.ImgPath='#{facesContext.externalContext.requestContextPath}/#{initParam['geojsf.THEME']}/';
             __initMapDiv("#{cc.attrs.clientId}",mcoptions);
             __initMapLayers("#{cc.attrs.serviceName}","#{cc.attrs.serviceURL}","#{cc.attrs.centerX}","#{cc.attrs.centerY}","#{cc.attrs.zoomLevel}",mloptions);
             }
