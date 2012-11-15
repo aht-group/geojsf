@@ -1,17 +1,14 @@
 <menu xmlns="http://ahtutils.aht-group.com/navigation" xmlns:s="http://ahtutils.aht-group.com/status" xmlns:a="http://ahtutils.aht-group.com/access">
     <menuItem code="welcome" href="/index.jsf">
-        <s:langs>
-            <s:lang key="en" version="1" translation="Welcome" />
-        </s:langs>
+        <s:langs><s:lang key="en" version="1" translation="Welcome" /></s:langs>
     </menuItem>
     <menuItem code="test" href="/login">
-        <s:langs>
-            <s:lang key="en" version="1" translation="Resources" />
-        </s:langs>
+        <s:langs><s:lang key="en" version="1" translation="Resources" /></s:langs>
     </menuItem>
     <menuItem code="tutorial" href="/tutorial">
-        <s:langs>
-            <s:lang key="en" version="1" translation="Tutorial" />
-        </s:langs>
+        <s:langs><s:lang key="en" version="1" translation="Tutorial" /></s:langs>
+        <menuItem code="tutorialHibernate" href="/tutorial/hibernate">
+	        <s:langs><s:lang key="en" version="1" translation="Hibernate Spatial"/></s:langs>
+	    </menuItem>
     </menuItem>
 </menu>

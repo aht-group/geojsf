@@ -67,7 +67,6 @@ public class MenuBean implements Serializable
 		logger.info("createMenu for "+code);
 
 		Menu menu = mf.build(code);
-		JaxbUtil.info(menu);
 		return menu;	
 	}
 	
@@ -81,6 +80,7 @@ public class MenuBean implements Serializable
 		if(!mapMenu.containsKey(code))
 		{
 			mapMenu.put(code, createMenu(code,mfMain));
+			JaxbUtil.info(mapMenu.get(code));
 		}
 		return mapMenu.get(code);
 	}
