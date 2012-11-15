@@ -75,12 +75,12 @@
 		 </dependency>
 		 <dependency>
 		 	<groupId>net.sf.ahtutils</groupId>
-		 	<artifactId>ahtutils-util</artifactId>
-		 </dependency>
-		 <dependency>
-		 	<groupId>net.sf.ahtutils</groupId>
 		 	<artifactId>ahtutils-jsf</artifactId>
 		 </dependency>
+		 <dependency>
+		   <groupId>com.ocpsoft</groupId>
+		   <artifactId>prettyfaces-jsf2</artifactId>
+		</dependency>
 		 
 	</dependencies>
 </project>
