@@ -156,6 +156,15 @@
 
 		
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>net.sf.ahtutils</groupId>
+					<artifactId>ahtutils-maven</artifactId>
+					<version>0.2.2-SNAPSHOT</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
         		<groupId>org.apache.maven.plugins</groupId>

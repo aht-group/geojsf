@@ -3,21 +3,25 @@
     <ofx:title>PostgreSQL</ofx:title>
     <ofx:section>
         <ofx:title>OSX</ofx:title>
-        <ofx:paragraph>
-            sudo port selfupdate
-            sudo port upgrade outdated
-            sudo port install postgresql92-server
-            
-            To create a database instance, after install do
-            sudo mkdir -p /opt/local/var/db/postgresql92/data
-            sudo chown postgres:postgres /opt/local/var/db/postgresql92/data
-            sudo su postgres -c '/opt/local/lib/postgresql92/bin/initdb -D /opt/local/var/db/postgresql92/data'
-            
-            Success. You can now start the database server using:
-            sudo -u postgres /opt/local/lib/postgresql92/bin/postgres -D /opt/local/var/db/postgresql92/data
-            or
-            /opt/local/lib/postgresql92/bin/pg_ctl -D /opt/local/var/db/postgresql92/data -l logfile start
-        </ofx:paragraph>
+        <ofx:section>
+            <ofx:title>Port</ofx:title>
+            <ofx:paragraph>
+                sudo port selfupdate
+                sudo port upgrade outdated
+                sudo port install postgresql92-server
+                sudo port install postgis
+                
+                To create a database instance, after install do
+                sudo mkdir -p /opt/local/var/db/postgresql92/data
+                sudo chown postgres:postgres /opt/local/var/db/postgresql92/data
+                sudo su postgres -c '/opt/local/lib/postgresql92/bin/initdb -D /opt/local/var/db/postgresql92/data'
+                
+                Success. You can now start the database server using:
+                sudo -u postgres /opt/local/lib/postgresql92/bin/postgres -D /opt/local/var/db/postgresql92/data
+                or
+                /opt/local/lib/postgresql92/bin/pg_ctl -D /opt/local/var/db/postgresql92/data -l logfile start
+            </ofx:paragraph>
+        </ofx:section>
     </ofx:section>
     <ofx:section>
         <ofx:title>Database</ofx:title>
@@ -27,6 +31,9 @@
             CREATE USER myUser WITH PASSWORD 'myPwd';
             CREATE DATABASE myDb OWNER myUser ENCODING 'UTF8';
             GRANT ALL PRIVILEGES ON DATABASE myDb TO myUser;
+            /Library/PostgreSQL/9.1/bin/psql -U postgres -d lis -f /Library/PostgreSQL/9.1/share/postgresql/contrib/postgis-1.5/postgis.sql
+            /Library/PostgreSQL/9.1/bin/psql -U postgres -d lis -f /Library/PostgreSQL/9.1/share/postgresql/contrib/postgis-1.5/postgis_comments.sql
+            /Library/PostgreSQL/9.1/bin/psql -U postgres -d lis -f /Library/PostgreSQL/9.1/share/postgresql/contrib/postgis-1.5/spatial_ref_sys.sql
             
             /opt/local/lib/postgresql92/bin/psql -U myUser myDb
             CREATE SCHEMA lcbc;

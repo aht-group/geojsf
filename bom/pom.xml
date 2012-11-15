@@ -34,6 +34,16 @@
                 <artifactId>geojsf-ejb</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>net.sf.geojsf</groupId>
+                <artifactId>geojsf-component</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.geojsf</groupId>
+                <artifactId>geojsf-demo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 		    
 		    <!-- Manages BOMs -->
 		    <dependency>
