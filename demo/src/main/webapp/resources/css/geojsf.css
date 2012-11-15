@@ -1,5 +1,6 @@
 /* @override 
-	http://localhost:8080/geojsf/javax.faces.resource/geojsf.css.jsf?ln=css */
+	http://localhost:8080/geojsf/javax.faces.resource/geojsf.css.jsf?ln=css
+	http://localhost:8080/geojsf/javax.faces.resource/geojsf.css.jsf;jsessionid=ajow1xRbq+bcPxh0+qqsacfh.undefined?ln=geojsf */
 
 body
 {
@@ -7,7 +8,7 @@ body
 	color: #333;
 	font-family: "Arial", Verdana, Helvetica, sans-serif;
 	font-size: 12px;
-	padding: 30px 0;
+	padding: 10px 0;
 }
 
 a { color: #D82B00; text-decoration: none; }
@@ -25,68 +26,68 @@ a:hover { color: #333; text-decoration: none; }
 	-moz-box-shadow: 0 0 10px #AAA; -webkit-box-shadow: 0 0 10px #AAA; box-shadow: 0 0 10px #AAA;
 }
 
-	#menucont
-	{
-		width: 860px;
-		height: 46px;
-		padding: 10px 0 0 0;
-		border-bottom: 2px solid #EEE;
-		background: #FFF;
-	}
 
-		#menucont ul
-		{
-			float: right;
-			width: auto;
-			margin: 0 15px 0 0;
-			list-style-type: none;
-			overflow: hidden;
-		}
-			
-		#menucont ul li
-		{
-			display: inline;
-		}
-			
-		#menucont ul li a
-		{
-			float: left;
-			line-height: 46px;
-			padding: 0 15px;
-			margin: 0 0 0 10px;
-			font-weight: bold;
-			text-decoration: none;
-			text-transform: uppercase;
-			font-size: 11px;
-			color: #333;
-			background: #FFF;
-		}
+/* HEADER */
+.header {
+	width: 860px;
+	height: 36px;
+	padding: 3px 0 0 0;
+	border-bottom: 2px solid #EEE;
+	background: #FFF;
+}
+.header ul {
+	float: right;
+	width: auto;
+	margin: 0 15px 0 0;
+	list-style-type: none;
+	overflow: hidden;
+}		
+.header ul li {
+	display: inline;
+}		
+.header ul li a {
+	float: left;
+	line-height: 36px;
+	padding: 0 15px;
+	margin: 0 0 0 10px;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 11px;
+	color: #333;
+	background: #FFF;
+}
+.header ul li.active > a {
+	background: #FFF;
+	border-bottom: 2px solid #D82B00;
+	color: #D82B00;
+}
 
-		#menucont ul li.active > a
-		{
-			background: #FFF;
-			border-bottom: 2px solid #D82B00;
-			color: #D82B00;
-		}
-
-		#menucont li a:hover
-		{
-			background: #FFF;
-			border-bottom: 2px solid #D82B00;
-			color: #333;
-		}
+.header li a:hover
+{
+	background: #FFF;
+	border-bottom: 2px solid #D82B00;
+	color: #333;
+}
+.logo{
+	background-color: green;
+	float: left;
+	z-index: 9994;
+	margin-top: 5px;
+	margin-left: 10px;
+}
 
 	#middlecont
 	{
-		width: 790px;
-		padding: 35px 20px;
-		margin: 15px;
-		background: #D82B00 url('../images/bg-graphiccont.png') bottom repeat-x;
-	}
+		width: 800px;
+		padding: 6px 20px;
+		margin: 10px;
+		background: #B90000;
+}
 	
 		#middlecont p
 		{
-			font-size: 29px;
+			font-size: 15px;
 			color: #FFF;
 			font-weight: bold;
 			letter-spacing: -1px;

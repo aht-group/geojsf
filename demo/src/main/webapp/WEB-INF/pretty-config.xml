@@ -11,5 +11,9 @@
         <pattern value="/tutorial" />
         <view-id value="/jsf/tutorial/tutorial.jsf" />
     </url-mapping>
+    <url-mapping id="tutorialHibernate">
+        <pattern value="/tutorial/hibernate" />
+        <view-id value="/jsf/tutorial/hibernate.jsf" />
+    </url-mapping>
     
 </pretty-config>
