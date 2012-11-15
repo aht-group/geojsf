@@ -15,10 +15,9 @@
 			<h:outputStylesheet name="geojsf.css" library="css"/>
 		</h:head>
 		<h:body>
-			<div id="container" class="clearfix">
-			    
+			<div id="container" class="clearfix"> 
 	            <div id="menucont">
-	                <aht:menuUl value="#{menuBean.build('root')}"/>
+	            	<ui:insert name="menu"/>
             	</div>
             	<div id="middlecont">
             		<p>GeoJSF</p>
@@ -39,7 +38,8 @@
             		<div id="mainright">
                        <ui:insert name="content">
             						[Template content will be inserted here]
-            			</ui:insert></div>
+            			</ui:insert>
+            		</div>
             	</div>
             </div>
             <div id="footercont" class="clearfix">
