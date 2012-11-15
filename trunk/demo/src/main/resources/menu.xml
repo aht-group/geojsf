@@ -5,7 +5,7 @@
             <s:lang key="en" version="1" translation="Welcome" />
         </s:langs>
     </menuItem>
-    <menuItem code="1" href="/index.jsf">
+    <menuItem code="test" href="/login">
         <s:langs>
             <s:lang key="fr" version="1" translation="Ressources"/>
             <s:lang key="en" version="1" translation="Resources" />
