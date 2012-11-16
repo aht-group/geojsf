@@ -10,6 +10,7 @@
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('tutorial')}" scActive="active"/></ui:define>
+	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('tutorial')}"/></ui:define>
 	<ui:define name="content">
 		Welcome to Tutorial
 	</ui:define>
