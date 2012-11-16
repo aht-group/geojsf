@@ -10,9 +10,24 @@
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('welcome')}" scActive="active"/></ui:define>
-	<ui:define name="headline">GEO-24</ui:define>
+	<ui:define name="headline">Sidebar menuGEO-32</ui:define>
 	<ui:define name="content">
-		Hello GeoJSF
-		<geojsf:map title="THIS COMES FROM A COMPOSITE COMPONENT :-)"/>
+		<div class="row">
+			<div class="span3">
+				<h3>test</h3>
+				<p>Vivamus mi arcu, lacinia scelerisque blandit nec, mattis non nibh.</p>
+				<div class="sidemenu">
+					<ul class="top-level">
+						<li><a title="" href="#">SIDE LINK 1</a></li>
+						<li><a title="" href="#">SIDE</a></li>
+						<li><a title="" href="#">SIDE LINK 3</a></li>
+						<li><a title="" href="#">SIDE LINK 4</a></li>
+						<li><a title="" href="#">SIDE LINK 5</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		
 	</ui:define>
 </ui:composition>
