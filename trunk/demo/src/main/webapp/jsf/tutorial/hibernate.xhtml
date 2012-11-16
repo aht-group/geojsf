@@ -9,7 +9,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
-	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('tutorial')}" scActive="active"/></ui:define>
+	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('tutorialHibernate')}" scActive="active"/></ui:define>
+	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('tutorialHibernate')}"/></ui:define>
 	<ui:define name="content">
 		Hibernate
 	</ui:define>
