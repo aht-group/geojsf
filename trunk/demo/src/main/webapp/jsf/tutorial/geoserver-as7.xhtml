@@ -21,23 +21,47 @@
 				</div>
 			</div>
 			<div class="span9">
-				<h3>GeoServer and JBoss AS7</h3>
-				<aht:codeEditor>
+				<h1>GeoServer and JBoss AS7</h1>
+				One download format of GeoServer is a <i>Web Archive</i>.
+				This should run without problems on Tomcat. While deploying <i>geoserver.war</i> on JBoss AS the
+				<b>java.lang.ClassNotFoundException: com.sun.imageio.spi.FileImageInputStreamSpi</b> occurs.
+				<script>hljs.initHighlightingOnLoad();</script>
+				<h3>Modified geoserver.war</h3>
+				<pre><code class="xml"><h:outputText value="#{codeBean.xml}" /></code></pre>
+				
+				<h3>Detailed Error Message</h3>
+				<f:verbatim escape="true">
+					ERROR [org.apache.catalina.core.ContainerBase.[jboss.web].[default-host].[/geoserver]] (MSC service thread 1-6) Exception sending context initialized event to listener instance of class org.geoserver.GeoserverInitStartupListener: java.lang.NoClassDefFoundError: com/sun/imageio/spi/FileImageInputStreamSpi
+					at it.geosolutions.imageio.stream.input.spi.FileImageInputStreamExtImplSpi.onRegistration(FileImageInputStreamExtImplSpi.java:117) [imageio-ext-streams-1.1.5.jar:]
+					at javax.imageio.spi.SubRegistry.registerServiceProvider(ServiceRegistry.java:698) [classes.jar:1.6.0_33]
+					at javax.imageio.spi.ServiceRegistry.registerServiceProvider(ServiceRegistry.java:285) [classes.jar:1.6.0_33]
+					at javax.imageio.spi.IIORegistry.registerApplicationClasspathSpis(IIORegistry.java:191) [classes.jar:1.6.0_33]
+					at javax.imageio.spi.IIORegistry.&lt;init&gt;(IIORegistry.java:121) [classes.jar:1.6.0_33]
+						at javax.imageio.spi.IIORegistry.getDefaultInstance(IIORegistry.java:142) [classes.jar:1.6.0_33]
+						at org.geotools.image.io.ImageIOExt.allowNativeCodec(ImageIOExt.java:173) [gt-coverage-8.3.jar:]
+						at org.geoserver.GeoserverInitStartupListener.contextInitialized(GeoserverInitStartupListener.java:118) [main-2.2.1.jar:]
+						at org.apache.catalina.core.StandardContext.contextListenerStart(StandardContext.java:3392) [jbossweb-7.0.13.Final.jar:]
+						at org.apache.catalina.core.StandardContext.start(StandardContext.java:3850) [jbossweb-7.0.13.Final.jar:]
+						at org.jboss.as.web.deployment.WebDeploymentService.start(WebDeploymentService.java:90) [jboss-as-web-7.1.1.Final.jar:7.1.1.Final]
+						at org.jboss.msc.service.ServiceControllerImpl$StartTask.startService(ServiceControllerImpl.java:1811)
+						at org.jboss.msc.service.ServiceControllerImpl$StartTask.run(ServiceControllerImpl.java:1746)
+						at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886) [classes.jar:1.6.0_33]
+						at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908) [classes.jar:1.6.0_33]
+						at java.lang.Thread.run(Thread.java:680) [classes.jar:1.6.0_33]
+						Caused by: java.lang.ClassNotFoundException: com.sun.imageio.spi.FileImageInputStreamSpi from [Module "deployment.geoserver.war:main" from Service Module Loader]
+						at org.jboss.modules.ModuleClassLoader.findClass(ModuleClassLoader.java:190)
+						at org.jboss.modules.ConcurrentClassLoader.performLoadClassUnchecked(ConcurrentClassLoader.java:468)
+						at org.jboss.modules.ConcurrentClassLoader.performLoadClassChecked(ConcurrentClassLoader.java:456)
+						at org.jboss.modules.ConcurrentClassLoader.performLoadClassChecked(ConcurrentClassLoader.java:423)
+						at org.jboss.modules.ConcurrentClassLoader.performLoadClass(ConcurrentClassLoader.java:398)
+						at org.jboss.modules.ConcurrentClassLoader.loadClass(ConcurrentClassLoader.java:120)
+						... 16 more
+				</f:verbatim>
 					
-					<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.1">
-						<deployment>
-							<dependencies>
-								<system>
-									<paths>
-										<path name="com/sun/imageio/spi"/>
-										<path name="com/sun/imageio/plugins/common"/>
-									</paths>
-								</system>
-							</dependencies>
-						</deployment>
-					</jboss-deployment-structure>
-				</aht:codeEditor>
+
+				
 			</div>
+			
 		</div>
 	</ui:define>
 </ui:composition>
