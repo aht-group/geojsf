@@ -59,7 +59,7 @@ public class MenuBean implements Serializable
 	
 	private Menu createMenu(String code,MenuFactory mf)
 	{
-		logger.info("createMenu for "+code);
+		logger.trace("createMenu for "+code);
 
 		Menu menu = mf.build(code);
 		return menu;	
