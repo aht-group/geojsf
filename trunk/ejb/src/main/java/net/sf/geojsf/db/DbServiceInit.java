@@ -68,6 +68,7 @@ public class DbServiceInit <L extends UtilsLang,
 				{
 					ejb = cService.newInstance();
 					ejb.setCode(service.getCode());
+					ejb.setUrl(service.getUrl());
 					ejb =fSecurity.persist(ejb);
 				}
 				catch (InstantiationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
