@@ -7,8 +7,7 @@
     </menuItem>
     <menuItem code="tutorial" href="/tutorial">
         <s:langs><s:lang key="en" version="1" translation="Tutorial" /></s:langs>
-        <menuItem code="tutorialHibernate" href="/tutorial/hibernate">
-	        <s:langs><s:lang key="en" version="1" translation="Hibernate Spatial"/></s:langs>
-	    </menuItem>
+        <menuItem code="tutorialHibernate" href="/tutorial/hibernate"><s:langs><s:lang key="en" version="1" translation="Hibernate Spatial"/></s:langs></menuItem>
+        <menuItem code="tutorialGeoServerAS7" href="/tutorial/geoserver-as7"><s:langs><s:lang key="en" version="1" translation="GeoServer and Jboss AS7"/></s:langs></menuItem>
     </menuItem>
 </menu>

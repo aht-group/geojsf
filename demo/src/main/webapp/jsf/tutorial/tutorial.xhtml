@@ -12,6 +12,13 @@
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('tutorial')}" scActive="active"/></ui:define>
 	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('tutorial')}"/></ui:define>
 	<ui:define name="content">
-		Welcome to Tutorial
+		<div class="row">
+			<div class="span3">
+				<h3>Tutorial</h3>
+				<div class="sidemenu">
+					<aht:menuUl value="#{menuBean.sub('tutorial')}" sc1="top-level"/>
+				</div>
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>

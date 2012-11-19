@@ -14,7 +14,7 @@
 	<ui:define name="content">
 		<div class="row">
 			<div class="span3">
-				<h3>test</h3>
+				<h3>Direct</h3>
 				<p>Vivamus mi arcu, lacinia scelerisque blandit nec, mattis non nibh.</p>
 				<div class="sidemenu">
 					<ul class="top-level">
@@ -26,8 +26,13 @@
 					</ul>
 				</div>
 			</div>
+			<div class="span3">
+				<h3>Sub</h3>
+				<p>Vivamus mi arcu, lacinia scelerisque blandit nec, mattis non nibh.</p>
+				<div class="sidemenu">
+					<aht:menuUl value="#{menuBean.sub('tutorial')}" sc1="top-level"/>
+				</div>
+			</div>
 		</div>
-		
-		
 	</ui:define>
 </ui:composition>
