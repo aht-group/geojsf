@@ -31,6 +31,7 @@ public class MenuBean implements Serializable
 	
 	private static final String rootMain = "root";
 	private Map<String,Menu> mapMenu;
+	private Map<String,MenuItem> mapSub;
 	private Map<String,List<MenuItem>> mapBreadcrumb;
 	
 	private MenuFactory mfMain;
@@ -42,6 +43,7 @@ public class MenuBean implements Serializable
 		logger.error("@PostConstruct");
 
 		mapMenu = new Hashtable<String,Menu>();
+		mapSub = new Hashtable<String,MenuItem>();
 		mapBreadcrumb = new Hashtable<String,List<MenuItem>>();
 		Menu xmlMenuMain = JaxbUtil.loadJAXB(this.getClass().getClassLoader(),"/menu.xml", Menu.class);
 		
@@ -91,6 +93,19 @@ public class MenuBean implements Serializable
 				mapBreadcrumb.put(code,mfMain.breadcrumb(code));
 			}
 			return mapBreadcrumb.get(code);
+		}
+	}
+	
+	public MenuItem sub(String code)
+	{
+		synchronized(mfMain)
+		{
+			if(!mapSub.containsKey(code))
+			{
+				if(!mapMenu.containsKey(code)){build(code);}
+				mapSub.put(code,mfMain.subMenu(mapMenu.get(code),code));
+			}
+			return mapSub.get(code);
 		}
 	}
 }
