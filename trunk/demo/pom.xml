@@ -69,6 +69,10 @@
 	 		<groupId>net.sf.geojsf</groupId>
     		<artifactId>geojsf-component</artifactId>
 	 	</dependency>
+	 	<dependency>
+	 		<groupId>net.sf.geojsf</groupId>
+    		<artifactId>geojsf-doc</artifactId>
+	 	</dependency>
 		 <dependency>
 		 	<groupId>org.slf4j</groupId>
 		 	<artifactId>slf4j-api</artifactId>
