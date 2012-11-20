@@ -2,8 +2,10 @@
     <menuItem code="welcome" href="/index.jsf">
         <s:langs><s:lang key="en" version="1" translation="Welcome" /></s:langs>
     </menuItem>
-    <menuItem code="test" href="/login">
-        <s:langs><s:lang key="en" version="1" translation="Resources" /></s:langs>
+    <menuItem code="showcase" href="/showcase">
+        <s:langs><s:lang key="en" version="1" translation="Showcase" /></s:langs>
+        <menuItem code="showcaseMap" href="/showcase/map"><s:langs><s:lang key="en" version="1" translation="geojsf:map"/></s:langs></menuItem>
+        <menuItem code="showcaseCoordinate" href="/showcase/coordinate"><s:langs><s:lang key="en" version="1" translation="geojsf:coordinate"/></s:langs></menuItem>
     </menuItem>
     <menuItem code="tutorial" href="/tutorial">
         <s:langs><s:lang key="en" version="1" translation="Tutorial" /></s:langs>

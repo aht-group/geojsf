@@ -2,9 +2,17 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xsi:schemaLocation="http://ocpsoft.org/prettyfaces/3.3.3 http://ocpsoft.org/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
     
-    <url-mapping id="login">
-        <pattern value="/login" />
-        <view-id value="/jsf/test/25.jsf" />
+    <url-mapping id="showcase">
+        <pattern value="/showcase" />
+        <view-id value="/jsf/showcase/showcase.jsf" />
+    </url-mapping>
+    <url-mapping id="showcaseMap">
+        <pattern value="/showcase/map" />
+        <view-id value="/jsf/showcase/map.jsf" />
+    </url-mapping>
+    <url-mapping id="showcaseCoordinate">
+        <pattern value="/showcase/coordinate" />
+        <view-id value="/jsf/showcase/coordinate.jsf" />
     </url-mapping>
     
     <url-mapping id="tutorial">
