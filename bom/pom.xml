@@ -19,6 +19,11 @@
 				<artifactId>geojsf-xml</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>net.sf.geojsf</groupId>
+				<artifactId>geojsf-doc</artifactId>
+				<version>${project.version}</version>
+			</dependency>
             <dependency>
                 <groupId>net.sf.geojsf</groupId>
                 <artifactId>geojsf-util</artifactId>
