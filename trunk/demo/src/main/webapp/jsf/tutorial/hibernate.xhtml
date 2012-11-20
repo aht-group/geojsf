@@ -20,7 +20,23 @@
 				</div>
 			</div>
 			<div class="span9">
-				<h3>Hibernate Spatial</h3>	
+				<h1>Hibernate Spatial</h1>
+				
+				<h3>JBoss AS Module: PostgreSQL</h3>
+				Similar to other JDBC database drivers, a module <b>org.postgresql</b> must be created. Create the directory
+				<b>/modules/org/postgresql/main/</b> and save the file <b>module.xml</b> with the following content:
+				<aht:highlight resource="/code.geojsf/hibernatespatial/module-postgresql.xml"/>
+				The specified files need to be saved in the same location. PostgresQL may be the latest version,
+				hibernatespatial needs to be the version 1.5.3 (since HibernateSpatial 4.xx has this as a dependency).
+				
+				<h3>JBoss AS Module: Hibernate</h3>
+				The module <b>hibernate</b> already exists and must be extended:
+				<aht:highlight resource="/code.geojsf/hibernatespatial/module-hibernate.xml"/>
+				The specified files need to be saved.
+				
+				<h3>JBoss AS: Datasource</h3>
+				The database driver and connection must be defined in <b>standalone/configuration/standalone.xml</b>:
+				<aht:highlight resource="/code.geojsf/hibernatespatial/configuration-standalone.xml"/>
 			</div>
 		</div>
 	</ui:define>
