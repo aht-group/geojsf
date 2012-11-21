@@ -47,6 +47,22 @@
 	</dependencyManagement>
 	
 	<dependencies>
+		<dependency>
+			<groupId>net.sf.geojsf</groupId>
+			<artifactId>geojsf-ejb</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>ahtutils-util</artifactId>
+					<groupId>net.sf.ahtutils</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.geojsf</groupId>
+			<artifactId>geojsf-util</artifactId>
+		</dependency>
+		
+		
 	     <dependency>
 			<groupId>org.jboss.spec</groupId>
 			<artifactId>jboss-javaee-6.0</artifactId>
@@ -80,6 +96,12 @@
 		 <dependency>
 		 	<groupId>net.sf.ahtutils</groupId>
 		 	<artifactId>ahtutils-jsf</artifactId>
+		 	<exclusions>
+		 		<exclusion>
+		 			<artifactId>ahtutils-util</artifactId>
+		 			<groupId>net.sf.ahtutils</groupId>
+		 		</exclusion>
+		 	</exclusions>
 		 </dependency>
 		 <dependency>
 		   <groupId>com.ocpsoft</groupId>
