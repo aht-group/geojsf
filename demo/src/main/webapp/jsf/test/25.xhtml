@@ -12,7 +12,7 @@
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('welcome')}" scActive="active"/></ui:define>
 	<ui:define name="headline">GEO-25</ui:define>
 	<ui:define name="content">
-		Hello GeoJSF
+		Hello GeoJSF #{geoServiceBean.text}
 		<geojsf:map title="THIS COMES FROM A COMPOSITE COMPONENT :-)"
 			layerOptions="{layers: 'roads,streams', format: 'image/png'}"
 			serviceURL="https://www.aht-group.com/geoserver/sf/wms"
