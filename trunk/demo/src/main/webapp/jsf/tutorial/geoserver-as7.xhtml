@@ -29,6 +29,11 @@
 				<h3>Modified geoserver.war</h3>
 				<aht:highlight resource="/code/tutorial/geoserver-as7/jboss-deployment-structure.xml"/>
 				
+				<h3>JBoss logging system</h3>
+				The deployment of geoserver overwrites the log4j logging system of JBoss and the logging is in fact broken.
+				Adding the following line to the end of <b>bin/standalone.conf</b> prevents this.
+				<aht:highlight resource="/code.geojsf/geoserver-jboss/logging.txt"/>		
+				
 				<h3>Detailed Error Message</h3>
 				<aht:highlight resource="/code/tutorial/geoserver-as7/error.txt"/>
 					
