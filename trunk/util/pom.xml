@@ -47,18 +47,6 @@
    	   		<type>jar</type>
    	   	</dependency>
    	   	<dependency>
-   	   		<groupId>commons-configuration</groupId>
-   	   		<artifactId>commons-configuration</artifactId>
-   	   		<type>jar</type>
-   	   		<scope>compile</scope>
-   	   		<exclusions>
-   	   			<exclusion>
-   	   				<artifactId>commons-logging</artifactId>
-   	   				<groupId>commons-logging</groupId>
-   	   			</exclusion>
-   	   		</exclusions>
-   	   	</dependency>
-   	   	<dependency>
    	   		<groupId>net.sf.exlp</groupId>
    	   		<artifactId>exlp-util</artifactId>
    	   		<type>jar</type>
@@ -69,16 +57,13 @@
    	   		<artifactId>slf4j-api</artifactId>
    	   	</dependency>
    	   	<dependency>
-   	   		<groupId>net.sf.ahtutils</groupId>
-   	   		<artifactId>ahtutils-interfaces</artifactId>
-   	   	</dependency>
-   	   	<dependency>
    	   		<groupId>net.sf.geojsf</groupId>
    	   		<artifactId>geojsf-interfaces</artifactId>
    	   	</dependency>
    	   	<dependency>
    	   		<groupId>junit</groupId>
    	   		<artifactId>junit</artifactId>
+   	   		<scope>test</scope>
    	   	</dependency>
 	</dependencies>
    
