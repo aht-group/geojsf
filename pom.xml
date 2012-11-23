@@ -19,16 +19,7 @@
 		<my.build.directory>target</my.build.directory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
-        <jboss.home>${env.JBOSS_HOME}</jboss.home>
-        <jboss.domain>default</jboss.domain>
-        <arquillian.version>1.0.0.Alpha5</arquillian.version>
-        <jboss-javaee6-spec.version>1.0.0.Final</jboss-javaee6-spec.version>
-        <junit.version>4.9</junit.version>
-        <exlp.version>0.1.5-SNAPSHOT</exlp.version>
-        <commons-logging.version>1.1.1</commons-logging.version>
-        <jstl.version>1.2</jstl.version>
-        <commons-jxpath.version>1.3</commons-jxpath.version>
-   
+
     	<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
     	<compiler-source.version>1.6</compiler-source.version>
     	<compiler-target.version>1.6</compiler-target.version>

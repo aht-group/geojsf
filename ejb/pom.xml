@@ -13,8 +13,6 @@
     <packaging>jar</packaging>
     <name>GeoJSF - EJB</name>
    
-
-
    <build>
       <plugins>
          <plugin>
@@ -64,6 +62,17 @@
 		<dependency>
 			<groupId>net.sf.geojsf</groupId>
 			<artifactId>geojsf-xml</artifactId>
+		</dependency>
+		
+		<dependency>
+		   <groupId>org.jboss.spec</groupId>
+		   <artifactId>jboss-javaee-6.0</artifactId>
+		   <type>pom</type>
+		   <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.geojsf</groupId>
+			<artifactId>geojsf-util</artifactId>
 		</dependency>
 	</dependencies>
 </project>

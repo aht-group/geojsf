@@ -14,11 +14,20 @@
         <pattern value="/showcase/coordinate" />
         <view-id value="/jsf/showcase/coordinate.jsf" />
     </url-mapping>
+    <url-mapping id="showcaseLayerSwitcher">
+        <pattern value="/showcase/layerSwitcher" />
+        <view-id value="/jsf/showcase/layerSwitcher.jsf" />
+    </url-mapping>
     
     <url-mapping id="tutorial">
         <pattern value="/tutorial" />
         <view-id value="/jsf/tutorial/tutorial.jsf" />
     </url-mapping>
+    <url-mapping id="tutorialDataStructure">
+        <pattern value="/tutorial/datastructure" />
+        <view-id value="/jsf/tutorial/datastructure.jsf" />
+    </url-mapping>
+    
     <url-mapping id="tutorialHibernate">
         <pattern value="/tutorial/hibernate" />
         <view-id value="/jsf/tutorial/hibernate.jsf" />
