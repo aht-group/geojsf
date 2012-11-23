@@ -1,16 +1,17 @@
-package net.sf.geojsf.util.factory.jsf;
+package net.sf.geojsf.controller.util;
 
 import java.util.List;
 
 import junit.framework.Assert;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.geojsf.controller.util.GeoJsfMapLayerFactory;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import net.sf.geojsf.test.AbstractGeoJsfUtilTest;
+import net.sf.geojsf.test.AbstractGeoJsfEjbTest;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoServiceFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewFactory;
@@ -21,11 +22,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestJsfLayerFactory extends AbstractGeoJsfUtilTest
+public class TestJsfLayerFactory extends AbstractGeoJsfEjbTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestJsfLayerFactory.class);
 	
-	private JsfLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> fJsf;
+	private GeoJsfMapLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> fJsf;
 	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> fService;
 	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> fLayer;
 	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> fView;
@@ -33,7 +34,7 @@ public class TestJsfLayerFactory extends AbstractGeoJsfUtilTest
 	@Before
 	public void init() throws UtilsIntegrityException
 	{
-		fJsf = JsfLayerFactory.factory();
+		fJsf = GeoJsfMapLayerFactory.factory();
 		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLayer.class);
 		fView = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);

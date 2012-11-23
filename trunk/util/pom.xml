@@ -80,10 +80,6 @@
    	   		<groupId>junit</groupId>
    	   		<artifactId>junit</artifactId>
    	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>net.sf.geojsf</groupId>
-   	   		<artifactId>geojsf-ejb</artifactId>
-   	   	</dependency>
 	</dependencies>
    
 </project>
