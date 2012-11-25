@@ -21,8 +21,17 @@
 			</div>
 			<div class="span3">
 				<h:form id="fLayer">
-					<geojsf:layerSwitcher value="#{geoServiceBean.dmLayer}" update=":fLayer"/>
+					<geojsf:layerSwitcher value="#{geoServiceBean.dmLayer}" />
 				</h:form>
+			</div>
+			<div class="span3">
+				Map
+			</div>
+			<div class="span3">
+				The component layerSwitcher is implemented as a Primefaces dataTable.
+				If the web applications does not use PrimeFaces as a component library
+				this mostly is not a good choice. Nevertheless, all you have to do is
+				updating the object XXX with the layers to be shown and rebuild the lyer.
 			</div>
 		</div>
 	</ui:define>

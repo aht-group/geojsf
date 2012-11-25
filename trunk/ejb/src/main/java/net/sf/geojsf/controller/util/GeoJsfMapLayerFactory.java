@@ -20,15 +20,18 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 	
 	private Map<String,SERVICE> mapService;
 	
-    public GeoJsfMapLayerFactory()
+	final Class<SERVICE> clService;
+	
+    public GeoJsfMapLayerFactory(final Class<SERVICE> clService)
     {
+    	this.clService=clService;
     	mapService = new Hashtable<String,SERVICE>();
     } 
     
     public static <L extends UtilsLang,D extends UtilsDescription,LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
-    	GeoJsfMapLayerFactory<L,D,LAYER,VIEW,SERVICE> factory()
+    	GeoJsfMapLayerFactory<L,D,LAYER,VIEW,SERVICE> factory(final Class<SERVICE> clService)
     {
-        return new GeoJsfMapLayerFactory<L,D,LAYER,VIEW,SERVICE>();
+        return new GeoJsfMapLayerFactory<L,D,LAYER,VIEW,SERVICE>(clService);
     }
 	
 	public List<SERVICE> build(VIEW view)
@@ -52,7 +55,24 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 	
 	private SERVICE getService(SERVICE service)
 	{
-		if(!mapService.containsKey(service.getCode())){mapService.put(service.getCode(), service);}
+		if(!mapService.containsKey(service.getCode()))
+		{
+			try
+			{
+				SERVICE s = clService.newInstance();
+				s.setCode(service.getCode());
+				s.setUrl(service.getUrl());
+				mapService.put(service.getCode(), s);
+			}
+			catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		return mapService.get(service.getCode());
 	}
 }
