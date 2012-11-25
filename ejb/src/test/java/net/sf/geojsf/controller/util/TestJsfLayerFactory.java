@@ -34,7 +34,7 @@ public class TestJsfLayerFactory extends AbstractGeoJsfEjbTest
 	@Before
 	public void init() throws UtilsIntegrityException
 	{
-		fJsf = GeoJsfMapLayerFactory.factory();
+		fJsf = GeoJsfMapLayerFactory.factory(DefaultGeoJsfService.class);
 		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLayer.class);
 		fView = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);

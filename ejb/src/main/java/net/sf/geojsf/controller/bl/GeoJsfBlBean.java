@@ -29,7 +29,7 @@ public class GeoJsfBlBean implements GeoJsfBl
 		view = em.find(cView, view.getId());
 		
 		GeoJsfMapLayerFactory<L,D,LAYER,VIEW,SERVICE> fJsf = null;
-		fJsf = new GeoJsfMapLayerFactory<L,D,LAYER,VIEW,SERVICE>();
+		fJsf = new GeoJsfMapLayerFactory<L,D,LAYER,VIEW,SERVICE>(null);
 		return fJsf.build(view);
 	}
 

@@ -48,7 +48,7 @@ public class GeoServiceBean implements Serializable
 	public void init() throws UtilsIntegrityException
 	{
 		logger.info("@PostConstruct");
-		fJsf = GeoJsfMapLayerFactory.factory();
+		fJsf = GeoJsfMapLayerFactory.factory(DefaultGeoJsfService.class);
 		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLayer.class);
 		fView = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
