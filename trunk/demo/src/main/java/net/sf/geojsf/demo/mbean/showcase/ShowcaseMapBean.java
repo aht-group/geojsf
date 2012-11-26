@@ -10,7 +10,6 @@ import javax.inject.Named;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 
 import org.openfuxml.addon.jsf.factory.JsfComponentFactory;
-import org.openfuxml.xml.addon.jsf.Attribute;
 import org.openfuxml.xml.addon.jsf.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
