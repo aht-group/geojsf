@@ -31,6 +31,14 @@
 	               <skip>false</skip>
 	            </configuration>
          	</plugin>
+         	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+		     	<artifactId>maven-deploy-plugin</artifactId>
+		     	<version>2.4</version>
+		     	<configuration>
+		       		<skip>true</skip>
+		     	</configuration>
+		   	</plugin>
 		</plugins>
 	</build>
 	
@@ -48,6 +56,14 @@
 	
 	<dependencies>
 		<dependency>
+	 		<groupId>net.sf.geojsf</groupId>
+    		<artifactId>geojsf-component</artifactId>
+	 	</dependency>
+	 	<dependency>
+	 		<groupId>net.sf.geojsf</groupId>
+    		<artifactId>geojsf-doc</artifactId>
+	 	</dependency>
+		<dependency>
 			<groupId>net.sf.geojsf</groupId>
 			<artifactId>geojsf-ejb</artifactId>
 			<exclusions>
@@ -61,39 +77,7 @@
 			<groupId>net.sf.geojsf</groupId>
 			<artifactId>geojsf-util</artifactId>
 		</dependency>
-		
-		
-	     <dependency>
-			<groupId>org.jboss.spec</groupId>
-			<artifactId>jboss-javaee-6.0</artifactId>
-			<version>1.0.0.Final</version>
-			<scope>provided</scope>
-			<type>pom</type>
-		</dependency>  
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.0.0.GA</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		 <dependency>
-	 		<groupId>net.sf.geojsf</groupId>
-    		<artifactId>geojsf-component</artifactId>
-	 	</dependency>
-	 	<dependency>
-	 		<groupId>net.sf.geojsf</groupId>
-    		<artifactId>geojsf-doc</artifactId>
-	 	</dependency>
-		 <dependency>
-		 	<groupId>org.slf4j</groupId>
-		 	<artifactId>slf4j-api</artifactId>
-		 </dependency>
-		 <dependency>
 		 	<groupId>net.sf.ahtutils</groupId>
 		 	<artifactId>ahtutils-jsf</artifactId>
 		 	<exclusions>
@@ -104,6 +88,34 @@
 		 	</exclusions>
 		 </dependency>
 		 <dependency>
+			<groupId>org.openfuxml</groupId>
+			<artifactId>ofx-jsf</artifactId>
+		</dependency>
+		
+		
+	     <dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<scope>provided</scope>
+			<type>pom</type>
+		</dependency>  
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		 
+		 <dependency>
+		 	<groupId>org.slf4j</groupId>
+		 	<artifactId>slf4j-api</artifactId>
+		 </dependency>
+		 
+		 <dependency>
 		   <groupId>com.ocpsoft</groupId>
 		   <artifactId>prettyfaces-jsf2</artifactId>
 		</dependency>
@@ -113,9 +125,6 @@
 			<groupId>org.primefaces</groupId>  
 			<artifactId>primefaces</artifactId>   
 		</dependency>
-		<dependency>
-			<groupId>org.openfuxml</groupId>
-			<artifactId>ofx-jsf</artifactId>
-		</dependency>
+		
 	</dependencies>
 </project>
