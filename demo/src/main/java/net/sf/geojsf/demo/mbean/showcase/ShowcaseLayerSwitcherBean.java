@@ -16,7 +16,7 @@ import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 @Named @SessionScoped
-public class ShowcaseMapBean implements Serializable
+public class ShowcaseLayerSwitcherBean implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
