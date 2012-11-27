@@ -20,17 +20,15 @@
 				</div>
 			</div>
 			<div class="span9">
-				<p>
-					Beside a introduction on using GeoJSF with Maven based projects,
-				</p>
-				<p>
-					The more advanced topics
-					<h:outputLink value="/tutorial/hibernate">Hibernate Spatial</h:outputLink> and
-					<h:outputLink value="/tutorial/geoserver">GeoServer and JBossAS 7</h:outputLink> are
-					not directly related to GeoJSF, but very helpful when dealing with Maps in a JSF/JPA
-					environment.
-				</p>
+				<h3>Maven</h3>
+				The maven artifact is available in maven-central, so you should
+				<aht:highlight resource="/code.geojsf/maven/pom.xml"/>
+				The required XML Namespace is:
+				<aht:highlight resource="/code.geojsf/maven/xmlns.xml"/>
 				
+				If you want to use a snapshot-version, you have to add
+				the Sonatype Snapshot Repository:
+				<aht:highlight resource="/code.geojsf/maven/snapshot.xml"/>
 			</div>
 		</div>
 	</ui:define>
