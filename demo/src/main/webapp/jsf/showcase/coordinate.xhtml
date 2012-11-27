@@ -19,6 +19,20 @@
 					<aht:menuUl value="#{menuBean.sub('showcase')}" sc1="top-level"/>
 				</div>
 			</div>
+			<div class="span9">
+				<h1>coordinate</h1>
+			<!--	<ui:include src="/WEB-INF/showcase/coordinate.xhtml" />-->
+				<p:tabView>
+					<p:tab title="XHTML (simple)">	
+						<aht:highlight resource="/composition.geojsf-demo/coordinate.xhtml" from="8" to="10"/>
+					</p:tab>  
+					
+					<p:tab title="Attributes">  
+			<!--			<ofx:component value="#{showcaseBean.component['map']}"/> -->
+					</p:tab>  
+					
+				</p:tabView>  	
+			</div>
 		</div>
 	</ui:define>
 </ui:composition>

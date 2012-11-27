@@ -3,8 +3,12 @@
     <profile>
         <subsystem xmlns="urn:jboss:domain:datasources:1.0">
             <datasources> 
-                <datasource jta="true" jndi-name="java:jboss/datasources/LisDs" pool-name="LisDs" enabled="true" use-java-context="true" use-ccm="true">
-                    <connection-url>jdbc:postgresql://localhost:5432/db</connection-url>
+                <datasource jta="true" jndi-name="java:jboss/datasources/GeoDs"
+                            pool-name="LisDs" enabled="true"
+                            use-java-context="true" use-ccm="true">
+                    <connection-url>
+                        jdbc:postgresql://localhost:5432/db
+                    </connection-url>
                     <driver>org.postgresql</driver>
                     <pool>
                         <min-pool-size>10</min-pool-size>
@@ -18,14 +22,18 @@
                         <password>dbPwd</password>
                     </security>
                     <validation>
-                        <check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+                        <check-valid-connection-sql>
+                            SELECT 1
+                        </check-valid-connection-sql>
                         <validate-on-match>false</validate-on-match>
                         <background-validation>false</background-validation>
                     </validation>
                 </datasource>
                 <drivers>
                     <driver name="org.postgresql" module="org.postgresql">
-                        <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+                        <xa-datasource-class>
+                            org.postgresql.xa.PGXADataSource
+                        </xa-datasource-class>
                     </driver>
                 </drivers>
             </datasources>
