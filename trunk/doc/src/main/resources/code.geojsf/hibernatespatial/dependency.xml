@@ -1,0 +1,27 @@
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-spatial</artifactId>
+    <version>4.0-M1</version>
+    <exclusions>
+        <exclusion>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>

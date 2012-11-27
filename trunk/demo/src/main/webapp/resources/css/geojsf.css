@@ -1,7 +1,8 @@
 /* @override 
 	http://localhost:8080/geojsf/javax.faces.resource/geojsf.css.jsf?ln=css
 	http://localhost:8080/geojsf/javax.faces.resource/geojsf.css.jsf;jsessionid=ajow1xRbq+bcPxh0+qqsacfh.undefined?ln=geojsf
-	http://localhost:8080/geojsf/javax.faces.resource/geojsf.css.jsf;jsessionid=cEAxHsEUEMaaYF4pGlo+E+yX.undefined?ln=css */
+	http://localhost:8080/geojsf/javax.faces.resource/geojsf.css.jsf;jsessionid=cEAxHsEUEMaaYF4pGlo+E+yX.undefined?ln=css
+	http://localhost:8080/geojsf/javax.faces.resource/geojsf.css.jsf;jsessionid=jeOMC0bGIajDQSTT0LgLEWFE.undefined?ln=css */
 
 body
 {
@@ -93,7 +94,7 @@ a:hover { color: #333; text-decoration: none; }
 			text-align: right;
 		}
 		
-#maincont
+.maincontent
 {
 	width: 100%x;
 	line-height: 22px;
@@ -101,15 +102,22 @@ a:hover { color: #333; text-decoration: none; }
 	padding: 5px 10px 0;
 }
 	
-			#maincont p { margin: 0 0 15px 0; }
-			#maincont h1, #maincont h2, #maincont h3, #maincont h4, #maincont h5 { margin: 0 0 15px 0; font-weight: normal; letter-spacing: -1px; }
-			#maincont h1 { font-size: 24px; }
-			#maincont h2 { font-size: 22px; }
-			#maincont h3 { font-size: 22px; }
-			#maincont h4 { font-size: 20px; }
-			#maincont h5 { font-size: 20px; }
+.maincontent p {
+	margin: 0 0 15px 0;
+}
+.maincontent h1, .maincontent h2, .maincontent h3, .maincontent h4, .maincontent h5 {
+	letter-spacing: -1px;
+	font-weight: bold;
+}
+.maincontent h1 { font-size: 20px;}
+.maincontent h2 { font-size: 18px; }
+.maincontent h3 { font-size: 16px;
+margin-top: 8px;
+}
+.maincontent h4 { font-size: 14px; }
+.maincontent h5 { font-size: 12px; }
 
-			#maincont blockquote { background: #EEE; border-left: 3px solid #D82B00; padding: 15px; margin: 0 0 15px 0; font-style: italic; line-height: 18px; }
+.maincontent blockquote { background: #EEE; border-left: 3px solid #D82B00; padding: 15px; margin: 0 0 15px 0; font-style: italic; line-height: 18px; }
 
 
 .row {
