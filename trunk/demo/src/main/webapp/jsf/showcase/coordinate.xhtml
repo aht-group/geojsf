@@ -4,9 +4,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:aht="http://ahtutils.sourceforge.net/jsf"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:aht="http://ahtutils.sourceforge.net/jsf"
+	xmlns:ofx="http://www.openfuxml.org/jsf"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('showcase')}" scActive="active"/></ui:define>
@@ -23,14 +23,12 @@
 				<h1>coordinate</h1>
 			<!--	<ui:include src="/WEB-INF/showcase/coordinate.xhtml" />-->
 				<p:tabView>
-					<p:tab title="XHTML (simple)">	
+					<p:tab title="XHTML">	
 						<aht:highlight resource="/composition.geojsf-demo/coordinate.xhtml" from="8" to="10"/>
 					</p:tab>  
-					
 					<p:tab title="Attributes">  
-			<!--			<ofx:component value="#{showcaseBean.component['map']}"/> -->
+						<ofx:component value="#{showcaseBean.component['coordinate']}"/>
 					</p:tab>  
-					
 				</p:tabView>  	
 			</div>
 		</div>

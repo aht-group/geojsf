@@ -30,6 +30,7 @@ public class ShowcaseBean implements Serializable
 		component = new Hashtable<String,Component>();
 		build("map");
 		build("layerSwitcher");
+		build("coordinate");
 	}
 
 	private void build(String code)
