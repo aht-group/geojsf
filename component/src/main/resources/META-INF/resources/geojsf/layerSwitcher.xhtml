@@ -9,19 +9,20 @@
     xmlns:composite="http://java.sun.com/jsf/composite">
     
   <composite:interface>
-    <composite:attribute name="value"/>
+    <composite:attribute name="value"
+      shortDescription="A GeoJsfMap."/>
     <composite:attribute name="update"
       shortDescription="The components will be updated after selection/deselection of a layer"/>
   </composite:interface>
         
   <composite:implementation>
-    <p:dataTable var="layer" value="#{cc.attrs.value}">
+    <p:dataTable var="layer" value="#{cc.attrs.value.dmLayer}">
       <p:column>
         <f:facet name="header"><h:outputText value="Name"/></f:facet>
         <h:outputText value="#{layer.code}"/>
       </p:column>
       <p:column>
-        <aht:dmSelectSingle dm="#{cc.attrs.value}" update="#{cc.attrs.update}" for="#{layer}"/>
+        <aht:dmSelectSingle dm="#{cc.attrs.value.dmLayer}" update="#{cc.attrs.update}" for="#{layer}"/>
       </p:column>
     </p:dataTable> 	 
   </composite:implementation>
