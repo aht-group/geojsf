@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <server xmlns="urn:jboss:domain:1.2">
-  <profile>
-      <subsystem xmlns="urn:jboss:domain:datasources:1.0">
+    <profile>
+        <subsystem xmlns="urn:jboss:domain:datasources:1.0">
             <datasources> 
                 <datasource jta="true" jndi-name="java:jboss/datasources/LisDs" pool-name="LisDs" enabled="true" use-java-context="true" use-ccm="true">
                     <connection-url>jdbc:postgresql://localhost:5432/db</connection-url>

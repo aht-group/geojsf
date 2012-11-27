@@ -22,12 +22,17 @@
 			<div class="span9">
 				<h1>Hibernate Spatial</h1>
 				
+				Hibernate Spatial is extremly helpful if you are using JPA and also want to manage
+				spatial datypes directly in your Entity Beans.
+				
 				<h3>JBoss AS Module: PostgreSQL</h3>
 				Similar to other JDBC database drivers, a module <b>org.postgresql</b> must be created. Create the directory
 				<b>/modules/org/postgresql/main/</b> and save the file <b>module.xml</b> with the following content:
 				<aht:highlight resource="/code.geojsf/hibernatespatial/module-postgresql.xml"/>
-				The specified files need to be saved in the same location. PostgresQL may be the latest version,
+				The specified files need to be saved in the same location. PostgreSQL may be the latest version,
 				hibernatespatial needs to be the version 1.5.3 (since HibernateSpatial 4.xx has this as a dependency).
+				While compiling the postgis.jar postgresql-8.3-607.jdbc4.jar is required, but it's safe to use
+				a recent version as the actual database driver.
 				
 				<h3>JBoss AS Module: Hibernate</h3>
 				The module <b>hibernate</b> already exists and must be extended:

@@ -1,0 +1,4 @@
+<dependency>
+    <groupId>net.sf.geojsf</groupId>
+    <artifactId>geojsf-component</artifactId>
+</dependency>
