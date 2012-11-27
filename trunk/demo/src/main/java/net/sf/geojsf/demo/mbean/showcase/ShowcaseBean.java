@@ -29,6 +29,7 @@ public class ShowcaseBean implements Serializable
 		jcf = new JsfComponentFactory();
 		component = new Hashtable<String,Component>();
 		build("map");
+		build("layerSwitcher");
 	}
 
 	private void build(String code)

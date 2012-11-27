@@ -10,7 +10,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
+import net.sf.geojsf.controller.util.GeoJsfMap;
 import net.sf.geojsf.controller.util.GeoJsfMapLayerFactory;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
@@ -27,7 +27,6 @@ import org.slf4j.LoggerFactory;
 @Named @SessionScoped
 public class GeoServiceBean implements Serializable
 {
-	
 	private static final long serialVersionUID = -4869182190759908416L;
 	final static Logger logger = LoggerFactory.getLogger(GeoServiceBean.class);
 	private String text;
@@ -37,54 +36,16 @@ public class GeoServiceBean implements Serializable
 	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> fLayer;
 	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> fView;
 	
-	private DefaultGeoJsfService serviceOsm,serviceAht;
-	private DefaultGeoJsfLayer layerOsmBasic,layerAhtRoads,layerAhtStreams;
-	private DefaultGeoJsfView viewMultiService;
-	
+	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> geoJsfMap;
+
 	private List<DefaultGeoJsfService> openLayerMulti;
-	private PrimefacesEjbIdDataModel<DefaultGeoJsfLayer> dmLayer;
 
 	@PostConstruct
 	public void init() throws UtilsIntegrityException
 	{
 		logger.info("@PostConstruct");
-		fJsf = GeoJsfMapLayerFactory.factory(DefaultGeoJsfService.class);
-		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
-		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLayer.class);
-		fView = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
 		
-		initServices();
-		initLayer();
-		initViews();
 		
-		List<DefaultGeoJsfLayer> layers = new ArrayList<DefaultGeoJsfLayer>();
-		layers.add(layerOsmBasic);
-		layers.add(layerAhtRoads);
-		layers.add(layerAhtStreams);
-		dmLayer = new PrimefacesEjbIdDataModel<DefaultGeoJsfLayer>(layers);
-		dmLayer.selectAll(true);
-		openLayerMulti = fJsf.build(viewMultiService);
-	}
-	
-	private void initServices() throws UtilsIntegrityException
-	{
-		serviceOsm = fService.create("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");
-		serviceAht = fService.create("aht","https://www.aht-group.com/geoserver/sf/wms");
-	}
-	
-	private void initLayer() throws UtilsIntegrityException
-	{
-		layerOsmBasic = fLayer.create("basic", serviceOsm);layerOsmBasic.setId(1);
-		layerAhtRoads = fLayer.create("roads",serviceAht);layerAhtRoads.setId(2);
-		layerAhtStreams = fLayer.create("streams",serviceAht);layerAhtStreams.setId(3);
-	}
-	
-	private void initViews() throws UtilsIntegrityException
-	{
-		viewMultiService = fView.create("view");
-		viewMultiService.getLayer().add(layerOsmBasic);
-		viewMultiService.getLayer().add(layerAhtRoads);
-		viewMultiService.getLayer().add(layerAhtStreams);
 	}
 	
 	public void listen(AjaxBehaviorEvent evt)
@@ -95,6 +56,6 @@ public class GeoServiceBean implements Serializable
 	public String getText() {return text;}
 	public void setText(String text) {this.text = text;}
 
+	public GeoJsfMap<DefaultGeoJsfLang, DefaultGeoJsfDescription, DefaultGeoJsfLayer, DefaultGeoJsfView, DefaultGeoJsfService> getGeoJsfMap() {return geoJsfMap;}
 	public List<DefaultGeoJsfService> getOpenLayerMulti() {return openLayerMulti;}
-	public PrimefacesEjbIdDataModel<DefaultGeoJsfLayer> getDmLayer() {return dmLayer;}
 }

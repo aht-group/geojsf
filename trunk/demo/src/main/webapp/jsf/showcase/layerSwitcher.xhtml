@@ -7,6 +7,7 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:aht="http://ahtutils.sourceforge.net/jsf"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:ofx="http://www.openfuxml.org/jsf"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('showcaseLayerSwitcher')}" scActive="active"/></ui:define>
@@ -19,19 +20,29 @@
 					<aht:menuUl value="#{menuBean.sub('showcase')}" sc1="top-level"/>
 				</div>
 			</div>
-			<div class="span3">
-				<h:form id="fLayer">
-					<geojsf:layerSwitcher value="#{geoServiceBean.dmLayer}" />
-				</h:form>
-			</div>
-			<div class="span3">
-				Map
-			</div>
-			<div class="span3">
-				The component layerSwitcher is implemented as a Primefaces dataTable.
-				If the web applications does not use PrimeFaces as a component library
-				this mostly is not a good choice. Nevertheless, all you have to do is
-				updating the object XXX with the layers to be shown and rebuild the lyer.
+			<div class="span9">
+				<h1>layerSwitcher</h1>
+				<ui:include src="/WEB-INF/showcase/layerSwitcher.xhtml" />
+				<p:spacer hight="5px"/>
+				<p:tabView>
+					<p:tab title="XHTML">
+						<aht:highlight from="8" to="12" lang="xml"
+							resource="/composition.geojsf-demo/layerSwitcher.xhtml" />
+						The component layerSwitcher is implemented as a Primefaces dataTable.
+						If the web applications does not use PrimeFaces as a component library
+						this mostly is not a good choice. Nevertheless, all you have to do is
+						updating the object XXX with the layers to be shown and rebuild the lyer.
+					</p:tab>  					
+					<p:tab title="Bean">  
+						<aht:highlight from="17" to="39" lang="java"
+							resource="/java.geojsf-demo/net/sf/geojsf/demo/mbean/showcase/ShowcaseLayerSwitcherBean.java"/>
+					</p:tab>
+					
+					<p:tab title="Attributes">  
+						<ofx:component value="#{showcaseBean.component['layerSwitcher']}"/>
+					</p:tab>  
+					
+				</p:tabView>
 			</div>
 		</div>
 	</ui:define>

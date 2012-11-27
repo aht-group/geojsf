@@ -134,5 +134,9 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-jsf</artifactId>
+		</dependency>
 	</dependencies>
 </project>
