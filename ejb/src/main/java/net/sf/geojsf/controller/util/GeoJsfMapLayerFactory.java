@@ -55,24 +55,19 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 	
 	private SERVICE getService(SERVICE service)
 	{
-		if(!mapService.containsKey(service.getCode()))
+		if(!mapService.containsKey(service.getUrl()))
 		{
 			try
 			{
 				SERVICE s = clService.newInstance();
 				s.setCode(service.getCode());
 				s.setUrl(service.getUrl());
-				mapService.put(service.getCode(), s);
+				mapService.put(service.getUrl(), s);
 			}
-			catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			catch (InstantiationException e) {e.printStackTrace();}
+			catch (IllegalAccessException e) {e.printStackTrace();}
 			
 		}
-		return mapService.get(service.getCode());
+		return mapService.get(service.getUrl());
 	}
 }

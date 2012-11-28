@@ -22,9 +22,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestJsfLayerFactory extends AbstractGeoJsfEjbTest
+public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestJsfLayerFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(TestJsfMapLayerFactory.class);
 	
 	private GeoJsfMapLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> fJsf;
 	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService> fService;
@@ -42,6 +42,7 @@ public class TestJsfLayerFactory extends AbstractGeoJsfEjbTest
 		DefaultGeoJsfService s1 = fService.create("code1", "url1");
 		DefaultGeoJsfService s2 = fService.create("code2", "url2");
 		DefaultGeoJsfService s3 = fService.create("code3", "url3");
+		DefaultGeoJsfService s4 = fService.create("code4", "url3");
 		
 		DefaultGeoJsfLayer l1 = fLayer.create("l1", s1);
 		DefaultGeoJsfLayer l2 = fLayer.create("l2", s1);
@@ -49,6 +50,7 @@ public class TestJsfLayerFactory extends AbstractGeoJsfEjbTest
 		DefaultGeoJsfLayer l4 = fLayer.create("l4", s2);
 		DefaultGeoJsfLayer l5 = fLayer.create("l5", s2);
 		DefaultGeoJsfLayer l6 = fLayer.create("l6", s3);
+		DefaultGeoJsfLayer l7 = fLayer.create("l7", s4);
 		
 		view = fView.create("view");
 		view.getLayer().add(l1);
@@ -57,6 +59,7 @@ public class TestJsfLayerFactory extends AbstractGeoJsfEjbTest
 		view.getLayer().add(l4);
 		view.getLayer().add(l5);
 		view.getLayer().add(l6);
+		view.getLayer().add(l7);
 	}
 	
 	private DefaultGeoJsfView view;
@@ -67,7 +70,6 @@ public class TestJsfLayerFactory extends AbstractGeoJsfEjbTest
 		List<DefaultGeoJsfService> actual = fJsf.build(view);
 		
 		Assert.assertEquals(3, actual.size());
-		
 		
 		XmlRepositoryFactory f = new XmlRepositoryFactory();
 		JaxbUtil.error(f.build(actual));
