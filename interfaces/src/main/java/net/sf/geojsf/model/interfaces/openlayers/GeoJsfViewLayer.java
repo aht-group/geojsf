@@ -1,5 +1,6 @@
 package net.sf.geojsf.model.interfaces.openlayers;
 
+import net.sf.ahtutils.model.interfaces.EjbRemoveable;
 import net.sf.ahtutils.model.interfaces.EjbWithId;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
@@ -10,7 +11,7 @@ public interface GeoJsfViewLayer<L extends UtilsLang,
 						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
 						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
 						VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-			extends EjbWithId
+			extends EjbWithId,EjbRemoveable
 {
 	public static final String extractId = "geoJsfView";
 	
