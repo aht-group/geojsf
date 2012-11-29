@@ -1,24 +1,20 @@
 package net.sf.geojsf.controller.interfaces;
 
-import java.util.List;
-
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
+import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 
 public interface GeoJsfFacade 
-{	
-	<L extends UtilsLang,D extends UtilsDescription,LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,VIEW extends GeoJsfView<L,D,LAYER,SERVICE>, SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
-		List<SERVICE> buildMapLayer(Class<VIEW> cView, VIEW view);
-	
-	<L extends UtilsLang,D extends UtilsDescription,LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,VIEW extends GeoJsfView<L,D,LAYER,SERVICE>, SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
+{		
+	<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 		VIEW load(Class<VIEW> cView, VIEW view);
 	
-	<L extends UtilsLang,D extends UtilsDescription,LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,VIEW extends GeoJsfView<L,D,LAYER,SERVICE>, SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
+	<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 		SERVICE load(Class<SERVICE> cService, SERVICE service);
 	
-	<L extends UtilsLang, D extends UtilsDescription, LAYER extends GeoJsfLayer<L, D, LAYER, SERVICE>, VIEW extends GeoJsfView<L, D, LAYER, SERVICE>, SERVICE extends GeoJsfService<L, D, LAYER, SERVICE>>
+	<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 		LAYER load(Class<LAYER> cLayer, LAYER layer);
 }

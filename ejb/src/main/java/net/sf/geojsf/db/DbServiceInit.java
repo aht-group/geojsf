@@ -10,6 +10,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
+import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import net.sf.geojsf.xml.openlayers.Repository;
 import net.sf.geojsf.xml.openlayers.Service;
 
@@ -17,10 +18,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DbServiceInit <L extends UtilsLang,
- 							D extends UtilsDescription,
- 							LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
- 							VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,
- 							SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
+							D extends UtilsDescription,
+							SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
+							LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
+							VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+							VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbServiceInit.class);
 	
@@ -36,14 +38,15 @@ public class DbServiceInit <L extends UtilsLang,
 	}
 	
 	public static <L extends UtilsLang,
-	   			   D extends UtilsDescription, 
-	   			   LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
-	   			   VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,
-	   			   SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
-		DbServiceInit<L,D,LAYER,VIEW,SERVICE>
+					D extends UtilsDescription,
+					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
+					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
+					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+		DbServiceInit<L,D,SERVICE,LAYER,VIEW,VL>
 		factory(final Class<SERVICE> cService, UtilsSecurityFacade fAcl)
 	{
-		return new DbServiceInit<L,D,LAYER,VIEW,SERVICE>(cService,fAcl);
+		return new DbServiceInit<L,D,SERVICE,LAYER,VIEW,VL>(cService,fAcl);
 	}
 	
 	public void iuService(Repository repository) throws UtilsConfigurationException
