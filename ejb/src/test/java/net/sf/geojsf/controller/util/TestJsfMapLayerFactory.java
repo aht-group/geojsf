@@ -15,6 +15,7 @@ import net.sf.geojsf.test.AbstractGeoJsfEjbTest;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoServiceFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewFactory;
+import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 import net.sf.geojsf.util.factory.xml.openlayers.XmlRepositoryFactory;
 
 import org.junit.Before;
@@ -30,6 +31,7 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
 	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fLayer;
 	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fView;
+	private EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fViewLayer;
 	
 	@Before
 	public void init() throws UtilsIntegrityException
@@ -38,6 +40,7 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLayer.class);
 		fView = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
+		fViewLayer = EjbGeoViewLayerFactory.factory(DefaultGeoJsfViewLayer.class);
 		
 		DefaultGeoJsfService s1 = fService.create("code1", "url1");
 		DefaultGeoJsfService s2 = fService.create("code2", "url2");
@@ -53,13 +56,13 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 		DefaultGeoJsfLayer l7 = fLayer.create("l7", s4);
 		
 		view = fView.create("view");
-		view.getLayer().add(l1);
-		view.getLayer().add(l2);
-		view.getLayer().add(l3);
-		view.getLayer().add(l4);
-		view.getLayer().add(l5);
-		view.getLayer().add(l6);
-		view.getLayer().add(l7);
+		view.getLayer().add(fViewLayer.create(view, l1, 1, true));
+		view.getLayer().add(fViewLayer.create(view, l2, 2, true));
+		view.getLayer().add(fViewLayer.create(view, l3, 3, true));
+		view.getLayer().add(fViewLayer.create(view, l4, 4, true));
+		view.getLayer().add(fViewLayer.create(view, l5, 5, true));
+		view.getLayer().add(fViewLayer.create(view, l6, 6, true));
+		view.getLayer().add(fViewLayer.create(view, l7, 7, true));
 	}
 	
 	private DefaultGeoJsfView view;

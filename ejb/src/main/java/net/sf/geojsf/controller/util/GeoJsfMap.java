@@ -1,5 +1,6 @@
 package net.sf.geojsf.controller.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.ahtutils.jsf.interfaces.dm.DmSingleSelect;
@@ -43,7 +44,13 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     
     private void buildDmLayer()
     {
-    	dmLayer = new PrimefacesEjbIdDataModel<LAYER>(view.getLayer());
+    	List<LAYER> list = new ArrayList<LAYER>();
+    	for(VL vl: view.getLayer())
+    	{
+    		list.add(vl.getLayer());
+    	}
+    	
+    	dmLayer = new PrimefacesEjbIdDataModel<LAYER>(list);
     	dmLayer.setSingleSelectCallback(this);
     }
     
@@ -60,7 +67,7 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     
     public void buildServices()
     {
-    	layerServices = fMapLayer.build(dmLayer.toSelection());
+    	layerServices = fMapLayer.buildFromLayer(dmLayer.toSelection());
     }
     
     public void debug()

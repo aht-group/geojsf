@@ -40,7 +40,21 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 		return build(view.getLayer());
     }
 	
-	public List<SERVICE> build(List<LAYER> list)
+	public List<SERVICE> build(List<VL> list)
+	{
+		mapService.clear();
+		for(VL vl : list)
+		{
+			SERVICE service = getService(vl.getLayer().getService());
+			service.getLayer().add(vl.getLayer());
+		}
+		
+		List<SERVICE> services = new ArrayList<SERVICE>();
+		services.addAll(mapService.values());
+		return services;
+	}
+	
+	public List<SERVICE> buildFromLayer(List<LAYER> list)
 	{
 		mapService.clear();
 		for(LAYER layer : list)
