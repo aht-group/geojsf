@@ -17,6 +17,7 @@ import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
+import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 import net.sf.geojsf.xml.openlayers.Layer;
 import net.sf.geojsf.xml.openlayers.View;
 import net.sf.geojsf.xml.openlayers.Views;
@@ -39,8 +40,9 @@ public class DbViewInit <L extends UtilsLang,
     private UtilsSecurityFacade fSecurity;
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
+    private EjbGeoViewLayerFactory<L,D,SERVICE,LAYER,VIEW,VL> efViewLayer;
     
-    public DbViewInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<VIEW> cView,UtilsSecurityFacade fAcl)
+    public DbViewInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<VIEW> cView,final Class<VL> cViewLayer, UtilsSecurityFacade fAcl)
 	{       
         this.cLayer = cLayer;
         this.cView = cView;
@@ -49,6 +51,7 @@ public class DbViewInit <L extends UtilsLang,
 		
 		ejbLangFactory = EjbLangFactory.createFactory(cL);
 		ejbDescriptionFactory = EjbDescriptionFactory.createFactory(cD);
+		efViewLayer = EjbGeoViewLayerFactory.factory(cViewLayer);
 	}
 	
 	public static <L extends UtilsLang,
@@ -58,9 +61,9 @@ public class DbViewInit <L extends UtilsLang,
 					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
 					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 		DbViewInit<L,D,SERVICE,LAYER,VIEW,VL>
-		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<VIEW> cView,UtilsSecurityFacade fAcl)
+		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<VIEW> cView,final Class<VL> cViewLayer,UtilsSecurityFacade fAcl)
 	{
-		return new DbViewInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cLayer,cView,fAcl);
+		return new DbViewInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cLayer,cView,cViewLayer,fAcl);
 	}
 	
 	public void iuLayer(Views views) throws UtilsConfigurationException
@@ -113,14 +116,16 @@ public class DbViewInit <L extends UtilsLang,
 		logger.trace("initUpdateUsecaseCategories finished");
 	}
 	
-	private void iuLayers(VIEW view, List<Layer> layers) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException
+	private void iuLayers(VIEW view, List<Layer> layers) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException, UtilsIntegrityException
 	{
 		view.getLayer().clear();
 		view = fSecurity.update(view);
 		logger.trace("Layer: "+view.getLayer().size());
 		for(Layer layer : layers)
 		{
-			view.getLayer().add(fSecurity.fByCode(cLayer, layer.getCode()));
+			LAYER l = fSecurity.fByCode(cLayer, layer.getCode());
+			VL vl = efViewLayer.create(view, l, 1, true);
+			fSecurity.persist(vl);
 		}
 		view = fSecurity.update(view);
 		logger.trace("Layer: "+view.getLayer().size());

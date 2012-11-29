@@ -26,7 +26,7 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	
 	private Map<String, DefaultGeoJsfDescription> description;
 	
-	private List<DefaultGeoJsfLayer> layer;
+	private List<DefaultGeoJsfViewLayer> layer;
 	
 	//******************************************************************************
 	
@@ -42,8 +42,8 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 	
-	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer=new ArrayList<DefaultGeoJsfLayer>();}return layer;}
-	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
+	@Override public List<DefaultGeoJsfViewLayer> getLayer() {if(layer==null){layer=new ArrayList<DefaultGeoJsfViewLayer>();}return layer;}
+	@Override public void setLayer(List<DefaultGeoJsfViewLayer> layer) {this.layer=layer;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	

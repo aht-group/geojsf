@@ -10,12 +10,14 @@ import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoServiceFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewFactory;
+import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 
 public class DummyViewFactory
 {
 	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
 	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fLayer;
 	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fView;
+	private EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fViewLayer;
 	
 	private DefaultGeoJsfService serviceOsm,serviceAht;
 	private DefaultGeoJsfLayer layerOsmBasic,layerAhtRoads,layerAhtStreams;
@@ -28,6 +30,7 @@ public class DummyViewFactory
 		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLayer.class);
 		fView = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
+		fViewLayer = EjbGeoViewLayerFactory.factory(DefaultGeoJsfViewLayer.class);
 		
 		initServices();
 		initLayer();
@@ -58,8 +61,8 @@ public class DummyViewFactory
 	private void initViews() throws UtilsIntegrityException
 	{
 		view = fView.create("view");
-		view.getLayer().add(layerOsmBasic);
-		view.getLayer().add(layerAhtRoads);
-		view.getLayer().add(layerAhtStreams);
+		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 1, true));
+		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 1, true));
+		view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 1, true));
 	}
 }

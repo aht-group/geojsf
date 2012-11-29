@@ -19,7 +19,7 @@ public interface GeoJsfView<L extends UtilsLang,
 {
 	public static final String extractId = "geoJsfView";
 	
-	List<LAYER> getLayer();
-	void setLayer(List<LAYER> layer);
+	List<VL> getLayer();
+	void setLayer(List<VL> layer);
 	
 }
