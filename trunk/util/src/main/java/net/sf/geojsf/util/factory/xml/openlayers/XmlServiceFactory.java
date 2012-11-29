@@ -7,6 +7,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
+import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import net.sf.geojsf.xml.openlayers.Service;
 
 import org.slf4j.Logger;
@@ -23,8 +24,8 @@ public class XmlServiceFactory implements Serializable
 		
 	}
 
-	public <L extends UtilsLang,D extends UtilsDescription,LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
-		Service build (GeoJsfService<L,D,LAYER,SERVICE> ejb)
+	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+		Service build (GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL> ejb)
 	{
 		Service xml = new Service();
 		xml.setUrl(ejb.getUrl());
@@ -32,7 +33,7 @@ public class XmlServiceFactory implements Serializable
 		if(ejb.getLayer()!=null && ejb.getLayer().size()>0)
 		{
 			XmlLayerFactory f = new XmlLayerFactory();
-			for(GeoJsfLayer<L,D,LAYER,SERVICE> layer : ejb.getLayer())
+			for(GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL> layer : ejb.getLayer())
 			{
 				xml.getLayer().add(f.build(layer));
 			}

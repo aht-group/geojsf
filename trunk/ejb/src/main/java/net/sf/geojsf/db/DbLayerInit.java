@@ -13,6 +13,8 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
+import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
+import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import net.sf.geojsf.xml.openlayers.Layer;
 import net.sf.geojsf.xml.openlayers.Layers;
 
@@ -20,9 +22,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DbLayerInit <L extends UtilsLang,
- 							D extends UtilsDescription,
- 							LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
- 							SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
+						D extends UtilsDescription,
+						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
+						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
+						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+						VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbLayerInit.class);
 	
@@ -45,13 +49,15 @@ public class DbLayerInit <L extends UtilsLang,
 	}
 	
 	public static <L extends UtilsLang,
-	   			   D extends UtilsDescription, 
-	   			   LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
-	   			SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
-		DbLayerInit<L,D,LAYER,SERVICE>
+					D extends UtilsDescription,
+					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
+					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
+					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+		DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL>
 		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService,UtilsSecurityFacade fAcl)
 	{
-		return new DbLayerInit<L,D,LAYER,SERVICE>(cL,cD,cLayer,cService,fAcl);
+		return new DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cLayer,cService,fAcl);
 	}
 
 	public void iuLayer(Layers layers) throws UtilsConfigurationException

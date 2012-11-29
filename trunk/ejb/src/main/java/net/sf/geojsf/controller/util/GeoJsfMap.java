@@ -9,21 +9,18 @@ import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
+import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class GeoJsfMap <L extends UtilsLang,
-						D extends UtilsDescription,
-						LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
-						VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,
-						SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
+public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 			implements DmSingleSelect<LAYER>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMap.class);
 	
-	private GeoJsfMapLayerFactory<L,D,LAYER,VIEW,SERVICE> fMapLayer;
+	private GeoJsfMapLayerFactory<L,D,SERVICE,LAYER,VIEW,VL> fMapLayer;
 	
 	private List<SERVICE> layerServices;
 	private VIEW view;
@@ -34,10 +31,10 @@ public class GeoJsfMap <L extends UtilsLang,
     	fMapLayer = GeoJsfMapLayerFactory.factory(clService);
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
-    GeoJsfMap<L,D,LAYER,VIEW,SERVICE> factory(final Class<SERVICE> clService,VIEW view)
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+    	GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<SERVICE> clService,VIEW view)
     {
-    	GeoJsfMap<L,D,LAYER,VIEW,SERVICE> f = new GeoJsfMap<L,D,LAYER,VIEW,SERVICE>(clService);
+    	GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> f = new GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>(clService);
     	f.setView(view);
     	f.buildDmLayer();f.selectAll();
     	f.buildServices();

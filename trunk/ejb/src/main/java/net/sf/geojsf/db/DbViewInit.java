@@ -16,6 +16,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
+import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import net.sf.geojsf.xml.openlayers.Layer;
 import net.sf.geojsf.xml.openlayers.View;
 import net.sf.geojsf.xml.openlayers.Views;
@@ -24,10 +25,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DbViewInit <L extends UtilsLang,
- 							D extends UtilsDescription,
- 							LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
- 							VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,
- 							SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
+						D extends UtilsDescription,
+						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
+						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
+						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+						VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbViewInit.class);
 	
@@ -50,14 +52,15 @@ public class DbViewInit <L extends UtilsLang,
 	}
 	
 	public static <L extends UtilsLang,
-	   			   D extends UtilsDescription, 
-	   			   LAYER extends GeoJsfLayer<L,D,LAYER,SERVICE>,
-	   			   VIEW extends GeoJsfView<L,D,LAYER,SERVICE>,
-	   			   SERVICE extends GeoJsfService<L,D,LAYER,SERVICE>>
-		DbViewInit<L,D,LAYER,VIEW,SERVICE>
+					D extends UtilsDescription,
+					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
+					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
+					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+		DbViewInit<L,D,SERVICE,LAYER,VIEW,VL>
 		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<VIEW> cView,UtilsSecurityFacade fAcl)
 	{
-		return new DbViewInit<L,D,LAYER,VIEW,SERVICE>(cL,cD,cLayer,cView,fAcl);
+		return new DbViewInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cLayer,cView,fAcl);
 	}
 	
 	public void iuLayer(Views views) throws UtilsConfigurationException

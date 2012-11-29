@@ -12,6 +12,7 @@ import net.sf.geojsf.demo.util.DummyViewFactory;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
+import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
@@ -21,7 +22,8 @@ public class ShowcaseMapBean implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,
-		DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfService>
+				DefaultGeoJsfService,DefaultGeoJsfLayer,
+				DefaultGeoJsfView,DefaultGeoJsfViewLayer>
 			geoJsfMap;
 
 	@PostConstruct
@@ -31,7 +33,8 @@ public class ShowcaseMapBean implements Serializable
 			DefaultGeoJsfService.class, DummyViewFactory.build());
 	}
 	
-	public GeoJsfMap<DefaultGeoJsfLang, DefaultGeoJsfDescription,
-		DefaultGeoJsfLayer, DefaultGeoJsfView, DefaultGeoJsfService>
+	public GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,
+				DefaultGeoJsfService,DefaultGeoJsfLayer,
+				DefaultGeoJsfView,DefaultGeoJsfViewLayer>
 	getGeoJsfMap() {return geoJsfMap;}
 }
