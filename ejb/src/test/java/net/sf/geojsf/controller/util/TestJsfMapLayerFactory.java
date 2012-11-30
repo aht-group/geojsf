@@ -12,10 +12,6 @@ import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import net.sf.geojsf.test.AbstractGeoJsfEjbTest;
-import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
-import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoServiceFactory;
-import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewFactory;
-import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 import net.sf.geojsf.util.factory.xml.openlayers.XmlRepositoryFactory;
 
 import org.junit.Before;
@@ -42,6 +38,7 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 	public void test()
     {	
 		List<DefaultGeoJsfService> actual = fJsf.build(view);
+		
 		
 		Assert.assertEquals(2, actual.size());
 		

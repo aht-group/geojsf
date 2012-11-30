@@ -62,7 +62,7 @@ public class DummyViewFactory
 	{
 		view = fView.create("view");
 		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 1, true));
-		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 1, true));
-		view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 1, true));
+		view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 2, true));
+		view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 3, true));
 	}
 }

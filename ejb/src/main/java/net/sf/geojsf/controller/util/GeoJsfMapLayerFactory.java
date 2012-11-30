@@ -45,6 +45,7 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 		mapService.clear();
 		for(VL vl : list)
 		{
+			logger.info("vl:"+vl.getLayer().getCode());
 			SERVICE service = getService(vl.getLayer().getService());
 			service.getLayer().add(vl.getLayer());
 		}
