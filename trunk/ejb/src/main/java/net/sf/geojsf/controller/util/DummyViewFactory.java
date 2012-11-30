@@ -1,4 +1,4 @@
-package net.sf.geojsf.demo.util;
+package net.sf.geojsf.controller.util;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;

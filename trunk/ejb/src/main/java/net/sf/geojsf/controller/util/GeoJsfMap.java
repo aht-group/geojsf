@@ -75,7 +75,7 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     	logger.info("DEBUG");
     	for(SERVICE service : layerServices)
     	{
-    		logger.info(service.getCode());
+    		logger.info(service.getCode()+" "+service.getUrl());
     		for(LAYER layer : service.getLayer())
     		{
     			logger.info("\t"+layer.getCode());

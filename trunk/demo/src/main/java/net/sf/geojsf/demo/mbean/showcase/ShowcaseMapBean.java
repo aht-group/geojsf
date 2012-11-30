@@ -7,8 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import net.sf.geojsf.controller.util.DummyViewFactory;
 import net.sf.geojsf.controller.util.GeoJsfMap;
-import net.sf.geojsf.demo.util.DummyViewFactory;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
@@ -31,6 +31,7 @@ public class ShowcaseMapBean implements Serializable
 	{		
 		geoJsfMap = GeoJsfMap.factory(
 			DefaultGeoJsfService.class, DummyViewFactory.build());
+		geoJsfMap.debug();
 	}
 	
 	public GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,
