@@ -8,7 +8,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:composite="http://java.sun.com/jsf/composite">
     
-   <composite:interface>
+   <composite:interface componentType="net.sf.geojsf.component.Map">
      <composite:attribute name="title"/>
      <composite:attribute name="clientId"/>
      <composite:attribute name="imagePath"/>
@@ -24,50 +24,60 @@
      <composite:attribute name="moverviewy" default="149"/>
      <composite:attribute name="width" default="100%"/>
      <composite:attribute name="height" default="400"/>
-     <composite:clientBehavior name="mapclick" 
-                              event="mapclick"
+     <composite:attribute name="value"/>
+     <composite:attribute name="listener" required="true" method-signature="void listener(javax.faces.event.AjaxBehaviorEvent)"/>
+     <composite:clientBehavior name="click" 
+                              event="click"
                             targets="#{cc.clientId}"/>
    </composite:interface>
         
   <composite:implementation>
    	 <script src="http://openlayers.org/api/OpenLayers.js"/>
-   	 <h:outputScript library="geojsf"     name="MapInitAPI.js"/>
+   	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+   	 <h:outputScript library="geojsf"     name="GeoJSF.js"/>
      <h:outputScript library="geojsf"     name="scalebar.js"/>
      <h:outputStylesheet library="geojsf" name="scalebar-thin.css"/>   
      <h:outputStylesheet library="geojsf" name="geojsf.css"/>
+     <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
      
      
-     <div id="#{cc.attrs.clientId}" style="padding: 0; width:#{cc.attrs.width};height:#{cc.attrs.height}px" />
+     <div id="#{cc.clientId}" style="padding: 0; width:#{cc.attrs.width};height:#{cc.attrs.height}px" />
      <c:if test="#{!empty cc.attrs.moverview}">
 	 	<div id="#{cc.attrs.moverview}" style="width:#{cc.attrs.moverviewy}px;height:#{cc.attrs.moverviewx}px" />
 	 </c:if>
-	 <c:choose>
-	 <c:when test="#{!empty initParam['geojsf.THEME']}">
-	 	<h:outputScript>
-        var mloptions = #{cc.attrs.layerOptions};
-        var mcoptions = #{cc.attrs.mapOptions};
-         function __initOL() {
-        	__addClickHandler();
-        	OpenLayers.ImgPath='#{facesContext.externalContext.requestContextPath}/#{initParam['geojsf.THEME']}/';
-            __initMapDiv("#{cc.attrs.clientId}",mcoptions);
-            __initMapLayers("#{cc.attrs.serviceName}","#{cc.attrs.serviceURL}","#{cc.attrs.centerX}","#{cc.attrs.centerY}","#{cc.attrs.zoomLevel}",mloptions);
-            }
-        __addLoadEvent( __initOL);     
-     </h:outputScript>
-	 </c:when>
-	 <c:otherwise>
+	 
+	 	
+	 <h:inputText id="coordinates" style="visibility: hidden;">
+	    <f:ajax event="change" listener="#{cc.attrs.listener}"/>
+	 </h:inputText>
+	 
+	 
 	 <h:outputScript>
         var mloptions = #{cc.attrs.layerOptions};
         var mcoptions = #{cc.attrs.mapOptions};
-         function __initOL() {
-        	__addClickHandler();
-            __initMapDiv("#{cc.attrs.clientId}",mcoptions);
-            __initMapLayers("#{cc.attrs.serviceName}","#{cc.attrs.serviceURL}","#{cc.attrs.centerX}","#{cc.attrs.centerY}","#{cc.attrs.zoomLevel}",mloptions);
-            }
-        __addLoadEvent( __initOL);     
+        var mapDOMelement = $("##{cc.clientId.replaceAll(":","\\\\\\\\:")}");
+        var inputDOMelement = $("##{cc.clientId.replaceAll(":","\\\\\\\\:")}\\:coordinates");
+        function init()
+        {
+	        GeoJSF.addClickHandler('#{cc.clientId}', inputDOMelement, mapDOMelement);
+	        GeoJSF.initMap("#{cc.attrs.clientId}",mcoptions);
+	        GeoJSF.initLayer();
+         	<c:if test="#{!empty initParam['geojsf.THEME']}">
+	 			OpenLayers.ImgPath='#{facesContext.externalContext.requestContextPath}/#{initParam['geojsf.THEME']}/';
+	 		</c:if>
+	 		<ui:repeat value="#{cc.attrs.value.layerServices}" var="service">
+	 			var url    = "#{service.url}";
+	 			var name   = "#{service.code}";
+	 			var params = {};
+	 			params.layers      = "#{cc.layerString(service)}";
+	 			params.transparent = "true";
+	 			params.format      = 'image/png';
+	 			var options = {};
+	 			options.isBaseLayer= "false";
+	 			GeoJSF.addLayer(name, url, params, options)
+	 		</ui:repeat>
+        }
+        GeoJSF.addLoadEvent(init);     
      </h:outputScript>
-	 </c:otherwise>
-	 </c:choose>
-     
-   </composite:implementation>
+  </composite:implementation>
 </html>

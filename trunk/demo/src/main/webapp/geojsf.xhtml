@@ -10,9 +10,7 @@
 </h:head>
 <h:body>
 <h:form>
-	<geojsf:map title="THIS COMES FROM A COMPOSITE COMPONENT :-)">
-		
-	</geojsf:map>
+	<geojsf:map listener="#{geoDemoBean.listen}" value="#{showcaseMapBean.geoJsfMap}"/>
 </h:form>
 </h:body>
 </html>

@@ -13,9 +13,11 @@
 	<ui:define name="headline">GEO-24</ui:define>
 	<ui:define name="content">
 		Hello GeoJSF
-		<geojsf:map title="THIS COMES FROM A COMPOSITE COMPONENT :-)">
-			<f:ajax event="olclick" listener="#{geoDemoBean.listen}"/>
-	        <!-- <f:actionListener for="ol" type="net.sf.geojsf.demo.mbean.util.GeoDemoBean"/>  -->
+		<h:form>
+		<h:inputText value="#{geoDemoBean.text}"/>
+		<geojsf:map id="ol" listener="#{geoDemoBean.listen}" value="#{showcaseMapBean.geoJsfMap}">
+			<f:ajax event="click" listener="#{geoDemoBean.listen}"/>
         </geojsf:map>
+        </h:form>
 	</ui:define>
 </ui:composition>

@@ -5,7 +5,7 @@ function __addLoadEvent(func) {
     OpenLayers.Event.observe(window, "load", func ); 
 }
 
-function __addClickHandler() {
+function __addClickHandler(id, mapDOMelement) {
 	 OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
          defaultHandlerOptions: {
              'single': true,
@@ -32,11 +32,12 @@ function __addClickHandler() {
          trigger: function(e) {
          //    var lonlat = map.getLonLatFromViewPortPx(e.xy);
          //    geoJsfClick(lonlat.lon,lonlat.lat,map.getResolution(),map.getScale());
-        	 var evObj = document.createEvent('HTMLEvents');
-        	 document.body.addEventListener('mapclick', function(e){ alert(e.lonlat); },true);
+        	 var evObj = document.createEvent('MouseEvents');
+        //	 document.body.addEventListener('mapclick', function(e){ alert(e.lonlat); },true);
         	 evObj.lonlat = map.getLonLatFromViewPortPx(e.xy);
         	 evObj.initEvent('mapclick', true, true);
-        	 document.body.dispatchEvent(evObj);
+        	 mapDOMelement.dispatchEvent(evObj);
+        	 jsf.ajax.request(id, evObj,{execute:"@form",render: "id",params: evObj.lonlat});
          }
 
      });
@@ -51,8 +52,38 @@ function __initMapDiv(mapDiv,msOptions) {
 }
 
 function __initMapLayers(msName,msURL,centerX,centerY,msZoom,layerOptions){
+	
+	var myWmsLayer = new OpenLayers.Layer.WMS(
+			  'AHTGroup Demo WMS', 
+			  'https://www.aht-group.com/geoserver/sf/wms', 
+			  {
+			    layers: 'roads,streams',
+			    transparent: "true",
+			    format: 'image/png'
+			  }
+			 );
+			
+
+	var my2ndWmsLayer = new OpenLayers.Layer.WMS(
+		  'OSM WMS', 
+		  'http://vmap0.tiles.osgeo.org/wms/vmap0', 
+		  {
+		    layers: 'basic',
+		    transparent: "true",
+		    format: 'image/png'
+		  }, 
+		  {
+			  isBaseLayer: true
+		    }
+		 );
+		
+	
     var ol_wms = new OpenLayers.Layer.WMS(msName,msURL,layerOptions);
-    map.addLayers([ol_wms]);
+    
+    
+    //map.addLayers([ol_wms]);
+    map.addLayer(myWmsLayer);
+    map.addLayer(my2ndWmsLayer);
     if(centerX == 0 & centerY == 0)
     {
         map.zoomToMaxExtent();
@@ -69,6 +100,7 @@ function __initMapLayers(msName,msURL,centerX,centerY,msZoom,layerOptions){
     panZoomBar.div.style.marginTop = "-50px";
     var scalebar = new OpenLayers.Control.ScaleBar({align: "right"});
     map.addControl(scalebar);
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
 }
 
 function geoJsfReloadLayer(data)
