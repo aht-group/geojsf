@@ -19,8 +19,8 @@ public class DummyViewFactory
 	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fView;
 	private EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fViewLayer;
 	
-	private DefaultGeoJsfService serviceOsm,serviceAht;
-	private DefaultGeoJsfLayer layerOsmBasic,layerAhtRoads,layerAhtStreams;
+	public static DefaultGeoJsfService serviceOsm,serviceAht;
+	private DefaultGeoJsfLayer layerOsmBasic,layerAhtRoads,layerAhtStreams,layerAhtRestricted;
 	private DefaultGeoJsfView view;
 	
 	public DefaultGeoJsfView getView() {return view;}
@@ -47,8 +47,8 @@ public class DummyViewFactory
 	
 	private void initServices() throws UtilsIntegrityException
 	{
-		serviceOsm = fService.create("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");
-		serviceAht = fService.create("aht","https://www.aht-group.com/geoserver/sf/wms");
+		if(serviceOsm==null){serviceOsm = fService.create("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");}
+		if(serviceAht==null){serviceAht = fService.create("aht","https://www.aht-group.com/geoserver/sf/wms");}
 	}
 	
 	private void initLayer() throws UtilsIntegrityException
@@ -56,6 +56,7 @@ public class DummyViewFactory
 		layerOsmBasic = fLayer.create("basic", serviceOsm);layerOsmBasic.setId(1);
 		layerAhtRoads = fLayer.create("roads",serviceAht);layerAhtRoads.setId(2);
 		layerAhtStreams = fLayer.create("streams",serviceAht);layerAhtStreams.setId(3);
+		layerAhtRestricted = fLayer.create("restricted",serviceAht);layerAhtRestricted.setId(4);
 	}
 	
 	private void initViews() throws UtilsIntegrityException
@@ -64,5 +65,6 @@ public class DummyViewFactory
 		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 1, true));
 		view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 2, true));
 		view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 3, true));
+		view.getLayer().add(fViewLayer.create(view, layerAhtRestricted, 4, true));
 	}
 }
