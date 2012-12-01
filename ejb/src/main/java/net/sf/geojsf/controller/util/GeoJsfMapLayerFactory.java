@@ -20,6 +20,7 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMapLayerFactory.class);
 	
 	private Map<String,SERVICE> mapService;
+	private List<SERVICE> orderedServices;
 	
 	final Class<SERVICE> clService;
 	
@@ -27,6 +28,7 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
     {
     	this.clService=clService;
     	mapService = new Hashtable<String,SERVICE>();
+    	orderedServices = new ArrayList<SERVICE>();
     } 
     
     public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
@@ -45,13 +47,16 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 		mapService.clear();
 		for(VL vl : list)
 		{
-			logger.info("vl:"+vl.getLayer().getCode());
+			logger.trace("vl:"+vl.getLayer().getCode());
 			SERVICE service = getService(vl.getLayer().getService());
 			service.getLayer().add(vl.getLayer());
 		}
 		
 		List<SERVICE> services = new ArrayList<SERVICE>();
-		services.addAll(mapService.values());
+		for(SERVICE s : orderedServices)
+		{
+			services.add(mapService.get(s.getUrl()));
+		}
 		return services;
 	}
 	
@@ -79,6 +84,7 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 				s.setCode(service.getCode());
 				s.setUrl(service.getUrl());
 				mapService.put(service.getUrl(), s);
+				orderedServices.add(s);
 			}
 			catch (InstantiationException e) {e.printStackTrace();}
 			catch (IllegalAccessException e) {e.printStackTrace();}

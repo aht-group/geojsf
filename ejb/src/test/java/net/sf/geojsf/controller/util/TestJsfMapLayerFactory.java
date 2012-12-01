@@ -39,10 +39,17 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
     {	
 		List<DefaultGeoJsfService> actual = fJsf.build(view);
 		
-		
 		Assert.assertEquals(2, actual.size());
 		
 		XmlRepositoryFactory f = new XmlRepositoryFactory();
 		JaxbUtil.error(f.build(actual));
     }
+	
+	@Test
+	public void serviceOrdering()
+	{
+		List<DefaultGeoJsfService> actual = fJsf.build(view);
+		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(0).getCode());
+		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(1).getCode());
+	}
 }
