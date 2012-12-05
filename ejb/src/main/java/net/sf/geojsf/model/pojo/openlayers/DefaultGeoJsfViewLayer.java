@@ -1,9 +1,6 @@
 package net.sf.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import net.sf.ahtutils.model.interfaces.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.EjbRemoveable;
