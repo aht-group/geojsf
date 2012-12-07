@@ -50,4 +50,14 @@ public class XmlLayerFactory implements Serializable
 		
 		return xml;
 	}
+	
+	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+		Layer build (GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL> ejb)
+	{
+		Layer xml = new Layer();
+		
+		if(q.isSetCode()){xml.setCode(ejb.getLayer().getCode());}
+				
+		return xml;
+	}
 }

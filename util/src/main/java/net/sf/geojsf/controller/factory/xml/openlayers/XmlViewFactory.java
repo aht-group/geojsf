@@ -34,6 +34,9 @@ public class XmlViewFactory implements Serializable
 	{
 		View xml = new View();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
+		if(q.isSetZoom()){xml.setZoom(ejb.getZoom());}
+		if(q.isSetX()){xml.setX(ejb.getX());}
+		if(q.isSetY()){xml.setY(ejb.getY());}
 		if(q.isSetLangs())
 		{
 			XmlLangsFactory f = new XmlLangsFactory(q.getLangs());
