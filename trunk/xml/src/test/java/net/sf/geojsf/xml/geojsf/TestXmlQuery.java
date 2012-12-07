@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.geojsf.test.GeoJsfXmlTstBootstrap;
+import net.sf.geojsf.xml.openlayers.TestXmlLayer;
 import net.sf.geojsf.xml.openlayers.TestXmlRepository;
 import net.sf.geojsf.xml.openlayers.TestXmlService;
 
@@ -35,8 +36,12 @@ public class TestXmlQuery extends AbstractXmlGmlTest
     {
     	Query xml = new Query();
 
-    	xml.setService(TestXmlService.create(false));
-    	xml.setRepository(TestXmlRepository.create(false));
+    	if(withChilds)
+    	{
+    		xml.setService(TestXmlService.create(false));
+    		xml.setRepository(TestXmlRepository.create(false));
+    		xml.setLayer(TestXmlLayer.create(false));
+    	}
     	
     	return xml;
     }

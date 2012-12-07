@@ -3,13 +3,16 @@ package net.sf.geojsf.controller.util.query;
 import java.util.Hashtable;
 import java.util.Map;
 
+import net.sf.ahtutils.controller.util.query.StatusQuery;
 import net.sf.geojsf.xml.geojsf.Query;
+import net.sf.geojsf.xml.openlayers.Layer;
 import net.sf.geojsf.xml.openlayers.Repository;
 import net.sf.geojsf.xml.openlayers.Service;
 
 public class OpenLayersQuery
 {
-	public static enum Key {service,repositoryService}
+	public static enum Key {service,repositoryService,
+							layer}
 	
 	private static Map<Key,Query> mQueries;
 	
@@ -23,6 +26,7 @@ public class OpenLayersQuery
 			{
 				case service: q.setService(service());break;
 				case repositoryService: q.setRepository(repositoryService());break;
+				case layer: q.setLayer(layer());break;
 			}
 			mQueries.put(key, q);
 		}
@@ -44,6 +48,18 @@ public class OpenLayersQuery
 	{
 		Repository xml = new Repository();
 		xml.getService().add(service());
+		return xml;
+	}
+	
+	public static Layer layer()
+	{
+		Service service = new Service();
+		service.setCode("");
+		
+		Layer xml = new Layer();
+		xml.setCode("");
+		xml.setService(service);
+		xml.setLangs(StatusQuery.langs());
 		return xml;
 	}
 }

@@ -51,6 +51,20 @@
    	   		<artifactId>exlp-util</artifactId>
    	   		<type>jar</type>
    	   		<scope>compile</scope>
+   	   		<exclusions>
+   	   			<exclusion>
+   	   				<artifactId>joda-time</artifactId>
+   	   				<groupId>joda-time</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>commons-io</artifactId>
+   	   				<groupId>commons-io</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>commons-codec</artifactId>
+   	   				<groupId>commons-codec</groupId>
+   	   			</exclusion>
+   	   		</exclusions>
    	   	</dependency>
    	   	<dependency>
    	   		<groupId>org.slf4j</groupId>
@@ -64,6 +78,52 @@
    	   		<groupId>junit</groupId>
    	   		<artifactId>junit</artifactId>
    	   		<scope>test</scope>
+   	   	</dependency>
+   	   	<dependency>
+   	   		<groupId>net.sf.ahtutils</groupId>
+   	   		<artifactId>ahtutils-util</artifactId>
+   	   		<exclusions>
+   	   			<exclusion>
+   	   				<artifactId>ofx-core</artifactId>
+   	   				<groupId>org.openfuxml</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>guava</artifactId>
+   	   				<groupId>com.google.guava</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>jpwgen</artifactId>
+   	   				<groupId>de.rrze</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>poi</artifactId>
+   	   				<groupId>org.apache.poi</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>joda-time</artifactId>
+   	   				<groupId>joda-time</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>ofx-chart</artifactId>
+   	   				<groupId>org.openfuxml</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>json</artifactId>
+   	   				<groupId>org.json</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>commons-collections</artifactId>
+   	   				<groupId>commons-collections</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>commons-io</artifactId>
+   	   				<groupId>commons-io</groupId>
+   	   			</exclusion>
+   	   			<exclusion>
+   	   				<artifactId>commons-codec</artifactId>
+   	   				<groupId>commons-codec</groupId>
+   	   			</exclusion>
+   	   		</exclusions>
    	   	</dependency>
 	</dependencies>
    
