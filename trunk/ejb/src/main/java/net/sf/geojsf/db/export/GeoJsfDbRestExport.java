@@ -1,9 +1,5 @@
 package net.sf.geojsf.db.export;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-
 import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
@@ -17,6 +13,7 @@ import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import net.sf.geojsf.xml.openlayers.Layers;
 import net.sf.geojsf.xml.openlayers.Repository;
+import net.sf.geojsf.xml.openlayers.Views;
 
 public class GeoJsfDbRestExport <L extends UtilsLang,
 									D extends UtilsDescription,
@@ -76,5 +73,13 @@ public class GeoJsfDbRestExport <L extends UtilsLang,
 		}
 		
 		return layers;
+	}
+
+	@Override
+	public Views exportViews()
+	{
+		Views views = new Views();
+
+		return views;
 	}
 }

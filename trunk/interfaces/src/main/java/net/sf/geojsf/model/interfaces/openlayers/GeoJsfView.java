@@ -22,4 +22,12 @@ public interface GeoJsfView<L extends UtilsLang,
 	List<VL> getLayer();
 	void setLayer(List<VL> layer);
 	
+	Double getX();
+	void setX(Double x);
+	
+	Double getY();
+	void setY(Double y);
+	
+	Integer getZoom();
+	void setZoom(Integer zoom);
 }

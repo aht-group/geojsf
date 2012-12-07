@@ -28,13 +28,16 @@ public class EjbGeoViewFactory<L extends UtilsLang,D extends UtilsDescription,SE
         return new EjbGeoViewFactory<L,D,SERVICE,LAYER,VIEW,VL>(clView);
     }
 	
-	public VIEW create(String code) throws UtilsIntegrityException
+	public VIEW create(String code, int zoom, double x, double y) throws UtilsIntegrityException
 	{
 		VIEW ejb;
 		try {ejb = clView.newInstance();}
 		catch (InstantiationException e) {throw new UtilsIntegrityException(e.getMessage());}
 		catch (IllegalAccessException e) {throw new UtilsIntegrityException(e.getMessage());}
 		ejb.setCode(code);
+		ejb.setZoom(zoom);
+		ejb.setX(x);
+		ejb.setY(y);
         return ejb;
     }
 }

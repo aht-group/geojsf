@@ -22,6 +22,10 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	
 	private String code;
 	
+	private Double x,y;
+	
+	private Integer zoom;
+	
 	private Map<String, DefaultGeoJsfLang> name;
 	
 	private Map<String, DefaultGeoJsfDescription> description;
@@ -35,6 +39,15 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
+	
+	@Override public Double getX() {return x;}
+	@Override public void setX(Double x) {this.x = x;}
+	
+	@Override public Double getY() {return y;}
+	@Override public void setY(Double y) {this.y = y;}
+	
+	@Override public Integer getZoom() {return zoom;}
+	@Override public void setZoom(Integer zoom) {this.zoom = zoom;}
 	
 	@Override public Map<String, DefaultGeoJsfLang> getName() {return name;}
 	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
