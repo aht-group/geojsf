@@ -8,11 +8,13 @@ import net.sf.geojsf.xml.geojsf.Query;
 import net.sf.geojsf.xml.openlayers.Layer;
 import net.sf.geojsf.xml.openlayers.Repository;
 import net.sf.geojsf.xml.openlayers.Service;
+import net.sf.geojsf.xml.openlayers.View;
 
 public class OpenLayersQuery
 {
 	public static enum Key {service,repositoryService,
-							layer}
+							layer,viewLayer,
+							view}
 	
 	private static Map<Key,Query> mQueries;
 	
@@ -27,6 +29,8 @@ public class OpenLayersQuery
 				case service: q.setService(service());break;
 				case repositoryService: q.setRepository(repositoryService());break;
 				case layer: q.setLayer(layer());break;
+				case viewLayer: q.setLayer(viewLayer());break;
+				case view: q.setView(view());break;
 			}
 			mQueries.put(key, q);
 		}
@@ -59,6 +63,27 @@ public class OpenLayersQuery
 		Layer xml = new Layer();
 		xml.setCode("");
 		xml.setService(service);
+		xml.setLangs(StatusQuery.langs());
+		return xml;
+	}
+	
+	public static Layer viewLayer()
+	{	
+		Layer xml = new Layer();
+		xml.setCode("");
+		return xml;
+	}
+	
+	public static View view()
+	{		
+		Layer layer = new Layer();
+		layer.setCode("");
+		
+		View xml = new View();
+		xml.setCode("");
+		xml.setZoom(0);
+		xml.setX(0);
+		xml.setY(0);
 		xml.setLangs(StatusQuery.langs());
 		return xml;
 	}

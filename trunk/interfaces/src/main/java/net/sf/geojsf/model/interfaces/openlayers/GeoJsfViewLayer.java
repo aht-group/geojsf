@@ -24,7 +24,10 @@ public interface GeoJsfViewLayer<L extends UtilsLang,
 	int getOrderNo();
 	void setOrderNo(int orderNo);
 	
-	boolean isVisible();
-	void setVisible(boolean visible);
+	Boolean isVisible();
+	void setVisible(Boolean visible);
+	
+	Boolean isLegend();
+	void setLegend(Boolean legend);
 	
 }

@@ -62,9 +62,9 @@ public class DummyViewFactory
 	private void initViews() throws UtilsIntegrityException
 	{
 		view = fView.create("view",5,0,0);
-		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 1, true));
-		view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 2, true));
-		view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 3, true));
-		view.getLayer().add(fViewLayer.create(view, layerAhtRestricted, 4, true));
+		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 1, true,true));
+		view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 2, true,true));
+		view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 3, true,true));
+		view.getLayer().add(fViewLayer.create(view, layerAhtRestricted, 4, true,true));
 	}
 }

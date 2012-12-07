@@ -28,7 +28,7 @@ public class EjbGeoViewLayerFactory<L extends UtilsLang,D extends UtilsDescripti
         return new EjbGeoViewLayerFactory<L,D,SERVICE,LAYER,VIEW,VL>(clViewLayer);
     }
 	
-	public VL create(VIEW view, LAYER layer, int orderNo, boolean visible) throws UtilsIntegrityException
+	public VL create(VIEW view, LAYER layer, int orderNo, boolean visible, boolean legend) throws UtilsIntegrityException
 	{
 		VL ejb;
 		try {ejb = clViewLayer.newInstance();}
@@ -38,6 +38,7 @@ public class EjbGeoViewLayerFactory<L extends UtilsLang,D extends UtilsDescripti
 		ejb.setLayer(layer);
 		ejb.setOrderNo(orderNo);
 		ejb.setVisible(visible);
+		ejb.setLegend(legend);
         return ejb;
     }
 }

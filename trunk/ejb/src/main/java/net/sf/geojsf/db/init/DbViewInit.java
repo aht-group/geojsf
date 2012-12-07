@@ -106,6 +106,9 @@ public class DbViewInit <L extends UtilsLang,
 			try
 			{
 				ejb.setName(ejbLangFactory.getLangMap(view.getLangs()));
+				ejb.setZoom(view.getZoom());
+				ejb.setX(view.getX());
+				ejb.setY(view.getY());
 //				aclCategory.setDescription(ejbDescriptionFactory.create(category.getDescriptions()));
 				ejb=fSecurity.update(ejb);
 				iuViewLayers(ejb,view.getLayer());
@@ -138,7 +141,7 @@ public class DbViewInit <L extends UtilsLang,
 		for(Layer layer : layers)
 		{
 			LAYER l = fSecurity.fByCode(cLayer, layer.getCode());
-			VL vl = efViewLayer.create(view, l, i, true);
+			VL vl = efViewLayer.create(view, l, i, layer.isVisible(), (layer.isSetLegend() && layer.isShowLegend()));
 			fSecurity.persist(vl);
 			i++;
 		}
