@@ -1,4 +1,4 @@
-package net.sf.geojsf.db;
+package net.sf.geojsf.db.init;
 
 import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
 import net.sf.ahtutils.db.ejb.AhtDbEjbUpdater;
