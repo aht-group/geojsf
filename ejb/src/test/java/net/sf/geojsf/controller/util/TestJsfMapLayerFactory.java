@@ -5,6 +5,8 @@ import java.util.List;
 import junit.framework.Assert;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.geojsf.controller.factory.xml.openlayers.XmlRepositoryFactory;
+import net.sf.geojsf.controller.util.query.OpenLayersQuery;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
@@ -12,7 +14,6 @@ import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import net.sf.geojsf.test.AbstractGeoJsfEjbTest;
-import net.sf.geojsf.util.factory.xml.openlayers.XmlRepositoryFactory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +42,7 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 		
 		Assert.assertEquals(2, actual.size());
 		
-		XmlRepositoryFactory f = new XmlRepositoryFactory();
+		XmlRepositoryFactory f = new XmlRepositoryFactory(OpenLayersQuery.get(OpenLayersQuery.Key.repositoryService, null));
 		JaxbUtil.error(f.build(actual));
     }
 	
