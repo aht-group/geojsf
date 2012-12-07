@@ -8,7 +8,6 @@ import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
-import net.sf.geojsf.util.factory.xml.openlayers.XmlLayerFactory;
 import net.sf.geojsf.xml.geojsf.Query;
 import net.sf.geojsf.xml.openlayers.Service;
 
@@ -37,7 +36,7 @@ public class XmlServiceFactory implements Serializable
 		
 		if(q.isSetLayer() && ejb.getLayer()!=null && ejb.getLayer().size()>0)
 		{
-			XmlLayerFactory f = new XmlLayerFactory();
+			XmlLayerFactory f = new XmlLayerFactory(q.getLayer().get(0));
 			for(GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL> layer : ejb.getLayer())
 			{
 				xml.getLayer().add(f.build(layer));

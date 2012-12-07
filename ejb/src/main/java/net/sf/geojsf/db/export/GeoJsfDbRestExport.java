@@ -1,8 +1,13 @@
 package net.sf.geojsf.db.export;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
 import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.geojsf.controller.factory.xml.openlayers.XmlLayerFactory;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlServiceFactory;
 import net.sf.geojsf.controller.interfaces.GeoJsfExportRest;
 import net.sf.geojsf.controller.util.query.OpenLayersQuery;
@@ -10,6 +15,7 @@ import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
+import net.sf.geojsf.xml.openlayers.Layers;
 import net.sf.geojsf.xml.openlayers.Repository;
 
 public class GeoJsfDbRestExport <L extends UtilsLang,
@@ -23,11 +29,13 @@ public class GeoJsfDbRestExport <L extends UtilsLang,
 	private UtilsSecurityFacade fSecurity;
 	
 	private final Class<SERVICE> cService;
+	private final Class<LAYER> cLayer;
 	
-	private GeoJsfDbRestExport(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService)
+	private GeoJsfDbRestExport(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService,final Class<LAYER> cLayer)
 	{
 		this.fSecurity=fSecurity;
 		this.cService=cService;
+		this.cLayer=cLayer;
 	}
 	
 	public static <L extends UtilsLang,
@@ -37,16 +45,15 @@ public class GeoJsfDbRestExport <L extends UtilsLang,
 					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
 					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 		GeoJsfDbRestExport<L,D,SERVICE,LAYER,VIEW,VL>
-		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService)
+		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer)
 	{
-		return new GeoJsfDbRestExport<L,D,SERVICE,LAYER,VIEW,VL>(fSecurity,cService);
+		return new GeoJsfDbRestExport<L,D,SERVICE,LAYER,VIEW,VL>(fSecurity,cService,cLayer);
 	}
 
 	@Override
 	public Repository exportServices()
 	{
 		Repository repository = new Repository();
-		
 		XmlServiceFactory f = new XmlServiceFactory(OpenLayersQuery.get(OpenLayersQuery.Key.service, null));
 		
 		for(SERVICE service : fSecurity.all(cService))
@@ -55,5 +62,19 @@ public class GeoJsfDbRestExport <L extends UtilsLang,
 		}
 		
 		return repository;
+	}
+
+	@Override
+	public Layers exportLayers()
+	{
+		Layers layers = new Layers();
+		XmlLayerFactory f = new XmlLayerFactory(OpenLayersQuery.get(OpenLayersQuery.Key.layer, null));
+		
+		for(LAYER layer : fSecurity.all(cLayer))
+		{
+			layers.getLayer().add(f.build(layer));
+		}
+		
+		return layers;
 	}
 }

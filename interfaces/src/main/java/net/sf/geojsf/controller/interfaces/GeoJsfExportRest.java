@@ -5,6 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import net.sf.geojsf.xml.openlayers.Layers;
 import net.sf.geojsf.xml.openlayers.Repository;
 
 public interface GeoJsfExportRest
@@ -12,4 +13,8 @@ public interface GeoJsfExportRest
 	@GET @Path("/services")
 	@Produces(MediaType.APPLICATION_XML)
 	Repository exportServices();
+	
+	@GET @Path("/layers")
+	@Produces(MediaType.APPLICATION_XML)
+	Layers exportLayers();
 }

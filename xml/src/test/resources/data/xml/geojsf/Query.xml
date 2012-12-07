@@ -2,4 +2,5 @@
 <geojsf:query xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ol="http://geojsf.sf.net/openlayers" xmlns:geojsf="http://geojsf.sf.net/geojsf">
     <ol:repository/>
     <ol:service id="1" code="myCode" url="http://geojsf.sf.net" wms="wms" wcs="wcs"/>
+    <ol:layer id="1" code="myCode" workspace="myWorkspace" name="myName" visible="true" showLegend="true"/>
 </geojsf:query>
