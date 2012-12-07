@@ -8,6 +8,7 @@ import net.sf.geojsf.test.GeoJsfXmlTstBootstrap;
 import net.sf.geojsf.xml.openlayers.TestXmlLayer;
 import net.sf.geojsf.xml.openlayers.TestXmlRepository;
 import net.sf.geojsf.xml.openlayers.TestXmlService;
+import net.sf.geojsf.xml.openlayers.TestXmlView;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -41,6 +42,7 @@ public class TestXmlQuery extends AbstractXmlGmlTest
     		xml.setService(TestXmlService.create(false));
     		xml.setRepository(TestXmlRepository.create(false));
     		xml.setLayer(TestXmlLayer.create(false));
+    		xml.setView(TestXmlView.create(false));
     	}
     	
     	return xml;

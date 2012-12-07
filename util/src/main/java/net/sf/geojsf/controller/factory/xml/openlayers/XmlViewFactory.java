@@ -1,13 +1,15 @@
-package net.sf.geojsf.util.factory.xml.openlayers;
+package net.sf.geojsf.controller.factory.xml.openlayers;
 
 import java.io.Serializable;
 
+import net.sf.ahtutils.controller.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
+import net.sf.geojsf.xml.geojsf.Query;
 import net.sf.geojsf.xml.openlayers.View;
 
 import org.slf4j.Logger;
@@ -19,15 +21,25 @@ public class XmlViewFactory implements Serializable
 	
 	public static final long serialVersionUID=1;
 	
-	public XmlViewFactory()
+	private View q;
+	
+	public XmlViewFactory(Query query){this(query.getView());}
+	public XmlViewFactory(View q)
 	{
-		
+		this.q=q;
 	}
 
 	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 		View build (GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL> ejb)
 	{
 		View xml = new View();
+		if(q.isSetCode()){xml.setCode(ejb.getCode());}
+		if(q.isSetLangs())
+		{
+			XmlLangsFactory f = new XmlLangsFactory(q.getLangs());
+			xml.setLangs(f.getUtilsLangs(ejb.getName()));
+		}
+		
 		
 		if(ejb.getLayer()!=null && ejb.getLayer().size()>0)
 		{
