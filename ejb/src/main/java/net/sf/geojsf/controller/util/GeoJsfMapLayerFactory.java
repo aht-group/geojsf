@@ -44,20 +44,12 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 	
 	public List<SERVICE> build(List<VL> list)
 	{
-		mapService.clear();
+		List<LAYER> tmp = new ArrayList<LAYER>();
 		for(VL vl : list)
 		{
-			logger.trace("vl:"+vl.getLayer().getCode());
-			SERVICE service = getService(vl.getLayer().getService());
-			service.getLayer().add(vl.getLayer());
+			tmp.add(vl.getLayer());
 		}
-		
-		List<SERVICE> services = new ArrayList<SERVICE>();
-		for(SERVICE s : orderedServices)
-		{
-			services.add(mapService.get(s.getUrl()));
-		}
-		return services;
+		return buildFromLayer(tmp);
 	}
 	
 	public List<SERVICE> buildFromLayer(List<LAYER> list)
@@ -70,7 +62,10 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
 		}
 		
 		List<SERVICE> services = new ArrayList<SERVICE>();
-		services.addAll(mapService.values());
+		for(SERVICE s : orderedServices)
+		{
+			services.add(mapService.get(s.getUrl()));
+		}
 		return services;
 	}
 	
