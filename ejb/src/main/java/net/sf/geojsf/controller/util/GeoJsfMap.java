@@ -67,7 +67,13 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     
     public void buildServices()
     {
-    	layerServices = fMapLayer.buildFromLayer(dmLayer.toSelection());
+    	List<LAYER> layers = new ArrayList<LAYER>();
+		for(VL vl : view.getLayer())
+		{
+			logger.info("vl.layer="+vl.getLayer().getCode()+"."+vl.getLayer().getService().getCode());
+			if(dmLayer.isSelected(vl.getLayer().getId())){layers.add(vl.getLayer());}
+		}
+    	layerServices = fMapLayer.buildFromLayer(layers);
     }
     
     public void debug()

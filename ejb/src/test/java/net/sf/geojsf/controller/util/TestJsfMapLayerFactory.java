@@ -25,12 +25,15 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 	final static Logger logger = LoggerFactory.getLogger(TestJsfMapLayerFactory.class);
 	
 	private GeoJsfMapLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fJsf;
+	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> geoJsfMap;
 	
 	@Before
 	public void init() throws UtilsIntegrityException
 	{
 		fJsf = GeoJsfMapLayerFactory.factory(DefaultGeoJsfService.class);
 		view = DummyViewFactory.build();
+		
+		geoJsfMap = GeoJsfMap.factory(DefaultGeoJsfService.class, DummyViewFactory.build());
 	}
 	
 	private DefaultGeoJsfView view;
@@ -52,5 +55,11 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 		List<DefaultGeoJsfService> actual = fJsf.build(view);
 		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(0).getCode());
 		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(1).getCode());
+	}
+	
+	@Test
+	public void layerOrdering()
+	{
+		geoJsfMap.debug();
 	}
 }
