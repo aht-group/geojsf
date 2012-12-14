@@ -35,8 +35,8 @@
    	 <script src="http://openlayers.org/api/OpenLayers.js"/>
    	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
    	 <h:outputScript library="geojsf"     name="GeoJSF.js"/>
-     <h:outputScript library="geojsf"     name="scalebar.js"/>
-     <h:outputStylesheet library="geojsf" name="scalebar-thin.css"/>   
+  <!--   <h:outputScript library="geojsf"     name="scalebar.js"/> --> 
+  <!--   <h:outputStylesheet library="geojsf" name="scalebar-thin.css"/> -->   
      <h:outputStylesheet library="geojsf" name="geojsf.css"/>
      <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
      
@@ -52,6 +52,7 @@
 	 </h:inputText>
 	 
 	 
+	 
 	 <h:outputScript>
         var mloptions = #{cc.attrs.layerOptions};
         var mcoptions = #{cc.attrs.mapOptions};
@@ -59,25 +60,37 @@
         var inputDOMelement = $("##{cc.clientId.replaceAll(":","\\\\\\\\:")}\\:coordinates");
         function init()
         {
-	        GeoJSF.addClickHandler('#{cc.clientId}', inputDOMelement, mapDOMelement);
+        	GeoJSF.addClickHandler('#{cc.clientId}','#{cc.clientId}:resetLayers', inputDOMelement, mapDOMelement);
 	        GeoJSF.initMap("#{cc.attrs.clientId}",mcoptions);
-	        GeoJSF.initLayer();
-         	<c:if test="#{!empty initParam['geojsf.THEME']}">
+	        <c:if test="#{!empty initParam['geojsf.THEME']}">
 	 			OpenLayers.ImgPath='#{facesContext.externalContext.requestContextPath}/#{initParam['geojsf.THEME']}/';
 	 		</c:if>
-	 		<ui:repeat value="#{cc.attrs.value.layerServices}" var="service">
-	 			var url    = "#{service.url}";
-	 			var name   = "#{service.code}";
+	 		updateLayers(false);
+        }
+        GeoJSF.addLoadEvent(init);
+     </h:outputScript>
+     
+     <h:outputScript id="resetLayers">
+	 		function updateLayers(reset) {
+	 		if (reset) 
+	 		{
+	 			GeoJSF.resetLayers();
+	 		}
+	 		<ui:repeat value="#{cc.attrs.value.layerServices}" var="service" varStatus="status">
+	 		
+	 			
+	 		    var url    = "#{service.url}";
+	 		    var name   = "#{service.code}";
 	 			var params = {};
 	 			params.layers      = "#{cc.layerString(service)}";
 	 			params.transparent = "true";
 	 			params.format      = 'image/png';
 	 			var options = {};
-	 			options.isBaseLayer= "false";
-	 			GeoJSF.addLayer(name, url, params, options)
+	 			options.isBaseLayer= #{status.first};
+	 			GeoJSF.addLayer(name, url, params, options);
+	 			
 	 		</ui:repeat>
-        }
-        GeoJSF.addLoadEvent(init);     
+	 		};
      </h:outputScript>
   </composite:implementation>
 </html>

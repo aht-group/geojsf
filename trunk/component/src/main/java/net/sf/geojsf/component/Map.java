@@ -1,7 +1,5 @@
 package net.sf.geojsf.component;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.el.MethodExpression;
@@ -10,11 +8,11 @@ import javax.faces.component.UINamingContainer;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @FacesComponent(value="net.sf.geojsf.component.Map")
 public class Map extends UINamingContainer{
@@ -25,13 +23,11 @@ public class Map extends UINamingContainer{
 	{
 		ArrayList<DefaultGeoJsfLayer> layers = (ArrayList<DefaultGeoJsfLayer>) service.getLayer();
 		StringBuffer sb = new StringBuffer();
-		Boolean firstLayer = true;
 		for (DefaultGeoJsfLayer layer : layers)
 		{
-			if (firstLayer)  {sb.append(layer.getCode()); firstLayer = false;}
-			if (!firstLayer) {sb.append("," +layer.getCode());}
+			sb.append(layer.getCode() +",");
 		}
-		return sb.toString();
+		return sb.deleteCharAt(sb.length()-1).toString();
 	}
 	
 	public void listen(AjaxBehaviorEvent evt)
