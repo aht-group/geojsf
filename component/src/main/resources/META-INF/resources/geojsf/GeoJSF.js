@@ -1,13 +1,11 @@
-// Define the variable where the map Div container will be injected
-var map;
-
 // Define the variable where the panZoomBar OpenLayers control will be injected
 var panZoomBar;
-
+//Define the variable where the map Div container will be injected
+var map;
 // Define a Namespace for the GeoJSF specific JavaScript functionality
-var GeoJSF = {
-		
-		initMap: function(mapDiv,msOptions)
+var GeoJSF = {	
+
+		initMap : function(mapDiv,msOptions)
 		{
 			map = new OpenLayers.Map(mapDiv,msOptions);
 			map.addControl(new OpenLayers.Control.Navigation({'zoomWheelEnabled': false}));
@@ -20,17 +18,17 @@ var GeoJSF = {
 		        panZoomBar.buttons[p].style.display = 'none';
 		    }
 		    panZoomBar.div.style.marginTop = "-50px";
-		    var scalebar = new OpenLayers.Control.ScaleBar({align: "right"});
-		    map.addControl(scalebar);
+		 //   var scalebar = new OpenLayers.Control.ScaleBar({align: "right"});
+		 //   map.addControl(scalebar);
 		    map.addControl(new OpenLayers.Control.LayerSwitcher());
 		},
 
-		addLoadEvent: function(func)
+		addLoadEvent : function(func)
 		{
 			OpenLayers.Event.observe(window, "load", func ); 
 		},
 		
-		addClickHandler: function (id, inputDOMelement, mapDOMelement)
+		addClickHandler : function (id, resetId, inputDOMelement, mapDOMelement)
 		{
 			 OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
 		         defaultHandlerOptions: {
@@ -65,56 +63,36 @@ var GeoJSF = {
 		        //	 mapDOMelement.dispatchEvent(evObj);
 		        //	 var e = jQuery.Event("click", { lonlat: evObj.lonlat });
 		        //	 jQuery(id).trigger(e);
-		        	 jsf.ajax.request(id, "click",{execute:"@form",render: id,params: evObj.lonlat});
+		        	 jsf.ajax.request(id, "click",{execute:"@form",render: resetId,params: evObj.lonlat});
 		         }
 		     });
 		},
 		
-		// This function adds a OpenStreetMap base layer
-		initLayer: function() 
-		{
-			var baseLayer = new OpenLayers.Layer.WMS(
-					  'OSM WMS', 
-					  'http://vmap0.tiles.osgeo.org/wms/vmap0', 
-					  {
-					    layers: 'basic',
-					    transparent: "true",
-					    format: 'image/png'
-					  }, 
-					  {
-						  isBaseLayer: true
-					    }
-					 );
-			
-			map.addLayer(baseLayer);
-			map.zoomToMaxExtent();
-			for (var p = 0; p < 4; p++)
-			{
-				panZoomBar.buttons[p].style.display = 'none';
-			}
-		},
-		
 		// Remove all layers and add the base layer again
-		resetLayers: function()
+		resetLayers : function()
 		{
-			for (var i = map.layers.length - 1; i >= 0; i--) {
-			    map.removeLayer(map.layers[i]);
-			}
-			GeoJSF.initLayer();
+			if (map.layers)
+				{
+					for (var i = map.layers.length - 1; i >= 0; i--) {
+					    map.removeLayer(map.layers[i]);
+					}
+				}
+			
 		},
 		
-		addLayer: function(name, url, params)
+		addLayer : function(name, url, layers, params)
 		{
 			var layer = new OpenLayers.Layer.WMS(
 					  name, 
 					  url, 
+					  layers,
 					  params);
-			
+			alert("Adding layer: " +name +","+url+","+params);
 			map.addLayer(layer);
 			map.zoomToMaxExtent();
 			for (var p = 0; p < 4; p++)
 			{
 				panZoomBar.buttons[p].style.display = 'none';
 			}
-		}
-}
+		},
+};
