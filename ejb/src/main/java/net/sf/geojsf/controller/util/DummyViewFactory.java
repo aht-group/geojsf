@@ -28,8 +28,8 @@ public class DummyViewFactory
 	public DummyViewFactory() throws UtilsIntegrityException
 	{
 		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
-		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLayer.class);
-		fView = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
+		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
+		fView = EjbGeoViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfView.class);
 		fViewLayer = EjbGeoViewLayerFactory.factory(DefaultGeoJsfViewLayer.class);
 		
 		initServices();
@@ -53,15 +53,15 @@ public class DummyViewFactory
 	
 	private void initLayer() throws UtilsIntegrityException
 	{
-		layerOsmBasic = fLayer.create("basic", serviceOsm);layerOsmBasic.setId(1);
-		layerAhtRoads = fLayer.create("roads",serviceAht);layerAhtRoads.setId(2);
-		layerAhtStreams = fLayer.create("streams",serviceAht);layerAhtStreams.setId(3);
-		layerAhtRestricted = fLayer.create("restricted",serviceAht);layerAhtRestricted.setId(4);
+		layerOsmBasic = fLayer.create("basic", serviceOsm,DefaultGeoJsfLang.defaultLangs);layerOsmBasic.setId(1);
+		layerAhtRoads = fLayer.create("roads",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRoads.setId(2);
+		layerAhtStreams = fLayer.create("streams",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtStreams.setId(3);
+		layerAhtRestricted = fLayer.create("restricted",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRestricted.setId(4);
 	}
 	
 	private void initViews() throws UtilsIntegrityException
 	{
-		view = fView.create("view",5,0,0);
+		view = fView.create("view",5,0,0,DefaultGeoJsfLang.defaultLangs);
 		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 1, true,true));
 		view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 2, true,true));
 		view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 3, true,true));
