@@ -27,12 +27,28 @@
 				<b>java.lang.ClassNotFoundException: com.sun.imageio.spi.FileImageInputStreamSpi</b> occurs.
 				
 				<h3>Modified geoserver.war</h3>
+				The file <i>geoserver.war/WEB-INF/jboss-deployment-structure.xml</i> must be created with
+				the following content:
 				<aht:highlight resource="/code/tutorial/geoserver-as7/jboss-deployment-structure.xml"/>
+				While modifying the geoserver.war it's good idea to set the data directory
+				http://docs.geoserver.org/stable/en/user/datadirectory/data-dir-setting.html#data-dir-setting
 				
 				<h3>JBoss logging system</h3>
 				The deployment of geoserver overwrites the log4j logging system of JBoss and the logging is in fact broken.
 				Adding the following line to the end of <b>bin/standalone.conf</b> prevents this.
 				<aht:highlight resource="/code.geojsf/geoserver-jboss/logging.txt"/>		
+				
+				<h3>Compatibility Matrix</h3>
+				<table border="0">
+					<tr>
+						<td>Version</td>
+						<td>Geoserver-2.2.2</td>
+					</tr>
+					<tr>
+						<td>JBoss-AS 7.1.1-Final</td>
+						<td>OK</td>
+					</tr>
+				</table>
 				
 				<h3>Detailed Error Message</h3>
 				<aht:highlight resource="/code/tutorial/geoserver-as7/error.txt"/>
