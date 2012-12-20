@@ -39,5 +39,9 @@
         <pattern value="/tutorial/geoserver-as7" />
         <view-id value="/jsf/tutorial/geoserver-as7.jsf" />
     </url-mapping>
+	<url-mapping id="impressum">
+		<pattern value="/impressum" />
+		<view-id value="/jsf/impressum.jsf" />
+	</url-mapping>
     
 </pretty-config>
