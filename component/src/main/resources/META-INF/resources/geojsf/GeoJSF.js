@@ -87,7 +87,7 @@ var GeoJSF = {
 					  url, 
 					  layers,
 					  params);
-			alert("Adding layer: " +name +","+url+","+params);
+		//	alert("Adding layer: " +name +","+url+","+params);
 			map.addLayer(layer);
 			map.zoomToMaxExtent();
 			for (var p = 0; p < 4; p++)
