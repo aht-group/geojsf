@@ -47,6 +47,7 @@ public class MenuBean extends AbstractMenuBean implements Serializable
 		mfMain.setContextRoot("geojsf");
     }
 	
+	public Menu build() {return super.menu(mfMain, rootMain);}
 	public Menu build(String code) {return super.menu(mfMain, code);}
 	public List<MenuItem> breadcrumb(String code){return super.breadcrumb(mfMain, code);}
 	public MenuItem sub(String code){return super.sub(mfMain, code);}
