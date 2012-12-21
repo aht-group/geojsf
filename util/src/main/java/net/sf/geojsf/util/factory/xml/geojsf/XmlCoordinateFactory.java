@@ -2,8 +2,8 @@ package net.sf.geojsf.util.factory.xml.geojsf;
 
 import java.io.Serializable;
 
-import net.sf.geojsf.xml.geojsf.Coordinate;
 
+import org.geojsf.xml.geojsf.Coordinate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

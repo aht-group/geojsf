@@ -15,9 +15,9 @@ import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
-import net.sf.geojsf.xml.openlayers.Layer;
-import net.sf.geojsf.xml.openlayers.Layers;
 
+import org.geojsf.xml.openlayers.Layer;
+import org.geojsf.xml.openlayers.Layers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

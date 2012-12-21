@@ -6,11 +6,11 @@ import net.sf.exlp.util.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.util.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.geojsf.xml.openlayers.Repository;
-import net.sf.geojsf.xml.openlayers.View;
-import net.sf.geojsf.xml.openlayers.Views;
-import net.sf.geojsf.xml.xpath.OpenLayersXpath;
 
+import org.geojsf.xml.openlayers.Repository;
+import org.geojsf.xml.openlayers.View;
+import org.geojsf.xml.openlayers.Views;
+import org.geojsf.xml.xpath.OpenLayersXpath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

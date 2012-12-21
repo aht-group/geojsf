@@ -2,9 +2,9 @@ package net.sf.geojsf.util.factory;
 
 import java.io.Serializable;
 
-import net.sf.geojsf.xml.openlayers.Layer;
-import net.sf.geojsf.xml.openlayers.Legend;
 
+import org.geojsf.xml.openlayers.Layer;
+import org.geojsf.xml.openlayers.Legend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

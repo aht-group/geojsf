@@ -2,14 +2,15 @@ package net.sf.geojsf.util.factory;
 
 import java.util.List;
 
-import net.sf.geojsf.xml.gml.Coordinates;
-import net.sf.geojsf.xml.gml.Point;
-import net.sf.geojsf.xml.ogc.DWithin;
-import net.sf.geojsf.xml.ogc.Distance;
-import net.sf.geojsf.xml.ogc.Filter;
-import net.sf.geojsf.xml.ogc.PropertyName;
-import net.sf.geojsf.xml.wfs.GetFeature;
-import net.sf.geojsf.xml.wfs.Query;
+import org.geojsf.xml.gml.Coordinates;
+import org.geojsf.xml.gml.Point;
+import org.geojsf.xml.ogc.DWithin;
+import org.geojsf.xml.ogc.Distance;
+import org.geojsf.xml.ogc.Filter;
+import org.geojsf.xml.ogc.PropertyName;
+import org.geojsf.xml.wfs.GetFeature;
+import org.geojsf.xml.wfs.Query;
+
 
 public class PointQueryFactory
 {	

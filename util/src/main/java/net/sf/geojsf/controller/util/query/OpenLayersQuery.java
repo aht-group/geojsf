@@ -3,12 +3,13 @@ package net.sf.geojsf.controller.util.query;
 import java.util.Hashtable;
 import java.util.Map;
 
+import org.geojsf.xml.geojsf.Query;
+import org.geojsf.xml.openlayers.Layer;
+import org.geojsf.xml.openlayers.Repository;
+import org.geojsf.xml.openlayers.Service;
+import org.geojsf.xml.openlayers.View;
+
 import net.sf.ahtutils.controller.util.query.StatusQuery;
-import net.sf.geojsf.xml.geojsf.Query;
-import net.sf.geojsf.xml.openlayers.Layer;
-import net.sf.geojsf.xml.openlayers.Repository;
-import net.sf.geojsf.xml.openlayers.Service;
-import net.sf.geojsf.xml.openlayers.View;
 
 public class OpenLayersQuery
 {

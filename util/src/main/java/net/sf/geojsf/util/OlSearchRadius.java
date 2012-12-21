@@ -2,8 +2,8 @@ package net.sf.geojsf.util;
 
 import java.io.Serializable;
 
-import net.sf.geojsf.xml.ogc.Distance;
 
+import org.geojsf.xml.ogc.Distance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

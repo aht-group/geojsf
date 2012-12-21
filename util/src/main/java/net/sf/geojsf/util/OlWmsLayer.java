@@ -8,10 +8,10 @@ import java.util.Map;
 
 import net.sf.geojsf.util.factory.OlLegendFactory;
 import net.sf.geojsf.util.json.WmsLayer;
-import net.sf.geojsf.xml.openlayers.Layer;
-import net.sf.geojsf.xml.openlayers.Layers;
-import net.sf.geojsf.xml.openlayers.View;
 
+import org.geojsf.xml.openlayers.Layer;
+import org.geojsf.xml.openlayers.Layers;
+import org.geojsf.xml.openlayers.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
