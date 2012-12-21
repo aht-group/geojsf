@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-    	<groupId>net.sf.geojsf</groupId>
+    	<groupId>org.geojsf</groupId>
     	<artifactId>geojsf</artifactId>
     	<version>0.1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -31,7 +31,7 @@
 	<dependencyManagement>
 		<dependencies>      	         
 			<dependency>
-				<groupId>net.sf.geojsf</groupId>
+				<groupId>org.geojsf</groupId>
 				<artifactId>geojsf-bom</artifactId>
 				<version>${project.version}</version>
 				<type>pom</type>
@@ -42,7 +42,7 @@
 	
 	<dependencies>
    	   	<dependency>
-   	   		<groupId>net.sf.geojsf</groupId>
+   	   		<groupId>org.geojsf</groupId>
    	   		<artifactId>geojsf-xml</artifactId>
    	   		<type>jar</type>
    	   	</dependency>
@@ -71,7 +71,7 @@
    	   		<artifactId>slf4j-api</artifactId>
    	   	</dependency>
    	   	<dependency>
-   	   		<groupId>net.sf.geojsf</groupId>
+   	   		<groupId>org.geojsf</groupId>
    	   		<artifactId>geojsf-interfaces</artifactId>
    	   	</dependency>
    	   	<dependency>
