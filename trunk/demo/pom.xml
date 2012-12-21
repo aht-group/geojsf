@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-    	<groupId>net.sf.geojsf</groupId>
+    	<groupId>org.geojsf</groupId>
     	<artifactId>geojsf</artifactId>
     	<version>0.1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -83,7 +83,7 @@
 	<dependencyManagement>
 		<dependencies>      	         
 			<dependency>
-				<groupId>net.sf.geojsf</groupId>
+				<groupId>org.geojsf</groupId>
 				<artifactId>geojsf-bom</artifactId>
 				<version>${project.version}</version>
 				<type>pom</type>
@@ -94,15 +94,15 @@
 	
 	<dependencies>
 		<dependency>
-	 		<groupId>net.sf.geojsf</groupId>
+	 		<groupId>org.geojsf</groupId>
     		<artifactId>geojsf-component</artifactId>
 	 	</dependency>
 	 	<dependency>
-	 		<groupId>net.sf.geojsf</groupId>
+	 		<groupId>org.geojsf</groupId>
     		<artifactId>geojsf-doc</artifactId>
 	 	</dependency>
 		<dependency>
-			<groupId>net.sf.geojsf</groupId>
+			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-ejb</artifactId>
 			<exclusions>
 				<exclusion>
@@ -112,7 +112,7 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.geojsf</groupId>
+			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-util</artifactId>
 		</dependency>
 		<dependency>

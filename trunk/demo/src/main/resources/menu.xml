@@ -1,5 +1,5 @@
 <menu xmlns="http://ahtutils.aht-group.com/navigation" xmlns:s="http://ahtutils.aht-group.com/status" xmlns:a="http://ahtutils.aht-group.com/access">
-    <menuItem code="welcome" href="/index.jsf">
+    <menuItem code="welcome" href="/">
         <s:langs><s:lang key="en" version="1" translation="Welcome" /></s:langs>
     </menuItem>
     <menuItem code="showcase" href="/showcase">
