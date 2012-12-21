@@ -1,4 +1,4 @@
-package net.sf.geojsf.model.interfaces.openlayers;
+package org.geojsf.model.interfaces.openlayers;
 
 import java.util.List;
 

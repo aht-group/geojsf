@@ -1,4 +1,4 @@
-package net.sf.geojsf.controller.interfaces;
+package org.geojsf.controller.interfaces;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

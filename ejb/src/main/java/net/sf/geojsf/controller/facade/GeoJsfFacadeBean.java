@@ -2,13 +2,14 @@ package net.sf.geojsf.controller.facade;
 
 import javax.persistence.EntityManager;
 
+import org.geojsf.controller.interfaces.GeoJsfFacade;
+import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
+import org.geojsf.model.interfaces.openlayers.GeoJsfService;
+import org.geojsf.model.interfaces.openlayers.GeoJsfView;
+import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
+
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.geojsf.controller.interfaces.GeoJsfFacade;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 
 public class GeoJsfFacadeBean implements GeoJsfFacade
 {	
