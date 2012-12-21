@@ -11,11 +11,11 @@ import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 
+import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
+import org.geojsf.model.interfaces.openlayers.GeoJsfService;
+import org.geojsf.model.interfaces.openlayers.GeoJsfView;
+import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.Layers;
 import org.slf4j.Logger;

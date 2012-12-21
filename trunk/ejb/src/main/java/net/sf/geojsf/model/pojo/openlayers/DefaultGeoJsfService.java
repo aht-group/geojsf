@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.geojsf.model.interfaces.openlayers.GeoJsfService;
+
 import net.sf.ahtutils.model.interfaces.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.EjbRemoveable;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 

@@ -1,5 +1,10 @@
 package net.sf.geojsf.db.export;
 
+import org.geojsf.controller.interfaces.GeoJsfExportRest;
+import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
+import org.geojsf.model.interfaces.openlayers.GeoJsfService;
+import org.geojsf.model.interfaces.openlayers.GeoJsfView;
+import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import org.geojsf.xml.openlayers.Layers;
 import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.View;
@@ -11,12 +16,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlLayerFactory;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlServiceFactory;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlViewFactory;
-import net.sf.geojsf.controller.interfaces.GeoJsfExportRest;
 import net.sf.geojsf.controller.util.query.OpenLayersQuery;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 
 public class GeoJsfDbRestExport <L extends UtilsLang,
 									D extends UtilsDescription,

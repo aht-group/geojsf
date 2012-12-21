@@ -1,4 +1,4 @@
-package net.sf.geojsf.model.interfaces.openlayers;
+package org.geojsf.model.interfaces.openlayers;
 
 import net.sf.ahtutils.model.interfaces.EjbWithCode;
 import net.sf.ahtutils.model.interfaces.EjbWithDescription;

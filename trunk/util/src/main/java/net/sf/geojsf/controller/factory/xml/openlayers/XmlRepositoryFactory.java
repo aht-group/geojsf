@@ -5,11 +5,11 @@ import java.util.List;
 
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
-import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 
+import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
+import org.geojsf.model.interfaces.openlayers.GeoJsfService;
+import org.geojsf.model.interfaces.openlayers.GeoJsfView;
+import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.openlayers.Repository;
 import org.slf4j.Logger;
