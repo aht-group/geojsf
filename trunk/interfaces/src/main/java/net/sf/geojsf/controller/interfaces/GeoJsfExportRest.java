@@ -5,9 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import net.sf.geojsf.xml.openlayers.Layers;
-import net.sf.geojsf.xml.openlayers.Repository;
-import net.sf.geojsf.xml.openlayers.Views;
+import org.geojsf.xml.openlayers.Layers;
+import org.geojsf.xml.openlayers.Repository;
+import org.geojsf.xml.openlayers.Views;
+
 
 public interface GeoJsfExportRest
 {	

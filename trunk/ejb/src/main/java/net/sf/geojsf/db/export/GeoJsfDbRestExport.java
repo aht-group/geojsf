@@ -1,5 +1,10 @@
 package net.sf.geojsf.db.export;
 
+import org.geojsf.xml.openlayers.Layers;
+import org.geojsf.xml.openlayers.Repository;
+import org.geojsf.xml.openlayers.View;
+import org.geojsf.xml.openlayers.Views;
+
 import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
@@ -12,10 +17,6 @@ import net.sf.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
-import net.sf.geojsf.xml.openlayers.Layers;
-import net.sf.geojsf.xml.openlayers.Repository;
-import net.sf.geojsf.xml.openlayers.View;
-import net.sf.geojsf.xml.openlayers.Views;
 
 public class GeoJsfDbRestExport <L extends UtilsLang,
 									D extends UtilsDescription,

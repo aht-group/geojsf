@@ -2,8 +2,8 @@ package net.sf.geojsf.test;
 
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.geojsf.xml.GeoJsfNsPrefixMapper;
 
+import org.geojsf.xml.GeoJsfNsPrefixMapper;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

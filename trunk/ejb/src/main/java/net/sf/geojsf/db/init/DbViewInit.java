@@ -19,10 +19,10 @@ import net.sf.geojsf.model.interfaces.openlayers.GeoJsfService;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfView;
 import net.sf.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewLayerFactory;
-import net.sf.geojsf.xml.openlayers.Layer;
-import net.sf.geojsf.xml.openlayers.View;
-import net.sf.geojsf.xml.openlayers.Views;
 
+import org.geojsf.xml.openlayers.Layer;
+import org.geojsf.xml.openlayers.View;
+import org.geojsf.xml.openlayers.Views;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
