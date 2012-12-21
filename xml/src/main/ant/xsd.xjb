@@ -6,37 +6,37 @@
     
     <jxb:bindings schemaLocation="../xsd/xsd.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.geojsf.xml"/>
+            <jxb:package name="org.geojsf.xml"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
     	<jxb:bindings schemaLocation="../xsd/geojsf/geojsf.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.geojsf.xml.geojsf"/>
+            <jxb:package name="org.geojsf.xml.geojsf"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
 	<jxb:bindings schemaLocation="../xsd/geojsf/openlayers.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.geojsf.xml.openlayers"/>
+            <jxb:package name="org.geojsf.xml.openlayers"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
     <jxb:bindings schemaLocation="../xsd/geojsf/gml.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.geojsf.xml.gml"/>
+            <jxb:package name="org.geojsf.xml.gml"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
     <jxb:bindings schemaLocation="../xsd/geojsf/ogc.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.geojsf.xml.ogc"/>
+            <jxb:package name="org.geojsf.xml.ogc"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
     <jxb:bindings schemaLocation="../xsd/geojsf/wfs.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.geojsf.xml.wfs"/>
+            <jxb:package name="org.geojsf.xml.wfs"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
