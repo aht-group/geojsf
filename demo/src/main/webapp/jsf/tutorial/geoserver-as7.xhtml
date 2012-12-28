@@ -10,6 +10,7 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
+	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('tutorialGeoServerAS7')}"/></ui:define>
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('tutorialGeoServerAS7')}" scActive="active"/></ui:define>
 	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('tutorialGeoServerAS7')}"/></ui:define>
 	<ui:define name="content">

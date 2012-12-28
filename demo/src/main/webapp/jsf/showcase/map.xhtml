@@ -10,6 +10,7 @@
 	xmlns:ofx="http://www.openfuxml.org/jsf"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
+	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('showcaseMap')}"/></ui:define>
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('showcaseMap')}" scActive="active"/></ui:define>
 	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('showcaseMap')}"/></ui:define>
 	<ui:define name="content">

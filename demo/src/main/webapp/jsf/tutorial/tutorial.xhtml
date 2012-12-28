@@ -9,10 +9,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
+	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('tutorial')}"/></ui:define>
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('tutorial')}" scActive="active"/></ui:define>
 	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('tutorial')}"/></ui:define>
 	<ui:define name="content">
-		<ui:fragment rendered="#{tutorialBean.dummy}"/>
 		<div class="row">
 			<div class="span3">
 				<h3>Tutorial</h3>
