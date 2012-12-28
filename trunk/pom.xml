@@ -28,6 +28,18 @@
     	<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
 	</properties>
 
+	<modules>
+		<module>bom</module>
+		<module>doc</module>
+		<module>client</module>
+		<module>ejb</module>
+		<module>interfaces</module>
+		<module>component</module>
+		<module>demo</module>
+		<module>util</module>
+		<module>xml</module>
+	</modules>
+
 	<licenses>
 		<license>
 			<name>GNU General Public License</name>
@@ -89,17 +101,6 @@
 	
 	<issueManagement>
 	</issueManagement>
-
-	<modules>
-		<module>bom</module>
-		<module>doc</module>
-		<module>ejb</module>
-		<module>interfaces</module>
-		<module>component</module>
-		<module>demo</module>
-		<module>util</module>
-		<module>xml</module>
-	</modules>
 
 	<repositories>
         <repository>
