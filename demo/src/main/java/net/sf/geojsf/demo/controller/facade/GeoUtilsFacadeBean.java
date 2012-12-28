@@ -1,7 +1,9 @@
 package net.sf.geojsf.demo.controller.facade;
 
 import java.io.Serializable;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Remote;
@@ -31,7 +33,10 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 import net.sf.ahtutils.model.interfaces.tracker.UtilsTracker;
 import net.sf.ahtutils.model.interfaces.tracker.UtilsTrackerLog;
+import net.sf.geojsf.demo.controller.factory.ejb.util.tracker.EjbViewTrackerFactory;
 import net.sf.geojsf.demo.controller.interfaces.facade.GeoUtilsFacade;
+import net.sf.geojsf.demo.model.user.GeoUser;
+import net.sf.geojsf.demo.model.util.security.SecurityView;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,11 +50,14 @@ public class GeoUtilsFacadeBean extends AbstractGeoFacadeBean implements GeoUtil
 	private UtilsTrackerFacade fTracker;
 	private UtilsSecurityFacade fSecurity;
 	
+	private static Map<String,SecurityView> mapViews;
+	
     @PostConstruct
     public void initTrackerFacade()
     {
     	fTracker = new UtilsTrackerFacadeBean(em);
     	fSecurity = new UtilsSecurityFacadeBean(em);
+    	if(mapViews==null) {mapViews = new Hashtable<String,SecurityView>();}
     }
     
 	static final long serialVersionUID=1;
@@ -155,6 +163,17 @@ public class GeoUtilsFacadeBean extends AbstractGeoFacadeBean implements GeoUtil
 		boolean hasRole(Class<USER> clUser, Class<R> clRole, USER user, R role)
 	{return fSecurity.hasRole(clUser, clRole, user, role);}
 
-
-
+	@Override public void viewTacker(String code) {viewTacker(null,code);}
+	@Override public void viewTacker(GeoUser user, String viewCode)
+	{
+		try
+		{
+			if(!mapViews.containsKey(viewCode))
+			{
+				mapViews.put(viewCode, this.fByCode(SecurityView.class, viewCode));	
+			}
+			em.persist(EjbViewTrackerFactory.build(mapViews.get(viewCode), user));
+		}
+		catch (UtilsNotFoundException e) {logger.warn(e.getMessage());}
+	}
 }
