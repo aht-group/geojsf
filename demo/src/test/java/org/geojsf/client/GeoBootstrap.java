@@ -32,8 +32,6 @@ public class GeoBootstrap
 			loggerInit.init();
 		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());		
 		
-		ConfigLoader.add(configFile);
-		
 		try
 		{
 			String cfn = ExlpCentralConfigPointer.getFile("geojsf","demo").getAbsolutePath();
@@ -41,6 +39,7 @@ public class GeoBootstrap
 			logger.info("Using additional config in: "+cfn );
 		}
 		catch (ExlpConfigurationException e) {logger.debug("No additional "+ExlpCentralConfigPointer.class.getSimpleName()+" "+e.getMessage());}
+		ConfigLoader.add(configFile);
 		
 		Configuration config = ConfigLoader.init();		
 
