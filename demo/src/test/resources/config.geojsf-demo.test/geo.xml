@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<net>
+		<ejb>
+			<host>localhost</host>
+			<port>1099</port>
+			<context></context>
+		</ejb>
+	</net>
+	<db>
+		<seed>config.geojsf-demo.test/dbseed.xml</seed>
+	</db> 
+</config>
