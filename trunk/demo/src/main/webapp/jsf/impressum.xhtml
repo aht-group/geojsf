@@ -10,6 +10,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
+	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('impressum')}"/></ui:define>
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build()}" scActive="active"/></ui:define>
 	<ui:define name="headline">Impressum</ui:define>
 	<ui:define name="content">
