@@ -35,6 +35,7 @@ public class SecurityView implements EjbWithCode,Serializable,EjbRemoveable,EjbP
 	UtilsSecurityView<GeoLang,GeoDescription,SecurityCategory,SecurityRole,SecurityView,SecurityUsecase,SecurityAction,GeoUser>
 {
 	public static enum Code {welcome}
+	public static enum CodeTutorial {tutorial}
 	
 	public static final long serialVersionUID=1;
 	

@@ -25,7 +25,7 @@ import net.sf.geojsf.demo.model.util.security.SecurityView;
 
 @Entity
 @Table(name = "TrackerView")
-public class ErpViewTracker implements Serializable,EjbWithId,EjbPersistable,
+public class GeoViewTracker implements Serializable,EjbWithId,EjbPersistable,
 		UtilsEventTracker<GeoLang,GeoDescription,SecurityCategory,SecurityRole,SecurityView,SecurityUsecase,SecurityAction,GeoUser,SecurityView>
 {
 	public static final long serialVersionUID=2;
@@ -62,8 +62,8 @@ public class ErpViewTracker implements Serializable,EjbWithId,EjbPersistable,
 	
 	public boolean equals(Object object)
 	{
-        return (object instanceof ErpViewTracker)
-             ? id == ((ErpViewTracker) object).getId()
+        return (object instanceof GeoViewTracker)
+             ? id == ((GeoViewTracker) object).getId()
              : (object == this);
     }
 	
