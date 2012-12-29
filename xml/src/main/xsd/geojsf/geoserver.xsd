@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.geojsf.org/geoserver"
+    xmlns:geoserver="http://www.geojsf.org/geoserver"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="dataStore">
+        <xsd:complexType>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="description" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
