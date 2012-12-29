@@ -2,6 +2,7 @@
 <xsd:schema targetNamespace="http://geojsf.sf.net"
     xmlns:gj="http://geojsf.sf.net"
     xmlns:geojsf="http://geojsf.sf.net/geojsf"
+    xmlns:geoserver="http://www.geojsf.org/geoserver"
     xmlns:ol="http://geojsf.sf.net/openlayers"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:ogc="http://www.opengis.net/ogc"
@@ -13,6 +14,7 @@
     jaxb:extensionBindingPrefixes="xjc"
     jaxb:version="2.0">
     <xsd:import namespace="http://geojsf.sf.net/openlayers" schemaLocation="geojsf/openlayers.xsd"/>
+    <xsd:import namespace="http://www.geojsf.org/geoserver" schemaLocation="geojsf/geoserver.xsd"/>
     <xsd:import namespace="http://geojsf.sf.net/geojsf" schemaLocation="geojsf/geojsf.xsd"/>
     <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="geojsf/gml.xsd"/>
     <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="geojsf/ogc.xsd"/>
