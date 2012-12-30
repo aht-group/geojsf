@@ -54,10 +54,13 @@ public class DummyViewFactory
 	
 	private void initLayer() throws UtilsIntegrityException
 	{
-		layerOsmBasic = fLayer.create("basic", serviceOsm,DefaultGeoJsfLang.defaultLangs);layerOsmBasic.setId(1);
-		layerAhtRoads = fLayer.create("roads",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRoads.setId(2);
-		layerAhtStreams = fLayer.create("streams",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtStreams.setId(3);
-		layerAhtRestricted = fLayer.create("restricted",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRestricted.setId(4);
+		DefaultGeoJsfLayerType type = new DefaultGeoJsfLayerType();
+		type.setCode("dummy");
+		
+		layerOsmBasic = fLayer.create("basic", serviceOsm,type,DefaultGeoJsfLang.defaultLangs);layerOsmBasic.setId(1);
+		layerAhtRoads = fLayer.create("roads",serviceAht,type,DefaultGeoJsfLang.defaultLangs);layerAhtRoads.setId(2);
+		layerAhtStreams = fLayer.create("streams",serviceAht,type,DefaultGeoJsfLang.defaultLangs);layerAhtStreams.setId(3);
+		layerAhtRestricted = fLayer.create("restricted",serviceAht,type,DefaultGeoJsfLang.defaultLangs);layerAhtRestricted.setId(4);
 	}
 	
 	private void initViews() throws UtilsIntegrityException

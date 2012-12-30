@@ -12,8 +12,10 @@ import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
+import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
 
 import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
+import org.geojsf.model.interfaces.openlayers.GeoJsfLayerType;
 import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.interfaces.openlayers.GeoJsfView;
 import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
@@ -34,20 +36,24 @@ public class DbLayerInit <L extends UtilsLang,
 	
     private final Class<LAYER> cLayer;
     private final Class<SERVICE> cService;
+    private final Class<LT> cLayerType;
     
     private UtilsSecurityFacade fSecurity;
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
+    private EjbGeoLayerFactory<L,D,SERVICE,LAYER,VIEW,VL,LT> ejbLayerFactory;
     
-    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService, UtilsSecurityFacade fAcl)
+    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService, final Class<LT> cLayerType, UtilsSecurityFacade fAcl)
 	{       
         this.cLayer = cLayer;
         this.cService = cService;
+        this.cLayerType = cLayerType;
         
         this.fSecurity=fAcl;
 		
 		ejbLangFactory = EjbLangFactory.createFactory(cL);
 		ejbDescriptionFactory = EjbDescriptionFactory.createFactory(cD);
+		ejbLayerFactory = EjbGeoLayerFactory.factory(cL, cLayer);
 	}
 	
 	public static <L extends UtilsLang,
@@ -58,12 +64,12 @@ public class DbLayerInit <L extends UtilsLang,
 					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
 					LT extends UtilsStatus<L,D>>
 		DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL,LT>
-		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService,UtilsSecurityFacade fAcl)
+		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService, final Class<LT> cLayerType, UtilsSecurityFacade fAcl)
 	{
-		return new DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL,LT>(cL,cD,cLayer,cService,fAcl);
+		return new DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL,LT>(cL,cD,cLayer,cService,cLayerType,fAcl);
 	}
 
-	public void iuLayer(Layers layers) throws UtilsConfigurationException
+	public void iuLayer(Layers layers, String[] langKeys) throws UtilsConfigurationException
 	{
 		logger.debug("i/u "+Layers.class.getSimpleName()+" with "+layers.getLayer().size()+" "+Layer.class.getSimpleName());
 		
@@ -74,6 +80,24 @@ public class DbLayerInit <L extends UtilsLang,
 		for(Layer layer : layers.getLayer())
 		{
 			updateLayer.actualAdd(layer.getCode());
+			
+			GeoJsfLayerType.Code layerTypeCode = null;
+			LT type;
+			SERVICE service;
+			
+			if(layer.isSetLayer())
+			{
+				if(layer.getLayer().isSetDbLayer()){layerTypeCode = GeoJsfLayerType.Code.DB;}	
+			}
+			if(layerTypeCode==null){layerTypeCode = GeoJsfLayerType.Code.UNKNOWN;}
+			
+			try
+			{
+				service = fSecurity.fByCode(cService, layer.getService().getCode());
+				type = fSecurity.fByCode(cLayerType, layerTypeCode.toString());
+			}
+			catch (UtilsNotFoundException e1) {throw new UtilsConfigurationException(e1.getMessage());}
+			
 			
 			LAYER ejb;
 			try
@@ -86,15 +110,12 @@ public class DbLayerInit <L extends UtilsLang,
 			{
 				try
 				{
-					ejb = cLayer.newInstance();
-					ejb.setCode(layer.getCode());
-					ejb.setService(fSecurity.fByCode(cService, layer.getService().getCode()));
+					ejb = ejbLayerFactory.create(layer.getCode(), service, type, langKeys);					
 					ejb = (LAYER)fSecurity.persist(ejb);
 				}
-				catch (InstantiationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
-				catch (IllegalAccessException e2) {throw new UtilsConfigurationException(e2.getMessage());}
+
 				catch (UtilsContraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
-				catch (UtilsNotFoundException e2) {throw new UtilsConfigurationException(e2.getMessage());}
+				catch (UtilsIntegrityException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 			}
 			
 			try

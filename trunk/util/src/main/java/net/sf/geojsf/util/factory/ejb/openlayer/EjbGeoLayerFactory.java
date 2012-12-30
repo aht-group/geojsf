@@ -32,7 +32,7 @@ public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,S
         this.clLayer = clLayer;
     } 
 	
-	public LAYER create(String code, SERVICE service, String[] langKeys) throws UtilsIntegrityException
+	public LAYER create(String code, SERVICE service, LT type, String[] langKeys) throws UtilsIntegrityException
 	{
 		LAYER ejb;
 		try
@@ -44,6 +44,7 @@ public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,S
 		catch (IllegalAccessException e) {throw new UtilsIntegrityException(e.getMessage());}
 		ejb.setCode(code);
 		ejb.setService(service);
+		ejb.setType(type);
         return ejb;
     }
 }
