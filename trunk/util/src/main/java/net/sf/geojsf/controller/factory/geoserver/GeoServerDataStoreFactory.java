@@ -43,7 +43,20 @@ public class GeoServerDataStoreFactory implements Serializable
 		GSPostGISDatastoreEncoder pg = new GSPostGISDatastoreEncoder();
 		pg.setName(ds.getName());
 		pg.setDescription(ds.getDescription());
+		pg.setHost(ds.getHost().getName());
+		pg.setPort(ds.getHost().getPort());
+		pg.setDatabase(ds.getDatabase());
+		pg.setSchema(ds.getSchema());
 		
+		pg.setExposePrimaryKeys(true);
+		pg.setMaxConnections(10);
+		pg.setMinConnections(1);
+		pg.setFetchSize(1000);
+		pg.setConnectionTimeout(20);
+		pg.setValidateConnections(true);
+		pg.setLooseBBox(true);
+		pg.setMaxOpenPreparedStatements(50);
+		pg.setEnabled(true);
 		
 		boolean created = publisher.createPostGISDatastore(workspace, pg);
 		logger.info("Created DataStore "+created);
