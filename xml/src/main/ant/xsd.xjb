@@ -58,4 +58,10 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
+    <jxb:bindings schemaLocation="../xsd/../../../../../exlp/xml/src/main/xsd/util/identity.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="net.sf.exlp.xml.identity"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
 </jxb:bindings>

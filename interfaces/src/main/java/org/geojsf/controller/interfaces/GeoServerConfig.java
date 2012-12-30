@@ -14,4 +14,6 @@ public interface GeoServerConfig
 	public static String dsPort = "geoserver.ds.port";
 	public static String dsDatabase = "geoserver.ds.database";
 	public static String dsSchema = "geoserver.ds.schema";
+	public static String dsUser = "geoserver.ds.user";
+	public static String dsPassword = "geoserver.ds.password";
 }
