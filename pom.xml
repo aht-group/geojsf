@@ -117,6 +117,13 @@
 			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
 		</repository>
 		
+		<repository>
+			<id>geo-solutions.it</id>
+			<name>GeoSolutions</name>
+			<url>http://maven.geo-solutions.it/</url>
+			<layout>default</layout>
+		</repository>
+		
     </repositories>
 
 		
