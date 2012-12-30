@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.exlp.xml.identity.User;
 import net.sf.exlp.xml.net.Host;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
@@ -41,6 +42,7 @@ public class TestXmlDataStore extends AbstractXmlGeoserverTest
     	if(withChilds)
     	{
     		xml.setHost(new Host());
+    		xml.setUser(new User());
     	}
     	
     	return xml;

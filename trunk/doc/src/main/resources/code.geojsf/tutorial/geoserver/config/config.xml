@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<geoserver>
+		<workspace>geojsf</workspace>
+		<rest>
+			<host>http://localhost:8080/geoserver</host>
+			<user>admin</user>
+			<password>geoserver</password>
+		</rest>
+		<ds>
+			<name>geojsf-ds</name>
+			<description>GeoJSF PostGIS DS</description>
+			<host>localhost</host>
+			<port>5432</port>
+			<database>geojsf</database>
+			<schema>geojsf</schema>
+			<user>geojsf</user>
+			<password>geojsf</password>
+		</ds>
+	</geoserver>
+</config>

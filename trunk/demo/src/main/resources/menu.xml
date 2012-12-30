@@ -13,6 +13,7 @@
         <menuItem code="tutorialMaven" href="/tutorial/maven"><s:langs><s:lang key="en" version="1" translation="Maven"/></s:langs></menuItem>
         <menuItem code="tutorialDataStructure" href="/tutorial/datastructure"><s:langs><s:lang key="en" version="1" translation="GeoJSF Data Structure"/></s:langs></menuItem>
         <menuItem code="tutorialHibernate" href="/tutorial/hibernate"><s:langs><s:lang key="en" version="1" translation="Hibernate Spatial"/></s:langs></menuItem>
-        <menuItem code="tutorialGeoServerAS7" href="/tutorial/geoserver-as7"><s:langs><s:lang key="en" version="1" translation="GeoServer and Jboss AS7"/></s:langs></menuItem>
+        <menuItem code="tutorialGeoServerAS7" href="/tutorial/geoserver/as7"><s:langs><s:lang key="en" version="1" translation="GeoServer and Jboss AS7"/></s:langs></menuItem>
+        <menuItem code="tutorialGeoServerConfig" href="/tutorial/geoserver/config"><s:langs><s:lang key="en" version="1" translation="GeoServer Configuration"/></s:langs></menuItem>
     </menuItem>
 </menu>

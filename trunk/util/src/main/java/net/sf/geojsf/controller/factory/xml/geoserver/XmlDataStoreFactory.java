@@ -2,6 +2,7 @@ package net.sf.geojsf.controller.factory.xml.geoserver;
 
 import java.io.Serializable;
 
+import net.sf.exlp.xml.identity.User;
 import net.sf.exlp.xml.net.Host;
 
 import org.apache.commons.configuration.Configuration;
@@ -27,6 +28,11 @@ public class XmlDataStoreFactory implements Serializable
 		host.setName(config.getString(GeoServerConfig.dsHost));
 		host.setPort(config.getInt(GeoServerConfig.dsPort));
 		ds.setHost(host);
+		
+		User user = new User();
+		user.setAccount(config.getString(GeoServerConfig.dsUser));
+		user.setPassword(config.getString(GeoServerConfig.dsPassword));
+		ds.setUser(user);
 		
 		return ds;
 	}

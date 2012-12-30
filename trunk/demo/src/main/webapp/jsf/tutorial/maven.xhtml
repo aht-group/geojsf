@@ -10,8 +10,8 @@
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
 	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('tutorialMaven')}"/></ui:define>
-	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('tutorial')}" scActive="active"/></ui:define>
-	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('tutorial')}"/></ui:define>
+	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('tutorialMaven')}" scActive="active"/></ui:define>
+	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('tutorialMaven')}"/></ui:define>
 	<ui:define name="content">
 		<div class="row">
 			<div class="span3">
@@ -23,13 +23,13 @@
 			<div class="span9">
 				<h3>Maven</h3>
 				The maven artifact is available in maven-central, so you should
-				<aht:highlight resource="/code.geojsf/maven/pom.xml"/>
-				The required XML Namespace is:
-				<aht:highlight resource="/code.geojsf/maven/xmlns.xml"/>
+				<aht:highlight resource="/code.geojsf/tutorial/maven/pom.xml"/>
+				The required XML Namespace in your XHTML files is:
+				<aht:highlight resource="/code.geojsf/tutorial/maven/xmlns.xml"/>
 				
 				If you want to use a snapshot-version, you have to add
 				the Sonatype Snapshot Repository:
-				<aht:highlight resource="/code.geojsf/maven/snapshot.xml"/>
+				<aht:highlight resource="/code.geojsf/tutorial/maven/snapshot.xml"/>
 			</div>
 		</div>
 	</ui:define>

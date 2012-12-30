@@ -47,6 +47,9 @@ public class GeoServerDataStoreFactory implements Serializable
 		pg.setPort(ds.getHost().getPort());
 		pg.setDatabase(ds.getDatabase());
 		pg.setSchema(ds.getSchema());
+		pg.setUser(ds.getUser().getAccount());
+		pg.setPassword(ds.getUser().getPassword());
+
 		
 		pg.setExposePrimaryKeys(true);
 		pg.setMaxConnections(10);
