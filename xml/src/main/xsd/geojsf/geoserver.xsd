@@ -11,6 +11,8 @@
 			</xsd:sequence>
             <xsd:attribute name="name" type="xsd:string"/>
             <xsd:attribute name="description" type="xsd:string"/>
+            <xsd:attribute name="database" type="xsd:string"/>
+            <xsd:attribute name="schema" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>

@@ -10,4 +10,8 @@ public interface GeoServerConfig
 	
 	public static String dsName = "geoserver.ds.name";
 	public static String dsDescription = "geoserver.ds.description";
+	public static String dsHost = "geoserver.ds.host";
+	public static String dsPort = "geoserver.ds.port";
+	public static String dsDatabase = "geoserver.ds.database";
+	public static String dsSchema = "geoserver.ds.schema";
 }

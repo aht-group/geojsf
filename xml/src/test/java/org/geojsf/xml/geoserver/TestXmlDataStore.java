@@ -35,6 +35,8 @@ public class TestXmlDataStore extends AbstractXmlGeoserverTest
     	DataStore xml = new DataStore();
     	xml.setName("myName");
     	xml.setDescription("myDescription");
+    	xml.setDatabase("myDatabase");
+    	xml.setSchema("mySchema");
     	
     	if(withChilds)
     	{

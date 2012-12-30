@@ -19,19 +19,26 @@ public class XmlDataStoreFactory implements Serializable
 	public static DataStore build(Configuration config)
 	{
 		DataStore ds = build(config.getString(GeoServerConfig.dsName),
-				config.getString(GeoServerConfig.dsDescription));
+				config.getString(GeoServerConfig.dsDescription),
+				config.getString(GeoServerConfig.dsDatabase),
+				config.getString(GeoServerConfig.dsSchema));
 		
 		Host host = new Host();
+		host.setName(config.getString(GeoServerConfig.dsHost));
+		host.setPort(config.getInt(GeoServerConfig.dsPort));
+		ds.setHost(host);
 		
 		return ds;
 	}
 	
-	public static DataStore build(String name, String description)
+	public static DataStore build(String name, String description, String database, String schema)
 	{
 		DataStore xml = new DataStore();
 		
 		xml.setName(name);
 		xml.setDescription(description);
+		xml.setDatabase(database);
+		xml.setSchema(schema);
 				
 		return xml;
 	}
