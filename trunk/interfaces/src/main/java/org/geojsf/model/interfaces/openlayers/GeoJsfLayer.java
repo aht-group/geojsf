@@ -21,4 +21,7 @@ public interface GeoJsfLayer<L extends UtilsLang,
 	
 	SERVICE getService();
 	void setService(SERVICE service);
+	
+	LT getType();
+	void setType(LT type);
 }
