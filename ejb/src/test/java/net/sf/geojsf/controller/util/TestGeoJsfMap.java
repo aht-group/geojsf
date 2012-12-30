@@ -4,10 +4,8 @@ import java.util.List;
 
 import junit.framework.Assert;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.geojsf.controller.factory.xml.openlayers.XmlRepositoryFactory;
-import net.sf.geojsf.controller.util.query.OpenLayersQuery;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
+import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayerType;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
@@ -24,7 +22,7 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestGeoJsfMap.class);
 	
-	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> geoJsfMap;
+	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> geoJsfMap;
 	
 	@Before
 	public void init() throws UtilsIntegrityException

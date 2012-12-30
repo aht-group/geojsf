@@ -3,6 +3,7 @@ package net.sf.geojsf.util.factory.ejb.openlayer;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
 import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import org.geojsf.model.interfaces.openlayers.GeoJsfService;
@@ -11,7 +12,7 @@ import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoViewLayerFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+public class EjbGeoViewLayerFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL,LT>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL,LT>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,LT extends UtilsStatus<L,D>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoViewLayerFactory.class);
 	
@@ -22,10 +23,10 @@ public class EjbGeoViewLayerFactory<L extends UtilsLang,D extends UtilsDescripti
         this.clViewLayer = clViewLayer;
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-    	EjbGeoViewLayerFactory<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<VL> clViewLayer)
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL,LT>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL,LT>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,LT extends UtilsStatus<L,D>>
+    	EjbGeoViewLayerFactory<L,D,SERVICE,LAYER,VIEW,VL,LT> factory(final Class<VL> clViewLayer)
     {
-        return new EjbGeoViewLayerFactory<L,D,SERVICE,LAYER,VIEW,VL>(clViewLayer);
+        return new EjbGeoViewLayerFactory<L,D,SERVICE,LAYER,VIEW,VL,LT>(clViewLayer);
     }
 	
 	public VL create(VIEW view, LAYER layer, int orderNo, boolean visible, boolean legend) throws UtilsIntegrityException

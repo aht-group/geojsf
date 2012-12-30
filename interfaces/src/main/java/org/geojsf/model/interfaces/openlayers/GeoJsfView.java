@@ -8,13 +8,15 @@ import net.sf.ahtutils.model.interfaces.EjbWithId;
 import net.sf.ahtutils.model.interfaces.EjbWithLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
 public interface GeoJsfView<L extends UtilsLang,
 						D extends UtilsDescription,
-						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
-						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
-						VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+						VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+						LT extends UtilsStatus<L,D>>
 			extends EjbWithId,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
 {
 	public static final String extractId = "geoJsfView";

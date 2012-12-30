@@ -13,6 +13,7 @@ import org.geojsf.xml.openlayers.Views;
 import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlLayerFactory;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlServiceFactory;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlViewFactory;
@@ -20,10 +21,11 @@ import net.sf.geojsf.controller.util.query.OpenLayersQuery;
 
 public class GeoJsfDbRestExport <L extends UtilsLang,
 									D extends UtilsDescription,
-									SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
-									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-									VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
-									VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+									SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+									VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+									VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+									LT extends UtilsStatus<L,D>>
 				implements GeoJsfExportRest
 {
 	private UtilsSecurityFacade fSecurity;
@@ -42,14 +44,15 @@ public class GeoJsfDbRestExport <L extends UtilsLang,
 	
 	public static <L extends UtilsLang,
 					D extends UtilsDescription,
-					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
-					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
-					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-		GeoJsfDbRestExport<L,D,SERVICE,LAYER,VIEW,VL>
+					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
+					LT extends UtilsStatus<L,D>>
+		GeoJsfDbRestExport<L,D,SERVICE,LAYER,VIEW,VL,LT>
 		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)
 	{
-		return new GeoJsfDbRestExport<L,D,SERVICE,LAYER,VIEW,VL>(fSecurity,cService,cLayer,cView);
+		return new GeoJsfDbRestExport<L,D,SERVICE,LAYER,VIEW,VL,LT>(fSecurity,cService,cLayer,cView);
 	}
 
 	@Override
