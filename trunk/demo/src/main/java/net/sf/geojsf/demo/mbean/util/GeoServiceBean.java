@@ -12,6 +12,7 @@ import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.geojsf.controller.util.GeoJsfMap;
 import net.sf.geojsf.controller.util.GeoJsfMapLayerFactory;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
+import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayerType;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
@@ -31,12 +32,12 @@ public class GeoServiceBean implements Serializable
 	final static Logger logger = LoggerFactory.getLogger(GeoServiceBean.class);
 	private String text;
 	
-	private GeoJsfMapLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fJsf;
-	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
-	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fLayer;
-	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fView;
+	private GeoJsfMapLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> fJsf;
+	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> fService;
+	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> fLayer;
+	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> fView;
 	
-	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> geoJsfMap;
+	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> geoJsfMap;
 
 	private List<DefaultGeoJsfService> openLayerMulti;
 
@@ -56,6 +57,6 @@ public class GeoServiceBean implements Serializable
 	public String getText() {return text;}
 	public void setText(String text) {this.text = text;}
 
-	public GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> getGeoJsfMap() {return geoJsfMap;}
+	public GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> getGeoJsfMap() {return geoJsfMap;}
 	public List<DefaultGeoJsfService> getOpenLayerMulti() {return openLayerMulti;}
 }

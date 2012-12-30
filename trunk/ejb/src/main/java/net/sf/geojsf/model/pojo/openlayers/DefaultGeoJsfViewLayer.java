@@ -10,7 +10,7 @@ import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 public class DefaultGeoJsfViewLayer implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfViewLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
+								GeoJsfViewLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
