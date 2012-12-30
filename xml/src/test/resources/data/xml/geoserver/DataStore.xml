@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<geoserver:dataStore xmlns:geoserver="http://www.geojsf.org/geoserver" name="myName" description="myDescription"/>
+<geoserver:dataStore xmlns:net="http://exlp.sf.net/net" xmlns:geoserver="http://www.geojsf.org/geoserver" name="myName" description="myDescription">
+    <net:host/>
+</geoserver:dataStore>

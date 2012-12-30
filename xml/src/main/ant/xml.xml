@@ -29,7 +29,6 @@
 				<pathelement location="${jaxb-xjc.lib}"/>
 			</classpath>
 		</java>
-		<delete dir="${src.dir}/net/sf/ahtutils"/>
-		<delete dir="${src.dir}/net/sf/exlp"/>
+		<delete dir="${src.dir}/net"/>
 	</target>
 </project>
