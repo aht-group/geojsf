@@ -30,5 +30,6 @@
 			</classpath>
 		</java>
 		<delete dir="${src.dir}/net/sf/ahtutils"/>
+		<delete dir="${src.dir}/net/sf/exlp"/>
 	</target>
 </project>
