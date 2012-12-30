@@ -21,6 +21,8 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	
 	private DefaultGeoJsfService service;
 	
+	private DefaultGeoJsfLayerType type;
+
 	private String code;
 	
 	private Map<String, DefaultGeoJsfLang> name;
@@ -43,6 +45,9 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	
 	@Override public DefaultGeoJsfService getService() {return service;}
 	@Override public void setService(DefaultGeoJsfService service) {this.service = service;}
+	
+	@Override public DefaultGeoJsfLayerType getType() {return type;}
+	@Override public void setType(DefaultGeoJsfLayerType type) {this.type = type;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	
