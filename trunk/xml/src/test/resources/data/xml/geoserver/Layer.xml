@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<geoserver:layer xmlns:geoserver="http://www.geojsf.org/geoserver">
+    <geoserver:dbLayer name="myName" title="myTitle"/>
+</geoserver:layer>

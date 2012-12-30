@@ -2,6 +2,8 @@ package org.geojsf.util;
 
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 import it.geosolutions.geoserver.rest.GeoServerRESTReader;
+import it.geosolutions.geoserver.rest.encoder.GSLayerEncoder;
+import it.geosolutions.geoserver.rest.encoder.feature.GSFeatureTypeEncoder;
 
 import java.net.MalformedURLException;
 
@@ -25,16 +27,21 @@ public class GeoServerConfiguration
 	private GeoServerRESTReader reader;
 	private GeoServerRESTPublisher publisher;
 	
+	private String workspace,ds;
+	
 	public GeoServerConfiguration(Configuration config) throws MalformedURLException
 	{
 		this.config=config;
 		reader = GeoServerRestFactory.reader(config);
 		publisher = GeoServerRestFactory.publisher(config);	
+		workspace = config.getString(GeoServerConfig.workspace);
+		ds = config.getString(GeoServerConfig.dsName);
+		
 	}
 	
 	public void createWorkspace()
 	{
-		String workspace = config.getString(GeoServerConfig.workspace);
+		
 		GeoServerWorkspaceFactory f = new GeoServerWorkspaceFactory(reader,publisher);
 		boolean wsAvailable = f.createWorkspace(workspace);
 		logger.info("Workspace "+workspace+" available: "+wsAvailable);
@@ -47,6 +54,18 @@ public class GeoServerConfiguration
 		
 		GeoServerDataStoreFactory f = new GeoServerDataStoreFactory(reader,publisher);
 		f.createDataStore(config.getString(GeoServerConfig.workspace),ds);
+	}
+	
+	public void createLayer()
+	{
+		GSFeatureTypeEncoder fte = new GSFeatureTypeEncoder();
+		fte.setName("capitals");
+		
+		GSLayerEncoder layerEncoder = new GSLayerEncoder();
+		layerEncoder.setEnabled(true);
+		
+//		boolean ok = publisher.publishDBLayer(workspace, ds, "capitals", "EPSG:4326", "default_polygon");
+		publisher.publishDBLayer(workspace, ds, fte, layerEncoder);
 	}
 	
 	public static void main(String args[]) throws Exception

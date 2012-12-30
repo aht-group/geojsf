@@ -18,4 +18,17 @@
             <xsd:attribute name="schema" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="layer">
+        <xsd:complexType>
+            <xsd:sequence>
+				<xsd:element ref="geoserver:dbLayer" maxOccurs="1"/>
+			</xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="dbLayer">
+        <xsd:complexType>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="title" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
 </xsd:schema>
