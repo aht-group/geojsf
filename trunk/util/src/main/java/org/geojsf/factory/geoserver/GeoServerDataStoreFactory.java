@@ -1,4 +1,4 @@
-package net.sf.geojsf.controller.factory.geoserver;
+package org.geojsf.factory.geoserver;
 
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 import it.geosolutions.geoserver.rest.GeoServerRESTReader;

@@ -10,7 +10,6 @@ import javax.inject.Named;
 import net.sf.geojsf.controller.util.DummyViewFactory;
 import net.sf.geojsf.controller.util.GeoJsfMap;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayerType;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
@@ -24,8 +23,7 @@ public class ShowcaseLayerSwitcherBean implements Serializable
 	
 	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,
 						DefaultGeoJsfService,DefaultGeoJsfLayer,
-						DefaultGeoJsfView,DefaultGeoJsfViewLayer,
-						DefaultGeoJsfLayerType>
+						DefaultGeoJsfView,DefaultGeoJsfViewLayer>
 		geoJsfMap;
 
 	@PostConstruct
@@ -37,7 +35,6 @@ public class ShowcaseLayerSwitcherBean implements Serializable
 	
 	public GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,
 			DefaultGeoJsfService,DefaultGeoJsfLayer,
-			DefaultGeoJsfView,DefaultGeoJsfViewLayer,
-			DefaultGeoJsfLayerType>
+			DefaultGeoJsfView,DefaultGeoJsfViewLayer>
 		getGeoJsfMap() {return geoJsfMap;}
 }

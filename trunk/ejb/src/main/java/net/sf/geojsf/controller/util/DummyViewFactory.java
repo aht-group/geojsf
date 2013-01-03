@@ -2,7 +2,6 @@ package net.sf.geojsf.controller.util;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayerType;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
@@ -15,10 +14,10 @@ import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 
 public class DummyViewFactory
 {
-	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> fService;
-	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> fLayer;
-	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> fView;
-	private EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> fViewLayer;
+	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
+	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fLayer;
+	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fView;
+	private EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fViewLayer;
 	
 	public static DefaultGeoJsfService serviceOsm,serviceAht;
 	private DefaultGeoJsfLayer layerOsmBasic,layerAhtRoads,layerAhtStreams,layerAhtRestricted;
@@ -54,13 +53,11 @@ public class DummyViewFactory
 	
 	private void initLayer() throws UtilsIntegrityException
 	{
-		DefaultGeoJsfLayerType type = new DefaultGeoJsfLayerType();
-		type.setCode("dummy");
-		
-		layerOsmBasic = fLayer.create("basic", serviceOsm,type,DefaultGeoJsfLang.defaultLangs);layerOsmBasic.setId(1);
-		layerAhtRoads = fLayer.create("roads",serviceAht,type,DefaultGeoJsfLang.defaultLangs);layerAhtRoads.setId(2);
-		layerAhtStreams = fLayer.create("streams",serviceAht,type,DefaultGeoJsfLang.defaultLangs);layerAhtStreams.setId(3);
-		layerAhtRestricted = fLayer.create("restricted",serviceAht,type,DefaultGeoJsfLang.defaultLangs);layerAhtRestricted.setId(4);
+	
+		layerOsmBasic = fLayer.create("basic", serviceOsm,DefaultGeoJsfLang.defaultLangs);layerOsmBasic.setId(1);
+		layerAhtRoads = fLayer.create("roads",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRoads.setId(2);
+		layerAhtStreams = fLayer.create("streams",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtStreams.setId(3);
+		layerAhtRestricted = fLayer.create("restricted",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRestricted.setId(4);
 	}
 	
 	private void initViews() throws UtilsIntegrityException

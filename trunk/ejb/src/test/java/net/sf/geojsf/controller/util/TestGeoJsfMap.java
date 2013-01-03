@@ -5,7 +5,6 @@ import java.util.List;
 import junit.framework.Assert;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayerType;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
@@ -22,7 +21,7 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestGeoJsfMap.class);
 	
-	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> geoJsfMap;
+	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> geoJsfMap;
 	
 	@Before
 	public void init() throws UtilsIntegrityException

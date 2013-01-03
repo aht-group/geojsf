@@ -11,7 +11,7 @@ import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType>
+								GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
 {
 	public static enum Code {welcome}
 	
@@ -20,8 +20,6 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	private long id;
 	
 	private DefaultGeoJsfService service;
-	
-	private DefaultGeoJsfLayerType type;
 
 	private String code;
 	
@@ -45,9 +43,6 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	
 	@Override public DefaultGeoJsfService getService() {return service;}
 	@Override public void setService(DefaultGeoJsfService service) {this.service = service;}
-	
-	@Override public DefaultGeoJsfLayerType getType() {return type;}
-	@Override public void setType(DefaultGeoJsfLayerType type) {this.type = type;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	

@@ -5,17 +5,22 @@ import it.geosolutions.geoserver.rest.GeoServerRESTReader;
 import it.geosolutions.geoserver.rest.encoder.GSLayerEncoder;
 import it.geosolutions.geoserver.rest.encoder.feature.GSFeatureTypeEncoder;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.geojsf.controller.factory.geoserver.GeoServerDataStoreFactory;
-import net.sf.geojsf.controller.factory.geoserver.GeoServerRestFactory;
-import net.sf.geojsf.controller.factory.geoserver.GeoServerWorkspaceFactory;
-import net.sf.geojsf.controller.factory.xml.geoserver.XmlDataStoreFactory;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.controller.interfaces.GeoServerConfig;
+import org.geojsf.factory.geoserver.GeoServerDataStoreFactory;
+import org.geojsf.factory.geoserver.GeoServerLayerFactory;
+import org.geojsf.factory.geoserver.GeoServerRestFactory;
+import org.geojsf.factory.geoserver.GeoServerWorkspaceFactory;
+import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.xml.geoserver.DataStore;
+import org.geojsf.xml.openlayers.Layer;
+import org.geojsf.xml.openlayers.Layers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,16 +61,34 @@ public class GeoServerConfiguration
 		f.createDataStore(config.getString(GeoServerConfig.workspace),ds);
 	}
 	
-	public void createLayer()
+	public void createLayer(Layers layers)
+	{
+		logger.info("layers");
+		for(Layer layer : layers.getLayer())
+		{
+			if(layer.isSetLayer())
+			{
+				org.geojsf.xml.geoserver.Layer geoserverLayer = layer.getLayer();
+				if(geoserverLayer.isSetDbLayer())
+				{
+					geoserverLayer.getDbLayer().setName(layer.getCode());
+				}
+				
+				GeoServerLayerFactory f = new GeoServerLayerFactory(reader,publisher);
+				f.createLayer(workspace, ds, geoserverLayer);
+			}
+		}
+	}
+	
+	public void tiff() throws FileNotFoundException
 	{
 		GSFeatureTypeEncoder fte = new GSFeatureTypeEncoder();
-		fte.setName("capitals");
+		fte.setName("test");
 		
 		GSLayerEncoder layerEncoder = new GSLayerEncoder();
 		layerEncoder.setEnabled(true);
-		
-//		boolean ok = publisher.publishDBLayer(workspace, ds, "capitals", "EPSG:4326", "default_polygon");
-		publisher.publishDBLayer(workspace, ds, fte, layerEncoder);
+
+		publisher.publishExternalGeoTIFF(workspace, "c", new File("test"), "a", "b");
 	}
 	
 	public static void main(String args[]) throws Exception
