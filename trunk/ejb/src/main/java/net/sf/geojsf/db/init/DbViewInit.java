@@ -99,6 +99,9 @@ public class DbViewInit <L extends UtilsLang,
 				{
 					ejb = cView.newInstance();
 					ejb.setCode(view.getCode());
+					ejb.setX(0d);
+					ejb.setY(0d);
+					ejb.setZoom(1);
 					ejb = (VIEW)fSecurity.persist(ejb);
 				}
 				catch (InstantiationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
@@ -144,7 +147,7 @@ public class DbViewInit <L extends UtilsLang,
 		for(Layer layer : layers)
 		{
 			LAYER l = fSecurity.fByCode(cLayer, layer.getCode());
-			VL vl = efViewLayer.create(view, l, i, layer.isVisible(), (layer.isSetLegend() && layer.isShowLegend()));
+			VL vl = efViewLayer.create(view, l, i, (layer.isSetVisible() && layer.isVisible()), (layer.isSetShowLegend() && layer.isShowLegend()));
 			fSecurity.persist(vl);
 			i++;
 		}
