@@ -11,11 +11,9 @@ import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
 
 import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
-import org.geojsf.model.interfaces.openlayers.GeoJsfLayerType;
 import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.interfaces.openlayers.GeoJsfView;
 import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
@@ -26,28 +24,25 @@ import org.slf4j.LoggerFactory;
 
 public class DbLayerInit <L extends UtilsLang,
 						D extends UtilsDescription,
-						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL,LT>,
-						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
-						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL,LT>,
-						VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
-						LT extends UtilsStatus<L,D>>
+						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
+						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
+						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+						VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbLayerInit.class);
 	
     private final Class<LAYER> cLayer;
     private final Class<SERVICE> cService;
-    private final Class<LT> cLayerType;
     
     private UtilsSecurityFacade fSecurity;
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
-    private EjbGeoLayerFactory<L,D,SERVICE,LAYER,VIEW,VL,LT> ejbLayerFactory;
+    private EjbGeoLayerFactory<L,D,SERVICE,LAYER,VIEW,VL> ejbLayerFactory;
     
-    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService, final Class<LT> cLayerType, UtilsSecurityFacade fAcl)
+    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService, UtilsSecurityFacade fAcl)
 	{       
         this.cLayer = cLayer;
         this.cService = cService;
-        this.cLayerType = cLayerType;
         
         this.fSecurity=fAcl;
 		
@@ -58,15 +53,14 @@ public class DbLayerInit <L extends UtilsLang,
 	
 	public static <L extends UtilsLang,
 					D extends UtilsDescription,
-					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL,LT>,
-					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
-					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL,LT>,
-					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL,LT>,
-					LT extends UtilsStatus<L,D>>
-		DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL,LT>
-		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService, final Class<LT> cLayerType, UtilsSecurityFacade fAcl)
+					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
+					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
+					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+		DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL>
+		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<SERVICE> cService, UtilsSecurityFacade fAcl)
 	{
-		return new DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL,LT>(cL,cD,cLayer,cService,cLayerType,fAcl);
+		return new DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cLayer,cService,fAcl);
 	}
 
 	public void iuLayer(Layers layers, String[] langKeys) throws UtilsConfigurationException
@@ -81,20 +75,10 @@ public class DbLayerInit <L extends UtilsLang,
 		{
 			updateLayer.actualAdd(layer.getCode());
 			
-			GeoJsfLayerType.Code layerTypeCode = null;
-			LT type;
-			SERVICE service;
-			
-			if(layer.isSetLayer())
-			{
-				if(layer.getLayer().isSetDbLayer()){layerTypeCode = GeoJsfLayerType.Code.POSTGIS;}	
-			}
-			if(layerTypeCode==null){layerTypeCode = GeoJsfLayerType.Code.UNKNOWN;}
-			
+			SERVICE service;			
 			try
 			{
 				service = fSecurity.fByCode(cService, layer.getService().getCode());
-				type = fSecurity.fByCode(cLayerType, layerTypeCode.toString());
 			}
 			catch (UtilsNotFoundException e1) {throw new UtilsConfigurationException(e1.getMessage());}
 			
@@ -110,7 +94,7 @@ public class DbLayerInit <L extends UtilsLang,
 			{
 				try
 				{
-					ejb = ejbLayerFactory.create(layer.getCode(), service, type, langKeys);					
+					ejb = ejbLayerFactory.create(layer.getCode(), service, langKeys);					
 					ejb = (LAYER)fSecurity.persist(ejb);
 				}
 

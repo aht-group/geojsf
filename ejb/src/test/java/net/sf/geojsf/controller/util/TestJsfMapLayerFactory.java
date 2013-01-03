@@ -8,7 +8,6 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlRepositoryFactory;
 import net.sf.geojsf.controller.util.query.OpenLayersQuery;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayerType;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
@@ -25,7 +24,7 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestJsfMapLayerFactory.class);
 	
-	private GeoJsfMapLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer,DefaultGeoJsfLayerType> fJsf;
+	private GeoJsfMapLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fJsf;
 	
 	@Before
 	public void init() throws UtilsIntegrityException
