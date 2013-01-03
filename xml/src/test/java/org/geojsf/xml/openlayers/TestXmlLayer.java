@@ -46,7 +46,6 @@ public class TestXmlLayer extends AbstractXmlOpenlayersTest
     		xml.setLegend(TestXmlLegend.create(false));
     		xml.setLangs(new Langs());
     		xml.setService(TestXmlService.create(false));
-    		xml.setLayer(org.geojsf.xml.geoserver.TestXmlLayer.create(false));
     	}
     	
     	return xml;

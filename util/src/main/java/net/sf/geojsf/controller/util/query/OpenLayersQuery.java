@@ -3,13 +3,13 @@ package net.sf.geojsf.controller.util.query;
 import java.util.Hashtable;
 import java.util.Map;
 
+import net.sf.ahtutils.controller.util.query.StatusQuery;
+
 import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.Service;
 import org.geojsf.xml.openlayers.View;
-
-import net.sf.ahtutils.controller.util.query.StatusQuery;
 
 public class OpenLayersQuery
 {
@@ -60,14 +60,11 @@ public class OpenLayersQuery
 	{
 		Service service = new Service();
 		service.setCode("");
-		
-		org.geojsf.xml.geoserver.Layer geoserverLayer = new org.geojsf.xml.geoserver.Layer();
-		
+
 		Layer xml = new Layer();
 		xml.setCode("");
 		xml.setService(service);
 		xml.setLangs(StatusQuery.langs());
-		xml.setLayer(geoserverLayer);
 		return xml;
 	}
 	
