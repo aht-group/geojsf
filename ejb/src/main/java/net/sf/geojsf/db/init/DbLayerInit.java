@@ -87,7 +87,7 @@ public class DbLayerInit <L extends UtilsLang,
 			
 			if(layer.isSetLayer())
 			{
-				if(layer.getLayer().isSetDbLayer()){layerTypeCode = GeoJsfLayerType.Code.DB;}	
+				if(layer.getLayer().isSetDbLayer()){layerTypeCode = GeoJsfLayerType.Code.POSTGIS;}	
 			}
 			if(layerTypeCode==null){layerTypeCode = GeoJsfLayerType.Code.UNKNOWN;}
 			

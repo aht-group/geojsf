@@ -66,6 +66,14 @@
 					<n:urlMapping>/tutorial/hibernate</n:urlMapping>
 				</n:navigation>
 			</acl:view>
+			<acl:view code="tutorialPostGis" public="false" onlyLoginRequired="false">
+				<s:langs><s:lang translation="tutorialPostGis" key="de"/></s:langs>
+				<s:descriptions><s:description key="de">tutorialPostGis</s:description></s:descriptions>
+				<n:navigation package="org.geojsf.demo.mbean.tutorial">
+					<n:viewPattern>/jsf/tutorial/postgis.xhtml</n:viewPattern>
+					<n:urlMapping>/tutorial/postgis</n:urlMapping>
+				</n:navigation>
+			</acl:view>
 			<acl:view code="tutorialGeoServerAS7" public="false" onlyLoginRequired="false">
 				<s:langs><s:lang translation="tutorialGeoServerAS7" key="de"/></s:langs>
 				<s:descriptions><s:description key="de">tutorialGeoServerAS7</s:description></s:descriptions>

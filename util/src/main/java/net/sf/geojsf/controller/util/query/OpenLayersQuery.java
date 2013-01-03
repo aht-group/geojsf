@@ -61,10 +61,13 @@ public class OpenLayersQuery
 		Service service = new Service();
 		service.setCode("");
 		
+		org.geojsf.xml.geoserver.Layer geoserverLayer = new org.geojsf.xml.geoserver.Layer();
+		
 		Layer xml = new Layer();
 		xml.setCode("");
 		xml.setService(service);
 		xml.setLangs(StatusQuery.langs());
+		xml.setLayer(geoserverLayer);
 		return xml;
 	}
 	

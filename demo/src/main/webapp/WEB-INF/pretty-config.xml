@@ -40,6 +40,10 @@
         <pattern value="/tutorial/hibernate" />
         <view-id value="/jsf/tutorial/hibernate.jsf" />
     </url-mapping>
+	<url-mapping id="tutorialPostGis">
+		<pattern value="/tutorial/postgis" />
+		<view-id value="/jsf/tutorial/postgis.jsf" />
+	</url-mapping>
     <url-mapping id="tutorialGeoServerAS7">
         <pattern value="/tutorial/geoserver/as7" />
         <view-id value="/jsf/tutorial/geoserver-as7.jsf" />

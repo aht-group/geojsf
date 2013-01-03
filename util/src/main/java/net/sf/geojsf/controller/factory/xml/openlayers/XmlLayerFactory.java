@@ -8,10 +8,12 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
 import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
+import org.geojsf.model.interfaces.openlayers.GeoJsfLayerType;
 import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.interfaces.openlayers.GeoJsfView;
 import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import org.geojsf.xml.geojsf.Query;
+import org.geojsf.xml.geoserver.DbLayer;
 import org.geojsf.xml.openlayers.Layer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +49,19 @@ public class XmlLayerFactory implements Serializable
 		{
 			XmlLangsFactory f = new XmlLangsFactory(q.getLangs());
 			xml.setLangs(f.getUtilsLangs(ejb.getName()));
+		}
+		
+		if(q.isSetLayer())
+		{
+			org.geojsf.xml.geoserver.Layer geoserverLayer = new org.geojsf.xml.geoserver.Layer();
+			
+			GeoJsfLayerType.Code type = GeoJsfLayerType.Code.valueOf(ejb.getType().getCode());
+			switch(type)
+			{
+				case POSTGIS: geoserverLayer.setDbLayer(new DbLayer());break;
+				default: break;
+			}
+			xml.setLayer(geoserverLayer);
 		}
 		
 		return xml;
