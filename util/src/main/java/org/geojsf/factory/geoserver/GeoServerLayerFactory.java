@@ -7,7 +7,6 @@ import it.geosolutions.geoserver.rest.encoder.feature.GSFeatureTypeEncoder;
 
 import java.io.Serializable;
 
-import org.geojsf.xml.geoserver.DbLayer;
 import org.geojsf.xml.geoserver.Layer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +27,11 @@ public class GeoServerLayerFactory implements Serializable
 	
 	public boolean createLayer(String workspace, String ds, Layer layer)
 	{
-		if(layer.isSetDbLayer()){return createDbLayer(workspace, ds, layer.getDbLayer());}
 		
 		return false;
 	}
 	
-	private boolean createDbLayer(String workspace, String ds, DbLayer layer)
+	private boolean createDbLayer(String workspace, String ds, Layer layer)
 	{
 		GSFeatureTypeEncoder fte = new GSFeatureTypeEncoder();
 		fte.setName(layer.getName());

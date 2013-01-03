@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema targetNamespace="http://www.geojsf.org/geoserver"
-    xmlns:geoserver="http://www.geojsf.org/geoserver"
-    xmlns:net="http://exlp.sf.net/net"
-    xmlns:id="http://exlp.sf.net/identity"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <xsd:import namespace="http://exlp.sf.net/net" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/net.xsd"/>
-    <xsd:import namespace="http://exlp.sf.net/identity" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/identity.xsd"/>
+	xmlns:geoserver="http://www.geojsf.org/geoserver"
+	xmlns:net="http://exlp.sf.net/net"
+	xmlns:id="http://exlp.sf.net/identity"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:import namespace="http://exlp.sf.net/net" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/net.xsd"/>
+	<xsd:import namespace="http://exlp.sf.net/identity" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/identity.xsd"/>
 	<xsd:element name="dataStore">
-        <xsd:complexType>
-        	<xsd:sequence>
+		<xsd:complexType>
+			<xsd:sequence>
 				<xsd:element ref="net:host" maxOccurs="1"/>
 				<xsd:element ref="id:user" maxOccurs="1"/>
 			</xsd:sequence>
-            <xsd:attribute name="name" type="xsd:string"/>
-            <xsd:attribute name="description" type="xsd:string"/>
-            <xsd:attribute name="database" type="xsd:string"/>
-            <xsd:attribute name="schema" type="xsd:string"/>
-        </xsd:complexType>
-    </xsd:element>
-    <xsd:element name="layer">
-        <xsd:complexType>
-            <xsd:sequence>
-				<xsd:element ref="geoserver:dbLayer" maxOccurs="1"/>
+			<xsd:attribute name="name" type="xsd:string"/>
+			<xsd:attribute name="description" type="xsd:string"/>
+			<xsd:attribute name="database" type="xsd:string"/>
+			<xsd:attribute name="schema" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="geoServer">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geoserver:layer" maxOccurs="unbounded"/>
 			</xsd:sequence>
-        </xsd:complexType>
-    </xsd:element>
-    <xsd:element name="dbLayer">
-        <xsd:complexType>
-            <xsd:attribute name="name" type="xsd:string"/>
-            <xsd:attribute name="title" type="xsd:string"/>
-        </xsd:complexType>
-    </xsd:element>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="layer">
+		<xsd:complexType>
+			<xsd:attribute name="name" type="xsd:string"/>
+			<xsd:attribute name="title" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
 </xsd:schema>
