@@ -11,33 +11,31 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlDbLayer extends AbstractXmlGeoserverTest
+public class TestXmlGeoserver extends AbstractXmlGeoserverTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlDbLayer.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlGeoserver.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,DbLayer.class.getSimpleName()+".xml");
+		fXml = new File(rootDir,GeoServer.class.getSimpleName()+".xml");
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	DbLayer actual = create(true);
-    	DbLayer expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), DbLayer.class);
+    	GeoServer actual = create(true);
+    	GeoServer expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), GeoServer.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static DbLayer create(boolean withChilds)
+    public static GeoServer create(boolean withChilds)
     {
-    	DbLayer xml = new DbLayer();
-    	xml.setName("myName");
-    	xml.setTitle("myTitle");
-    	
+    	GeoServer xml = new GeoServer();
+    		
     	if(withChilds)
     	{
-
+    		xml.getLayer().add(TestXmlLayer.create(false));xml.getLayer().add(TestXmlLayer.create(false));
     	}
     	
     	return xml;
@@ -49,8 +47,8 @@ public class TestXmlDbLayer extends AbstractXmlGeoserverTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlDbLayer.initFiles();	
-		TestXmlDbLayer test = new TestXmlDbLayer();
+		TestXmlGeoserver.initFiles();	
+		TestXmlGeoserver test = new TestXmlGeoserver();
 		test.save();
     }
 }

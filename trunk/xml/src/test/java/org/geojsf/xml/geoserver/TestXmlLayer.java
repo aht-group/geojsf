@@ -32,10 +32,12 @@ public class TestXmlLayer extends AbstractXmlGeoserverTest
     public static Layer create(boolean withChilds)
     {
     	Layer xml = new Layer();
-    	
+    	xml.setName("myName");
+    	xml.setTitle("myTitle");
+    		
     	if(withChilds)
     	{
-    		xml.setDbLayer(TestXmlDbLayer.create(false));
+    		
     	}
     	
     	return xml;
