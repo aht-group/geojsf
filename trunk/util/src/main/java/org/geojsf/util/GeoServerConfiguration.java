@@ -14,7 +14,6 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.controller.interfaces.GeoServerConfig;
 import org.geojsf.factory.geoserver.GeoServerDataStoreFactory;
-import org.geojsf.factory.geoserver.GeoServerLayerFactory;
 import org.geojsf.factory.geoserver.GeoServerRestFactory;
 import org.geojsf.factory.geoserver.GeoServerWorkspaceFactory;
 import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
@@ -66,17 +65,7 @@ public class GeoServerConfiguration
 		logger.info("layers");
 		for(Layer layer : layers.getLayer())
 		{
-			if(layer.isSetLayer())
-			{
-				org.geojsf.xml.geoserver.Layer geoserverLayer = layer.getLayer();
-				if(geoserverLayer.isSetDbLayer())
-				{
-					geoserverLayer.getDbLayer().setName(layer.getCode());
-				}
-				
-				GeoServerLayerFactory f = new GeoServerLayerFactory(reader,publisher);
-				f.createLayer(workspace, ds, geoserverLayer);
-			}
+			logger.info("NYI");
 		}
 	}
 	
