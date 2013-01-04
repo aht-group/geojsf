@@ -2,6 +2,7 @@ package org.geojsf.util;
 
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 import it.geosolutions.geoserver.rest.GeoServerRESTReader;
+import it.geosolutions.geoserver.rest.decoder.RESTStyleList;
 import it.geosolutions.geoserver.rest.encoder.GSLayerEncoder;
 import it.geosolutions.geoserver.rest.encoder.feature.GSFeatureTypeEncoder;
 
@@ -78,6 +79,12 @@ public class GeoServerConfiguration
 		layerEncoder.setEnabled(true);
 
 		publisher.publishExternalGeoTIFF(workspace, "c", new File("test"), "a", "b");
+	}
+	
+	public void layers()
+	{
+		RESTStyleList list = reader.getStyles();
+		
 	}
 	
 	public static void main(String args[]) throws Exception

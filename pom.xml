@@ -36,6 +36,7 @@
 		<module>component</module>
 		<module>demo</module>
 		<module>util</module>
+		<module>geoserver</module>
 		<module>xml</module>
 	</modules>
 

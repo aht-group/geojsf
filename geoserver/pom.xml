@@ -9,9 +9,9 @@
         <relativePath>../pom.xml</relativePath>
 	</parent>
 	
-    <artifactId>geojsf-util</artifactId>
+    <artifactId>geojsf-geoserver</artifactId>
     <packaging>jar</packaging>
-    <name>GeoJSF - Util</name>
+    <name>GeoJSF - GeoServer</name>
    
 	<build>
 		<plugins>

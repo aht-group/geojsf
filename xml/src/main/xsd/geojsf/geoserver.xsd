@@ -25,17 +25,29 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
+	<xsd:element name="layers">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geoserver:layer" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
 	<xsd:element name="layer">
 		<xsd:complexType>
 			<xsd:attribute name="name" type="xsd:string"/>
 			<xsd:attribute name="title" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="layers">
+	<xsd:element name="styles">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref="geoserver:layer" maxOccurs="unbounded"/>
+				<xsd:element ref="geoserver:style" maxOccurs="unbounded"/>
 			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="style">
+		<xsd:complexType>
+			<xsd:attribute name="name" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
 </xsd:schema>
