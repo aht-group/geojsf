@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<geoserver:styles xmlns:geoserver="http://www.geojsf.org/geoserver">
+    <geoserver:style name="myName"/>
+    <geoserver:style name="myName"/>
+</geoserver:styles>
