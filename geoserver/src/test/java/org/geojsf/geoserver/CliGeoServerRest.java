@@ -2,15 +2,17 @@ package org.geojsf.geoserver;
 
 import java.io.IOException;
 
-import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.exlp.util.xml.JDomUtil;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.xml.geoserver.Styles;
+import org.jdom.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("unused")
 public class CliGeoServerRest
 {
 	final static Logger logger = LoggerFactory.getLogger(CliGeoServerRest.class);
@@ -20,13 +22,32 @@ public class CliGeoServerRest
 	public CliGeoServerRest(Configuration config)
 	{
 		rest = new GeoServerRestWrapper(config);
-		
 	}
+	
+//ahtutils.highlight:initDirectly
+	public void initDirectly()
+	{
+		String url = "http://localhost:8080/geoserver";
+		String user = "user";
+		String password = "password";
+		GeoServerRest rest = new GeoServerRestWrapper(url,user,password);
+	}
+//ahtutils.highlight:initDirectly
+	
+//ahtutils.highlight:initWithCommons
+	public void initWithCommons(Configuration config)
+	{
+		GeoServerRest rest = new GeoServerRestWrapper(config);
+	}
+//ahtutils.highlight:initWithCommons
 	
 	public void test() throws IOException
 	{
 		Styles layers = rest.styles();
-		JaxbUtil.info(layers);
+//		JaxbUtil.info(layers);
+		
+		Document sld = rest.style("grass");
+		JDomUtil.debug(sld);
 	}
 		
 	public static void main (String[] args) throws Exception

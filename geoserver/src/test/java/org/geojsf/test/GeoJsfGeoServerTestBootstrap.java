@@ -25,10 +25,11 @@ public class GeoJsfGeoServerTestBootstrap
 		try
 		{
 			String cfn = ExlpCentralConfigPointer.getFile("geojsf","geoserver").getAbsolutePath();
-			ConfigLoader.add(cfn);
+//			ConfigLoader.add(cfn);
 			logger.info("Using additional config in: "+cfn );
 		}
 		catch (ExlpConfigurationException e) {logger.debug("No additional "+ExlpCentralConfigPointer.class.getSimpleName()+" "+e.getMessage());}
+		ConfigLoader.add("config.geojsf-geoserver.test/geoserver.xml");
 		
 		Configuration config = ConfigLoader.init();
 		return config;

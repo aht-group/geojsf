@@ -17,4 +17,8 @@
         <menuItem code="tutorialGeoServerAS7" href="/tutorial/geoserver/as7"><s:langs><s:lang key="en" version="1" translation="GeoServer and Jboss AS7"/></s:langs></menuItem>
         <menuItem code="tutorialGeoServerConfig" href="/tutorial/geoserver/config"><s:langs><s:lang key="en" version="1" translation="GeoServer Configuration"/></s:langs></menuItem>
     </menuItem>
+	<menuItem code="geoserver" href="/geoserver">
+		<s:langs><s:lang key="en" version="1" translation="GeoServer" /></s:langs>
+		<menuItem code="geoserverLayer" href="/geoserver/layer"><s:langs><s:lang key="en" version="1" translation="Layer Manager"/></s:langs></menuItem>
+	</menuItem>
 </menu>

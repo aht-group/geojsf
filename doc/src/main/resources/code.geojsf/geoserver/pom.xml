@@ -1,0 +1,4 @@
+<dependency>
+    <groupId>org.geojsf</groupId>
+    <artifactId>geojsf-geoserver</artifactId>
+</dependency>
