@@ -9,7 +9,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
-	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('geoserverLayer')}"/></ui:define>
+	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('geoserverStyle')}"/></ui:define>
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('geoserver')}" scActive="active"/></ui:define>
 	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('geoserver')}"/></ui:define>
 	<ui:define name="content">
@@ -21,8 +21,14 @@
 				</div>
 			</div>
 			<div class="span9">
-				<h1>Layer Manager</h1>
+				<h1>Style Manager</h1>
 				
+				The <b>GeoServerStyleManager</b> must be created with a <b>GeoServerRest</b> object
+				<aht:highlight resource="/java.geojsf/org/geojsf/geoserver/CliGeoServerStyleManager.java" between="init"/>
+				
+				<h3>Basic style methods</h3>
+				Basic methods are integrated in the <b>GeoServerRest</b> interface
+				<aht:highlight resource="/java.geojsf/org/geojsf/geoserver/CliGeoServerStyleManager.java" between="basic"/>
 			</div>
 		</div>
 	</ui:define>

@@ -1,7 +1,11 @@
 package org.geojsf.geoserver;
 
 public interface GeoServerConfig 
-{		
+{	
+	public static final String dirExport = "geoserver.dir.export";
+	
+	public static final String dirStyle = "geoserver.style.dir";
+	
 	public static String workspace = "geoserver.workspace";
 	
 //ahtutils.highlight:rest
@@ -9,6 +13,8 @@ public interface GeoServerConfig
 	public static String restUser = "geoserver.rest.user";
 	public static String restPassword = "geoserver.rest.password";
 //ahtutils.highlight:rest	
+	
+	
 	
 	public static String dsName = "geoserver.ds.name";
 	public static String dsDescription = "geoserver.ds.description";

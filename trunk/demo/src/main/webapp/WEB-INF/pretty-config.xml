@@ -32,6 +32,10 @@
 		<pattern value="/geoserver/layer" />
 		<view-id value="/jsf/geoserver/layer.jsf" />
 	</url-mapping>
+		<url-mapping id="geoserverStyle">
+		<pattern value="/geoserver/style" />
+		<view-id value="/jsf/geoserver/style.jsf" />
+	</url-mapping>
 	
 	<url-mapping id="tutorial">
 		<pattern value="/tutorial" />

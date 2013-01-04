@@ -8,7 +8,8 @@ import org.jdom.Document;
 public interface GeoServerRest
 {	
 	Styles styles() throws IOException;
-	Styles styles(String prefixFilter) throws IOException;
+	Styles styles(String workspace) throws IOException;
 	
-	Document style(String code) throws IOException;
+	Document style(String name) throws IOException;
+	Document style(String workspace, String name) throws IOException;
 }
