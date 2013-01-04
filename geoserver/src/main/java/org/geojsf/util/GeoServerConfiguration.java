@@ -13,11 +13,11 @@ import java.net.MalformedURLException;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.controller.interfaces.GeoServerConfig;
 import org.geojsf.factory.geoserver.GeoServerDataStoreFactory;
 import org.geojsf.factory.geoserver.GeoServerRestFactory;
 import org.geojsf.factory.geoserver.GeoServerWorkspaceFactory;
 import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
+import org.geojsf.geoserver.GeoServerConfig;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.Layers;

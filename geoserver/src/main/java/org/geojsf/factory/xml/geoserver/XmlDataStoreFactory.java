@@ -6,7 +6,7 @@ import net.sf.exlp.xml.identity.User;
 import net.sf.exlp.xml.net.Host;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.controller.interfaces.GeoServerConfig;
+import org.geojsf.geoserver.GeoServerConfig;
 import org.geojsf.xml.geoserver.DataStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

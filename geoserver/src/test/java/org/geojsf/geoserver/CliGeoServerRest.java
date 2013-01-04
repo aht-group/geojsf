@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.apache.commons.configuration.Configuration;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.xml.geoserver.Styles;
@@ -16,9 +17,9 @@ public class CliGeoServerRest
 	
 	private GeoServerRest rest;
 
-	public CliGeoServerRest()
+	public CliGeoServerRest(Configuration config)
 	{
-		rest = new GeoServerRestWrapper("http://","", "");
+		rest = new GeoServerRestWrapper(config);
 		
 	}
 	
@@ -30,9 +31,9 @@ public class CliGeoServerRest
 		
 	public static void main (String[] args) throws Exception
 	{
-		GeoJsfGeoServerTestBootstrap.init();
+		Configuration config = GeoJsfGeoServerTestBootstrap.init();
 			
-		CliGeoServerRest rest = new CliGeoServerRest();
+		CliGeoServerRest rest = new CliGeoServerRest(config);
 		rest.test();
 	}
 }

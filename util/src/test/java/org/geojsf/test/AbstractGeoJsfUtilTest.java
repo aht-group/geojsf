@@ -1,4 +1,4 @@
-package net.sf.geojsf.test;
+package org.geojsf.test;
 
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
