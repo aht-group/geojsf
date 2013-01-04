@@ -4,9 +4,11 @@ public interface GeoServerConfig
 {		
 	public static String workspace = "geoserver.workspace";
 	
+//ahtutils.highlight:rest
 	public static String restHost = "geoserver.rest.host";
 	public static String restUser = "geoserver.rest.user";
 	public static String restPassword = "geoserver.rest.password";
+//ahtutils.highlight:rest	
 	
 	public static String dsName = "geoserver.ds.name";
 	public static String dsDescription = "geoserver.ds.description";

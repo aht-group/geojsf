@@ -1,61 +1,70 @@
 <pretty-config xmlns="http://ocpsoft.org/prettyfaces/3.3.3" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://ocpsoft.org/prettyfaces/3.3.3 http://ocpsoft.org/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
-    
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://ocpsoft.org/prettyfaces/3.3.3 http://ocpsoft.org/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
+	
 	<url-mapping id="welcome">
 		<pattern value="/" />
 		<view-id value="/index.jsf" />
 	</url-mapping>
-    
-    <url-mapping id="showcase">
-        <pattern value="/showcase" />
-        <view-id value="/jsf/showcase/showcase.jsf" />
-    </url-mapping>
-    <url-mapping id="showcaseMap">
-        <pattern value="/showcase/map" />
-        <view-id value="/jsf/showcase/map.jsf" />
-    </url-mapping>
-    <url-mapping id="showcaseCoordinate">
-        <pattern value="/showcase/coordinate" />
-        <view-id value="/jsf/showcase/coordinate.jsf" />
-    </url-mapping>
-    <url-mapping id="showcaseLayerSwitcher">
-        <pattern value="/showcase/layerSwitcher" />
-        <view-id value="/jsf/showcase/layerSwitcher.jsf" />
-    </url-mapping>
-    
-    <url-mapping id="tutorial">
-        <pattern value="/tutorial" />
-        <view-id value="/jsf/tutorial/tutorial.jsf" />
-    </url-mapping>
-    <url-mapping id="tutorialMaven">
-        <pattern value="/tutorial/maven" />
-        <view-id value="/jsf/tutorial/maven.jsf" />
-    </url-mapping>
-    <url-mapping id="tutorialDataStructure">
-        <pattern value="/tutorial/datastructure" />
-        <view-id value="/jsf/tutorial/datastructure.jsf" />
-    </url-mapping>
-    <url-mapping id="tutorialHibernate">
-        <pattern value="/tutorial/hibernate" />
-        <view-id value="/jsf/tutorial/hibernate.jsf" />
-    </url-mapping>
+	
+	<url-mapping id="showcase">
+		<pattern value="/showcase" />
+		<view-id value="/jsf/showcase/showcase.jsf" />
+	</url-mapping>
+	<url-mapping id="showcaseMap">
+		<pattern value="/showcase/map" />
+		<view-id value="/jsf/showcase/map.jsf" />
+	</url-mapping>
+	<url-mapping id="showcaseCoordinate">
+		<pattern value="/showcase/coordinate" />
+		<view-id value="/jsf/showcase/coordinate.jsf" />
+	</url-mapping>
+	<url-mapping id="showcaseLayerSwitcher">
+		<pattern value="/showcase/layerSwitcher" />
+		<view-id value="/jsf/showcase/layerSwitcher.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="geoserver">
+		<pattern value="/geoserver" />
+		<view-id value="/jsf/geoserver/geoserver.jsf" />
+	</url-mapping>
+	<url-mapping id="geoserverLayer">
+		<pattern value="/geoserver/layer" />
+		<view-id value="/jsf/geoserver/layer.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="tutorial">
+		<pattern value="/tutorial" />
+		<view-id value="/jsf/tutorial/tutorial.jsf" />
+	</url-mapping>
+	<url-mapping id="tutorialMaven">
+		<pattern value="/tutorial/maven" />
+		<view-id value="/jsf/tutorial/maven.jsf" />
+	</url-mapping>
+	<url-mapping id="tutorialDataStructure">
+		<pattern value="/tutorial/datastructure" />
+		<view-id value="/jsf/tutorial/datastructure.jsf" />
+	</url-mapping>
+	<url-mapping id="tutorialHibernate">
+		<pattern value="/tutorial/hibernate" />
+		<view-id value="/jsf/tutorial/hibernate.jsf" />
+	</url-mapping>
 	<url-mapping id="tutorialPostGis">
 		<pattern value="/tutorial/postgis" />
 		<view-id value="/jsf/tutorial/postgis.jsf" />
 	</url-mapping>
-    <url-mapping id="tutorialGeoServerAS7">
-        <pattern value="/tutorial/geoserver/as7" />
-        <view-id value="/jsf/tutorial/geoserver-as7.jsf" />
-    </url-mapping>
-    <url-mapping id="tutorialGeoServerConfig">
-        <pattern value="/tutorial/geoserver/config" />
-        <view-id value="/jsf/tutorial/geoserver-config.jsf" />
-    </url-mapping>
-    
+	<url-mapping id="tutorialGeoServerAS7">
+		<pattern value="/tutorial/geoserver/as7" />
+		<view-id value="/jsf/tutorial/geoserver-as7.jsf" />
+	</url-mapping>
+	<url-mapping id="tutorialGeoServerConfig">
+		<pattern value="/tutorial/geoserver/config" />
+		<view-id value="/jsf/tutorial/geoserver-config.jsf" />
+	</url-mapping>
+	
 	<url-mapping id="impressum">
 		<pattern value="/impressum" />
 		<view-id value="/jsf/impressum.jsf" />
 	</url-mapping>
-    
+	
 </pretty-config>

@@ -13,6 +13,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.controller.interfaces.rest.GeoServerRestInterface;
+import org.geojsf.xml.geoserver.Style;
 import org.geojsf.xml.geoserver.Styles;
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.client.core.executors.ApacheHttpClient4Executor;
@@ -29,6 +30,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 	final static Logger logger = LoggerFactory.getLogger(GeoServerRestWrapper.class);
 	
 	private GeoServerRestInterface rest;
+	private static final String xmlEncoding = "UTF-8";
 
 	public GeoServerRestWrapper(Configuration config)
 	{
@@ -55,8 +57,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 	{		
 		Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
 		
-		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.styles(), "UTF-8");
-		Document doc = JDomUtil.load(is, "UTF-8");
+		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.styles(), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
 		Element root = doc.getRootElement();
 		JDomUtil.setNameSpaceRecursive(root, ns);
 		
@@ -69,9 +71,30 @@ public class GeoServerRestWrapper implements GeoServerRest
 				e.setAttribute("name", name.getText());
 			}
 		}
-	//	JDomUtil.debug(root);
-			    
+	//	JDomUtil.debug(root);    
 		
 		return JDomUtil.toJaxb(root, Styles.class);
+	}
+
+	@Override
+	public Styles styles(String prefixFilter) throws IOException
+	{
+		Styles styles = new Styles();
+		for(Style style : this.styles().getStyle())
+		{
+			if(style.isSetName() && style.getName().startsWith(prefixFilter))
+			{
+				styles.getStyle().add(style);
+			}
+		}
+		return styles;
+	}
+
+	@Override
+	public Document style(String name) throws IOException
+	{
+		InputStream is = IOUtils.toInputStream(rest.style(name), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
+		return doc;
 	}
 }
