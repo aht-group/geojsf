@@ -13,7 +13,6 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.controller.interfaces.rest.GeoServerRestInterface;
-import org.geojsf.xml.geoserver.Style;
 import org.geojsf.xml.geoserver.Styles;
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.client.core.executors.ApacheHttpClient4Executor;
@@ -50,14 +49,17 @@ public class GeoServerRestWrapper implements GeoServerRest
 	    ApacheHttpClient4Executor executer = new ApacheHttpClient4Executor(client);
 		
 		rest = ProxyFactory.create(GeoServerRestInterface.class, url, executer);
+		logger.info("REST proxy created with URL="+url);
 	}
 
-	@Override
-	public Styles styles() throws IOException
-	{		
+	@Override public Styles styles() throws IOException {return buildStyles(rest.styles());}
+	@Override public Styles styles(String workspace) throws IOException {return buildStyles(rest.styles(workspace));}
+	
+	private Styles buildStyles(String xml) throws IOException
+	{
 		Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
 		
-		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.styles(), xmlEncoding);
+		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+xml, xmlEncoding);
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		Element root = doc.getRootElement();
 		JDomUtil.setNameSpaceRecursive(root, ns);
@@ -77,23 +79,17 @@ public class GeoServerRestWrapper implements GeoServerRest
 	}
 
 	@Override
-	public Styles styles(String prefixFilter) throws IOException
-	{
-		Styles styles = new Styles();
-		for(Style style : this.styles().getStyle())
-		{
-			if(style.isSetName() && style.getName().startsWith(prefixFilter))
-			{
-				styles.getStyle().add(style);
-			}
-		}
-		return styles;
-	}
-
-	@Override
 	public Document style(String name) throws IOException
 	{
 		InputStream is = IOUtils.toInputStream(rest.style(name), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
+		return doc;
+	}
+	
+	@Override
+	public Document style(String workspace, String name) throws IOException
+	{
+		InputStream is = IOUtils.toInputStream(rest.style(workspace,name), xmlEncoding);
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		return doc;
 	}

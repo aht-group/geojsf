@@ -49,6 +49,11 @@
                 <artifactId>geojsf-demo</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.geojsf</groupId>
+                <artifactId>geojsf-geoserver</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 		    
 		    <!-- Manages BOMs -->
 		    <dependency>

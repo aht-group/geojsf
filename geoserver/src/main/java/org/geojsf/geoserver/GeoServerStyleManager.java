@@ -19,33 +19,59 @@ public class GeoServerStyleManager
 	final static Logger logger = LoggerFactory.getLogger(GeoServerStyleManager.class);
 	
 	private GeoServerRest rest;
+	private File styleDir;
 	
+	public File getStyleDir() {
+		return styleDir;
+	}
+	public void setStyleDir(File styleDir) {
+		this.styleDir = styleDir;
+	}
 	public GeoServerStyleManager(GeoServerRest rest)
 	{
-		this.rest=rest;
+		this(rest,null);
 	}
-	
-	public void exportStyles(File directory) throws IOException
+	public GeoServerStyleManager(GeoServerRest rest, File styleDir)
 	{
-		Styles styles = rest.styles();
-		exportStyles(styles.getStyle(),directory);
+		this.rest=rest;
+		this.styleDir=styleDir;
 	}
 	
-	private void exportStyles(List<Style> list, File directory) throws IOException
+	private void checkDir() throws IOException
+	{
+		if(styleDir==null || !styleDir.exists() || !styleDir.isDirectory())
+		{
+			throw new IOException("Directory does not exist: "+styleDir.getCanonicalPath());
+		}
+	}
+	
+	public void exportStyles() throws IOException
+	{
+		checkDir();
+		Styles styles = rest.styles();
+		exportStyles(null,styles.getStyle());
+	}
+	
+	public void exportStyles(String workspace) throws IOException
+	{
+		checkDir();
+		Styles styles = rest.styles(workspace);
+		exportStyles(workspace,styles.getStyle());
+	}
+	
+	private void exportStyles(String workspace, List<Style> list) throws IOException
 	{
 		for(Style style : list)
 		{
-			exportStyle(style.getName(), directory);
+			exportStyle(workspace, style.getName());
 		}
 	}
 	
-	public void exportStyle(String name, File directory) throws IOException
+	public void exportStyle(String workspace, String name) throws IOException
 	{
-		if(!directory.exists() || !directory.isDirectory())
-		{
-			throw new IOException("dir");
-		}
-		Document doc = rest.style(name);
-		JDomUtil.save(doc, new File(directory,name+".sld"), Format.getPrettyFormat());
+		Document doc;
+		if(workspace==null){doc = rest.style(name);}
+		else {doc = rest.style(workspace, name);}
+		JDomUtil.save(doc, new File(styleDir,name+".sld"), Format.getPrettyFormat());
 	}
 }
