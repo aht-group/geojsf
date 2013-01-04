@@ -6,6 +6,7 @@ import java.io.InputStream;
 import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.XmlUtil;
 
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -29,6 +30,13 @@ public class GeoServerRestWrapper implements GeoServerRest
 	
 	private GeoServerRestInterface rest;
 
+	public GeoServerRestWrapper(Configuration config)
+	{
+		this(config.getString(GeoServerConfig.restHost),
+								config.getString(GeoServerConfig.restUser),
+								config.getString(GeoServerConfig.restPassword));
+	}
+	
 	public GeoServerRestWrapper(String url, String user, String password)
 	{
 		RegisterBuiltin.register(ResteasyProviderFactory.getInstance());

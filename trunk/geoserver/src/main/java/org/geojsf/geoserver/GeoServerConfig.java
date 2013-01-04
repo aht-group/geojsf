@@ -1,4 +1,4 @@
-package org.geojsf.controller.interfaces;
+package org.geojsf.geoserver;
 
 public interface GeoServerConfig 
 {		

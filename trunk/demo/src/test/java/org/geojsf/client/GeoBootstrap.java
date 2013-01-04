@@ -1,7 +1,5 @@
 package org.geojsf.client;
 
-import java.util.Iterator;
-
 import net.sf.ahtutils.controller.UtilsJbossFacadeLookup;
 import net.sf.exlp.util.config.ConfigKey;
 import net.sf.exlp.util.config.ConfigLoader;
@@ -30,7 +28,7 @@ public class GeoBootstrap
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
 			loggerInit.addAltPath("config.geojsf-demo.test");
 			loggerInit.init();
-		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());		
+		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
 		
 		try
 		{
@@ -41,7 +39,7 @@ public class GeoBootstrap
 		catch (ExlpConfigurationException e) {logger.debug("No additional "+ExlpCentralConfigPointer.class.getSimpleName()+" "+e.getMessage());}
 		ConfigLoader.add(configFile);
 		
-		Configuration config = ConfigLoader.init();		
+		Configuration config = ConfigLoader.init();
 
 		logger.debug("Config and Logger initialized");
 		checkConfig(config);
