@@ -1,12 +1,11 @@
-package org.geojsf.util.geoserver;
+package org.geojsf.geoserver;
 
 import java.io.IOException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.geojsf.test.GeoJsfUtilsTestBootstrap;
 
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
-import org.geojsf.geoserver.GeoServerRestWrapper;
+import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.xml.geoserver.Styles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ public class CliGeoServerRest
 		
 	public static void main (String[] args) throws Exception
 	{
-		GeoJsfUtilsTestBootstrap.init();
+		GeoJsfGeoServerTestBootstrap.init();
 			
 		CliGeoServerRest rest = new CliGeoServerRest();
 		rest.test();
