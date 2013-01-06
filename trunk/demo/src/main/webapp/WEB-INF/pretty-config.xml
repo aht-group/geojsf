@@ -28,6 +28,10 @@
 		<pattern value="/geoserver" />
 		<view-id value="/jsf/geoserver/geoserver.jsf" />
 	</url-mapping>
+		<url-mapping id="geoserverWorkspace">
+		<pattern value="/geoserver/workspace" />
+		<view-id value="/jsf/geoserver/workspace.jsf" />
+	</url-mapping>
 	<url-mapping id="geoserverLayer">
 		<pattern value="/geoserver/layer" />
 		<view-id value="/jsf/geoserver/layer.jsf" />

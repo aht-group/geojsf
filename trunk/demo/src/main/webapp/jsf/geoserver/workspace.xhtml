@@ -9,7 +9,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
-	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('geoserverJaxb')}"/></ui:define>
+	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('geoserverWorkspace')}"/></ui:define>
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('geoserver')}" scActive="active"/></ui:define>
 	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('geoserver')}"/></ui:define>
 	<ui:define name="content">
@@ -21,15 +21,17 @@
 				</div>
 			</div>
 			<div class="span9">
-				<h1>Java Architecture for XML Binding (JAXB)</h1>
+				<h1>Workspace Manager</h1>
 				
-				With this bindings it's easily possible to save, load and debug configuration settings.
+				The <b>GeoServerWorkspaceManager</b> must be created with a <b>GeoServerRest</b> object
+				<aht:highlight resource="/java.geojsf/org/geojsf/geoserver/CliGeoServerWorkspaceManager.java" between="init"/>
 				
+				<h3>Basic workspace methods</h3>
+				Basic methods are defined in the <b>GeoServerRest</b> interface, but also available as delegates in <b>GeoServerWorkspaceManager</b>
+				<aht:highlight resource="/java.geojsf/org/geojsf/geoserver/CliGeoServerWorkspaceManager.java" between="basic"/>
 				
-				<h3>XML Schema (W3C) a.k.a. XSD (XML Schema Definition)</h3>
-				
-				<h3>Workspaces</h3>
-				<aht:highlight resource="/code.geojsf/geoserver/jaxb/workspaces.xml"/>
+				<h3>Create a new Workspace</h3>
+				<aht:highlight resource="/java.geojsf/org/geojsf/geoserver/CliGeoServerWorkspaceManager.java" between="create"/>
 			</div>
 		</div>
 	</ui:define>

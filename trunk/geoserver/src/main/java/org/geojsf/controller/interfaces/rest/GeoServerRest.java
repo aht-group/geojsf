@@ -3,6 +3,8 @@ package org.geojsf.controller.interfaces.rest;
 import java.io.IOException;
 
 import org.geojsf.xml.geoserver.Styles;
+import org.geojsf.xml.geoserver.Workspace;
+import org.geojsf.xml.geoserver.Workspaces;
 import org.jdom.Document;
 
 public interface GeoServerRest
@@ -18,4 +20,7 @@ public interface GeoServerRest
 	
 //	void updateStyle(Document doc) throws IOException;
 	void updateStyle(String workspace, Document doc) throws IOException;
+	
+	Workspaces workspaces() throws IOException;
+	void createWorkspace(Workspace workspace) throws IOException;
 }

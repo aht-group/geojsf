@@ -14,6 +14,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.controller.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.xml.geoserver.Styles;
+import org.geojsf.xml.geoserver.Workspace;
+import org.geojsf.xml.geoserver.Workspaces;
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.client.core.executors.ApacheHttpClient4Executor;
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
@@ -111,5 +113,44 @@ public class GeoServerRestWrapper implements GeoServerRest
 	public void updateStyle(String workspace, Document doc) throws IOException
 	{
 		rest.updateStyle(workspace,JDomUtil.toString(doc));
+	}
+
+	@Override
+	public Workspaces workspaces() throws IOException
+	{
+		Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
+		
+		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.workspaces(), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
+		Element root = doc.getRootElement();
+		JDomUtil.setNameSpaceRecursive(root, ns);
+		
+		for(Object o : root.getChildren("workspace",ns))
+		{
+			if(o instanceof Element)
+			{
+				Element e = (Element)o;
+				Element name = e.getChild("name",ns);
+				e.setAttribute("name", name.getText());
+			}
+		}
+	//	JDomUtil.debug(root);    
+		
+		return JDomUtil.toJaxb(root, Workspaces.class);
+	}
+
+	@Override
+	public void createWorkspace(Workspace workspace) throws IOException
+	{
+		Element root = new Element("workspace");
+		Element name = new Element("name");
+		name.setText(workspace.getName());
+		root.addContent(name);
+		
+		Document doc = new Document();
+		doc.setRootElement(root);
+
+		rest.createWorkspace(JDomUtil.toString(doc));
+		
 	}
 }
