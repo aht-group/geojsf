@@ -19,6 +19,7 @@
     </menuItem>
 	<menuItem code="geoserver" href="/geoserver">
 		<s:langs><s:lang key="en" version="1" translation="GeoServer" /></s:langs>
+		<menuItem code="geoserverJaxb" href="/geoserver/jaxb"><s:langs><s:lang key="en" version="1" translation="JAXB"/></s:langs></menuItem>
 		<menuItem code="geoserverStyle" href="/geoserver/style"><s:langs><s:lang key="en" version="1" translation="Style Manager"/></s:langs></menuItem>
 		<menuItem code="geoserverLayer" href="/geoserver/layer"><s:langs><s:lang key="en" version="1" translation="Layer Manager"/></s:langs></menuItem>
 	</menuItem>

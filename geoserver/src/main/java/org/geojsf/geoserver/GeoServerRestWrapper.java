@@ -93,4 +93,23 @@ public class GeoServerRestWrapper implements GeoServerRest
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		return doc;
 	}
+
+	@Override
+	public void deleteStyle(String workspace, String name) throws IOException
+	{
+		rest.delete(workspace, name, true);
+	}
+
+	@Override
+	public void deleteStyle(String name) throws IOException
+	{
+		rest.delete(name,true);
+	}
+
+
+	@Override
+	public void updateStyle(String workspace, Document doc) throws IOException
+	{
+		rest.updateStyle(workspace,JDomUtil.toString(doc));
+	}
 }

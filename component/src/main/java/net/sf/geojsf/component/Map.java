@@ -1,6 +1,6 @@
 package net.sf.geojsf.component;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.el.MethodExpression;
 import javax.faces.component.FacesComponent;
@@ -26,7 +26,7 @@ public class Map extends UINamingContainer{
 	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>> 
 		String layerString(SERVICE service)
 	{
-		ArrayList<LAYER> layers = (ArrayList<LAYER>) service.getLayer();
+		List<LAYER> layers = service.getLayer();
 		StringBuffer sb = new StringBuffer();
 		for (LAYER layer : layers)
 		{
