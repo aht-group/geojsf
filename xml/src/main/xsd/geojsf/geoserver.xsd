@@ -50,4 +50,16 @@
 			<xsd:attribute name="name" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
+	<xsd:element name="workspaces">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geoserver:workspace" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="workspace">
+		<xsd:complexType>
+			<xsd:attribute name="name" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
 </xsd:schema>

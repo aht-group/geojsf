@@ -1,7 +1,6 @@
-package org.geojsf.geoserver;
+package org.geojsf.geoserver.manager;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
