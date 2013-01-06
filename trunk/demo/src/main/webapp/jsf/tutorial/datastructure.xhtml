@@ -23,35 +23,35 @@
 			<div class="span9">
 				<h1>GeoJSF Data Structure</h1>
 				
-				The datastructure is implemented with generic interfaces and a default implementation.
-				It's possible to use a completly custom implmentation, the default implementation or a mixture of them.
+				The datastructure is restricted with generic interfaces and a default implementation.
+				It's possible to use a completely custom implementation, the default implementation or a mixture of them.
 
-				Also Entity Java Beans can easily implement these generic interfaces and a custom
-				management web page for all three entities is possible. With this page the user is allowed
-				to register layers, or create and modify custom views.
-				
+				Also Entity Java Beans can be used to implement these generic interfaces and directly persist the configuration of
+				all map related parameter in the database.
 				
 				<h3>GeoJsfService</h3>
 				
 				The service is in most cases a WMS compatible service.
-				Each service can have multiple
+				Each service can have multiple available layer.
 				
 				<aht:highlight lang="java" resource="/code.geojsf/datastructure/GeoJsfService.java"/>
 				
 				<h3>GeoJsfLayer</h3>
 				
-				Each layer must be defined with 
+				Each layer must be defined with a code and the corresponding service.
 				
 				<aht:highlight lang="java" resource="/code.geojsf/datastructure/GeoJsfLayer.java"/>
 				
 				<h3>GeoJsfView</h3>
 				
 				Different layers can be aggregated to a custom thematic map (aka view).
-				The view simply contains a ordered list of layers.
+				The view simply contains a list of so called view-layers.
 				
 				<aht:highlight lang="java" resource="/code.geojsf/datastructure/GeoJsfView.java"/>
 				
 				<h3>GeoJsfViewLayer</h3>
+				
+				A VL containes the ordering in the current thematic map and flag if the layer is visible by default.
 				
 				<aht:highlight lang="java" resource="/code.geojsf/datastructure/GeoJsfViewLayer.java"/>
 				

@@ -3,6 +3,7 @@ package org.geojsf.geoserver;
 public interface GeoServerConfig 
 {	
 	public static final String dirExport = "geoserver.dir.export";
+	public static final String dirImport = "geoserver.dir.import";
 	
 	public static final String dirStyle = "geoserver.style.dir";
 	

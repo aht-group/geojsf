@@ -20,33 +20,30 @@ public class CliGeoServerStyleManager
 	
 	public CliGeoServerStyleManager(Configuration config, GeoServerRest rest)
 	{
-		styleManager = init(rest,new File("target"));
+		styleManager = init(rest,new File("target"),"target");
 	}
 
 //ahtutils.highlight:init
-	public GeoServerStyleManager init(GeoServerRest rest, File styleDir)
+	public GeoServerStyleManager init(GeoServerRest rest, File styleDir, String stylePath)
 	{
-		GeoServerStyleManager styleManager = new GeoServerStyleManager(rest,styleDir);
+		GeoServerStyleManager styleManager = new GeoServerStyleManager(rest,styleDir,stylePath);
 		return styleManager;
 	}
 //ahtutils.highlight:init
 	
 //ahtutils.highlight:basic
-	public void basic(GeoServerRest rest) throws IOException
+	public void basic(GeoServerRest rest, Document docStyle) throws IOException
 	{
 		Styles styles = rest.styles();
 		Styles stylesInWorkspace = rest.styles("ws");
 		Document sld = rest.style("grass");
 		Document sldInWorkspace = rest.style("ws","grass");
+		rest.deleteStyle("grass");
+		rest.deleteStyle("ws", "grass");
+//		rest.updateStyle(docStyle);
+//		rest.updateStyle("ws",docStyle);
 	}
 //ahtutils.highlight:basic
 	
-	public static void main (String[] args) throws Exception
-	{
-		Configuration config = GeoJsfGeoServerTestBootstrap.init();
-			
-		GeoServerRest rest = new GeoServerRestWrapper(config);
-		CliGeoServerStyleManager test = new CliGeoServerStyleManager(config,rest);
-		test.basic(rest);
-	}
+	
 }
