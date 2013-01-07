@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<dataStores xmlns="http://www.geojsf.org/geoserver">
+<dataStores xmlns="http://www.geojsf.org/geoserver" xmlns:net="http://exlp.sf.net/net">
     <dataStore name="geo-ds" description="DataSource PG" type="PostGIS" enabled="true">
         <workspace name="lis"/>
+        <connection>
+            <net:host name="194.77.179.50" port="5432"/>
+        </connection>
     </dataStore>
 </dataStores>

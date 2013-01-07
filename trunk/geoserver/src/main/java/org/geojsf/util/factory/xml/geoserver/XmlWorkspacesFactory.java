@@ -1,4 +1,4 @@
-package org.geojsf.factory.xml.geoserver;
+package org.geojsf.util.factory.xml.geoserver;
 
 import java.io.Serializable;
 

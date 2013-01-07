@@ -13,9 +13,9 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.controller.interfaces.rest.GeoServerRestInterface;
-import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
-import org.geojsf.factory.xml.geoserver.XmlWorkspacesFactory;
 import org.geojsf.geoserver.GeoServerConfig;
+import org.geojsf.util.factory.xml.geoserver.XmlDataStoreFactory;
+import org.geojsf.util.factory.xml.geoserver.XmlWorkspacesFactory;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Styles;
@@ -191,7 +191,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 		JDomUtil.setNameSpaceRecursive(root, ns);
 	 
 		XmlDataStoreFactory.transform(root);
-	
+//		JDomUtil.debug(doc);
+		
 		return JDomUtil.toJaxb(root, DataStore.class);
 	}
 }
