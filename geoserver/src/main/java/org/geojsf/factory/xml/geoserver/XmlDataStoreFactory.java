@@ -8,6 +8,8 @@ import net.sf.exlp.xml.net.Host;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.geoserver.GeoServerConfig;
 import org.geojsf.xml.geoserver.DataStore;
+import org.jdom.Document;
+import org.jdom.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,5 +49,16 @@ public class XmlDataStoreFactory implements Serializable
 		xml.setSchema(schema);
 */				
 		return xml;
+	}
+	
+	public static void transform(Element dataStore)
+	{
+		SimpleXmlTranscoder.name(dataStore);
+		SimpleXmlTranscoder.description(dataStore);
+		SimpleXmlTranscoder.elementToAttribute(dataStore, "type");
+		SimpleXmlTranscoder.elementToAttribute(dataStore, "enabled");
+		
+		Object o = dataStore.getChild("workspace", SimpleXmlTranscoder.ns);
+		if(o!=null && (o instanceof Element)){XmlWorkspaceFactory.transform((Element)o);}
 	}
 }

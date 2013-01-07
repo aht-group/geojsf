@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<geoserver:workspaces xmlns:geoserver="http://www.geojsf.org/geoserver">
-    <geoserver:workspace name="cite"/>
-    <geoserver:workspace name="tiger"/>
-    <geoserver:workspace name="sde"/>
-    <geoserver:workspace name="topp"/>
-    <geoserver:workspace name="sf"/>
-</geoserver:workspaces>
+<workspaces xmlns="http://www.geojsf.org/geoserver">
+    <workspace name="cite"/>
+    <workspace name="lis"/>
+    <workspace name="tiger"/>
+    <workspace name="sde"/>
+    <workspace name="topp"/>
+    <workspace name="sf"/>
+    <workspace name="myWorkspace"/>
+</workspaces>

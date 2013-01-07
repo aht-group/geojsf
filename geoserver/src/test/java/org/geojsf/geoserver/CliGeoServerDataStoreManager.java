@@ -9,7 +9,9 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
+import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
+import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Workspaces;
 import org.slf4j.Logger;
@@ -42,7 +44,7 @@ public class CliGeoServerDataStoreManager
 	public void basic() throws IOException
 	{
 //ahtutils.highlight:basic		
-		DataStores dataStore = rest.dataStores(config.getString(GeoServerConfig.workspace));
+		DataStores dataStore = rest.dataStores("geo");
 		JaxbUtil.info(dataStore);
 //ahtutils.highlight:basic
 	}
@@ -50,15 +52,20 @@ public class CliGeoServerDataStoreManager
 	public void manager() throws IOException
 	{
 //ahtutils.highlight:basic		
-		DataStores dataStore = dataStoreManager.dataStores(config.getString(GeoServerConfig.workspace));
+		DataStores dataStore = dataStoreManager.dataStores("geo");
 		JaxbUtil.info(dataStore);
 //ahtutils.highlight:basic
 	}
 	
-	public void documentation(GeoServerRest rest) throws IOException
+	public void documentation() throws IOException
 	{
-		DataStores dataStores = rest.dataStores("lis");
+		DataStores dataStores = rest.dataStores(config.getString(GeoServerConfig.workspace));
+		for(DataStore ds : dataStores.getDataStore())
+		{
+			ds.setName(ds.getName().replace(config.getString(GeoServerConfig.workspace), "geo"));
+		}
 		JaxbUtil.save(new File("../doc/src/main/resources/code.geojsf/geoserver/jaxb/datastores.xml"), dataStores, true);
+		JaxbUtil.info(dataStores);
 	}
 	
 	public static void main (String[] args) throws Exception
@@ -68,7 +75,6 @@ public class CliGeoServerDataStoreManager
 		GeoServerRest rest = new GeoServerRestWrapper(config);
 		
 		CliGeoServerDataStoreManager test = new CliGeoServerDataStoreManager(config,rest);
-//		test.basic();
-		test.manager();
+		test.documentation();
 	}
 }

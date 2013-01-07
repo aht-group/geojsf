@@ -2,6 +2,7 @@ package org.geojsf.controller.interfaces.rest;
 
 import java.io.IOException;
 
+import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Styles;
 import org.geojsf.xml.geoserver.Workspace;
@@ -27,4 +28,5 @@ public interface GeoServerRest
 	
 	//DATASTORE
 	DataStores dataStores(String workspace) throws IOException;
+	DataStore dataStore(String workspace, String dataStore) throws IOException;
 }
