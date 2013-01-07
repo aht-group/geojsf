@@ -8,6 +8,7 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
+import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
@@ -55,6 +56,7 @@ public class CliGeoServerWorkspaceManager
 	{
 		Workspaces workspaces = workspaceManager.workspaces();
 		JaxbUtil.save(new File("../doc/src/main/resources/code.geojsf/geoserver/jaxb/workspaces.xml"), workspaces, true);
+		JaxbUtil.debug(workspaces);
 	}
 	
 	
@@ -65,8 +67,8 @@ public class CliGeoServerWorkspaceManager
 		GeoServerRest rest = new GeoServerRestWrapper(config);
 		
 		CliGeoServerWorkspaceManager test = new CliGeoServerWorkspaceManager(config,rest);
-//		test.documentation();
+		test.documentation();
 //		test.basic(rest);
-		test.manager();
+//		test.manager();
 	}
 }

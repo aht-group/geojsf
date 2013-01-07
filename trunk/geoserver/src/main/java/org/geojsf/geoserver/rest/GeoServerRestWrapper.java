@@ -1,4 +1,4 @@
-package org.geojsf.geoserver;
+package org.geojsf.geoserver.rest;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +13,10 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.controller.interfaces.rest.GeoServerRestInterface;
+import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
+import org.geojsf.factory.xml.geoserver.XmlWorkspacesFactory;
+import org.geojsf.geoserver.GeoServerConfig;
+import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Styles;
 import org.geojsf.xml.geoserver.Workspace;
@@ -126,16 +130,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		Element root = doc.getRootElement();
 		JDomUtil.setNameSpaceRecursive(root, ns);
 		
-		for(Object o : root.getChildren("workspace",ns))
-		{
-			if(o instanceof Element)
-			{
-				Element e = (Element)o;
-				Element name = e.getChild("name",ns);
-				e.setAttribute("name", name.getText());
-			}
-		}
-	//	JDomUtil.debug(root);    
+		XmlWorkspacesFactory.transform(root); 
 		
 		return JDomUtil.toJaxb(root, Workspaces.class);
 	}
@@ -170,11 +165,33 @@ public class GeoServerRestWrapper implements GeoServerRest
 			if(o instanceof Element)
 			{
 				Element e = (Element)o;
-				Element name = e.getChild("name",ns);
-				e.setAttribute("name", name.getText());
+				GeoServerXmlTranscoder.dataStore(e);
 			}
 		}
 		
-		return JDomUtil.toJaxb(root, DataStores.class);
+		DataStores result = new DataStores();
+		
+		DataStores first = JDomUtil.toJaxb(root, DataStores.class);
+		for(DataStore ds : first.getDataStore())
+		{
+			result.getDataStore().add(dataStore(workspace, ds.getName()));
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public DataStore dataStore(String workspace, String dataStore) throws IOException
+	{
+		Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
+		
+		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.dataStore(workspace,dataStore), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
+		Element root = doc.getRootElement();
+		JDomUtil.setNameSpaceRecursive(root, ns);
+	 
+		XmlDataStoreFactory.transform(root);
+		JDomUtil.debug(doc);
+		return JDomUtil.toJaxb(root, DataStore.class);
 	}
 }

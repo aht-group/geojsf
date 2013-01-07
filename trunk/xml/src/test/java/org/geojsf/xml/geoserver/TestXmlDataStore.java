@@ -35,6 +35,9 @@ public class TestXmlDataStore extends AbstractXmlGeoserverTest
     {
     	DataStore xml = new DataStore();
     	xml.setName("myName");
+    	xml.setDescription("myDescription");
+    	xml.setType("myType");
+    	xml.setEnabled(true);
     	
     	if(withChilds)
     	{
