@@ -165,6 +165,15 @@ public class GeoServerRestWrapper implements GeoServerRest
 		Element root = doc.getRootElement();
 		JDomUtil.setNameSpaceRecursive(root, ns);
 	 
+		for(Object o : root.getChildren("dataStore",ns))
+		{
+			if(o instanceof Element)
+			{
+				Element e = (Element)o;
+				Element name = e.getChild("name",ns);
+				e.setAttribute("name", name.getText());
+			}
+		}
 		
 		return JDomUtil.toJaxb(root, DataStores.class);
 	}

@@ -60,8 +60,9 @@
 	<xsd:element name="dataStore">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref="geoserver:name" maxOccurs="1"/>
+				
 			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="name">
