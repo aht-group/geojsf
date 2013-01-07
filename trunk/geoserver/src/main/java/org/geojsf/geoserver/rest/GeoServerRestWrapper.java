@@ -191,7 +191,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		JDomUtil.setNameSpaceRecursive(root, ns);
 	 
 		XmlDataStoreFactory.transform(root);
-		JDomUtil.debug(doc);
+	
 		return JDomUtil.toJaxb(root, DataStore.class);
 	}
 }

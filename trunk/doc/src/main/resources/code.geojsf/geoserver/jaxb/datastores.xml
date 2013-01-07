@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStores xmlns="http://www.geojsf.org/geoserver">
+    <dataStore name="geo-ds" description="DataSource PG" type="PostGIS" enabled="true">
+        <workspace name="lis"/>
+    </dataStore>
+</dataStores>

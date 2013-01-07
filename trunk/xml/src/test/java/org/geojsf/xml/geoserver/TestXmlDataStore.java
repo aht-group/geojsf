@@ -41,7 +41,7 @@ public class TestXmlDataStore extends AbstractXmlGeoserverTest
     	
     	if(withChilds)
     	{
-
+    		xml.setWorkspace(TestXmlWorkspace.create(false));
     	}
     	
     	return xml;
