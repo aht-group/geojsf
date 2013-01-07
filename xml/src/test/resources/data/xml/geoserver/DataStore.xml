@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<g:dataStore xmlns:g="http://www.geojsf.org/geoserver" name="myName" description="myDescription" type="myType" enabled="true">
+<g:dataStore xmlns:g="http://www.geojsf.org/geoserver" xmlns:net="http://exlp.sf.net/net" name="myName" description="myDescription" type="myType" enabled="true">
     <g:workspace name="myName"/>
+    <g:connection/>
 </g:dataStore>
