@@ -6,18 +6,6 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:import namespace="http://exlp.sf.net/net" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/net.xsd"/>
 	<xsd:import namespace="http://exlp.sf.net/identity" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/identity.xsd"/>
-	<xsd:element name="dataStore">
-		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element ref="net:host" maxOccurs="1"/>
-				<xsd:element ref="id:user" maxOccurs="1"/>
-			</xsd:sequence>
-			<xsd:attribute name="name" type="xsd:string"/>
-			<xsd:attribute name="description" type="xsd:string"/>
-			<xsd:attribute name="database" type="xsd:string"/>
-			<xsd:attribute name="schema" type="xsd:string"/>
-		</xsd:complexType>
-	</xsd:element>
 	<xsd:element name="geoServer">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -62,4 +50,25 @@
 			<xsd:attribute name="name" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
+	<xsd:element name="dataStores">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geoserver:dataStore" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="dataStore">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geoserver:name" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="name">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
 </xsd:schema>

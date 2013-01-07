@@ -13,6 +13,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.controller.interfaces.rest.GeoServerRestInterface;
+import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Styles;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
@@ -152,5 +153,19 @@ public class GeoServerRestWrapper implements GeoServerRest
 
 		rest.createWorkspace(JDomUtil.toString(doc));
 		
+	}
+
+	@Override
+	public DataStores dataStores(String workspace) throws IOException
+	{
+		Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
+		
+		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.dataStores(workspace), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
+		Element root = doc.getRootElement();
+		JDomUtil.setNameSpaceRecursive(root, ns);
+	 
+		
+		return JDomUtil.toJaxb(root, DataStores.class);
 	}
 }
