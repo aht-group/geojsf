@@ -41,7 +41,7 @@ public class GeoServerDataStoreFactory implements Serializable
 	private boolean buildDataStore(String workspace, DataStore ds)
 	{
 		GSPostGISDatastoreEncoder pg = new GSPostGISDatastoreEncoder();
-		pg.setName(ds.getName());
+/*		pg.setName(ds.getName());
 		pg.setDescription(ds.getDescription());
 		pg.setHost(ds.getHost().getName());
 		pg.setPort(ds.getHost().getPort());
@@ -49,7 +49,7 @@ public class GeoServerDataStoreFactory implements Serializable
 		pg.setSchema(ds.getSchema());
 		pg.setUser(ds.getUser().getAccount());
 		pg.setPassword(ds.getUser().getPassword());
-
+*/
 		
 		pg.setExposePrimaryKeys(true);
 		pg.setMaxConnections(10);

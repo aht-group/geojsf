@@ -27,12 +27,12 @@ public class XmlDataStoreFactory implements Serializable
 		Host host = new Host();
 		host.setName(config.getString(GeoServerConfig.dsHost));
 		host.setPort(config.getInt(GeoServerConfig.dsPort));
-		ds.setHost(host);
+//		ds.setHost(host);
 		
 		User user = new User();
 		user.setAccount(config.getString(GeoServerConfig.dsUser));
 		user.setPassword(config.getString(GeoServerConfig.dsPassword));
-		ds.setUser(user);
+//		ds.setUser(user);
 		
 		return ds;
 	}
@@ -41,11 +41,11 @@ public class XmlDataStoreFactory implements Serializable
 	{
 		DataStore xml = new DataStore();
 		
-		xml.setName(name);
+/*		xml.setName(name);
 		xml.setDescription(description);
 		xml.setDatabase(database);
 		xml.setSchema(schema);
-				
+*/				
 		return xml;
 	}
 }

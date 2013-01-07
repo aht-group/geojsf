@@ -46,7 +46,6 @@ public interface GeoServerRestInterface
 	String updateStyle(@PathParam("workspace") String workspace, String sld);
 	
 	// WORKSPACE
-	
 	@GET @Path("/workspaces")
 	@Produces(MediaType.APPLICATION_XML)
 	String workspaces();
@@ -55,4 +54,10 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)
 	String createWorkspace(String workspace);
+	
+	// DATASTORE
+	@GET @Path("/workspaces/{workspace}/datastores")
+	@Produces(MediaType.APPLICATION_XML)
+	String dataStores(@PathParam("workspace") String workspace);
+	
 }

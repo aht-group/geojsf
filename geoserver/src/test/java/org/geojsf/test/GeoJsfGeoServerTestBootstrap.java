@@ -7,7 +7,7 @@ import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.xml.GeoJsfNsPrefixMapper;
+import org.geojsf.geoserver.GeoJsfGeoServerPrefixMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +20,7 @@ public class GeoJsfGeoServerTestBootstrap
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
 			loggerInit.addAltPath("config.geojsf-geoserver.test");
 			loggerInit.init();
-		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
+		JaxbUtil.setNsPrefixMapper(new GeoJsfGeoServerPrefixMapper());
 		
 		try
 		{
