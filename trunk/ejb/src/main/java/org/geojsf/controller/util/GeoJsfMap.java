@@ -1,4 +1,4 @@
-package net.sf.geojsf.controller.util;
+package org.geojsf.controller.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import net.sf.ahtutils.jsf.interfaces.dm.DmSingleSelect;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
+import net.sf.geojsf.controller.util.GeoJsfMapLayerFactory;
 
 import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import org.geojsf.model.interfaces.openlayers.GeoJsfService;
@@ -68,8 +69,11 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     public void buildServices()
     {
     	List<LAYER> layers = new ArrayList<LAYER>();
-		for(VL vl : view.getLayer())
+    	int size = view.getLayer().size();
+    	for(int i=(size-1);i>=0;i--)
+//		for(VL vl : view.getLayer())
 		{
+			VL vl = view.getLayer().get(i);
 			logger.trace("vl.layer="+vl.getLayer().getCode()+"."+vl.getLayer().getService().getCode());
 			if(dmLayer.isSelected(vl.getLayer().getId())){layers.add(vl.getLayer());}
 		}
