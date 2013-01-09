@@ -9,7 +9,6 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-import net.sf.geojsf.controller.util.GeoJsfMap;
 import net.sf.geojsf.controller.util.GeoJsfMapLayerFactory;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
@@ -21,6 +20,7 @@ import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoServiceFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewFactory;
 
+import org.geojsf.controller.util.GeoJsfMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
