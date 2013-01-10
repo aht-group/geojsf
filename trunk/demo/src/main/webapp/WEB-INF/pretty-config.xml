@@ -57,6 +57,10 @@
 		<pattern value="/tutorial/datastructure" />
 		<view-id value="/jsf/tutorial/datastructure.jsf" />
 	</url-mapping>
+	<url-mapping id="tutorialUsage">
+		<pattern value="/tutorial/usage" />
+		<view-id value="/jsf/tutorial/usage.jsf" />
+	</url-mapping>
 	<url-mapping id="tutorialHibernate">
 		<pattern value="/tutorial/hibernate" />
 		<view-id value="/jsf/tutorial/hibernate.jsf" />
