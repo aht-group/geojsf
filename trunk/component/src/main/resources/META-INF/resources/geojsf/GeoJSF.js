@@ -20,7 +20,7 @@ var GeoJSF = {
 		    panZoomBar.div.style.marginTop = "-50px";
 		 //   var scalebar = new OpenLayers.Control.ScaleBar({align: "right"});
 		 //   map.addControl(scalebar);
-		    map.addControl(new OpenLayers.Control.LayerSwitcher());
+		 //   map.addControl(new OpenLayers.Control.LayerSwitcher());
 		},
 
 		addLoadEvent : function(func)
@@ -55,7 +55,7 @@ var GeoJSF = {
 
 		         trigger: function(e) {
 		        	 inputDOMelement.val(map.getLonLatFromViewPortPx(e.xy));
-		        	 alert(inputDOMelement.val());
+		        //	 alert(inputDOMelement.val());
 		         	 
 		        	 var evObj = document.createEvent('MouseEvents');
 		        	 evObj.lonlat = map.getLonLatFromViewPortPx(e.xy);
