@@ -25,6 +25,8 @@
      <composite:attribute name="width" default="100%"/>
      <composite:attribute name="height" default="400"/>
      <composite:attribute name="value"/>
+     <composite:attribute name="wmsUrl"/>
+     <composite:attribute name="layer"/>
      <composite:attribute name="listener" required="true" method-signature="void listener(javax.faces.event.AjaxBehaviorEvent)"/>
      <composite:clientBehavior name="click" 
                               event="click"
@@ -39,7 +41,7 @@
   <!--   <h:outputStylesheet library="geojsf" name="scalebar-thin.css"/> -->   
      <h:outputStylesheet library="geojsf" name="geojsf.css"/>
      <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
-     
+     #{cc.fallback()}
      
      <div id="#{cc.clientId}" style="padding: 0; width:#{cc.attrs.width};height:#{cc.attrs.height}px" />
      <c:if test="#{!empty cc.attrs.moverview}">
@@ -76,7 +78,7 @@
 	 		{
 	 			GeoJSF.resetLayers();
 	 		}
-	 		<ui:repeat value="#{cc.attrs.value.layerServices}" var="service" varStatus="status">
+	 		<ui:repeat value="#{cc.serviceList}" var="service" varStatus="status">
 	 		
 	 			
 	 		    var url    = "#{service.url}";
