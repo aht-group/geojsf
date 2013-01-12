@@ -17,5 +17,6 @@ public class XmlConnectionFactory implements Serializable
 		connectionParameters.setName("connection");
 		
 		XmlHostFactory.transform(connectionParameters);
+		XmlDatabaseFactory.transform(connectionParameters);
 	}
 }

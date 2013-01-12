@@ -10,9 +10,9 @@ import org.jdom.Namespace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlHostFactory implements Serializable
+public class XmlDatabaseFactory implements Serializable
 {
-	final static Logger logger = LoggerFactory.getLogger(XmlHostFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(XmlDatabaseFactory.class);
 	public static final long serialVersionUID=1;
 		
 	public static final Namespace ns = Namespace.getNamespace("n","http://exlp.sf.net/net");
@@ -21,7 +21,7 @@ public class XmlHostFactory implements Serializable
 	public static void transform(Element connectionParameters)
 	{
 		logger.warn("transform");
-		String host = null;
+		String user = null;
 		String port = null;
 		
 		List<Object> list = connectionParameters.getChildren("entry",SimpleXmlTranscoder.ns);
@@ -32,17 +32,18 @@ public class XmlHostFactory implements Serializable
 				Element e = (Element)o;
 				if(e.getAttribute("key") != null)
 				{
-					if(e.getAttributeValue("key").equals("host")){host = e.getValue();}
+					if(e.getAttributeValue("key").equals("user")){user = e.getValue();}
 					if(e.getAttributeValue("key").equals("port")){port = e.getValue();}
 				}
 			}
 		}
-		if(host!=null && port !=null)
+		if(user!=null )
 		{
-			Element eHost = new Element("host",ns);
-			eHost.setAttribute("name", host);
-			eHost.setAttribute("port", port);
-			connectionParameters.addContent(eHost);
+			Element eDatabase = new Element("database",ns);
+			eDatabase.setAttribute("user", user);
+			connectionParameters.addContent(eDatabase);
 		}
+		
+
 	}
 }
