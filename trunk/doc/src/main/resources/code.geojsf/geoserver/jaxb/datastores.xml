@@ -4,6 +4,7 @@
         <workspace name="lis"/>
         <connection>
             <net:host name="194.77.179.50" port="5432"/>
+            <net:database user="lis"/>
         </connection>
     </dataStore>
 </dataStores>
