@@ -1,4 +1,4 @@
-package net.sf.geojsf.controller.util;
+package org.geojsf.controller.util;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import junit.framework.Assert;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlRepositoryFactory;
+import net.sf.geojsf.controller.util.DummyViewFactory;
+import net.sf.geojsf.controller.util.GeoJsfMapLayerFactory;
 import net.sf.geojsf.controller.util.query.OpenLayersQuery;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
@@ -13,8 +15,8 @@ import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import net.sf.geojsf.test.AbstractGeoJsfEjbTest;
 
+import org.geojsf.test.AbstractGeoJsfEjbTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -50,8 +52,8 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 	public void serviceOrdering()
 	{
 		List<DefaultGeoJsfService> actual = fJsf.build(view);
-		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(0).getCode());
-		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(1).getCode());
+		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(1).getCode());
+		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(0).getCode());
 	}
 	
 	@Test

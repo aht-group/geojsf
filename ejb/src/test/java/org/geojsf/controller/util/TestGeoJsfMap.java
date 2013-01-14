@@ -11,8 +11,8 @@ import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import net.sf.geojsf.test.AbstractGeoJsfEjbTest;
 
+import org.geojsf.test.AbstractGeoJsfEjbTest;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -47,8 +47,8 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 	public void serviceOrdering()
 	{
 		List<DefaultGeoJsfService> actual = geoJsfMap.getLayerServices();
-		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(1).getCode());
-		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(0).getCode());
+		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(0).getCode());
+		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(1).getCode());
 	}
 	
 	@Test @Ignore
