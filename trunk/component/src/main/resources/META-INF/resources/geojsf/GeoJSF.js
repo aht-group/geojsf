@@ -95,4 +95,9 @@ var GeoJSF = {
 				panZoomBar.buttons[p].style.display = 'none';
 			}
 		},
+		
+		center : function(lon,lat,zoom)
+		{
+			map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
+		},
 };

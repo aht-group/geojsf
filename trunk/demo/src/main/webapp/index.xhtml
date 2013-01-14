@@ -13,6 +13,7 @@
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('welcome')}" scActive="active"/></ui:define>
 	<ui:define name="content">
 		Hello GeoJSF
-		<geojsf:map listener="#{geoDemoBean.listen}" value="#{showcaseMapBean.geoJsfMap}"/>
+		<geojsf:map listener="#{geoDemoBean.listen}" value="#{showcaseMapBean.geoJsfMap}"
+			zoomLevel="10" centerX="-103.73" centerY="44.44"/>
 	</ui:define>
 </ui:composition>
