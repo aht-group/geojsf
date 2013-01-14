@@ -92,6 +92,7 @@
 	 			GeoJSF.addLayer(name, url, params, options);
 	 			
 	 		</ui:repeat>
+     	GeoJSF.center(#{cc.attrs.centerX},#{cc.attrs.centerY},#{cc.attrs.zoomLevel});
 	 		};
      </h:outputScript>
   </composite:implementation>
