@@ -6,9 +6,9 @@
    xmlns:geojsf="http://geojsf.sourceforge.net/ui">
 <h:body>
 <ui:composition>
-<geojsf:map wmsUrl="http://vmap0.tiles.osgeo.org/wms/vmap0" 
-             layer="basic"
-          listener="#{geoDemoBean.listen}"/>
+<geojsf:map simpleWmsUrl="http://vmap0.tiles.osgeo.org/wms/vmap0" 
+            simpleLayers="basic"
+                listener="#{geoDemoBean.listen}"/>
 </ui:composition>
 </h:body>
 </html>

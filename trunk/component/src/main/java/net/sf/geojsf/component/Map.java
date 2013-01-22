@@ -53,12 +53,12 @@ public class Map extends UINamingContainer{
 		 if (getAttributes().get("value")==null)
 		 {
 			 logger.info("No value given - falling back to simple version");
-			 String url = (String) getAttributes().get("wmsUrl");
+			 String url = (String) getAttributes().get("simpleWmsUrl");
 			 DefaultGeoJsfService service = new DefaultGeoJsfService();
 			 service.setUrl(url);
 			 service.setCode("BaseLayer");
 			 ArrayList<String> layers = new ArrayList<String>();
-			 Object layerList = getAttributes().get("layer");
+			 Object layerList = getAttributes().get("simpleLayers");
 			 logger.info("Detecting layer definition type..." +layerList.getClass().getSimpleName());
 			 if (layerList.getClass().getSimpleName().equals("String"))
 			 {
