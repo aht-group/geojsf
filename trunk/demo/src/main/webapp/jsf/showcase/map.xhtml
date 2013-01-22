@@ -23,16 +23,17 @@
 			</div>
 			<div class="span9">
 				<h1>map</h1>
-				<ui:include src="/WEB-INF/showcase/map.xhtml" />
 				The bean code highly depends on the way you are defining your layer in the managed bean.
 				If you want to use multiple WMS sources, the you <b>have</b> to use the
 				<h:outputLink value="/tutorial/datastructure">GeoJSF Data Structure</h:outputLink>,
 				for simple solutions a <i>wmsUrl</i> and a <i>List(String)</i> is sufficient.
+				<ui:include src="/WEB-INF/showcase/map-simple.xhtml" />
 				<p:tabView>
 					<p:tab title="XHTML (simple)">
 						This code fragment should render a map nearly out-of-the box. You only need to include
-						the GeoJSF-library.
-						<aht:highlight resource="/composition.geojsf-demo/map-simple.xhtml" from="8" to="9"/>
+						the GeoJSF-library. The experimental <i>listener</i> also needs to be set, pointing to
+						a method that accepts a <i>AjaxBehaviorEvent</i>. 
+						<aht:highlight resource="/composition.geojsf-demo/map-simple.xhtml" from="8" to="11"/>
 					</p:tab>  
 					<p:tab title="XHTML (advanced)">  
 						<aht:highlight resource="/composition.geojsf-demo/map.xhtml" from="8" to="8"/>
