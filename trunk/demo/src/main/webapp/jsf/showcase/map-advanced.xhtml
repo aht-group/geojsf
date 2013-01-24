@@ -10,9 +10,9 @@
 	xmlns:ofx="http://www.openfuxml.org/jsf"
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
-	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('showcaseMap')}"/></ui:define>
-	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('showcaseMap')}" scActive="active"/></ui:define>
-	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('showcaseMap')}"/></ui:define>
+	<ui:define name="tracking"><ui:fragment rendered="#{trackingBean.track('showcaseMapAdvanced')}"/></ui:define>
+	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('showcaseMapAdvanced')}" scActive="active"/></ui:define>
+	<ui:define name="headline"><aht:breadcrumb value="#{menuBean.breadcrumb('showcaseMapAdvanced')}"/></ui:define>
 	<ui:define name="content">
 		<div class="row">
 			<div class="span3">
@@ -22,25 +22,20 @@
 				</div>
 			</div>
 			<div class="span9">
-				<h1>map</h1>
+				<h1>map (advanced)</h1>
 				The bean code highly depends on the way you are defining your layer in the managed bean.
 				If you want to use multiple WMS sources, the you <b>have</b> to use the
 				<h:outputLink value="/tutorial/datastructure">GeoJSF Data Structure</h:outputLink>,
 				for simple solutions a <i>wmsUrl</i> and a <i>List(String)</i> is sufficient.
-				<ui:include src="/WEB-INF/showcase/map-simple.xhtml" />
+				<ui:include src="/WEB-INF/showcase/map-advanced.xhtml" />
 				<p:tabView>
-					<p:tab title="XHTML (simple)">
-						This code fragment should render a map nearly out-of-the box. You only need to include
-						the GeoJSF-library. The experimental <i>listener</i> also needs to be set, pointing to
-						a method that accepts a <i>AjaxBehaviorEvent</i>. 
-						<aht:highlight resource="/composition.geojsf-demo/map-simple.xhtml" from="8" to="11"/>
-					</p:tab>  
-					<p:tab title="XHTML (advanced)">  
-						<aht:highlight resource="/composition.geojsf-demo/map.xhtml" from="8" to="8"/>
+					
+					<p:tab title="XHTML">  
+						<aht:highlight resource="/composition.geojsf-demo/map-advanced.xhtml"/>
 					</p:tab>  
 					
 					<p:tab title="Bean">
-						<aht:highlight from="17" to="39" lang="java"
+						<aht:highlight between="showcase" lang="java"
 							resource="/java.geojsf-demo/net/sf/geojsf/demo/mbean/showcase/ShowcaseMapBean.java"/>
 						By implementing the generic interfaces described in the
 						<h:outputLink value="/tutorial/datastructure">Tutorial</h:outputLink>, the

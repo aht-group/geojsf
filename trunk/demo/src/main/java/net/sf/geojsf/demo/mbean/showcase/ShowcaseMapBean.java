@@ -17,6 +17,7 @@ import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
+//ahtutils.highlight:showcase
 @Named @SessionScoped
 public class ShowcaseMapBean implements Serializable
 {
@@ -40,3 +41,4 @@ public class ShowcaseMapBean implements Serializable
 				DefaultGeoJsfView,DefaultGeoJsfViewLayer>
 	getGeoJsfMap() {return geoJsfMap;}
 }
+//ahtutils.highlight:showcase
