@@ -17,8 +17,8 @@
 <!-- <composite:attribute name="layerOptions" default="{layers: 'basic', format: 'image/png'}"/> -->   
      <composite:attribute name="mapOptions" default=" { controls: [new OpenLayers.Control.MousePosition()] }" shortDescription="ADVANCED USERS can pass map options to the OpenLayers constructor here"/>
 <!-- <composite:attribute name="serviceURL" default="http://vmap0.tiles.osgeo.org/wms/vmap0"/> -->
-     <composite:attribute name="centerX" default="0.0" shortDescription="X-coordinate for map center"/>
-     <composite:attribute name="centerY" default="0.0" shortDescription="Y-coordinate for map center"/>
+     <composite:attribute name="centerX" default="0.0" shortDescription="X-coordinate for initial map center"/>
+     <composite:attribute name="centerY" default="0.0" shortDescription="Y-coordinate for initial map center"/>
      <composite:attribute name="zoomLevel" default="5" shortDescription="Initial zoom level"/>
      <composite:attribute name="overviewMap" shortDescription="Name of the DIV element to hold the overview map"/>
      <composite:attribute name="overviewMapX" default="149" shortDescription="height of the overview map"/>
@@ -28,7 +28,7 @@
      <composite:attribute name="value" shortDescription="Contains info about what services and layers should be displayed. For a reference check our Data structure tutorial"/>
      <composite:attribute name="simpleWmsUrl" shortDescription="In simple mode, this attribute defines the WMS service URL"/>
      <composite:attribute name="simpleLayers"  shortDescription="In simple mode, this attribute defines a comma separated list of layers"/>
-     <composite:attribute name="listener" required="true" method-signature="void listener(javax.faces.event.AjaxBehaviorEvent)" shortDescription="EXPERIMENTAL - handler for click events"/>
+     <composite:attribute name="listener" required="false" method-signature="void listener(javax.faces.event.AjaxBehaviorEvent)" shortDescription="EXPERIMENTAL - handler for click events"/>
      <composite:clientBehavior name="click" 
                               event="click"
                             targets="#{cc.clientId}"/>

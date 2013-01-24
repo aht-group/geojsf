@@ -11,9 +11,13 @@
 		<pattern value="/showcase" />
 		<view-id value="/jsf/showcase/showcase.jsf" />
 	</url-mapping>
-	<url-mapping id="showcaseMap">
-		<pattern value="/showcase/map" />
-		<view-id value="/jsf/showcase/map.jsf" />
+	<url-mapping id="showcaseMapSimple">
+		<pattern value="/showcase/map/simple" />
+		<view-id value="/jsf/showcase/map-simple.jsf" />
+	</url-mapping>
+	<url-mapping id="showcaseMapAdvanced">
+		<pattern value="/showcase/map/advanced" />
+		<view-id value="/jsf/showcase/map-advanced.jsf" />
 	</url-mapping>
 	<url-mapping id="showcaseCoordinate">
 		<pattern value="/showcase/coordinate" />
