@@ -33,11 +33,11 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 import net.sf.ahtutils.model.interfaces.tracker.UtilsTracker;
 import net.sf.ahtutils.model.interfaces.tracker.UtilsTrackerLog;
-import net.sf.geojsf.demo.controller.factory.ejb.util.tracker.EjbViewTrackerFactory;
 import net.sf.geojsf.demo.controller.interfaces.facade.GeoUtilsFacade;
 import net.sf.geojsf.demo.model.user.GeoUser;
 import net.sf.geojsf.demo.model.util.security.SecurityView;
 
+import org.geojsf.demo.controller.factory.ejb.util.tracker.EjbViewTrackerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

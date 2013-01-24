@@ -1,4 +1,4 @@
-package net.sf.geojsf.demo.controller;
+package org.geojsf.demo.controller;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

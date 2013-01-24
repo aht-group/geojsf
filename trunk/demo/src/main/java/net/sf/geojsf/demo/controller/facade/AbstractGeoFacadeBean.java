@@ -21,9 +21,9 @@ import net.sf.ahtutils.model.interfaces.EjbWithValidFrom;
 import net.sf.ahtutils.model.interfaces.with.EjbWithPosition;
 import net.sf.ahtutils.model.interfaces.with.EjbWithPositionVisible;
 import net.sf.ahtutils.model.interfaces.with.EjbWithRecord;
-import net.sf.geojsf.demo.controller.GeoJsfRepository;
 import net.sf.geojsf.demo.model.util.GeoLang;
 
+import org.geojsf.demo.controller.GeoJsfRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

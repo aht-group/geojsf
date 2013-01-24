@@ -1,4 +1,4 @@
-package net.sf.geojsf.demo.controller.factory.ejb.util.tracker;
+package org.geojsf.demo.controller.factory.ejb.util.tracker;
 
 import net.sf.ahtutils.controller.factory.ejb.tracker.EjbEventTrackerFactory;
 import net.sf.geojsf.demo.model.user.GeoUser;
