@@ -21,10 +21,11 @@
 				</div>
 			</div>
 			<div class="span9">
-				<h3>PostGIS</h3>
-				
+				<h3>PostGIS (Debian Squeeze)</h3>
 				<h1>Prerequisites</h1>
+				You need to add the backport repository for squeeze:
 				<aht:highlight resource="/code.geojsf/tutorial/postgis/sources.list"/>
+				The PostgreSQL server must be installed from backport repository:
 				<aht:highlight resource="/code.geojsf/tutorial/postgis/pre.sh"/>
 				
 				<h1>Build GEOS</h1>
@@ -35,6 +36,9 @@
 				
 				<h1>Create Databse</h1>
 				<aht:highlight resource="/code.geojsf/tutorial/postgis/db.sql"/>
+				
+				<h1>Activate PostGIS</h1>
+				<aht:highlight resource="/code.geojsf/tutorial/postgis/db-postgis.sh"/>
 				
 			</div>
 		</div>

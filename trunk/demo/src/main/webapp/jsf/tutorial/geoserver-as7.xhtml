@@ -23,16 +23,20 @@
 			</div>
 			<div class="span9">
 				<h1>GeoServer and JBoss AS7</h1>
-				One download format of GeoServer is a <i>Web Archive</i>.
-				This should run without problems on Tomcat. While deploying <i>geoserver.war</i> on JBoss AS the
-				<b>java.lang.ClassNotFoundException: com.sun.imageio.spi.FileImageInputStreamSpi</b> occurs.
+				Especially for developer systems it is very helpful to have GeoServer integrated into JBoss-AS and not start
+				a separate process.
+				Fur this purpose one download format of GeoServer is a <i>Web Archive</i>.
+				While this is running without problems on Tomcat. JBoss throws a
+				<b>java.lang.ClassNotFoundException: com.sun.imageio.spi.FileImageInputStreamSpi</b>
+				during deployment of <i>geoserver.war</i>.
 				
 				<h3>Modified geoserver.war</h3>
-				The file <i>geoserver.war/WEB-INF/jboss-deployment-structure.xml</i> must be created with
-				the following content:
+				The file <i>/WEB-INF/jboss-deployment-structure.xml</i> must be created inside the WAR 
+				archive with the following content:
 				<aht:highlight resource="/code.geojsf/tutorial/geoserver/as7/jboss-deployment-structure.xml"/>
-				While modifying the geoserver.war it's good idea to set the data directory
-				http://docs.geoserver.org/stable/en/user/datadirectory/data-dir-setting.html#data-dir-setting
+				While already modifying the <i>geoserver.war</i> it's a good idea to set the 
+				<h:outputLink value="http://docs.geoserver.org/stable/en/user/datadirectory/data-dir-setting.html#data-dir-setting">data directory</h:outputLink>
+				
 				
 				<h3>JBoss logging system</h3>
 				The deployment of geoserver overwrites the log4j logging system of JBoss and the logging is in fact broken.
