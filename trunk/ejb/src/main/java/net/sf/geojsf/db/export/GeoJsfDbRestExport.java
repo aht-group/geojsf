@@ -1,6 +1,7 @@
 package net.sf.geojsf.db.export;
 
 import org.geojsf.controller.interfaces.GeoJsfExportRest;
+import org.geojsf.controller.util.query.OpenLayersQuery;
 import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.interfaces.openlayers.GeoJsfView;
@@ -17,7 +18,6 @@ import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlLayerFactory;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlServiceFactory;
 import net.sf.geojsf.controller.factory.xml.openlayers.XmlViewFactory;
-import net.sf.geojsf.controller.util.query.OpenLayersQuery;
 
 public class GeoJsfDbRestExport <L extends UtilsLang,
 									D extends UtilsDescription,

@@ -1,12 +1,13 @@
 package net.sf.geojsf.controller.util;
 
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
+import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
+import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
+
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
-import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
-import net.sf.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
-import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
-import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoServiceFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewFactory;

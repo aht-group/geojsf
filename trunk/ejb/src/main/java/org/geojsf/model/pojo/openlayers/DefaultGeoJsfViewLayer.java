@@ -1,13 +1,13 @@
-package net.sf.geojsf.model.pojo.openlayers;
+package org.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
 
 import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
+import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
+import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 import net.sf.ahtutils.model.interfaces.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.EjbRemoveable;
-import net.sf.geojsf.model.pojo.util.DefaultGeoJsfDescription;
-import net.sf.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 public class DefaultGeoJsfViewLayer implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfViewLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>

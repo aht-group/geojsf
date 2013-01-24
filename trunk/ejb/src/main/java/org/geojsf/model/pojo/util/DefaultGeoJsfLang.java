@@ -1,15 +1,18 @@
-package net.sf.geojsf.model.pojo.util;
+package org.geojsf.model.pojo.util;
 
 import java.io.Serializable;
 
 import net.sf.ahtutils.model.interfaces.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
+import net.sf.ahtutils.model.interfaces.EjbRemoveable;
+import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
-public class DefaultGeoJsfDescription implements UtilsDescription,Serializable,EjbPersistable
+public class DefaultGeoJsfLang implements UtilsLang,EjbRemoveable,Serializable,EjbPersistable
 {
 	public static final long serialVersionUID=1;
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Fields<<<<<<<<<<<<<<<<<<<<<<<<<<<	
+	
+	public static String[] defaultLangs = {"fr","en","de"};
 	
 	private long id;
 	
