@@ -1,4 +1,4 @@
-package net.sf.geojsf.demo.controller;
+package org.geojsf.demo.controller;
 
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
