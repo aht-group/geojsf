@@ -22,15 +22,15 @@
 			</div>
 			<div class="span9">
 				<h1>GeoServer</h1>
-				Config Util
+				<i>GeoJSF</i> provides a tool for online configuration of GeoServer.
 				
 				<h3>Maven</h3>
-				The maven artifact is available in maven-central, so you should
+				The maven artifact is available in maven-central and can be included with
 				<aht:highlight resource="/code.geojsf/geoserver/pom.xml"/>
 				
 				<h3>REST Wrapper</h3>
 				For most operations a instance of <b>GeoServerRest</b> is required. This can directly created by
-				providing <i>URL</i>, <i>username</i> and <i>password</i>.
+				providing a <i>URL</i>, a <i>username</i> and a <i>password</i>.
 				<aht:highlight resource="/java.geojsf/org/geojsf/geoserver/CliGeoServerRest.java" between="initDirectly"/>
 				Alternativly a commons-config <b>Configuration</b> interface can be used which must provide some pre-defined keys.
 				<aht:highlight resource="/java.geojsf/org/geojsf/geoserver/GeoServerConfig.java" between="rest"/>
