@@ -28,7 +28,7 @@ var GeoJSF = {
 			OpenLayers.Event.observe(window, "load", func ); 
 		},
 		
-		addClickHandler : function (id, resetId, inputDOMelement, mapDOMelement)
+		addClickHandler : function (id, resetId, inputDOMelement, mapDOMelement, clientId)
 		{
 			 OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
 		         defaultHandlerOptions: {
@@ -56,14 +56,18 @@ var GeoJSF = {
 		         trigger: function(e) {
 		        	 inputDOMelement.val(map.getLonLatFromViewPortPx(e.xy));
 		        //	 alert(inputDOMelement.val());
-		         	 
+		        	 inputDOMelement.change();
 		        	 var evObj = document.createEvent('MouseEvents');
 		        	 evObj.lonlat = map.getLonLatFromViewPortPx(e.xy);
-		        	 evObj.initEvent('click', true, true);
-		        //	 mapDOMelement.dispatchEvent(evObj);
+		        	 evObj.initMouseEvent("mapClick", true, true, window,
+		        			    0, 0, 0, 0, 0, false, false, false, false, 0, null);
+		        //	 alert('mapDOMelement' +mapDOMelement.text() +' id ' +mapDOMelement.attr('id'));
+		        //	 firefoxElement = document.getElementById(mapDOMelement.attr('id')); 
+		        //	 firefoxElement.dispatchEvent(evObj);
+		        //	 firefoxElement.click();
 		        //	 var e = jQuery.Event("click", { lonlat: evObj.lonlat });
 		        //	 jQuery(id).trigger(e);
-		        	 jsf.ajax.request(id, "click",{execute:"@form",render: resetId,params: evObj.lonlat});
+		        //	 jsf.ajax.request(this, "mapClick",{execute:"@form",render: resetId,params: evObj.lonlat});
 		         }
 		     });
 		},

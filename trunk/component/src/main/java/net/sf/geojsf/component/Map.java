@@ -84,11 +84,19 @@ public class Map extends UINamingContainer{
 		return new String();
 	}
 	
-	public void listenRedirect()
+	public void decode(FacesContext context)
+	{
+		logger.debug("Map Component is now entering DECODE stage");
+	}
+	
+	public void listenRedirect(javax.faces.event.ValueChangeEvent evt)
     {
+		logger.info("Value of coordinates changed by click event. Changed from: " +evt.getOldValue() +" to " +evt.getNewValue());
         FacesContext context = FacesContext.getCurrentInstance();
-        MethodExpression ajaxEventListener = (MethodExpression) getAttributes().get("listener");
-        ajaxEventListener.invoke(context.getELContext(), new Object[] {});
+    //    Map map = (Map)getComponent();
+     //   context.getViewRoot().addClientBehavior(eventName, behavior)
+    //    MethodExpression ajaxEventListener = (MethodExpression) getAttributes().get("listener");
+    //    ajaxEventListener.invoke(context.getELContext(), new Object[] {});
     }
 
 	public ArrayList<DefaultGeoJsfService> getServiceList() {
