@@ -1,4 +1,4 @@
-package net.sf.geojsf.demo.mbean.util;
+package org.geojsf.demo.controller.mbean.util;
 
 import java.io.Serializable;
 
@@ -33,7 +33,7 @@ public class GeoDemoBean implements Serializable {
 		logger.error("Received event: " +evt.toString());
 	}
 
-	public void ajaxListener( AjaxBehaviorEvent evt)
+	public void ajaxListener(AjaxBehaviorEvent evt)
 	{
 		logger.error("AjaxListener received: " +evt.toString());
 		UIInput text = (UIInput) evt.getComponent();
