@@ -1,4 +1,4 @@
-package net.sf.geojsf.demo.mbean.util;
+package org.geojsf.demo.controller.mbean.util;
 
 import java.io.FileNotFoundException;
 import java.io.Serializable;

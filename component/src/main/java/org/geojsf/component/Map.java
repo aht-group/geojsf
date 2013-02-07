@@ -1,9 +1,8 @@
-package net.sf.geojsf.component;
+package org.geojsf.component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.el.MethodExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UINamingContainer;
 import javax.faces.context.FacesContext;
@@ -22,7 +21,7 @@ import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@FacesComponent(value="net.sf.geojsf.component.Map")
+@FacesComponent(value="org.geojsf.component.Map")
 public class Map extends UINamingContainer{
 	
 	final static Logger logger = LoggerFactory.getLogger(Map.class);

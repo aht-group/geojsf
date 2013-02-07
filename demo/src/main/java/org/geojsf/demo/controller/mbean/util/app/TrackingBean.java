@@ -1,4 +1,4 @@
-package net.sf.geojsf.demo.mbean.util.app;
+package org.geojsf.demo.controller.mbean.util.app;
 
 import java.io.Serializable;
 

@@ -14,9 +14,9 @@
 	<ui:define name="content">
 		Hello GeoJSF
 		<h:form>
-		<geojsf:map value="#{showcaseMapBean.geoJsfMap}">
-			<f:ajax event="mapClick" listener="#{geoDemoBean.ajaxListener}" onevent="alert('hello')"/>
-    	</geojsf:map>
-        </h:form>
+			<geojsf:map value="#{showcaseMapBean.geoJsfMap}">
+				<f:ajax event="mapClick" listener="#{geoDemoBean.ajaxListener}"/>
+			</geojsf:map>
+		</h:form>
 	</ui:define>
 </ui:composition>
