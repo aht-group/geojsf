@@ -5,6 +5,7 @@
     <menuItem code="showcase" href="/showcase">
         <s:langs><s:lang key="en" version="1" translation="Showcase" /></s:langs>
         <menuItem code="showcaseMapSimple" href="/showcase/map/simple"><s:langs><s:lang key="en" version="1" translation="map (simple)"/></s:langs></menuItem>
+    		<menuItem code="showcaseMapClick" href="/showcase/map/click"><s:langs><s:lang key="en" version="1" translation="map (click)"/></s:langs></menuItem>
         <menuItem code="showcaseMapAdvanced" href="/showcase/map/advanced"><s:langs><s:lang key="en" version="1" translation="map (advanced)"/></s:langs></menuItem>
         <menuItem code="showcaseCoordinate" href="/showcase/coordinate"><s:langs><s:lang key="en" version="1" translation="coordinate"/></s:langs></menuItem>
         <menuItem code="showcaseLayerSwitcher" href="/showcase/layerSwitcher"><s:langs><s:lang key="en" version="1" translation="layerSwitcher"/></s:langs></menuItem>

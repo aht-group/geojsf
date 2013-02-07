@@ -15,6 +15,10 @@
 		<pattern value="/showcase/map/simple" />
 		<view-id value="/jsf/showcase/map-simple.jsf" />
 	</url-mapping>
+	<url-mapping id="showcaseMapClick">
+		<pattern value="/showcase/map/click" />
+		<view-id value="/jsf/showcase/map-click.jsf" />
+	</url-mapping>
 	<url-mapping id="showcaseMapAdvanced">
 		<pattern value="/showcase/map/advanced" />
 		<view-id value="/jsf/showcase/map-advanced.jsf" />
