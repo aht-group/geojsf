@@ -10,14 +10,13 @@
 	xmlns:geojsf="http://geojsf.sourceforge.net/ui"
 	template="/WEB-INF/templates/geojsf.xhtml">
 	<ui:define name="menu"><aht:menuUl value="#{menuBean.build('welcome')}" scActive="active"/></ui:define>
-	<ui:define name="headline">GEO-24</ui:define>
+	<ui:define name="headline">GEO-23</ui:define>
 	<ui:define name="content">
 		Hello GeoJSF
 		<h:form>
-		<h:inputText value="#{geoDemoBean.text}"/>
-		<geojsf:map id="ol" listener="#{geoDemoBean.listen}" value="#{showcaseMapBean.geoJsfMap}">
-			<f:ajax event="click" listener="#{geoDemoBean.listen}"/>
-        </geojsf:map>
+		<geojsf:map value="#{showcaseMapBean.geoJsfMap}">
+			<f:ajax event="mapClick" listener="#{geoDemoBean.ajaxListener}" onevent="alert('hello')"/>
+    	</geojsf:map>
         </h:form>
 	</ui:define>
 </ui:composition>
