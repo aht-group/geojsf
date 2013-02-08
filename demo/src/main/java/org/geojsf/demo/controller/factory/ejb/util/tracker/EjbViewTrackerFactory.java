@@ -1,15 +1,16 @@
 package org.geojsf.demo.controller.factory.ejb.util.tracker;
 
+import org.geojsf.demo.model.user.GeoUser;
+import org.geojsf.demo.model.util.GeoDescription;
+import org.geojsf.demo.model.util.GeoLang;
+import org.geojsf.demo.model.util.security.SecurityAction;
+import org.geojsf.demo.model.util.security.SecurityCategory;
+import org.geojsf.demo.model.util.security.SecurityRole;
+import org.geojsf.demo.model.util.security.SecurityUsecase;
+import org.geojsf.demo.model.util.security.SecurityView;
+import org.geojsf.demo.model.util.tracker.GeoViewTracker;
+
 import net.sf.ahtutils.controller.factory.ejb.tracker.EjbEventTrackerFactory;
-import net.sf.geojsf.demo.model.user.GeoUser;
-import net.sf.geojsf.demo.model.util.GeoDescription;
-import net.sf.geojsf.demo.model.util.GeoLang;
-import net.sf.geojsf.demo.model.util.security.SecurityAction;
-import net.sf.geojsf.demo.model.util.security.SecurityCategory;
-import net.sf.geojsf.demo.model.util.security.SecurityRole;
-import net.sf.geojsf.demo.model.util.security.SecurityUsecase;
-import net.sf.geojsf.demo.model.util.security.SecurityView;
-import net.sf.geojsf.demo.model.util.tracker.GeoViewTracker;
 
 public class EjbViewTrackerFactory
 {	

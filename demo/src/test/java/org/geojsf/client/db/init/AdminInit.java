@@ -19,16 +19,16 @@ import net.sf.ahtutils.model.interfaces.security.UtilsSecurityView;
 import net.sf.ahtutils.xml.access.Access;
 import net.sf.ahtutils.xml.dbseed.Db;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.geojsf.demo.controller.interfaces.facade.GeoUtilsFacade;
-import net.sf.geojsf.demo.model.user.GeoUser;
-import net.sf.geojsf.demo.model.util.GeoDescription;
-import net.sf.geojsf.demo.model.util.GeoLang;
-import net.sf.geojsf.demo.model.util.security.SecurityAction;
-import net.sf.geojsf.demo.model.util.security.SecurityCategory;
-import net.sf.geojsf.demo.model.util.security.SecurityRole;
-import net.sf.geojsf.demo.model.util.security.SecurityUsecase;
-import net.sf.geojsf.demo.model.util.security.SecurityView;
 
+import org.geojsf.demo.controller.interfaces.facade.GeoUtilsFacade;
+import org.geojsf.demo.model.user.GeoUser;
+import org.geojsf.demo.model.util.GeoDescription;
+import org.geojsf.demo.model.util.GeoLang;
+import org.geojsf.demo.model.util.security.SecurityAction;
+import org.geojsf.demo.model.util.security.SecurityCategory;
+import org.geojsf.demo.model.util.security.SecurityRole;
+import org.geojsf.demo.model.util.security.SecurityUsecase;
+import org.geojsf.demo.model.util.security.SecurityView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

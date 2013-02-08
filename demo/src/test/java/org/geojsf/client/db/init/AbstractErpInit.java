@@ -7,8 +7,8 @@ import net.sf.ahtutils.db.xml.AhtStatusDbInit;
 import net.sf.ahtutils.db.xml.AhtXmlInitIdMapper;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.xml.dbseed.Db;
-import net.sf.geojsf.demo.model.util.GeoLang;
 
+import org.geojsf.demo.model.util.GeoLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
