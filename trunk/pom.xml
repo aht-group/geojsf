@@ -34,7 +34,6 @@
 		<module>ejb</module>
 		<module>interfaces</module>
 		<module>component</module>
-		<module>demo</module>
 		<module>util</module>
 		<module>geoserver</module>
 		<module>xml</module>
