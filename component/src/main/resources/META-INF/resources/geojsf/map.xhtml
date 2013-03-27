@@ -22,13 +22,14 @@
      <composite:attribute name="width" default="100%"   shortDescription="The width of the map canvas"/>
      <composite:attribute name="height" default="400"  shortDescription="The height of the map canvas"/>
      <composite:attribute name="value" shortDescription="Contains info about what services and layers should be displayed. For a reference check our Data structure tutorial"/>
+     <composite:attribute name="coordinates" shortDescription="This is the bean field that is target for the Coordinates object holding the coodinates of the current click action"/>
      <composite:attribute name="simpleWmsUrl" shortDescription="In simple mode, this attribute defines the WMS service URL"/>
      <composite:attribute name="simpleLayers"  shortDescription="In simple mode, this attribute defines a comma separated list of layers"/>
-     <composite:attribute name="listener" required="false" method-signature="void listener()" shortDescription="EXPERIMENTAL - handler for click events"/>
+     <composite:attribute name="listener" required="false" method-signature="void listener(org.geojsf.xml.gml.Coordinates)" shortDescription="Handler for click events making available the clicked coordinates"/>
      <composite:clientBehavior name="mapClick" 
                               event="valueChange"
                             targets="coordinates"/>
-   </composite:interface>
+     </composite:interface>
         
   <composite:implementation>
    	 <script src="http://openlayers.org/api/OpenLayers.js"/>
@@ -46,8 +47,8 @@
 	 </c:if>
 	 
 	 	
-	 <h:inputText id="coordinates" style="visibility: hidden;">
-	    
+	 <h:inputText id="coordinates" valueChangeListener="#{cc.listenRedirect}" style="visibility: hidden;">
+ 	 	<f:ajax event="valueChange" />
 	 </h:inputText>
 	 
 	 
