@@ -16,6 +16,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
 import org.geojsf.controller.util.GeoJsfMap;
+import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.interfaces.openlayers.GeoJsfView;
@@ -84,6 +85,7 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 		return new String();
 	}
 	
+	@Deprecated
 	public void listenRedirect(javax.faces.event.ValueChangeEvent evt)
     {
 		logger.debug("Value of coordinates changed by click event. Changed from: " +evt.getOldValue() +" to " +evt.getNewValue());
@@ -110,22 +112,40 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 		this.serviceList = serviceList;
 	}
 
-	@Override
-	public void addClientBehavior(String eventName, ClientBehavior behavior) {
-		logger.debug("Adding client behavior for " +eventName);
-		logger.debug("Publishing new MapClickEvent...");
-	}
+	 public void decode(FacesContext context) {
+	    	logger.info("Entering decode");
+		    java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
+		    String behaviorEvent = params.get("javax.faces.behavior.event");
+	        logger.info("Got this event: " +behaviorEvent);
+	       
+		       
+			java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
+	        if (behaviors.isEmpty()) {
+	           logger.error("no behaviors.exiting.");
+	           return;
+	        }
+	   
+	           
+        if (behaviorEvent != null) {
+            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
+            if (behaviors.size() > 0) {
+                String behaviorSource = params.get("javax.faces.source");
+               String clientId = getClientId(context);
+               if (behaviorSource != null && behaviorSource.equals(clientId)) {
+             	  for (ClientBehavior behavior: behaviorsForEvent) {
+             		  logger.info("Found " +behavior.getClass().toString());
+             		  MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
+             		  String coordinates = params.get("org.geojsf.coordinates");
+           			  ajaxEvent.setCoordinates(coordinates);
+             		  behavior.broadcast(ajaxEvent);
+        }}}}}
+	
 
 	@Override
 	public Collection<String> getEventNames() {
 		ArrayList<String> events = new ArrayList<String>();
 		events.add("mapClick");
 		return events;
-	}
-
-	@Override
-	public java.util.Map<String, List<ClientBehavior>> getClientBehaviors() {
-		return new Hashtable<String, List<ClientBehavior>>();
 	}
 
 	@Override
