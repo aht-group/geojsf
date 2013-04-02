@@ -54,13 +54,16 @@ var GeoJSF = {
 		         }, 
 
 		         trigger: function(e) {
-		        	 inputDOMelement.val(map.getLonLatFromViewPortPx(e.xy));
+		        	 jsf.ajax.request(id, 'click', {execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick', 'org.geojsf.coordinates': map.getLonLatFromViewPortPx(e.xy)});
+		        
+		        //   Deprecated event tests:
+		        //	 inputDOMelement.val(map.getLonLatFromViewPortPx(e.xy));
 		        //	 alert(inputDOMelement.val());
-		        	 inputDOMelement.change();
-		        	 var evObj = document.createEvent('MouseEvents');
-		        	 evObj.lonlat = map.getLonLatFromViewPortPx(e.xy);
-		        	 evObj.initMouseEvent("mapClick", true, true, window,
-		        			    0, 0, 0, 0, 0, false, false, false, false, 0, null);
+		        //	 inputDOMelement.change();
+		        //	 var evObj = document.createEvent('MouseEvents');
+		        //	 evObj.lonlat = map.getLonLatFromViewPortPx(e.xy);
+		        //	 evObj.initMouseEvent("mapClick", true, true, window,
+		        //			    0, 0, 0, 0, 0, false, false, false, false, 0, null);
 		        //	 alert('mapDOMelement' +mapDOMelement.text() +' id ' +mapDOMelement.attr('id'));
 		        //	 firefoxElement = document.getElementById(mapDOMelement.attr('id')); 
 		        //	 firefoxElement.dispatchEvent(evObj);

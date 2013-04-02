@@ -27,8 +27,8 @@
      <composite:attribute name="simpleLayers"  shortDescription="In simple mode, this attribute defines a comma separated list of layers"/>
      <composite:attribute name="listener" required="false" method-signature="void listener(org.geojsf.xml.gml.Coordinates)" shortDescription="Handler for click events making available the clicked coordinates"/>
      <composite:clientBehavior name="mapClick" 
-                              event="valueChange"
-                            targets="coordinates"/>
+                              event="click"
+                            targets="#{cc.clientId}"/>
      </composite:interface>
         
   <composite:implementation>
@@ -47,9 +47,7 @@
 	 </c:if>
 	 
 	 	
-	 <h:inputText id="coordinates" valueChangeListener="#{cc.listenRedirect}" style="visibility: hidden;">
- 	 	<f:ajax event="valueChange" />
-	 </h:inputText>
+
 	 
 	 
 	 
