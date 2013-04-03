@@ -64,9 +64,9 @@ public class DummyViewFactory
 	private void initViews() throws UtilsIntegrityException
 	{
 		view = fView.create("view",5,0,0,DefaultGeoJsfLang.defaultLangs);
-		view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 1, true,true));
-		view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 2, true,true));
-		view.getLayer().add(fViewLayer.create(view, layerAhtRestricted, 3, true,true));
+	//	view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 1, true,true));
+	//	view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 2, true,true));
+	//	view.getLayer().add(fViewLayer.create(view, layerAhtRestricted, 3, true,true));
 		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 4, true,true));
 	}
 }
