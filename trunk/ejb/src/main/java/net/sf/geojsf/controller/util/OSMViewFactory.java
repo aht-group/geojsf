@@ -13,7 +13,7 @@ import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoServiceFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewFactory;
 import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 
-public class DummyViewFactory
+public class OSMViewFactory
 {
 	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
 	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fLayer;
@@ -26,7 +26,7 @@ public class DummyViewFactory
 	
 	public DefaultGeoJsfView getView() {return view;}
 
-	public DummyViewFactory() throws UtilsIntegrityException
+	public OSMViewFactory() throws UtilsIntegrityException
 	{
 		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
@@ -40,8 +40,8 @@ public class DummyViewFactory
 	
 	public static DefaultGeoJsfView build()
 	{
-		DummyViewFactory f = null;
-		try {f = new DummyViewFactory();}
+		OSMViewFactory f = null;
+		try {f = new OSMViewFactory();}
 		catch (UtilsIntegrityException e) {e.printStackTrace();}
 		return f.getView();
 	}
@@ -64,9 +64,9 @@ public class DummyViewFactory
 	private void initViews() throws UtilsIntegrityException
 	{
 		view = fView.create("view",5,0,0,DefaultGeoJsfLang.defaultLangs);
-		view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 1, true,true));
-		view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 2, true,true));
-		view.getLayer().add(fViewLayer.create(view, layerAhtRestricted, 3, true,true));
+	//	view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 1, true,true));
+	//	view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 2, true,true));
+	//	view.getLayer().add(fViewLayer.create(view, layerAhtRestricted, 3, true,true));
 		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 4, true,true));
 	}
 }
