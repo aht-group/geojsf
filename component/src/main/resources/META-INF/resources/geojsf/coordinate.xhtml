@@ -14,6 +14,8 @@
   </composite:interface>
         
   <composite:implementation>
-    
+     <h:outputScript>
+       GeoJSF.addCoordinatesControl('#{cc.attrs.orientation}');
+     </h:outputScript>
   </composite:implementation>
 </html>
