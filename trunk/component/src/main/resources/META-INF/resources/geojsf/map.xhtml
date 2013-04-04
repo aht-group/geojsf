@@ -61,9 +61,9 @@
 	        <c:if test="#{!empty initParam['geojsf.THEME']}">
 	 			OpenLayers.ImgPath='#{facesContext.externalContext.requestContextPath}/#{initParam['geojsf.THEME']}/';
 	 		</c:if>
-	    GeoJSF.addCoordinatesControl("northeast");
+	//  GeoJSF.addCoordinatesControl("northeast");
      </h:outputScript>
-     
+     <composite:insertChildren/>
      <h:outputScript id="resetLayers">
      		GeoJSF.resetLayers();
 	 		<ui:repeat value="#{cc.serviceList}" var="service" varStatus="status">
