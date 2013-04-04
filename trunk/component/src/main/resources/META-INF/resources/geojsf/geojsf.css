@@ -421,17 +421,17 @@ background-color: #FFFFFF;
 }
 
 /* (Unsuccessful) try to hide pan buttons */
-.OpenLayers_Control_PanZoom_panup{
-  visibility: hidden;
+.olControlPanZoomBar > div:first-child {
+  display: none;
   }
-.OpenLayers_Control_PanZoom_pandown{
-  visibility: hidden;
+.olControlPanZoomBar > div:first-child+div {
+  display: none;
   }
-.OpenLayers_Control_PanZoom_panleft{
-  visibility: hidden;
+.olControlPanZoomBar > div:first-child+div+div {
+  display: none;
   }
-.OpenLayers_Control_PanZoom_panright{
-  visibility: hidden;
+.olControlPanZoomBar > div:first-child+div+div {
+  display: none;
   }
   
 /* Setting size of the map */
@@ -472,4 +472,9 @@ background-color: #FFFFFF;
 div.olControlMousePosition{
 bottom: 2%;
 left: 2%;
+}
+
+/* Hide the zoom buttons */ 
+.olControlZoom {
+	display: none;
 }

@@ -1,26 +1,16 @@
-// Define the variable where the panZoomBar OpenLayers control will be injected
-var panZoomBar;
-//Define the variable where the map Div container will be injected
-var map;
-// Define a Namespace for the GeoJSF specific JavaScript functionality
 var GeoJSF = {	
-
+		map: null,
+		panZoomBar: null,
+		
 		initMap : function(mapDiv,msOptions)
 		{
-			map = new OpenLayers.Map(mapDiv,msOptions);
-			map.addControl(new OpenLayers.Control.Navigation({'zoomWheelEnabled': false}));
+			this.map = new OpenLayers.Map(mapDiv,msOptions);
 		    var click = new OpenLayers.Control.Click();
-		    map.addControl(click);
+		    this.map.addControl(click);
 		    click.activate();
-		    panZoomBar = new OpenLayers.Control.PanZoomBar();
-		    map.addControl(panZoomBar);
-		    for (var p = 0; p < 4; p++) {
-		        panZoomBar.buttons[p].style.display = 'none';
-		    }
-		    panZoomBar.div.style.marginTop = "-50px";
-		 //   var scalebar = new OpenLayers.Control.ScaleBar({align: "right"});
-		 //   map.addControl(scalebar);
-		 //   map.addControl(new OpenLayers.Control.LayerSwitcher());
+		    this.panZoomBar = new OpenLayers.Control.PanZoomBar();
+		    this.map.addControl(this.panZoomBar);
+		    this.panZoomBar.div.style.marginTop = "-50px";
 		},
 
 		addLoadEvent : function(func)
@@ -54,34 +44,50 @@ var GeoJSF = {
 		         }, 
 
 		         trigger: function(e) {
-		        	 jsf.ajax.request(id, 'click', {execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick', 'org.geojsf.coordinates': map.getLonLatFromViewPortPx(e.xy)});
-		        
-		        //   Deprecated event tests:
-		        //	 inputDOMelement.val(map.getLonLatFromViewPortPx(e.xy));
-		        //	 alert(inputDOMelement.val());
-		        //	 inputDOMelement.change();
-		        //	 var evObj = document.createEvent('MouseEvents');
-		        //	 evObj.lonlat = map.getLonLatFromViewPortPx(e.xy);
-		        //	 evObj.initMouseEvent("mapClick", true, true, window,
-		        //			    0, 0, 0, 0, 0, false, false, false, false, 0, null);
-		        //	 alert('mapDOMelement' +mapDOMelement.text() +' id ' +mapDOMelement.attr('id'));
-		        //	 firefoxElement = document.getElementById(mapDOMelement.attr('id')); 
-		        //	 firefoxElement.dispatchEvent(evObj);
-		        //	 firefoxElement.click();
-		        //	 var e = jQuery.Event("click", { lonlat: evObj.lonlat });
-		        //	 jQuery(id).trigger(e);
-		        //	 jsf.ajax.request(this, "mapClick",{execute:"@form",render: resetId,params: evObj.lonlat});
+		        	 jsf.ajax.request(id, 'click', {execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick', 'org.geojsf.coordinates': this.map.getLonLatFromViewPortPx(e.xy)});
 		         }
 		     });
+		},
+		
+		// Add a MousePosition control that displays the coordinates of the current mouse position
+		addCoordinatesControl : function(position)
+		{
+			// Apply given style
+			var style = "z-index: 1001; margin: 2px; ";
+			if (position=="northeast")
+			 {
+				style = style +"right: 0px; left: 80%; top: 0px;"
+			 }
+			if (position=="northwest")
+			 {
+			 	style = style +"left: 0px; right: 80%; top: 0px;"
+			 }
+			if (position=="southeast")
+			 {
+			 	style = style +"right: 0px; left: 80%; bottom: 0px;"
+			 }
+			if (position=="southwest")
+			 {
+			 	style = style +"left: 0px; right: 80%; bottom: 0px;"
+			 }
+		
+			
+			
+			mousePosition = new OpenLayers.Control.MousePosition({
+				emptyString: ''
+				});
+			this.map.addControl(mousePosition);
+			mousePosition.element.setAttribute("style", style);
+			return mousePosition;
 		},
 		
 		// Remove all layers and add the base layer again
 		resetLayers : function()
 		{
-			if (map.layers)
+			if (this.map.layers)
 				{
-					for (var i = map.layers.length - 1; i >= 0; i--) {
-					    map.removeLayer(map.layers[i]);
+					for (var i = this.map.layers.length - 1; i >= 0; i--) {
+					    this.map.removeLayer(map.layers[i]);
 					}
 				}
 			
@@ -94,17 +100,12 @@ var GeoJSF = {
 					  url, 
 					  layers,
 					  params);
-		//	alert("Adding layer: " +name +","+url+","+params);
-			map.addLayer(layer);
-			map.zoomToMaxExtent();
-			for (var p = 0; p < 4; p++)
-			{
-				panZoomBar.buttons[p].style.display = 'none';
-			}
+			this.map.addLayer(layer);
+			this.map.zoomToMaxExtent();
 		},
 		
 		center : function(lon,lat,zoom)
 		{
-			map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
+			this.map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
 		},
 };
