@@ -5,4 +5,16 @@
         http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
  <namespace>http://geojsf.sourceforge.net/ui</namespace> 
  <composite-library-name>geojsf</composite-library-name> 
- </facelet-taglib> 
+ <tag>
+  <tag-name>map</tag-name>
+  <component>
+    <component-type>org.geojsf.component.Map</component-type>
+  </component>
+ </tag>	
+ <tag>
+  <tag-name>coordinate</tag-name>
+  <component>
+    <component-type>org.geojsf.component.Coordinate</component-type>
+  </component>
+ </tag>		
+ </facelet-taglib>

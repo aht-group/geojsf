@@ -18,7 +18,7 @@ var GeoJSF = {
 			OpenLayers.Event.observe(window, "load", func ); 
 		},
 		
-		addClickHandler : function (id, resetId, inputDOMelement, mapDOMelement, clientId)
+		addClickHandler : function (id, resetId)
 		{
 			 OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
 		         defaultHandlerOptions: {
