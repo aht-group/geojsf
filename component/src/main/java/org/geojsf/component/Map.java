@@ -67,39 +67,20 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String fallback()
 	{
-		logger.info("looking for children of this Map.");
-		logger.info("no of children: " +this.getChildCount());
-		logger.info("no of children: " +this.getChildren());
-		 for (UIComponent child : this.getChildren())
-		 {
-			 logger.error("Found child of type: " +child.getClass().getSimpleName());
-		 }
 		 serviceList = new ArrayList<DefaultGeoJsfService>();
 		 logger.debug("Checking value existence ...");
 		 if (getAttributes().get("value")==null)
 		 {
 			 logger.debug("No value given - falling back to simple version");
-			 String url = (String) getAttributes().get("simpleWmsUrl");
-			 DefaultGeoJsfService service = new DefaultGeoJsfService();
-			 service.setUrl(url);
-			 service.setCode("BaseLayer");
-			 Object layerList = getAttributes().get("simpleLayers");
-			 logger.debug("Detecting layer definition type..." +layerList.getClass().getSimpleName());
-			 if (layerList.getClass().getSimpleName().equals("String"))
+			 for (UIComponent child : this.getChildren())
 			 {
-				 logger.debug("Detected layer list given as Strings");
-				 String layerString = (String)layerList;
-				 for (String string : layerString.split(","))
+				 logger.info("Found child of type: " +child.getClass().getSimpleName());
+				 if (child.getClass().getSimpleName().equals("Layer"))
 				 {
-					 DefaultGeoJsfLayer layer = new DefaultGeoJsfLayer();
-					 layer.setCode(string);
-					 service.getLayer().add(layer);
+					 Layer layer = (Layer) child;
+					 addLayerToList(layer);
 				 }
 			 }
-			 ArrayList<DefaultGeoJsfService> singleValue = new ArrayList<DefaultGeoJsfService>();
-			 singleValue.add(service);
-			 getAttributes().put("value", singleValue);
-			 serviceList.add(service);
 		 }
 		 else
 		 {
@@ -107,6 +88,31 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 			 serviceList = (ArrayList<DefaultGeoJsfService>) map.getLayerServices();
 		 }
 		return new String();
+	}
+	
+	public void addLayerToList(Layer layer)
+	{
+		 String url = (String) layer.getUrl();
+		 DefaultGeoJsfService service = new DefaultGeoJsfService();
+		 service.setUrl(url);
+		 service.setCode("BaseLayer");
+		 Object layerList = layer.getLayers();
+		 logger.debug("Detecting layer definition type..." +layerList.getClass().getSimpleName());
+		 if (layerList.getClass().getSimpleName().equals("String"))
+		 {
+			 logger.debug("Detected layer list given as Strings");
+			 String layerString = (String)layerList;
+			 for (String string : layerString.split(","))
+			 {
+				 DefaultGeoJsfLayer layerToAdd = new DefaultGeoJsfLayer();
+				 layerToAdd.setCode(string);
+				 service.getLayer().add(layerToAdd);
+			 }
+		 }
+		 ArrayList<DefaultGeoJsfService> singleValue = new ArrayList<DefaultGeoJsfService>();
+		 singleValue.add(service);
+		 getAttributes().put("value", singleValue);
+		 serviceList.add(service);
 	}
 	
 	@Deprecated
