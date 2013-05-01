@@ -17,4 +17,10 @@
     <component-type>org.geojsf.component.Coordinate</component-type>
   </component>
  </tag>		
+ <tag>
+  <tag-name>layer</tag-name>
+  <component>
+    <component-type>org.geojsf.component.Layer</component-type>
+  </component>
+ </tag>		
  </facelet-taglib>
