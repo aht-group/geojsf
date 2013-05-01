@@ -1,16 +1,20 @@
 package org.geojsf.component;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Hashtable;
 import java.util.List;
 
 import javax.el.MethodExpression;
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponent;
 import javax.faces.component.UINamingContainer;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
 
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
@@ -27,6 +31,12 @@ import org.geojsf.xml.gml.Coordinates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ResourceDependencies({
+	  @ResourceDependency(library = "geojsf",
+	      name = "GeoJSF.js", target = "head"),
+	      @ResourceDependency(library = "javax.faces",
+	      name = "jsf.js", target = "head")}
+	)
 @FacesComponent(value="org.geojsf.component.Map")
 public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 	
@@ -34,6 +44,13 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 	private ArrayList<DefaultGeoJsfService> serviceList;
 	
 	private Coordinates coords = new Coordinates();
+	
+	//Define attributes of the component
+	private String width = null;
+	private String height = null;
+	private String centerX = null;
+	private String centerY = null;
+	private String zoomLevel = null;
 	
 	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>> 
 		String layerString(SERVICE service)
@@ -50,6 +67,13 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String fallback()
 	{
+		logger.info("looking for children of this Map.");
+		logger.info("no of children: " +this.getChildCount());
+		logger.info("no of children: " +this.getChildren());
+		 for (UIComponent child : this.getChildren())
+		 {
+			 logger.error("Found child of type: " +child.getClass().getSimpleName());
+		 }
 		 serviceList = new ArrayList<DefaultGeoJsfService>();
 		 logger.debug("Checking value existence ...");
 		 if (getAttributes().get("value")==null)
@@ -159,5 +183,114 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 
 	public void setCoords(Coordinates coords) {
 		this.coords = coords;
+	}
+	
+	@Override
+	public void encodeBegin(FacesContext ctx) throws IOException
+	{
+		logger.info("entering encodebegin");
+		fallback();
+		ResponseWriter writer = ctx.getResponseWriter();
+		writer.startElement("div", this);
+		writer.writeAttribute("id", this.getClientId(), null);
+		writer.writeAttribute("style", "width: " +getWidth() +"px; height: " +getHeight() + "px;", null);
+		writer.writeAttribute("id", this.getClientId(), null);
+		writer.endElement("div");
+		
+		writer.startElement("script", this);
+		writer.writeAttribute("src", "http://openlayers.org/api/OpenLayers.js", null);
+		writer.endElement("script");
+		
+		writer.startElement("script", this);
+		writer.writeAttribute("src", "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js", null);
+		writer.endElement("script");
+		
+		writer.startElement("script", this);
+		writer.writeText("GeoJSF.addClickHandler('" +this.getClientId() +"','" +this.getClientId() +":resetLayers');", null);
+		writer.writeText("GeoJSF.initMap('" +this.getClientId() +"','');", null);
+		if (this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME")!=null)
+		{
+			writer.writeText("OpenLayers.ImgPath='" +this.getFacesContext().getExternalContext().getRequestContextPath() +"/" +this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME") +"/';", null);
+		}
+	    
+	    
+		writer.writeText("GeoJSF.resetLayers();", null);
+		Boolean baseLayer = true;
+ 		for (DefaultGeoJsfService service : serviceList)
+ 		{
+ 			
+ 			writer.writeText("var url    = '" +service.getUrl() +"';",null);
+ 		    writer.writeText("var name   = '" +service.getCode() +"';",null);
+ 			writer.writeText("var params = {};", null);
+ 			writer.writeText("params.layers      = '"+layerString(service) +"';",null);
+ 			writer.writeText("params.transparent = 'true';",null);
+ 			writer.writeText("params.format      = 'image/png';",null);
+ 			writer.writeText("var options = {};",null);
+ 			writer.writeText("options.isBaseLayer= '" +baseLayer.toString() +"';", null);
+ 			writer.writeText("GeoJSF.addLayer(name, url, params, options);",null);
+ 			baseLayer = false;
+ 		}
+ 		writer.writeText("GeoJSF.center(" +getCenterX() +"," +getCenterY() +"," +getZoomLevel() +");", null);
+ 		writer.endElement("script");   
+	}
+
+	public String getWidth() {
+		if (this.width!=null)
+		{
+			return this.width;
+		}
+		return "500";
+	}
+
+	public void setWidth(String width) {		
+		this.width = width;
+	}
+
+	public String getHeight() {
+		if (this.height!=null)
+		{
+			return this.height;
+		}
+		return "400";
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
+	public String getCenterX() {
+		if (this.centerX!=null)
+		{
+			return this.centerX;
+		}
+		return "0.0";
+	}
+
+	public void setCenterX(String centerX) {
+		this.centerX = centerX;
+	}
+
+	public String getCenterY() {
+		if (this.centerY!=null)
+		{
+			return this.centerY;
+		}
+		return "0.0";
+	}
+
+	public void setCenterY(String centerY) {
+		this.centerY = centerY;
+	}
+
+	public String getZoomLevel() {
+		if (this.zoomLevel!=null)
+		{
+			return this.zoomLevel;
+		}
+		return "5";
+	}
+
+	public void setZoomLevel(String zoomLevel) {
+		this.zoomLevel = zoomLevel;
 	}
 }

@@ -28,10 +28,18 @@
      <composite:attribute name="listener" required="false" method-signature="void listener(org.geojsf.xml.gml.Coordinates)" shortDescription="DEPRECATED - use AJAX based map click handler"/>
      <composite:clientBehavior name="mapClick" 
                               event="click"
-                            targets="#{cc.clientId}"/>
+                              targets="#{cc.clientId}"/>
      </composite:interface>
         
   <composite:implementation>
+  
+  <div id="#{cc.clientId}" name="mapContainer" style="padding: 0; width:#{cc.attrs.width};height:#{cc.attrs.height}px" />
+     
+     
+     
+     <c:if test="#{!empty cc.attrs.moverview}">
+	 	<div id="#{cc.attrs.overviewMap}" style="width:#{cc.attrs.overviewMapY}px;height:#{cc.attrs.overviewMapX}px" />
+	 </c:if>
    	 <script src="http://openlayers.org/api/OpenLayers.js"/>
    	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
    	 <h:outputScript library="geojsf"     name="GeoJSF.js"/>
@@ -41,10 +49,7 @@
      <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
      #{cc.fallback()}
      
-     <div id="#{cc.clientId}" style="padding: 0; width:#{cc.attrs.width};height:#{cc.attrs.height}px" />
-     <c:if test="#{!empty cc.attrs.moverview}">
-	 	<div id="#{cc.attrs.overviewMap}" style="width:#{cc.attrs.overviewMapY}px;height:#{cc.attrs.overviewMapX}px" />
-	 </c:if>
+     
 	 
 	 	
 
@@ -56,14 +61,16 @@
         var mcoptions = #{cc.attrs.mapOptions};
         var mapDOMelement = $("##{cc.clientId.replaceAll(":","\\\\\\\\:")}");
         var inputDOMelement = $("##{cc.clientId.replaceAll(":","\\\\\\\\:")}\\:coordinates");
-        GeoJSF.addClickHandler('#{cc.clientId}','#{cc.clientId}:resetLayers', inputDOMelement, mapDOMelement, '#{cc.clientId}');
+        var mapCont = document.getElementsByName("mapContainer")[0];
+        var id = mapCont.getAttribute("id");
+        GeoJSF.addClickHandler(id,'#{cc.clientId}:resetLayers', inputDOMelement, mapDOMelement, '#{cc.clientId}');
 	    GeoJSF.initMap("#{cc.attrs.clientId}",mcoptions);
 	        <c:if test="#{!empty initParam['geojsf.THEME']}">
 	 			OpenLayers.ImgPath='#{facesContext.externalContext.requestContextPath}/#{initParam['geojsf.THEME']}/';
 	 		</c:if>
 	//  GeoJSF.addCoordinatesControl("northeast");
      </h:outputScript>
-     <composite:insertChildren/>
+   <!--    <composite:insertChildren/> -->
      <h:outputScript id="resetLayers">
      		GeoJSF.resetLayers();
 	 		<ui:repeat value="#{cc.serviceList}" var="service" varStatus="status">
