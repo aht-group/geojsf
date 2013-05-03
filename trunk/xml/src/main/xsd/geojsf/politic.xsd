@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.geojsf.org/politic"
+    xmlns:gp="http://www.geojsf.org/politic"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:import namespace="http://geojsf.sf.net/openlayers" schemaLocation="openlayers.xsd"/>
+	<xsd:element name="region">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="gp:district" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="district">
+        <xsd:complexType>
+        	<xsd:sequence>
+                <xsd:element ref="gp:region" maxOccurs="1"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
