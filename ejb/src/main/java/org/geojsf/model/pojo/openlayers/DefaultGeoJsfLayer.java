@@ -7,8 +7,8 @@ import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-import net.sf.ahtutils.model.interfaces.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.EjbRemoveable;
+import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 
 public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
