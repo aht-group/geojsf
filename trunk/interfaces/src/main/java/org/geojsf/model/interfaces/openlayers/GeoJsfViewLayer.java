@@ -1,9 +1,9 @@
 package org.geojsf.model.interfaces.openlayers;
 
-import net.sf.ahtutils.model.interfaces.EjbRemoveable;
-import net.sf.ahtutils.model.interfaces.EjbWithId;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 public interface GeoJsfViewLayer<L extends UtilsLang,
 						D extends UtilsDescription,
