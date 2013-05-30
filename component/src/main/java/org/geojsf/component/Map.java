@@ -32,11 +32,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ResourceDependencies({
-	  @ResourceDependency(library = "geojsf",
-	      name = "GeoJSF.js", target = "head"),
-	      @ResourceDependency(library = "javax.faces",
-	      name = "jsf.js", target = "head")}
-	)
+	@ResourceDependency(library = "geojsf",name = "GeoJSF.js", target = "head"),
+	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head")
+})
 @FacesComponent(value="org.geojsf.component.Map")
 public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 	
