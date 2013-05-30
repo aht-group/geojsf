@@ -12,11 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @FacesComponent(value="org.geojsf.component.Coordinate")
-public class Coordinate  extends UINamingContainer implements ClientBehaviorHolder{
-	
+public class Coordinate extends UINamingContainer implements ClientBehaviorHolder
+{
 	final static Logger logger = LoggerFactory.getLogger(Coordinate.class);
 	
-	//Define attributes of the component
 	private String orientation = null;
 	
 	@Override
@@ -30,13 +29,6 @@ public class Coordinate  extends UINamingContainer implements ClientBehaviorHold
  		writer.endElement("script");   
 	}
 
-	public String getOrientation() {
-		return orientation;
-	}
-
-	public void setOrientation(String orientation) {
-		this.orientation = orientation;
-	}
-
-
+	public String getOrientation() {return orientation;}
+	public void setOrientation(String orientation) {this.orientation = orientation;}
 }
