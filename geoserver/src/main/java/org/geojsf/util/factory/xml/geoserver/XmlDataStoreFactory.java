@@ -8,7 +8,7 @@ import net.sf.exlp.xml.net.Host;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.geoserver.GeoServerConfig;
 import org.geojsf.xml.geoserver.DataStore;
-import org.jdom.Element;
+import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

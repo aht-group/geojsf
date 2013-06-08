@@ -9,7 +9,7 @@ import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.xml.geoserver.Styles;
-import org.jdom.Document;
+import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

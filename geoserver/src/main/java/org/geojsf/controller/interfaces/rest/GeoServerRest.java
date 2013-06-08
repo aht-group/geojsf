@@ -7,7 +7,7 @@ import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Styles;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
-import org.jdom.Document;
+import org.jdom2.Document;
 
 public interface GeoServerRest
 {	

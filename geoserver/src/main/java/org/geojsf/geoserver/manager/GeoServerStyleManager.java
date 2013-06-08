@@ -11,8 +11,8 @@ import org.apache.commons.lang.SystemUtils;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.xml.geoserver.Style;
 import org.geojsf.xml.geoserver.Styles;
-import org.jdom.Document;
-import org.jdom.output.Format;
+import org.jdom2.Document;
+import org.jdom2.output.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
