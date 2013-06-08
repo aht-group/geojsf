@@ -5,8 +5,8 @@ import java.util.List;
 
 import net.sf.exlp.util.xml.JDomUtil;
 
-import org.jdom.Element;
-import org.jdom.Namespace;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +24,7 @@ public class XmlHostFactory implements Serializable
 		String host = null;
 		String port = null;
 		
-		List<Object> list = connectionParameters.getChildren("entry",SimpleXmlTranscoder.ns);
+		List<Element> list = connectionParameters.getChildren("entry",SimpleXmlTranscoder.ns);
 		for(Object o : list)
 		{
 			if(o instanceof Element)

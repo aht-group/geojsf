@@ -2,8 +2,8 @@ package org.geojsf.geoserver.rest;
 
 import java.io.IOException;
 
-import org.jdom.Element;
-import org.jdom.Namespace;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
