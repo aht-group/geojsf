@@ -1,5 +1,9 @@
 package net.sf.geojsf.controller.util;
 
+import org.geojsf.factory.ejb.openlayer.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.openlayer.EjbGeoServiceFactory;
+import org.geojsf.factory.ejb.openlayer.EjbGeoViewFactory;
+import org.geojsf.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
@@ -8,10 +12,6 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
-import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoServiceFactory;
-import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewFactory;
-import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 
 public class OSMViewFactory
 {

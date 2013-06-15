@@ -1,4 +1,4 @@
-package net.sf.geojsf.util.factory.ejb.openlayer;
+package org.geojsf.factory.ejb.openlayer;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;

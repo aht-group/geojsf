@@ -11,8 +11,8 @@ import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.geojsf.util.factory.ejb.openlayer.EjbGeoLayerFactory;
 
+import org.geojsf.factory.ejb.openlayer.EjbGeoLayerFactory;
 import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.interfaces.openlayers.GeoJsfView;
