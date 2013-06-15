@@ -7,9 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @FacesComponent(value="org.geojsf.component.Layer")
-public class Layer  extends UINamingContainer {
-	
-	
+public class Layer  extends UINamingContainer
+{	
 	final static Logger logger = LoggerFactory.getLogger(Layer.class);
 	
 	//Define attributes of the component

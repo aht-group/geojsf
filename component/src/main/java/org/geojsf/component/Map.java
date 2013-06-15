@@ -36,7 +36,8 @@ import org.slf4j.LoggerFactory;
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head")
 })
 @FacesComponent(value="org.geojsf.component.Map")
-public class Map  extends UINamingContainer implements ClientBehaviorHolder{
+public class Map extends UINamingContainer implements ClientBehaviorHolder
+{
 	
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
 	private ArrayList<DefaultGeoJsfService> serviceList;
@@ -119,42 +120,36 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 		logger.debug("Value of coordinates changed by click event. Changed from: " +evt.getOldValue() +" to " +evt.getNewValue());
 		coords = new Coordinates(); 
 		coords.setValue(evt.getNewValue().toString());
-		try {
-		//Invoke the given listener that takes the coordinates
-		FacesContext context = FacesContext.getCurrentInstance();
-        MethodExpression coordinatesListener = (MethodExpression) getAttributes().get("listener");
-        Object[] arguments = new Object[1];
-        arguments[0] = coords;
-        coordinatesListener.invoke(context.getELContext(), arguments);
+		try
+		{  //Invoke the given listener that takes the coordinates
+			FacesContext context = FacesContext.getCurrentInstance();
+			MethodExpression coordinatesListener = (MethodExpression) getAttributes().get("listener");
+			Object[] arguments = new Object[1];
+			arguments[0] = coords;
+			coordinatesListener.invoke(context.getELContext(), arguments);
 		}
-		catch(Exception ex){
+		catch(Exception e)
+		{
 			logger.error("no coordinates listener set - please set the listener attribute to point to a method that accepts org.geojsf.xml.gml.Coordinates");
 		}
     }
-	
-	public ArrayList<DefaultGeoJsfService> getServiceList() {
-		return serviceList;
-	}
 
-	public void setServiceList(ArrayList<DefaultGeoJsfService> serviceList) {
-		this.serviceList = serviceList;
-	}
-
-	 public void decode(FacesContext context) {
-	    	logger.info("Entering decode");
-		    java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
-		    String behaviorEvent = params.get("javax.faces.behavior.event");
-	        logger.info("Got this event: " +behaviorEvent);
-	       
-		       
-			java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
-	        if (behaviors.isEmpty()) {
-	           logger.error("no behaviors.exiting.");
-	           return;
-	        }
-	   
+	public void decode(FacesContext context)
+	{
+		logger.info("Entering decode");
+		java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
+		String behaviorEvent = params.get("javax.faces.behavior.event");
+	    logger.info("Got this event: " +behaviorEvent);
+	              
+		java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
+		if (behaviors.isEmpty())
+		{
+			logger.error("no behaviors.exiting.");
+			return;
+		}
 	           
-        if (behaviorEvent != null) {
+        if (behaviorEvent != null)
+        {
             List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
             if (behaviors.size() > 0) {
                 String behaviorSource = params.get("javax.faces.source");
@@ -166,27 +161,22 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
              		  String coordinates = params.get("org.geojsf.coordinates");
            			  ajaxEvent.setCoordinates(coordinates);
              		  behavior.broadcast(ajaxEvent);
-        }}}}}
+        }}}}
+	}
 	
 
 	@Override
-	public Collection<String> getEventNames() {
+	public Collection<String> getEventNames()
+	{
 		ArrayList<String> events = new ArrayList<String>();
 		events.add("mapClick");
 		return events;
 	}
 
 	@Override
-	public String getDefaultEventName() {
+	public String getDefaultEventName()
+	{
 		return "mapClick";
-	}
-
-	public Coordinates getCoords() {
-		return coords;
-	}
-
-	public void setCoords(Coordinates coords) {
-		this.coords = coords;
 	}
 	
 	@Override
@@ -217,12 +207,11 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 			writer.writeText("OpenLayers.ImgPath='" +this.getFacesContext().getExternalContext().getRequestContextPath() +"/" +this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME") +"/';", null);
 		}
 	    
-	    
 		writer.writeText("GeoJSF.resetLayers();", null);
 		Boolean baseLayer = true;
  		for (DefaultGeoJsfService service : serviceList)
  		{
- 			
+ 			logger.info("Adding "+service.getCode());
  			writer.writeText("var url    = '" +service.getUrl() +"';",null);
  		    writer.writeText("var name   = '" +service.getCode() +"';",null);
  			writer.writeText("var params = {};", null);
@@ -238,7 +227,8 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
  		writer.endElement("script");   
 	}
 
-	public String getWidth() {
+	public String getWidth()
+	{
 		if (this.width!=null)
 		{
 			return this.width;
@@ -246,9 +236,7 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 		return "500";
 	}
 
-	public void setWidth(String width) {		
-		this.width = width;
-	}
+	public void setWidth(String width) {this.width = width;}
 
 	public String getHeight() {
 		if (this.height!=null)
@@ -297,4 +285,10 @@ public class Map  extends UINamingContainer implements ClientBehaviorHolder{
 	public void setZoomLevel(String zoomLevel) {
 		this.zoomLevel = zoomLevel;
 	}
+	
+	public Coordinates getCoords() {return coords;}
+	public void setCoords(Coordinates coords) {this.coords = coords;}
+	
+	public ArrayList<DefaultGeoJsfService> getServiceList() {return serviceList;}
+	public void setServiceList(ArrayList<DefaultGeoJsfService> serviceList) {this.serviceList = serviceList;}
 }
