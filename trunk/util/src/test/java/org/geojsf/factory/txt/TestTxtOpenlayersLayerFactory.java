@@ -1,5 +1,6 @@
 package org.geojsf.factory.txt;
 
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +14,7 @@ public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 	@Before
 	public void init()
 	{
-//		DefaultGeoJsfLayer layer = new DefaultGeoJsfLayer();
+		DefaultGeoJsfLayer layer = new DefaultGeoJsfLayer();
 	}
 	
 	@Test
