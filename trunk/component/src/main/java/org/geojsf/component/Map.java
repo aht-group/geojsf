@@ -16,15 +16,9 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
-import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-
 import org.geojsf.controller.util.GeoJsfMap;
 import org.geojsf.event.MapAjaxEvent;
-import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
-import org.geojsf.model.interfaces.openlayers.GeoJsfService;
-import org.geojsf.model.interfaces.openlayers.GeoJsfView;
-import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
+import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.xml.gml.Coordinates;
@@ -50,18 +44,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	private String centerX = null;
 	private String centerY = null;
 	private String zoomLevel = null;
-	
-	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>> 
-		String layerString(SERVICE service)
-	{
-		List<LAYER> layers = service.getLayer();
-		StringBuffer sb = new StringBuffer();
-		for (LAYER layer : layers)
-		{
-			sb.append(layer.getCode() +",");
-		}
-		return sb.deleteCharAt(sb.length()-1).toString();
-	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String fallback()
@@ -215,7 +197,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
  			writer.writeText("var url    = '" +service.getUrl() +"';",null);
  		    writer.writeText("var name   = '" +service.getCode() +"';",null);
  			writer.writeText("var params = {};", null);
- 			writer.writeText("params.layers      = '"+layerString(service) +"';",null);
+ 			writer.writeText("params.layers      = '"+TxtOpenlayersLayerFactory.buildLayerString(service) +"';",null);
  			writer.writeText("params.transparent = 'true';",null);
  			writer.writeText("params.format      = 'image/png';",null);
  			writer.writeText("var options = {};",null);

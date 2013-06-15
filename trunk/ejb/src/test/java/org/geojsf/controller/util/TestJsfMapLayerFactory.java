@@ -5,11 +5,11 @@ import java.util.List;
 import junit.framework.Assert;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.geojsf.controller.factory.xml.openlayers.XmlRepositoryFactory;
 import net.sf.geojsf.controller.util.DummyViewFactory;
 import net.sf.geojsf.controller.util.GeoJsfMapLayerFactory;
 
 import org.geojsf.controller.util.query.OpenLayersQuery;
+import org.geojsf.factory.xml.openlayers.XmlRepositoryFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;

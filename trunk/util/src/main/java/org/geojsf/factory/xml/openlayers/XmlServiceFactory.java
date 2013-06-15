@@ -1,4 +1,4 @@
-package net.sf.geojsf.controller.factory.xml.openlayers;
+package org.geojsf.factory.xml.openlayers;
 
 import java.io.Serializable;
 
