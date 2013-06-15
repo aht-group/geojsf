@@ -31,6 +31,7 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
 	private GeoJsfMap(final Class<SERVICE> clService)
     {
     	fMapLayer = GeoJsfMapLayerFactory.factory(clService);
+    	layerServices = new ArrayList<SERVICE>();
     } 
     
     public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
@@ -50,7 +51,6 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     	{
     		list.add(vl.getLayer());
     	}
-    	
     	dmLayer = new PrimefacesEjbIdDataModel<LAYER>(list);
     	dmLayer.setSingleSelectCallback(this);
     }
@@ -68,21 +68,21 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     
     public void buildServices()
     {
+    	layerServices.clear();
     	List<LAYER> layers = new ArrayList<LAYER>();
     	int size = view.getLayer().size();
     	for(int i=(size-1);i>=0;i--)
-//		for(VL vl : view.getLayer())
 		{
 			VL vl = view.getLayer().get(i);
-			logger.trace("vl.layer="+vl.getLayer().getCode()+"."+vl.getLayer().getService().getCode());
+			logger.info("vl.layer="+vl.getLayer().getCode()+"."+vl.getLayer().getService().getCode());
 			if(dmLayer.isSelected(vl.getLayer().getId())){layers.add(vl.getLayer());}
 		}
-    	layerServices = fMapLayer.buildFromLayer(layers);
+    	layerServices.addAll(fMapLayer.buildFromLayer(layers));
     }
     
     public void debug()
     {
-    	logger.info("DEBUG");
+    	logger.info("--- DEBUG START ---");
     	for(SERVICE service : layerServices)
     	{
     		logger.info(service.getCode()+" "+service.getUrl());
@@ -91,6 +91,7 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     			logger.info("\t"+layer.getCode());
     		}
     	}
+    	logger.info("--- DEBUG END ---");
     }
 	
     public VIEW getView() {return view;}
@@ -98,5 +99,4 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     
     public PrimefacesEjbIdDataModel<LAYER> getDmLayer() {return dmLayer;}
     public List<SERVICE> getLayerServices() {return layerServices;}
-
 }
