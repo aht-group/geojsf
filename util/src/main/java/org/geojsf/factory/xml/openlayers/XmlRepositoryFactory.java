@@ -1,8 +1,8 @@
-package net.sf.geojsf.controller.factory.xml.openlayers;
+package org.geojsf.factory.xml.openlayers;
 
 import java.io.Serializable;
+import java.util.List;
 
-import net.sf.ahtutils.controller.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
@@ -11,42 +11,36 @@ import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.interfaces.openlayers.GeoJsfView;
 import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import org.geojsf.xml.geojsf.Query;
-import org.geojsf.xml.openlayers.View;
+import org.geojsf.xml.openlayers.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlViewFactory implements Serializable
+public class XmlRepositoryFactory implements Serializable
 {
-	final static Logger logger = LoggerFactory.getLogger(XmlViewFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(XmlRepositoryFactory.class);
 	
 	public static final long serialVersionUID=1;
 	
-	private View q;
+	private Repository q;
 	
-	public XmlViewFactory(Query query){this(query.getView());}
-	public XmlViewFactory(View q)
+	public XmlRepositoryFactory(Query q){this(q.getRepository());}
+	public XmlRepositoryFactory(Repository q)
 	{
 		this.q=q;
 	}
 
 	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-		View build (GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL> ejb)
+		Repository build (List<SERVICE> list)
 	{
-		View xml = new View();
-		if(q.isSetCode()){xml.setCode(ejb.getCode());}
-		if(q.isSetZoom()){xml.setZoom(ejb.getZoom());}
-		if(q.isSetX()){xml.setX(ejb.getX());}
-		if(q.isSetY()){xml.setY(ejb.getY());}
-		if(q.isSetLangs())
-		{
-			XmlLangsFactory f = new XmlLangsFactory(q.getLangs());
-			xml.setLangs(f.getUtilsLangs(ejb.getName()));
-		}
+		Repository xml = new Repository();
 		
-		
-		if(ejb.getLayer()!=null && ejb.getLayer().size()>0)
+		if(q.isSetService() && list.size()>0)
 		{
-			
+			XmlServiceFactory f = new XmlServiceFactory(q.getService().get(0));
+			for(GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL> service : list)
+			{
+				xml.getService().add(f.build(service));
+			}
 		}
 		
 		return xml;
