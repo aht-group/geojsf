@@ -48,17 +48,17 @@ public class DummyViewFactory
 	
 	private void initServices() throws UtilsIntegrityException
 	{
-		if(serviceOsm==null){serviceOsm = fService.create("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");}
-		if(serviceAht==null){serviceAht = fService.create("aht","https://www.aht-group.com/geoserver/sf/wms");}
+		if(serviceOsm==null){serviceOsm = fService.build("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");}
+		if(serviceAht==null){serviceAht = fService.build("aht","https://www.aht-group.com/geoserver/sf/wms");}
 	}
 	
 	private void initLayer() throws UtilsIntegrityException
 	{
 	
-		layerOsmBasic = fLayer.create("basic", serviceOsm,DefaultGeoJsfLang.defaultLangs);layerOsmBasic.setId(1);
-		layerAhtRoads = fLayer.create("roads",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRoads.setId(2);
-		layerAhtStreams = fLayer.create("streams",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtStreams.setId(3);
-		layerAhtRestricted = fLayer.create("restricted",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRestricted.setId(4);
+		layerOsmBasic = fLayer.build("basic", serviceOsm,DefaultGeoJsfLang.defaultLangs);layerOsmBasic.setId(1);
+		layerAhtRoads = fLayer.build("roads",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRoads.setId(2);
+		layerAhtStreams = fLayer.build("streams",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtStreams.setId(3);
+		layerAhtRestricted = fLayer.build("restricted",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRestricted.setId(4);
 	}
 	
 	private void initViews() throws UtilsIntegrityException

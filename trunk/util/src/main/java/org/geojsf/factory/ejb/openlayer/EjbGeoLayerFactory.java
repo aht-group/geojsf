@@ -31,7 +31,7 @@ public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,S
         this.clLayer = clLayer;
     } 
 	
-	public LAYER create(String code, SERVICE service, String[] langKeys) throws UtilsIntegrityException
+	public LAYER build(String code, SERVICE service, String[] langKeys) throws UtilsIntegrityException
 	{
 		LAYER ejb;
 		try

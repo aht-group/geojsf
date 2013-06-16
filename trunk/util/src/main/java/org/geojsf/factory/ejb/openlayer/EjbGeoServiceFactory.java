@@ -28,7 +28,7 @@ public class EjbGeoServiceFactory<L extends UtilsLang,D extends UtilsDescription
         return new EjbGeoServiceFactory<L,D,SERVICE,LAYER,VIEW,VL>(clService);
     }
 	
-	public SERVICE create(String code, String url) throws UtilsIntegrityException
+	public SERVICE build(String code, String url) throws UtilsIntegrityException
 	{
 		SERVICE ejb;
 		try {ejb = clService.newInstance();}
