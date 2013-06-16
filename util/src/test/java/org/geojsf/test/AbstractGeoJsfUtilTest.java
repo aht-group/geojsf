@@ -22,10 +22,10 @@ public class AbstractGeoJsfUtilTest
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfUtilTest.class);
 	
-	protected EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
-	protected EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fLayer;
-	protected EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fView;
-	protected EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fViewLayer;
+	protected EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> efService;
+	protected EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> efLayer;
+	protected EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> efView;
+	protected EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> efViewLayer;
 	
 	@BeforeClass
     public static void initLogger()
@@ -46,9 +46,9 @@ public class AbstractGeoJsfUtilTest
 	
 	protected void initGenericFactories()
 	{
-		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
-		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
-		fView = EjbGeoViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfView.class);
-		fViewLayer = EjbGeoViewLayerFactory.factory(DefaultGeoJsfViewLayer.class);
+		efService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
+		efLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
+		efView = EjbGeoViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfView.class);
+		efViewLayer = EjbGeoViewLayerFactory.factory(DefaultGeoJsfViewLayer.class);
 	}
 }

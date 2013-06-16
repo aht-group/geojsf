@@ -1,10 +1,16 @@
 package org.geojsf.factory.geojsf;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 
-import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
+import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
+import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,44 +24,35 @@ public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 	
 	private static String[] langKeys = {"de","en"};
 	
-	private DefaultGeoJsfService service;
+	private DefaultGeoJsfService service1;
+	private DefaultGeoJsfService service2;
+	private List<DefaultGeoJsfLayer> layers;
 	private DefaultGeoJsfLayer layerA;
 	private DefaultGeoJsfLayer layerB;
 	
-	private DefaultGeoJsfService serviceList;
+	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
 	
 	@Before
 	public void init() throws UtilsIntegrityException
 	{
 		initGenericFactories();
 		
-		service = fService.build("code1", "http://1");
-		layerA = fLayer.build("A", service, langKeys);
-		layerB = fLayer.build("B", service, langKeys);
+		service1 = efService.build("service1", "http://1");
+		service2 = efService.build("service2", "http://2");
+		layerA = efLayer.build("A", service1, langKeys);
+		layerB = efLayer.build("B", service2, langKeys);
 		
-
+		layers = new ArrayList<DefaultGeoJsfLayer>();
+		layers.add(layerA);
+		layers.add(layerB);
+		
+		fService = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
 	}
 	
 	@Test
-	public void single()
+	public void size()
 	{
-		serviceList = new DefaultGeoJsfService();
-		serviceList.getLayer().add(layerA);
-		
-		String expected = layerA.getCode();
-		String actual = TxtOpenlayersLayerFactory.buildLayerString(serviceList);
-		Assert.assertEquals(expected, actual);
-	}
-	
-	@Test
-	public void multi()
-	{
-		serviceList = new DefaultGeoJsfService();
-		serviceList.getLayer().add(layerA);
-		serviceList.getLayer().add(layerB);
-		
-		String expected = layerA.getCode()+","+layerB.getCode();
-		String actual = TxtOpenlayersLayerFactory.buildLayerString(serviceList);
-		Assert.assertEquals(expected, actual);
+		Assert.assertEquals(2, fService.buildFromLayer(layers).size());
+		Assert.assertEquals(2, fService.buildFromLayer(layers).size());
 	}
 }

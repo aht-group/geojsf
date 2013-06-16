@@ -55,6 +55,7 @@ public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription
 	public List<SERVICE> buildFromLayer(List<LAYER> list)
 	{
 		mapService.clear();
+		orderedServices.clear();
 		for(LAYER layer : list)
 		{
 			SERVICE service = getService(layer.getService());
