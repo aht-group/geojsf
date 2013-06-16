@@ -70,12 +70,8 @@ var GeoJSF = {
 			 {
 			 	style = style +"left: 0px; right: 80%; bottom: 0px;"
 			 }
-		
-			
-			
-			mousePosition = new OpenLayers.Control.MousePosition({
-				emptyString: ''
-				});
+
+			mousePosition = new OpenLayers.Control.MousePosition({emptyString: ''});
 			this.map.addControl(mousePosition);
 			mousePosition.element.setAttribute("style", style);
 			return mousePosition;

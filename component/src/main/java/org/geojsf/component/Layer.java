@@ -23,19 +23,11 @@ public class Layer  extends UINamingContainer
 		}
 		return "WMS";
 	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	public String getLayers() {
-		return layers;
-	}
-	public void setLayers(String layers) {
-		this.layers = layers;
-	}
+	public void setType(String type) {this.type = type;}
+	
+	public String getUrl() {return url;}
+	public void setUrl(String url) {this.url = url;}
+	
+	public String getLayers() {return layers;}
+	public void setLayers(String layers) {this.layers = layers;}
 }
