@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ResourceDependencies({
-	@ResourceDependency(library = "geojsf",name = "GeoJSF.js", target = "head"),
+	@ResourceDependency(library = "js.geojsf",name = "GeoJSF.js", target = "head"),
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head")
 })
 @FacesComponent(value="org.geojsf.component.Map")
