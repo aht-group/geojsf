@@ -6,9 +6,9 @@ import junit.framework.Assert;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.geojsf.controller.util.DummyViewFactory;
-import net.sf.geojsf.controller.util.GeoJsfMapLayerFactory;
 
 import org.geojsf.controller.util.query.OpenLayersQuery;
+import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
 import org.geojsf.factory.xml.openlayers.XmlRepositoryFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
@@ -26,12 +26,12 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestJsfMapLayerFactory.class);
 	
-	private GeoJsfMapLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fJsf;
+	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fJsf;
 	
 	@Before
 	public void init() throws UtilsIntegrityException
 	{
-		fJsf = GeoJsfMapLayerFactory.factory(DefaultGeoJsfService.class);
+		fJsf = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
 		view = DummyViewFactory.build();
 	}
 	
