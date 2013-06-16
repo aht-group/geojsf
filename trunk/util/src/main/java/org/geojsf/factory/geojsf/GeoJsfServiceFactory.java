@@ -1,4 +1,4 @@
-package net.sf.geojsf.controller.util;
+package org.geojsf.factory.geojsf;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -15,16 +15,16 @@ import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 {
-	final static Logger logger = LoggerFactory.getLogger(GeoJsfMapLayerFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(GeoJsfServiceFactory.class);
 	
 	private Map<String,SERVICE> mapService;
 	private List<SERVICE> orderedServices;
 	
 	final Class<SERVICE> clService;
 	
-    public GeoJsfMapLayerFactory(final Class<SERVICE> clService)
+    public GeoJsfServiceFactory(final Class<SERVICE> clService)
     {
     	this.clService=clService;
     	mapService = new Hashtable<String,SERVICE>();
@@ -32,11 +32,11 @@ public class GeoJsfMapLayerFactory<L extends UtilsLang,D extends UtilsDescriptio
     } 
     
     public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-    	GeoJsfMapLayerFactory<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<SERVICE> clService)
+    	GeoJsfServiceFactory<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<SERVICE> clService)
     {
-        return new GeoJsfMapLayerFactory<L,D,SERVICE,LAYER,VIEW,VL>(clService);
+        return new GeoJsfServiceFactory<L,D,SERVICE,LAYER,VIEW,VL>(clService);
     }
-	
+	 
 	public List<SERVICE> build(VIEW view)
 	{
 		return build(view.getLayer());

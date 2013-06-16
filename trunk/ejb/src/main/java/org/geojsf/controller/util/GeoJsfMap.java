@@ -7,8 +7,8 @@ import net.sf.ahtutils.jsf.interfaces.dm.DmSingleSelect;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
-import net.sf.geojsf.controller.util.GeoJsfMapLayerFactory;
 
+import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
 import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
 import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.interfaces.openlayers.GeoJsfView;
@@ -22,7 +22,7 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMap.class);
 	
-	private GeoJsfMapLayerFactory<L,D,SERVICE,LAYER,VIEW,VL> fMapLayer;
+	private GeoJsfServiceFactory<L,D,SERVICE,LAYER,VIEW,VL> fMapLayer;
 	
 	private List<SERVICE> layerServices;
 	private VIEW view;
@@ -30,7 +30,7 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
 
 	private GeoJsfMap(final Class<SERVICE> clService)
     {
-    	fMapLayer = GeoJsfMapLayerFactory.factory(clService);
+    	fMapLayer = GeoJsfServiceFactory.factory(clService);
     	layerServices = new ArrayList<SERVICE>();
     } 
     
@@ -62,6 +62,8 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     
     @Override public void dmSingleSelected(LAYER t)
     {
+    	logger.info("dmSingleSelected "+t);
+    	logger.info("dmLayer.size="+dmLayer.getRowCount());
 		this.buildServices();
 		debug();
 	}
@@ -75,9 +77,14 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
 		{
 			VL vl = view.getLayer().get(i);
 			logger.info("vl.layer="+vl.getLayer().getCode()+"."+vl.getLayer().getService().getCode());
-			if(dmLayer.isSelected(vl.getLayer().getId())){layers.add(vl.getLayer());}
+			if(dmLayer.isSelected(vl.getLayer().getId()))
+			{
+				layers.add(vl.getLayer());
+			}
 		}
+    	logger.info("Will build services for "+layers.size()+" layers");
     	layerServices.addAll(fMapLayer.buildFromLayer(layers));
+    	logger.info("Just build "+layerServices.size()+" services");
     }
     
     public void debug()
