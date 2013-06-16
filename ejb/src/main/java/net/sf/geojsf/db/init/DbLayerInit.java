@@ -94,7 +94,7 @@ public class DbLayerInit <L extends UtilsLang,
 			{
 				try
 				{
-					ejb = ejbLayerFactory.create(layer.getCode(), service, langKeys);					
+					ejb = ejbLayerFactory.build(layer.getCode(), service, langKeys);					
 					ejb = (LAYER)fSecurity.persist(ejb);
 				}
 
