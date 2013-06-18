@@ -15,24 +15,28 @@ import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.PostAddToViewEvent;
 
 import org.geojsf.controller.util.GeoJsfMap;
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.xml.gml.Coordinates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ResourceDependencies({
-	@ResourceDependency(library = "js.geojsf",name = "GeoJSF.js", target = "head"),
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head")
 })
 @FacesComponent(value="org.geojsf.component.Map")
+@ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class Map extends UINamingContainer implements ClientBehaviorHolder
 {
-	
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
 	private ArrayList<DefaultGeoJsfService> serviceList;
 	
@@ -44,6 +48,16 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	private String centerX = null;
 	private String centerY = null;
 	private String zoomLevel = null;
+	
+	@Override
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
+	{
+		if(event instanceof PostAddToViewEvent)
+		{
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"GeoJSF.js");
+		}
+		super.processEvent(event);
+	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String fallback()
