@@ -32,5 +32,63 @@
 		</dependency>
 	</dependencies>
 	
+	<build>
+		<plugins>
+         	<plugin>
+				<groupId>net.sf.ahtutils</groupId>
+				<artifactId>ahtutils-maven</artifactId>
+				<executions>
+ 					<execution>
+						<id>create-js</id>
+						<phase>process-resources</phase> 
+						<goals>
+							<goal>createJs</goal>
+						</goals>
+						<configuration>
+							<projectBaseDir>${project.basedir}</projectBaseDir>
+	              			<jsDir>src/main/resources/META-INF/resources/js.geojsf</jsDir>
+	              			<targetFile>${project.build.directory}/classes/META-INF/resources/js.geojsf/GeoJsf.min.js</targetFile>
+	              			<log>WARN</log>
+	              		</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											net.sf.ahtutils
+										</groupId>
+										<artifactId>
+											ahtutils-maven
+										</artifactId>
+										<versionRange>
+											[0.2.5-SNAPSHOT,)
+										</versionRange>
+										<goals>
+											<goal>createJs</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>	
 	
 </project>
