@@ -72,10 +72,8 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     {
     	layerServices.clear();
     	List<LAYER> layers = new ArrayList<LAYER>();
-    	int size = view.getLayer().size();
-    	for(int i=(size-1);i>=0;i--)
+    	for(VL vl : view.getLayer())
 		{
-			VL vl = view.getLayer().get(i);
 			logger.info("vl.layer="+vl.getLayer().getCode()+"."+vl.getLayer().getService().getCode());
 			if(dmLayer.isSelected(vl.getLayer().getId()))
 			{

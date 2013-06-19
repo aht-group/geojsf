@@ -47,8 +47,8 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 	public void serviceOrdering()
 	{
 		List<DefaultGeoJsfService> actual = geoJsfMap.getLayerServices();
-		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(0).getCode());
-		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(1).getCode());
+		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(0).getCode());
+		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(1).getCode());
 	}
 	
 	@Test @Ignore
