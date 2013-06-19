@@ -71,9 +71,4 @@ var GeoJSF = {
 			this.map.addLayer(layer);
 			this.map.zoomToMaxExtent();
 		},
-		
-		center : function(lon,lat,zoom)
-		{
-			this.map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
-		},
 };

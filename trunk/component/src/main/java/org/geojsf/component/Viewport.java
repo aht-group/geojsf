@@ -16,20 +16,22 @@ import org.geojsf.util.GeoJsfJsLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@FacesComponent(value="org.geojsf.component.Coordinate")
+@FacesComponent(value="org.geojsf.component.Viewport")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Coordinate extends UINamingContainer implements ClientBehaviorHolder
+public class Viewport extends UINamingContainer implements ClientBehaviorHolder
 {
-	final static Logger logger = LoggerFactory.getLogger(Coordinate.class);
+	final static Logger logger = LoggerFactory.getLogger(Viewport.class);
 	
-	private String orientation = null;
+	private Double lat = 0.0;
+	private Double lon = 0.0;
+	private Integer zoom = 5;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
 	{
 		if(event instanceof PostAddToViewEvent)
 		{
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"coordinate.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"viewport.js");
 		}
 		super.processEvent(event);
 	}
@@ -37,14 +39,16 @@ public class Coordinate extends UINamingContainer implements ClientBehaviorHolde
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		logger.info("entering encodebegin");
 		ResponseWriter writer = ctx.getResponseWriter();
-		
-//		writer.startElement("script", this);
-			writer.writeText("GeoJsfCoordinate.addCoordinatesControl('" +getOrientation() +"');", null);
-// 		writer.endElement("script");   
+		writer.writeText("GeoJsfViewport.center(" +lat +"," +lon +"," +zoom +");", null);
 	}
 
-	public String getOrientation() {return orientation;}
-	public void setOrientation(String orientation) {this.orientation = orientation;}
+	public Double getLat() {return lat;}
+	public void setLat(Double lat) {this.lat = lat;}
+	
+	public Double getLon() {return lon;}
+	public void setLon(Double lon) {this.lon = lon;}
+
+	public Integer getZoom() {return zoom;}
+	public void setZoom(Integer zoom) {this.zoom = zoom;}
 }

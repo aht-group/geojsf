@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jsf:component xmlns:jsf="http://www.openfuxml.org/jsf">
+    <jsf:attribute name="lat" default="0" required="false" shortDescription="myShortDescription"/>
+    <jsf:attribute name="lon" default="0" required="false" shortDescription="myShortDescription"/>
+    <jsf:attribute name="zoom" default="5" required="false" shortDescription="myShortDescription"/>
+</jsf:component>
