@@ -43,8 +43,8 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	private Coordinates coords = new Coordinates();
 	
 	//Define attributes of the component
-	private String width = null;
-	private String height = null;
+	private Integer width = null;
+	private Integer height = 400;
 	private String centerX = null;
 	private String centerY = null;
 	private String zoomLevel = null;
@@ -183,7 +183,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("div", this);
 		writer.writeAttribute("id", this.getClientId(), null);
-		writer.writeAttribute("style", "width: " +getWidth() +"px; height: " +getHeight() + "px;", null);
+		writer.writeAttribute("style", buildStyle(), null);
 		writer.writeAttribute("id", this.getClientId(), null);
 		writer.endElement("div");
 		
@@ -223,29 +223,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
  		writer.endElement("script");   
 	}
 
-	public String getWidth()
-	{
-		if (this.width!=null)
-		{
-			return this.width;
-		}
-		return "500";
-	}
-
-	public void setWidth(String width) {this.width = width;}
-
-	public String getHeight() {
-		if (this.height!=null)
-		{
-			return this.height;
-		}
-		return "400";
-	}
-
-	public void setHeight(String height) {
-		this.height = height;
-	}
-
 	public String getCenterX() {
 		if (this.centerX!=null)
 		{
@@ -281,6 +258,22 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	public void setZoomLevel(String zoomLevel) {
 		this.zoomLevel = zoomLevel;
 	}
+	
+	private String buildStyle()
+	{
+		StringBuffer sb = new StringBuffer();
+		sb.append("width: ");
+		if(width!=null){sb.append(width +"px;");}
+		else{sb.append("100%;");}
+		sb.append("height: " +height + "px;");
+		return sb.toString();
+	}
+	
+	public Integer getWidth(){return width;}
+	public void setWidth(Integer width) {this.width = width;}
+	
+	public Integer getHeight() {return height;}
+	public void setHeight(Integer height) {this.height = height;}
 	
 	public Coordinates getCoords() {return coords;}
 	public void setCoords(Coordinates coords) {this.coords = coords;}
