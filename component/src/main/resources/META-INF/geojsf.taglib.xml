@@ -3,24 +3,30 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
- <namespace>http://geojsf.sourceforge.net/ui</namespace> 
- <composite-library-name>geojsf</composite-library-name> 
- <tag>
-  <tag-name>map</tag-name>
-  <component>
-    <component-type>org.geojsf.component.Map</component-type>
-  </component>
- </tag>	
- <tag>
-  <tag-name>coordinate</tag-name>
-  <component>
-    <component-type>org.geojsf.component.Coordinate</component-type>
-  </component>
- </tag>		
- <tag>
-  <tag-name>layer</tag-name>
-  <component>
-    <component-type>org.geojsf.component.Layer</component-type>
-  </component>
- </tag>		
- </facelet-taglib>
+	<namespace>http://geojsf.sourceforge.net/ui</namespace> 
+	<composite-library-name>geojsf</composite-library-name> 
+	<tag>
+		<tag-name>map</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Map</component-type>
+		</component>
+	</tag>	
+	<tag>
+		<tag-name>coordinate</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Coordinate</component-type>
+		</component>
+	</tag>		
+	<tag>
+		<tag-name>layer</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Layer</component-type>
+		</component>
+	</tag>	
+		<tag>
+		<tag-name>viewport</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Viewport</component-type>
+		</component>
+	</tag>	
+</facelet-taglib>

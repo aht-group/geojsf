@@ -30,9 +30,7 @@ import org.geojsf.xml.gml.Coordinates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ResourceDependencies({
-	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head")
-})
+@ResourceDependencies({@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head")})
 @FacesComponent(value="org.geojsf.component.Map")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class Map extends UINamingContainer implements ClientBehaviorHolder
@@ -218,9 +216,14 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
  			writer.writeText("options.isBaseLayer= '" +baseLayer.toString() +"';", null);
  			writer.writeText("GeoJSF.addLayer(name, url, params, options);",null);
  			baseLayer = false;
- 		}
- 		writer.writeText("GeoJSF.center(" +getCenterX() +"," +getCenterY() +"," +getZoomLevel() +");", null);
- 		writer.endElement("script");   
+ 		}  
+	}
+	
+	@Override
+	public void encodeEnd(FacesContext ctx) throws IOException
+	{
+		ResponseWriter writer = ctx.getResponseWriter();
+		writer.endElement("script"); 
 	}
 
 	public String getCenterX() {
