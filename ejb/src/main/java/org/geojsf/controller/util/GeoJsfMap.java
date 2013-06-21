@@ -37,12 +37,34 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
     	GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<SERVICE> clService,VIEW view)
     {
-    	GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> f = new GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>(clService);
-    	f.setView(view);
-    	f.buildDmLayer();f.selectAll();
-    	f.buildServices();
-    	return f;
+    	GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> gjm = new GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>(clService);
+    	gjm.setView(view);
+    	gjm.buildDmLayer();gjm.selectAll();
+    	gjm.buildServices();
+    	return gjm;
     }
+    
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+	GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> build(final Class<SERVICE> clService, final Class<VIEW> clView, final Class<VL> clVl, LAYER layer)
+	{
+    	VIEW view = null;
+    	VL vl = null;
+		try
+		{
+			
+			view = clView.newInstance();
+			vl = clVl.newInstance();
+			vl.setLayer(layer);
+			vl.setOrderNo(1);
+			vl.setView(view);
+			vl.setVisible(true);
+			view.getLayer().add(vl);
+		}
+		catch (InstantiationException e) {e.printStackTrace();}
+		catch (IllegalAccessException e) {e.printStackTrace();}
+
+		return factory(clService,view);
+	}
     
     private void buildDmLayer()
     {

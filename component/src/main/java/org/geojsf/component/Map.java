@@ -23,6 +23,7 @@ import javax.faces.event.PostAddToViewEvent;
 import org.geojsf.controller.util.GeoJsfMap;
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
+import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.util.GeoJsfJsLoader;
@@ -36,7 +37,7 @@ import org.slf4j.LoggerFactory;
 public class Map extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
-	private ArrayList<DefaultGeoJsfService> serviceList;
+	private ArrayList<GeoJsfService> serviceList;
 	
 	private Coordinates coords = new Coordinates();
 	
@@ -60,7 +61,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String fallback()
 	{
-		 serviceList = new ArrayList<DefaultGeoJsfService>();
+		 serviceList = new ArrayList<GeoJsfService>();
 		 logger.debug("Checking value existence ...");
 		 if (getAttributes().get("value")==null)
 		 {
@@ -78,7 +79,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		 else
 		 {
 			 GeoJsfMap map = (GeoJsfMap) getAttributes().get("value");
-			 serviceList = (ArrayList<DefaultGeoJsfService>) map.getLayerServices();
+			 serviceList = (ArrayList<GeoJsfService>) map.getLayerServices();
 		 }
 		return new String();
 	}
@@ -203,7 +204,9 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	    
 		writer.writeText("GeoJSF.resetLayers();", null);
 		Boolean baseLayer = true;
- 		for (DefaultGeoJsfService service : serviceList)
+		logger.info("Class ???");
+		logger.info("Class :"+serviceList.get(0).getClass().getName());
+ 		for (GeoJsfService service : serviceList)
  		{
  			logger.info("Adding "+service.getCode());
  			writer.writeText("var url    = '" +service.getUrl() +"';",null);
@@ -281,6 +284,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	public Coordinates getCoords() {return coords;}
 	public void setCoords(Coordinates coords) {this.coords = coords;}
 	
-	public ArrayList<DefaultGeoJsfService> getServiceList() {return serviceList;}
-	public void setServiceList(ArrayList<DefaultGeoJsfService> serviceList) {this.serviceList = serviceList;}
+	public ArrayList<GeoJsfService> getServiceList() {return serviceList;}
+	public void setServiceList(ArrayList<GeoJsfService> serviceList) {this.serviceList = serviceList;}
 }

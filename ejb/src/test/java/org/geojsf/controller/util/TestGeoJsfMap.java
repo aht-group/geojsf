@@ -5,6 +5,8 @@ import java.util.List;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.geojsf.controller.util.DummyViewFactory;
 
+import org.geojsf.factory.ejb.openlayer.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.openlayer.EjbGeoServiceFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
@@ -23,40 +25,53 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestGeoJsfMap.class);
 	
-	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> geoJsfMap;
+	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
+	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fLayer;	
+	
+	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
+			gsmView,gjmLayer;
 	
 	@Before
 	public void init() throws UtilsIntegrityException
-	{
+	{	
+		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
+		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
+		
 		view = DummyViewFactory.build();
-		geoJsfMap = GeoJsfMap.factory(DefaultGeoJsfService.class, view);
+		gsmView = GeoJsfMap.factory(DefaultGeoJsfService.class, view);
+			
+		service = fService.build("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");
+		layer = fLayer.build("basic", service,DefaultGeoJsfLang.defaultLangs);layer.setId(1);
+		gjmLayer = GeoJsfMap.build(DefaultGeoJsfService.class, DefaultGeoJsfView.class, DefaultGeoJsfViewLayer.class, layer);
 	}
 	
 	private DefaultGeoJsfView view;
+	public static DefaultGeoJsfService service;
+	private DefaultGeoJsfLayer layer;
 	
 	@Test
-	public void test()
+	public void viewBuild()
     {	
-		List<DefaultGeoJsfService> actual = geoJsfMap.getLayerServices();
+		List<DefaultGeoJsfService> actual = gsmView.getLayerServices();
 		Assert.assertEquals(2, actual.size());
 		
-		geoJsfMap.debug();
+		gsmView.debug();
     }
 	
 	@Test
-	public void serviceOrdering()
+	public void viewServiceOrdering()
 	{
-		List<DefaultGeoJsfService> actual = geoJsfMap.getLayerServices();
+		List<DefaultGeoJsfService> actual = gsmView.getLayerServices();
 		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(0).getCode());
 		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(1).getCode());
 	}
 	
 	@Test @Ignore
-	public void layerOrdering()
+	public void viewLayerOrdering()
 	{
-		geoJsfMap.debug();
+		gsmView.debug();
 		
-		for(DefaultGeoJsfService service : geoJsfMap.getLayerServices())
+		for(DefaultGeoJsfService service : gsmView.getLayerServices())
 		{
 			int i=service.getLayer().size()-1;
 			for(DefaultGeoJsfLayer layer : service.getLayer())
@@ -65,5 +80,11 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 				i--;
 			}
 		}
+	}
+	
+	@Test
+	public void layer()
+	{
+		gjmLayer.debug();
 	}
 }
