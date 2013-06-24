@@ -3,7 +3,6 @@ package org.geojsf.controller.util;
 import java.util.List;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-import net.sf.geojsf.controller.util.DummyViewFactory;
 
 import org.geojsf.factory.ejb.openlayer.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.openlayer.EjbGeoServiceFactory;

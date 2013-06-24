@@ -1,4 +1,4 @@
-package net.sf.geojsf.db.export;
+package org.geojsf.util.db.export;
 
 import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;

@@ -1,4 +1,4 @@
-package net.sf.geojsf.controller.facade;
+package org.geojsf.controller.facade;
 
 import javax.persistence.EntityManager;
 

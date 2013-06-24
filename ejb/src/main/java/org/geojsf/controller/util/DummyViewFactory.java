@@ -1,4 +1,4 @@
-package net.sf.geojsf.controller.util;
+package org.geojsf.controller.util;
 
 import org.geojsf.factory.ejb.openlayer.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.openlayer.EjbGeoServiceFactory;

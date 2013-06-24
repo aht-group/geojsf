@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.geojsf.controller.util.DummyViewFactory;
 
 import org.geojsf.controller.util.query.OpenLayersQuery;
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
