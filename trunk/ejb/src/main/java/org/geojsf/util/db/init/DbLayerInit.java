@@ -1,4 +1,4 @@
-package net.sf.geojsf.db.init;
+package org.geojsf.util.db.init;
 
 import net.sf.ahtutils.controller.factory.ejb.status.EjbDescriptionFactory;
 import net.sf.ahtutils.controller.factory.ejb.status.EjbLangFactory;
