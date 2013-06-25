@@ -10,7 +10,13 @@
 		<component>
 			<component-type>org.geojsf.component.Map</component-type>
 		</component>
-	</tag>	
+	</tag>
+	<tag>
+		<tag-name>externalScript</tag-name>
+		<component>
+			<component-type>org.geojsf.component.UIExternalScript</component-type>
+		</component>
+	</tag>		
 	<tag>
 		<tag-name>coordinate</tag-name>
 		<component>
