@@ -149,7 +149,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 	}
 
 	@Override
-	public DataStores dataStores(String workspace) throws IOException
+	public DataStores getDataStores(String workspace) throws IOException
 	{
 		Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
 		

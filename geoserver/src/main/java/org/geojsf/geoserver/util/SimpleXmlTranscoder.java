@@ -1,4 +1,4 @@
-package org.geojsf.util.factory.xml.geoserver;
+package org.geojsf.geoserver.util;
 
 import org.jdom2.Element;
 import org.jdom2.Namespace;

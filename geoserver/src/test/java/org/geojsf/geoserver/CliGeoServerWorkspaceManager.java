@@ -41,10 +41,8 @@ public class CliGeoServerWorkspaceManager
 	{
 		String wsName = "ws";
 		Workspace ws = XmlWorkspaceFactory.build(wsName);
-		boolean available;
 //ahtutils.highlight:basic
-		available = workspaceManager.isAvailable(wsName);
-		available = workspaceManager.isAvailable(ws);
+		boolean available = workspaceManager.isAvailable(ws);
 		Workspaces workspaces = workspaceManager.getWorkspaces();
 //ahtutils.highlight:basic
 	}

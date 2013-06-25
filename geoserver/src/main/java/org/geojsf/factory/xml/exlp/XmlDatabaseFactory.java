@@ -1,27 +1,25 @@
-package org.geojsf.util.factory.xml.geoserver;
+package org.geojsf.factory.xml.exlp;
 
 import java.io.Serializable;
 import java.util.List;
 
-import net.sf.exlp.util.xml.JDomUtil;
-
+import org.geojsf.geoserver.util.SimpleXmlTranscoder;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlHostFactory implements Serializable
+public class XmlDatabaseFactory implements Serializable
 {
-	final static Logger logger = LoggerFactory.getLogger(XmlHostFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(XmlDatabaseFactory.class);
 	public static final long serialVersionUID=1;
 		
 	public static final Namespace ns = Namespace.getNamespace("n","http://exlp.sf.net/net");
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unused")
 	public static void transform(Element connectionParameters)
 	{
-		logger.warn("transform");
-		String host = null;
+		String user = null;
 		String port = null;
 		
 		List<Element> list = connectionParameters.getChildren("entry",SimpleXmlTranscoder.ns);
@@ -32,17 +30,16 @@ public class XmlHostFactory implements Serializable
 				Element e = (Element)o;
 				if(e.getAttribute("key") != null)
 				{
-					if(e.getAttributeValue("key").equals("host")){host = e.getValue();}
+					if(e.getAttributeValue("key").equals("user")){user = e.getValue();}
 					if(e.getAttributeValue("key").equals("port")){port = e.getValue();}
 				}
 			}
 		}
-		if(host!=null && port !=null)
+		if(user!=null)
 		{
-			Element eHost = new Element("host",ns);
-			eHost.setAttribute("name", host);
-			eHost.setAttribute("port", port);
-			connectionParameters.addContent(eHost);
+			Element eDatabase = new Element("database",ns);
+			eDatabase.setAttribute("user", user);
+			connectionParameters.addContent(eDatabase);
 		}
 	}
 }
