@@ -8,13 +8,14 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.controller.interfaces.rest.GeoServerConfigKeys;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
+import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
-import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
+import org.geojsf.util.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
-import org.geojsf.xml.geoserver.Workspaces;
+import org.geojsf.xml.geoserver.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,23 +45,31 @@ public class CliGeoServerDataStoreManager
 	
 	public void basic() throws IOException
 	{
+		Workspace ws = XmlWorkspaceFactory.build("lis");
+		DataStores dataStores;
+		boolean available;
 //ahtutils.highlight:basic		
-		DataStores dataStore = rest.dataStores("geo");
-		JaxbUtil.info(dataStore);
+		dataStores = dataStoreManager.getDataStores(ws);
 //ahtutils.highlight:basic
+		JaxbUtil.info(dataStores);
 	}
 
-	public void manager() throws IOException
+	public void read() throws IOException
 	{
-//ahtutils.highlight:basic		
-		DataStores dataStore = dataStoreManager.dataStores("geo");
-		JaxbUtil.info(dataStore);
-//ahtutils.highlight:basic
+		Workspace ws = XmlWorkspaceFactory.build("lis");
+		DataStore ds = XmlDataStoreFactory.build("lcbc-public");
+//ahtutils.highlight:read
+		boolean available = dataStoreManager.isAvailable(ws, ds);
+		DataStores dataStores = dataStoreManager.getDataStores(ws);
+		
+//ahtutils.highlight:read
+		logger.info("DS available: "+available);
+		JaxbUtil.info(dataStores);
 	}
 	
 	public void documentation() throws IOException
 	{
-		DataStores dataStores = rest.dataStores(config.getString(GeoServerConfigKeys.workspace));
+		DataStores dataStores = rest.getDataStores(config.getString(GeoServerConfigKeys.workspace));
 		for(DataStore ds : dataStores.getDataStore())
 		{
 			ds.setName(ds.getName().replace(config.getString(GeoServerConfigKeys.workspace), "geo"));
@@ -76,6 +85,7 @@ public class CliGeoServerDataStoreManager
 		GeoServerRest rest = new GeoServerRestWrapper(config);
 		
 		CliGeoServerDataStoreManager test = new CliGeoServerDataStoreManager(config,rest);
-		test.documentation();
+		test.read();
+//		test.documentation();
 	}
 }

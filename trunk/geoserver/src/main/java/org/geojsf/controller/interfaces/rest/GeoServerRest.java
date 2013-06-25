@@ -23,10 +23,11 @@ public interface GeoServerRest
 //	void updateStyle(Document doc) throws IOException;
 	void updateStyle(String workspace, Document doc) throws IOException;
 	
+	//WORKSPACE
 	Workspaces getWorkspaces() throws IOException;
 	void createWorkspace(Workspace workspace) throws IOException;
 	
 	//DATASTORE
-	DataStores dataStores(String workspace) throws IOException;
+	DataStores getDataStores(String workspace) throws IOException;
 	DataStore dataStore(String workspace, String dataStore) throws IOException;
 }

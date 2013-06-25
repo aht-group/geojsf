@@ -24,15 +24,14 @@ public class GeoServerWorkspaceManager
 	
 	public Workspaces getWorkspaces() throws IOException {return rest.getWorkspaces();}
 	
-	public boolean isAvailable(Workspace workspace) throws IOException {return isAvailable(workspace.getName());}
-	public boolean isAvailable(String name) throws IOException
+	public boolean isAvailable(Workspace workspace) throws IOException
 	{
 		Set<String> set = new HashSet<String>();
 		for(Workspace ws : getWorkspaces().getWorkspace())
 		{
 			set.add(ws.getName());
 		}
-		return set.contains(name);
+		return set.contains(workspace.getName());
 	}
 	
 	public void create(Workspace workspace) throws GeoServerConfigurationException,IOException

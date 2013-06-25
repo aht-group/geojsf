@@ -7,6 +7,7 @@ import net.sf.exlp.xml.net.Host;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.controller.interfaces.rest.GeoServerConfigKeys;
+import org.geojsf.geoserver.util.SimpleXmlTranscoder;
 import org.geojsf.xml.geoserver.DataStore;
 import org.jdom2.Element;
 import org.slf4j.Logger;
@@ -38,12 +39,13 @@ public class XmlDataStoreFactory implements Serializable
 		return ds;
 	}
 	
+	public static DataStore build(String name){return build(name,null,null,null);}
 	public static DataStore build(String name, String description, String database, String schema)
 	{
 		DataStore xml = new DataStore();
 		
-/*		xml.setName(name);
-		xml.setDescription(description);
+		xml.setName(name);
+		/*		xml.setDescription(description);
 		xml.setDatabase(database);
 		xml.setSchema(schema);
 */				
