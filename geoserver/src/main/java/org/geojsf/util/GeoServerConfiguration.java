@@ -13,9 +13,10 @@ import java.net.MalformedURLException;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.controller.geoserver.GeoServerWorkspaceConfigurator;
+import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.factory.geoserver.GeoServerDataStoreFactory;
 import org.geojsf.factory.geoserver.GeoServerRestFactory;
-import org.geojsf.factory.geoserver.GeoServerWorkspaceFactory;
 import org.geojsf.geoserver.GeoServerConfig;
 import org.geojsf.util.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.xml.geoserver.DataStore;
@@ -44,10 +45,10 @@ public class GeoServerConfiguration
 		
 	}
 	
-	public void createWorkspace()
+	public void createWorkspace() throws GeoServerConfigurationException
 	{
 		
-		GeoServerWorkspaceFactory f = new GeoServerWorkspaceFactory(reader,publisher);
+		GeoServerWorkspaceConfigurator f = new GeoServerWorkspaceConfigurator(reader,publisher);
 		boolean wsAvailable = f.createWorkspace(workspace);
 		logger.info("Workspace "+workspace+" available: "+wsAvailable);
 	}

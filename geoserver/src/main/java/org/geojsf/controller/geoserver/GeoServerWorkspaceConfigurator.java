@@ -1,4 +1,4 @@
-package org.geojsf.factory.geoserver;
+package org.geojsf.controller.geoserver;
 
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 import it.geosolutions.geoserver.rest.GeoServerRESTReader;
@@ -7,24 +7,25 @@ import it.geosolutions.geoserver.rest.decoder.RESTWorkspaceList.RESTShortWorkspa
 
 import java.io.Serializable;
 
+import org.geojsf.exception.GeoServerConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoServerWorkspaceFactory implements Serializable
+public class GeoServerWorkspaceConfigurator implements Serializable
 {
-	final static Logger logger = LoggerFactory.getLogger(GeoServerWorkspaceFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(GeoServerWorkspaceConfigurator.class);
 	public static final long serialVersionUID=1;
 	
 	private GeoServerRESTReader reader;
 	private GeoServerRESTPublisher publisher;
 	
-	public GeoServerWorkspaceFactory(GeoServerRESTReader reader, GeoServerRESTPublisher publisher)
+	public GeoServerWorkspaceConfigurator(GeoServerRESTReader reader, GeoServerRESTPublisher publisher)
 	{
 		this.reader=reader;
 		this.publisher=publisher;
 	}
 	
-	public boolean createWorkspace(String workspace)
+	public boolean createWorkspace(String workspace) throws GeoServerConfigurationException
 	{
 		boolean exists = false;
 		RESTWorkspaceList list = reader.getWorkspaces();

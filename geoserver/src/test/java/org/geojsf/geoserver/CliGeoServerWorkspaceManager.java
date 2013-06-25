@@ -38,7 +38,7 @@ public class CliGeoServerWorkspaceManager
 	public void basic(GeoServerRest rest) throws IOException
 	{
 //ahtutils.highlight:basic		
-		Workspaces workspaces = workspaceManager.workspaces();
+		Workspaces workspaces = workspaceManager.getWorkspaces();
 //ahtutils.highlight:basic
 	}
 
@@ -54,7 +54,7 @@ public class CliGeoServerWorkspaceManager
 	
 	public void documentation() throws IOException
 	{
-		Workspaces workspaces = workspaceManager.workspaces();
+		Workspaces workspaces = workspaceManager.getWorkspaces();
 		JaxbUtil.save(new File("../doc/src/main/resources/code.geojsf/geoserver/jaxb/workspaces.xml"), workspaces, true);
 		JaxbUtil.debug(workspaces);
 	}

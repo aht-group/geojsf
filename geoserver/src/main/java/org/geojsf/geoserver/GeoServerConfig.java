@@ -15,8 +15,6 @@ public interface GeoServerConfig
 	public static String restPassword = "geoserver.rest.password";
 //ahtutils.highlight:rest	
 	
-	
-	
 	public static String dsName = "geoserver.ds.name";
 	public static String dsDescription = "geoserver.ds.description";
 	public static String dsHost = "geoserver.ds.host";
