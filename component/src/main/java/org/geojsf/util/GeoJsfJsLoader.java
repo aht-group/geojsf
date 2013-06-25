@@ -4,6 +4,7 @@ import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 
+import org.geojsf.component.UIExternalScript;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,14 +17,26 @@ public class GeoJsfJsLoader
 	
 	public static void pushJsToHead(FacesContext context, String name) throws AbortProcessingException
 	{		
-		if(useJsMin==null){determineContextVariable(context);}
-		UIOutput js = new UIOutput();
-		js.setRendererType("javax.faces.resource.Script");
-		js.getAttributes().put("library", "js.geojsf");
-		if(useJsMin){js.getAttributes().put("name", "GeoJsf.min.js");}
-		else{js.getAttributes().put("name", name);}
-		
-		context.getViewRoot().addComponentResource(context, js, "head");
+		if (name.startsWith("http"))
+		{
+			UIExternalScript script = new UIExternalScript();
+			script.setRendered(true);
+			script.setSrc(name);
+			context.getViewRoot().addComponentResource(context, script, "head");
+			logger.info("Added " +name +" to head.");
+		}
+		else
+		{
+			if(useJsMin==null){determineContextVariable(context);}
+			UIOutput js = new UIOutput();
+			js.setRendererType("javax.faces.resource.Script");
+			js.getAttributes().put("library", "js.geojsf");
+			if(useJsMin){js.getAttributes().put("name", "GeoJsf.min.js");}
+			else{js.getAttributes().put("name", name);}
+			
+			context.getViewRoot().addComponentResource(context, js, "head");
+			logger.info("Added " +name +" to head.");
+		}
 	}
 	
 	private static synchronized void determineContextVariable(FacesContext context)
