@@ -21,16 +21,21 @@ public class GeoServerWorkspaceManager
 		this.rest=rest;
 	}
 	
-	public Workspaces workspaces() throws IOException {return rest.workspaces();}
+	public Workspaces getWorkspaces() throws IOException {return rest.workspaces();}
 	
-	public void createWorkspace(Workspace workspace) throws IOException
+	public boolean existsWorkspace(String name) throws IOException
 	{
 		Set<String> set = new HashSet<String>();
-		for(Workspace ws : workspaces().getWorkspace())
+		for(Workspace ws : getWorkspaces().getWorkspace())
 		{
 			set.add(ws.getName());
 		}
-		if(set.contains(workspace.getName()))
+		return set.contains(name);
+	}
+	
+	public void createWorkspace(Workspace workspace) throws IOException
+	{
+		if(existsWorkspace(workspace.getName()))
 		{
 			logger.warn("Workspace already exists");
 		}
