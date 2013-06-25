@@ -474,7 +474,15 @@ bottom: 2%;
 left: 2%;
 }
 
+div.olControlZoom{
+	display: none;
+}
+
 /* Hide the zoom buttons */ 
-.olControlZoom {
+#olControlZoomOut {
+	display: none;
+}
+
+#olControlZoomIn {
 	display: none;
 }

@@ -1,6 +1,7 @@
 var GeoJSF = {	
 		map: null,
 		panZoomBar: null,
+		zoomBar: null,
 		switcher: null,
 		
 		bootstrap : function()
@@ -14,13 +15,14 @@ var GeoJSF = {
 		
 		initMap : function(mapDiv,msOptions)
 		{
-			this.map = new OpenLayers.Map(mapDiv,msOptions);
+			this.map = new OpenLayers.Map(mapDiv,{controls: []});
 		    var click = new OpenLayers.Control.Click();
 		    this.map.addControl(click);
 		    click.activate();
 		    this.panZoomBar = new OpenLayers.Control.PanZoomBar();
+		    this.zoomBar = new OpenLayers.Control.ZoomPanel();
 		    this.switcher = new OpenLayers.Control.LayerSwitcher({'ascending':false});
-		    this.map.addControl(this.panZoomBar);
+		    this.map.addControl(this.zoomBar);
 		    //Activate for debugging
 		    //this.map.addControl(this.switcher);
 		    this.panZoomBar.div.style.marginTop = "-50px";
