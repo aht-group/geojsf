@@ -1,6 +1,16 @@
 var GeoJSF = {	
 		map: null,
 		panZoomBar: null,
+		switcher: null,
+		
+		bootstrap : function()
+		{
+			var head = document.getElementsByTagName("head")[0];
+		    var s = document.createElement("script");
+		    s.type = "text/javascript";
+		    s.src = "http://openlayers.org/api/OpenLayers.js";
+		    head.appendChild(s);
+		},
 		
 		initMap : function(mapDiv,msOptions)
 		{
@@ -9,7 +19,10 @@ var GeoJSF = {
 		    this.map.addControl(click);
 		    click.activate();
 		    this.panZoomBar = new OpenLayers.Control.PanZoomBar();
+		    this.switcher = new OpenLayers.Control.LayerSwitcher({'ascending':false});
 		    this.map.addControl(this.panZoomBar);
+		    //Activate for debugging
+		    //this.map.addControl(this.switcher);
 		    this.panZoomBar.div.style.marginTop = "-50px";
 		},
 
