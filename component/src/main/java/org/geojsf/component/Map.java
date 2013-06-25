@@ -24,6 +24,7 @@ import org.geojsf.controller.util.GeoJsfMap;
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.exception.UnconsistentConfgurationException;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
+import org.geojsf.model.interfaces.openlayers.GeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.util.GeoJsfJsLoader;
@@ -37,7 +38,7 @@ import org.slf4j.LoggerFactory;
 public class Map extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
-	private ArrayList<DefaultGeoJsfService> serviceList;
+	private List<GeoJsfService> serviceList;
 	
 	private Coordinates coords = new Coordinates();
 	
@@ -62,7 +63,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String fallback() throws Exception
 	{
-		 serviceList = new ArrayList<DefaultGeoJsfService>();
+		 serviceList = new ArrayList<GeoJsfService>();
 		 logger.debug("Checking value existence ...");
 		 if (getAttributes().get("value")==null)
 		 {
@@ -81,7 +82,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		 else
 		 {
 			 GeoJsfMap map = (GeoJsfMap) getAttributes().get("value");
-			 serviceList = (ArrayList<DefaultGeoJsfService>) map.getLayerServices();
+			 serviceList = map.getLayerServices();
 			 if (containsLayer())
 			 {
 				 throw new UnconsistentConfgurationException("layer tag found while value is given. Don't mix configurations!");
@@ -238,13 +239,13 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		writer.writeText("// GeoJSF: The last given layer will be taken as base layer:"+System.getProperty("line.separator"), null);
 		
 		//First, add the last layer as base layer - adding overlays first results in error
-		DefaultGeoJsfService baseLayer = serviceList.get(serviceList.size()-1);
+		GeoJsfService baseLayer = serviceList.get(serviceList.size()-1);
 		encodeLayer(baseLayer, true, writer);
 		
 		//Now add the overlay layers
 		for (int i=0;i<serviceList.size()-1;i++)
  		{
- 			DefaultGeoJsfService service = serviceList.get(i);
+			GeoJsfService service = serviceList.get(i);
  			encodeLayer(service, false, writer);
  		}  
 	}
@@ -264,7 +265,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		return "0.0";
 	}
 	
-	public void encodeLayer(DefaultGeoJsfService service, Boolean baseLayer, ResponseWriter writer) throws IOException {
+	public void encodeLayer(GeoJsfService service, Boolean baseLayer, ResponseWriter writer) throws IOException {
 		logger.info("Adding "+service.getCode());
 		writer.writeText("var url    = '" +service.getUrl() +"';" +System.getProperty("line.separator"),null);
 	    writer.writeText("var name   = '" +service.getCode() +"';" +System.getProperty("line.separator"),null);
@@ -347,6 +348,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	public Coordinates getCoords() {return coords;}
 	public void setCoords(Coordinates coords) {this.coords = coords;}
 	
-	public ArrayList<DefaultGeoJsfService> getServiceList() {return serviceList;}
-	public void setServiceList(ArrayList<DefaultGeoJsfService> serviceList) {this.serviceList = serviceList;}
+	public List<GeoJsfService> getServiceList() {return serviceList;}
+	public void setServiceList(ArrayList<GeoJsfService> serviceList) {this.serviceList = serviceList;}
 }
