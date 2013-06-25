@@ -1,6 +1,6 @@
-package org.geojsf.geoserver;
+package org.geojsf.controller.interfaces.rest;
 
-public interface GeoServerConfig 
+public interface GeoServerConfigKeys 
 {	
 	public static final String dirExport = "geoserver.dir.export";
 	public static final String dirImport = "geoserver.dir.import";

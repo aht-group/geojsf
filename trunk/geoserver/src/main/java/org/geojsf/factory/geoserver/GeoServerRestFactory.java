@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.net.MalformedURLException;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.geoserver.GeoServerConfig;
+import org.geojsf.controller.interfaces.rest.GeoServerConfigKeys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,15 +18,15 @@ public class GeoServerRestFactory implements Serializable
 	
 	public static GeoServerRESTReader reader(Configuration config) throws MalformedURLException
 	{
-		return new GeoServerRESTReader(config.getString(GeoServerConfig.restHost),
-										config.getString(GeoServerConfig.restUser),
-										config.getString(GeoServerConfig.restPassword));
+		return new GeoServerRESTReader(config.getString(GeoServerConfigKeys.restHost),
+										config.getString(GeoServerConfigKeys.restUser),
+										config.getString(GeoServerConfigKeys.restPassword));
 	}
 	
 	public static GeoServerRESTPublisher publisher(Configuration config)
 	{
-		return new GeoServerRESTPublisher(config.getString(GeoServerConfig.restHost),
-											config.getString(GeoServerConfig.restUser),
-											config.getString(GeoServerConfig.restPassword));
+		return new GeoServerRESTPublisher(config.getString(GeoServerConfigKeys.restHost),
+											config.getString(GeoServerConfigKeys.restUser),
+											config.getString(GeoServerConfigKeys.restPassword));
 	}
 }

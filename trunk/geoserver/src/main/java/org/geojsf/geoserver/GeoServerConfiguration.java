@@ -1,4 +1,4 @@
-package org.geojsf.util;
+package org.geojsf.geoserver;
 
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 import it.geosolutions.geoserver.rest.GeoServerRESTReader;
@@ -8,18 +8,23 @@ import it.geosolutions.geoserver.rest.encoder.feature.GSFeatureTypeEncoder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.controller.geoserver.GeoServerWorkspaceConfigurator;
+import org.geojsf.controller.interfaces.rest.GeoServerConfigKeys;
+import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.factory.geoserver.GeoServerDataStoreFactory;
 import org.geojsf.factory.geoserver.GeoServerRestFactory;
-import org.geojsf.geoserver.GeoServerConfig;
+import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
+import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
+import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.util.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.xml.geoserver.DataStore;
+import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.Layers;
 import org.slf4j.Logger;
@@ -33,24 +38,35 @@ public class GeoServerConfiguration
 	private GeoServerRESTReader reader;
 	private GeoServerRESTPublisher publisher;
 	
-	private String workspace,ds;
+	private GeoServerWorkspaceManager workspaceManager;
+	private Workspace workspace;
+	private String ds;
 	
 	public GeoServerConfiguration(Configuration config) throws MalformedURLException
 	{
 		this.config=config;
 		reader = GeoServerRestFactory.reader(config);
-		publisher = GeoServerRestFactory.publisher(config);	
-		workspace = config.getString(GeoServerConfig.workspace);
-		ds = config.getString(GeoServerConfig.dsName);
+		publisher = GeoServerRestFactory.publisher(config);
+		workspace = XmlWorkspaceFactory.build(config.getString(GeoServerConfigKeys.workspace));
+		ds = config.getString(GeoServerConfigKeys.dsName);
 		
+		GeoServerRest rest = new GeoServerRestWrapper(config);
+		workspaceManager = new GeoServerWorkspaceManager(rest);
 	}
 	
-	public void createWorkspace() throws GeoServerConfigurationException
+	public void configureWorkspace() throws GeoServerConfigurationException, IOException
 	{
-		
-		GeoServerWorkspaceConfigurator f = new GeoServerWorkspaceConfigurator(reader,publisher);
-		boolean wsAvailable = f.createWorkspace(workspace);
-		logger.info("Workspace "+workspace+" available: "+wsAvailable);
+		logger.info("Configuring workspace "+workspace.getName());
+		boolean wsAvailable = workspaceManager.isAvailable(workspace);
+		if(wsAvailable)
+		{
+			logger.info("The workspace "+workspace.getName()+" is already available. Not requird to re-configure.");
+		}
+		else
+		{
+			workspaceManager.create(workspace);
+			logger.info("The workspace "+workspace.getName()+" was created.");
+		}
 	}
 	
 	public void createDataStore()
@@ -59,7 +75,7 @@ public class GeoServerConfiguration
 		JaxbUtil.info(ds);
 		
 		GeoServerDataStoreFactory f = new GeoServerDataStoreFactory(reader,publisher);
-		f.createDataStore(config.getString(GeoServerConfig.workspace),ds);
+		f.createDataStore(config.getString(GeoServerConfigKeys.workspace),ds);
 	}
 	
 	public void createLayer(Layers layers)
@@ -79,7 +95,7 @@ public class GeoServerConfiguration
 		GSLayerEncoder layerEncoder = new GSLayerEncoder();
 		layerEncoder.setEnabled(true);
 
-		publisher.publishExternalGeoTIFF(workspace, "c", new File("test"), "a", "b");
+		publisher.publishExternalGeoTIFF(workspace.getName(), "c", new File("test"), "a", "b");
 	}
 	
 	public void layers()
@@ -93,7 +109,7 @@ public class GeoServerConfiguration
 		Configuration config = null; //Create your config here!	
 		
 		GeoServerConfiguration geoserver = new GeoServerConfiguration(config);
-		geoserver.createWorkspace();
+		geoserver.configureWorkspace();
 		geoserver.createDataStore();
 	}
 }

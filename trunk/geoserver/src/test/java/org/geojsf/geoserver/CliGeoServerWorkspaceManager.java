@@ -7,6 +7,8 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
+import org.geojsf.exception.GeoServerConfigurationException;
+import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
@@ -37,20 +39,24 @@ public class CliGeoServerWorkspaceManager
 	
 	public void basic(GeoServerRest rest) throws IOException
 	{
-//ahtutils.highlight:basic		
+		String wsName = "ws";
+		Workspace ws = XmlWorkspaceFactory.build(wsName);
+		boolean available;
+//ahtutils.highlight:basic
+		available = workspaceManager.isAvailable(wsName);
+		available = workspaceManager.isAvailable(ws);
 		Workspaces workspaces = workspaceManager.getWorkspaces();
 //ahtutils.highlight:basic
 	}
 
-	public void manager() throws IOException
+	public void manager() throws IOException, GeoServerConfigurationException
 	{
 //ahtutils.highlight:create
-		Workspace workspace = new Workspace();
-		workspace.setName("myWorkspace");
-		workspaceManager.createWorkspace(workspace);
+		Workspace ws = new Workspace();
+		ws.setName("myWorkspace");
+		workspaceManager.create(ws);
 //ahtutils.highlight:create
 	}
-
 	
 	public void documentation() throws IOException
 	{
@@ -58,7 +64,6 @@ public class CliGeoServerWorkspaceManager
 		JaxbUtil.save(new File("../doc/src/main/resources/code.geojsf/geoserver/jaxb/workspaces.xml"), workspaces, true);
 		JaxbUtil.debug(workspaces);
 	}
-	
 	
 	public static void main (String[] args) throws Exception
 	{

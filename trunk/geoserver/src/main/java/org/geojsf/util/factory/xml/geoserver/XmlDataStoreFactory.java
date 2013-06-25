@@ -6,7 +6,7 @@ import net.sf.exlp.xml.identity.User;
 import net.sf.exlp.xml.net.Host;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.geoserver.GeoServerConfig;
+import org.geojsf.controller.interfaces.rest.GeoServerConfigKeys;
 import org.geojsf.xml.geoserver.DataStore;
 import org.jdom2.Element;
 import org.slf4j.Logger;
@@ -20,19 +20,19 @@ public class XmlDataStoreFactory implements Serializable
 	
 	public static DataStore build(Configuration config)
 	{
-		DataStore ds = build(config.getString(GeoServerConfig.dsName),
-				config.getString(GeoServerConfig.dsDescription),
-				config.getString(GeoServerConfig.dsDatabase),
-				config.getString(GeoServerConfig.dsSchema));
+		DataStore ds = build(config.getString(GeoServerConfigKeys.dsName),
+				config.getString(GeoServerConfigKeys.dsDescription),
+				config.getString(GeoServerConfigKeys.dsDatabase),
+				config.getString(GeoServerConfigKeys.dsSchema));
 		
 		Host host = new Host();
-		host.setName(config.getString(GeoServerConfig.dsHost));
-		host.setPort(config.getInt(GeoServerConfig.dsPort));
+		host.setName(config.getString(GeoServerConfigKeys.dsHost));
+		host.setPort(config.getInt(GeoServerConfigKeys.dsPort));
 //		ds.setHost(host);
 		
 		User user = new User();
-		user.setAccount(config.getString(GeoServerConfig.dsUser));
-		user.setPassword(config.getString(GeoServerConfig.dsPassword));
+		user.setAccount(config.getString(GeoServerConfigKeys.dsUser));
+		user.setPassword(config.getString(GeoServerConfigKeys.dsPassword));
 //		ds.setUser(user);
 		
 		return ds;
