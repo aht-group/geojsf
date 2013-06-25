@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
+import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
 import org.slf4j.Logger;
@@ -21,9 +22,10 @@ public class GeoServerWorkspaceManager
 		this.rest=rest;
 	}
 	
-	public Workspaces getWorkspaces() throws IOException {return rest.workspaces();}
+	public Workspaces getWorkspaces() throws IOException {return rest.getWorkspaces();}
 	
-	public boolean existsWorkspace(String name) throws IOException
+	public boolean isAvailable(Workspace workspace) throws IOException {return isAvailable(workspace.getName());}
+	public boolean isAvailable(String name) throws IOException
 	{
 		Set<String> set = new HashSet<String>();
 		for(Workspace ws : getWorkspaces().getWorkspace())
@@ -33,15 +35,24 @@ public class GeoServerWorkspaceManager
 		return set.contains(name);
 	}
 	
-	public void createWorkspace(Workspace workspace) throws IOException
+	public void create(Workspace workspace) throws GeoServerConfigurationException,IOException
 	{
-		if(existsWorkspace(workspace.getName()))
+		if(isAvailable(workspace))
 		{
-			logger.warn("Workspace already exists");
+			StringBuffer sb = new StringBuffer();
+			sb.append("The workspace ").append(workspace.getName()).append(" already exists");
+			logger.warn(sb.toString());
 		}
 		else
 		{
 			rest.createWorkspace(workspace);
+			if(!isAvailable(workspace))
+			{
+				StringBuffer sb = new StringBuffer();
+				sb.append("Tried to create workspace ").append(workspace.getName()).append(", but this failed!");
+				logger.error(sb.toString());
+				throw new GeoServerConfigurationException(sb.toString());
+			}
 		}
 	}
 }

@@ -6,6 +6,7 @@ import java.io.IOException;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.controller.interfaces.rest.GeoServerConfigKeys;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
@@ -59,10 +60,10 @@ public class CliGeoServerDataStoreManager
 	
 	public void documentation() throws IOException
 	{
-		DataStores dataStores = rest.dataStores(config.getString(GeoServerConfig.workspace));
+		DataStores dataStores = rest.dataStores(config.getString(GeoServerConfigKeys.workspace));
 		for(DataStore ds : dataStores.getDataStore())
 		{
-			ds.setName(ds.getName().replace(config.getString(GeoServerConfig.workspace), "geo"));
+			ds.setName(ds.getName().replace(config.getString(GeoServerConfigKeys.workspace), "geo"));
 		}
 		JaxbUtil.save(new File("../doc/src/main/resources/code.geojsf/geoserver/jaxb/datastores.xml"), dataStores, true);
 		JaxbUtil.info(dataStores);

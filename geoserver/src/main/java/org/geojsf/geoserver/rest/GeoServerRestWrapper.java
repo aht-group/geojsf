@@ -11,9 +11,9 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.geojsf.controller.interfaces.rest.GeoServerConfigKeys;
 import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.controller.interfaces.rest.GeoServerRestInterface;
-import org.geojsf.geoserver.GeoServerConfig;
 import org.geojsf.util.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.util.factory.xml.geoserver.XmlWorkspacesFactory;
 import org.geojsf.xml.geoserver.DataStore;
@@ -40,9 +40,9 @@ public class GeoServerRestWrapper implements GeoServerRest
 
 	public GeoServerRestWrapper(Configuration config)
 	{
-		this(config.getString(GeoServerConfig.restHost),
-								config.getString(GeoServerConfig.restUser),
-								config.getString(GeoServerConfig.restPassword));
+		this(config.getString(GeoServerConfigKeys.restHost),
+								config.getString(GeoServerConfigKeys.restUser),
+								config.getString(GeoServerConfigKeys.restPassword));
 	}
 	
 	public GeoServerRestWrapper(String url, String user, String password)
@@ -121,7 +121,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 	}
 
 	@Override
-	public Workspaces workspaces() throws IOException
+	public Workspaces getWorkspaces() throws IOException
 	{
 		Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
 		
@@ -129,9 +129,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		Element root = doc.getRootElement();
 		JDomUtil.setNameSpaceRecursive(root, ns);
-		
 		XmlWorkspacesFactory.transform(root); 
-		
 		return JDomUtil.toJaxb(root, Workspaces.class);
 	}
 
