@@ -23,6 +23,8 @@ var GeoJSF = {
 		    this.zoom = new OpenLayers.Control.Zoom();
 		    this.switcher = new OpenLayers.Control.LayerSwitcher({'ascending':false});
 		    this.map.addControl(this.zoom);
+		    var touchUI = new OpenLayers.Control.TouchNavigation();
+		    this.map.addControl(touchUI);
 		    //Activate for debugging
 		    //this.map.addControl(this.switcher);
 		    //this.zoom.div.style.marginTop = "-50px";
