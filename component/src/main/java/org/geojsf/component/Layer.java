@@ -1,7 +1,11 @@
 package org.geojsf.component;
 
+import java.io.IOException;
+
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UINamingContainer;
+import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +16,11 @@ public class Layer  extends UINamingContainer
 	final static Logger logger = LoggerFactory.getLogger(Layer.class);
 	
 	//Define attributes of the component
-	private String type   = null;
-	private String url    = null;
-	private String layers = null;
+	private String name         = null;
+	private String type         = null;
+	private String url          = null;
+	private String layers       = null;
+	private Boolean isBaseLayer = false;
 
 	public String getType() {
 		if (this.type!=null)
@@ -23,6 +29,16 @@ public class Layer  extends UINamingContainer
 		}
 		return "WMS";
 	}
+	
+	@Override
+	public void encodeBegin(FacesContext ctx) throws IOException
+	{
+		ResponseWriter writer = ctx.getResponseWriter();
+		logger.info("Adding "+this.getType() +" layer with data from " +this.getUrl() +" displaying layers " +this.layers);
+		if (isBaseLayer) {logger.info("... defined as Base Layer.");}
+	}
+	
+	
 	public void setType(String type) {this.type = type;}
 	
 	public String getUrl() {return url;}
@@ -30,4 +46,16 @@ public class Layer  extends UINamingContainer
 	
 	public String getLayers() {return layers;}
 	public void setLayers(String layers) {this.layers = layers;}
+	
+	
+	public Boolean getIsBaseLayer() {return isBaseLayer;}
+	public void setIsBaseLayer(Boolean isBaseLayer) {this.isBaseLayer = isBaseLayer;}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
