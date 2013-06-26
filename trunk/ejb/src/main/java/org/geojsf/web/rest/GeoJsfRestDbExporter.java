@@ -1,11 +1,11 @@
-package org.geojsf.util.db.export;
+package org.geojsf.web.rest;
 
 import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
-import org.geojsf.controller.interfaces.GeoJsfExportRest;
+import org.geojsf.controller.interfaces.rest.GeoJsfRestExport;
 import org.geojsf.controller.util.query.OpenLayersQuery;
 import org.geojsf.factory.xml.openlayers.XmlLayerFactory;
 import org.geojsf.factory.xml.openlayers.XmlServiceFactory;
@@ -19,13 +19,13 @@ import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.View;
 import org.geojsf.xml.openlayers.Views;
 
-public class GeoJsfDbRestExport <L extends UtilsLang,
+public class GeoJsfRestDbExporter <L extends UtilsLang,
 									D extends UtilsDescription,
 									SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
 									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
 									VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
 									VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-				implements GeoJsfExportRest
+				implements GeoJsfRestExport
 {
 	private UtilsSecurityFacade fSecurity;
 	
@@ -33,7 +33,7 @@ public class GeoJsfDbRestExport <L extends UtilsLang,
 	private final Class<LAYER> cLayer;
 	private final Class<VIEW> cView;
 	
-	private GeoJsfDbRestExport(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)
+	private GeoJsfRestDbExporter(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)
 	{
 		this.fSecurity=fSecurity;
 		this.cService=cService;
@@ -48,10 +48,10 @@ public class GeoJsfDbRestExport <L extends UtilsLang,
 					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
 					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>,
 					LT extends UtilsStatus<L,D>>
-		GeoJsfDbRestExport<L,D,SERVICE,LAYER,VIEW,VL>
+		GeoJsfRestDbExporter<L,D,SERVICE,LAYER,VIEW,VL>
 		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)
 	{
-		return new GeoJsfDbRestExport<L,D,SERVICE,LAYER,VIEW,VL>(fSecurity,cService,cLayer,cView);
+		return new GeoJsfRestDbExporter<L,D,SERVICE,LAYER,VIEW,VL>(fSecurity,cService,cLayer,cView);
 	}
 
 	@Override
