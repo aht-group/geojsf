@@ -11,14 +11,7 @@ import org.geojsf.xml.openlayers.Repository;
 public interface GeoJsfRestImport
 {	
 	@POST @Path("/services")
-	@Produces(MediaType.TEXT_PLAIN) @Consumes(MediaType.APPLICATION_XML)
-	String importServices(Repository repository);
-	
-/*	@GET @Path("/layers")
-	@Produces(MediaType.APPLICATION_XML)
-	Layers exportLayers();
-	
-	@GET @Path("/views")
-	@Produces(MediaType.APPLICATION_XML)
-	Views exportViews();
-*/}
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_XML)
+	String importGeoJsf(Repository repository);
+	}
