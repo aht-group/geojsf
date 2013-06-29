@@ -23,7 +23,7 @@ public class GeoJsfJsLoader
 			script.setRendered(true);
 			script.setSrc(name);
 			context.getViewRoot().addComponentResource(context, script, "head");
-			logger.info("Added " +name +" to head.");
+			logger.trace("Added " +name +" to head.");
 		}
 		else
 		{
@@ -35,7 +35,7 @@ public class GeoJsfJsLoader
 			else{js.getAttributes().put("name", name);}
 			
 			context.getViewRoot().addComponentResource(context, js, "head");
-			logger.info("Added " +name +" to head.");
+			logger.trace("Added " +name +" to head.");
 		}
 	}
 	
