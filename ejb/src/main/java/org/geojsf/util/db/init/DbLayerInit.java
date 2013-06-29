@@ -63,7 +63,7 @@ public class DbLayerInit <L extends UtilsLang,
 		return new DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cLayer,cService,fAcl);
 	}
 
-	public void iuLayer(Layers layers, String[] langKeys) throws UtilsConfigurationException
+	public void iuLayers(Layers layers, String[] langKeys) throws UtilsConfigurationException
 	{
 		logger.debug("i/u "+Layers.class.getSimpleName()+" with "+layers.getLayer().size()+" "+Layer.class.getSimpleName());
 		

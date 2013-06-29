@@ -72,7 +72,7 @@ public class DbViewInit <L extends UtilsLang,
 		return new DbViewInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cLayer,cView,cViewLayer,fAcl,fGeo);
 	}
 	
-	public void iuLayer(Views views) throws UtilsConfigurationException
+	public void iuViews(Views views) throws UtilsConfigurationException
 	{
 		logger.debug("i/u "+Views.class.getSimpleName()+" with "+views.getView()+" "+View.class.getSimpleName());
 		

@@ -51,7 +51,7 @@ public class DbServiceInit <L extends UtilsLang,
 		return new DbServiceInit<L,D,SERVICE,LAYER,VIEW,VL>(cService,fAcl);
 	}
 	
-	public void iuService(Repository repository) throws UtilsConfigurationException
+	public void iuServices(Repository repository) throws UtilsConfigurationException
 	{
 		logger.debug("i/u "+Repository.class.getSimpleName()+" with "+repository.getService().size()+" "+Service.class.getSimpleName());
 		
