@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <jsf:component xmlns:jsf="http://www.openfuxml.org/jsf">
-    <jsf:attribute name="myName" default="myDefault" required="true" shortDescription="myShortDescription"/>
-    <jsf:attribute name="myName" default="myDefault" required="true" shortDescription="myShortDescription"/>
+    <jsf:attribute name="height" required="true" shortDescription="Defines the height of the map"/>
+    <jsf:attribute name="width" default="100%" required="true" shortDescription="Defines the width of the map"/>
+    <jsf:attribute name="centerX" default="0.0" required="false" shortDescription="x coordinate of the map's initial center"/>
+    <jsf:attribute name="centerY" default="0.0" required="false" shortDescription="y coordinate of the map's initial center"/>
+    <jsf:attribute name="zoomLevel" default="5.0" required="false" shortDescription="Initial zoom level"/>
+    <jsf:attribute name="value" required="false" shortDescription="A GeoJSF map object to be displayed. If none given, geojsf:layer definitions are required!"/>
 </jsf:component>
