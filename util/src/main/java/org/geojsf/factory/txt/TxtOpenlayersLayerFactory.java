@@ -21,8 +21,10 @@ public class TxtOpenlayersLayerFactory
 	{
 		List<LAYER> layers = service.getLayer();
 		StringBuffer sb = new StringBuffer();
-		for (LAYER layer : layers)
+//		for (LAYER layer : layers)
+		for(int i=layers.size()-1;i>=0;i--) //GEO-64	
 		{
+			LAYER layer = layers.get(i);
 			sb.append(layer.getCode() +",");
 		}
 		return sb.deleteCharAt(sb.length()-1).toString();

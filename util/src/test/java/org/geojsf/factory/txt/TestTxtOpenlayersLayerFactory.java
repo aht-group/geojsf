@@ -49,7 +49,7 @@ public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 		service.getLayer().add(layerA);
 		service.getLayer().add(layerB);
 		
-		String expected = layerA.getCode()+","+layerB.getCode();
+		String expected = layerB.getCode()+","+layerA.getCode();
 		String actual = TxtOpenlayersLayerFactory.buildLayerString(service);
 		Assert.assertEquals(expected, actual);
 	}

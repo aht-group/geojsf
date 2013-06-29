@@ -243,8 +243,9 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		encodeLayer(baseLayer, true, writer);
 		
 		//Now add the overlay layers
-		for (int i=0;i<serviceList.size()-1;i++)
- 		{
+//		for (int i=0;i<serviceList.size()-1;i++)
+ 		for(int i=serviceList.size()-2;i>0;i--) //GEO-64
+		{	
 			GeoJsfService service = serviceList.get(i);
  			encodeLayer(service, false, writer);
  		}  
@@ -256,21 +257,15 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.endElement("script"); 
 	}
-
-	public String getCenterX() {
-		if (this.centerX!=null)
-		{
-			return this.centerX;
-		}
-		return "0.0";
-	}
 	
-	public void encodeLayer(GeoJsfService service, Boolean baseLayer, ResponseWriter writer) throws IOException {
-		logger.info("Adding "+service.getCode());
+	public void encodeLayer(GeoJsfService service, Boolean baseLayer, ResponseWriter writer) throws IOException
+	{
+		String sLayers = TxtOpenlayersLayerFactory.buildLayerString(service);
+		logger.info("Adding "+service.getCode()+": "+sLayers);
 		writer.writeText("var url    = '" +service.getUrl() +"';" +System.getProperty("line.separator"),null);
 	    writer.writeText("var name   = '" +service.getCode() +"';" +System.getProperty("line.separator"),null);
 		writer.writeText("var params = {};" +System.getProperty("line.separator"), null);
-		writer.writeText("params.layers      = '"+TxtOpenlayersLayerFactory.buildLayerString(service) +"';" +System.getProperty("line.separator"),null);
+		writer.writeText("params.layers      = '"+sLayers+"';" +System.getProperty("line.separator"),null);
 		writer.writeText("params.transparent = true;" +System.getProperty("line.separator"),null);
 		writer.writeText("params.format      = 'image/png';" +System.getProperty("line.separator"),null);
 		writer.writeText("var options = {};" +System.getProperty("line.separator"),null);
@@ -279,15 +274,16 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		writer.writeText(System.getProperty("line.separator"), null);
 	}
 
-	public void setCenterX(String centerX) {
-		this.centerX = centerX;
+	public String getCenterX()
+	{
+		if (this.centerX!=null){return this.centerX;}
+		return "0.0";
 	}
+	public void setCenterX(String centerX) {this.centerX = centerX;}
 
-	public String getCenterY() {
-		if (this.centerY!=null)
-		{
-			return this.centerY;
-		}
+	public String getCenterY()
+	{
+		if (this.centerY!=null){return this.centerY;}
 		return "0.0";
 	}
 
