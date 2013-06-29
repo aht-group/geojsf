@@ -9,6 +9,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </h:head>
 <h:body>
-	<geojsf:map title="THIS COMES FROM A COMPOSITE COMPONENT :-)"/>
+	<geojsf:map>
+		<geojsf:layer url="http://vmap0.tiles.osgeo.org/wms/vmap0" name="OSM" layers="basic"/>
+	</geojsf:map>
 </h:body>
 </html>
