@@ -29,6 +29,12 @@
 			<component-type>org.geojsf.component.Layer</component-type>
 		</component>
 	</tag>	
+	<tag>
+		<tag-name>zoom</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Zoom</component-type>
+		</component>
+	</tag>	
 		<tag>
 		<tag-name>viewport</tag-name>
 		<component>

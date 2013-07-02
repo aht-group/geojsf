@@ -1,7 +1,5 @@
 var GeoJSF = {	
 		map: null,
-		panZoomBar: null,
-		zoom: null,
 		switcher: null,
 		
 		bootstrap : function()
@@ -19,15 +17,11 @@ var GeoJSF = {
 		    var click = new OpenLayers.Control.Click();
 		    this.map.addControl(click);
 		    click.activate();
-		    this.panZoomBar = new OpenLayers.Control.PanZoomBar();
-		    this.zoom = new OpenLayers.Control.Zoom();
 		    this.switcher = new OpenLayers.Control.LayerSwitcher({'ascending':false});
-		    this.map.addControl(this.zoom);
 		    var touchUI = new OpenLayers.Control.TouchNavigation();
 		    this.map.addControl(touchUI);
 		    //Activate for debugging
 		    //this.map.addControl(this.switcher);
-		    //this.zoom.div.style.marginTop = "-50px";
 		},
 
 		addLoadEvent : function(func)
