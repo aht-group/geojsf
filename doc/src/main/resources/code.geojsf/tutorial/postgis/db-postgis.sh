@@ -1,6 +1,3 @@
-psql -U postgres -d geo \\
-     -f /usr/share/postgresql/9.1/contrib/postgis-2.0/postgis.sql
-psql -U postgres -d geo \\
-     -f /usr/share/postgresql/9.1/contrib/postgis-2.0/postgis_comments.sql
-psql -U postgres -d geo \\
-     -f /usr/share/postgresql/9.1/contrib/postgis-2.0/spatial_ref_sys.sql
+psql -U postgres -d geo -f /path/to/postgis.sql
+psql -U postgres -d geo -f /path/to/postgis_comments.sql
+psql -U postgres -d geo -f /path/to/spatial_ref_sys.sql
