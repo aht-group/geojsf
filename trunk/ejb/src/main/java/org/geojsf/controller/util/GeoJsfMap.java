@@ -9,10 +9,10 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
 
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
-import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
-import org.geojsf.model.interfaces.openlayers.GeoJsfService;
-import org.geojsf.model.interfaces.openlayers.GeoJsfView;
-import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
+import org.geojsf.interfaces.model.openlayers.GeoJsfService;
+import org.geojsf.interfaces.model.openlayers.GeoJsfView;
+import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

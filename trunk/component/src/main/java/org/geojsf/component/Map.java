@@ -24,7 +24,7 @@ import org.geojsf.controller.util.GeoJsfMap;
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.exception.UnconsistentConfgurationException;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
-import org.geojsf.model.interfaces.openlayers.GeoJsfService;
+import org.geojsf.interfaces.model.openlayers.GeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.util.GeoJsfJsLoader;

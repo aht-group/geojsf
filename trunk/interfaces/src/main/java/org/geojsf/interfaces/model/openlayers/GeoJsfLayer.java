@@ -1,4 +1,4 @@
-package org.geojsf.model.interfaces.openlayers;
+package org.geojsf.interfaces.model.openlayers;
 
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
