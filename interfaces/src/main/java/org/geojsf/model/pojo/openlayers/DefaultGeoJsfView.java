@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.geojsf.model.interfaces.openlayers.GeoJsfView;
+import org.geojsf.interfaces.model.openlayers.GeoJsfView;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 

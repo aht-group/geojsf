@@ -8,10 +8,10 @@ import java.util.Map;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
-import org.geojsf.model.interfaces.openlayers.GeoJsfLayer;
-import org.geojsf.model.interfaces.openlayers.GeoJsfService;
-import org.geojsf.model.interfaces.openlayers.GeoJsfView;
-import org.geojsf.model.interfaces.openlayers.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
+import org.geojsf.interfaces.model.openlayers.GeoJsfService;
+import org.geojsf.interfaces.model.openlayers.GeoJsfView;
+import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
