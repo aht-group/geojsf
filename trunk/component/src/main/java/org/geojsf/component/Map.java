@@ -205,9 +205,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		}
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.writeText(System.getProperty("line.separator"), null);
-		writer.startElement("script", this);
-		writer.writeAttribute("src", "http://openlayers.org/api/OpenLayers.js", null);
-		writer.endElement("script");
 		writer.writeText(System.getProperty("line.separator"), null);
 		
 		writer.startElement("div", this);
@@ -217,9 +214,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		writer.endElement("div");
 		writer.writeText(System.getProperty("line.separator"), null);
 		
-		writer.startElement("script", this);
-		writer.writeAttribute("src", "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" , null);
-		writer.endElement("script");
 		writer.writeText(System.getProperty("line.separator"), null);
 		writer.startElement("script", this);
 		writer.writeText(System.getProperty("line.separator"), null);
