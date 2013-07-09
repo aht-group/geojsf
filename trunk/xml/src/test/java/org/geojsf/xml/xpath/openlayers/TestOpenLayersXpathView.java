@@ -1,7 +1,7 @@
 package org.geojsf.xml.xpath.openlayers;
 
-import net.sf.exlp.util.exception.ExlpXpathNotFoundException;
-import net.sf.exlp.util.exception.ExlpXpathNotUniqueException;
+import net.sf.exlp.exception.ExlpXpathNotFoundException;
+import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 
 import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.geojsf.xml.openlayers.Repository;
