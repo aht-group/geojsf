@@ -3,6 +3,7 @@ package org.geojsf.util.wfs;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
@@ -26,15 +27,15 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	
 	public void pointQuery()
 	{
-		OpenLayers ol = new OpenLayers(config,"Dam_sites");
+		OpenLayers ol = new OpenLayers("Dam_sites");
 		ol.getSearchRadius().setPixel(8);
 		
 		List<String> properties = new ArrayList<String>();
 		properties.add("dam_name");
 		String layerCode = "dam_sites";
 		GetFeature gf = PointQueryFactory.cGetFeature("LCBC:"+layerCode,properties,ol.getClick().toGmlCoordinates(),ol.createSearchDistance());	
-//		JaxbUtil.debug(gf, new LisNsPrefixMapper());
-		WfsHttpRequest r = new WfsHttpRequest(ol.getWmsLayer().getWcsForLayer(layerCode));
+		JaxbUtil.info(gf);
+		WfsHttpRequest r = new WfsHttpRequest(config.getString(GeoServerConfigKeys.restHost));
 		List<Integer> lIds = r.ejbIdRequest(gf,"LCBC",layerCode);
 	}
 	
@@ -47,7 +48,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	{
 		Configuration config = GeoJsfUtilsTestBootstrap.init();
 		CliPointQuery cli = new CliPointQuery(config);
-//		cli.pointQuery();
+		cli.pointQuery();
 		cli.wfsRequest();
 	}
 }

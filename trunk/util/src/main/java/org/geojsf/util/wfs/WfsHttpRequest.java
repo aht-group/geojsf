@@ -79,7 +79,12 @@ public class WfsHttpRequest
 		HttpResponse result = null;
 		HttpClient httpclient = new DefaultHttpClient();
         
-        try{result = httpclient.execute(post);}
+        try
+        {
+        	result = httpclient.execute(post);
+        	logger.info(result.getStatusLine().getStatusCode()+" "+result.getStatusLine().getReasonPhrase());
+        	result.getEntity().getContent();
+        }
         catch (ClientProtocolException e) {logger.error(e.getMessage());}
         catch (IOException e) {logger.error(e.getMessage());}
                

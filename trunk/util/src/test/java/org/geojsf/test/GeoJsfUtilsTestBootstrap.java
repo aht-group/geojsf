@@ -28,7 +28,7 @@ public class GeoJsfUtilsTestBootstrap
 			ConfigLoader.add(cfn);
 			logger.info("Using additional config in: "+cfn );
 		}
-		catch (ExlpConfigurationException e) {}
+		catch (ExlpConfigurationException e) {e.printStackTrace();}
 		ConfigLoader.add("config.geojsf-util.test/geojsf.xml");
 		Configuration config = ConfigLoader.init();					
 		logger.debug("Config and Logger initialized");
