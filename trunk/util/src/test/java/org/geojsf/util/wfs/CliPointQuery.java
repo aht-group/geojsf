@@ -30,6 +30,11 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		List<Integer> lIds = r.ejbIdRequest(gf,"LCBC",layerCode);
 	}
 	
+	public void wfsRequest()
+	{
+		WfsHttpRequest wfs = new WfsHttpRequest("");
+	}
+	
 	public static void main(String[] args)
 	{
 		GeoJsfUtilsTestBootstrap.init();

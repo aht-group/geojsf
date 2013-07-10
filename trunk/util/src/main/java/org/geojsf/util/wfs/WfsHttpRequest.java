@@ -10,8 +10,6 @@ import java.util.List;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -25,10 +23,12 @@ import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.xpath.XPath;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WfsHttpRequest
 {
-	static Log logger = LogFactory.getLog(WfsHttpRequest.class);
+	final static Logger logger = LoggerFactory.getLogger(WfsHttpRequest.class);
 	
 	private String url;
 		
@@ -37,7 +37,6 @@ public class WfsHttpRequest
 		this.url = url;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Integer> ejbIdRequest(GetFeature gf, String elementPrefix, String elementName)
 	{
 		List<Integer> lIds = new ArrayList<Integer>();
@@ -52,7 +51,7 @@ public class WfsHttpRequest
 			xpath.addNamespace(Namespace.getNamespace("LCBC", "http://www.cblt.org"));
 			
 			List<Element> elements = (List<Element>)xpath.selectNodes(doc);
-			logger.debug(elements.size());
+			logger.debug("Size: "+elements.size());
 			for(Element e : elements)
 			{
 				String fid = e.getAttribute("fid").getValue();
@@ -61,7 +60,7 @@ public class WfsHttpRequest
 			}
 			
 		}
-		catch (JDOMException e) {logger.error(e);}
+		catch (JDOMException e) {logger.error(e.getMessage());}
 		
 		return lIds;
 	}
@@ -80,8 +79,8 @@ public class WfsHttpRequest
 		HttpClient httpclient = new DefaultHttpClient();
         
         try{result = httpclient.execute(post);}
-        catch (ClientProtocolException e) {logger.error(e);}
-        catch (IOException e) {logger.error(e);}
+        catch (ClientProtocolException e) {logger.error(e.getMessage());}
+        catch (IOException e) {logger.error(e.getMessage());}
                
         Document doc = null;
         
@@ -90,9 +89,9 @@ public class WfsHttpRequest
         	SAXBuilder builder = new SAXBuilder();
 			doc = builder.build(new InputStreamReader(result.getEntity().getContent()));
 		}
-        catch (IllegalStateException e) {logger.error(e);}
-        catch (JDOMException e) {logger.error(e);}
-        catch (IOException e) {logger.error(e);}
+        catch (IllegalStateException e) {logger.error(e.getMessage());}
+        catch (JDOMException e) {logger.error(e.getMessage());}
+        catch (IOException e) {logger.error(e.getMessage());}
 		
 //        JDomUtil.debug(doc);
         
