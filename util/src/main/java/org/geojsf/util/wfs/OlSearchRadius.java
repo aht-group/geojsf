@@ -33,6 +33,8 @@ public class OlSearchRadius implements Serializable
 	
 	public Distance createSearchDistance(OlClick click)
 	{	
+		logger.debug("Pixel: "+pixel);
+		logger.debug("click "+click);
 		double d = pixel * click.toResolution();
 		
 		Distance distance = new Distance();

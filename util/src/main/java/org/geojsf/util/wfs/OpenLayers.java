@@ -1,17 +1,9 @@
 package org.geojsf.util.wfs;
 
-import java.io.FileNotFoundException;
 import java.io.Serializable;
 
-import net.sf.exlp.exception.ExlpXpathNotFoundException;
-import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.util.xml.JaxbUtil;
-
-import org.apache.commons.configuration.Configuration;
 import org.geojsf.xml.ogc.Distance;
-import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.View;
-import org.geojsf.xml.xpath.OpenLayersXpath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,35 +23,15 @@ public class OpenLayers implements Serializable
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Constructor<<<<<<<<<<<<<<<<<<<<<<
 
-	public OpenLayers(Configuration config, String viewCode)
+	public OpenLayers(String viewCode)
 	{
-		String layerFile = config.getString("gis/@layerFile");
-		logger.trace("Layer File: "+layerFile);
-		try
-		{
-			Repository repository = (Repository)JaxbUtil.loadJAXB(layerFile, Repository.class);
-			view = OpenLayersXpath.getView(repository, viewCode);
-			wmsLayer = new OlWmsLayer(repository.getLayers(),view);
-		}
-		catch (FileNotFoundException e) {logger.error("",e);}
-		catch (ExlpXpathNotFoundException e) {logger.error("",e);}
-		catch (ExlpXpathNotUniqueException e) {logger.error("",e);}
+		view = new View();
+		view.setCode("myCode");
 		
 		click = new OlClick();
-		searchRadius = new OlSearchRadius();
-	}
-	
-	public OpenLayers(Repository repository, String viewCode)
-	{
-		try
-		{
-			view = OpenLayersXpath.getView(repository, viewCode);
-			wmsLayer = new OlWmsLayer(repository.getLayers(),view);
-		}
-		catch (ExlpXpathNotFoundException e) {logger.error("",e);}
-		catch (ExlpXpathNotUniqueException e) {logger.error("",e);}
-		
-		click = new OlClick();
+		click.setLon("10.0");
+		click.setLat("10.0");
+		click.setResolution("2");
 		searchRadius = new OlSearchRadius();
 	}
 		
