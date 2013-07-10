@@ -1,4 +1,4 @@
-package net.sf.geojsf.util.json;
+package org.geojsf.util.wfs;
 
 public class WmsLayer
 {

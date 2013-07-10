@@ -6,9 +6,9 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.geojsf.util.factory.OlLegendFactory;
-import net.sf.geojsf.util.json.WmsLayer;
 
+import org.geojsf.util.wfs.OlLegendFactory;
+import org.geojsf.util.wfs.WmsLayer;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.Layers;
 import org.geojsf.xml.openlayers.View;
