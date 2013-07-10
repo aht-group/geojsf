@@ -1,4 +1,4 @@
-package net.sf.geojsf.util;
+package org.geojsf.util.wfs;
 
 import java.io.Serializable;
 

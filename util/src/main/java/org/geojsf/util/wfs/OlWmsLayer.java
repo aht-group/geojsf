@@ -1,4 +1,4 @@
-package net.sf.geojsf.util;
+package org.geojsf.util.wfs;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 
-import org.geojsf.util.wfs.OlLegendFactory;
-import org.geojsf.util.wfs.WmsLayer;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.Layers;
 import org.geojsf.xml.openlayers.View;
