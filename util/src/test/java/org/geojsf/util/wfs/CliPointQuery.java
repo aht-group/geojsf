@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
+import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.wfs.GetFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +16,16 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 {
 	final static Logger logger = LoggerFactory.getLogger(CliPointQuery.class);
 	
-	public CliPointQuery()
+	private Configuration config;
+	
+	public CliPointQuery(Configuration config)
 	{
-		Configuration config = null;
+		this.config=config;
+
+	}
+	
+	public void pointQuery()
+	{
 		OpenLayers ol = new OpenLayers(config,"Dam_sites");
 		ol.getSearchRadius().setPixel(8);
 		
@@ -32,12 +40,14 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	
 	public void wfsRequest()
 	{
-		WfsHttpRequest wfs = new WfsHttpRequest("");
+		WfsHttpRequest wfs = new WfsHttpRequest(config.getString(GeoServerConfigKeys.restHost));
 	}
 	
 	public static void main(String[] args)
 	{
-		GeoJsfUtilsTestBootstrap.init();
-		new CliPointQuery();
+		Configuration config = GeoJsfUtilsTestBootstrap.init();
+		CliPointQuery cli = new CliPointQuery(config);
+//		cli.pointQuery();
+		cli.wfsRequest();
 	}
 }
