@@ -35,6 +35,7 @@ public class WfsHttpRequest
 	public WfsHttpRequest(String url)
 	{
 		this.url = url;
+		logger.info("Using URL: "+url);
 	}
 	
 	public List<Integer> ejbIdRequest(GetFeature gf, String elementPrefix, String elementName)

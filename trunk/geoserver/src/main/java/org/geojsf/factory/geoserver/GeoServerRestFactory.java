@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.net.MalformedURLException;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.controller.interfaces.rest.GeoServerConfigKeys;
+import org.geojsf.util.GeoServerConfigKeys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

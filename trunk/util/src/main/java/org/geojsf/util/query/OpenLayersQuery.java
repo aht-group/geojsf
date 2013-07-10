@@ -1,4 +1,4 @@
-package org.geojsf.controller.util.query;
+package org.geojsf.util.query;
 
 import java.util.Hashtable;
 import java.util.Map;

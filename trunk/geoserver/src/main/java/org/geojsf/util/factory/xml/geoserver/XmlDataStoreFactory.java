@@ -6,8 +6,8 @@ import net.sf.exlp.xml.identity.User;
 import net.sf.exlp.xml.net.Host;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.controller.interfaces.rest.GeoServerConfigKeys;
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
+import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.geoserver.DataStore;
 import org.jdom2.Element;
 import org.slf4j.Logger;

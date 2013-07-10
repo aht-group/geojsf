@@ -1,4 +1,4 @@
-package org.geojsf.controller.interfaces.rest;
+package org.geojsf.util;
 
 public interface GeoServerConfigKeys 
 {	
@@ -9,11 +9,9 @@ public interface GeoServerConfigKeys
 	
 	public static String workspace = "geoserver.workspace";
 	
-//ahtutils.highlight:rest
 	public static String restHost = "geoserver.rest.host";
 	public static String restUser = "geoserver.rest.user";
 	public static String restPassword = "geoserver.rest.password";
-//ahtutils.highlight:rest	
 	
 	public static String dsName = "geoserver.ds.name";
 	public static String dsDescription = "geoserver.ds.description";

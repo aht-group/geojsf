@@ -5,7 +5,6 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
-import org.geojsf.controller.util.query.OpenLayersQuery;
 import org.geojsf.factory.xml.openlayers.XmlLayerFactory;
 import org.geojsf.factory.xml.openlayers.XmlServiceFactory;
 import org.geojsf.factory.xml.openlayers.XmlViewFactory;
@@ -14,6 +13,7 @@ import org.geojsf.interfaces.model.openlayers.GeoJsfService;
 import org.geojsf.interfaces.model.openlayers.GeoJsfView;
 import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
 import org.geojsf.interfaces.rest.GeoJsfRestExport;
+import org.geojsf.util.query.OpenLayersQuery;
 import org.geojsf.xml.openlayers.Layers;
 import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.View;
