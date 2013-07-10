@@ -7,6 +7,7 @@ import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.geojsf.util.wfs.OpenLayers;
 import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.View;
 import org.geojsf.xml.openlayers.Views;
