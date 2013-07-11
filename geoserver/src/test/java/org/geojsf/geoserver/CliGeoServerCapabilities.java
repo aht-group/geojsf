@@ -15,7 +15,7 @@ public class CliGeoServerCapabilities
 	{
 		Configuration config = GeoJsfGeoServerTestBootstrap.init();
 			
-		GeoServerCapabilities gsc = new GeoServerCapabilities(config.getString(GeoServerConfigKeys.restHost));
+		GeoServerCapabilities gsc = new GeoServerCapabilities(config.getString(GeoServerConfigKeys.restUrl));
 		gsc.debug();
 	}
 }

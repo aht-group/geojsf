@@ -36,6 +36,12 @@
             </dependency>
             <dependency>
                 <groupId>org.geojsf</groupId>
+                <artifactId>geojsf-interfaces</artifactId>
+                <version>${project.version}</version>
+                <classifier>sources</classifier>
+            </dependency>
+            <dependency>
+                <groupId>org.geojsf</groupId>
                 <artifactId>geojsf-ejb</artifactId>
                 <version>${project.version}</version>
             </dependency>

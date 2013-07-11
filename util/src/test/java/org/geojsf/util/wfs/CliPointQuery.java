@@ -24,7 +24,6 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	public CliPointQuery(Configuration config)
 	{
 		this.config=config;
-
 	}
 	
 	public void pointQuery()
@@ -41,13 +40,8 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		
 		GetFeature gf = PointQueryFactory.cGetFeature(config.getString("geoserver.test.pointquery.layer"),properties,coordinates,distance);
 		
-		WfsHttpRequest r = new WfsHttpRequest(config.getString(GeoServerConfigKeys.restHost)+"/wcs");
+		WfsHttpRequest r = new WfsHttpRequest(config.getString(GeoServerConfigKeys.restUrl)+"/wcs");
 		JDomUtil.debug(r.request(gf));
-	}
-	
-	public void wfsRequest()
-	{
-		WfsHttpRequest wfs = new WfsHttpRequest(config.getString(GeoServerConfigKeys.restHost));
 	}
 	
 	public static void main(String[] args)
@@ -55,6 +49,5 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		Configuration config = GeoJsfUtilsTestBootstrap.init();
 		CliPointQuery cli = new CliPointQuery(config);
 		cli.pointQuery();
-//		cli.wfsRequest();
 	}
 }

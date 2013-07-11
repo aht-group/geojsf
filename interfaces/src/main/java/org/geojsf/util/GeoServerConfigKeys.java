@@ -6,12 +6,14 @@ public interface GeoServerConfigKeys
 	public static final String dirImport = "geoserver.dir.import";
 	
 	public static final String dirStyle = "geoserver.style.dir";
-	
+
+//ahtutils.highlight:keys	
 	public static String workspace = "geoserver.workspace";
 	
-	public static String restHost = "geoserver.rest.host";
+	public static String restUrl = "geoserver.rest.url";
 	public static String restUser = "geoserver.rest.user";
 	public static String restPassword = "geoserver.rest.password";
+//ahtutils.highlight:keys
 	
 	public static String dsName = "geoserver.ds.name";
 	public static String dsDescription = "geoserver.ds.description";
