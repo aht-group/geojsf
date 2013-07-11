@@ -11,39 +11,4 @@
     <artifactId>geojsf-doc</artifactId>
     <name>GeoJSF - Doc</name>
     
-    	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<executions>
-					<execution>
-						<id>copy-resources-java</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/classes/java.geojsf</outputDirectory>
-							<resources>          
-								<resource>
-									<directory>../geoserver/src/main/java</directory>
-									<filtering>true</filtering>
-								</resource>
-								<resource>
-									<directory>../geoserver/src/test/java</directory>
-									<filtering>true</filtering>
-								</resource>
-								<resource>
-									<directory>../util/src/main/java</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>              
-						</configuration>            
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-
 </project>

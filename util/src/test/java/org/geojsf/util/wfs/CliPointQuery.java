@@ -43,6 +43,13 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		WfsHttpRequest r = new WfsHttpRequest(config.getString(GeoServerConfigKeys.restUrl)+"/wcs");
 		JDomUtil.debug(r.request(gf));
 	}
+
+//ahtutils.highlight:point
+	public void genericPointQuery()
+	{
+		
+	}
+//ahtutils.highlight:point
 	
 	public static void main(String[] args)
 	{
