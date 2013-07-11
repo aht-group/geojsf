@@ -3,9 +3,11 @@ package org.geojsf.util.wfs;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
 import net.sf.exlp.util.xml.JDomUtil;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
 import org.geojsf.util.GeoServerConfigKeys;
@@ -20,10 +22,16 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	final static Logger logger = LoggerFactory.getLogger(CliPointQuery.class);
 	
 	private Configuration config;
+	private DefaultGeoJsfLayer layer;
 	
 	public CliPointQuery(Configuration config)
 	{
 		this.config=config;
+	}
+	
+	private UtilsIdFacade getGeoFacade()
+	{
+		return null;
 	}
 	
 	public void pointQuery()
@@ -44,12 +52,25 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		JDomUtil.debug(r.request(gf));
 	}
 
-//ahtutils.highlight:point
+	@SuppressWarnings({ "unchecked", "rawtypes", "unused" })
 	public void genericPointQuery()
 	{
-		
-	}
 //ahtutils.highlight:point
+		UtilsIdFacade fGeo = getGeoFacade();
+		
+		String restUrl = "http://www.geojsf.org/geoserver";
+		
+		Coordinates coordinates = new Coordinates();
+		coordinates.setValue("5.4,6.2");
+		
+		Distance distance = new Distance();
+		distance.setUnits("degree");
+		distance.setValue("1.074");
+		
+		WfsPointQuery pq = new WfsPointQuery(fGeo,restUrl,new GeoJsfGetFeaturePropertyProvider(),layer);
+		List<SampleSpatialEntity> list = pq.execute(SampleSpatialEntity.class,coordinates,distance);
+//ahtutils.highlight:point
+	}
 	
 	public static void main(String[] args)
 	{
