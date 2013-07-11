@@ -18,14 +18,14 @@ public class GeoServerRestFactory implements Serializable
 	
 	public static GeoServerRESTReader reader(Configuration config) throws MalformedURLException
 	{
-		return new GeoServerRESTReader(config.getString(GeoServerConfigKeys.restHost),
+		return new GeoServerRESTReader(config.getString(GeoServerConfigKeys.restUrl),
 										config.getString(GeoServerConfigKeys.restUser),
 										config.getString(GeoServerConfigKeys.restPassword));
 	}
 	
 	public static GeoServerRESTPublisher publisher(Configuration config)
 	{
-		return new GeoServerRESTPublisher(config.getString(GeoServerConfigKeys.restHost),
+		return new GeoServerRESTPublisher(config.getString(GeoServerConfigKeys.restUrl),
 											config.getString(GeoServerConfigKeys.restUser),
 											config.getString(GeoServerConfigKeys.restPassword));
 	}

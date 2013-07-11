@@ -40,7 +40,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 
 	public GeoServerRestWrapper(Configuration config)
 	{
-		this(config.getString(GeoServerConfigKeys.restHost),
+		this(config.getString(GeoServerConfigKeys.restUrl),
 								config.getString(GeoServerConfigKeys.restUser),
 								config.getString(GeoServerConfigKeys.restPassword));
 	}
