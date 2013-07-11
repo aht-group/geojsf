@@ -2,8 +2,10 @@ package org.geojsf.controller.facade;
 
 import javax.persistence.EntityManager;
 
+import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
@@ -19,6 +21,14 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 	{
 		this.em=em;
 	}
+	
+	@Override public <T extends Object> T find(Class<T> type, long id) throws UtilsNotFoundException
+	{
+		T o = em.find(type,id);
+		if(o==null){throw new UtilsNotFoundException("No entity "+type+" with id="+id);}
+		return o;
+	}
+	@Override public <T extends EjbWithId> T find(Class<T> type, T t) {return em.find(type,t.getId());}
 
 	@Override
 	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
