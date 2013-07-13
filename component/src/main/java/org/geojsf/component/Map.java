@@ -32,7 +32,9 @@ import org.geojsf.xml.gml.Coordinates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ResourceDependencies({@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head")})
+@ResourceDependencies({
+	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+	@ResourceDependency(library = "geojsf", name = "geojsf.css", target = "head")})
 @FacesComponent(value="org.geojsf.component.Map")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class Map extends UINamingContainer implements ClientBehaviorHolder
@@ -235,10 +237,10 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		//First, add the last layer as base layer - adding overlays first results in error
 		GeoJsfService baseLayer = serviceList.get(serviceList.size()-1);
 		encodeLayer(baseLayer, true, writer);
-		
+		logger.info("Service list has " +serviceList.size() +" elements.");
 		//Now add the overlay layers
 //		for (int i=0;i<serviceList.size()-1;i++)
- 		for(int i=serviceList.size()-2;i>0;i--) //GEO-64
+ 		for(int i=serviceList.size()-2;i==0;i--) //GEO-64
 		{	
 			GeoJsfService service = serviceList.get(i);
  			encodeLayer(service, false, writer);
