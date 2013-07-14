@@ -1,9 +1,10 @@
 package org.geojsf.component;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UINamingContainer;
+import javax.faces.component.UIPanel;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -18,11 +19,11 @@ import org.slf4j.LoggerFactory;
 
 @FacesComponent(value="org.geojsf.component.Coordinate")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Coordinate extends UINamingContainer implements ClientBehaviorHolder
+public class Coordinate extends UIPanel implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Coordinate.class);
 	
-	private String orientation = null;
+	private static enum Attribute {orientation}
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -38,13 +39,10 @@ public class Coordinate extends UINamingContainer implements ClientBehaviorHolde
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		logger.info("entering encodebegin");
-		ResponseWriter writer = ctx.getResponseWriter();
+		Map<String,Object> map = this.getAttributes();
+		String orientation = map.get(Attribute.orientation.toString()).toString();
 		
-//		writer.startElement("script", this);
-			writer.writeText("GeoJsfCoordinate.addCoordinatesControl('" +getOrientation() +"');", null);
-// 		writer.endElement("script");   
+		ResponseWriter writer = ctx.getResponseWriter();
+		writer.writeText("GeoJsfCoordinate.addCoordinatesControl('"+orientation+"');", null); 
 	}
-
-	public String getOrientation() {return orientation;}
-	public void setOrientation(String orientation) {this.orientation = orientation;}
 }

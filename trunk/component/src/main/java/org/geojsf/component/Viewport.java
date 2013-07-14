@@ -1,9 +1,10 @@
 package org.geojsf.component;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UINamingContainer;
+import javax.faces.component.UIPanel;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -18,13 +19,11 @@ import org.slf4j.LoggerFactory;
 
 @FacesComponent(value="org.geojsf.component.Viewport")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Viewport extends UINamingContainer implements ClientBehaviorHolder
+public class Viewport extends UIPanel implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Viewport.class);
 	
-	private Double lat = 0.0;
-	private Double lon = 0.0;
-	private Integer zoom = 5;
+	private static enum Attribute {lat,lon,zoom}
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -39,16 +38,12 @@ public class Viewport extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
+		Map<String,Object> map = this.getAttributes();
+		double lat = new Double(map.get(Attribute.lat.toString()).toString());
+		double lon = new Double(map.get(Attribute.lon.toString()).toString());
+		int zoom = new Integer(map.get(Attribute.zoom.toString()).toString());
+		
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.writeText("GeoJsfViewport.center(" +lat +"," +lon +"," +zoom +");", null);
 	}
-
-	public Double getLat() {return lat;}
-	public void setLat(Double lat) {this.lat = lat;}
-	
-	public Double getLon() {return lon;}
-	public void setLon(Double lon) {this.lon = lon;}
-
-	public Integer getZoom() {return zoom;}
-	public void setZoom(Integer zoom) {this.zoom = zoom;}
 }
