@@ -38,7 +38,6 @@ public class Coordinate extends UIPanel implements ClientBehaviorHolder
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		logger.info("entering encodebegin");
 		Map<String,Object> map = this.getAttributes();
 		String orientation = map.get(Attribute.orientation.toString()).toString();
 		
