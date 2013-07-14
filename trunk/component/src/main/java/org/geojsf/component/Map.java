@@ -165,17 +165,24 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
         if (behaviorEvent != null)
         {
             List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
-            if (behaviors.size() > 0) {
-                String behaviorSource = params.get("javax.faces.source");
-               String clientId = getClientId(context);
-               if (behaviorSource != null && behaviorSource.equals(clientId)) {
-             	  for (ClientBehavior behavior: behaviorsForEvent) {
-             		  logger.info("Found " +behavior.getClass().toString());
-             		  MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
-             		  String coordinates = params.get("org.geojsf.coordinates");
-           			  ajaxEvent.setCoordinates(coordinates);
-             		  behavior.broadcast(ajaxEvent);
-        }}}}
+            if (behaviors.size() > 0)
+            {
+            	String behaviorSource = params.get("javax.faces.source");
+            	String clientId = getClientId(context);
+            	if (behaviorSource != null && behaviorSource.equals(clientId))
+            	{
+            		for (ClientBehavior behavior: behaviorsForEvent)
+            		{
+            			logger.info("Found " +behavior.getClass().toString());
+            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
+            			String lat = params.get("org.geojsf.coordinates.lat");
+            			String lon = params.get("org.geojsf.coordinates.lon");
+            			ajaxEvent.setLatLon(lat,lon);
+            			behavior.broadcast(ajaxEvent);
+            		}
+            	}
+            }
+        }
 	}
 	
 

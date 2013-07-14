@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
-	<namespace>http://geojsf.sourceforge.net/ui</namespace> 
+	<namespace>http://geojsf.org/ui</namespace> 
 	<composite-library-name>geojsf</composite-library-name> 
 	<tag>
 		<tag-name>map</tag-name>

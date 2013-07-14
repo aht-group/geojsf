@@ -55,7 +55,7 @@ var GeoJSF = {
 		         }, 
 
 		         trigger: function(e) {
-		        	 jsf.ajax.request(id, 'click', {execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick', 'org.geojsf.coordinates': this.map.getLonLatFromViewPortPx(e.xy)});
+		        	 jsf.ajax.request(id, 'click', {execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick', 'org.geojsf.coordinates.lat': this.map.getLonLatFromViewPortPx(e.xy).lat, 'org.geojsf.coordinates.lon': this.map.getLonLatFromViewPortPx(e.xy).lon});
 		         }
 		     });
 		},
