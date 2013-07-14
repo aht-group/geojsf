@@ -95,7 +95,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		Boolean layer = false;
 		for (UIComponent child : this.getChildren())
 		 {
-			 if (child.getClass().getSimpleName().equals("Layer"))
+			 if (child instanceof Layer)
 			 {
 				 layer = true;
 			 }
