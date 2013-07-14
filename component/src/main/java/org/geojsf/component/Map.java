@@ -47,9 +47,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	//Define attributes of the component
 	private Integer width = null;
 	private Integer height = 400;
-	private String centerX = null;
-	private String centerY = null;
-	private String zoomLevel = null;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -269,35 +266,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		writer.writeText("GeoJSF.addLayer(name, url, params, options);" +System.getProperty("line.separator"),null);
 		writer.writeText(System.getProperty("line.separator"), null);
 	}
-
-	public String getCenterX()
-	{
-		if (this.centerX!=null){return this.centerX;}
-		return "0.0";
-	}
-	public void setCenterX(String centerX) {this.centerX = centerX;}
-
-	public String getCenterY()
-	{
-		if (this.centerY!=null){return this.centerY;}
-		return "0.0";
-	}
-
-	public void setCenterY(String centerY) {
-		this.centerY = centerY;
-	}
-
-	public String getZoomLevel() {
-		if (this.zoomLevel!=null)
-		{
-			return this.zoomLevel;
-		}
-		return "5";
-	}
-
-	public void setZoomLevel(String zoomLevel) {
-		this.zoomLevel = zoomLevel;
-	}
 	
 	public void setBaseLayer()
 	{
@@ -305,7 +273,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		ArrayList<UIComponent> children = (ArrayList<UIComponent>) this.getChildren();
 		for (int i=0; i<children.size(); i++)
 		for (UIComponent child : this.getChildren())
-		 {
+		{
 			 if (child.getClass().getSimpleName().equals("Layer"))
 			 {
 				 lastLayerIndex = i;
