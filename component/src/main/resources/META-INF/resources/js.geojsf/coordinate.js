@@ -22,6 +22,7 @@ var GeoJsfCoordinate = {
 			 }
 
 			mousePosition = new OpenLayers.Control.MousePosition({ prefix: '<nobr>', emptyString: ''});
+			mousePosition.formatOutput = function(lonlat) {return [lonlat.lat, lonlat.lon].join(", ");}
 			GeoJSF.map.addControl(mousePosition);
 			mousePosition.element.setAttribute("style", style);
 			return mousePosition;
