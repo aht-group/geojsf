@@ -12,6 +12,12 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>scale</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Scale</component-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>externalScript</tag-name>
 		<component>
 			<component-type>org.geojsf.component.UIExternalScript</component-type>

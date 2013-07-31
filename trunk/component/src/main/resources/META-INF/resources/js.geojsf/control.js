@@ -17,4 +17,33 @@ var GeoJsfControl = {
 				 }
 			}
 		},
+		
+		addScale : function(position)
+		{
+			// Apply given style
+			var style = "z-index: 1001; margin: 20px; ";
+			if (position=="northeast")
+			 {
+				style = style +"right: 0px; left: 70%; top: 0px;"
+			 }
+			if (position=="northwest")
+			 {
+			 	style = style +"left: 0px; right: 70%; top: 0px;"
+			 }
+			if (position=="southeast")
+			 {
+			 	style = style +"right: 0px; left: 70%; bottom: 0px;"
+			 }
+			if (position=="southwest")
+			 {
+			 	style = style +"left: 0px; right: 70%; bottom: 0px;"
+			 }
+
+		//	scaleBar = new OpenLayers.Control.ScaleBar();
+			scaleBar = new OpenLayers.Control.ScaleLine();
+			GeoJSF.map.addControl(scaleBar);
+			scaleBar.eTop.parentNode.setAttribute("style", style);
+			scaleBar.eBottom.setAttribute("style", "display: none;");
+			return scaleBar;
+		},
 };
