@@ -2,6 +2,6 @@
 <jsf:component xmlns:jsf="http://www.openfuxml.org/jsf">
     <jsf:attribute name="orientation" required="true" shortDescription="Allowed values are: northeast, northwest, southeast, southwest"/>
     <jsf:attribute name="system" required="false" default="metric" shortDescription="Allowed values are: metric and english"/>
-    <jsf:attribute name="major" required="false" shortDescription="Number of divisions on the scalebar"/>
-    <jsf:attribute name="sub" required="false" shortDescription="Number of subdivisions per major division"/>
+    <jsf:attribute name="major" required="false" default="2" shortDescription="Number of divisions on the scalebar"/>
+    <jsf:attribute name="sub" required="false" default="2" shortDescription="Number of subdivisions per major division"/>
 </jsf:component>
