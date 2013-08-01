@@ -18,7 +18,7 @@ var GeoJsfControl = {
 			}
 		},
 		
-		addScale : function(position)
+		addScale : function(position, system, major, sub)
 		{
 			// Apply given style
 		//	var style = "z-index: 1001; margin: 20px; ";
@@ -40,7 +40,11 @@ var GeoJsfControl = {
 			 	style = style +"left: 0px; right: 70%; bottom: 0px;"
 			 }
 
-			scaleBar = new OpenLayers.Control.ScaleBar();
+			scaleBar = new OpenLayers.Control.ScaleBar({
+				displaySystem: system,
+				divisions: major,
+			    subdivisions: sub
+			});
 		//		scaleBar = new OpenLayers.Control.ScaleLine();
 			GeoJSF.map.addControl(scaleBar);
 		//	scaleBar.eTop.parentNode.setAttribute("style", style);
