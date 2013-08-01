@@ -21,7 +21,8 @@ var GeoJsfControl = {
 		addScale : function(position)
 		{
 			// Apply given style
-			var style = "z-index: 1001; margin: 20px; ";
+		//	var style = "z-index: 1001; margin: 20px; ";
+			var style = "margin: 20px; ";
 			if (position=="northeast")
 			 {
 				style = style +"right: 0px; left: 70%; top: 0px;"
@@ -39,11 +40,13 @@ var GeoJsfControl = {
 			 	style = style +"left: 0px; right: 70%; bottom: 0px;"
 			 }
 
-		//	scaleBar = new OpenLayers.Control.ScaleBar();
-			scaleBar = new OpenLayers.Control.ScaleLine();
+			scaleBar = new OpenLayers.Control.ScaleBar();
+		//		scaleBar = new OpenLayers.Control.ScaleLine();
 			GeoJSF.map.addControl(scaleBar);
-			scaleBar.eTop.parentNode.setAttribute("style", style);
-			scaleBar.eBottom.setAttribute("style", "display: none;");
+		//	scaleBar.eTop.parentNode.setAttribute("style", style);
+		//	scaleBar.eBottom.setAttribute("style", "display: none;");
+			var originalStyle = scaleBar.element.parentNode.getAttribute("style");
+			scaleBar.element.parentNode.setAttribute("style", originalStyle +style);
 			return scaleBar;
 		},
 };
