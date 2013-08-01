@@ -47,6 +47,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	//Define attributes of the component
 	private Integer width = null;
 	private Integer height = 400;
+	private Boolean noLayersGiven = false;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -66,22 +67,33 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		 logger.debug("Checking value existence ...");
 		 if (getAttributes().get("value")==null)
 		 {
-			 setBaseLayer();
-			 logger.debug("No value given - falling back to simple version");
-			 for (UIComponent child : this.getChildren())
+			 if (!containsLayer())
 			 {
-				 logger.info("Found child of type: " +child.getClass().getSimpleName());
-				 if (child.getClass().getSimpleName().equals("Layer"))
+				 throw new Exception("No value or layers given!");
+			 }
+			 else
+			 {
+				 setBaseLayer();
+				 logger.debug("No value given - falling back to simple version");
+				 for (UIComponent child : this.getChildren())
 				 {
-					 Layer layer = (Layer) child;
-					 addLayerToList(layer);
-				 }
+					 logger.info("Found child of type: " +child.getClass().getSimpleName());
+					 if (child.getClass().getSimpleName().equals("Layer"))
+					 {
+						 Layer layer = (Layer) child;
+						 addLayerToList(layer);
+					 }
+				 } 
 			 }
 		 }
 		 else
 		 {
 			 GeoJsfMap map = (GeoJsfMap) getAttributes().get("value");
 			 serviceList = map.getLayerServices();
+			 if (serviceList.size()==0)
+			 {
+				 noLayersGiven = true;
+			 }
 			 if (containsLayer())
 			 {
 				 throw new UnconsistentConfgurationException("layer tag found while value is given. Don't mix configurations!");
@@ -206,49 +218,65 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		logger.info("entering encodebegin");
 		try {
 			fallback();
-		} catch (Exception e) {
+		} catch (UnconsistentConfgurationException e) {
 			logger.warn("Problem occured when processing layers: " +e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.setRendered(false);
 		}
-		ResponseWriter writer = ctx.getResponseWriter();
-		writer.writeText(System.getProperty("line.separator"), null);
-		writer.writeText(System.getProperty("line.separator"), null);
-		
-		writer.startElement("div", this);
-		writer.writeAttribute("id", this.getClientId(), null);
-		writer.writeAttribute("style", buildStyle(), null);
-		writer.writeAttribute("id", this.getClientId(), null);
-		writer.endElement("div");
-		writer.writeText(System.getProperty("line.separator"), null);
-		
-		writer.writeText(System.getProperty("line.separator"), null);
-		writer.startElement("script", this);
-		writer.writeText(System.getProperty("line.separator"), null);
-		writer.writeText("// GeoJSF: Initializing OpenLayers map"+System.getProperty("line.separator"), null);
-		writer.writeText("GeoJSF.bootstrap();" +System.getProperty("line.separator"), null);
-		writer.writeText("GeoJSF.addClickHandler('" +this.getClientId() +"','" +this.getClientId() +":resetLayers');" +System.getProperty("line.separator"), null);
-		writer.writeText("GeoJSF.initMap('" +this.getClientId() +"','');" +System.getProperty("line.separator"), null);
-		if (this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME")!=null)
+		if (this.isRendered())
 		{
-			writer.writeText("OpenLayers.ImgPath='" +this.getFacesContext().getExternalContext().getRequestContextPath() +"/" +this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME") +"/';" +System.getProperty("line.separator"), null);
+			ResponseWriter writer = ctx.getResponseWriter();
+			writer.writeText(System.getProperty("line.separator"), null);
+			writer.writeText(System.getProperty("line.separator"), null);
+			
+			writer.startElement("div", this);
+			writer.writeAttribute("id", this.getClientId(), null);
+			writer.writeAttribute("style", buildStyle(), null);
+			writer.writeAttribute("id", this.getClientId(), null);
+			writer.endElement("div");
+			writer.writeText(System.getProperty("line.separator"), null);
+			
+			if (noLayersGiven)
+			{
+				writer.startElement("center", this);
+				writer.writeText("no layers given.", null);
+				writer.endElement("center");
+			}
+			else
+			{
+				writer.writeText(System.getProperty("line.separator"), null);
+				writer.startElement("script", this);
+				writer.writeText(System.getProperty("line.separator"), null);
+				writer.writeText("// GeoJSF: Initializing OpenLayers map"+System.getProperty("line.separator"), null);
+				writer.writeText("GeoJSF.bootstrap();" +System.getProperty("line.separator"), null);
+				writer.writeText("GeoJSF.addClickHandler('" +this.getClientId() +"','" +this.getClientId() +":resetLayers');" +System.getProperty("line.separator"), null);
+				writer.writeText("GeoJSF.initMap('" +this.getClientId() +"','');" +System.getProperty("line.separator"), null);
+				if (this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME")!=null)
+				{
+					writer.writeText("OpenLayers.ImgPath='" +this.getFacesContext().getExternalContext().getRequestContextPath() +"/" +this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME") +"/';" +System.getProperty("line.separator"), null);
+				}
+			    
+				writer.writeText("GeoJSF.resetLayers();", null);
+				writer.writeText(System.getProperty("line.separator"), null);
+				writer.writeText(System.getProperty("line.separator"), null);
+				writer.writeText("// GeoJSF: Adding layers"+System.getProperty("line.separator"), null);
+				writer.writeText("// GeoJSF: The last given layer will be taken as base layer:"+System.getProperty("line.separator"), null);
+				
+				//First, add the last layer as base layer - adding overlays first results in error
+				GeoJsfService baseLayer = serviceList.get(serviceList.size()-1);
+				encodeLayer(baseLayer, true, writer);
+				logger.info("Service list has " +serviceList.size() +" elements.");
+				//Now add the overlay layers
+//				for (int i=0;i<serviceList.size()-1;i++)
+		 		for(int i=serviceList.size()-2;i==0;i--) //GEO-64
+				{	
+					GeoJsfService service = serviceList.get(i);
+		 			encodeLayer(service, false, writer);
+		 		}
+			}
 		}
-	    
-		writer.writeText("GeoJSF.resetLayers();", null);
-		writer.writeText(System.getProperty("line.separator"), null);
-		writer.writeText(System.getProperty("line.separator"), null);
-		writer.writeText("// GeoJSF: Adding layers"+System.getProperty("line.separator"), null);
-		writer.writeText("// GeoJSF: The last given layer will be taken as base layer:"+System.getProperty("line.separator"), null);
-		
-		//First, add the last layer as base layer - adding overlays first results in error
-		GeoJsfService baseLayer = serviceList.get(serviceList.size()-1);
-		encodeLayer(baseLayer, true, writer);
-		logger.info("Service list has " +serviceList.size() +" elements.");
-		//Now add the overlay layers
-//		for (int i=0;i<serviceList.size()-1;i++)
- 		for(int i=serviceList.size()-2;i==0;i--) //GEO-64
-		{	
-			GeoJsfService service = serviceList.get(i);
- 			encodeLayer(service, false, writer);
- 		}  
+		  
 	}
 	
 	@Override
