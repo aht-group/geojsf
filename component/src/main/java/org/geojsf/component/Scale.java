@@ -27,7 +27,7 @@ public class Scale extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Scale.class);
 	
-	private static enum Attribute {orientation}
+	private static enum Attribute {orientation, system, major, sub}
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -46,7 +46,16 @@ public class Scale extends UINamingContainer implements ClientBehaviorHolder
 		Map<String,Object> map = this.getAttributes();
 		String orientation = map.get(Attribute.orientation.toString()).toString();
 		
+		String system = "metric";
+		if (null!=map.get(Attribute.system.toString())){system = map.get(Attribute.system.toString()).toString();}
+		
+		String major  = "2";
+		if (null!=map.get(Attribute.major.toString())){major = map.get(Attribute.major.toString()).toString();}
+		
+		String sub    = "2";
+		if (null!=map.get(Attribute.sub.toString())){sub = map.get(Attribute.sub.toString()).toString();}
+		
 		ResponseWriter writer = ctx.getResponseWriter();
-		writer.writeText("GeoJsfControl.addScale('"+orientation+"');", null); 
+		writer.writeText("GeoJsfControl.addScale('"+orientation+"','" +system +"'," +major +"," +sub+");", null); 
 	}
 }
