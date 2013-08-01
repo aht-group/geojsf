@@ -22,7 +22,7 @@ var GeoJsfControl = {
 		{
 			// Apply given style
 		//	var style = "z-index: 1001; margin: 20px; ";
-			var style = "margin: 20px; ";
+			var style = "margin: 30px; ";
 			if (position=="northeast")
 			 {
 				style = style +"right: 0px; left: 70%; top: 0px;"
@@ -50,7 +50,7 @@ var GeoJsfControl = {
 		//	scaleBar.eTop.parentNode.setAttribute("style", style);
 		//	scaleBar.eBottom.setAttribute("style", "display: none;");
 			var originalStyle = scaleBar.element.parentNode.getAttribute("style");
-			scaleBar.element.parentNode.setAttribute("style", originalStyle +style);
+			scaleBar.element.setAttribute("style", originalStyle +style);
 			return scaleBar;
 		},
 };
