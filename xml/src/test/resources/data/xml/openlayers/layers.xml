@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ol:layers xmlns:ol="http://geojsf.sf.net/openlayers" wms="myWms" wcs="myWcs">
-    <ol:layer id="1" code="myCode" workspace="myWorkspace" name="myName" visible="true" showLegend="true"/>
+<ol:layers xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ol="http://geojsf.sf.net/openlayers" wms="myWms" wcs="myWcs">
+    <ol:layer id="1" code="myCode" workspace="myWorkspace" name="myName" visible="true" showLegend="true" temporal="true"/>
 </ol:layers>

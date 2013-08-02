@@ -32,6 +32,7 @@ import net.sf.ahtutils.xml.status.Langs;
  *       &lt;attribute name="label" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="visible" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *       &lt;attribute name="showLegend" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="temporal" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -71,6 +72,8 @@ public class Layer
     protected Boolean visible;
     @XmlAttribute(name = "showLegend")
     protected Boolean showLegend;
+    @XmlAttribute(name = "temporal")
+    protected Boolean temporal;
 
     /**
      * Gets the value of the langs property.
@@ -362,6 +365,38 @@ public class Layer
 
     public void unsetShowLegend() {
         this.showLegend = null;
+    }
+
+    /**
+     * Gets the value of the temporal property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isTemporal() {
+        return temporal;
+    }
+
+    /**
+     * Sets the value of the temporal property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setTemporal(boolean value) {
+        this.temporal = value;
+    }
+
+    public boolean isSetTemporal() {
+        return (this.temporal!= null);
+    }
+
+    public void unsetTemporal() {
+        this.temporal = null;
     }
 
 }

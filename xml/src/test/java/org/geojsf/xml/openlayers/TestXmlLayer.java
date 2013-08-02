@@ -40,6 +40,7 @@ public class TestXmlLayer extends AbstractXmlOpenlayersTest
     	xml.setName("myName");
     	xml.setVisible(true);
     	xml.setShowLegend(true);
+    	xml.setTemporal(true);
     	
     	if(withChilds)
     	{

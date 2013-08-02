@@ -27,6 +27,8 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	
 	private Map<String, DefaultGeoJsfDescription> description;
 	
+	private boolean temporalLayer;
+	
 	//******************************************************************************
 	
 	@Override public long getId() {return id;}
@@ -43,6 +45,9 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	
 	@Override public DefaultGeoJsfService getService() {return service;}
 	@Override public void setService(DefaultGeoJsfService service) {this.service = service;}
+	
+	@Override public boolean isTemporalLayer() {return temporalLayer;}
+	@Override public void setTemporalLayer(boolean temporalLayer) {this.temporalLayer = temporalLayer;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	

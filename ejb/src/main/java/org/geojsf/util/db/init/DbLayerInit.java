@@ -105,7 +105,7 @@ public class DbLayerInit <L extends UtilsLang,
 			try
 			{
 				ejb.setName(ejbLangFactory.getLangMap(layer.getLangs()));
-//				aclCategory.setDescription(ejbDescriptionFactory.create(category.getDescriptions()));
+				ejb.setTemporalLayer(layer.isTemporal());
 				
 				ejb.setService(fSecurity.fByCode(cService, layer.getService().getCode()));
 				
