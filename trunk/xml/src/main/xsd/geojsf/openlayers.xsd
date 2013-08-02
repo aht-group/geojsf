@@ -50,6 +50,7 @@
             <xsd:attribute name="label" type="xsd:string"/>
             <xsd:attribute name="visible" type="xsd:boolean"/>
             <xsd:attribute name="showLegend" type="xsd:boolean"/>
+            <xsd:attribute name="temporal" type="xsd:boolean"/>
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="legend">
