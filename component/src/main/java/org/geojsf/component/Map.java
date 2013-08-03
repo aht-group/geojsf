@@ -1,8 +1,12 @@
 package org.geojsf.component;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.el.MethodExpression;
@@ -24,6 +28,7 @@ import org.geojsf.controller.util.GeoJsfMap;
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.exception.UnconsistentConfgurationException;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
+import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
 import org.geojsf.interfaces.model.openlayers.GeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
@@ -48,6 +53,8 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	private Integer width = null;
 	private Integer height = 400;
 	private Boolean noLayersGiven = false;
+	private Boolean hasTimeDefinition = false;
+	private Date timeInfo = null;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -99,6 +106,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 				 throw new UnconsistentConfgurationException("layer tag found while value is given. Don't mix configurations!");
 			 }
 		 }
+		 searchTimeDefinition();
 		return new String();
 	}
 	
@@ -121,6 +129,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		 DefaultGeoJsfService service = new DefaultGeoJsfService();
 		 service.setUrl(url);
 		 service.setCode(layer.getName());
+		 Boolean temporal = layer.getHasTemporalLayer();
 		 Object layerList = layer.getLayers();
 		 logger.debug("Detecting layer definition type..." +layerList.getClass().getSimpleName());
 		 if (layerList.getClass().getSimpleName().equals("String"))
@@ -130,6 +139,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 			 for (String string : layerString.split(","))
 			 {
 				 DefaultGeoJsfLayer layerToAdd = new DefaultGeoJsfLayer();
+				 layerToAdd.setTemporalLayer(temporal);
 				 layerToAdd.setCode(string);
 				 service.getLayer().add(layerToAdd);
 			 }
@@ -279,6 +289,34 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		  
 	}
 	
+	public Boolean hasTemporalLayer(GeoJsfService service)
+	{
+		Boolean temporal = false;
+		for (Object o : service.getLayer())
+		{
+			GeoJsfLayer layer = (GeoJsfLayer) o;
+			if (layer.isTemporalLayer()) {temporal = true;}
+		}
+		return temporal;
+	}
+	
+	public void searchTimeDefinition()
+	{
+		for (UIComponent comp : this.getChildren())
+		{
+			if (comp.getClass().getSimpleName().toString().equals("Time"))
+			{
+				Time t = (Time) comp;
+				try {
+					timeInfo = t.getDate();
+					logger.debug("Getting date from Time component: "+timeInfo.toGMTString());
+				} catch (ParseException e) {
+					logger.error("Could not get date from Time component:" +e.getMessage());
+				}
+			}
+		}
+	}
+	
 	@Override
 	public void encodeEnd(FacesContext ctx) throws IOException
 	{
@@ -294,6 +332,14 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	    writer.writeText("var name   = '" +service.getCode() +"';" +System.getProperty("line.separator"),null);
 		writer.writeText("var params = {};" +System.getProperty("line.separator"), null);
 		writer.writeText("params.layers      = '"+sLayers+"';" +System.getProperty("line.separator"),null);
+		
+		if (hasTemporalLayer(service) && null!=timeInfo)
+		{
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+			String timeString = df.format(timeInfo);
+			writer.writeText("params.time      = '"+timeString +"';" +System.getProperty("line.separator"),null);
+		}
+		
 		writer.writeText("params.transparent = true;" +System.getProperty("line.separator"),null);
 		writer.writeText("params.format      = 'image/png';" +System.getProperty("line.separator"),null);
 		writer.writeText("var options = {};" +System.getProperty("line.separator"),null);
