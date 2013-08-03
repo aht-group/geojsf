@@ -18,6 +18,12 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>time</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Time</component-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>externalScript</tag-name>
 		<component>
 			<component-type>org.geojsf.component.UIExternalScript</component-type>

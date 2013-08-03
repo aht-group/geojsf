@@ -16,11 +16,12 @@ public class Layer  extends UINamingContainer
 	final static Logger logger = LoggerFactory.getLogger(Layer.class);
 	
 	//Define attributes of the component
-	private String name         = null;
-	private String type         = null;
-	private String url          = null;
-	private String layers       = null;
-	private Boolean isBaseLayer = false;
+	private String name              = null;
+	private String type              = null;
+	private String url               = null;
+	private String layers            = null;
+	private Boolean isBaseLayer      = false;
+	private Boolean hasTemporalLayer = false;
 
 	public String getType() {
 		if (this.type!=null)
@@ -57,5 +58,13 @@ public class Layer  extends UINamingContainer
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Boolean getHasTemporalLayer() {
+		return hasTemporalLayer;
+	}
+
+	public void setHasTemporalLayer(Boolean hasTemporalLayer) {
+		this.hasTemporalLayer = hasTemporalLayer;
 	}
 }
