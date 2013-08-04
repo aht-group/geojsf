@@ -353,8 +353,9 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		Integer lastLayerIndex = 0;
 		ArrayList<UIComponent> children = (ArrayList<UIComponent>) this.getChildren();
 		for (int i=0; i<children.size(); i++)
-		for (UIComponent child : this.getChildren())
+	//	for (UIComponent child : this.getChildren())
 		{
+			UIComponent child = children.get(i);
 			 if (child.getClass().getSimpleName().equals("Layer"))
 			 {
 				 lastLayerIndex = i;
