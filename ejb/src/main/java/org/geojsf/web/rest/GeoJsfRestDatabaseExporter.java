@@ -12,28 +12,32 @@ import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
 import org.geojsf.interfaces.model.openlayers.GeoJsfService;
 import org.geojsf.interfaces.model.openlayers.GeoJsfView;
 import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
-import org.geojsf.interfaces.rest.GeoJsfRestExport;
+import org.geojsf.interfaces.rest.GeoJsfDatabaseRest;
 import org.geojsf.util.query.OpenLayersQuery;
 import org.geojsf.xml.openlayers.Layers;
 import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.View;
 import org.geojsf.xml.openlayers.Views;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class GeoJsfRestDbExporter <L extends UtilsLang,
+public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 									D extends UtilsDescription,
 									SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
 									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
 									VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
 									VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-				implements GeoJsfRestExport
+				implements GeoJsfDatabaseRest
 {
+	final static Logger logger = LoggerFactory.getLogger(GeoJsfRestDatabaseExporter.class);
+	
 	private UtilsSecurityFacade fSecurity;
 	
 	private final Class<SERVICE> cService;
 	private final Class<LAYER> cLayer;
 	private final Class<VIEW> cView;
 	
-	private GeoJsfRestDbExporter(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)
+	private GeoJsfRestDatabaseExporter(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)
 	{
 		this.fSecurity=fSecurity;
 		this.cService=cService;
@@ -48,10 +52,10 @@ public class GeoJsfRestDbExporter <L extends UtilsLang,
 					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
 					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>,
 					LT extends UtilsStatus<L,D>>
-		GeoJsfRestDbExporter<L,D,SERVICE,LAYER,VIEW,VL>
+		GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,VIEW,VL>
 		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)
 	{
-		return new GeoJsfRestDbExporter<L,D,SERVICE,LAYER,VIEW,VL>(fSecurity,cService,cLayer,cView);
+		return new GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,VIEW,VL>(fSecurity,cService,cLayer,cView);
 	}
 
 	@Override
@@ -102,5 +106,11 @@ public class GeoJsfRestDbExporter <L extends UtilsLang,
 		}
 		
 		return views;
+	}
+
+	public String importGeoJsf(Repository repository)
+	{
+		logger.error("NYI");
+		return null;
 	}
 }
