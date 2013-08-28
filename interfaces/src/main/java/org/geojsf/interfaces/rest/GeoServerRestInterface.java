@@ -1,4 +1,4 @@
-package org.geojsf.controller.interfaces.rest;
+package org.geojsf.interfaces.rest;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -48,10 +48,22 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	String workspaces();
 	
+	@GET @Path("/workspaces/{workspace}.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	String workspace(@PathParam("workspace") String workspace);
+	
 	@POST @Path("/workspaces.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)
 	String createWorkspace(String workspace);
+	
+	@GET @Path("/namespaces")
+	@Produces(MediaType.APPLICATION_XML)
+	String namespaces();
+	
+	@GET @Path("/namespaces/{workspace}")
+	@Produces(MediaType.APPLICATION_XML)
+	String namespaces(@PathParam("workspace") String workspace);
 	
 	// DATASTORE
 	@GET @Path("/workspaces/{workspace}/datastores")

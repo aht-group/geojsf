@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<geoserver:workspace xmlns:geoserver="http://www.geojsf.org/geoserver" name="myName"/>
+<g:workspace xmlns:g="http://www.geojsf.org/geoserver" name="myName" namespace="myNamespace"/>

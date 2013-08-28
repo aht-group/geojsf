@@ -11,11 +11,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.geojsf.controller.interfaces.rest.GeoServerRest;
-import org.geojsf.controller.interfaces.rest.GeoServerRestInterface;
+import org.geojsf.interfaces.rest.GeoServerRest;
+import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.util.factory.xml.geoserver.XmlDataStoreFactory;
-import org.geojsf.util.factory.xml.geoserver.XmlWorkspacesFactory;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Styles;
@@ -37,6 +36,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 	
 	private GeoServerRestInterface rest;
 	private static final String xmlEncoding = "UTF-8";
+	
+	public static Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
 
 	public GeoServerRestWrapper(Configuration config)
 	{
@@ -123,29 +124,22 @@ public class GeoServerRestWrapper implements GeoServerRest
 	@Override
 	public Workspaces getWorkspaces() throws IOException
 	{
-		Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
-		
-		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.workspaces(), xmlEncoding);
-		Document doc = JDomUtil.load(is, xmlEncoding);
-		Element root = doc.getRootElement();
-		JDomUtil.setNameSpaceRecursive(root, ns);
-		XmlWorkspacesFactory.transform(root); 
-		return JDomUtil.toJaxb(root, Workspaces.class);
+		GeoServerRestWorkspaceWrapper wsWrapper = new GeoServerRestWorkspaceWrapper(rest);
+		return wsWrapper.getWorkspaces();
+	}
+	
+	@Override
+	public Workspace getWorkspace(String workspaceName) throws IOException
+	{
+		GeoServerRestWorkspaceWrapper wsWrapper = new GeoServerRestWorkspaceWrapper(rest);
+		return wsWrapper.getWorkspace(workspaceName);
 	}
 
 	@Override
 	public void createWorkspace(Workspace workspace) throws IOException
 	{
-		Element root = new Element("workspace");
-		Element name = new Element("name");
-		name.setText(workspace.getName());
-		root.addContent(name);
-		
-		Document doc = new Document();
-		doc.setRootElement(root);
-
-		rest.createWorkspace(JDomUtil.toString(doc));
-		
+		GeoServerRestWorkspaceWrapper wsWrapper = new GeoServerRestWorkspaceWrapper(rest);
+		wsWrapper.createWorkspace(workspace);		
 	}
 
 	@Override

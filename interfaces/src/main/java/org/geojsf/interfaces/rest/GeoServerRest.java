@@ -1,4 +1,4 @@
-package org.geojsf.controller.interfaces.rest;
+package org.geojsf.interfaces.rest;
 
 import java.io.IOException;
 
@@ -25,6 +25,7 @@ public interface GeoServerRest
 	
 	//WORKSPACE
 	Workspaces getWorkspaces() throws IOException;
+	Workspace getWorkspace(String workspaceName) throws IOException;
 	void createWorkspace(Workspace workspace) throws IOException;
 	
 	//DATASTORE

@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.geoserver.manager.GeoServerStyleManager;
+import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.xml.geoserver.Styles;
 import org.jdom2.Document;

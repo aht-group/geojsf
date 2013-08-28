@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.exception.GeoServerConfigurationException;
+import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
 import org.slf4j.Logger;
@@ -23,6 +23,7 @@ public class GeoServerWorkspaceManager
 	}
 	
 	public Workspaces getWorkspaces() throws IOException {return rest.getWorkspaces();}
+	public Workspace getWorkspace(String workspaceName) throws IOException {return rest.getWorkspace(workspaceName);}
 	
 	public boolean isAvailable(Workspace workspace) throws IOException
 	{
