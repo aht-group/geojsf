@@ -8,7 +8,7 @@ import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.lang.SystemUtils;
-import org.geojsf.controller.interfaces.rest.GeoServerRest;
+import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.xml.geoserver.Style;
 import org.geojsf.xml.geoserver.Styles;
 import org.jdom2.Document;

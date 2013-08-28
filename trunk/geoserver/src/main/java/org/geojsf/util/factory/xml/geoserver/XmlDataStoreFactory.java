@@ -6,6 +6,7 @@ import net.sf.exlp.xml.identity.User;
 import net.sf.exlp.xml.net.Host;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.geoserver.DataStore;

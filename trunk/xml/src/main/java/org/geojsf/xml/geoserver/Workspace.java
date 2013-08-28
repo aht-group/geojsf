@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="namespace" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -36,6 +37,8 @@ public class Workspace
     private final static long serialVersionUID = 1L;
     @XmlAttribute(name = "name")
     protected String name;
+    @XmlAttribute(name = "namespace")
+    protected String namespace;
 
     /**
      * Gets the value of the name property.
@@ -63,6 +66,34 @@ public class Workspace
 
     public boolean isSetName() {
         return (this.name!= null);
+    }
+
+    /**
+     * Gets the value of the namespace property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNamespace() {
+        return namespace;
+    }
+
+    /**
+     * Sets the value of the namespace property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNamespace(String value) {
+        this.namespace = value;
+    }
+
+    public boolean isSetNamespace() {
+        return (this.namespace!= null);
     }
 
 }

@@ -5,8 +5,8 @@ import java.io.IOException;
 import net.sf.exlp.util.xml.JDomUtil;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.controller.interfaces.rest.GeoServerRest;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
+import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.xml.geoserver.Styles;
 import org.jdom2.Document;

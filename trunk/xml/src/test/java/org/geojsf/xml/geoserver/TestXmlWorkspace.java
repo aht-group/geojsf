@@ -33,6 +33,7 @@ public class TestXmlWorkspace extends AbstractXmlGeoserverTest
     {
     	Workspace xml = new Workspace();
     	xml.setName("myName");
+    	xml.setNamespace("myNamespace");
     		
     	if(withChilds)
     	{

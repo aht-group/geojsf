@@ -48,6 +48,7 @@
 	<xsd:element name="workspace">
 		<xsd:complexType>
 			<xsd:attribute name="name" type="xsd:string"/>
+			<xsd:attribute name="namespace" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="dataStores">
