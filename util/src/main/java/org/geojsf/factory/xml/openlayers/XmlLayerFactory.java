@@ -35,6 +35,7 @@ public class XmlLayerFactory implements Serializable
 		Layer xml = new Layer();
 		
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
+		if(q.isSetTemporal()){xml.setTemporal(ejb.isTemporalLayer());}
 		
 		if(q.isSetService())
 		{

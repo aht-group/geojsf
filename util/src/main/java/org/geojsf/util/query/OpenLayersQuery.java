@@ -62,6 +62,7 @@ public class OpenLayersQuery
 		service.setCode("");
 
 		Layer xml = new Layer();
+		xml.setTemporal(false);
 		xml.setCode("");
 		xml.setService(service);
 		xml.setLangs(StatusQuery.langs());
