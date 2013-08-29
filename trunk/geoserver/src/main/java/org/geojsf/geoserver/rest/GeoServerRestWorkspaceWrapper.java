@@ -8,8 +8,8 @@ import net.sf.exlp.util.xml.XmlUtil;
 
 import org.apache.commons.io.IOUtils;
 import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
+import org.geojsf.factory.xml.geoserver.XmlWorkspacesFactory;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
-import org.geojsf.util.factory.xml.geoserver.XmlWorkspacesFactory;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
 import org.jdom2.Document;

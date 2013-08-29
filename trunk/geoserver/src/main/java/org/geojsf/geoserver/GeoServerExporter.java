@@ -46,6 +46,7 @@ public class GeoServerExporter
 			logger.info("Starting export of workspace "+workspace.getName());
 			workspace = wsManager.getWorkspace(workspaceName);
 			JaxbUtil.save(new File(fBase,GeoServerWorkspaceManager.wsXml), workspace, true);
+			exportDataStores();
 		}
 	}
 	
@@ -53,6 +54,7 @@ public class GeoServerExporter
 	{
 		DataStores dataStores = dataStoreManager.getDataStores(workspace);
 		JaxbUtil.info(dataStores);
+		JaxbUtil.save(new File(fBase,GeoServerDataStoreManager.dsXml), dataStores, true);
 	}
 	
 	public static void main(String args[]) throws Exception

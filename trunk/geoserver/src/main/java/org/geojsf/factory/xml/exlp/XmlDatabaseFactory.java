@@ -16,11 +16,11 @@ public class XmlDatabaseFactory implements Serializable
 		
 	public static final Namespace ns = Namespace.getNamespace("n","http://exlp.sf.net/net");
 	
-	@SuppressWarnings("unused")
 	public static void transform(Element connectionParameters)
 	{
 		String user = null;
-		String port = null;
+		String database = null;
+		String schema = null;
 		
 		List<Element> list = connectionParameters.getChildren("entry",SimpleXmlTranscoder.ns);
 		for(Object o : list)
@@ -31,15 +31,15 @@ public class XmlDatabaseFactory implements Serializable
 				if(e.getAttribute("key") != null)
 				{
 					if(e.getAttributeValue("key").equals("user")){user = e.getValue();}
-					if(e.getAttributeValue("key").equals("port")){port = e.getValue();}
+					if(e.getAttributeValue("key").equals("database")){database = e.getValue();}
+					if(e.getAttributeValue("key").equals("schema")){schema = e.getValue();}
 				}
 			}
 		}
-		if(user!=null)
-		{
-			Element eDatabase = new Element("database",ns);
-			eDatabase.setAttribute("user", user);
-			connectionParameters.addContent(eDatabase);
-		}
+		Element eDatabase = new Element("database",ns);
+		if(user!=null){eDatabase.setAttribute("user", user);}
+		if(database!=null){eDatabase.setAttribute("database", user);}
+		if(schema!=null){eDatabase.setAttribute("schema", schema);}
+		connectionParameters.addContent(eDatabase);
 	}
 }

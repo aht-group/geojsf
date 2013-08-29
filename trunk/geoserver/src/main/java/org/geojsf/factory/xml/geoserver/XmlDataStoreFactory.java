@@ -1,4 +1,4 @@
-package org.geojsf.util.factory.xml.geoserver;
+package org.geojsf.factory.xml.geoserver;
 
 import java.io.Serializable;
 
@@ -6,7 +6,6 @@ import net.sf.exlp.xml.identity.User;
 import net.sf.exlp.xml.net.Host;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.geoserver.DataStore;
@@ -60,10 +59,10 @@ public class XmlDataStoreFactory implements Serializable
 		SimpleXmlTranscoder.elementToAttribute(dataStore, "type");
 		SimpleXmlTranscoder.elementToAttribute(dataStore, "enabled");
 		
-		Object oWorkspace = dataStore.getChild("workspace", SimpleXmlTranscoder.ns);
-		if(oWorkspace!=null && (oWorkspace instanceof Element)){XmlWorkspaceFactory.transform((Element)oWorkspace);}
+		Element eWorkspace = dataStore.getChild("workspace", SimpleXmlTranscoder.ns);
+		if(eWorkspace!=null){XmlWorkspaceFactory.transform(eWorkspace);}
 		
-		Object oConnectionParameters = dataStore.getChild("connectionParameters", SimpleXmlTranscoder.ns);
-		if(oConnectionParameters!=null && (oConnectionParameters instanceof Element)){XmlConnectionFactory.transform((Element)oConnectionParameters);}
+		Element eConnectionParameters = dataStore.getChild("connectionParameters", SimpleXmlTranscoder.ns);
+		if(eConnectionParameters!=null){XmlConnectionFactory.transform(eConnectionParameters);}
 	}
 }
