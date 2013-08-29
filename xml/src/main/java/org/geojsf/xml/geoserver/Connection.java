@@ -4,6 +4,7 @@ package org.geojsf.xml.geoserver;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -24,6 +25,11 @@ import net.sf.exlp.xml.net.Host;
  *         &lt;element ref="{http://exlp.sf.net/net}host"/>
  *         &lt;element ref="{http://exlp.sf.net/net}database"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="timeout" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="min" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="max" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="fetchSize" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="maxPreparedStatements" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -46,6 +52,16 @@ public class Connection
     protected Host host;
     @XmlElement(namespace = "http://exlp.sf.net/net", required = true)
     protected Database database;
+    @XmlAttribute(name = "timeout")
+    protected Integer timeout;
+    @XmlAttribute(name = "min")
+    protected Integer min;
+    @XmlAttribute(name = "max")
+    protected Integer max;
+    @XmlAttribute(name = "fetchSize")
+    protected Integer fetchSize;
+    @XmlAttribute(name = "maxPreparedStatements")
+    protected Integer maxPreparedStatements;
 
     /**
      * Gets the value of the host property.
@@ -101,6 +117,166 @@ public class Connection
 
     public boolean isSetDatabase() {
         return (this.database!= null);
+    }
+
+    /**
+     * Gets the value of the timeout property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public int getTimeout() {
+        return timeout;
+    }
+
+    /**
+     * Sets the value of the timeout property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setTimeout(int value) {
+        this.timeout = value;
+    }
+
+    public boolean isSetTimeout() {
+        return (this.timeout!= null);
+    }
+
+    public void unsetTimeout() {
+        this.timeout = null;
+    }
+
+    /**
+     * Gets the value of the min property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public int getMin() {
+        return min;
+    }
+
+    /**
+     * Sets the value of the min property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setMin(int value) {
+        this.min = value;
+    }
+
+    public boolean isSetMin() {
+        return (this.min!= null);
+    }
+
+    public void unsetMin() {
+        this.min = null;
+    }
+
+    /**
+     * Gets the value of the max property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public int getMax() {
+        return max;
+    }
+
+    /**
+     * Sets the value of the max property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setMax(int value) {
+        this.max = value;
+    }
+
+    public boolean isSetMax() {
+        return (this.max!= null);
+    }
+
+    public void unsetMax() {
+        this.max = null;
+    }
+
+    /**
+     * Gets the value of the fetchSize property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public int getFetchSize() {
+        return fetchSize;
+    }
+
+    /**
+     * Sets the value of the fetchSize property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setFetchSize(int value) {
+        this.fetchSize = value;
+    }
+
+    public boolean isSetFetchSize() {
+        return (this.fetchSize!= null);
+    }
+
+    public void unsetFetchSize() {
+        this.fetchSize = null;
+    }
+
+    /**
+     * Gets the value of the maxPreparedStatements property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public int getMaxPreparedStatements() {
+        return maxPreparedStatements;
+    }
+
+    /**
+     * Sets the value of the maxPreparedStatements property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setMaxPreparedStatements(int value) {
+        this.maxPreparedStatements = value;
+    }
+
+    public boolean isSetMaxPreparedStatements() {
+        return (this.maxPreparedStatements!= null);
+    }
+
+    public void unsetMaxPreparedStatements() {
+        this.maxPreparedStatements = null;
     }
 
 }

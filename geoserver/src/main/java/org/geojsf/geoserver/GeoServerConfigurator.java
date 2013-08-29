@@ -18,12 +18,13 @@ import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.factory.geoserver.GeoServerDataStoreFactory;
 import org.geojsf.factory.geoserver.GeoServerRestFactory;
 import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
-import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
+import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.geoserver.DataStore;
+import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.Layers;
@@ -73,15 +74,22 @@ public class GeoServerConfigurator
 			logger.info("The workspace "+workspace.getName()+" will now be created");
 			workspaceManager.create(workspace);			
 		}
+		configureDataStore();
 	}
 	
-	public void createDataStore()
+	private void configureDataStore() throws GeoServerConfigurationException
 	{
-		DataStore ds = XmlDataStoreFactory.build(config);
-		JaxbUtil.info(ds);
+		try
+		{
+			DataStores dataStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerDataStoreManager.dsXml), DataStores.class);
+			JaxbUtil.info(dataStores);
+		}
+		catch (FileNotFoundException e) {throw new GeoServerConfigurationException("File "+GeoServerDataStoreManager.dsXml+" not found");}
 		
-		GeoServerDataStoreFactory f = new GeoServerDataStoreFactory(reader,publisher);
-		f.createDataStore(config.getString(GeoServerConfigKeys.workspace),ds);
+//		DataStore ds = XmlDataStoreFactory.build(config);
+		
+//		GeoServerDataStoreFactory f = new GeoServerDataStoreFactory(reader,publisher);
+//		f.createDataStore(config.getString(GeoServerConfigKeys.workspace),ds);
 	}
 	
 	public void createLayer(Layers layers)
@@ -116,6 +124,6 @@ public class GeoServerConfigurator
 		
 		GeoServerConfigurator geoserver = new GeoServerConfigurator("target",config);
 		geoserver.configureWorkspace();
-		geoserver.createDataStore();
+//		geoserver.createDataStore();
 	}
 }

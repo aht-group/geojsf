@@ -18,28 +18,17 @@ public class XmlHostFactory implements Serializable
 	
 	public static void transform(Element eConnectionParameters)
 	{
-		String host = null;
-		String port = null;
+		Element eHost = new Element("host",ns);
 		
 		List<Element> list = eConnectionParameters.getChildren("entry",SimpleXmlTranscoder.ns);
-		for(Object o : list)
+		for(Element e : list)
 		{
-			if(o instanceof Element)
+			if(e.getAttribute("key") != null)
 			{
-				Element e = (Element)o;
-				if(e.getAttribute("key") != null)
-				{
-					if(e.getAttributeValue("key").equals("host")){host = e.getValue();}
-					if(e.getAttributeValue("key").equals("port")){port = e.getValue();}
-				}
+				if(e.getAttributeValue("key").equals("host")){eHost.setAttribute("name", e.getValue());}
+				if(e.getAttributeValue("key").equals("port")){eHost.setAttribute("port", e.getValue());}
 			}
 		}
-		if(host!=null && port !=null)
-		{
-			Element eHost = new Element("host",ns);
-			eHost.setAttribute("name", host);
-			eHost.setAttribute("port", port);
-			eConnectionParameters.addContent(eHost);
-		}
+		eConnectionParameters.addContent(eHost);
 	}
 }

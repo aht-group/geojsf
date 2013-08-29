@@ -34,7 +34,12 @@ public class TestXmlConnection extends AbstractXmlGeoserverTest
     public static Connection create(boolean withChilds)
     {
     	Connection xml = new Connection();
-    		
+    	xml.setTimeout(10);
+    	xml.setMax(20);
+    	xml.setMin(30);
+    	xml.setFetchSize(40);
+    	xml.setMaxPreparedStatements(50);
+    	
     	if(withChilds)
     	{
     		xml.setHost(new Host());
