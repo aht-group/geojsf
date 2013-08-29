@@ -6,13 +6,13 @@ import java.io.IOException;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.util.GeoServerConfigKeys;
-import org.geojsf.util.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Workspace;

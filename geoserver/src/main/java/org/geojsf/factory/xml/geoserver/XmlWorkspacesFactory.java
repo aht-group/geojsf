@@ -1,8 +1,7 @@
-package org.geojsf.util.factory.xml.geoserver;
+package org.geojsf.factory.xml.geoserver;
 
 import java.io.Serializable;
 
-import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
 import org.jdom2.Element;
 import org.slf4j.Logger;
