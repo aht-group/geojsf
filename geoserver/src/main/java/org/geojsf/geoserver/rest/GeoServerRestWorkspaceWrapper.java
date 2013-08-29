@@ -42,7 +42,7 @@ public class GeoServerRestWorkspaceWrapper
 	
 	public Workspace getWorkspace(String workspaceName) throws IOException
 	{
-		InputStream isNamespace = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.namespaces(workspaceName), xmlEncoding);
+		InputStream isNamespace = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.namespace(workspaceName), xmlEncoding);
 		Document docNs = JDomUtil.load(isNamespace, xmlEncoding);
 		//		JDomUtil.debug(docNs);
 		
@@ -69,7 +69,27 @@ public class GeoServerRestWorkspaceWrapper
 		Document doc = new Document();
 		doc.setRootElement(root);
 
-		rest.createWorkspace(JDomUtil.toString(doc));
+		createNamespace(workspace.getName(), workspace.getNamespace());
+//		rest.createWorkspace(JDomUtil.toString(doc));
 	}
 	
+	public void createNamespace(String prefix, String uri) throws IOException
+	{
+		Element root = new Element("namespace");
+		
+		Element eUri = new Element("uri");
+		eUri.setText(uri);
+		root.addContent(eUri);
+		
+		Element ePrefix = new Element("prefix");
+		ePrefix.setText(prefix);
+		root.addContent(ePrefix);
+		
+		Document doc = new Document();
+		doc.setRootElement(root);
+
+		JDomUtil.debug(doc);
+		
+		rest.createNamespace(JDomUtil.toString(doc));
+	}
 }

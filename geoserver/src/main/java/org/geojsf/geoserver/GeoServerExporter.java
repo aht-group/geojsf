@@ -43,10 +43,9 @@ public class GeoServerExporter
 		}
 		else
 		{
-			logger.info("Starting export of worksapce "+workspace.getName());
+			logger.info("Starting export of workspace "+workspace.getName());
 			workspace = wsManager.getWorkspace(workspaceName);
-			JaxbUtil.save(new File(fBase,"workspace.xml"), workspace, true);
-			JaxbUtil.info(workspace);
+			JaxbUtil.save(new File(fBase,GeoServerWorkspaceManager.wsXml), workspace, true);
 		}
 	}
 	

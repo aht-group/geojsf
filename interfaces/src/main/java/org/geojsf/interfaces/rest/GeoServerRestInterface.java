@@ -63,7 +63,12 @@ public interface GeoServerRestInterface
 	
 	@GET @Path("/namespaces/{workspace}")
 	@Produces(MediaType.APPLICATION_XML)
-	String namespaces(@PathParam("workspace") String workspace);
+	String namespace(@PathParam("workspace") String workspace);
+	
+	@POST @Path("/namespaces.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	String createNamespace(String namespace);
 	
 	// DATASTORE
 	@GET @Path("/workspaces/{workspace}/datastores")
