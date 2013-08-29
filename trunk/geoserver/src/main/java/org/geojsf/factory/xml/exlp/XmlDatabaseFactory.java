@@ -18,28 +18,18 @@ public class XmlDatabaseFactory implements Serializable
 	
 	public static void transform(Element connectionParameters)
 	{
-		String user = null;
-		String database = null;
-		String schema = null;
+		Element eDatabase = new Element("database",ns);
 		
 		List<Element> list = connectionParameters.getChildren("entry",SimpleXmlTranscoder.ns);
-		for(Object o : list)
+		for(Element e : list)
 		{
-			if(o instanceof Element)
+			if(e.getAttribute("key") != null)
 			{
-				Element e = (Element)o;
-				if(e.getAttribute("key") != null)
-				{
-					if(e.getAttributeValue("key").equals("user")){user = e.getValue();}
-					if(e.getAttributeValue("key").equals("database")){database = e.getValue();}
-					if(e.getAttributeValue("key").equals("schema")){schema = e.getValue();}
-				}
+				if(e.getAttributeValue("key").equals("user")){eDatabase.setAttribute("user", e.getValue());}
+				if(e.getAttributeValue("key").equals("database")){eDatabase.setAttribute("database", e.getValue());}
+				if(e.getAttributeValue("key").equals("schema")){eDatabase.setAttribute("schema", e.getValue());}
 			}
 		}
-		Element eDatabase = new Element("database",ns);
-		if(user!=null){eDatabase.setAttribute("user", user);}
-		if(database!=null){eDatabase.setAttribute("database", user);}
-		if(schema!=null){eDatabase.setAttribute("schema", schema);}
 		connectionParameters.addContent(eDatabase);
 	}
 }

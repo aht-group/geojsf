@@ -76,6 +76,11 @@
 				<xsd:element ref="net:host" maxOccurs="1"/>
 				<xsd:element ref="net:database" maxOccurs="1"/>
 			</xsd:sequence>
+			<xsd:attribute name="timeout" type="xsd:int"/>
+			<xsd:attribute name="min" type="xsd:int"/>
+			<xsd:attribute name="max" type="xsd:int"/>
+			<xsd:attribute name="fetchSize" type="xsd:int"/>
+			<xsd:attribute name="maxPreparedStatements" type="xsd:int"/>
 		</xsd:complexType>
 	</xsd:element>
 </xsd:schema>
