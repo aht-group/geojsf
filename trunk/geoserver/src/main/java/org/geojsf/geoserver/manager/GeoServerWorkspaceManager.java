@@ -16,6 +16,7 @@ public class GeoServerWorkspaceManager
 	final static Logger logger = LoggerFactory.getLogger(GeoServerWorkspaceManager.class);
 	
 	private GeoServerRest rest;
+	public static String wsXml = "workspace.xml";
 
 	public GeoServerWorkspaceManager(GeoServerRest rest)
 	{
@@ -39,9 +40,7 @@ public class GeoServerWorkspaceManager
 	{
 		if(isAvailable(workspace))
 		{
-			StringBuffer sb = new StringBuffer();
-			sb.append("The workspace ").append(workspace.getName()).append(" already exists");
-			logger.warn(sb.toString());
+			throw new GeoServerConfigurationException("The workspace "+workspace.getName()+" already exists");
 		}
 		else
 		{

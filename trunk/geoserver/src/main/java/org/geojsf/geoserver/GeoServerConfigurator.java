@@ -30,24 +30,29 @@ import org.geojsf.xml.openlayers.Layers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoServerConfiguration
+public class GeoServerConfigurator
 {
-	final static Logger logger = LoggerFactory.getLogger(GeoServerConfiguration.class);
+	final static Logger logger = LoggerFactory.getLogger(GeoServerConfigurator.class);
 	
 	private Configuration config;
 	private GeoServerRESTReader reader;
 	private GeoServerRESTPublisher publisher;
 	
-	private GeoServerWorkspaceManager workspaceManager;
 	private Workspace workspace;
-	private String ds;
 	
-	public GeoServerConfiguration(Configuration config) throws MalformedURLException
+	private GeoServerWorkspaceManager workspaceManager;
+	private String ds;
+	private File fBase;
+	
+	public GeoServerConfigurator(String configBaseDir, Configuration config) throws MalformedURLException
 	{
 		this.config=config;
+		
+		fBase = new File(configBaseDir);
+		logger.info("Using configuration directory: "+fBase.getAbsolutePath());
+		
 		reader = GeoServerRestFactory.reader(config);
 		publisher = GeoServerRestFactory.publisher(config);
-		workspace = XmlWorkspaceFactory.build(config.getString(GeoServerConfigKeys.workspace));
 		ds = config.getString(GeoServerConfigKeys.dsName);
 		
 		GeoServerRest rest = new GeoServerRestWrapper(config);
@@ -56,16 +61,17 @@ public class GeoServerConfiguration
 	
 	public void configureWorkspace() throws GeoServerConfigurationException, IOException
 	{
+		workspace = JaxbUtil.loadJAXB(new File(fBase,GeoServerWorkspaceManager.wsXml), Workspace.class);
 		logger.info("Configuring workspace "+workspace.getName());
 		boolean wsAvailable = workspaceManager.isAvailable(workspace);
 		if(wsAvailable)
 		{
-			logger.info("The workspace "+workspace.getName()+" is already available. Not requird to re-configure.");
+			logger.info("The workspace "+workspace.getName()+" is already available. Not requird to re-create.");
 		}
 		else
 		{
-			workspaceManager.create(workspace);
-			logger.info("The workspace "+workspace.getName()+" was created.");
+			logger.info("The workspace "+workspace.getName()+" will now be created");
+			workspaceManager.create(workspace);			
 		}
 	}
 	
@@ -108,7 +114,7 @@ public class GeoServerConfiguration
 	{
 		Configuration config = null; //Create your config here!	
 		
-		GeoServerConfiguration geoserver = new GeoServerConfiguration(config);
+		GeoServerConfigurator geoserver = new GeoServerConfigurator("target",config);
 		geoserver.configureWorkspace();
 		geoserver.createDataStore();
 	}
