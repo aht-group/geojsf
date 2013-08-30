@@ -105,6 +105,7 @@ public class XmlDataStoreFactory implements Serializable
 		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyMax,ds.getConnection().getMax()));
 		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyTimeout,ds.getConnection().getTimeout()));
 		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyTimeout,ds.getConnection().getTimeout()));
+		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyPrepared,ds.getConnection().isPreparedStatements()));
 		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyMaxPrepared,ds.getConnection().getMaxPreparedStatements()));
 		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyValidate,ds.getConnection().isValidate()));
 		

@@ -80,6 +80,7 @@
 			<xsd:attribute name="min" type="xsd:int"/>
 			<xsd:attribute name="max" type="xsd:int"/>
 			<xsd:attribute name="fetchSize" type="xsd:int"/>
+			<xsd:attribute name="preparedStatements" type="xsd:boolean"/>
 			<xsd:attribute name="maxPreparedStatements" type="xsd:int"/>
 			<xsd:attribute name="validate" type="xsd:boolean"/>
 		</xsd:complexType>

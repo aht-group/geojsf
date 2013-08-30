@@ -21,6 +21,7 @@ public class XmlConnectionFactory implements Serializable
 	public static String keyTimeout = "Connection timeout";
 	public static String keyFetchSize = "fetch size";
 	public static String keyMaxPrepared = "Max open prepared statements";
+	public static String keyPrepared = "preparedStatements";
 	public static String keyValidate = "validate connections";	
 	
 	public static void transform(Element connectionParameters)
@@ -37,15 +38,13 @@ public class XmlConnectionFactory implements Serializable
 					if(e.getAttributeValue("key").equals(keyMin)){connectionParameters.setAttribute("min", e.getValue());}
 					if(e.getAttributeValue("key").equals(keyFetchSize)){connectionParameters.setAttribute("fetchSize", e.getValue());}
 					if(e.getAttributeValue("key").equals(keyMaxPrepared)){connectionParameters.setAttribute("maxPreparedStatements", e.getValue());}
+					if(e.getAttributeValue("key").equals(keyPrepared)){connectionParameters.setAttribute("preparedStatements", e.getValue());}
 					if(e.getAttributeValue("key").equals(keyValidate)){connectionParameters.setAttribute("validate", e.getValue());}
 /*
- * <entry key="validate connections">true</entry>
- * 
 		<entry key="encode functions">false</entry> 
 		<entry key="Loose bbox">true</entry>
         <entry key="Expose primary keys">false</entry>
         
-        <entry key="preparedStatements">false</entry>
         <entry key="Estimated extends">true</entry>					 
 */
 				}
