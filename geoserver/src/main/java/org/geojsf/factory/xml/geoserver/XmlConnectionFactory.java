@@ -17,11 +17,12 @@ public class XmlConnectionFactory implements Serializable
 	public static final long serialVersionUID=1;
 	
 	public static String keyMin = "min connections";
-	public static String keyMax = "min connections";
-	public static String keyTimeout = "min connections";
-	public static String keyFetchSize = "min connections";
-	public static String keyMaxPrepared = "min connections";
-		
+	public static String keyMax = "max connections";
+	public static String keyTimeout = "Connection timeout";
+	public static String keyFetchSize = "fetch size";
+	public static String keyMaxPrepared = "Max open prepared statements";
+	public static String keyValidate = "validate connections";	
+	
 	public static void transform(Element connectionParameters)
 	{
 		connectionParameters.setName("connection");
@@ -36,11 +37,14 @@ public class XmlConnectionFactory implements Serializable
 					if(e.getAttributeValue("key").equals(keyMin)){connectionParameters.setAttribute("min", e.getValue());}
 					if(e.getAttributeValue("key").equals(keyFetchSize)){connectionParameters.setAttribute("fetchSize", e.getValue());}
 					if(e.getAttributeValue("key").equals(keyMaxPrepared)){connectionParameters.setAttribute("maxPreparedStatements", e.getValue());}
+					if(e.getAttributeValue("key").equals(keyValidate)){connectionParameters.setAttribute("validate", e.getValue());}
 /*
+ * <entry key="validate connections">true</entry>
+ * 
 		<entry key="encode functions">false</entry> 
 		<entry key="Loose bbox">true</entry>
         <entry key="Expose primary keys">false</entry>
-        <entry key="validate connections">true</entry>
+        
         <entry key="preparedStatements">false</entry>
         <entry key="Estimated extends">true</entry>					 
 */

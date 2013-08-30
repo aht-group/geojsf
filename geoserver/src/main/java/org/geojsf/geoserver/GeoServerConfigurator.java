@@ -15,9 +15,7 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.exception.GeoServerConfigurationException;
-import org.geojsf.factory.geoserver.GeoServerDataStoreFactory;
 import org.geojsf.factory.geoserver.GeoServerRestFactory;
-import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
@@ -42,6 +40,8 @@ public class GeoServerConfigurator
 	private Workspace workspace;
 	
 	private GeoServerWorkspaceManager workspaceManager;
+	private GeoServerDataStoreManager dataStoreManager;
+	
 	private String ds;
 	private File fBase;
 	
@@ -58,6 +58,7 @@ public class GeoServerConfigurator
 		
 		GeoServerRest rest = new GeoServerRestWrapper(config);
 		workspaceManager = new GeoServerWorkspaceManager(rest);
+		dataStoreManager = new GeoServerDataStoreManager(rest);
 	}
 	
 	public void configureWorkspace() throws GeoServerConfigurationException, IOException
@@ -82,14 +83,26 @@ public class GeoServerConfigurator
 		try
 		{
 			DataStores dataStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerDataStoreManager.dsXml), DataStores.class);
-			JaxbUtil.info(dataStores);
+			for(DataStore ds : dataStores.getDataStore())
+			{
+				JaxbUtil.trace(ds);
+				if(dataStoreManager.isAvailable(workspace,ds))
+				{
+					logger.info(DataStore.class.getSimpleName()+" "+ds.getName()+" is available and will not be re-created");
+				}
+				else
+				{
+					logger.info(DataStore.class.getSimpleName()+" "+ds.getName()+" will be created");
+					dataStoreManager.createDataStore(workspace, ds);
+					break;
+				}
+			}
 		}
 		catch (FileNotFoundException e) {throw new GeoServerConfigurationException("File "+GeoServerDataStoreManager.dsXml+" not found");}
+		catch (IOException e) {e.printStackTrace();}
 		
 //		DataStore ds = XmlDataStoreFactory.build(config);
-		
-//		GeoServerDataStoreFactory f = new GeoServerDataStoreFactory(reader,publisher);
-//		f.createDataStore(config.getString(GeoServerConfigKeys.workspace),ds);
+
 	}
 	
 	public void createLayer(Layers layers)

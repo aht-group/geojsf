@@ -72,4 +72,14 @@ public class GeoServerRestDataStoreWrapper
 		
 		return JDomUtil.toJaxb(root, DataStore.class);
 	}
+	
+	public void createDataStore(DataStore ds, Workspace ws)
+	{
+		Document doc = new Document();
+		doc.setRootElement(XmlDataStoreFactory.build(ds, ws));
+
+		JDomUtil.debug(doc);
+		
+		rest.createDatastore(ws.getName(),JDomUtil.toString(doc));
+	}
 }

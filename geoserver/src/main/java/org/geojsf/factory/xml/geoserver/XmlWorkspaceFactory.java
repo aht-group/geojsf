@@ -21,4 +21,15 @@ public class XmlWorkspaceFactory
 	{
 		SimpleXmlTranscoder.name(workspace);
 	}
+	
+	public static Element build(Workspace workspace)
+	{
+		Element eName = new Element("name");
+		eName.setText(workspace.getName());
+		
+		Element eWs = new Element("workspace");
+		eWs.addContent(eName);
+		
+		return eWs;
+	}
 }

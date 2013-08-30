@@ -42,4 +42,9 @@ public class GeoServerDataStoreManager
 		}
 		return set.contains(ds.getName());
 	}
+	
+	public void createDataStore(Workspace ws, DataStore ds) throws IOException
+	{
+		rest.createDataStore(ds, ws);
+	}
 }

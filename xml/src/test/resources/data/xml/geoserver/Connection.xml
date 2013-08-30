@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<g:connection xmlns:net="http://exlp.sf.net/net" xmlns:g="http://www.geojsf.org/geoserver" timeout="10" min="30" max="20" fetchSize="40" maxPreparedStatements="50">
+<g:connection xmlns:net="http://exlp.sf.net/net" xmlns:g="http://www.geojsf.org/geoserver" timeout="10" min="30" max="20" fetchSize="40" maxPreparedStatements="50" validate="true">
     <net:host/>
     <net:database/>
 </g:connection>

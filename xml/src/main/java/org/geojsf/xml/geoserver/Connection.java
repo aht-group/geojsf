@@ -30,6 +30,7 @@ import net.sf.exlp.xml.net.Host;
  *       &lt;attribute name="max" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="fetchSize" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="maxPreparedStatements" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="validate" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -62,6 +63,8 @@ public class Connection
     protected Integer fetchSize;
     @XmlAttribute(name = "maxPreparedStatements")
     protected Integer maxPreparedStatements;
+    @XmlAttribute(name = "validate")
+    protected Boolean validate;
 
     /**
      * Gets the value of the host property.
@@ -277,6 +280,38 @@ public class Connection
 
     public void unsetMaxPreparedStatements() {
         this.maxPreparedStatements = null;
+    }
+
+    /**
+     * Gets the value of the validate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isValidate() {
+        return validate;
+    }
+
+    /**
+     * Sets the value of the validate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setValidate(boolean value) {
+        this.validate = value;
+    }
+
+    public boolean isSetValidate() {
+        return (this.validate!= null);
+    }
+
+    public void unsetValidate() {
+        this.validate = null;
     }
 
 }
