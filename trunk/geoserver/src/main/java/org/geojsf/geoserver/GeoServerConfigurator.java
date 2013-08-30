@@ -94,7 +94,6 @@ public class GeoServerConfigurator
 				{
 					logger.info(DataStore.class.getSimpleName()+" "+ds.getName()+" will be created");
 					dataStoreManager.createDataStore(workspace, ds);
-					break;
 				}
 			}
 		}

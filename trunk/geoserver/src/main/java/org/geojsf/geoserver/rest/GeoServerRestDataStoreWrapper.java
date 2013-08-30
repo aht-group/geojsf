@@ -78,7 +78,7 @@ public class GeoServerRestDataStoreWrapper
 		Document doc = new Document();
 		doc.setRootElement(XmlDataStoreFactory.build(ds, ws));
 
-		JDomUtil.debug(doc);
+//		JDomUtil.debug(doc);
 		
 		rest.createDatastore(ws.getName(),JDomUtil.toString(doc));
 	}
