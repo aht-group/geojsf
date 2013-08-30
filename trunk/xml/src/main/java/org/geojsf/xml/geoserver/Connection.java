@@ -29,6 +29,7 @@ import net.sf.exlp.xml.net.Host;
  *       &lt;attribute name="min" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="max" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="fetchSize" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="preparedStatements" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *       &lt;attribute name="maxPreparedStatements" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="validate" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
@@ -61,6 +62,8 @@ public class Connection
     protected Integer max;
     @XmlAttribute(name = "fetchSize")
     protected Integer fetchSize;
+    @XmlAttribute(name = "preparedStatements")
+    protected Boolean preparedStatements;
     @XmlAttribute(name = "maxPreparedStatements")
     protected Integer maxPreparedStatements;
     @XmlAttribute(name = "validate")
@@ -248,6 +251,38 @@ public class Connection
 
     public void unsetFetchSize() {
         this.fetchSize = null;
+    }
+
+    /**
+     * Gets the value of the preparedStatements property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isPreparedStatements() {
+        return preparedStatements;
+    }
+
+    /**
+     * Sets the value of the preparedStatements property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setPreparedStatements(boolean value) {
+        this.preparedStatements = value;
+    }
+
+    public boolean isSetPreparedStatements() {
+        return (this.preparedStatements!= null);
+    }
+
+    public void unsetPreparedStatements() {
+        this.preparedStatements = null;
     }
 
     /**
