@@ -32,6 +32,10 @@ import net.sf.exlp.xml.net.Host;
  *       &lt;attribute name="preparedStatements" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *       &lt;attribute name="maxPreparedStatements" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="validate" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="looseBbox" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="encodeFunctions" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="exposePrimaryKeys" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="estimatedExtends" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -68,6 +72,14 @@ public class Connection
     protected Integer maxPreparedStatements;
     @XmlAttribute(name = "validate")
     protected Boolean validate;
+    @XmlAttribute(name = "looseBbox")
+    protected Boolean looseBbox;
+    @XmlAttribute(name = "encodeFunctions")
+    protected Boolean encodeFunctions;
+    @XmlAttribute(name = "exposePrimaryKeys")
+    protected Boolean exposePrimaryKeys;
+    @XmlAttribute(name = "estimatedExtends")
+    protected Boolean estimatedExtends;
 
     /**
      * Gets the value of the host property.
@@ -347,6 +359,134 @@ public class Connection
 
     public void unsetValidate() {
         this.validate = null;
+    }
+
+    /**
+     * Gets the value of the looseBbox property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isLooseBbox() {
+        return looseBbox;
+    }
+
+    /**
+     * Sets the value of the looseBbox property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setLooseBbox(boolean value) {
+        this.looseBbox = value;
+    }
+
+    public boolean isSetLooseBbox() {
+        return (this.looseBbox!= null);
+    }
+
+    public void unsetLooseBbox() {
+        this.looseBbox = null;
+    }
+
+    /**
+     * Gets the value of the encodeFunctions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isEncodeFunctions() {
+        return encodeFunctions;
+    }
+
+    /**
+     * Sets the value of the encodeFunctions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setEncodeFunctions(boolean value) {
+        this.encodeFunctions = value;
+    }
+
+    public boolean isSetEncodeFunctions() {
+        return (this.encodeFunctions!= null);
+    }
+
+    public void unsetEncodeFunctions() {
+        this.encodeFunctions = null;
+    }
+
+    /**
+     * Gets the value of the exposePrimaryKeys property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isExposePrimaryKeys() {
+        return exposePrimaryKeys;
+    }
+
+    /**
+     * Sets the value of the exposePrimaryKeys property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setExposePrimaryKeys(boolean value) {
+        this.exposePrimaryKeys = value;
+    }
+
+    public boolean isSetExposePrimaryKeys() {
+        return (this.exposePrimaryKeys!= null);
+    }
+
+    public void unsetExposePrimaryKeys() {
+        this.exposePrimaryKeys = null;
+    }
+
+    /**
+     * Gets the value of the estimatedExtends property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isEstimatedExtends() {
+        return estimatedExtends;
+    }
+
+    /**
+     * Sets the value of the estimatedExtends property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setEstimatedExtends(boolean value) {
+        this.estimatedExtends = value;
+    }
+
+    public boolean isSetEstimatedExtends() {
+        return (this.estimatedExtends!= null);
+    }
+
+    public void unsetEstimatedExtends() {
+        this.estimatedExtends = null;
     }
 
 }

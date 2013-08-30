@@ -22,7 +22,11 @@ public class XmlConnectionFactory implements Serializable
 	public static String keyFetchSize = "fetch size";
 	public static String keyMaxPrepared = "Max open prepared statements";
 	public static String keyPrepared = "preparedStatements";
-	public static String keyValidate = "validate connections";	
+	public static String keyValidate = "validate connections";
+	public static String keyBbox = "Loose bbox";
+	public static String keyEncode = "encode functions";
+	public static String keyExpose = "Expose primary keys";
+	public static String keyExtends = "Estimated extends";
 	
 	public static void transform(Element connectionParameters)
 	{
@@ -40,13 +44,10 @@ public class XmlConnectionFactory implements Serializable
 					if(e.getAttributeValue("key").equals(keyMaxPrepared)){connectionParameters.setAttribute("maxPreparedStatements", e.getValue());}
 					if(e.getAttributeValue("key").equals(keyPrepared)){connectionParameters.setAttribute("preparedStatements", e.getValue());}
 					if(e.getAttributeValue("key").equals(keyValidate)){connectionParameters.setAttribute("validate", e.getValue());}
-/*
-		<entry key="encode functions">false</entry> 
-		<entry key="Loose bbox">true</entry>
-        <entry key="Expose primary keys">false</entry>
-        
-        <entry key="Estimated extends">true</entry>					 
-*/
+					if(e.getAttributeValue("key").equals(keyBbox)){connectionParameters.setAttribute("looseBbox", e.getValue());}
+					if(e.getAttributeValue("key").equals(keyEncode)){connectionParameters.setAttribute("encodeFunctions", e.getValue());}
+					if(e.getAttributeValue("key").equals(keyExpose)){connectionParameters.setAttribute("exposePrimaryKeys", e.getValue());}
+					if(e.getAttributeValue("key").equals(keyExtends)){connectionParameters.setAttribute("estimatedExtends", e.getValue());}
 				}
 		}
 		

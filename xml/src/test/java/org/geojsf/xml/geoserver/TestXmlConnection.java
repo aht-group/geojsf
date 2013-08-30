@@ -41,6 +41,10 @@ public class TestXmlConnection extends AbstractXmlGeoserverTest
     	xml.setMaxPreparedStatements(50);
     	xml.setValidate(true);
     	xml.setPreparedStatements(true);
+    	xml.setLooseBbox(true);
+    	xml.setEncodeFunctions(true);
+    	xml.setExposePrimaryKeys(true);
+    	xml.setEstimatedExtends(true);
     	
     	if(withChilds)
     	{
