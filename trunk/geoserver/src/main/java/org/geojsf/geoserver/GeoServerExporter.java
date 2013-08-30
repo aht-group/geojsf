@@ -22,8 +22,10 @@ public class GeoServerExporter
 	final static Logger logger = LoggerFactory.getLogger(GeoServerExporter.class);
 	
 	private Workspace workspace;
-	private GeoServerDataStoreManager dataStoreManager;
+	
 	private GeoServerWorkspaceManager wsManager;
+	private GeoServerDataStoreManager dataStoreManager;
+	
 	private File fBase;
 	
 	public GeoServerExporter(String configBaseDir, GeoServerRest rest) throws MalformedURLException

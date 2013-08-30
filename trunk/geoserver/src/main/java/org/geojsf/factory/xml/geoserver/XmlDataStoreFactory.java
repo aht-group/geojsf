@@ -6,9 +6,12 @@ import net.sf.exlp.xml.identity.User;
 import net.sf.exlp.xml.net.Host;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.factory.xml.exlp.XmlDatabaseFactory;
+import org.geojsf.factory.xml.exlp.XmlHostFactory;
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.geoserver.DataStore;
+import org.geojsf.xml.geoserver.Workspace;
 import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,5 +67,58 @@ public class XmlDataStoreFactory implements Serializable
 		
 		Element eConnectionParameters = dataStore.getChild("connectionParameters", SimpleXmlTranscoder.ns);
 		if(eConnectionParameters!=null){XmlConnectionFactory.transform(eConnectionParameters);}
+	}
+	
+	public static Element build(DataStore ds, Workspace ws)
+	{
+		Element eDs = new Element("dataStore");
+		
+		Element eName = new Element("name");
+		eName.setText(ds.getName());
+		eDs.addContent(eName);
+		
+		Element eDescription = new Element("description");
+		eDescription.setText(ds.getDescription());
+		eDs.addContent(eDescription);
+
+		Element eType = new Element("type");
+		eType.setText(ds.getType());
+		eDs.addContent(eType);
+		
+		Element eEnabled = new Element("enabled");
+		eEnabled.setText(""+ds.isEnabled());
+		eDs.addContent(eEnabled);
+		
+		eDs.addContent(XmlWorkspaceFactory.build(ws));
+		
+		Element eConnectionParameters = new Element("connectionParameters");
+		
+		//Database
+		eConnectionParameters.addContent(buildKey(XmlHostFactory.keyHost,ds.getConnection().getHost().getName()));
+		eConnectionParameters.addContent(buildKey(XmlHostFactory.keyPort,ds.getConnection().getHost().getPort()));
+		eConnectionParameters.addContent(buildKey(XmlDatabaseFactory.keyUser,ds.getConnection().getDatabase().getUser()));
+		eConnectionParameters.addContent(buildKey(XmlDatabaseFactory.keyDatabase,ds.getConnection().getDatabase().getDatabase()));
+		eConnectionParameters.addContent(buildKey(XmlDatabaseFactory.keySchema,ds.getConnection().getDatabase().getSchema()));
+		
+		//Connection
+		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyMin,ds.getConnection().getMin()));
+		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyMax,ds.getConnection().getMax()));
+		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyTimeout,ds.getConnection().getTimeout()));
+		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyTimeout,ds.getConnection().getTimeout()));
+		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyMaxPrepared,ds.getConnection().getMaxPreparedStatements()));
+		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyValidate,ds.getConnection().isValidate()));
+		
+		eDs.addContent(eConnectionParameters);
+		return eDs;
+	}
+	
+	private static Element buildKey(String key, boolean value){return buildKey(key,""+value);}
+	private static Element buildKey(String key, int value){return buildKey(key,""+value);}
+	private static Element buildKey(String key, String value)
+	{
+		Element eKey = new Element("entry");
+		eKey.setAttribute("key", key);
+		eKey.setText(value);
+		return eKey;
 	}
 }

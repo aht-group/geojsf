@@ -16,6 +16,10 @@ public class XmlDatabaseFactory implements Serializable
 		
 	public static final Namespace ns = Namespace.getNamespace("n","http://exlp.sf.net/net");
 	
+	public static String keyUser = "user";
+	public static String keyDatabase = "database";
+	public static String keySchema = "schema";
+	
 	public static void transform(Element connectionParameters)
 	{
 		Element eDatabase = new Element("database",ns);
@@ -25,9 +29,9 @@ public class XmlDatabaseFactory implements Serializable
 		{
 			if(e.getAttribute("key") != null)
 			{
-				if(e.getAttributeValue("key").equals("user")){eDatabase.setAttribute("user", e.getValue());}
-				if(e.getAttributeValue("key").equals("database")){eDatabase.setAttribute("database", e.getValue());}
-				if(e.getAttributeValue("key").equals("schema")){eDatabase.setAttribute("schema", e.getValue());}
+				if(e.getAttributeValue("key").equals(keyUser)){eDatabase.setAttribute(keyUser, e.getValue());}
+				if(e.getAttributeValue("key").equals(keyDatabase)){eDatabase.setAttribute(keyDatabase, e.getValue());}
+				if(e.getAttributeValue("key").equals(keySchema)){eDatabase.setAttribute(keySchema, e.getValue());}
 			}
 		}
 		connectionParameters.addContent(eDatabase);

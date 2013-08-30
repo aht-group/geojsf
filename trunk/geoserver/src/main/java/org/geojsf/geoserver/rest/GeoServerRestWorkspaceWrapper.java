@@ -88,7 +88,7 @@ public class GeoServerRestWorkspaceWrapper
 		Document doc = new Document();
 		doc.setRootElement(root);
 
-		JDomUtil.debug(doc);
+//		JDomUtil.debug(doc);
 		
 		rest.createNamespace(JDomUtil.toString(doc));
 	}

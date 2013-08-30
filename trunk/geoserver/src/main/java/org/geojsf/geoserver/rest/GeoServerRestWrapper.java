@@ -154,4 +154,11 @@ public class GeoServerRestWrapper implements GeoServerRest
 		GeoServerRestDataStoreWrapper dsWrapper = new GeoServerRestDataStoreWrapper(rest);
 		return dsWrapper.dataStore(workspace,dataStore);
 	}
+
+	@Override
+	public void createDataStore(DataStore datastore, Workspace workspace) throws IOException
+	{
+		GeoServerRestDataStoreWrapper dsWrapper = new GeoServerRestDataStoreWrapper(rest);
+		dsWrapper.createDataStore(datastore,workspace);
+	}
 }

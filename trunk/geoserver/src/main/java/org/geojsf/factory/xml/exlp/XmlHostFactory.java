@@ -16,6 +16,9 @@ public class XmlHostFactory implements Serializable
 		
 	public static final Namespace ns = Namespace.getNamespace("n","http://exlp.sf.net/net");
 	
+	public static String keyHost = "host";
+	public static String keyPort = "port";
+	
 	public static void transform(Element eConnectionParameters)
 	{
 		Element eHost = new Element("host",ns);
@@ -25,8 +28,8 @@ public class XmlHostFactory implements Serializable
 		{
 			if(e.getAttribute("key") != null)
 			{
-				if(e.getAttributeValue("key").equals("host")){eHost.setAttribute("name", e.getValue());}
-				if(e.getAttributeValue("key").equals("port")){eHost.setAttribute("port", e.getValue());}
+				if(e.getAttributeValue("key").equals(keyHost)){eHost.setAttribute("name", e.getValue());}
+				if(e.getAttributeValue("key").equals(keyPort)){eHost.setAttribute(keyPort, e.getValue());}
 			}
 		}
 		eConnectionParameters.addContent(eHost);

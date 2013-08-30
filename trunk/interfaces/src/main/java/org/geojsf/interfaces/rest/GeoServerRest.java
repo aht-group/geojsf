@@ -31,4 +31,5 @@ public interface GeoServerRest
 	//DATASTORE
 	DataStores getDataStores(String workspace) throws IOException;
 	DataStore dataStore(String workspace, String dataStore) throws IOException;
+	void createDataStore(DataStore datastore, Workspace workspace) throws IOException;
 }

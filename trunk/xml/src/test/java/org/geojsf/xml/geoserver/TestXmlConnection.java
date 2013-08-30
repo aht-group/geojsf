@@ -39,6 +39,7 @@ public class TestXmlConnection extends AbstractXmlGeoserverTest
     	xml.setMin(30);
     	xml.setFetchSize(40);
     	xml.setMaxPreparedStatements(50);
+    	xml.setValidate(true);
     	
     	if(withChilds)
     	{
