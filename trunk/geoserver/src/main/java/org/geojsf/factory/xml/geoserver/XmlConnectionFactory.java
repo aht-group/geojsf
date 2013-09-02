@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geoserver;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.geojsf.factory.xml.exlp.XmlDatabaseFactory;
@@ -33,23 +34,25 @@ public class XmlConnectionFactory implements Serializable
 		connectionParameters.setName("connection");
 		
 		List<Element> list = connectionParameters.getChildren("entry",SimpleXmlTranscoder.ns);
+		List<Element> listDetach = new ArrayList<Element>();
 		for(Element e : list)
 		{
-				if(e.getAttribute("key") != null)
-				{
-					if(e.getAttributeValue("key").equals(keyTimeout)){connectionParameters.setAttribute("timeout", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyMin)){connectionParameters.setAttribute("max", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyMin)){connectionParameters.setAttribute("min", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyFetchSize)){connectionParameters.setAttribute("fetchSize", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyMaxPrepared)){connectionParameters.setAttribute("maxPreparedStatements", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyPrepared)){connectionParameters.setAttribute("preparedStatements", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyValidate)){connectionParameters.setAttribute("validate", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyBbox)){connectionParameters.setAttribute("looseBbox", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyEncode)){connectionParameters.setAttribute("encodeFunctions", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyExpose)){connectionParameters.setAttribute("exposePrimaryKeys", e.getValue());}
-					if(e.getAttributeValue("key").equals(keyExtends)){connectionParameters.setAttribute("estimatedExtends", e.getValue());}
-				}
+			if(e.getAttribute("key") != null)
+			{
+				if(e.getAttributeValue("key").equals(keyTimeout)){connectionParameters.setAttribute("timeout", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyMin)){connectionParameters.setAttribute("min", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyMax)){connectionParameters.setAttribute("max", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyFetchSize)){connectionParameters.setAttribute("fetchSize", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyMaxPrepared)){connectionParameters.setAttribute("maxPreparedStatements", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyPrepared)){connectionParameters.setAttribute("preparedStatements", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyValidate)){connectionParameters.setAttribute("validate", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyBbox)){connectionParameters.setAttribute("looseBbox", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyEncode)){connectionParameters.setAttribute("encodeFunctions", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyExpose)){connectionParameters.setAttribute("exposePrimaryKeys", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyExtends)){connectionParameters.setAttribute("estimatedExtends", e.getValue());listDetach.add(e);}
+			}
 		}
+		for(Element e : listDetach){e.detach();}
 		
 		XmlHostFactory.transform(connectionParameters);
 		XmlDatabaseFactory.transform(connectionParameters);

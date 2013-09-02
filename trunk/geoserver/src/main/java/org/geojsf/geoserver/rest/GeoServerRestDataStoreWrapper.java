@@ -64,11 +64,13 @@ public class GeoServerRestDataStoreWrapper
 	{		
 		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.dataStore(workspace,dataStore), xmlEncoding);
 		Document doc = JDomUtil.load(is, xmlEncoding);
+		
 		Element root = doc.getRootElement();
+//		JDomUtil.debug(doc);
 		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
 	 
 		XmlDataStoreFactory.transform(root);
-//		JDomUtil.debug(doc);
+		JDomUtil.debug(root);
 		
 		return JDomUtil.toJaxb(root, DataStore.class);
 	}
@@ -78,7 +80,7 @@ public class GeoServerRestDataStoreWrapper
 		Document doc = new Document();
 		doc.setRootElement(XmlDataStoreFactory.build(ds, ws));
 
-//		JDomUtil.debug(doc);
+		JDomUtil.debug(doc);
 		
 		rest.createDatastore(ws.getName(),JDomUtil.toString(doc));
 	}

@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.geojsf.org/geoserver}workspace"/>
- *         &lt;element ref="{http://www.geojsf.org/geoserver}connection"/>
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}postgis"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "workspace",
-    "connection"
+    "postgis"
 })
 @XmlRootElement(name = "dataStore")
 public class DataStore
@@ -48,7 +48,7 @@ public class DataStore
     @XmlElement(required = true)
     protected Workspace workspace;
     @XmlElement(required = true)
-    protected Connection connection;
+    protected Postgis postgis;
     @XmlAttribute(name = "name")
     protected String name;
     @XmlAttribute(name = "description")
@@ -87,31 +87,31 @@ public class DataStore
     }
 
     /**
-     * Gets the value of the connection property.
+     * Gets the value of the postgis property.
      * 
      * @return
      *     possible object is
-     *     {@link Connection }
+     *     {@link Postgis }
      *     
      */
-    public Connection getConnection() {
-        return connection;
+    public Postgis getPostgis() {
+        return postgis;
     }
 
     /**
-     * Sets the value of the connection property.
+     * Sets the value of the postgis property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Connection }
+     *     {@link Postgis }
      *     
      */
-    public void setConnection(Connection value) {
-        this.connection = value;
+    public void setPostgis(Postgis value) {
+        this.postgis = value;
     }
 
-    public boolean isSetConnection() {
-        return (this.connection!= null);
+    public boolean isSetPostgis() {
+        return (this.postgis!= null);
     }
 
     /**

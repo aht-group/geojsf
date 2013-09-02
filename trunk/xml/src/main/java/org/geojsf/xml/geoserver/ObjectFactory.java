@@ -54,6 +54,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Postgis }
+     * 
+     */
+    public Postgis createPostgis() {
+        return new Postgis();
+    }
+
+    /**
      * Create an instance of {@link Style }
      * 
      */

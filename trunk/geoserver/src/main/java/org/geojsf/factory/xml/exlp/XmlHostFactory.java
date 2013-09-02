@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.exlp;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
@@ -23,15 +24,17 @@ public class XmlHostFactory implements Serializable
 	{
 		Element eHost = new Element("host",ns);
 		
+		List<Element> listDetach = new ArrayList<Element>();
 		List<Element> list = eConnectionParameters.getChildren("entry",SimpleXmlTranscoder.ns);
 		for(Element e : list)
 		{
 			if(e.getAttribute("key") != null)
 			{
-				if(e.getAttributeValue("key").equals(keyHost)){eHost.setAttribute("name", e.getValue());}
-				if(e.getAttributeValue("key").equals(keyPort)){eHost.setAttribute(keyPort, e.getValue());}
+				if(e.getAttributeValue("key").equals(keyHost)){eHost.setAttribute("name", e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyPort)){eHost.setAttribute(keyPort, e.getValue());listDetach.add(e);}
 			}
 		}
+		for(Element e : listDetach){e.detach();}
 		eConnectionParameters.addContent(eHost);
 	}
 }
