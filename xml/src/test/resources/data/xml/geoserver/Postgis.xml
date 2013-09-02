@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<g:postgis xmlns:net="http://exlp.sf.net/net" xmlns:g="http://www.geojsf.org/geoserver">
+    <g:connection timeout="10" min="30" max="20" fetchSize="40" preparedStatements="true" maxPreparedStatements="50" validate="true" looseBbox="true" encodeFunctions="true" exposePrimaryKeys="true" estimatedExtends="true"/>
+</g:postgis>
