@@ -41,6 +41,7 @@ public class TestXmlDataStore extends AbstractXmlGeoserverTest
     	{
     		xml.setWorkspace(TestXmlWorkspace.create(false));
     		xml.setPostgis(TestXmlPostgis.create(false));
+    		xml.setShapeDir(TestXmlShapeDir.create(false));
     	}
     	
     	return xml;

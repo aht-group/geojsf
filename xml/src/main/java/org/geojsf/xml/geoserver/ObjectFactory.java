@@ -30,6 +30,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ShapeDir }
+     * 
+     */
+    public ShapeDir createShapeDir() {
+        return new ShapeDir();
+    }
+
+    /**
+     * Create an instance of {@link Spatial }
+     * 
+     */
+    public Spatial createSpatial() {
+        return new Spatial();
+    }
+
+    /**
      * Create an instance of {@link Connection }
      * 
      */
@@ -38,43 +54,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataStore }
-     * 
-     */
-    public DataStore createDataStore() {
-        return new DataStore();
-    }
-
-    /**
      * Create an instance of {@link Workspace }
      * 
      */
     public Workspace createWorkspace() {
         return new Workspace();
-    }
-
-    /**
-     * Create an instance of {@link Postgis }
-     * 
-     */
-    public Postgis createPostgis() {
-        return new Postgis();
-    }
-
-    /**
-     * Create an instance of {@link Style }
-     * 
-     */
-    public Style createStyle() {
-        return new Style();
-    }
-
-    /**
-     * Create an instance of {@link DataStores }
-     * 
-     */
-    public DataStores createDataStores() {
-        return new DataStores();
     }
 
     /**
@@ -94,11 +78,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Workspaces }
+     * Create an instance of {@link Styles }
      * 
      */
-    public Workspaces createWorkspaces() {
-        return new Workspaces();
+    public Styles createStyles() {
+        return new Styles();
+    }
+
+    /**
+     * Create an instance of {@link Style }
+     * 
+     */
+    public Style createStyle() {
+        return new Style();
+    }
+
+    /**
+     * Create an instance of {@link Postgis }
+     * 
+     */
+    public Postgis createPostgis() {
+        return new Postgis();
+    }
+
+    /**
+     * Create an instance of {@link DataStore }
+     * 
+     */
+    public DataStore createDataStore() {
+        return new DataStore();
+    }
+
+    /**
+     * Create an instance of {@link DataStores }
+     * 
+     */
+    public DataStores createDataStores() {
+        return new DataStores();
     }
 
     /**
@@ -110,11 +126,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Styles }
+     * Create an instance of {@link Workspaces }
      * 
      */
-    public Styles createStyles() {
-        return new Styles();
+    public Workspaces createWorkspaces() {
+        return new Workspaces();
     }
 
 }

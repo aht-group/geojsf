@@ -63,6 +63,7 @@
 			<xsd:sequence>
 				<xsd:element ref="geoserver:workspace" maxOccurs="1"/>
 				<xsd:element ref="geoserver:postgis" maxOccurs="1"/>
+				<xsd:element ref="geoserver:shapeDir" maxOccurs="1"/>
 			</xsd:sequence>
 			<xsd:attribute name="name" type="xsd:string"/>
 			<xsd:attribute name="description" type="xsd:string"/>
@@ -75,6 +76,26 @@
 			<xsd:sequence>
 				<xsd:element ref="geoserver:connection" maxOccurs="1"/>
 			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="shapeDir">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geoserver:spatial" maxOccurs="1"/>
+			</xsd:sequence>
+			<xsd:attribute name="url" type="xsd:string"/>
+			<xsd:attribute name="charSet" type="xsd:string"/>
+			<xsd:attribute name="memoryBuffer" type="xsd:boolean"/>
+			<xsd:attribute name="cacheMemoryMaps" type="xsd:boolean"/>
+			<xsd:attribute name="timezone" type="xsd:string"/>
+			<xsd:attribute name="fstype" type="xsd:string"/>
+			<xsd:attribute name="filetype" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="spatial">
+		<xsd:complexType>
+			<xsd:attribute name="createIndex" type="xsd:boolean"/>
+			<xsd:attribute name="enableIndex" type="xsd:boolean"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="connection">
@@ -90,7 +111,6 @@
 			<xsd:attribute name="preparedStatements" type="xsd:boolean"/>
 			<xsd:attribute name="maxPreparedStatements" type="xsd:int"/>
 			<xsd:attribute name="validate" type="xsd:boolean"/>
-			
 			<xsd:attribute name="looseBbox" type="xsd:boolean"/>
 			<xsd:attribute name="encodeFunctions" type="xsd:boolean"/>
 			<xsd:attribute name="exposePrimaryKeys" type="xsd:boolean"/>

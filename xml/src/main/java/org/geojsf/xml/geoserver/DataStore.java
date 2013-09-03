@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element ref="{http://www.geojsf.org/geoserver}workspace"/>
  *         &lt;element ref="{http://www.geojsf.org/geoserver}postgis"/>
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}shapeDir"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -37,7 +38,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "workspace",
-    "postgis"
+    "postgis",
+    "shapeDir"
 })
 @XmlRootElement(name = "dataStore")
 public class DataStore
@@ -49,6 +51,8 @@ public class DataStore
     protected Workspace workspace;
     @XmlElement(required = true)
     protected Postgis postgis;
+    @XmlElement(required = true)
+    protected ShapeDir shapeDir;
     @XmlAttribute(name = "name")
     protected String name;
     @XmlAttribute(name = "description")
@@ -112,6 +116,34 @@ public class DataStore
 
     public boolean isSetPostgis() {
         return (this.postgis!= null);
+    }
+
+    /**
+     * Gets the value of the shapeDir property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ShapeDir }
+     *     
+     */
+    public ShapeDir getShapeDir() {
+        return shapeDir;
+    }
+
+    /**
+     * Sets the value of the shapeDir property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ShapeDir }
+     *     
+     */
+    public void setShapeDir(ShapeDir value) {
+        this.shapeDir = value;
+    }
+
+    public boolean isSetShapeDir() {
+        return (this.shapeDir!= null);
     }
 
     /**

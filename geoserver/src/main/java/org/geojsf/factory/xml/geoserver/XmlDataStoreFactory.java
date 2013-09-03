@@ -58,6 +58,7 @@ public class XmlDataStoreFactory implements Serializable
 	
 	public static void transform(Element dataStore)
 	{
+		logger.trace("Transforming ... ");
 		SimpleXmlTranscoder.name(dataStore);
 		SimpleXmlTranscoder.description(dataStore);
 		SimpleXmlTranscoder.elementToAttribute(dataStore, "type");
@@ -110,17 +111,17 @@ public class XmlDataStoreFactory implements Serializable
 		eConnectionParameters.addContent(buildKey(XmlDatabaseFactory.keyType,postgis.getConnection().getDatabase().getType()));
 		
 		//Connection
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyMin,postgis.getConnection().getMin()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyMax,postgis.getConnection().getMax()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyTimeout,postgis.getConnection().getTimeout()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyFetchSize,postgis.getConnection().getFetchSize()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyPrepared,postgis.getConnection().isPreparedStatements()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyMaxPrepared,postgis.getConnection().getMaxPreparedStatements()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyValidate,postgis.getConnection().isValidate()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyBbox,postgis.getConnection().isLooseBbox()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyEncode,postgis.getConnection().isEncodeFunctions()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyExpose,postgis.getConnection().isExposePrimaryKeys()));
-		eConnectionParameters.addContent(buildKey(XmlConnectionFactory.keyExtends,postgis.getConnection().isEstimatedExtends()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyMin,postgis.getConnection().getMin()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyMax,postgis.getConnection().getMax()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyTimeout,postgis.getConnection().getTimeout()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyFetchSize,postgis.getConnection().getFetchSize()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyPrepared,postgis.getConnection().isPreparedStatements()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyMaxPrepared,postgis.getConnection().getMaxPreparedStatements()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyValidate,postgis.getConnection().isValidate()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyBbox,postgis.getConnection().isLooseBbox()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyEncode,postgis.getConnection().isEncodeFunctions()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyExpose,postgis.getConnection().isExposePrimaryKeys()));
+		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyExtends,postgis.getConnection().isEstimatedExtends()));
 	}
 	
 	private static Element buildKey(String key, boolean value){return buildKey(key,""+value);}
