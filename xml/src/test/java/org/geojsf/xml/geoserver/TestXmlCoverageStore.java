@@ -33,6 +33,10 @@ public class TestXmlCoverageStore extends AbstractXmlGeoserverTest
     {
     	CoverageStore xml = new CoverageStore();
     	xml.setName("myName");
+    	xml.setDescription("myDescription");
+    	xml.setType("myType");
+    	xml.setEnabled(true);
+    	xml.setUrl("myUrl");
     	
     	if(withChilds)
     	{

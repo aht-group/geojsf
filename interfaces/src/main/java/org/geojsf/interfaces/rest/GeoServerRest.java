@@ -2,14 +2,14 @@ package org.geojsf.interfaces.rest;
 
 import java.io.IOException;
 
-import org.geojsf.xml.geoserver.DataStore;
-import org.geojsf.xml.geoserver.DataStores;
+import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageStoreRest;
+import org.geojsf.interfaces.rest.geoserver.GeoServerDataStoreRest;
 import org.geojsf.xml.geoserver.Styles;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
 import org.jdom2.Document;
 
-public interface GeoServerRest
+public interface GeoServerRest extends GeoServerDataStoreRest,GeoServerCoverageStoreRest
 {	
 	Styles styles() throws IOException;
 	Styles styles(String workspace) throws IOException;
@@ -27,9 +27,4 @@ public interface GeoServerRest
 	Workspaces getWorkspaces() throws IOException;
 	Workspace getWorkspace(String workspaceName) throws IOException;
 	void createWorkspace(Workspace workspace) throws IOException;
-	
-	//DATASTORE
-	DataStores getDataStores(String workspace) throws IOException;
-	DataStore dataStore(String workspace, String dataStore) throws IOException;
-	void createDataStore(DataStore datastore, Workspace workspace) throws IOException;
 }

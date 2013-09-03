@@ -102,6 +102,10 @@
 
 			</xsd:sequence>
 			<xsd:attribute name="name" type="xsd:string"/>
+			<xsd:attribute name="description" type="xsd:string"/>
+			<xsd:attribute name="type" type="xsd:string"/>
+			<xsd:attribute name="enabled" type="xsd:boolean"/>
+			<xsd:attribute name="url" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
 	

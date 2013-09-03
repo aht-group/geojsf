@@ -19,10 +19,16 @@ public class GeoServerXmlTranscoder
 		description(e);
 	}
 	
+	public static void coverageStore(Element e) throws IOException
+	{
+		name(e);
+	}
+	
 	private static void name(Element e)
 	{
 		Element name = e.getChild("name",ns);
 		e.setAttribute("name", name.getText());
+		name.detach();
 	}
 	
 	private static void description(Element e)

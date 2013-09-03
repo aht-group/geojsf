@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<g:coverageStore xmlns:g="http://www.geojsf.org/geoserver" name="myName"/>
+<g:coverageStore xmlns:g="http://www.geojsf.org/geoserver" name="myName" description="myDescription" type="myType" enabled="true" url="myUrl"/>
