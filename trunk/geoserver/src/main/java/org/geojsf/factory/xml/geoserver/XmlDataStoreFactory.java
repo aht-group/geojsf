@@ -111,6 +111,7 @@ public class XmlDataStoreFactory implements Serializable
 		eConnectionParameters.addContent(buildKey(XmlDatabaseFactory.keyDatabase,postgis.getConnection().getDatabase().getDatabase()));
 		eConnectionParameters.addContent(buildKey(XmlDatabaseFactory.keySchema,postgis.getConnection().getDatabase().getSchema()));
 		eConnectionParameters.addContent(buildKey(XmlDatabaseFactory.keyType,postgis.getConnection().getDatabase().getType()));
+		eConnectionParameters.addContent(buildKey(XmlDatabaseFactory.keyPwd,postgis.getConnection().getDatabase().getPassword()));
 		
 		//Connection
 		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyMin,postgis.getConnection().getMin()));

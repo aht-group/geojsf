@@ -62,7 +62,7 @@ public class GeoServerRestDataStoreWrapper
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		
 		Element root = doc.getRootElement();
-//		JDomUtil.debug(doc);
+		JDomUtil.debug(doc);
 		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
 	 
 		XmlDataStoreFactory.transform(root);

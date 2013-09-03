@@ -21,6 +21,7 @@ public class XmlDatabaseFactory implements Serializable
 	public static String keyDatabase = "database";
 	public static String keySchema = "schema";
 	public static String keyType = "dbtype";
+	public static String keyPwd = "passwd";
 	
 	public static void transform(Element connectionParameters)
 	{
