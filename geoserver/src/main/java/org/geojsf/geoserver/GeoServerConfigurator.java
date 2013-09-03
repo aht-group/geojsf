@@ -16,12 +16,15 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.factory.geoserver.GeoServerRestFactory;
+import org.geojsf.geoserver.manager.GeoServerCoverageStoreManager;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.geoserver.util.ConfigurationOverrider;
 import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.util.GeoServerConfigKeys;
+import org.geojsf.xml.geoserver.CoverageStore;
+import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Workspace;
@@ -44,6 +47,7 @@ public class GeoServerConfigurator
 	
 	private GeoServerWorkspaceManager workspaceManager;
 	private GeoServerDataStoreManager dataStoreManager;
+	private GeoServerCoverageStoreManager coverageStoreManager;
 	
 	private String ds;
 	private File fBase;
@@ -62,6 +66,7 @@ public class GeoServerConfigurator
 		GeoServerRest rest = new GeoServerRestWrapper(config);
 		workspaceManager = new GeoServerWorkspaceManager(rest);
 		dataStoreManager = new GeoServerDataStoreManager(rest);
+		coverageStoreManager = new GeoServerCoverageStoreManager(rest);
 	}
 	
 	public void configureWorkspace() throws GeoServerConfigurationException, IOException
@@ -79,6 +84,7 @@ public class GeoServerConfigurator
 			workspaceManager.create(workspace);			
 		}
 		configureDataStore();
+		configureCoverageStore();
 	}
 	
 	private void configureDataStore() throws GeoServerConfigurationException
@@ -89,7 +95,7 @@ public class GeoServerConfigurator
 			DataStores dataStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerDataStoreManager.dsXml), DataStores.class);
 			configOverrider.overrideDataStores(dataStores);
 			
-			JaxbUtil.info(dataStores);
+			JaxbUtil.trace(dataStores);
 			for(DataStore ds : dataStores.getDataStore())
 			{
 				JaxbUtil.trace(ds);
@@ -101,6 +107,33 @@ public class GeoServerConfigurator
 				{
 					logger.info(DataStore.class.getSimpleName()+" "+ds.getName()+" will be created");
 					dataStoreManager.createDataStore(workspace, ds);
+				}
+			}
+		}
+		catch (FileNotFoundException e) {throw new GeoServerConfigurationException("File "+GeoServerDataStoreManager.dsXml+" not found");}
+		catch (IOException e) {e.printStackTrace();}
+	}
+	
+	private void configureCoverageStore() throws GeoServerConfigurationException
+	{
+		logger.info("Configuring "+CoverageStores.class.getSimpleName());
+		try
+		{
+			CoverageStores coverageStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerCoverageStoreManager.xml), CoverageStores.class);
+//			configOverrider.overrideDataStores(dataStores);
+			
+			JaxbUtil.trace(coverageStores);
+			for(CoverageStore cs : coverageStores.getCoverageStore())
+			{
+				JaxbUtil.info(cs);
+				if(coverageStoreManager.isAvailable(workspace,cs))
+				{
+					logger.info(DataStore.class.getSimpleName()+" "+cs.getName()+" is available and will not be re-created");
+				}
+				else
+				{
+					logger.info(DataStore.class.getSimpleName()+" "+cs.getName()+" will be created");
+					coverageStoreManager.createCoverageStore(workspace, cs);
 				}
 			}
 		}

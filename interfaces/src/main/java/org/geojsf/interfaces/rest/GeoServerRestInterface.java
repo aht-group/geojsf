@@ -92,4 +92,9 @@ public interface GeoServerRestInterface
 	@GET @Path("/workspaces/{workspace}/coveragestores/{coveragestore}.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	String coverageStore(@PathParam("workspace") String workspace, @PathParam("coveragestore") String coveragestore);
+	
+	@POST @Path("/workspaces/{workspace}/coveragestores.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	String createCoverageStore(@PathParam("workspace") String workspace, String cs);
 }

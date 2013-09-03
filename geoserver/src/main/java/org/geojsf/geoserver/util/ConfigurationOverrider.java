@@ -45,10 +45,14 @@ public class ConfigurationOverrider
 		}
 		if(dataStore.isSetPostgis())
 		{
-			String key = getKey(dataStore);
-			String value = config.getString(key);
-			logger.info("Key:"+key+" "+value);
-			dataStore.getPostgis().getConnection().getDatabase().setPassword(value);
+			try
+			{
+				String key = getKey(dataStore);
+				String value = config.getString(key);
+				logger.info("Key:"+key+" "+value);
+				dataStore.getPostgis().getConnection().getDatabase().setPassword(value);
+			}
+			catch (NoSuchElementException e){}
 		}
 	}
 	

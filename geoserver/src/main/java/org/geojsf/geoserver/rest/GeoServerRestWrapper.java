@@ -172,6 +172,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 		{return getCsWrapper().getCoverageStores(workspace);}
 	@Override public CoverageStore coverageStore(String workspace, String coverageStore) throws IOException
 		{return getCsWrapper().coverageStore(workspace,coverageStore);}
+	@Override public void createCoverageStore(Workspace ws,CoverageStore cs) throws IOException
+		{getCsWrapper().createCoverageStore(ws,cs);}
 	
 	private GeoServerRestCoverageStoreWrapper getCsWrapper()
 	{
