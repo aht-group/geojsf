@@ -8,16 +8,12 @@ import net.sf.exlp.util.xml.XmlUtil;
 
 import org.apache.commons.io.IOUtils;
 import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
-import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
-import org.geojsf.factory.xml.geoserver.XmlWorkspacesFactory;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Workspace;
-import org.geojsf.xml.geoserver.Workspaces;
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.Namespace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,7 +66,7 @@ public class GeoServerRestDataStoreWrapper
 		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
 	 
 		XmlDataStoreFactory.transform(root);
-		JDomUtil.debug(root);
+//		JDomUtil.debug(root);
 		
 		return JDomUtil.toJaxb(root, DataStore.class);
 	}

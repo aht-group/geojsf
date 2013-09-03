@@ -27,6 +27,7 @@ public class SimpleXmlTranscoder
 		if(child!=null)
 		{
 			e.setAttribute(name, child.getText());
+			child.detach();
 		}
 	}
 }

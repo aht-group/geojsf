@@ -80,9 +80,11 @@ public class GeoServerConfigurator
 	
 	private void configureDataStore() throws GeoServerConfigurationException
 	{
+		logger.info("Configuring datasources");
 		try
 		{
 			DataStores dataStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerDataStoreManager.dsXml), DataStores.class);
+			JaxbUtil.info(dataStores);
 			for(DataStore ds : dataStores.getDataStore())
 			{
 				JaxbUtil.trace(ds);
