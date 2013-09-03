@@ -89,6 +89,22 @@
 			<xsd:attribute name="cacheMemoryMaps" type="xsd:boolean"/>
 		</xsd:complexType>
 	</xsd:element>
+	<xsd:element name="coverageStores">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geoserver:coverageStore" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="coverageStore">
+		<xsd:complexType>
+			<xsd:sequence>
+
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	
 	<xsd:element name="spatial">
 		<xsd:complexType>
 			<xsd:attribute name="createIndex" type="xsd:boolean"/>

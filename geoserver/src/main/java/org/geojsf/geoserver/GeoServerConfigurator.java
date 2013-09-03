@@ -19,6 +19,7 @@ import org.geojsf.factory.geoserver.GeoServerRestFactory;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
+import org.geojsf.geoserver.util.ConfigurationOverrider;
 import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.geoserver.DataStore;
@@ -34,6 +35,8 @@ public class GeoServerConfigurator
 	final static Logger logger = LoggerFactory.getLogger(GeoServerConfigurator.class);
 	
 	private Configuration config;
+	private ConfigurationOverrider configOverrider;
+	
 	private GeoServerRESTReader reader;
 	private GeoServerRESTPublisher publisher;
 	
@@ -48,7 +51,7 @@ public class GeoServerConfigurator
 	public GeoServerConfigurator(String configBaseDir, Configuration config) throws MalformedURLException
 	{
 		this.config=config;
-		
+		configOverrider = new ConfigurationOverrider(config);
 		fBase = new File(configBaseDir);
 		logger.info("Using configuration directory: "+fBase.getAbsolutePath());
 		
@@ -84,6 +87,8 @@ public class GeoServerConfigurator
 		try
 		{
 			DataStores dataStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerDataStoreManager.dsXml), DataStores.class);
+			configOverrider.overrideDataStores(dataStores);
+			
 			JaxbUtil.info(dataStores);
 			for(DataStore ds : dataStores.getDataStore())
 			{
@@ -101,9 +106,6 @@ public class GeoServerConfigurator
 		}
 		catch (FileNotFoundException e) {throw new GeoServerConfigurationException("File "+GeoServerDataStoreManager.dsXml+" not found");}
 		catch (IOException e) {e.printStackTrace();}
-		
-//		DataStore ds = XmlDataStoreFactory.build(config);
-
 	}
 	
 	public void createLayer(Layers layers)

@@ -30,6 +30,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Connection }
+     * 
+     */
+    public Connection createConnection() {
+        return new Connection();
+    }
+
+    /**
      * Create an instance of {@link ShapeDir }
      * 
      */
@@ -43,14 +51,6 @@ public class ObjectFactory {
      */
     public Spatial createSpatial() {
         return new Spatial();
-    }
-
-    /**
-     * Create an instance of {@link Connection }
-     * 
-     */
-    public Connection createConnection() {
-        return new Connection();
     }
 
     /**
@@ -118,6 +118,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CoverageStore }
+     * 
+     */
+    public CoverageStore createCoverageStore() {
+        return new CoverageStore();
+    }
+
+    /**
      * Create an instance of {@link GeoServer }
      * 
      */
@@ -131,6 +139,14 @@ public class ObjectFactory {
      */
     public Workspaces createWorkspaces() {
         return new Workspaces();
+    }
+
+    /**
+     * Create an instance of {@link CoverageStores }
+     * 
+     */
+    public CoverageStores createCoverageStores() {
+        return new CoverageStores();
     }
 
 }
