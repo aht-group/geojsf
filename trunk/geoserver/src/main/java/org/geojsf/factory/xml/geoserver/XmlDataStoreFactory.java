@@ -12,6 +12,7 @@ import org.geojsf.geoserver.util.SimpleXmlTranscoder;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.Postgis;
+import org.geojsf.xml.geoserver.ShapeDir;
 import org.geojsf.xml.geoserver.Workspace;
 import org.jdom2.Element;
 import org.slf4j.Logger;
@@ -94,6 +95,7 @@ public class XmlDataStoreFactory implements Serializable
 		
 		Element eConnectionParameters = new Element("connectionParameters");
 		if(ds.isSetPostgis()){addPostgisConnectionParameter(eConnectionParameters,ds.getPostgis());}
+		else if(ds.isSetShapeDir()){addShapeDirConnectionParameter(eConnectionParameters,ds.getShapeDir());}
 		eDs.addContent(eConnectionParameters);
 		
 		return eDs;
@@ -122,6 +124,21 @@ public class XmlDataStoreFactory implements Serializable
 		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyEncode,postgis.getConnection().isEncodeFunctions()));
 		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyExpose,postgis.getConnection().isExposePrimaryKeys()));
 		eConnectionParameters.addContent(buildKey(XmlPostgisFactory.keyExtends,postgis.getConnection().isEstimatedExtends()));
+	}
+	
+	private static void addShapeDirConnectionParameter(Element eConnectionParameters, ShapeDir shapeDir)
+	{
+		eConnectionParameters.addContent(buildKey(XmlShapeDirFactory.keyFiletype,"shapefile"));
+		eConnectionParameters.addContent(buildKey(XmlShapeDirFactory.keyFstype,"shape"));
+		eConnectionParameters.addContent(buildKey(XmlShapeDirFactory.keyTimezone,"Europe/Berlin"));
+		
+		eConnectionParameters.addContent(buildKey(XmlShapeDirFactory.keyCharSet,shapeDir.getCharset()));
+		eConnectionParameters.addContent(buildKey(XmlShapeDirFactory.keyMemoryBuffer,shapeDir.isMemoryBuffer()));
+		eConnectionParameters.addContent(buildKey(XmlShapeDirFactory.keyMemoryMaps,shapeDir.isCacheMemoryMaps()));
+		eConnectionParameters.addContent(buildKey(XmlShapeDirFactory.keyUrl,shapeDir.getUrl()));
+		
+		eConnectionParameters.addContent(buildKey(XmlShapeDirFactory.keyCreateSpatialIndex,shapeDir.getSpatial().isCreateIndex()));
+		eConnectionParameters.addContent(buildKey(XmlShapeDirFactory.keyEnableSpatialIndex,shapeDir.getSpatial().isEnableIndex()));
 	}
 	
 	private static Element buildKey(String key, boolean value){return buildKey(key,""+value);}

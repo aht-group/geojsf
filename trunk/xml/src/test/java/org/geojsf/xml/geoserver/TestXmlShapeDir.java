@@ -33,12 +33,9 @@ public class TestXmlShapeDir extends AbstractXmlGeoserverTest
     {
     	ShapeDir xml = new ShapeDir();
     	xml.setUrl("myUrl");
-    	xml.setCharSet("myCharSet");
+    	xml.setCharset("myCharSet");
     	xml.setMemoryBuffer(true);
     	xml.setCacheMemoryMaps(true);
-    	xml.setTimezone("myTimeZone");
-    	xml.setFiletype("myFileType");
-    	xml.setFstype("myFsType");
     	
     	if(withChilds)
     	{

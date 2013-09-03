@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<g:shapeDir xmlns:g="http://www.geojsf.org/geoserver" url="myUrl" charSet="myCharSet" memoryBuffer="true" cacheMemoryMaps="true" timezone="myTimeZone" fstype="myFsType" filetype="myFileType">
+<g:shapeDir xmlns:g="http://www.geojsf.org/geoserver" url="myUrl" charset="myCharSet" memoryBuffer="true" cacheMemoryMaps="true">
     <g:spatial createIndex="true" enableIndex="true"/>
 </g:shapeDir>

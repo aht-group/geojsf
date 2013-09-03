@@ -23,12 +23,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{http://www.geojsf.org/geoserver}spatial"/>
  *       &lt;/sequence>
  *       &lt;attribute name="url" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="charSet" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="charset" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="memoryBuffer" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *       &lt;attribute name="cacheMemoryMaps" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="timezone" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="fstype" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="filetype" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -50,18 +47,12 @@ public class ShapeDir
     protected Spatial spatial;
     @XmlAttribute(name = "url")
     protected String url;
-    @XmlAttribute(name = "charSet")
-    protected String charSet;
+    @XmlAttribute(name = "charset")
+    protected String charset;
     @XmlAttribute(name = "memoryBuffer")
     protected Boolean memoryBuffer;
     @XmlAttribute(name = "cacheMemoryMaps")
     protected Boolean cacheMemoryMaps;
-    @XmlAttribute(name = "timezone")
-    protected String timezone;
-    @XmlAttribute(name = "fstype")
-    protected String fstype;
-    @XmlAttribute(name = "filetype")
-    protected String filetype;
 
     /**
      * Gets the value of the spatial property.
@@ -120,31 +111,31 @@ public class ShapeDir
     }
 
     /**
-     * Gets the value of the charSet property.
+     * Gets the value of the charset property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCharSet() {
-        return charSet;
+    public String getCharset() {
+        return charset;
     }
 
     /**
-     * Sets the value of the charSet property.
+     * Sets the value of the charset property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCharSet(String value) {
-        this.charSet = value;
+    public void setCharset(String value) {
+        this.charset = value;
     }
 
-    public boolean isSetCharSet() {
-        return (this.charSet!= null);
+    public boolean isSetCharset() {
+        return (this.charset!= null);
     }
 
     /**
@@ -209,90 +200,6 @@ public class ShapeDir
 
     public void unsetCacheMemoryMaps() {
         this.cacheMemoryMaps = null;
-    }
-
-    /**
-     * Gets the value of the timezone property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTimezone() {
-        return timezone;
-    }
-
-    /**
-     * Sets the value of the timezone property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTimezone(String value) {
-        this.timezone = value;
-    }
-
-    public boolean isSetTimezone() {
-        return (this.timezone!= null);
-    }
-
-    /**
-     * Gets the value of the fstype property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getFstype() {
-        return fstype;
-    }
-
-    /**
-     * Sets the value of the fstype property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setFstype(String value) {
-        this.fstype = value;
-    }
-
-    public boolean isSetFstype() {
-        return (this.fstype!= null);
-    }
-
-    /**
-     * Gets the value of the filetype property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getFiletype() {
-        return filetype;
-    }
-
-    /**
-     * Sets the value of the filetype property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setFiletype(String value) {
-        this.filetype = value;
-    }
-
-    public boolean isSetFiletype() {
-        return (this.filetype!= null);
     }
 
 }
