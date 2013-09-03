@@ -2,7 +2,6 @@ package org.geojsf.factory.xml.geoserver;
 
 import java.io.Serializable;
 
-import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.xml.identity.User;
 import net.sf.exlp.xml.net.Host;
 
@@ -67,12 +66,7 @@ public class XmlDataStoreFactory implements Serializable
 		Element eWorkspace = dataStore.getChild("workspace", SimpleXmlTranscoder.ns);
 		if(eWorkspace!=null){XmlWorkspaceFactory.transform(eWorkspace);}
 		
-		Element eConnectionParameters = dataStore.getChild("connectionParameters", SimpleXmlTranscoder.ns);
-		if(eConnectionParameters!=null)
-		{
-			logger.info(dataStore.getAttributeValue("type"));
-			XmlConnectionFactory.transform(eConnectionParameters);
-		}
+		XmlConnectionFactory.transform(dataStore);
 	}
 	
 	public static Element build(DataStore ds, Workspace ws)

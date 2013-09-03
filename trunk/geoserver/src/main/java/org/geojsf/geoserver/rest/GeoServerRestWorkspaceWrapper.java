@@ -29,7 +29,6 @@ public class GeoServerRestWorkspaceWrapper
 		this.rest=rest;
 	}
 	
-	
 	public Workspaces getWorkspaces() throws IOException
 	{		
 		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.workspaces(), xmlEncoding);
