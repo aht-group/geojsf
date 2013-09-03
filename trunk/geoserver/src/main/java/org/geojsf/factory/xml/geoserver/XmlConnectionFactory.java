@@ -13,25 +13,18 @@ public class XmlConnectionFactory implements Serializable
 	
 	public static final long serialVersionUID=1;
 	
-	public static String keyMin = "min connections";
-	public static String keyMax = "max connections";
-	public static String keyTimeout = "Connection timeout";
-	public static String keyFetchSize = "fetch size";
-	public static String keyMaxPrepared = "Max open prepared statements";
-	public static String keyPrepared = "preparedStatements";
-	public static String keyValidate = "validate connections";
-	public static String keyBbox = "Loose bbox";
-	public static String keyEncode = "encode functions";
-	public static String keyExpose = "Expose primary keys";
-	public static String keyExtends = "Estimated extends";
+	public static String typePostGis = "PostGIS";
+	public static String typeShapeDir = "Directory of spatial files (shapefiles)";
 	
 	public static void transform(Element dataStore)
 	{
+		logger.trace("Transforming ... ");
 		Element connectionParameters = dataStore.getChild("connectionParameters", SimpleXmlTranscoder.ns);
 		if(connectionParameters!=null)
 		{
-			logger.trace(dataStore.getAttributeValue("type"));
-			if(dataStore.getAttributeValue("type").equals("PostGIS")) {XmlPostgisFactory.transform(dataStore);}
+			logger.info(dataStore.getAttributeValue("type"));
+			if(dataStore.getAttributeValue("type").equals(typePostGis)) {XmlPostgisFactory.transform(dataStore);}
+			if(dataStore.getAttributeValue("type").equals(typeShapeDir)) {XmlShapeDirFactory.transform(dataStore);}
 		}
 	}
 }

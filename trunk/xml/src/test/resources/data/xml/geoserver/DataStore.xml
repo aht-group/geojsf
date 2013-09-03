@@ -2,4 +2,5 @@
 <g:dataStore xmlns:g="http://www.geojsf.org/geoserver" xmlns:net="http://exlp.sf.net/net" name="myName" description="myDescription" type="myType" enabled="true">
     <g:workspace name="myName" namespace="myNamespace"/>
     <g:postgis/>
+    <g:shapeDir url="myUrl" charSet="myCharSet" memoryBuffer="true" cacheMemoryMaps="true" timezone="myTimeZone" fstype="myFsType" filetype="myFileType"/>
 </g:dataStore>
