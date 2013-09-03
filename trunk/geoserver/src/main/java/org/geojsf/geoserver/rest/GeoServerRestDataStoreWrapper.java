@@ -9,6 +9,7 @@ import net.sf.exlp.util.xml.XmlUtil;
 import org.apache.commons.io.IOUtils;
 import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
+import org.geojsf.interfaces.rest.geoserver.GeoServerDataStoreRest;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Workspace;
@@ -17,7 +18,7 @@ import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoServerRestDataStoreWrapper
+public class GeoServerRestDataStoreWrapper implements GeoServerDataStoreRest
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoServerRestDataStoreWrapper.class);
 	
@@ -29,6 +30,7 @@ public class GeoServerRestDataStoreWrapper
 		this.rest=rest;
 	}
 	
+	@Override
 	public DataStores getDataStores(String workspace) throws IOException
 	{		
 		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.dataStores(workspace), xmlEncoding);
@@ -36,13 +38,9 @@ public class GeoServerRestDataStoreWrapper
 		Element root = doc.getRootElement();
 		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
 	 
-		for(Object o : root.getChildren("dataStore",GeoServerRestWrapper.ns))
+		for(Element e : root.getChildren("dataStore",GeoServerRestWrapper.ns))
 		{
-			if(o instanceof Element)
-			{
-				Element e = (Element)o;
-				GeoServerXmlTranscoder.dataStore(e);
-			}
+			GeoServerXmlTranscoder.dataStore(e);
 		}
 		
 		DataStores result = new DataStores();
@@ -56,13 +54,14 @@ public class GeoServerRestDataStoreWrapper
 		return result;
 	}
 	
+	@Override
 	public DataStore dataStore(String workspace, String dataStore) throws IOException
 	{		
 		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.dataStore(workspace,dataStore), xmlEncoding);
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		
 		Element root = doc.getRootElement();
-		JDomUtil.debug(doc);
+//		JDomUtil.debug(doc);
 		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
 	 
 		XmlDataStoreFactory.transform(root);
@@ -71,6 +70,7 @@ public class GeoServerRestDataStoreWrapper
 		return JDomUtil.toJaxb(root, DataStore.class);
 	}
 	
+	@Override
 	public void createDataStore(DataStore ds, Workspace ws)
 	{
 		Document doc = new Document();

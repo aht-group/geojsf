@@ -22,7 +22,7 @@ public class XmlConnectionFactory implements Serializable
 		Element connectionParameters = dataStore.getChild("connectionParameters", SimpleXmlTranscoder.ns);
 		if(connectionParameters!=null)
 		{
-			logger.info(dataStore.getAttributeValue("type"));
+			logger.trace(dataStore.getAttributeValue("type"));
 			if(dataStore.getAttributeValue("type").equals(typePostGis)) {XmlPostgisFactory.transform(dataStore);}
 			if(dataStore.getAttributeValue("type").equals(typeShapeDir)) {XmlShapeDirFactory.transform(dataStore);}
 		}

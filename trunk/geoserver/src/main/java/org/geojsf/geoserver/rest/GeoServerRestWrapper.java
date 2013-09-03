@@ -14,6 +14,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.util.GeoServerConfigKeys;
+import org.geojsf.xml.geoserver.CoverageStore;
+import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Styles;
@@ -38,6 +40,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 	
 	public static Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
 
+	private GeoServerRestCoverageStoreWrapper csWrapper; 
+	
 	public GeoServerRestWrapper(Configuration config)
 	{
 		this(config.getString(GeoServerConfigKeys.restUrl),
@@ -141,6 +145,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		wsWrapper.createWorkspace(workspace);
 	}
 
+	// DATASTORE
 	@Override
 	public DataStores getDataStores(String workspace) throws IOException
 	{
@@ -161,4 +166,19 @@ public class GeoServerRestWrapper implements GeoServerRest
 		GeoServerRestDataStoreWrapper dsWrapper = new GeoServerRestDataStoreWrapper(rest);
 		dsWrapper.createDataStore(datastore,workspace);
 	}
+
+	// COVERAGE STORES
+	@Override public CoverageStores getCoverageStores(String workspace) throws IOException
+		{return getCsWrapper().getCoverageStores(workspace);}
+	@Override public CoverageStore coverageStore(String workspace, String coverageStore) throws IOException
+		{return getCsWrapper().coverageStore(workspace,coverageStore);}
+	
+	private GeoServerRestCoverageStoreWrapper getCsWrapper()
+	{
+		if(csWrapper==null){csWrapper=new GeoServerRestCoverageStoreWrapper(rest);}
+		return csWrapper;
+	}
+
+	
+	
 }

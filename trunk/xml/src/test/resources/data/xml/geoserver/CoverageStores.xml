@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <g:coverageStores xmlns:g="http://www.geojsf.org/geoserver">
-    <g:coverageStore name="myName"/>
-    <g:coverageStore name="myName"/>
+    <g:coverageStore name="myName" description="myDescription" type="myType" enabled="true" url="myUrl"/>
+    <g:coverageStore name="myName" description="myDescription" type="myType" enabled="true" url="myUrl"/>
 </g:coverageStores>
