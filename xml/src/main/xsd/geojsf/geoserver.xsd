@@ -84,12 +84,9 @@
 				<xsd:element ref="geoserver:spatial" maxOccurs="1"/>
 			</xsd:sequence>
 			<xsd:attribute name="url" type="xsd:string"/>
-			<xsd:attribute name="charSet" type="xsd:string"/>
+			<xsd:attribute name="charset" type="xsd:string"/>
 			<xsd:attribute name="memoryBuffer" type="xsd:boolean"/>
 			<xsd:attribute name="cacheMemoryMaps" type="xsd:boolean"/>
-			<xsd:attribute name="timezone" type="xsd:string"/>
-			<xsd:attribute name="fstype" type="xsd:string"/>
-			<xsd:attribute name="filetype" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="spatial">

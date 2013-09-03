@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geojsf.factory.xml.exlp.XmlDatabaseFactory;
-import org.geojsf.factory.xml.exlp.XmlHostFactory;
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
 import org.jdom2.Element;
 import org.slf4j.Logger;
@@ -22,8 +20,8 @@ public class XmlShapeDirFactory implements Serializable
 	public static String keyMemoryMaps = "cache and reuse memory maps";
 	public static String keyCreateSpatialIndex = "create spatial index";
 	public static String keyEnableSpatialIndex = "enable spatial index";
-	public static String keyTimezone = "timezone";
 	
+	public static String keyTimezone = "timezone";
 	public static String keyFstype = "fstype";
 	public static String keyFiletype = "filetype";
 	
@@ -49,13 +47,14 @@ public class XmlShapeDirFactory implements Serializable
 				if(e.getAttributeValue("key").equals(keyCharSet)){eShapeDir.setAttribute(keyCharSet, e.getValue());listDetach.add(e);}
 				if(e.getAttributeValue("key").equals(keyMemoryBuffer)){eShapeDir.setAttribute("memoryBuffer", e.getValue());listDetach.add(e);}
 				if(e.getAttributeValue("key").equals(keyMemoryMaps)){eShapeDir.setAttribute("cacheMemoryMaps", e.getValue());listDetach.add(e);}
-				if(e.getAttributeValue("key").equals(keyTimezone)){eShapeDir.setAttribute(keyTimezone, e.getValue());listDetach.add(e);}
-				
-				if(e.getAttributeValue("key").equals(keyFstype)){eShapeDir.setAttribute(keyFstype, e.getValue());listDetach.add(e);}
-				if(e.getAttributeValue("key").equals(keyFiletype)){eShapeDir.setAttribute(keyFiletype, e.getValue());listDetach.add(e);}
 				
 				if(e.getAttributeValue("key").equals(keyCreateSpatialIndex)){eSpatial.setAttribute("createIndex", e.getValue());listDetach.add(e);}
 				if(e.getAttributeValue("key").equals(keyEnableSpatialIndex)){eSpatial.setAttribute("enableIndex", e.getValue());listDetach.add(e);}
+				
+				//These keys are currently not mapped to JAXB!
+				if(e.getAttributeValue("key").equals(keyTimezone)){eShapeDir.setAttribute(keyTimezone, e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyFstype)){eShapeDir.setAttribute(keyFstype, e.getValue());listDetach.add(e);}
+				if(e.getAttributeValue("key").equals(keyFiletype)){eShapeDir.setAttribute(keyFiletype, e.getValue());listDetach.add(e);}
 			}
 		}
 		for(Element e : listDetach){e.detach();}
