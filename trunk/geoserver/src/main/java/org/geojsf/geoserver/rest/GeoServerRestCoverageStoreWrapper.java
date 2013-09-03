@@ -12,6 +12,7 @@ import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageStoreRest;
 import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
+import org.geojsf.xml.geoserver.Workspace;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.slf4j.Logger;
@@ -71,5 +72,16 @@ public class GeoServerRestCoverageStoreWrapper implements GeoServerCoverageStore
 //		JDomUtil.debug(root);
 		
 		return JDomUtil.toJaxb(root, CoverageStore.class);
+	}
+	
+	@Override
+	public void createCoverageStore(Workspace ws,CoverageStore cs)
+	{
+		Document doc = new Document();
+		doc.setRootElement(XmlCoverageStoreFactory.build(ws,cs));
+
+//		JDomUtil.debug(doc);
+
+		rest.createCoverageStore(ws.getName(),JDomUtil.toString(doc));
 	}
 }
