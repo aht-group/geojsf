@@ -7,6 +7,7 @@ import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.XmlUtil;
 
 import org.apache.commons.io.IOUtils;
+import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.interfaces.rest.geoserver.GeoServerLayerRest;
 import org.geojsf.xml.geoserver.Layer;
@@ -29,9 +30,9 @@ public class GeoServerRestLayerWrapper implements GeoServerLayerRest
 	}
 	
 	@Override
-	public Layers getLayers(String workspace) throws IOException
+	public Layers allLayers() throws IOException
 	{
-		logger.info("getLayers("+workspace+")");
+		logger.trace("allLayers()");
 		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.getLayers(), xmlEncoding);
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		Element root = doc.getRootElement();
@@ -55,6 +56,22 @@ public class GeoServerRestLayerWrapper implements GeoServerLayerRest
 		}
 		
 		return result;
+	}
+
+	@Override
+	public Layer getLayer(String layer) throws IOException
+	{
+		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.layer(layer), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
+		
+		Element root = doc.getRootElement();
+//		JDomUtil.debug(doc);
+		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
+	 
+		XmlDataStoreFactory.transform(root);
+//		JDomUtil.debug(root);
+		
+		return JDomUtil.toJaxb(root, Layer.class);
 	}
 	
 }
