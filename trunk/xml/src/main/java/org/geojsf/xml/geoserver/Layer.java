@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.geojsf.org/geoserver}coverageStore"/>
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}featureType"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -34,7 +35,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "coverageStore"
+    "coverageStore",
+    "featureType"
 })
 @XmlRootElement(name = "layer")
 public class Layer
@@ -44,6 +46,8 @@ public class Layer
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected CoverageStore coverageStore;
+    @XmlElement(required = true)
+    protected FeatureType featureType;
     @XmlAttribute(name = "name")
     protected String name;
     @XmlAttribute(name = "type")
@@ -77,6 +81,34 @@ public class Layer
 
     public boolean isSetCoverageStore() {
         return (this.coverageStore!= null);
+    }
+
+    /**
+     * Gets the value of the featureType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FeatureType }
+     *     
+     */
+    public FeatureType getFeatureType() {
+        return featureType;
+    }
+
+    /**
+     * Sets the value of the featureType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FeatureType }
+     *     
+     */
+    public void setFeatureType(FeatureType value) {
+        this.featureType = value;
+    }
+
+    public boolean isSetFeatureType() {
+        return (this.featureType!= null);
     }
 
     /**

@@ -11,35 +11,34 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlLayer extends AbstractXmlGeoserverTest
+public class TestXmlFeatureType extends AbstractXmlGeoserverTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlLayer.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlFeatureType.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,Layer.class.getSimpleName()+".xml");
+		fXml = new File(rootDir,FeatureType.class.getSimpleName()+".xml");
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Layer actual = create(true);
-    	Layer expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Layer.class);
+    	FeatureType actual = create(true);
+    	FeatureType expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), FeatureType.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Layer create(boolean withChilds)
+    public static FeatureType create(boolean withChilds)
     {
-    	Layer xml = new Layer();
+    	FeatureType xml = new FeatureType();
     	xml.setName("myName");
-    	xml.setType("myType");
-    	xml.setEnabled(true);
+    	xml.setNativeName("myNativeName");
+    	
     		
     	if(withChilds)
     	{
-    		xml.setCoverageStore(TestXmlCoverageStore.create(false));
-    		xml.setFeatureType(TestXmlFeatureType.create(false));
+    		
     	}
     	
     	return xml;
@@ -51,8 +50,8 @@ public class TestXmlLayer extends AbstractXmlGeoserverTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlLayer.initFiles();	
-		TestXmlLayer test = new TestXmlLayer();
+		TestXmlFeatureType.initFiles();	
+		TestXmlFeatureType test = new TestXmlFeatureType();
 		test.save();
     }
 }

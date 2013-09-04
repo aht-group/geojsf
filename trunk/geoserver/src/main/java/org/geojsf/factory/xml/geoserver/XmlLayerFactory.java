@@ -44,7 +44,9 @@ public class XmlLayerFactory implements Serializable
 		}
 		else if(resourceClass.equals("featureType"))
 		{
-			logger.warn("No handling for featureType");
+			Element eFeatureType = new Element(XmlFeatureTypeFactory.eName,SimpleXmlTranscoder.ns);
+			eFeatureType.setAttribute("name", eName.getValue());
+			eLayer.addContent(eFeatureType);	
 		}
 		else
 		{

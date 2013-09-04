@@ -72,6 +72,8 @@ public class GeoServerRestLayerWrapper implements GeoServerLayerRest
 		XmlLayerFactory.transform(root);
 //		JDomUtil.debug(root);
 		
+		
+		
 		return JDomUtil.toJaxb(root, Layer.class);
 	}
 	
