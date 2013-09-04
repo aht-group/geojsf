@@ -56,8 +56,8 @@ public class GeoServerExporter
 			logger.info("Starting export of workspace "+workspace.getName());
 			workspace = wsManager.getWorkspace(workspaceName);
 			JaxbUtil.save(new File(fBase,GeoServerWorkspaceManager.wsXml), workspace, true);
-//			exportDataStores();
-//			exportCoverageStores();
+			exportDataStores();
+			exportCoverageStores();
 			exportLayers();
 		}
 	}
@@ -74,7 +74,7 @@ public class GeoServerExporter
 	{
 		logger.info("Starting export of "+workspace.getName()+" coveragestores");
 		CoverageStores cs = coverageStoreManager.getCoverageStores(workspace);
-		JaxbUtil.info(cs);
+		JaxbUtil.trace(cs);
 		JaxbUtil.save(new File(fBase,GeoServerCoverageStoreManager.xml), cs, true);
 	}
 	

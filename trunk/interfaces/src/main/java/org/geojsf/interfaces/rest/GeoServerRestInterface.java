@@ -98,6 +98,11 @@ public interface GeoServerRestInterface
 	@Consumes(MediaType.APPLICATION_XML)
 	String createCoverageStore(@PathParam("workspace") String workspace, String cs);
 	
+	// COVERAGES
+	@GET @Path("/workspaces/{workspace}/coveragestores/{coveragestore}/coverages.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	String coverages(@PathParam("workspace") String workspace, @PathParam("coveragestore") String coveragestore);
+	
 	// LAYER
 	@GET @Path("/layers")
 	@Produces(MediaType.APPLICATION_XML)
@@ -106,6 +111,8 @@ public interface GeoServerRestInterface
 	@GET @Path("/layers/{layer}.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	String layer(@PathParam("layer") String layer);
+	
+	
 	
 	//FEATURE TYPE
 	@GET @Path("/workspaces/{workspace}/datastores/{datastore}/featuretypes.xml")

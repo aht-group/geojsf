@@ -62,6 +62,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Coverages }
+     * 
+     */
+    public Coverages createCoverages() {
+        return new Coverages();
+    }
+
+    /**
+     * Create an instance of {@link Coverage }
+     * 
+     */
+    public Coverage createCoverage() {
+        return new Coverage();
+    }
+
+    /**
      * Create an instance of {@link Layers }
      * 
      */
