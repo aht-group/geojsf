@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageStoreRest;
+import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageRest;
 import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.Workspace;
@@ -16,18 +16,23 @@ public class GeoServerCoverageStoreManager
 	final static Logger logger = LoggerFactory.getLogger(GeoServerCoverageStoreManager.class);
 	
 	public static String xml = "coveragestores.xml";
-	private GeoServerCoverageStoreRest rest;
+	private GeoServerCoverageRest rest;
 
-	public GeoServerCoverageStoreManager(GeoServerCoverageStoreRest rest)
+	public GeoServerCoverageStoreManager(GeoServerCoverageRest rest)
 	{
 		this.rest=rest;
 	}
 	
 	public CoverageStores getCoverageStores(Workspace ws) throws IOException
 	{
-		CoverageStores coverageStores = rest.getCoverageStores(ws.getName());
 		
-		return coverageStores;
+		CoverageStores result = new CoverageStores();
+		for(CoverageStore cs : rest.getCoverageStores(ws.getName()).getCoverageStore())
+		{
+			result.getCoverageStore().add(rest.coverageStore(ws.getName(), cs.getName()));
+		}
+		
+		return result;
 	}
 	
 	public boolean isAvailable(Workspace ws, CoverageStore ds) throws IOException

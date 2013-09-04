@@ -2,7 +2,7 @@ package org.geojsf.interfaces.rest;
 
 import java.io.IOException;
 
-import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageStoreRest;
+import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageRest;
 import org.geojsf.interfaces.rest.geoserver.GeoServerDataStoreRest;
 import org.geojsf.interfaces.rest.geoserver.GeoServerFeatureTypeRest;
 import org.geojsf.interfaces.rest.geoserver.GeoServerLayerRest;
@@ -11,7 +11,7 @@ import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
 import org.jdom2.Document;
 
-public interface GeoServerRest extends GeoServerDataStoreRest,GeoServerCoverageStoreRest,GeoServerLayerRest,GeoServerFeatureTypeRest
+public interface GeoServerRest extends GeoServerDataStoreRest,GeoServerCoverageRest,GeoServerLayerRest,GeoServerFeatureTypeRest
 {	
 	Styles styles() throws IOException;
 	Styles styles(String workspace) throws IOException;

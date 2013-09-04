@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<g:coverages xmlns:g="http://www.geojsf.org/geoserver">
+    <g:coverage name="myName"/>
+    <g:coverage name="myName"/>
+</g:coverages>

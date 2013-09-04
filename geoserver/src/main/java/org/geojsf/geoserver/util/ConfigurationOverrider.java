@@ -3,6 +3,8 @@ package org.geojsf.geoserver.util;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.xml.geoserver.CoverageStore;
+import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.jdom2.Namespace;
@@ -45,27 +47,67 @@ public class ConfigurationOverrider
 		}
 		if(dataStore.isSetPostgis())
 		{
+			String key = getKey(dataStore);
 			try
 			{
-				String key = getKey(dataStore);
 				String value = config.getString(key);
 				logger.info("Key:"+key+" "+value);
 				dataStore.getPostgis().getConnection().getDatabase().setPassword(value);
 			}
-			catch (NoSuchElementException e){}
+			catch (NoSuchElementException e)
+			{
+				logger.debug("Key "+key+" not found");
+			}
+		}
+	}
+	
+	public void overrideCoverageStores(CoverageStores coverageStores)
+	{
+		for(CoverageStore cs : coverageStores.getCoverageStore())
+		{
+			overrideCoverageStore(cs);
+		}
+	}
+	
+	private void overrideCoverageStore(CoverageStore cs)
+	{
+		String key = getKey(cs);
+		try
+		{
+			String value = config.getString(key);
+			logger.info("Key:"+key+" "+value);
+			cs.setUrl(value);
+		}
+		catch (NoSuchElementException e)
+		{
+//			logger.debug("Key "+key+" not found");
 		}
 	}
 	
 	private String getKey(DataStore dataStore)
 	{
 		StringBuffer sb = new StringBuffer();
-		sb.append("geoserver.");
-		sb.append(dataStore.getWorkspace().getName());
+		sb.append("geoserver.datastore");
+		sb.append(".").append(dataStore.getWorkspace().getName());
 		sb.append(".");
 		sb.append(dataStore.getName());
 		
 		String key = sb.toString();
-		key = key.replace("-", "");
+		key = key.replace("-", ".");
+		
+		return key;
+	}
+	
+	private String getKey(CoverageStore cs)
+	{
+		StringBuffer sb = new StringBuffer();
+		sb.append("geoserver.coverages");
+//		sb.append(cs.getWorkspace().getName());
+		sb.append(".cblt");
+		sb.append(".").append(cs.getName());
+		
+		String key = sb.toString();
+		key = key.replace("-", ".");
 		
 		return key;
 	}

@@ -113,13 +113,28 @@
 	<xsd:element name="coverageStore">
 		<xsd:complexType>
 			<xsd:sequence>
-
+				<xsd:element ref="geoserver:coverages" maxOccurs="1"/>
 			</xsd:sequence>
 			<xsd:attribute name="name" type="xsd:string"/>
 			<xsd:attribute name="description" type="xsd:string"/>
 			<xsd:attribute name="type" type="xsd:string"/>
 			<xsd:attribute name="enabled" type="xsd:boolean"/>
 			<xsd:attribute name="url" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="coverages">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geoserver:coverage" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="coverage">
+		<xsd:complexType>
+			<xsd:sequence>
+
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
 	

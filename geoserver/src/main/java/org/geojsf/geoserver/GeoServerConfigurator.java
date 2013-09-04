@@ -52,7 +52,7 @@ public class GeoServerConfigurator
 	private String ds;
 	private File fBase;
 	
-	public GeoServerConfigurator(String configBaseDir, Configuration config) throws MalformedURLException
+	public GeoServerConfigurator(String configBaseDir, GeoServerRest rest, Configuration config) throws MalformedURLException
 	{
 		this.config=config;
 		configOverrider = new ConfigurationOverrider(config);
@@ -63,7 +63,6 @@ public class GeoServerConfigurator
 		publisher = GeoServerRestFactory.publisher(config);
 		ds = config.getString(GeoServerConfigKeys.dsName);
 		
-		GeoServerRest rest = new GeoServerRestWrapper(config);
 		workspaceManager = new GeoServerWorkspaceManager(rest);
 		dataStoreManager = new GeoServerDataStoreManager(rest);
 		coverageStoreManager = new GeoServerCoverageStoreManager(rest);
@@ -120,19 +119,19 @@ public class GeoServerConfigurator
 		try
 		{
 			CoverageStores coverageStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerCoverageStoreManager.xml), CoverageStores.class);
-//			configOverrider.overrideDataStores(dataStores);
+			configOverrider.overrideCoverageStores(coverageStores);
 			
 			JaxbUtil.trace(coverageStores);
 			for(CoverageStore cs : coverageStores.getCoverageStore())
 			{
-				JaxbUtil.info(cs);
+				JaxbUtil.trace(cs);
 				if(coverageStoreManager.isAvailable(workspace,cs))
 				{
-					logger.info(DataStore.class.getSimpleName()+" "+cs.getName()+" is available and will not be re-created");
+					logger.info(CoverageStore.class.getSimpleName()+" "+cs.getName()+" is available and will not be re-created");
 				}
 				else
 				{
-					logger.info(DataStore.class.getSimpleName()+" "+cs.getName()+" will be created");
+					logger.info(CoverageStore.class.getSimpleName()+" "+cs.getName()+" will be created");
 					coverageStoreManager.createCoverageStore(workspace, cs);
 				}
 			}
@@ -171,7 +170,8 @@ public class GeoServerConfigurator
 	{
 		Configuration config = null; //Create your config here!	
 		
-		GeoServerConfigurator geoserver = new GeoServerConfigurator("target",config);
+		GeoServerRest rest = new GeoServerRestWrapper(config);
+		GeoServerConfigurator geoserver = new GeoServerConfigurator("target",rest,config);
 		geoserver.configureWorkspace();
 //		geoserver.createDataStore();
 	}

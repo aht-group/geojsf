@@ -16,6 +16,7 @@ import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
+import org.geojsf.xml.geoserver.Coverages;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.FeatureType;
@@ -44,7 +45,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 	
 	public static Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
 
-	private GeoServerRestCoverageStoreWrapper csWrapper;
+	private GeoServerRestCoverageWrapper csWrapper;
 	private GeoServerRestLayerWrapper layerWrapper;
 	private GeoServerRestFeatureTypeWrapper ftWrapper;
 	
@@ -173,14 +174,16 @@ public class GeoServerRestWrapper implements GeoServerRest
 		dsWrapper.createDataStore(datastore,workspace);
 	}
 
-	// COVERAGE STORES
+	// COVERAGES
 	@Override public CoverageStores getCoverageStores(String workspace) throws IOException
 		{return getCsWrapper().getCoverageStores(workspace);}
 	@Override public CoverageStore coverageStore(String workspace, String coverageStore) throws IOException
 		{return getCsWrapper().coverageStore(workspace,coverageStore);}
 	@Override public void createCoverageStore(Workspace ws,CoverageStore cs) throws IOException
 		{getCsWrapper().createCoverageStore(ws,cs);}
-	
+	@Override
+	public Coverages getCoverages(String workSpace, String coverageStore) throws IOException
+		{return getCsWrapper().getCoverages(workSpace,coverageStore);}
 	
 	// LAYER
 	@Override
@@ -195,9 +198,9 @@ public class GeoServerRestWrapper implements GeoServerRest
 	@Override public FeatureType getFeatureType(String ws, String ds, String ft) throws IOException
 		{return getFtWrapper().getFeatureType(ws, ds, ft);}
 	
-	private GeoServerRestCoverageStoreWrapper getCsWrapper()
+	private GeoServerRestCoverageWrapper getCsWrapper()
 	{
-		if(csWrapper==null){csWrapper=new GeoServerRestCoverageStoreWrapper(rest);}
+		if(csWrapper==null){csWrapper=new GeoServerRestCoverageWrapper(rest);}
 		return csWrapper;
 	}
 	
@@ -212,6 +215,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 		if(ftWrapper==null){ftWrapper=new GeoServerRestFeatureTypeWrapper(rest);}
 		return ftWrapper;
 	}
+
+	
 
 	
 }
