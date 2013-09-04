@@ -38,7 +38,7 @@ public class TestXmlLayer extends AbstractXmlGeoserverTest
     		
     	if(withChilds)
     	{
-    		
+    		xml.setCoverageStore(TestXmlCoverageStore.create(false));
     	}
     	
     	return xml;

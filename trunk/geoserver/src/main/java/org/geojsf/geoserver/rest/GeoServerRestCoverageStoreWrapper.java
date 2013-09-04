@@ -60,7 +60,7 @@ public class GeoServerRestCoverageStoreWrapper implements GeoServerCoverageStore
 	@Override
 	public CoverageStore coverageStore(String workSpace, String coverageStore) throws IOException
 	{
-		logger.info("Requesting: "+workSpace+" "+coverageStore);
+		logger.trace("Requesting: "+workSpace+" "+coverageStore);
 		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.coverageStore(workSpace,coverageStore), xmlEncoding);
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		

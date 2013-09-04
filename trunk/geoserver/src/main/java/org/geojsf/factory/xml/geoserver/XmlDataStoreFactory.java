@@ -21,8 +21,9 @@ import org.slf4j.LoggerFactory;
 public class XmlDataStoreFactory implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlDataStoreFactory.class);
-	
 	public static final long serialVersionUID=1;
+	
+	public static String eName = "dataStore";
 	
 	public static DataStore build(Configuration config)
 	{
