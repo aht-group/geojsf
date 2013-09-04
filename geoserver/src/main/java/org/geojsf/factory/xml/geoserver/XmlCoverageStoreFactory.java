@@ -12,8 +12,9 @@ import org.slf4j.LoggerFactory;
 public class XmlCoverageStoreFactory implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlCoverageStoreFactory.class);
-	
 	public static final long serialVersionUID=1;
+	
+	public static String eName = "coverageStore";
 	
 	public static void transform(Element dataStore)
 	{

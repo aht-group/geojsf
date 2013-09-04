@@ -78,6 +78,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CoverageStore }
+     * 
+     */
+    public CoverageStore createCoverageStore() {
+        return new CoverageStore();
+    }
+
+    /**
      * Create an instance of {@link Styles }
      * 
      */
@@ -115,14 +123,6 @@ public class ObjectFactory {
      */
     public DataStores createDataStores() {
         return new DataStores();
-    }
-
-    /**
-     * Create an instance of {@link CoverageStore }
-     * 
-     */
-    public CoverageStore createCoverageStore() {
-        return new CoverageStore();
     }
 
     /**

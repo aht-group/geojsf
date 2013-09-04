@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import net.sf.exlp.util.xml.JDomUtil;
+import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.util.xml.XmlUtil;
 
 import org.apache.commons.io.IOUtils;
-import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
+import org.geojsf.factory.xml.geoserver.XmlLayerFactory;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.interfaces.rest.geoserver.GeoServerLayerRest;
 import org.geojsf.xml.geoserver.Layer;
@@ -68,7 +69,7 @@ public class GeoServerRestLayerWrapper implements GeoServerLayerRest
 //		JDomUtil.debug(doc);
 		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
 	 
-		XmlDataStoreFactory.transform(root);
+		XmlLayerFactory.transform(root);
 //		JDomUtil.debug(root);
 		
 		return JDomUtil.toJaxb(root, Layer.class);

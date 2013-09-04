@@ -16,6 +16,7 @@ public class GeoServerDataStoreManager
 	final static Logger logger = LoggerFactory.getLogger(GeoServerDataStoreManager.class);
 	
 	public static String dsXml = "datastores.xml";
+	
 	private GeoServerRest rest;
 
 	public GeoServerDataStoreManager(GeoServerRest rest)
