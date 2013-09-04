@@ -10,11 +10,13 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.manager.GeoServerCoverageStoreManager;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
+import org.geojsf.geoserver.manager.GeoServerLayerManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStores;
+import org.geojsf.xml.geoserver.Layers;
 import org.geojsf.xml.geoserver.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,7 @@ public class GeoServerExporter
 	private GeoServerWorkspaceManager wsManager;
 	private GeoServerDataStoreManager dataStoreManager;
 	private GeoServerCoverageStoreManager coverageStoreManager;
+	private GeoServerLayerManager layerManager;
 	
 	private File fBase;
 	
@@ -36,6 +39,7 @@ public class GeoServerExporter
 		wsManager = new GeoServerWorkspaceManager(rest);
 		dataStoreManager = new GeoServerDataStoreManager(rest);
 		coverageStoreManager = new GeoServerCoverageStoreManager(rest);
+		layerManager = new GeoServerLayerManager(rest);
 		fBase = new File(configBaseDir);
 		logger.info("Writing to configuration directory: "+fBase.getAbsolutePath());
 	}
@@ -52,8 +56,9 @@ public class GeoServerExporter
 			logger.info("Starting export of workspace "+workspace.getName());
 			workspace = wsManager.getWorkspace(workspaceName);
 			JaxbUtil.save(new File(fBase,GeoServerWorkspaceManager.wsXml), workspace, true);
-			exportDataStores();
-			exportCoverageStores();
+//			exportDataStores();
+//			exportCoverageStores();
+			exportLayers();
 		}
 	}
 	
@@ -71,6 +76,14 @@ public class GeoServerExporter
 		CoverageStores cs = coverageStoreManager.getCoverageStores(workspace);
 		JaxbUtil.info(cs);
 		JaxbUtil.save(new File(fBase,GeoServerCoverageStoreManager.xml), cs, true);
+	}
+	
+	public void exportLayers() throws IOException
+	{
+		logger.info("Starting export of "+workspace.getName()+" layers");
+		Layers layers = layerManager.getLayer(workspace);
+		JaxbUtil.info(layers);
+//		JaxbUtil.save(new File(fBase,GeoServerCoverageStoreManager.xml), cs, true);
 	}
 	
 	public static void main(String args[]) throws Exception

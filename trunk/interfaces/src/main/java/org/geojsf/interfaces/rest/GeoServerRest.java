@@ -4,12 +4,13 @@ import java.io.IOException;
 
 import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageStoreRest;
 import org.geojsf.interfaces.rest.geoserver.GeoServerDataStoreRest;
+import org.geojsf.interfaces.rest.geoserver.GeoServerLayerRest;
 import org.geojsf.xml.geoserver.Styles;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
 import org.jdom2.Document;
 
-public interface GeoServerRest extends GeoServerDataStoreRest,GeoServerCoverageStoreRest
+public interface GeoServerRest extends GeoServerDataStoreRest,GeoServerCoverageStoreRest,GeoServerLayerRest
 {	
 	Styles styles() throws IOException;
 	Styles styles(String workspace) throws IOException;

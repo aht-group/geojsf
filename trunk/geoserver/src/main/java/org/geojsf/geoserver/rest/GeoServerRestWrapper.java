@@ -18,6 +18,7 @@ import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
+import org.geojsf.xml.geoserver.Layers;
 import org.geojsf.xml.geoserver.Styles;
 import org.geojsf.xml.geoserver.Workspace;
 import org.geojsf.xml.geoserver.Workspaces;
@@ -40,7 +41,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 	
 	public static Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
 
-	private GeoServerRestCoverageStoreWrapper csWrapper; 
+	private GeoServerRestCoverageStoreWrapper csWrapper;
+	private GeoServerRestLayerWrapper layerWrapper;
 	
 	public GeoServerRestWrapper(Configuration config)
 	{
@@ -175,12 +177,22 @@ public class GeoServerRestWrapper implements GeoServerRest
 	@Override public void createCoverageStore(Workspace ws,CoverageStore cs) throws IOException
 		{getCsWrapper().createCoverageStore(ws,cs);}
 	
+	
+	// LAYER
+	@Override
+	public Layers getLayers(String workspace) throws IOException
+		{return getLayerWrapper().getLayers(workspace);}
+
 	private GeoServerRestCoverageStoreWrapper getCsWrapper()
 	{
 		if(csWrapper==null){csWrapper=new GeoServerRestCoverageStoreWrapper(rest);}
 		return csWrapper;
 	}
-
 	
+	private GeoServerRestLayerWrapper getLayerWrapper()
+	{
+		if(layerWrapper==null){layerWrapper=new GeoServerRestLayerWrapper(rest);}
+		return layerWrapper;
+	}
 	
 }
