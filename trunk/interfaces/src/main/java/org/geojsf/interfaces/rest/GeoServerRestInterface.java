@@ -107,7 +107,11 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	String layer(@PathParam("layer") String layer);
 	
-	// FEATURE TYPE
+	//FEATURE TYPE
+	@GET @Path("/workspaces/{workspace}/datastores/{datastore}/featuretypes.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	String featureTypes(@PathParam("workspace") String workspace, @PathParam("datastore") String datastore);
+		
 	@GET @Path("/workspaces/{workspace}/datastores/{datastore}/featuretypes/{featuretype}.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	String featureType(@PathParam("workspace") String workspace, @PathParam("datastore") String datastore, @PathParam("featuretype") String featuretype);

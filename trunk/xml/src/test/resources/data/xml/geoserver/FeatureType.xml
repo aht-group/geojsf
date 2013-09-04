@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<g:featureType xmlns:g="http://www.geojsf.org/geoserver" name="myName" nativeName="myNativeName"/>
+<g:featureType xmlns:g="http://www.geojsf.org/geoserver" xmlns:net="http://exlp.sf.net/net" name="myName" nativeName="myNativeName">
+    <g:dataStore name="myName" description="myDescription" type="myType" enabled="true"/>
+</g:featureType>

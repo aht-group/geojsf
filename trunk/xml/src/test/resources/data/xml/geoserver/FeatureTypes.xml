@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<g:featureTypes xmlns:g="http://www.geojsf.org/geoserver">
+    <g:featureType name="myName" nativeName="myNativeName"/>
+    <g:featureType name="myName" nativeName="myNativeName"/>
+</g:featureTypes>

@@ -14,10 +14,25 @@ public class XmlFeatureTypeFactory implements Serializable
 	
 	public static String eName = "featureType";
 	
-	public static void transform(Element dataStore)
+	public static void transform(Element eFeatureType)
 	{
-		logger.trace("Transforming ... ");
-		SimpleXmlTranscoder.name(dataStore);
+		logger.trace("Transforming ... "+eName);
+		SimpleXmlTranscoder.name(eFeatureType);
 	
+		Element eStore = eFeatureType.getChild("store", SimpleXmlTranscoder.ns);
+		if(eStore!=null)
+		{
+			String storeClass = eStore.getAttribute("class").getValue();
+			if(storeClass.equals("dataStore"))
+			{
+				eStore.setName("dataStore");
+				XmlDataStoreFactory.transform(eStore);
+			}
+			else
+			{
+				logger.warn("Unknwon handling for storeClass="+storeClass);
+			}
+		}
+
 	}
 }

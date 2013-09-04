@@ -94,6 +94,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataStore }
+     * 
+     */
+    public DataStore createDataStore() {
+        return new DataStore();
+    }
+
+    /**
+     * Create an instance of {@link Postgis }
+     * 
+     */
+    public Postgis createPostgis() {
+        return new Postgis();
+    }
+
+    /**
      * Create an instance of {@link Styles }
      * 
      */
@@ -110,27 +126,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Postgis }
-     * 
-     */
-    public Postgis createPostgis() {
-        return new Postgis();
-    }
-
-    /**
-     * Create an instance of {@link DataStore }
-     * 
-     */
-    public DataStore createDataStore() {
-        return new DataStore();
-    }
-
-    /**
      * Create an instance of {@link DataStores }
      * 
      */
     public DataStores createDataStores() {
         return new DataStores();
+    }
+
+    /**
+     * Create an instance of {@link FeatureTypes }
+     * 
+     */
+    public FeatureTypes createFeatureTypes() {
+        return new FeatureTypes();
     }
 
     /**
