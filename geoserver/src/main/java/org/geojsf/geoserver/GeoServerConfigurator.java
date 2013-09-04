@@ -16,7 +16,7 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.factory.geoserver.GeoServerRestFactory;
-import org.geojsf.geoserver.manager.GeoServerCoverageStoreManager;
+import org.geojsf.geoserver.manager.GeoServerCoverageManager;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
@@ -47,7 +47,7 @@ public class GeoServerConfigurator
 	
 	private GeoServerWorkspaceManager workspaceManager;
 	private GeoServerDataStoreManager dataStoreManager;
-	private GeoServerCoverageStoreManager coverageStoreManager;
+	private GeoServerCoverageManager coverageStoreManager;
 	
 	private String ds;
 	private File fBase;
@@ -65,7 +65,7 @@ public class GeoServerConfigurator
 		
 		workspaceManager = new GeoServerWorkspaceManager(rest);
 		dataStoreManager = new GeoServerDataStoreManager(rest);
-		coverageStoreManager = new GeoServerCoverageStoreManager(rest);
+		coverageStoreManager = new GeoServerCoverageManager(rest);
 	}
 	
 	public void configureWorkspace() throws GeoServerConfigurationException, IOException
@@ -118,7 +118,7 @@ public class GeoServerConfigurator
 		logger.info("Configuring "+CoverageStores.class.getSimpleName());
 		try
 		{
-			CoverageStores coverageStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerCoverageStoreManager.xml), CoverageStores.class);
+			CoverageStores coverageStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerCoverageManager.xml), CoverageStores.class);
 			configOverrider.overrideCoverageStores(coverageStores);
 			
 			JaxbUtil.trace(coverageStores);
