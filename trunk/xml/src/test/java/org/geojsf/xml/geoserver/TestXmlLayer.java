@@ -33,7 +33,8 @@ public class TestXmlLayer extends AbstractXmlGeoserverTest
     {
     	Layer xml = new Layer();
     	xml.setName("myName");
-    	xml.setTitle("myTitle");
+    	xml.setType("myType");
+    	xml.setEnabled(true);
     		
     	if(withChilds)
     	{

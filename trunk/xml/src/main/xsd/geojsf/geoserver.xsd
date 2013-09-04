@@ -16,7 +16,8 @@
 	<xsd:element name="layer">
 		<xsd:complexType>
 			<xsd:attribute name="name" type="xsd:string"/>
-			<xsd:attribute name="title" type="xsd:string"/>
+			<xsd:attribute name="type" type="xsd:string"/>
+			<xsd:attribute name="enabled" type="xsd:boolean"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="styles">

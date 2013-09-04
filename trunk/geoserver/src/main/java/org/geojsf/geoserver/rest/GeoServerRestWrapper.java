@@ -18,6 +18,7 @@ import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
+import org.geojsf.xml.geoserver.Layer;
 import org.geojsf.xml.geoserver.Layers;
 import org.geojsf.xml.geoserver.Styles;
 import org.geojsf.xml.geoserver.Workspace;
@@ -180,9 +181,11 @@ public class GeoServerRestWrapper implements GeoServerRest
 	
 	// LAYER
 	@Override
-	public Layers getLayers(String workspace) throws IOException
-		{return getLayerWrapper().getLayers(workspace);}
-
+	public Layers allLayers() throws IOException
+		{return getLayerWrapper().allLayers();}
+	@Override public Layer getLayer(String layer) throws IOException
+		{return getLayerWrapper().getLayer(layer);}
+	
 	private GeoServerRestCoverageStoreWrapper getCsWrapper()
 	{
 		if(csWrapper==null){csWrapper=new GeoServerRestCoverageStoreWrapper(rest);}
@@ -194,5 +197,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		if(layerWrapper==null){layerWrapper=new GeoServerRestLayerWrapper(rest);}
 		return layerWrapper;
 	}
+
+	
 	
 }

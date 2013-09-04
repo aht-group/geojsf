@@ -102,4 +102,8 @@ public interface GeoServerRestInterface
 	@GET @Path("/layers")
 	@Produces(MediaType.APPLICATION_XML)
 	String getLayers();
+	
+	@GET @Path("/layers/{layer}.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	String layer(@PathParam("layer") String layer);
 }

@@ -3,6 +3,7 @@ package org.geojsf.geoserver.manager;
 import java.io.IOException;
 
 import org.geojsf.interfaces.rest.geoserver.GeoServerLayerRest;
+import org.geojsf.xml.geoserver.Layer;
 import org.geojsf.xml.geoserver.Layers;
 import org.geojsf.xml.geoserver.Workspace;
 import org.slf4j.Logger;
@@ -22,8 +23,12 @@ public class GeoServerLayerManager
 	
 	public Layers getLayer(Workspace ws) throws IOException
 	{
-		Layers allLayers = rest.getLayers(ws.getName());
-		
-		return allLayers;
+		Layers allLayers = rest.allLayers();
+		Layers result = new Layers();
+		for(Layer l : allLayers.getLayer())
+		{
+			result.getLayer().add(rest.getLayer(l.getName()));
+		}
+		return result;
 	}
 }

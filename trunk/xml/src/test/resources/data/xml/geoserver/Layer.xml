@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<geoserver:layer xmlns:geoserver="http://www.geojsf.org/geoserver" name="myName" title="myTitle"/>
+<g:layer xmlns:g="http://www.geojsf.org/geoserver" name="myName" type="myType" enabled="true"/>
