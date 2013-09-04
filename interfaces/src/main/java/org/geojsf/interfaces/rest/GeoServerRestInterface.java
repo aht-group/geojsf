@@ -97,4 +97,9 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)
 	String createCoverageStore(@PathParam("workspace") String workspace, String cs);
+	
+	// LAYER
+	@GET @Path("/layers")
+	@Produces(MediaType.APPLICATION_XML)
+	String getLayers();
 }

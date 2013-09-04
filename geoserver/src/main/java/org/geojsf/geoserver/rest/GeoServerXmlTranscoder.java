@@ -24,6 +24,11 @@ public class GeoServerXmlTranscoder
 		name(e);
 	}
 	
+	public static void layer(Element e) throws IOException
+	{
+		name(e);
+	}
+	
 	private static void name(Element e)
 	{
 		Element name = e.getChild("name",ns);

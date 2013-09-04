@@ -6,13 +6,6 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:import namespace="http://exlp.sf.net/net" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/net.xsd"/>
 	<xsd:import namespace="http://exlp.sf.net/identity" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/identity.xsd"/>
-	<xsd:element name="geoServer">
-		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element ref="geoserver:layer" maxOccurs="unbounded"/>
-			</xsd:sequence>
-		</xsd:complexType>
-	</xsd:element>
 	<xsd:element name="layers">
 		<xsd:complexType>
 			<xsd:sequence>

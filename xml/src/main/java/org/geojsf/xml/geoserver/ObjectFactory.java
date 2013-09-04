@@ -126,14 +126,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GeoServer }
-     * 
-     */
-    public GeoServer createGeoServer() {
-        return new GeoServer();
-    }
-
-    /**
      * Create an instance of {@link Workspaces }
      * 
      */
