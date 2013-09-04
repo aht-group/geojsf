@@ -44,6 +44,10 @@ public class GeoServerLayerManager
 			{
 				result.getLayer().add(layer);
 			}
+			else if(layer.isSetFeatureType())
+			{
+				result.getLayer().add(layer);
+			}
 			else
 			{
 				logger.warn("Unknown handling");

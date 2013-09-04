@@ -86,6 +86,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link FeatureType }
+     * 
+     */
+    public FeatureType createFeatureType() {
+        return new FeatureType();
+    }
+
+    /**
      * Create an instance of {@link Styles }
      * 
      */
