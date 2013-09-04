@@ -11,25 +11,26 @@ import org.geojsf.xml.geoserver.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoServerCoverageStoreManager 
+public class GeoServerCoverageManager 
 {		
-	final static Logger logger = LoggerFactory.getLogger(GeoServerCoverageStoreManager.class);
+	final static Logger logger = LoggerFactory.getLogger(GeoServerCoverageManager.class);
 	
 	public static String xml = "coveragestores.xml";
 	private GeoServerCoverageRest rest;
 
-	public GeoServerCoverageStoreManager(GeoServerCoverageRest rest)
+	public GeoServerCoverageManager(GeoServerCoverageRest rest)
 	{
 		this.rest=rest;
 	}
 	
 	public CoverageStores getCoverageStores(Workspace ws) throws IOException
 	{
-		
 		CoverageStores result = new CoverageStores();
 		for(CoverageStore cs : rest.getCoverageStores(ws.getName()).getCoverageStore())
 		{
-			result.getCoverageStore().add(rest.coverageStore(ws.getName(), cs.getName()));
+			cs = rest.coverageStore(ws.getName(), cs.getName());
+			cs.setCoverages(rest.getCoverages(ws.getName(), cs.getName()));
+			result.getCoverageStore().add(cs);
 		}
 		
 		return result;

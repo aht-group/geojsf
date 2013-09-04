@@ -7,6 +7,7 @@ import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.XmlUtil;
 
 import org.apache.commons.io.IOUtils;
+import org.geojsf.factory.xml.geoserver.XmlCoverageFactory;
 import org.geojsf.factory.xml.geoserver.XmlCoverageStoreFactory;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageRest;
@@ -63,7 +64,8 @@ public class GeoServerRestCoverageWrapper implements GeoServerCoverageRest
 		XmlCoverageStoreFactory.transform(root);
 //		JDomUtil.debug(root);
 		
-		return JDomUtil.toJaxb(root, CoverageStore.class);
+		CoverageStore cs = JDomUtil.toJaxb(root, CoverageStore.class);		
+		return cs;
 	}
 	
 	@Override
@@ -85,10 +87,14 @@ public class GeoServerRestCoverageWrapper implements GeoServerCoverageRest
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		
 		Element root = doc.getRootElement();
-		JDomUtil.debug(doc);
+//		JDomUtil.debug(doc);
 		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
 	 
-		XmlCoverageStoreFactory.transform(root);
+		for(Element e : root.getChildren("coverage",GeoServerRestWrapper.ns))
+		{
+			XmlCoverageFactory.transform(e);
+		}
+		
 //		JDomUtil.debug(root);
 		
 		return JDomUtil.toJaxb(root, Coverages.class);

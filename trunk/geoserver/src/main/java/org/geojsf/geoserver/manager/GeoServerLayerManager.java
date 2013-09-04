@@ -23,13 +23,13 @@ public class GeoServerLayerManager
 	public static String xml = "layers.xml";
 	
 	private GeoServerLayerRest rest;
-	private GeoServerCoverageStoreManager csManager;
+	private GeoServerCoverageManager csManager;
 	private GeoServerFeatureTypeManager ftManager;
 
 	public GeoServerLayerManager(GeoServerRest rest)
 	{
 		this.rest=rest;
-		csManager = new GeoServerCoverageStoreManager(rest);
+		csManager = new GeoServerCoverageManager(rest);
 		ftManager = new GeoServerFeatureTypeManager(rest);
 	}
 	

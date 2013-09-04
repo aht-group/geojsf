@@ -8,7 +8,7 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
-import org.geojsf.geoserver.manager.GeoServerCoverageStoreManager;
+import org.geojsf.geoserver.manager.GeoServerCoverageManager;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.manager.GeoServerLayerManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
@@ -29,7 +29,7 @@ public class GeoServerExporter
 	
 	private GeoServerWorkspaceManager wsManager;
 	private GeoServerDataStoreManager dataStoreManager;
-	private GeoServerCoverageStoreManager coverageStoreManager;
+	private GeoServerCoverageManager coverageStoreManager;
 	private GeoServerLayerManager layerManager;
 	
 	private File fBase;
@@ -38,7 +38,7 @@ public class GeoServerExporter
 	{
 		wsManager = new GeoServerWorkspaceManager(rest);
 		dataStoreManager = new GeoServerDataStoreManager(rest);
-		coverageStoreManager = new GeoServerCoverageStoreManager(rest);
+		coverageStoreManager = new GeoServerCoverageManager(rest);
 		layerManager = new GeoServerLayerManager(rest);
 		fBase = new File(configBaseDir);
 		logger.info("Writing to configuration directory: "+fBase.getAbsolutePath());
@@ -75,7 +75,7 @@ public class GeoServerExporter
 		logger.info("Starting export of "+workspace.getName()+" coveragestores");
 		CoverageStores cs = coverageStoreManager.getCoverageStores(workspace);
 		JaxbUtil.trace(cs);
-		JaxbUtil.save(new File(fBase,GeoServerCoverageStoreManager.xml), cs, true);
+		JaxbUtil.save(new File(fBase,GeoServerCoverageManager.xml), cs, true);
 	}
 	
 	public void exportLayers() throws IOException
