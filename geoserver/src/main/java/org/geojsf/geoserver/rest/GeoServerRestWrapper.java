@@ -19,6 +19,7 @@ import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.FeatureType;
+import org.geojsf.xml.geoserver.FeatureTypes;
 import org.geojsf.xml.geoserver.Layer;
 import org.geojsf.xml.geoserver.Layers;
 import org.geojsf.xml.geoserver.Styles;
@@ -189,11 +190,10 @@ public class GeoServerRestWrapper implements GeoServerRest
 		{return getLayerWrapper().getLayer(layer);}
 	
 	// FEATURE TYPES
-	@Override
-	public FeatureType getFeatureType(String ws, String ds, String ft) throws IOException
-	{
-		return getFtWrapper().getFeatureType(ws, ds, ft);
-	}
+	@Override public FeatureTypes getFeatureTypes(String ws, String ds) throws IOException
+		{return getFtWrapper().getFeatureTypes(ws, ds);}
+	@Override public FeatureType getFeatureType(String ws, String ds, String ft) throws IOException
+		{return getFtWrapper().getFeatureType(ws, ds, ft);}
 	
 	private GeoServerRestCoverageStoreWrapper getCsWrapper()
 	{
@@ -212,4 +212,6 @@ public class GeoServerRestWrapper implements GeoServerRest
 		if(ftWrapper==null){ftWrapper=new GeoServerRestFeatureTypeWrapper(rest);}
 		return ftWrapper;
 	}
+
+	
 }

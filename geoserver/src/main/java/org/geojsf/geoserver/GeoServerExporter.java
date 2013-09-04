@@ -83,7 +83,7 @@ public class GeoServerExporter
 		logger.info("Starting export of "+workspace.getName()+" layers");
 		Layers layers = layerManager.getLayer(workspace);
 		JaxbUtil.info(layers);
-//		JaxbUtil.save(new File(fBase,GeoServerCoverageStoreManager.xml), cs, true);
+		JaxbUtil.save(new File(fBase,GeoServerLayerManager.xml), layers, true);
 	}
 	
 	public static void main(String args[]) throws Exception

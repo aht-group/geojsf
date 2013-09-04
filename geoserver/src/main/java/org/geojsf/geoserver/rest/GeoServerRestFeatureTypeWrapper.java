@@ -7,10 +7,13 @@ import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.XmlUtil;
 
 import org.apache.commons.io.IOUtils;
-import org.geojsf.factory.xml.geoserver.XmlLayerFactory;
+import org.geojsf.factory.xml.geoserver.XmlFeatureTypeFactory;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.interfaces.rest.geoserver.GeoServerFeatureTypeRest;
+import org.geojsf.xml.geoserver.CoverageStore;
+import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.FeatureType;
+import org.geojsf.xml.geoserver.FeatureTypes;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.slf4j.Logger;
@@ -28,6 +31,24 @@ public class GeoServerRestFeatureTypeWrapper implements GeoServerFeatureTypeRest
 		this.rest=rest;
 	}
 	
+	@Override
+	public FeatureTypes getFeatureTypes(String ws, String ds) throws IOException
+	{
+		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.featureTypes(ws, ds), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
+		Element root = doc.getRootElement();
+		
+//		JDomUtil.debug(root);
+		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
+	 
+		for(Element e : root.getChildren("featureType",GeoServerRestWrapper.ns))
+		{
+			XmlFeatureTypeFactory.transform(e);
+		}
+//		JDomUtil.debug(root);
+			
+		return JDomUtil.toJaxb(root, FeatureTypes.class);
+	}
 
 	@Override
 	public FeatureType getFeatureType(String ws, String ds, String ft) throws IOException
@@ -36,13 +57,15 @@ public class GeoServerRestFeatureTypeWrapper implements GeoServerFeatureTypeRest
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		
 		Element root = doc.getRootElement();
-		JDomUtil.debug(doc);
+//		JDomUtil.debug(doc);
 		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
 	 
-		XmlLayerFactory.transform(root);
+		XmlFeatureTypeFactory.transform(root);
 //		JDomUtil.debug(root);
 		
 		return JDomUtil.toJaxb(root, FeatureType.class);
 	}
+
+	
 	
 }
