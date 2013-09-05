@@ -75,12 +75,12 @@ public class ConfigurationOverrider
 		try
 		{
 			String value = config.getString(key);
-			logger.info("Key:"+key+" "+value);
+			logger.trace("Key:"+key+" "+value);
 			cs.setUrl(value);
 		}
 		catch (NoSuchElementException e)
 		{
-//			logger.debug("Key "+key+" not found");
+			logger.debug("Key "+key+" not found");
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class ConfigurationOverrider
 		StringBuffer sb = new StringBuffer();
 		sb.append("geoserver.coverages");
 //		sb.append(cs.getWorkspace().getName());
-		sb.append(".cblt");
+		sb.append(".cblt.dss");
 		sb.append(".").append(cs.getName());
 		
 		String key = sb.toString();

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<g:layer xmlns:g="http://www.geojsf.org/geoserver" name="myName" type="myType" enabled="true">
+<g:layer xmlns:g="http://www.geojsf.org/geoserver" xmlns:net="http://exlp.sf.net/net" name="myName" type="myType" enabled="true">
     <g:coverageStore name="myName" description="myDescription" type="myType" enabled="true" url="myUrl"/>
     <g:featureType name="myName" nativeName="myNativeName"/>
+    <g:styles/>
+    <g:style name="myName"/>
 </g:layer>

@@ -47,15 +47,7 @@ public class GeoServerRestLayerWrapper implements GeoServerLayerRest
 		}
 //		JDomUtil.debug(root);
 		
-		Layers result = new Layers();
-		
-		Layers first = JDomUtil.toJaxb(root, Layers.class);
-		for(Layer l : first.getLayer())
-		{
-			result.getLayer().add(l);
-//			result.getCoverageStore().add(coverageStore(workspace, cs.getName()));
-		}
-		
+		Layers result = JDomUtil.toJaxb(root, Layers.class);
 		return result;
 	}
 
@@ -71,8 +63,6 @@ public class GeoServerRestLayerWrapper implements GeoServerLayerRest
 	 
 		XmlLayerFactory.transform(root);
 //		JDomUtil.debug(root);
-		
-		
 		
 		return JDomUtil.toJaxb(root, Layer.class);
 	}

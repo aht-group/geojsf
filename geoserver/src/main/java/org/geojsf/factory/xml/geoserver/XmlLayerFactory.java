@@ -2,19 +2,7 @@ package org.geojsf.factory.xml.geoserver;
 
 import java.io.Serializable;
 
-import net.sf.exlp.util.xml.JDomUtil;
-import net.sf.exlp.xml.identity.User;
-import net.sf.exlp.xml.net.Host;
-
-import org.apache.commons.configuration.Configuration;
-import org.geojsf.factory.xml.exlp.XmlDatabaseFactory;
-import org.geojsf.factory.xml.exlp.XmlHostFactory;
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
-import org.geojsf.util.GeoServerConfigKeys;
-import org.geojsf.xml.geoserver.DataStore;
-import org.geojsf.xml.geoserver.Postgis;
-import org.geojsf.xml.geoserver.ShapeDir;
-import org.geojsf.xml.geoserver.Workspace;
 import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,5 +40,12 @@ public class XmlLayerFactory implements Serializable
 		{
 			logger.warn("Unknwon class: "+resourceClass);
 		}
+		
+		logger.info("Transforming style" );
+		Element eStyle = eLayer.getChild("defaultStyle", SimpleXmlTranscoder.ns);
+		if(eStyle!=null){XmlStyleFactory.transform(eStyle);}
+		
+		Element eStyles = eLayer.getChild("styles", SimpleXmlTranscoder.ns);
+		if(eStyles!=null){XmlStylesFactory.transform(eStyles);}
 	}	
 }

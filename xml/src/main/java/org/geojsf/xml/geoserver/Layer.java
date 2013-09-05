@@ -22,6 +22,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element ref="{http://www.geojsf.org/geoserver}coverageStore"/>
  *         &lt;element ref="{http://www.geojsf.org/geoserver}featureType"/>
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}styles"/>
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}style"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -36,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "coverageStore",
-    "featureType"
+    "featureType",
+    "styles",
+    "style"
 })
 @XmlRootElement(name = "layer")
 public class Layer
@@ -48,6 +52,10 @@ public class Layer
     protected CoverageStore coverageStore;
     @XmlElement(required = true)
     protected FeatureType featureType;
+    @XmlElement(required = true)
+    protected Styles styles;
+    @XmlElement(required = true)
+    protected Style style;
     @XmlAttribute(name = "name")
     protected String name;
     @XmlAttribute(name = "type")
@@ -109,6 +117,62 @@ public class Layer
 
     public boolean isSetFeatureType() {
         return (this.featureType!= null);
+    }
+
+    /**
+     * Gets the value of the styles property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Styles }
+     *     
+     */
+    public Styles getStyles() {
+        return styles;
+    }
+
+    /**
+     * Sets the value of the styles property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Styles }
+     *     
+     */
+    public void setStyles(Styles value) {
+        this.styles = value;
+    }
+
+    public boolean isSetStyles() {
+        return (this.styles!= null);
+    }
+
+    /**
+     * Gets the value of the style property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Style }
+     *     
+     */
+    public Style getStyle() {
+        return style;
+    }
+
+    /**
+     * Sets the value of the style property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Style }
+     *     
+     */
+    public void setStyle(Style value) {
+        this.style = value;
+    }
+
+    public boolean isSetStyle() {
+        return (this.style!= null);
     }
 
     /**

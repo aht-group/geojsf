@@ -185,6 +185,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 		{return getCsWrapper().getCoverages(workSpace,coverageStore);}
 	@Override public Document getCoverage(String workSpace, String coverageStore, String coverage) throws IOException
 		{return getCsWrapper().getCoverage(workSpace,coverageStore,coverage);}
+	@Override public void createCoverage(String workSpace, String coverageStore,Document coverage) throws IOException
+		{getCsWrapper().createCoverage(workSpace,coverageStore,coverage);}
 	
 	// LAYER
 	@Override
@@ -198,6 +200,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		{return getFtWrapper().getFeatureTypes(ws, ds);}
 	@Override public FeatureType getFeatureType(String ws, String ds, String ft) throws IOException
 		{return getFtWrapper().getFeatureType(ws, ds, ft);}
+	
 	
 	private GeoServerRestCoverageWrapper getCsWrapper()
 	{
@@ -216,4 +219,6 @@ public class GeoServerRestWrapper implements GeoServerRest
 		if(ftWrapper==null){ftWrapper=new GeoServerRestFeatureTypeWrapper(rest);}
 		return ftWrapper;
 	}
+
+	
 }

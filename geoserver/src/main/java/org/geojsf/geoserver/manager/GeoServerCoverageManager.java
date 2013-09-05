@@ -55,4 +55,9 @@ public class GeoServerCoverageManager
 	{
 		return rest.getCoverage(workSpace, coverageStore, coverage);
 	}
+	
+	public void createCoverage(String workSpace, String coverageStore, Document coverage) throws IOException
+	{
+		rest.createCoverage(workSpace, coverageStore, coverage);
+	}
 }

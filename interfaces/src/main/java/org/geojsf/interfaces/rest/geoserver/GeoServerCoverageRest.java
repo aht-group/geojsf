@@ -16,4 +16,5 @@ public interface GeoServerCoverageRest
 	
 	Coverages getCoverages(String workSpace, String coverageStore) throws IOException;
 	Document getCoverage(String workSpace, String coverageStore, String coverage) throws IOException;
+	void createCoverage(String workSpace, String coverageStore, Document coverage) throws IOException;
 }
