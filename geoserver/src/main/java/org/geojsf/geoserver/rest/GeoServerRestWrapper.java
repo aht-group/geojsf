@@ -48,6 +48,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 	private GeoServerRestCoverageWrapper csWrapper;
 	private GeoServerRestLayerWrapper layerWrapper;
 	private GeoServerRestFeatureTypeWrapper ftWrapper;
+	private GeoServerRestStyleWrapper styleWrapper;
 	
 	public GeoServerRestWrapper(Configuration config)
 	{
@@ -68,6 +69,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		
 		rest = ProxyFactory.create(GeoServerRestInterface.class, url, executer);
 		logger.info("REST proxy created with URL="+url);
+		styleWrapper = new GeoServerRestStyleWrapper(rest);
 	}
 
 	@Override public Styles styles() throws IOException {return buildStyles(rest.styles());}
@@ -220,5 +222,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		return ftWrapper;
 	}
 
-	
+	@Override public Document getStyle(String workspace, String style) throws IOException
+		{return styleWrapper.getStyle(workspace,style);}
+
 }
