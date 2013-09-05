@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
@@ -14,10 +15,14 @@ import org.geojsf.geoserver.manager.GeoServerLayerManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.interfaces.rest.GeoServerRest;
+import org.geojsf.xml.geoserver.Coverage;
+import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Layers;
 import org.geojsf.xml.geoserver.Workspace;
+import org.jdom2.Document;
+import org.jdom2.output.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,9 +78,20 @@ public class GeoServerExporter
 	public void exportCoverageStores() throws IOException
 	{
 		logger.info("Starting export of "+workspace.getName()+" coveragestores");
-		CoverageStores cs = coverageStoreManager.getCoverageStores(workspace);
-		JaxbUtil.trace(cs);
-		JaxbUtil.save(new File(fBase,GeoServerCoverageManager.xml), cs, true);
+		CoverageStores cStores = coverageStoreManager.getCoverageStores(workspace);
+		JaxbUtil.trace(cStores);
+		JaxbUtil.save(new File(fBase,GeoServerCoverageManager.xml), cStores, true);
+		
+		for(CoverageStore cs : cStores.getCoverageStore())
+		{
+			for(Coverage c : cs.getCoverages().getCoverage())
+			{
+				logger.trace("Saving");
+				Document doc = coverageStoreManager.getCoverage(workspace.getName(), cs.getName(), c.getName());
+				File f = new File(fBase,"coverages"+File.separator+c.getName()+".xml");
+				JDomUtil.save(doc, f, Format.getRawFormat());
+			}
+		}
 	}
 	
 	public void exportLayers() throws IOException

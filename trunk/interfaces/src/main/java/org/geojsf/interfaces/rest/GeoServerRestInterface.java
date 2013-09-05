@@ -103,6 +103,10 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	String coverages(@PathParam("workspace") String workspace, @PathParam("coveragestore") String coveragestore);
 	
+	@GET @Path("/workspaces/{workspace}/coveragestores/{coveragestore}/coverages/{coverage}.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	String coverage(@PathParam("workspace") String workspace, @PathParam("coveragestore") String coveragestore, @PathParam("coverage") String coverage);
+	
 	// LAYER
 	@GET @Path("/layers")
 	@Produces(MediaType.APPLICATION_XML)
