@@ -40,6 +40,8 @@ public class TestXmlLayer extends AbstractXmlGeoserverTest
     	{
     		xml.setCoverageStore(TestXmlCoverageStore.create(false));
     		xml.setFeatureType(TestXmlFeatureType.create(false));
+    		xml.setStyles(TestXmlStyles.create(false));
+    		xml.setStyle(TestXmlStyle.create(false));
     	}
     	
     	return xml;

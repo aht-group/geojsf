@@ -61,7 +61,7 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	String namespaces();
 	
-	@GET @Path("/namespaces/{workspace}")
+	@GET @Path("/namespaces/{workspace}.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	String namespace(@PathParam("workspace") String workspace);
 	
@@ -106,6 +106,12 @@ public interface GeoServerRestInterface
 	@GET @Path("/workspaces/{workspace}/coveragestores/{coveragestore}/coverages/{coverage}.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	String coverage(@PathParam("workspace") String workspace, @PathParam("coveragestore") String coveragestore, @PathParam("coverage") String coverage);
+	
+	
+	@POST @Path("/workspaces/{workspace}/coveragestores/{coveragestore}/coverages.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	String createCoverage(@PathParam("workspace") String workspace, @PathParam("coveragestore") String coveragestore, String coverage);
 	
 	// LAYER
 	@GET @Path("/layers")

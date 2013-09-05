@@ -108,4 +108,12 @@ public class GeoServerRestCoverageWrapper implements GeoServerCoverageRest
 		
 		return doc;
 	}
+
+	@Override
+	public void createCoverage(String workSpace, String coverageStore,Document coverage) throws IOException
+	{
+//		JDomUtil.debug(doc);
+		rest.createCoverage(workSpace,coverageStore,JDomUtil.toString(coverage));
+		
+	}
 }
