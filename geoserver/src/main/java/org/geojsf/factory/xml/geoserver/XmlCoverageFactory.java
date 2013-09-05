@@ -16,7 +16,7 @@ public class XmlCoverageFactory implements Serializable
 	
 	public static void transform(Element eCoverage)
 	{
-		logger.info("Transforming ... ");
+		logger.trace("Transforming ... ");
 		SimpleXmlTranscoder.name(eCoverage);
 	}
 }

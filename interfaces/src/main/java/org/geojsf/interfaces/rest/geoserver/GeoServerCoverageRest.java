@@ -6,6 +6,7 @@ import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.Coverages;
 import org.geojsf.xml.geoserver.Workspace;
+import org.jdom2.Document;
 
 public interface GeoServerCoverageRest
 {	
@@ -14,4 +15,5 @@ public interface GeoServerCoverageRest
 	void createCoverageStore(Workspace ws,CoverageStore cs) throws IOException;
 	
 	Coverages getCoverages(String workSpace, String coverageStore) throws IOException;
+	Document getCoverage(String workSpace, String coverageStore, String coverage) throws IOException;
 }

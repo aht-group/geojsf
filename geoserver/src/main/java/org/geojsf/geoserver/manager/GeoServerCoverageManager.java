@@ -8,6 +8,7 @@ import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageRest;
 import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.Workspace;
+import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,6 @@ public class GeoServerCoverageManager
 			cs.setCoverages(rest.getCoverages(ws.getName(), cs.getName()));
 			result.getCoverageStore().add(cs);
 		}
-		
 		return result;
 	}
 	
@@ -49,5 +49,10 @@ public class GeoServerCoverageManager
 	public void createCoverageStore(Workspace ws, CoverageStore cs) throws IOException
 	{
 		rest.createCoverageStore(ws, cs);
+	}
+	
+	public Document getCoverage(String workSpace, String coverageStore, String coverage) throws IOException
+	{
+		return rest.getCoverage(workSpace, coverageStore, coverage);
 	}
 }

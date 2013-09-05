@@ -99,4 +99,13 @@ public class GeoServerRestCoverageWrapper implements GeoServerCoverageRest
 		
 		return JDomUtil.toJaxb(root, Coverages.class);
 	}
+
+	@Override
+	public Document getCoverage(String workSpace, String coverageStore, String coverage) throws IOException
+	{
+		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.coverage(workSpace,coverageStore,coverage), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
+		
+		return doc;
+	}
 }
