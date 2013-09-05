@@ -6,7 +6,6 @@ import java.io.IOException;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.geoserver.manager.GeoServerStyleManager;
 import org.geojsf.interfaces.rest.GeoServerRest;
-import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.xml.geoserver.Styles;
 import org.jdom2.Document;
 import org.slf4j.Logger;
@@ -27,7 +26,7 @@ public class CliGeoServerStyleManager
 //ahtutils.highlight:init
 	public GeoServerStyleManager init(GeoServerRest rest, File styleDir, String stylePath)
 	{
-		GeoServerStyleManager styleManager = new GeoServerStyleManager(rest,styleDir,stylePath);
+		GeoServerStyleManager styleManager = new GeoServerStyleManager(rest);
 		return styleManager;
 	}
 //ahtutils.highlight:init

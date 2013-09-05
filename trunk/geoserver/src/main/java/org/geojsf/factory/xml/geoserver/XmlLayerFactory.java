@@ -41,7 +41,7 @@ public class XmlLayerFactory implements Serializable
 			logger.warn("Unknwon class: "+resourceClass);
 		}
 		
-		logger.info("Transforming style" );
+		logger.trace("Transforming style" );
 		Element eStyle = eLayer.getChild("defaultStyle", SimpleXmlTranscoder.ns);
 		if(eStyle!=null){XmlStyleFactory.transform(eStyle);}
 		

@@ -1,6 +1,7 @@
 package org.geojsf.geoserver;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
@@ -12,6 +13,7 @@ import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.manager.GeoServerCoverageManager;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.manager.GeoServerLayerManager;
+import org.geojsf.geoserver.manager.GeoServerStyleManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.interfaces.rest.GeoServerRest;
@@ -19,7 +21,9 @@ import org.geojsf.xml.geoserver.Coverage;
 import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStores;
+import org.geojsf.xml.geoserver.Layer;
 import org.geojsf.xml.geoserver.Layers;
+import org.geojsf.xml.geoserver.Style;
 import org.geojsf.xml.geoserver.Workspace;
 import org.jdom2.Document;
 import org.jdom2.output.Format;
@@ -36,6 +40,7 @@ public class GeoServerExporter
 	private GeoServerDataStoreManager dataStoreManager;
 	private GeoServerCoverageManager coverageStoreManager;
 	private GeoServerLayerManager layerManager;
+	private GeoServerStyleManager styleManager;
 	
 	private File fBase;
 	
@@ -45,6 +50,7 @@ public class GeoServerExporter
 		dataStoreManager = new GeoServerDataStoreManager(rest);
 		coverageStoreManager = new GeoServerCoverageManager(rest);
 		layerManager = new GeoServerLayerManager(rest);
+		styleManager = new GeoServerStyleManager(rest);
 		fBase = new File(configBaseDir);
 		logger.info("Writing to configuration directory: "+fBase.getAbsolutePath());
 	}
@@ -64,6 +70,7 @@ public class GeoServerExporter
 			exportDataStores();
 			exportCoverageStores();
 			exportLayers();
+			exportStyles();
 		}
 	}
 	
@@ -86,7 +93,6 @@ public class GeoServerExporter
 		{
 			for(Coverage c : cs.getCoverages().getCoverage())
 			{
-				logger.trace("Saving");
 				Document doc = coverageStoreManager.getCoverage(workspace.getName(), cs.getName(), c.getName());
 				File f = new File(fBase,"coverages"+File.separator+c.getName()+".xml");
 				JDomUtil.save(doc, f, Format.getRawFormat());
@@ -98,8 +104,26 @@ public class GeoServerExporter
 	{
 		logger.info("Starting export of "+workspace.getName()+" layers");
 		Layers layers = layerManager.getLayer(workspace);
-		JaxbUtil.info(layers);
+		JaxbUtil.trace(layers);
 		JaxbUtil.save(new File(fBase,GeoServerLayerManager.xml), layers, true);
+	}
+	
+	public void exportStyles() throws IOException
+	{
+		File f = new File(fBase,GeoServerLayerManager.xml);
+		Layers layers = JaxbUtil.loadJAXB(f.getAbsoluteFile(), Layers.class);
+		for(Layer layer : layers.getLayer())
+		{
+			exportStyle(layer.getStyle());
+		}
+	}
+	
+	private void exportStyle(Style style) throws IOException
+	{
+		logger.info("Loading style: "+style.getName());
+		Document doc = styleManager.getStyle(workspace.getName(),style.getName());
+		File f = new File(fBase,"styles"+File.separator+style.getName()+".xml");
+		JDomUtil.save(doc, f, Format.getPrettyFormat());
 	}
 	
 	public static void main(String args[]) throws Exception

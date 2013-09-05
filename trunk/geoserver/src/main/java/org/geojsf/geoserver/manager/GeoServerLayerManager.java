@@ -45,7 +45,7 @@ public class GeoServerLayerManager
 		Layers result = new Layers();
 		for(Layer layer : allLayers.getLayer())
 		{
-			JaxbUtil.info(layer);
+			JaxbUtil.trace(layer);
 			layer = rest.getLayer(layer.getName());
 			if(layer.isSetCoverageStore() && setCs.contains(layer.getCoverageStore().getName()))
 			{

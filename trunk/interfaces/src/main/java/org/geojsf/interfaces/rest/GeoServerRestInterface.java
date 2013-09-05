@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/rest")
 public interface GeoServerRestInterface
 {	
+	//STYLE
 	@GET @Path("/styles")
 	@Produces(MediaType.APPLICATION_XML)
 	String styles();
@@ -22,13 +23,13 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	String styles(@PathParam("workspace") String workspace);
 	
-	@GET @Path("/styles/{code}.sld")
+	@GET @Path("/styles/{style}.sld")
 	@Produces(MediaType.APPLICATION_XML)
-	String style(@PathParam("code") String name);
+	String style(@PathParam("style") String name);
 	
-	@GET @Path("/workspaces/{workspace}/styles/{code}.sld")
+	@GET @Path("/workspaces/{workspace}/styles/{style}.sld")
 	@Produces(MediaType.APPLICATION_XML)
-	String style(@PathParam("workspace") String workspace, @PathParam("code") String name);
+	String style(@PathParam("workspace") String workspace, @PathParam("style") String style);
 	
 	@DELETE @Path("/workspaces/{workspace}/styles/{code}.sld")
 	@Produces(MediaType.APPLICATION_XML)
@@ -107,7 +108,6 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	String coverage(@PathParam("workspace") String workspace, @PathParam("coveragestore") String coveragestore, @PathParam("coverage") String coverage);
 	
-	
 	@POST @Path("/workspaces/{workspace}/coveragestores/{coveragestore}/coverages.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)
@@ -121,8 +121,6 @@ public interface GeoServerRestInterface
 	@GET @Path("/layers/{layer}.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	String layer(@PathParam("layer") String layer);
-	
-	
 	
 	//FEATURE TYPE
 	@GET @Path("/workspaces/{workspace}/datastores/{datastore}/featuretypes.xml")
