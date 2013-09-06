@@ -39,10 +39,10 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	String delete(@PathParam("code") String name, @HeaderParam("purge") boolean purge);
 	
-	@POST @Path("/workspaces/{workspace}/styles")
+	@POST @Path("/workspaces/{workspace}/styles.sld")
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes("application/vnd.ogc.sld+xml")
-	String updateStyle(@PathParam("workspace") String workspace, String sld);
+	String createStyle(@PathParam("workspace") String workspace, String sld);
 	
 	// WORKSPACE
 	@GET @Path("/workspaces")

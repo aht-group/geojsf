@@ -12,6 +12,8 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.geoserver.manager.GeoServerCoverageManager;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
+import org.geojsf.geoserver.manager.GeoServerLayerManager;
+import org.geojsf.geoserver.manager.GeoServerStyleManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.geoserver.util.ConfigurationOverrider;
@@ -21,9 +23,10 @@ import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
+import org.geojsf.xml.geoserver.Layer;
+import org.geojsf.xml.geoserver.Layers;
+import org.geojsf.xml.geoserver.Style;
 import org.geojsf.xml.geoserver.Workspace;
-import org.geojsf.xml.openlayers.Layer;
-import org.geojsf.xml.openlayers.Layers;
 import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +43,7 @@ public class GeoServerConfigurator
 	private GeoServerWorkspaceManager workspaceManager;
 	private GeoServerDataStoreManager dataStoreManager;
 	private GeoServerCoverageManager coverageManager;
+	private GeoServerStyleManager styleManager;
 	
 	private File fBase;
 	
@@ -53,6 +57,7 @@ public class GeoServerConfigurator
 		workspaceManager = new GeoServerWorkspaceManager(rest);
 		dataStoreManager = new GeoServerDataStoreManager(rest);
 		coverageManager = new GeoServerCoverageManager(rest);
+		styleManager = new GeoServerStyleManager(rest);
 	}
 	
 	public void configureWorkspace() throws GeoServerConfigurationException, IOException
@@ -69,8 +74,27 @@ public class GeoServerConfigurator
 			logger.info("The workspace "+workspace.getName()+" will now be created");
 			workspaceManager.create(workspace);			
 		}
+		configureStyles();
 		configureDataStore();
 		configureCoverageStore();
+	}
+	
+	private void configureStyles() throws IOException
+	{
+		File f = new File(fBase,GeoServerLayerManager.xml);
+		Layers layers = JaxbUtil.loadJAXB(f.getAbsolutePath(), Layers.class);
+		for(Layer layer : layers.getLayer())
+		{
+			configureStyle(layer.getStyle());
+		}
+	}
+	
+	private void configureStyle(Style style) throws IOException
+	{
+		logger.info("Configuring style "+style.getName());
+		File f = new File(fBase,"styles"+File.separator+style.getName()+".xml");
+		Document doc = JDomUtil.load(f);
+		styleManager.createStyle(workspace.getName(),doc);
 	}
 	
 	private void configureDataStore() throws GeoServerConfigurationException

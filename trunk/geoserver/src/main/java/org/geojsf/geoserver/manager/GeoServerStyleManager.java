@@ -22,4 +22,9 @@ public class GeoServerStyleManager
 	{
 		return rest.getStyle(workspace, style);
 	}
+	
+	public void createStyle(String workspace, Document style) throws IOException
+	{
+		rest.createStyle(workspace, style);
+	}
 }

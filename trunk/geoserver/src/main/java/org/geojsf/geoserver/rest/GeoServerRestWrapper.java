@@ -127,11 +127,9 @@ public class GeoServerRestWrapper implements GeoServerRest
 	}
 
 
-	@Override
-	public void updateStyle(String workspace, Document doc) throws IOException
-	{
-		rest.updateStyle(workspace,JDomUtil.toString(doc));
-	}
+	// STYLE
+	@Override public Document getStyle(String workspace, String style) throws IOException {return styleWrapper.getStyle(workspace,style);}
+	@Override public void createStyle(String workspace, Document style)throws IOException {styleWrapper.createStyle(workspace,style);}
 
 	@Override
 	public Workspaces getWorkspaces() throws IOException
@@ -222,7 +220,6 @@ public class GeoServerRestWrapper implements GeoServerRest
 		return ftWrapper;
 	}
 
-	@Override public Document getStyle(String workspace, String style) throws IOException
-		{return styleWrapper.getStyle(workspace,style);}
+	
 
 }

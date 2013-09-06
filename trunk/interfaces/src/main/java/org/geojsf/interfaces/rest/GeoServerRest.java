@@ -28,7 +28,7 @@ public interface GeoServerRest extends GeoServerDataStoreRest,
 	void deleteStyle(String workspace, String name) throws IOException;
 	
 //	void updateStyle(Document doc) throws IOException;
-	void updateStyle(String workspace, Document doc) throws IOException;
+//	void updateStyle(String workspace, Document doc) throws IOException;
 	
 	//WORKSPACE
 	Workspaces getWorkspaces() throws IOException;
