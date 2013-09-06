@@ -32,4 +32,10 @@ public class GeoServerRestStyleWrapper implements GeoServerStyleRest
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		return doc;
 	}
+
+	@Override
+	public void createStyle(String workspace, Document style) throws IOException
+	{
+		rest.createStyle(workspace,JDomUtil.toString(style));
+	}
 }
