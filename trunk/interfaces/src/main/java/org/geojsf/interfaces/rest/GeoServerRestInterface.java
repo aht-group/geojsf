@@ -5,6 +5,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -120,7 +121,13 @@ public interface GeoServerRestInterface
 	
 	@GET @Path("/layers/{layer}.xml")
 	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
 	String layer(@PathParam("layer") String layer);
+	
+	@PUT @Path("/layers/{layer}.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	String updatelayer(@PathParam("layer") String layer, String xml);
 	
 	//FEATURE TYPE
 	@GET @Path("/workspaces/{workspace}/datastores/{datastore}/featuretypes.xml")

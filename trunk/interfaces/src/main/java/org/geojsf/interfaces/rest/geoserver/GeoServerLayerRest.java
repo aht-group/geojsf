@@ -9,4 +9,6 @@ public interface GeoServerLayerRest
 {	
 	Layers allLayers() throws IOException;
 	Layer getLayer(String layer) throws IOException;
+	
+	void updateLayer(Layer layer);
 }

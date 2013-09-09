@@ -51,6 +51,9 @@
 	</xsd:element>
 	<xsd:element name="style">
 		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geoserver:workspace" maxOccurs="1"/>
+			</xsd:sequence>
 			<xsd:attribute name="name" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>

@@ -44,6 +44,7 @@ public class GeoServerConfigurator
 	private GeoServerDataStoreManager dataStoreManager;
 	private GeoServerCoverageManager coverageManager;
 	private GeoServerStyleManager styleManager;
+	private GeoServerLayerManager layerManager;
 	
 	private File fBase;
 	
@@ -58,6 +59,7 @@ public class GeoServerConfigurator
 		dataStoreManager = new GeoServerDataStoreManager(rest);
 		coverageManager = new GeoServerCoverageManager(rest);
 		styleManager = new GeoServerStyleManager(rest);
+		layerManager =  new GeoServerLayerManager(rest);
 	}
 	
 	public void configureWorkspace() throws GeoServerConfigurationException, IOException
@@ -77,6 +79,7 @@ public class GeoServerConfigurator
 		configureStyles();
 		configureDataStore();
 		configureCoverageStore();
+		configureLayer();
 	}
 	
 	private void configureStyles() throws IOException
@@ -85,7 +88,20 @@ public class GeoServerConfigurator
 		Layers layers = JaxbUtil.loadJAXB(f.getAbsolutePath(), Layers.class);
 		for(Layer layer : layers.getLayer())
 		{
-			configureStyle(layer.getStyle());
+			if(!styleManager.isAvailable(workspace, layer.getStyle().getName()))
+			{
+				configureStyle(layer.getStyle());
+			}
+		}
+	}
+	
+	private void configureLayer() throws FileNotFoundException
+	{
+		File f = new File(fBase,GeoServerLayerManager.xml);
+		Layers layers = JaxbUtil.loadJAXB(f.getAbsolutePath(), Layers.class);
+		for(Layer layer : layers.getLayer())
+		{
+			layerManager.updateLayer(workspace,layer);
 		}
 	}
 	

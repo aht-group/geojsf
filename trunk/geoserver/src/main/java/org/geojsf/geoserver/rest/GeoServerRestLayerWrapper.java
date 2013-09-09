@@ -65,5 +65,19 @@ public class GeoServerRestLayerWrapper implements GeoServerLayerRest
 		
 		return JDomUtil.toJaxb(root, Layer.class);
 	}
+
+	@Override
+	public void updateLayer(Layer layer)
+	{
+		logger.info("Updating layer "+layer.getName());
+		Element eLayer = XmlLayerFactory.toElement(layer);
+		eLayer.detach();
+		
+		Document doc = new Document();
+		doc.setRootElement(eLayer);
+//		JDomUtil.debug(doc);
+		rest.updatelayer(layer.getName(), JDomUtil.toString(doc));
+		
+	}
 	
 }
