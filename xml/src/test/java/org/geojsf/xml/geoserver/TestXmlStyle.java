@@ -36,7 +36,7 @@ public class TestXmlStyle extends AbstractXmlGeoserverTest
     		
     	if(withChilds)
     	{
-    		
+    		xml.setWorkspace(TestXmlWorkspace.create(false));
     	}
     	
     	return xml;

@@ -3,6 +3,7 @@ package org.geojsf.factory.xml.geoserver;
 import java.io.Serializable;
 
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
+import org.geojsf.xml.geoserver.Layer;
 import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,5 +48,27 @@ public class XmlLayerFactory implements Serializable
 		
 		Element eStyles = eLayer.getChild("styles", SimpleXmlTranscoder.ns);
 		if(eStyles!=null){XmlStylesFactory.transform(eStyles);}
-	}	
+	}
+	
+	public static Element toElement(Layer layer)
+	{
+		Element eWorkspace =  new Element("workspace");
+		eWorkspace.setText(layer.getStyle().getWorkspace().getName());
+		
+		Element eStyleName =  new Element("name");
+		eStyleName.setText(layer.getStyle().getName());
+		
+		Element eDefaultStyle =  new Element("defaultStyle");
+		eDefaultStyle.addContent(eWorkspace);
+		eDefaultStyle.addContent(eStyleName);
+		
+		Element eEnabled =  new Element("enabled");
+		eEnabled.setText(""+layer.isEnabled());
+
+		Element eLayer = new Element("layer");
+		eLayer.addContent(eDefaultStyle);
+		eLayer.addContent(eEnabled);
+		
+		return eLayer;
+	}
 }

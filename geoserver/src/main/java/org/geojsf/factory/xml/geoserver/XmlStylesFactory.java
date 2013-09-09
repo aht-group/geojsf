@@ -13,10 +13,10 @@ public class XmlStylesFactory implements Serializable
 	
 	public static final long serialVersionUID=1;
 	
-	public static void transform(Element eLayer)
+	public static void transform(Element eStyles)
 	{
 		logger.trace("Transforming ... ");
-		for(Element e : eLayer.getChildren("style",GeoServerRestWrapper.ns))
+		for(Element e : eStyles.getChildren("style",GeoServerRestWrapper.ns))
 		{
 			XmlStyleFactory.transform(e);
 		}

@@ -70,6 +70,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		rest = ProxyFactory.create(GeoServerRestInterface.class, url, executer);
 		logger.info("REST proxy created with URL="+url);
 		styleWrapper = new GeoServerRestStyleWrapper(rest);
+		layerWrapper=new GeoServerRestLayerWrapper(rest);
 	}
 
 	@Override public Styles styles() throws IOException {return buildStyles(rest.styles());}
@@ -130,7 +131,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 	// STYLE
 	@Override public Document getStyle(String workspace, String style) throws IOException {return styleWrapper.getStyle(workspace,style);}
 	@Override public void createStyle(String workspace, Document style)throws IOException {styleWrapper.createStyle(workspace,style);}
-
+	@Override public Styles getStyles(String workspace) throws IOException {return styleWrapper.getStyles(workspace);}
+	
 	@Override
 	public Workspaces getWorkspaces() throws IOException
 	{
@@ -190,10 +192,8 @@ public class GeoServerRestWrapper implements GeoServerRest
 	
 	// LAYER
 	@Override
-	public Layers allLayers() throws IOException
-		{return getLayerWrapper().allLayers();}
-	@Override public Layer getLayer(String layer) throws IOException
-		{return getLayerWrapper().getLayer(layer);}
+	public Layers allLayers() throws IOException {return layerWrapper.allLayers();}
+	@Override public Layer getLayer(String layer) throws IOException {return layerWrapper.getLayer(layer);}
 	
 	// FEATURE TYPES
 	@Override public FeatureTypes getFeatureTypes(String ws, String ds) throws IOException
@@ -207,12 +207,6 @@ public class GeoServerRestWrapper implements GeoServerRest
 		if(csWrapper==null){csWrapper=new GeoServerRestCoverageWrapper(rest);}
 		return csWrapper;
 	}
-	
-	private GeoServerRestLayerWrapper getLayerWrapper()
-	{
-		if(layerWrapper==null){layerWrapper=new GeoServerRestLayerWrapper(rest);}
-		return layerWrapper;
-	}
 
 	private GeoServerRestFeatureTypeWrapper getFtWrapper()
 	{
@@ -220,6 +214,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		return ftWrapper;
 	}
 
-	
+	@Override public void updateLayer(Layer layer){layerWrapper.updateLayer(layer);}
 
+	
 }

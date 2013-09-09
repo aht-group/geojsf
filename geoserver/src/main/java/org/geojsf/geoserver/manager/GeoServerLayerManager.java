@@ -12,6 +12,7 @@ import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.FeatureType;
 import org.geojsf.xml.geoserver.Layer;
 import org.geojsf.xml.geoserver.Layers;
+import org.geojsf.xml.geoserver.Style;
 import org.geojsf.xml.geoserver.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +42,8 @@ public class GeoServerLayerManager
 		Set<String> setCs = new HashSet<String>();
 		for(CoverageStore cs : csManager.getCoverageStores(ws).getCoverageStore()){setCs.add(cs.getName());}
 		
+		JaxbUtil.info(csManager.getCoverageStores(ws));
+		
 		Layers allLayers = rest.allLayers();
 		Layers result = new Layers();
 		for(Layer layer : allLayers.getLayer())
@@ -58,10 +61,19 @@ public class GeoServerLayerManager
 			else
 			{
 				logger.warn("Unknown handling for layer "+layer.getName());
+				JaxbUtil.trace(layer);
 			}
 			JaxbUtil.trace(layer);
 			
 		}
 		return result;
+	}
+	
+	public void updateLayer(Workspace workspace, Layer layer)
+	{
+		layer.getStyle().setWorkspace(workspace);
+		if(layer.isSetStyles()){for(Style style : layer.getStyles().getStyle()){style.setWorkspace(workspace);}}
+		layer.setCoverageStore(null);
+		rest.updateLayer(layer);
 	}
 }
