@@ -42,7 +42,7 @@ public class GeoServerLayerManager
 		Set<String> setCs = new HashSet<String>();
 		for(CoverageStore cs : csManager.getCoverageStores(ws).getCoverageStore()){setCs.add(cs.getName());}
 		
-		JaxbUtil.info(csManager.getCoverageStores(ws));
+		JaxbUtil.trace(csManager.getCoverageStores(ws));
 		
 		Layers allLayers = rest.allLayers();
 		Layers result = new Layers();

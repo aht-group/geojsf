@@ -57,6 +57,7 @@ public class GeoServerRestDataStoreWrapper implements GeoServerDataStoreRest
 	@Override
 	public DataStore dataStore(String workspace, String dataStore) throws IOException
 	{		
+		logger.info("REST.dataStore ws="+workspace+" ds="+dataStore);
 		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.dataStore(workspace,dataStore), xmlEncoding);
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		

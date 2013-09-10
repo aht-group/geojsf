@@ -40,7 +40,7 @@ public class ConfigurationOverrider
 			{
 				String key = getKey(dataStore);
 				String value = config.getString(key);
-				logger.info("Key:"+key+" "+value);
+				logger.trace("Key:"+key+" "+value);
 				dataStore.getShapeDir().setUrl(value);
 			}
 			catch (NoSuchElementException e){}
@@ -51,7 +51,7 @@ public class ConfigurationOverrider
 			try
 			{
 				String value = config.getString(key);
-				logger.info("Key:"+key+" "+value);
+				logger.trace("Key:"+key+" "+value);
 				dataStore.getPostgis().getConnection().getDatabase().setPassword(value);
 			}
 			catch (NoSuchElementException e)

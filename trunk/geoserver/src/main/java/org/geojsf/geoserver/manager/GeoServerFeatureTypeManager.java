@@ -10,6 +10,7 @@ import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.FeatureType;
 import org.geojsf.xml.geoserver.FeatureTypes;
 import org.geojsf.xml.geoserver.Workspace;
+import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,9 +42,13 @@ public class GeoServerFeatureTypeManager
 			{
 				ft = rest.getFeatureType(ws.getName(), ds.getName(), ft.getName());
 				result.getFeatureType().add(ft);
-			}
-		}
+			}		}
 		
 		return result;
+	}
+	
+	public Document exportFeatureType(String workSpace, String coverageStore, String coverage) throws IOException
+	{
+		return rest.exportFeatureType(workSpace, coverageStore, coverage);
 	}
 }

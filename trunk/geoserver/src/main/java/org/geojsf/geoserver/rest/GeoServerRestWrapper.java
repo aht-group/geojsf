@@ -71,6 +71,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		logger.info("REST proxy created with URL="+url);
 		styleWrapper = new GeoServerRestStyleWrapper(rest);
 		layerWrapper=new GeoServerRestLayerWrapper(rest);
+		ftWrapper=new GeoServerRestFeatureTypeWrapper(rest);
 	}
 
 	@Override public Styles styles() throws IOException {return buildStyles(rest.styles());}
@@ -197,10 +198,11 @@ public class GeoServerRestWrapper implements GeoServerRest
 	
 	// FEATURE TYPES
 	@Override public FeatureTypes getFeatureTypes(String ws, String ds) throws IOException
-		{return getFtWrapper().getFeatureTypes(ws, ds);}
+		{return ftWrapper.getFeatureTypes(ws, ds);}
 	@Override public FeatureType getFeatureType(String ws, String ds, String ft) throws IOException
-		{return getFtWrapper().getFeatureType(ws, ds, ft);}
-	
+		{return ftWrapper.getFeatureType(ws, ds, ft);}
+	@Override public Document exportFeatureType(String workSpace, String coverageStore,String featureType) throws IOException
+		{return ftWrapper.exportFeatureType(workSpace, coverageStore, featureType);}
 	
 	private GeoServerRestCoverageWrapper getCsWrapper()
 	{
@@ -208,13 +210,7 @@ public class GeoServerRestWrapper implements GeoServerRest
 		return csWrapper;
 	}
 
-	private GeoServerRestFeatureTypeWrapper getFtWrapper()
-	{
-		if(ftWrapper==null){ftWrapper=new GeoServerRestFeatureTypeWrapper(rest);}
-		return ftWrapper;
-	}
 
 	@Override public void updateLayer(Layer layer){layerWrapper.updateLayer(layer);}
-
 	
 }
