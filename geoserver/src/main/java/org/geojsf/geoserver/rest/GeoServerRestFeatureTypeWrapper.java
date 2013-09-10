@@ -66,6 +66,13 @@ public class GeoServerRestFeatureTypeWrapper implements GeoServerFeatureTypeRest
 		return JDomUtil.toJaxb(root, FeatureType.class);
 	}
 
-	
-	
+	@Override
+	public Document exportFeatureType(String workSpace, String coverageStore, String coverage) throws IOException
+	{
+		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.featureType(workSpace,coverageStore,coverage), xmlEncoding);
+		Document doc = JDomUtil.load(is, xmlEncoding);
+//		JDomUtil.debug(doc);
+		return doc;
+	}
+
 }

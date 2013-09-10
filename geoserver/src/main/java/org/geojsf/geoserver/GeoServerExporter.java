@@ -1,7 +1,6 @@
 package org.geojsf.geoserver;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
@@ -12,6 +11,7 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.manager.GeoServerCoverageManager;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
+import org.geojsf.geoserver.manager.GeoServerFeatureTypeManager;
 import org.geojsf.geoserver.manager.GeoServerLayerManager;
 import org.geojsf.geoserver.manager.GeoServerStyleManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
@@ -21,6 +21,8 @@ import org.geojsf.xml.geoserver.Coverage;
 import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStores;
+import org.geojsf.xml.geoserver.FeatureType;
+import org.geojsf.xml.geoserver.FeatureTypes;
 import org.geojsf.xml.geoserver.Layer;
 import org.geojsf.xml.geoserver.Layers;
 import org.geojsf.xml.geoserver.Style;
@@ -39,6 +41,7 @@ public class GeoServerExporter
 	private GeoServerWorkspaceManager wsManager;
 	private GeoServerDataStoreManager dataStoreManager;
 	private GeoServerCoverageManager coverageStoreManager;
+	private GeoServerFeatureTypeManager ftManager;
 	private GeoServerLayerManager layerManager;
 	private GeoServerStyleManager styleManager;
 	
@@ -49,6 +52,7 @@ public class GeoServerExporter
 		wsManager = new GeoServerWorkspaceManager(rest);
 		dataStoreManager = new GeoServerDataStoreManager(rest);
 		coverageStoreManager = new GeoServerCoverageManager(rest);
+		ftManager = new GeoServerFeatureTypeManager(rest);
 		layerManager = new GeoServerLayerManager(rest);
 		styleManager = new GeoServerStyleManager(rest);
 		fBase = new File(configBaseDir);
@@ -69,6 +73,7 @@ public class GeoServerExporter
 			JaxbUtil.save(new File(fBase,GeoServerWorkspaceManager.wsXml), workspace, true);
 			exportDataStores();
 			exportCoverageStores();
+			exportFeatureTypes();
 			exportLayers();
 			exportStyles();
 		}
@@ -80,6 +85,20 @@ public class GeoServerExporter
 		DataStores dataStores = dataStoreManager.getDataStores(workspace);
 		JaxbUtil.trace(dataStores);
 		JaxbUtil.save(new File(fBase,GeoServerDataStoreManager.dsXml), dataStores, true);
+	}
+	
+	public void exportFeatureTypes() throws IOException
+	{
+		logger.info("Starting export of "+workspace.getName()+" coveragestores");
+		FeatureTypes fTypes = ftManager.getFeatureTypes(workspace);
+		JaxbUtil.info(fTypes);
+		for(FeatureType ft : fTypes.getFeatureType())
+		{
+			Document doc = ftManager.exportFeatureType(workspace.getName(), ft.getDataStore().getName(), ft.getName());
+			File f = new File(fBase,"featureTypes"+File.separator+ft.getName()+".xml");
+			JDomUtil.save(doc, f, Format.getRawFormat());
+		}
+		
 	}
 	
 	public void exportCoverageStores() throws IOException

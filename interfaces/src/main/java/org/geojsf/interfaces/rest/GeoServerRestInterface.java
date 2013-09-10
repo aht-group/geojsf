@@ -77,7 +77,7 @@ public interface GeoServerRestInterface
 	@Produces(MediaType.APPLICATION_XML)
 	String dataStores(@PathParam("workspace") String workspace);
 	
-	@GET @Path("/workspaces/{workspace}/datastores/{datastore}")
+	@GET @Path("/workspaces/{workspace}/datastores/{datastore}.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	String dataStore(@PathParam("workspace") String workspace, @PathParam("datastore") String datastore);
 	
