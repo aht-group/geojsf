@@ -11,5 +11,6 @@ public interface GeoServerFeatureTypeRest
 	FeatureTypes getFeatureTypes(String ws, String ds) throws IOException;
 	FeatureType getFeatureType(String ws, String ds, String ft) throws IOException;
 	
-	Document exportFeatureType(String workSpace, String coverageStore, String coverage) throws IOException;
+	Document exportFeatureType(String workSpace, String dataStore, String featureType) throws IOException;
+	void createFeatureType(String workSpace, String dataStore, Document featureType) throws IOException;
 }

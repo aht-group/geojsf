@@ -12,6 +12,7 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.geoserver.manager.GeoServerCoverageManager;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
+import org.geojsf.geoserver.manager.GeoServerFeatureTypeManager;
 import org.geojsf.geoserver.manager.GeoServerLayerManager;
 import org.geojsf.geoserver.manager.GeoServerStyleManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
@@ -23,6 +24,8 @@ import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStore;
 import org.geojsf.xml.geoserver.DataStores;
+import org.geojsf.xml.geoserver.FeatureType;
+import org.geojsf.xml.geoserver.FeatureTypes;
 import org.geojsf.xml.geoserver.Layer;
 import org.geojsf.xml.geoserver.Layers;
 import org.geojsf.xml.geoserver.Style;
@@ -43,6 +46,7 @@ public class GeoServerConfigurator
 	private GeoServerWorkspaceManager workspaceManager;
 	private GeoServerDataStoreManager dataStoreManager;
 	private GeoServerCoverageManager coverageManager;
+	private GeoServerFeatureTypeManager featureTypeManager;
 	private GeoServerStyleManager styleManager;
 	private GeoServerLayerManager layerManager;
 	
@@ -60,6 +64,7 @@ public class GeoServerConfigurator
 		coverageManager = new GeoServerCoverageManager(rest);
 		styleManager = new GeoServerStyleManager(rest);
 		layerManager =  new GeoServerLayerManager(rest);
+		featureTypeManager = new GeoServerFeatureTypeManager(rest);
 	}
 	
 	public void configureWorkspace() throws GeoServerConfigurationException, IOException
@@ -78,6 +83,7 @@ public class GeoServerConfigurator
 		}
 		configureStyles();
 		configureDataStore();
+		configureFeatureTypes();
 		configureCoverageStore();
 		configureLayer();
 	}
@@ -138,6 +144,22 @@ public class GeoServerConfigurator
 		}
 		catch (FileNotFoundException e) {throw new GeoServerConfigurationException("File "+GeoServerDataStoreManager.dsXml+" not found");}
 		catch (IOException e) {e.printStackTrace();}
+	}
+	
+	private void configureFeatureTypes() throws GeoServerConfigurationException
+	{
+		try
+		{
+			FeatureTypes fts = JaxbUtil.loadJAXB(new File(fBase,GeoServerFeatureTypeManager.xml), FeatureTypes.class);
+			for(FeatureType ft : fts.getFeatureType())
+			{
+				File f = new File(fBase,"featureTypes"+File.separator+ft.getName()+".xml");
+				Document doc = JDomUtil.load(f);
+				featureTypeManager.createFeatureType(workspace.getName(), ft.getDataStore().getName(), doc);
+			}
+		}
+		catch (FileNotFoundException e) {throw new GeoServerConfigurationException(e.getMessage());}
+		catch (IOException e) {throw new GeoServerConfigurationException(e.getMessage());}
 	}
 	
 	private void configureCoverageStore() throws GeoServerConfigurationException
