@@ -75,4 +75,9 @@ public class GeoServerRestFeatureTypeWrapper implements GeoServerFeatureTypeRest
 		return doc;
 	}
 
+	@Override
+	public void createFeatureType(String workSpace, String dataStore, Document featureType) throws IOException
+	{
+		rest.createFeatureType(workSpace,dataStore,JDomUtil.toString(featureType));
+	}
 }

@@ -2,7 +2,7 @@ package org.geojsf.geoserver.manager;
 
 import java.io.IOException;
 
-import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.exlp.util.xml.JDomUtil;
 
 import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.interfaces.rest.geoserver.GeoServerFeatureTypeRest;
@@ -18,7 +18,7 @@ public class GeoServerFeatureTypeManager
 {		
 	final static Logger logger = LoggerFactory.getLogger(GeoServerFeatureTypeManager.class);
 	
-	public static String xml = "coveragestores.xml";
+	public static String xml = "featureTypes.xml";
 	
 	private GeoServerFeatureTypeRest rest;
 	private GeoServerDataStoreManager dsManager;
@@ -50,5 +50,10 @@ public class GeoServerFeatureTypeManager
 	public Document exportFeatureType(String workSpace, String coverageStore, String coverage) throws IOException
 	{
 		return rest.exportFeatureType(workSpace, coverageStore, coverage);
+	}
+	
+	public void createFeatureType(String workSpace, String dataStore, Document featureType) throws IOException
+	{
+		rest.createFeatureType(workSpace,dataStore,featureType);
 	}
 }

@@ -137,4 +137,9 @@ public interface GeoServerRestInterface
 	@GET @Path("/workspaces/{workspace}/datastores/{datastore}/featuretypes/{featuretype}.xml")
 	@Produces(MediaType.APPLICATION_XML)
 	String featureType(@PathParam("workspace") String workspace, @PathParam("datastore") String datastore, @PathParam("featuretype") String featuretype);
+	
+	@POST @Path("/workspaces/{workspace}/datastores/{datastore}/featuretypes.xml")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	String createFeatureType(@PathParam("workspace") String workspace, @PathParam("datastore") String datastore, String featuretype);
 }

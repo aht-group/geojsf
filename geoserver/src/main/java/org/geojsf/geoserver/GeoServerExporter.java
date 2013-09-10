@@ -91,7 +91,8 @@ public class GeoServerExporter
 	{
 		logger.info("Starting export of "+workspace.getName()+" coveragestores");
 		FeatureTypes fTypes = ftManager.getFeatureTypes(workspace);
-		JaxbUtil.info(fTypes);
+		JaxbUtil.trace(fTypes);
+		JaxbUtil.save(new File(fBase,GeoServerFeatureTypeManager.xml), fTypes, true);
 		for(FeatureType ft : fTypes.getFeatureType())
 		{
 			Document doc = ftManager.exportFeatureType(workspace.getName(), ft.getDataStore().getName(), ft.getName());
