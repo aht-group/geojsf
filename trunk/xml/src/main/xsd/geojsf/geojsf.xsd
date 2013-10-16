@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://geojsf.sf.net/geojsf"
-    xmlns:geojsf="http://geojsf.sf.net/geojsf"
+<xsd:schema targetNamespace="http://www.geojsf.org"
+    xmlns:geojsf="http://www.geojsf.org"
     xmlns:ol="http://geojsf.sf.net/openlayers"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:import namespace="http://geojsf.sf.net/openlayers" schemaLocation="openlayers.xsd"/>
@@ -18,6 +18,15 @@
         <xsd:complexType>
             <xsd:attribute name="lat" type="xsd:double"/>
             <xsd:attribute name="lon" type="xsd:double"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="wkt">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                    <xsd:attribute name="type" type="xsd:string"/>
+                </xsd:extension>
+            </xsd:simpleContent>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>

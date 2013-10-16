@@ -47,17 +47,26 @@ public class ConfigurationOverrider
 		}
 		if(dataStore.isSetPostgis())
 		{
-			String key = getKey(dataStore);
-			try
-			{
-				String value = config.getString(key);
-				logger.trace("Key:"+key+" "+value);
-				dataStore.getPostgis().getConnection().getDatabase().setPassword(value);
-			}
-			catch (NoSuchElementException e)
-			{
-				logger.debug("Key "+key+" not found");
-			}
+			String base = getKey(dataStore);
+			String key;
+			
+			key = base+".password";
+			try{dataStore.getPostgis().getConnection().getDatabase().setPassword(config.getString(key));}
+			catch (NoSuchElementException e){logger.debug("Key "+key+" not found");}
+			
+			key = base+".user";
+			try{dataStore.getPostgis().getConnection().getDatabase().setUser(config.getString(key));}
+			catch (NoSuchElementException e){logger.debug("Key "+key+" not found");}
+			
+			key = base+".database";
+			try{dataStore.getPostgis().getConnection().getDatabase().setDatabase(config.getString(key));}
+			catch (NoSuchElementException e){logger.debug("Key "+key+" not found");}
+			
+			key = base+".host";
+			try{dataStore.getPostgis().getConnection().getHost().setName(config.getString(key));}
+			catch (NoSuchElementException e){logger.debug("Key "+key+" not found");}
+			
+			
 		}
 	}
 	

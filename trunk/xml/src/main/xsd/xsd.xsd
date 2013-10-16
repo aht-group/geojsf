@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema targetNamespace="http://geojsf.sf.net"
     xmlns:gj="http://geojsf.sf.net"
-    xmlns:geojsf="http://geojsf.sf.net/geojsf"
+    xmlns:geojsf="http://www.geojsf.org"
     xmlns:gp="http://www.geojsf.org/politic"
     xmlns:geoserver="http://www.geojsf.org/geoserver"
     xmlns:ol="http://geojsf.sf.net/openlayers"
@@ -19,7 +19,7 @@
     <xsd:import namespace="http://geojsf.sf.net/openlayers" schemaLocation="geojsf/openlayers.xsd"/>
     <xsd:import namespace="http://www.geojsf.org/geoserver" schemaLocation="geojsf/geoserver.xsd"/>
     <xsd:import namespace="http://www.geojsf.org/politic" schemaLocation="geojsf/politic.xsd"/>
-    <xsd:import namespace="http://geojsf.sf.net/geojsf" schemaLocation="geojsf/geojsf.xsd"/>
+    <xsd:import namespace="http://www.geojsf.org" schemaLocation="geojsf/geojsf.xsd"/>
     <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="geojsf/gml.xsd"/>
     <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="geojsf/ogc.xsd"/>
     <xsd:import namespace="http://www.opengis.net/wfs" schemaLocation="geojsf/wfs.xsd"/>
