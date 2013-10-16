@@ -31,7 +31,10 @@ public class GeoServerRestWorkspaceWrapper
 	
 	public Workspaces getWorkspaces() throws IOException
 	{		
-		InputStream is = IOUtils.toInputStream(XmlUtil.defaultXmlHeader+rest.workspaces(), xmlEncoding);
+		String xml = XmlUtil.defaultXmlHeader+rest.workspaces();
+		logger.info(xml);
+		
+		InputStream is = IOUtils.toInputStream(xml, xmlEncoding);
 		Document doc = JDomUtil.load(is, xmlEncoding);
 		Element root = doc.getRootElement();
 		JDomUtil.setNameSpaceRecursive(root, GeoServerRestWrapper.ns);
