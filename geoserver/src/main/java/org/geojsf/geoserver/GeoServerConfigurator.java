@@ -38,7 +38,6 @@ public class GeoServerConfigurator
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoServerConfigurator.class);
 	
-	private Configuration config;
 	private ConfigurationOverrider configOverrider;
 	
 	private Workspace workspace;
@@ -54,7 +53,6 @@ public class GeoServerConfigurator
 	
 	public GeoServerConfigurator(String configBaseDir, GeoServerRest rest, Configuration config) throws MalformedURLException
 	{
-		this.config=config;
 		configOverrider = new ConfigurationOverrider(config);
 		fBase = new File(configBaseDir);
 		logger.info("Using configuration directory: "+fBase.getAbsolutePath());
@@ -125,9 +123,11 @@ public class GeoServerConfigurator
 		try
 		{
 			DataStores dataStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerDataStoreManager.dsXml), DataStores.class);
-			configOverrider.overrideDataStores(dataStores);
 			
 			JaxbUtil.trace(dataStores);
+			configOverrider.overrideDataStores(dataStores);
+			JaxbUtil.trace(dataStores);
+			
 			for(DataStore ds : dataStores.getDataStore())
 			{
 				JaxbUtil.trace(ds);

@@ -45,4 +45,12 @@ public class ObjectFactory {
         return new Query();
     }
 
+    /**
+     * Create an instance of {@link Wkt }
+     * 
+     */
+    public Wkt createWkt() {
+        return new Wkt();
+    }
+
 }
