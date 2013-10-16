@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<geojsf:query xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ol="http://geojsf.sf.net/openlayers" xmlns:geojsf="http://geojsf.sf.net/geojsf">
+<ns3:query xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ol="http://geojsf.sf.net/openlayers" xmlns:ns3="http://www.geojsf.org">
     <ol:repository/>
     <ol:service id="1" code="myCode" url="http://geojsf.sf.net" wms="wms" wcs="wcs"/>
     <ol:layer id="1" code="myCode" workspace="myWorkspace" name="myName" visible="true" showLegend="true" temporal="true"/>
     <ol:view id="123" code="myCode" x="3.4" y="5.6" zoom="3"/>
-</geojsf:query>
+</ns3:query>
