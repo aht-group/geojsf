@@ -28,4 +28,11 @@ public class XmlWktFactory implements Serializable
 
 		return wkt;
 	}
+	
+	public static Wkt build(String type)
+	{
+		Wkt wkt = new Wkt();	
+		wkt.setValue(type);
+		return wkt;
+	}
 }
