@@ -1,7 +1,7 @@
 package org.geojsf.factory.ejb.openlayer;
 
-import net.sf.ahtutils.controller.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
+import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
