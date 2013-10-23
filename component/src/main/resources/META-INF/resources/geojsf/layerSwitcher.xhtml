@@ -8,11 +8,14 @@
     xmlns:aht="http://ahtutils.sourceforge.net/jsf"
     xmlns:composite="http://java.sun.com/jsf/composite">
     
-  <composite:interface>
-    <composite:attribute name="value"
-      shortDescription="A GeoJsfMap."/>
-    <composite:attribute name="update"
-      shortDescription="The listed components will be updated after selection/deselection of a layer"/>
+	<composite:interface>
+    	<composite:attribute name="value"
+      							shortDescription="A GeoJsfMap."/>
+		<composite:attribute name="update"
+      							shortDescription="The listed components will be updated after selection/deselection of a layer"/>
+		<composite:attribute name="oncomplete"
+								required="false" default=""
+								shortDescription="Will be executed after AJAX request"/>
   </composite:interface>
         
   <composite:implementation>
@@ -22,7 +25,7 @@
         <h:outputText value="#{layer.code}"/>
       </p:column>
       <p:column>
-        <aht:dmSelectSingle id="selectButtons" dm="#{cc.attrs.value.dmLayer}" update="#{cc.attrs.update}" for="#{layer}"/>
+        <aht:dmSelectSingle id="selectButtons" dm="#{cc.attrs.value.dmLayer}" update="#{cc.attrs.update}" for="#{layer}" oncomplete="#{cc.attrs.oncomplete}"/>
       </p:column>
     </p:dataTable> 	 
   </composite:implementation>
