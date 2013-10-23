@@ -9,11 +9,13 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
+import org.geojsf.factory.xml.gml.XmlCoordinatesFactory;
 import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
 import org.geojsf.interfaces.model.openlayers.GeoJsfService;
 import org.geojsf.interfaces.model.openlayers.GeoJsfView;
 import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
+import org.geojsf.xml.geojsf.Coordinate;
 import org.geojsf.xml.gml.Coordinates;
 import org.geojsf.xml.ogc.Distance;
 import org.geojsf.xml.wfs.GetFeature;
@@ -48,6 +50,11 @@ public class WfsPointQuery<L extends UtilsLang,D extends UtilsDescription,SERVIC
 		nsGml = Namespace.getNamespace("gml", "http://www.opengis.net/gml");
 	}
 	
+	public <T extends EjbWithId> List<T> execute(Class<T> type, Coordinate coordinate, Distance distance)
+	{
+		return execute(type,XmlCoordinatesFactory.build(coordinate),distance);
+	}
+	
 	public <T extends EjbWithId> List<T> execute(Class<T> type, Coordinates coordinates, Distance distance)
 	{				
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),propertyProvider.getProperties(type),coordinates,distance);
@@ -60,12 +67,12 @@ public class WfsPointQuery<L extends UtilsLang,D extends UtilsDescription,SERVIC
 		StringBuffer xpath = new StringBuffer();
 		xpath.append("//gml:featureMember");
 		xpath.append("/").append(nsQuery.getPrefix()).append(":").append(layer.getCode());
-		xpath.append("/").append(nsQuery.getPrefix()).append(":").append("gid");
+//		xpath.append("/").append(nsQuery.getPrefix()).append(":").append("fid");
 		
-//		logger.info("XPATH: "+xpath.toString());
+		logger.info("XPATH: "+xpath.toString());
 		XPathExpression<Element> xpe = XPathFactory.instance().compile(xpath.toString(),Filters.element(), null,nsQuery,nsGml);
 		List<Element> elements = xpe.evaluate(doc);
-//		logger.info("Elements: "+elements.size());
+		logger.info("Elements: "+elements.size());
 		
 //		JDomUtil.debug(doc);
 		
@@ -74,7 +81,8 @@ public class WfsPointQuery<L extends UtilsLang,D extends UtilsDescription,SERVIC
 		{	
 			try
 			{
-				Long id = new Long(e.getValue());
+				String s = e.getAttributeValue("fid");
+				Long id = new Long(s.substring(s.lastIndexOf(".")+1));
 				result.add(fGeo.find(type, id));
 			}
 			catch (UtilsNotFoundException ex)
