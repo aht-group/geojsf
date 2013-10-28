@@ -2,7 +2,7 @@ package org.geojsf.factory.xml.openlayers;
 
 import java.io.Serializable;
 
-import net.sf.ahtutils.controller.factory.xml.status.XmlLangsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
