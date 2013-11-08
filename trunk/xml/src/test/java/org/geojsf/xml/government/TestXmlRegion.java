@@ -1,6 +1,5 @@
-package org.geojsf.xml.politic;
+package org.geojsf.xml.government;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
@@ -11,34 +10,34 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlDistrict extends AbstractXmlPoliticTest
+public class TestXmlRegion extends AbstractXmlGovernmentTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlDistrict.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlRegion.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,District.class.getSimpleName()+".xml");
+        setXmlFile(dirSuffix, Region.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	District actual = create(true);
-    	District expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), District.class);
+    	Region actual = create(true);
+    	Region expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Region.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static District create(boolean withChilds)
+    public static Region create(boolean withChilds)
     {
-    	District xml = new District();
+    	Region xml = new Region();
     	xml.setId(123);
     	xml.setCode("myCode");
     	xml.setName("myName");
     	
     	if(withChilds)
     	{
-    		xml.setRegion(TestXmlRegion.create(false));
+//    		xml.getDistrict().add(TestXmlDistrict.create(false));
     	}
     	
     	return xml;
@@ -50,8 +49,8 @@ public class TestXmlDistrict extends AbstractXmlPoliticTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlDistrict.initFiles();	
-		TestXmlDistrict test = new TestXmlDistrict();
+		TestXmlRegion.initFiles();	
+		TestXmlRegion test = new TestXmlRegion();
 		test.save();
     }
 }
