@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<district xmlns="http://www.geojsf.org/politic" id="123" code="myCode" name="myName">
-    <region id="123" code="myCode" name="myName"/>
-</district>

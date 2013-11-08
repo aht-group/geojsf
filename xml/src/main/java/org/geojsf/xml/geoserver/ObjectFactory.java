@@ -158,19 +158,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Workspaces }
-     * 
-     */
-    public Workspaces createWorkspaces() {
-        return new Workspaces();
-    }
-
-    /**
      * Create an instance of {@link CoverageStores }
      * 
      */
     public CoverageStores createCoverageStores() {
         return new CoverageStores();
+    }
+
+    /**
+     * Create an instance of {@link Workspaces }
+     * 
+     */
+    public Workspaces createWorkspaces() {
+        return new Workspaces();
     }
 
 }
