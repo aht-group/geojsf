@@ -51,7 +51,6 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     	VL vl = null;
 		try
 		{
-			
 			view = clView.newInstance();
 			vl = clVl.newInstance();
 			vl.setLayer(layer);
@@ -112,7 +111,7 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     	logger.info("--- DEBUG START ---");
     	for(SERVICE service : layerServices)
     	{
-    		logger.info(service.getCode()+" "+service.getUrl());
+    		logger.info(service.getId()+" "+service.getCode()+" "+service.getUrl());
     		for(LAYER layer : service.getLayer())
     		{
     			logger.info("\t"+layer.getId()+" "+layer.getCode());
