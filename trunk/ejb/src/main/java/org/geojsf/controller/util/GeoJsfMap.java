@@ -115,7 +115,7 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     		logger.info(service.getCode()+" "+service.getUrl());
     		for(LAYER layer : service.getLayer())
     		{
-    			logger.info("\t"+layer.getCode());
+    			logger.info("\t"+layer.getId()+" "+layer.getCode());
     		}
     	}
     	logger.info("--- DEBUG END ---");
