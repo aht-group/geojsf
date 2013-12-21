@@ -77,6 +77,7 @@ public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription
 			try
 			{
 				SERVICE s = clService.newInstance();
+				s.setId(service.getId());
 				s.setCode(service.getCode());
 				s.setUrl(service.getUrl());
 				mapService.put(service.getUrl(), s);
