@@ -13,7 +13,7 @@ var GeoJSF = {
 		
 		initMap : function(mapDiv,msOptions)
 		{
-			this.map = new OpenLayers.Map(mapDiv,{controls: []});
+			this.map = new OpenLayers.Map(mapDiv,{controls: [], theme: null});
 		    var click = new OpenLayers.Control.Click();
 		    this.map.addControl(click);
 		    click.activate();
@@ -82,4 +82,83 @@ var GeoJSF = {
 			this.map.addLayer(layer);
 			this.map.zoomToMaxExtent();
 		},
+		
+		toggleComplexLayer : function(layerCode, shown) 
+		{
+			var layerArray = layerCode.split(":");
+			var service    = layerArray[0];
+			var layer      = layerArray[1];
+			console.log('Trying to set ' +layer +' of ' + service +' to ' +shown);
+		    var currentService = GeoJSF.map.getLayersByName(service);
+		    console.log('Getting Service: ' +currentService);
+		    console.log('Getting Service Params: ' +currentService.params);
+		    console.log('Getting Service LAYERS: ' +currentService.params.LAYERS);
+		    console.log('Getting Layers: ' +currentLayer);
+		    
+		    if (!shown)
+		    {
+		    	if (currentLayer.length==1)
+		    	{
+		    		currentService.setVisibility(shown);
+		    	}
+		    	else
+		    	{
+		    		var index = currentLayer.indexOf(layer);
+		    		if (index > -1) {
+		    		    currentLayer.splice(index, 1);
+		    		}
+		    		removeLayer(service);
+		    		addLayer(currentService.name, currentService.url, currentLayer, currentService.params);
+		    	}
+		    }
+		    if (shown)
+		    {
+		    	if (currentLayer.length==1)
+		    		{
+		    			currentService.setVisibility(shown);
+		    		}
+		    	else
+		    		{
+		    			var index = currentLayer.indexOf(layer);
+		    			if (index > -1) {
+		    				currentLayer.splice(index, 1);
+		    			}
+		    			removeLayer(service);
+		    			addLayer(currentService.name, currentService.url, currentLayer, currentService.params);
+		    		}
+		    }
+		},
+		
+		toggleLayer : function(layerName, shown) 
+		{
+		    var layers = GeoJSF.map.getLayersByName(layerName);
+		    if(layers.length === 1) {
+		    	layers[0].setVisibility(shown);
+		    }
+		    else {
+		        console.log('no layer with name ' +layerName +' found!');
+		    }
+		},
+		
+		setLayers : function(checkboxIds, numberOfOptions) 
+		{
+			for (var i=0;i<numberOfOptions;i++)
+			{
+				var c = document.getElementById(checkboxIds +i);
+				console.log('Setting ' +c.value + ' to ' +c.checked);
+			//	this.toggleComplexLayer(c.value, c.checked);
+			}
+		},
+		
+		ajaxResponse : function(data)
+		{
+			console.log(data);
+		},
+		
+		testAjaxData : function(xhr, status, args)
+		{
+			console.log(args.test);
+		}
+		
+		
 };
