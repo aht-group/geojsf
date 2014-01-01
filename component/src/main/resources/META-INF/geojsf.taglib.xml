@@ -24,6 +24,12 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>player</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Player</component-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>externalScript</tag-name>
 		<component>
 			<component-type>org.geojsf.component.UIExternalScript</component-type>
@@ -39,6 +45,12 @@
 		<tag-name>layer</tag-name>
 		<component>
 			<component-type>org.geojsf.component.Layer</component-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>layerSwitcher</tag-name>
+		<component>
+			<component-type>org.geojsf.component.LayerSwitcher</component-type>
 		</component>
 	</tag>	
 	<tag>
