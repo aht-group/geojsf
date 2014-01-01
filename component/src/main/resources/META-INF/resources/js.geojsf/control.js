@@ -53,4 +53,14 @@ var GeoJsfControl = {
 			scaleBar.element.setAttribute("style", originalStyle +style);
 			return scaleBar;
 		},
+		
+		addTimeManager : function()
+		{
+			timeManager = new OpenLayers.Control.TimeManager({
+				units:OpenLayers.TimeUnit.HOURS,
+				step:6,
+				frameRate:0.85
+			});
+			GeoJSF.map.addControl(timeManager);
+		}
 };
