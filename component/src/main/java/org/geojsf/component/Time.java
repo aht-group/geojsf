@@ -15,6 +15,7 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
+import org.geojsf.util.GeoJsfJsLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +32,13 @@ public class Time extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
 	{
+		if(event instanceof PostAddToViewEvent)
+		{
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"TimeAgent.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"TimeManager.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"WMS.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"DimensionManager.js");
+		}
 		super.processEvent(event);
 	}
 	
