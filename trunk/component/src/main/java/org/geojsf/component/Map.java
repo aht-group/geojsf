@@ -257,6 +257,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 			{
 				writer.writeText(System.getProperty("line.separator"), null);
 				writer.startElement("script", this);
+				writer.writeText("jsf.ajax.addOnEvent(GeoJSF.ajaxResponse);", null);
 				writer.writeText(System.getProperty("line.separator"), null);
 				writer.writeText("// GeoJSF: Initializing OpenLayers map"+System.getProperty("line.separator"), null);
 				writer.writeText("GeoJSF.bootstrap();" +System.getProperty("line.separator"), null);
@@ -329,7 +330,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		String sLayers = TxtOpenlayersLayerFactory.buildLayerString(service);
 		logger.info("Adding "+service.getCode()+": "+sLayers);
 		writer.writeText("var url    = '" +service.getUrl() +"';" +System.getProperty("line.separator"),null);
-	    writer.writeText("var name   = '" +service.getCode() +"';" +System.getProperty("line.separator"),null);
+	    writer.writeText("var name   = '" +service.getId() +"';" +System.getProperty("line.separator"),null);
 		writer.writeText("var params = {};" +System.getProperty("line.separator"), null);
 		writer.writeText("params.layers      = '"+sLayers+"';" +System.getProperty("line.separator"),null);
 		
@@ -392,4 +393,12 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	
 	public List<GeoJsfService> getServiceList() {return serviceList;}
 	public void setServiceList(ArrayList<GeoJsfService> serviceList) {this.serviceList = serviceList;}
+
+	public Date getTimeInfo() {
+		return timeInfo;
+	}
+
+	public void setTimeInfo(Date timeInfo) {
+		this.timeInfo = timeInfo;
+	}
 }
