@@ -44,6 +44,6 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 		int zoom = new Integer(map.get(Attribute.zoom.toString()).toString());
 		
 		ResponseWriter writer = ctx.getResponseWriter();
-		writer.writeText("GeoJsfViewport.center(" +lat +"," +lon +"," +zoom +");", null);
+		writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +zoom +");", null);
 	}
 }
