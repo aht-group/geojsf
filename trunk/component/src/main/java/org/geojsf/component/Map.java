@@ -15,6 +15,7 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UINamingContainer;
+import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
@@ -255,13 +256,41 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 			}
 			else
 			{
+				StringBuffer updateOnClick = new StringBuffer();
+				java.util.Map<String, List<ClientBehavior>> behaviors = this.getClientBehaviors();
+				for (String key : behaviors.keySet())
+				{
+					List<ClientBehavior> c = behaviors.get(key);
+					for (ClientBehavior cl : c)
+					{
+						logger.info("Detected " +cl.toString() +" added as ClientBehavior");
+						if (cl.getClass().getName().equals("javax.faces.component.behavior.AjaxBehavior"))
+						{
+							AjaxBehavior ajax = (AjaxBehavior) cl;
+							Collection<String> renderList = ajax.getRender();
+							for (String str : renderList)
+							{
+								str = str.replaceAll(":", "");
+								updateOnClick.append(str +" ");
+							}
+							logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
+						}
+						if (cl.getClass().getName().equals("org.primefaces.component.behavior.ajax.AjaxBehavior"))
+						{
+							org.primefaces.component.behavior.ajax.AjaxBehavior ajax = (org.primefaces.component.behavior.ajax.AjaxBehavior) cl;
+							updateOnClick.append(ajax.getUpdate().replaceAll(":", ""));
+							logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
+						}
+					}
+					
+				}
 				writer.writeText(System.getProperty("line.separator"), null);
 				writer.startElement("script", this);
 				writer.writeText("jsf.ajax.addOnEvent(GeoJSF.ajaxResponse);", null);
 				writer.writeText(System.getProperty("line.separator"), null);
 				writer.writeText("// GeoJSF: Initializing OpenLayers map"+System.getProperty("line.separator"), null);
 				writer.writeText("GeoJSF.bootstrap();" +System.getProperty("line.separator"), null);
-				writer.writeText("GeoJSF.addClickHandler('" +this.getClientId() +"','" +this.getClientId() +":resetLayers');" +System.getProperty("line.separator"), null);
+				writer.writeText("GeoJSF.addClickHandler('" +this.getClientId() +"','" +this.getClientId() +":resetLayers','" +updateOnClick.toString() +"');" +System.getProperty("line.separator"), null);
 				writer.writeText("GeoJSF.initMap('" +this.getClientId() +"','');" +System.getProperty("line.separator"), null);
 				if (this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME")!=null)
 				{

@@ -29,7 +29,7 @@ var GeoJSF = {
 			OpenLayers.Event.observe(window, "load", func ); 
 		},
 		
-		addClickHandler : function (id, resetId)
+		addClickHandler : function (id, resetId, updateOnClick)
 		{
 			 OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
 		         defaultHandlerOptions: {
@@ -55,7 +55,7 @@ var GeoJSF = {
 		         }, 
 
 		         trigger: function(e) {
-		        	 jsf.ajax.request(id, 'click', {execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick', 'org.geojsf.coordinates.lat': this.map.getLonLatFromViewPortPx(e.xy).lat, 'org.geojsf.coordinates.lon': this.map.getLonLatFromViewPortPx(e.xy).lon});
+		        	 jsf.ajax.request(id, 'click', {render: updateOnClick, execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick', 'org.geojsf.coordinates.lat': this.map.getLonLatFromViewPortPx(e.xy).lat, 'org.geojsf.coordinates.lon': this.map.getLonLatFromViewPortPx(e.xy).lon});
 		         }
 		     });
 		},
