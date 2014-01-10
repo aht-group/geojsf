@@ -14,7 +14,7 @@ import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
-import org.geojsf.factory.ejb.EjbGeoViewLayerFactory;
+import org.geojsf.factory.ejb.EjbGeoViewFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
@@ -44,7 +44,7 @@ public class DbViewInit <L extends UtilsLang,
     
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
-    private EjbGeoViewLayerFactory<L,D,SERVICE,LAYER,VIEW,VL> efViewLayer;
+    private EjbGeoViewFactory<L,D,SERVICE,LAYER,VIEW,VL> efViewLayer;
     
     public DbViewInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<VIEW> cView,final Class<VL> cViewLayer, UtilsSecurityFacade fAcl, GeoJsfFacade fGeo)
 	{       
@@ -57,7 +57,7 @@ public class DbViewInit <L extends UtilsLang,
 		
 		ejbLangFactory = EjbLangFactory.createFactory(cL);
 		ejbDescriptionFactory = EjbDescriptionFactory.createFactory(cD);
-		efViewLayer = EjbGeoViewLayerFactory.factory(cViewLayer);
+		efViewLayer = EjbGeoViewFactory.factory(cViewLayer);
 	}
 	
 	public static <L extends UtilsLang,
