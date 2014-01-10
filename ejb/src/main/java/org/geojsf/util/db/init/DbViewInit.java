@@ -22,7 +22,7 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.View;
-import org.geojsf.xml.openlayers.Views;
+import org.geojsf.xml.openlayers.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,9 +72,9 @@ public class DbViewInit <L extends UtilsLang,
 		return new DbViewInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cLayer,cView,cViewLayer,fAcl,fGeo);
 	}
 	
-	public void iuViews(Views views) throws UtilsConfigurationException
+	public void iuViews(Maps views) throws UtilsConfigurationException
 	{
-		logger.debug("i/u "+Views.class.getSimpleName()+" with "+views.getView()+" "+View.class.getSimpleName());
+		logger.debug("i/u "+Maps.class.getSimpleName()+" with "+views.getView()+" "+View.class.getSimpleName());
 		
 		AhtDbEjbUpdater<VIEW> ejbUpdater = AhtDbEjbUpdater.createFactory(cView);
 		ejbUpdater.dbEjbs(fSecurity.all(cView));

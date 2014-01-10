@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.geojsf.xml.openlayers.Layers;
 import org.geojsf.xml.openlayers.Repository;
-import org.geojsf.xml.openlayers.Views;
+import org.geojsf.xml.openlayers.Maps;
 
 public interface GeoJsfDatabaseRest
 {	
@@ -23,7 +23,7 @@ public interface GeoJsfDatabaseRest
 	
 	@GET @Path("/export/views")
 	@Produces(MediaType.APPLICATION_XML)
-	Views exportViews();
+	Maps exportViews();
 	
 	@POST @Path("/import")
 	@Produces(MediaType.TEXT_PLAIN)

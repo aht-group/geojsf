@@ -1,6 +1,5 @@
 package org.geojsf.xml.openlayers;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.sf.ahtutils.xml.status.Langs;
@@ -20,7 +19,7 @@ public class TestXmlLayer extends AbstractXmlOpenlayersTest
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,"layer.xml");
+		setXmlFile(dirSuffix, "layer");
 	}
     
     @Test

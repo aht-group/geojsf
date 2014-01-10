@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://geojsf.sf.net/openlayers}layers"/>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}views"/>
+ *         &lt;element ref="{http://geojsf.sf.net/openlayers}maps"/>
  *         &lt;element ref="{http://geojsf.sf.net/openlayers}service" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "layers",
-    "views",
+    "maps",
     "service"
 })
 @XmlRootElement(name = "repository")
@@ -47,7 +47,7 @@ public class Repository
     @XmlElement(required = true)
     protected Layers layers;
     @XmlElement(required = true)
-    protected Views views;
+    protected Maps maps;
     @XmlElement(required = true)
     protected List<Service> service;
 
@@ -80,31 +80,31 @@ public class Repository
     }
 
     /**
-     * Gets the value of the views property.
+     * Gets the value of the maps property.
      * 
      * @return
      *     possible object is
-     *     {@link Views }
+     *     {@link Maps }
      *     
      */
-    public Views getViews() {
-        return views;
+    public Maps getMaps() {
+        return maps;
     }
 
     /**
-     * Sets the value of the views property.
+     * Sets the value of the maps property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Views }
+     *     {@link Maps }
      *     
      */
-    public void setViews(Views value) {
-        this.views = value;
+    public void setMaps(Maps value) {
+        this.maps = value;
     }
 
-    public boolean isSetViews() {
-        return (this.views!= null);
+    public boolean isSetMaps() {
+        return (this.maps!= null);
     }
 
     /**

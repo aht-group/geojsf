@@ -1,38 +1,36 @@
 package org.geojsf.xml.openlayers;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.geojsf.xml.openlayers.Views;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlViews extends AbstractXmlOpenlayersTest
+public class TestXmlMaps extends AbstractXmlOpenlayersTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlViews.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlMaps.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,"views.xml");
+		setXmlFile(dirSuffix, Maps.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Views actual = create(true);
-    	Views expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Views.class);
+    	Maps actual = create(true);
+    	Maps expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Maps.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Views create(boolean withChilds)
+    public static Maps create(boolean withChilds)
     {
-    	Views xml = new Views();
+    	Maps xml = new Maps();
 
     	if(withChilds)
     	{
@@ -48,8 +46,8 @@ public class TestXmlViews extends AbstractXmlOpenlayersTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlViews.initFiles();	
-		TestXmlViews test = new TestXmlViews();
+		TestXmlMaps.initFiles();	
+		TestXmlMaps test = new TestXmlMaps();
 		test.save();
     }
 }

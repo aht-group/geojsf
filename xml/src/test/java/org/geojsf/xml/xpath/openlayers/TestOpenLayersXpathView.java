@@ -6,7 +6,7 @@ import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.View;
-import org.geojsf.xml.openlayers.Views;
+import org.geojsf.xml.openlayers.Maps;
 import org.geojsf.xml.xpath.OpenLayersXpath;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -38,11 +38,11 @@ public class TestOpenLayersXpathView extends AbstractGeoJsfXmlTest
 	private Repository createRepository()
     {
 		Repository xml = new Repository();
-		xml.setViews(new Views());
-		xml.getViews().getView().add(xml1);
-		xml.getViews().getView().add(xml2);
-		xml.getViews().getView().add(xml3);
-		xml.getViews().getView().add(xml4);
+		xml.setMaps(new Maps());
+		xml.getMaps().getView().add(xml1);
+		xml.getMaps().getView().add(xml2);
+		xml.getMaps().getView().add(xml3);
+		xml.getMaps().getView().add(xml4);
     	return xml;
     }
 	

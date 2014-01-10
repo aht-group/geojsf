@@ -34,8 +34,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "view"
 })
-@XmlRootElement(name = "views")
-public class Views
+@XmlRootElement(name = "maps")
+public class Maps
     implements Serializable
 {
 

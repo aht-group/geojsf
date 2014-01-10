@@ -10,7 +10,7 @@
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element ref="ol:layers" maxOccurs="1"/>
-                <xsd:element ref="ol:views" maxOccurs="1"/>
+                <xsd:element ref="ol:maps" maxOccurs="1"/>
                 <xsd:element ref="ol:service" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
@@ -59,7 +59,7 @@
             <xsd:attribute name="url" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
-    <xsd:element name="views">
+    <xsd:element name="maps">
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element ref="ol:view" maxOccurs="unbounded"/>

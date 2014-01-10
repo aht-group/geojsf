@@ -17,7 +17,7 @@ import org.geojsf.util.query.OpenLayersQuery;
 import org.geojsf.xml.openlayers.Layers;
 import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.View;
-import org.geojsf.xml.openlayers.Views;
+import org.geojsf.xml.openlayers.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,9 +87,9 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	}
 
 	@Override
-	public Views exportViews()
+	public Maps exportViews()
 	{
-		Views views = new Views();
+		Maps views = new Maps();
 		XmlViewFactory fView = new XmlViewFactory(OpenLayersQuery.get(OpenLayersQuery.Key.view, null));
 		XmlLayerFactory fLayer = new XmlLayerFactory(OpenLayersQuery.get(OpenLayersQuery.Key.viewLayer, null));
 		

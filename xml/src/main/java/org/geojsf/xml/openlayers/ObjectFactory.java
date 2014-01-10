@@ -30,19 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Repository }
+     * Create an instance of {@link Maps }
      * 
      */
-    public Repository createRepository() {
-        return new Repository();
+    public Maps createMaps() {
+        return new Maps();
     }
 
     /**
-     * Create an instance of {@link Layers }
+     * Create an instance of {@link View }
      * 
      */
-    public Layers createLayers() {
-        return new Layers();
+    public View createView() {
+        return new View();
     }
 
     /**
@@ -70,19 +70,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Views }
+     * Create an instance of {@link Repository }
      * 
      */
-    public Views createViews() {
-        return new Views();
+    public Repository createRepository() {
+        return new Repository();
     }
 
     /**
-     * Create an instance of {@link View }
+     * Create an instance of {@link Layers }
      * 
      */
-    public View createView() {
-        return new View();
+    public Layers createLayers() {
+        return new Layers();
     }
 
 }
