@@ -8,8 +8,8 @@ import org.geojsf.factory.ejb.openlayer.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.openlayer.EjbGeoServiceFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.test.AbstractGeoJsfEjbTest;
@@ -24,10 +24,10 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestGeoJsfMap.class);
 	
-	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
-	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fLayer;	
+	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
+	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fLayer;	
 	
-	private GeoJsfMapHelper<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
+	private GeoJsfMapHelper<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
 			gsmView,gjmLayer;
 	
 	@Before
@@ -41,10 +41,10 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 			
 		service = fService.build("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");
 		layer = fLayer.build("basic", service,DefaultGeoJsfLang.defaultLangs);layer.setId(1);
-		gjmLayer = GeoJsfMapHelper.build(DefaultGeoJsfService.class, DefaultGeoJsfView.class, DefaultGeoJsfViewLayer.class, layer);
+		gjmLayer = GeoJsfMapHelper.build(DefaultGeoJsfService.class, DefaultGeoJsfMap.class, DefaultGeoJsfView.class, layer);
 	}
 	
-	private DefaultGeoJsfView view;
+	private DefaultGeoJsfMap view;
 	public static DefaultGeoJsfService service;
 	private DefaultGeoJsfLayer layer;
 	

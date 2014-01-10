@@ -1,11 +1,8 @@
 package org.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
@@ -13,51 +10,37 @@ import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 
 public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
+								GeoJsfView<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
 {
 	public static enum Code {welcome}
-	
 	public static final long serialVersionUID=1;
 	
 	private long id;
 	
-	private String code;
-	
-	private Double x,y;
-	
-	private Integer zoom;
-	
-	private Map<String, DefaultGeoJsfLang> name;
-	
-	private Map<String, DefaultGeoJsfDescription> description;
-	
-	private List<DefaultGeoJsfViewLayer> layer;
+	private DefaultGeoJsfMap view;
+	private DefaultGeoJsfLayer layer;
+	private int orderNo;
+	private Boolean visible,legend;
 	
 	//******************************************************************************
 	
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
-	@Override public String getCode() {return code;}
-	@Override public void setCode(String code) {this.code = code;}
+	@Override public DefaultGeoJsfMap getView() {return view;}
+	@Override public void setView(DefaultGeoJsfMap view) {this.view = view;}
 	
-	@Override public Double getX() {return x;}
-	@Override public void setX(Double x) {this.x = x;}
+	@Override public DefaultGeoJsfLayer getLayer() {return layer;}
+	@Override public void setLayer(DefaultGeoJsfLayer layer) {this.layer = layer;}
 	
-	@Override public Double getY() {return y;}
-	@Override public void setY(Double y) {this.y = y;}
+	@Override public int getOrderNo() {return orderNo;}
+	@Override public void setOrderNo(int orderNo) {this.orderNo = orderNo;}
 	
-	@Override public Integer getZoom() {return zoom;}
-	@Override public void setZoom(Integer zoom) {this.zoom = zoom;}
+	@Override public Boolean isVisible() {return visible;}
+	@Override public void setVisible(Boolean visible) {this.visible = visible;}
 	
-	@Override public Map<String, DefaultGeoJsfLang> getName() {return name;}
-	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
-	
-	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
-	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
-	
-	@Override public List<DefaultGeoJsfViewLayer> getLayer() {if(layer==null){layer=new ArrayList<DefaultGeoJsfViewLayer>();}return layer;}
-	@Override public void setLayer(List<DefaultGeoJsfViewLayer> layer) {this.layer=layer;}
+	@Override public Boolean isLegend() {return legend;}
+	@Override public void setLegend(Boolean legend) {this.legend=legend;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	
@@ -74,4 +57,6 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 			sb.append(id);
 		return sb.toString();
 	}
+
+	
 }

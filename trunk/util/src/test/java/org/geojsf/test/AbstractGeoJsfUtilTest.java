@@ -9,8 +9,8 @@ import org.geojsf.factory.ejb.openlayer.EjbGeoViewFactory;
 import org.geojsf.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.xml.GeoJsfNsPrefixMapper;
@@ -22,10 +22,10 @@ public class AbstractGeoJsfUtilTest
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfUtilTest.class);
 	
-	protected EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> efService;
-	protected EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> efLayer;
-	protected EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> efView;
-	protected EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> efViewLayer;
+	protected EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efService;
+	protected EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efLayer;
+	protected EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efView;
+	protected EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efViewLayer;
 	
 	@BeforeClass
     public static void initLogger()
@@ -48,7 +48,7 @@ public class AbstractGeoJsfUtilTest
 	{
 		efService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		efLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
-		efView = EjbGeoViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfView.class);
-		efViewLayer = EjbGeoViewLayerFactory.factory(DefaultGeoJsfViewLayer.class);
+		efView = EjbGeoViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfMap.class);
+		efViewLayer = EjbGeoViewLayerFactory.factory(DefaultGeoJsfView.class);
 	}
 }

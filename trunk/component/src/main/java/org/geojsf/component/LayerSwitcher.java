@@ -23,8 +23,8 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.primefaces.component.behavior.ajax.AjaxBehavior;
@@ -132,12 +132,12 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 			
 	
 
-	public GeoJsfMapHelper<DefaultGeoJsfLang, DefaultGeoJsfDescription, DefaultGeoJsfService, DefaultGeoJsfLayer, DefaultGeoJsfView, DefaultGeoJsfViewLayer> getGeoJsfMap() {
+	public GeoJsfMapHelper<DefaultGeoJsfLang, DefaultGeoJsfDescription, DefaultGeoJsfService, DefaultGeoJsfLayer, DefaultGeoJsfMap, DefaultGeoJsfView> getGeoJsfMap() {
 		return geoJsfMap;
 	}
 
 	public void setGeoJsfMap(
-			GeoJsfMapHelper<DefaultGeoJsfLang, DefaultGeoJsfDescription, DefaultGeoJsfService, DefaultGeoJsfLayer, DefaultGeoJsfView, DefaultGeoJsfViewLayer> geoJsfMap) {
+			GeoJsfMapHelper<DefaultGeoJsfLang, DefaultGeoJsfDescription, DefaultGeoJsfService, DefaultGeoJsfLayer, DefaultGeoJsfMap, DefaultGeoJsfView> geoJsfMap) {
 		this.geoJsfMap = geoJsfMap;
 	}
 	

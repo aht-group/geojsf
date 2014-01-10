@@ -9,8 +9,8 @@ import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
 import org.geojsf.factory.xml.openlayers.XmlRepositoryFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfViewLayer;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.test.AbstractGeoJsfEjbTest;
@@ -25,7 +25,7 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestJsfMapLayerFactory.class);
 	
-	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fJsf;
+	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fJsf;
 	
 	@Before
 	public void init() throws UtilsIntegrityException
@@ -34,7 +34,7 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 		view = DummyViewFactory.build();
 	}
 	
-	private DefaultGeoJsfView view;
+	private DefaultGeoJsfMap view;
 	
 	@Test
 	public void test()

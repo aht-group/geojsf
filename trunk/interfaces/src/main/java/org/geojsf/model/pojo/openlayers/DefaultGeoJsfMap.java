@@ -1,17 +1,19 @@
 package org.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 
-public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
+public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistable,
+								GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
 {
 	public static enum Code {welcome}
 	
@@ -19,15 +21,17 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	
 	private long id;
 	
-	private DefaultGeoJsfService service;
-
 	private String code;
+	
+	private Double x,y;
+	
+	private Integer zoom;
 	
 	private Map<String, DefaultGeoJsfLang> name;
 	
 	private Map<String, DefaultGeoJsfDescription> description;
 	
-	private boolean temporalLayer;
+	private List<DefaultGeoJsfView> layer;
 	
 	//******************************************************************************
 	
@@ -37,24 +41,30 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
 	
+	@Override public Double getX() {return x;}
+	@Override public void setX(Double x) {this.x = x;}
+	
+	@Override public Double getY() {return y;}
+	@Override public void setY(Double y) {this.y = y;}
+	
+	@Override public Integer getZoom() {return zoom;}
+	@Override public void setZoom(Integer zoom) {this.zoom = zoom;}
+	
 	@Override public Map<String, DefaultGeoJsfLang> getName() {return name;}
 	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
 	
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 	
-	@Override public DefaultGeoJsfService getService() {return service;}
-	@Override public void setService(DefaultGeoJsfService service) {this.service = service;}
-	
-	@Override public boolean isTemporalLayer() {return temporalLayer;}
-	@Override public void setTemporalLayer(boolean temporalLayer) {this.temporalLayer = temporalLayer;}
+	@Override public List<DefaultGeoJsfView> getLayer() {if(layer==null){layer=new ArrayList<DefaultGeoJsfView>();}return layer;}
+	@Override public void setLayer(List<DefaultGeoJsfView> layer) {this.layer=layer;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	
 	public boolean equals(Object object)
 	{
-        return (object instanceof DefaultGeoJsfLayer)
-             ? id == ((DefaultGeoJsfLayer) object).getId()
+        return (object instanceof DefaultGeoJsfMap)
+             ? id == ((DefaultGeoJsfMap) object).getId()
              : (object == this);
     }
 	
