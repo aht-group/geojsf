@@ -2,7 +2,7 @@ package org.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
 
-import org.geojsf.interfaces.model.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
@@ -10,7 +10,7 @@ import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 
 public class DefaultGeoJsfViewLayer implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfViewLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
+								GeoJsfView<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;

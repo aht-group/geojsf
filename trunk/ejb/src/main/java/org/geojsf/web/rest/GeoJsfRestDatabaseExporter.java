@@ -11,7 +11,7 @@ import org.geojsf.factory.xml.openlayers.XmlViewFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
-import org.geojsf.interfaces.model.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.rest.GeoJsfDatabaseRest;
 import org.geojsf.util.query.OpenLayersQuery;
 import org.geojsf.xml.openlayers.Layers;
@@ -26,7 +26,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 									SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
 									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
 									VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
-									VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+									VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
 				implements GeoJsfDatabaseRest
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfRestDatabaseExporter.class);
@@ -50,7 +50,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
 					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
 					VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
-					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>,
+					VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
 					LT extends UtilsStatus<L,D>>
 		GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,VIEW,VL>
 		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)

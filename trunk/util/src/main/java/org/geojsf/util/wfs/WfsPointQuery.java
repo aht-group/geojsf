@@ -13,7 +13,7 @@ import org.geojsf.factory.xml.gml.XmlCoordinatesFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
-import org.geojsf.interfaces.model.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
 import org.geojsf.xml.geojsf.Coordinate;
 import org.geojsf.xml.gml.Coordinates;
@@ -28,7 +28,7 @@ import org.jdom2.xpath.XPathFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WfsPointQuery<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+public class WfsPointQuery<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
 {
 	final static Logger logger = LoggerFactory.getLogger(WfsPointQuery.class);
 	

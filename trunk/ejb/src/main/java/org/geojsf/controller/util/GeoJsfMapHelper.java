@@ -12,12 +12,12 @@ import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
-import org.geojsf.interfaces.model.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,MAP,VL>>
+public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VL>>
 			implements DmSingleSelect<LAYER>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMapHelper.class);
@@ -34,7 +34,7 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     	layerServices = new ArrayList<SERVICE>();
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,MAP,VL>>
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VL>>
     	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL> factory(final Class<SERVICE> clService,MAP view)
     {
     	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL> gjm = new GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL>(clService);
@@ -44,7 +44,7 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     	return gjm;
     }
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,MAP,VL>>
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VL>>
 	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL> build(final Class<SERVICE> clService, final Class<MAP> clView, final Class<VL> clVl, LAYER layer)
 	{
     	MAP view = null;
