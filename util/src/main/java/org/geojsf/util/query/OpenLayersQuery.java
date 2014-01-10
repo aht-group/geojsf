@@ -1,7 +1,6 @@
 package org.geojsf.util.query;
 
 import java.util.Hashtable;
-import java.util.Map;
 
 import net.sf.ahtutils.controller.util.query.StatusQuery;
 
@@ -9,7 +8,7 @@ import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.Service;
-import org.geojsf.xml.openlayers.View;
+import org.geojsf.xml.openlayers.Map;
 
 public class OpenLayersQuery
 {
@@ -17,7 +16,7 @@ public class OpenLayersQuery
 							layer,viewLayer,
 							view}
 	
-	private static Map<Key,Query> mQueries;
+	private static java.util.Map<Key,Query> mQueries;
 	
 	public static Query get(Key key, String lang)
 	{
@@ -31,7 +30,7 @@ public class OpenLayersQuery
 				case repositoryService: q.setRepository(repositoryService());break;
 				case layer: q.setLayer(layer());break;
 				case viewLayer: q.setLayer(viewLayer());break;
-				case view: q.setView(view());break;
+				case view: q.setMap(map());break;
 			}
 			mQueries.put(key, q);
 		}
@@ -76,12 +75,12 @@ public class OpenLayersQuery
 		return xml;
 	}
 	
-	public static View view()
+	public static Map map()
 	{		
 		Layer layer = new Layer();
 		layer.setCode("");
 		
-		View xml = new View();
+		Map xml = new Map();
 		xml.setCode("");
 		xml.setZoom(0);
 		xml.setX(0);

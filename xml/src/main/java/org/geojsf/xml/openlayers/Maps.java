@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}view" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://geojsf.sf.net/openlayers}map" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "view"
+    "map"
 })
 @XmlRootElement(name = "maps")
 public class Maps
@@ -41,43 +41,43 @@ public class Maps
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<View> view;
+    protected List<Map> map;
 
     /**
-     * Gets the value of the view property.
+     * Gets the value of the map property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the view property.
+     * This is why there is not a <CODE>set</CODE> method for the map property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getView().add(newItem);
+     *    getMap().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link View }
+     * {@link Map }
      * 
      * 
      */
-    public List<View> getView() {
-        if (view == null) {
-            view = new ArrayList<View>();
+    public List<Map> getMap() {
+        if (map == null) {
+            map = new ArrayList<Map>();
         }
-        return this.view;
+        return this.map;
     }
 
-    public boolean isSetView() {
-        return ((this.view!= null)&&(!this.view.isEmpty()));
+    public boolean isSetMap() {
+        return ((this.map!= null)&&(!this.map.isEmpty()));
     }
 
-    public void unsetView() {
-        this.view = null;
+    public void unsetMap() {
+        this.map = null;
     }
 
 }

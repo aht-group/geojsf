@@ -43,8 +43,8 @@ import net.sf.ahtutils.xml.status.Langs;
     "layer",
     "langs"
 })
-@XmlRootElement(name = "view")
-public class View
+@XmlRootElement(name = "map")
+public class Map
     implements Serializable
 {
 

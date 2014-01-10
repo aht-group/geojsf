@@ -38,11 +38,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link View }
+     * Create an instance of {@link Map }
      * 
      */
-    public View createView() {
-        return new View();
+    public Map createMap() {
+        return new Map();
     }
 
     /**

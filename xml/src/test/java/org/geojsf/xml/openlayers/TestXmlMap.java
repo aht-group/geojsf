@@ -11,27 +11,27 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlView extends AbstractXmlOpenlayersTest
+public class TestXmlMap extends AbstractXmlOpenlayersTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlView.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlMap.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, "view");
+		setXmlFile(dirSuffix, Map.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	View actual = create(true);
-    	View expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), View.class);
+    	Map actual = create(true);
+    	Map expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Map.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static View create(boolean withChilds)
+    public static Map create(boolean withChilds)
     {
-    	View xml = new View();
+    	Map xml = new Map();
     	xml.setId(123);
     	xml.setCode("myCode");
     	xml.setX(3.4);
@@ -53,8 +53,8 @@ public class TestXmlView extends AbstractXmlOpenlayersTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlView.initFiles();	
-		TestXmlView test = new TestXmlView();
+		TestXmlMap.initFiles();	
+		TestXmlMap test = new TestXmlMap();
 		test.save();
     }
 }
