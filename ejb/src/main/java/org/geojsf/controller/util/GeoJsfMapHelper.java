@@ -17,15 +17,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VL>>
+public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 			implements DmSingleSelect<LAYER>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMapHelper.class);
 	
-	private GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VL> fMapLayer;
+	private GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW> fMapLayer;
 	
 	private List<SERVICE> layerServices;
-	private MAP view;
+	private MAP map;
 	private PrimefacesEjbIdDataModel<LAYER> dmLayer;
 
 	private GeoJsfMapHelper(final Class<SERVICE> clService)
@@ -34,41 +34,42 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     	layerServices = new ArrayList<SERVICE>();
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VL>>
-    	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL> factory(final Class<SERVICE> clService,MAP view)
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+    	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VIEW> factory(final Class<SERVICE> clService,MAP view)
     {
-    	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL> gjm = new GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL>(clService);
-    	gjm.setView(view);
+    	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VIEW> gjm = new GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VIEW>(clService);
+    	gjm.setMap(view);
     	gjm.buildDmLayer();gjm.selectAll();
     	gjm.buildServices();
     	return gjm;
     }
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VL>>
-	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL> build(final Class<SERVICE> clService, final Class<MAP> clView, final Class<VL> clVl, LAYER layer)
+    @Deprecated
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VIEW> build(final Class<SERVICE> clService, final Class<MAP> clMap, final Class<VIEW> clVl, LAYER layer)
 	{
-    	MAP view = null;
-    	VL vl = null;
+    	MAP map = null;
+    	VIEW view = null;
 		try
 		{
-			view = clView.newInstance();
-			vl = clVl.newInstance();
-			vl.setLayer(layer);
-			vl.setOrderNo(1);
-			vl.setMap(view);
-			vl.setVisible(true);
-			view.getViews().add(vl);
+			map = clMap.newInstance();
+			view = clVl.newInstance();
+			view.setLayer(layer);
+			view.setOrderNo(1);
+			view.setMap(map);
+			view.setVisible(true);
+			map.getViews().add(view);
 		}
 		catch (InstantiationException e) {e.printStackTrace();}
 		catch (IllegalAccessException e) {e.printStackTrace();}
 
-		return factory(clService,view);
+		return factory(clService,map);
 	}
     
     private void buildDmLayer()
     {
     	List<LAYER> list = new ArrayList<LAYER>();
-    	for(VL vl: view.getViews())
+    	for(VIEW vl: map.getViews())
     	{
     		list.add(vl.getLayer());
     	}
@@ -93,12 +94,12 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     {
     	layerServices.clear();
     	List<LAYER> layers = new ArrayList<LAYER>();
-    	for(VL vl : view.getViews())
+    	for(VIEW view : map.getViews())
 		{
-			logger.info("vl.layer="+vl.getLayer().getCode()+"."+vl.getLayer().getService().getCode());
-			if(dmLayer.isSelected(vl.getLayer().getId()))
+			logger.info("vl.layer="+view.getLayer().getCode()+"."+view.getLayer().getService().getCode());
+			if(dmLayer.isSelected(view.getLayer().getId()))
 			{
-				layers.add(vl.getLayer());
+				layers.add(view.getLayer());
 			}
 		}
     	logger.info("Will build services for "+layers.size()+" layers");
@@ -120,8 +121,8 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     	logger.info("--- DEBUG END ---");
     }
 	
-    public MAP getView() {return view;}
-	public void setView(MAP view) {this.view = view;} 
+    public MAP getMap() {return map;}
+	public void setMap(MAP view) {this.map = view;} 
     
     public PrimefacesEjbIdDataModel<LAYER> getDmLayer() {return dmLayer;}
     public List<SERVICE> getLayerServices() {return layerServices;}

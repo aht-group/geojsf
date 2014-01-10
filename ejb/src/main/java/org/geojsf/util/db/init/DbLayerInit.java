@@ -12,7 +12,7 @@ import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
-import org.geojsf.factory.ejb.openlayer.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;

@@ -14,7 +14,7 @@ import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
-import org.geojsf.factory.ejb.openlayer.EjbGeoViewLayerFactory;
+import org.geojsf.factory.ejb.EjbGeoViewLayerFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
