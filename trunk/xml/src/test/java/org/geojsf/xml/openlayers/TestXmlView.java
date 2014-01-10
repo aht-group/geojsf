@@ -1,13 +1,11 @@
 package org.geojsf.xml.openlayers;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.geojsf.xml.openlayers.View;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -20,7 +18,7 @@ public class TestXmlView extends AbstractXmlOpenlayersTest
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,"view.xml");
+		setXmlFile(dirSuffix, "view");
 	}
     
     @Test

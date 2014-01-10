@@ -1,12 +1,10 @@
 package org.geojsf.xml.openlayers;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.geojsf.xml.openlayers.Repository;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -19,7 +17,7 @@ public class TestXmlRepository extends AbstractXmlOpenlayersTest
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,"repository.xml");
+		setXmlFile(dirSuffix, "repository");
 	}
     
     @Test
@@ -36,7 +34,7 @@ public class TestXmlRepository extends AbstractXmlOpenlayersTest
 
     	if(withChilds)
     	{
-    		xml.setViews(TestXmlViews.create(false));
+    		xml.setMaps(TestXmlMaps.create(false));
     		xml.setLayers(TestXmlLayers.create(false));
     		xml.getService().add(TestXmlService.create(false));xml.getService().add(TestXmlService.create(false));
     	}

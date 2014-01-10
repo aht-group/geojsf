@@ -11,6 +11,5 @@ public abstract class AbstractXmlOpenlayersTest extends AbstractGeoJsfXmlTest
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractXmlOpenlayersTest.class);	
 	
-	protected static final String rootDir = "src/test/resources/data/xml/openlayers";
-	protected static File fXml;
+	protected static final String dirSuffix = "openlayers";
 }
