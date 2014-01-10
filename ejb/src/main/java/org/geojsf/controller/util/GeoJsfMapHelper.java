@@ -9,18 +9,18 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
 
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
-import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
-import org.geojsf.interfaces.model.openlayers.GeoJsfService;
-import org.geojsf.interfaces.model.openlayers.GeoJsfView;
-import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewLayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 			implements DmSingleSelect<LAYER>
 {
-	final static Logger logger = LoggerFactory.getLogger(GeoJsfMap.class);
+	final static Logger logger = LoggerFactory.getLogger(GeoJsfMapHelper.class);
 	
 	private GeoJsfServiceFactory<L,D,SERVICE,LAYER,VIEW,VL> fMapLayer;
 	
@@ -28,16 +28,16 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
 	private VIEW view;
 	private PrimefacesEjbIdDataModel<LAYER> dmLayer;
 
-	private GeoJsfMap(final Class<SERVICE> clService)
+	private GeoJsfMapHelper(final Class<SERVICE> clService)
     {
     	fMapLayer = GeoJsfServiceFactory.factory(clService);
     	layerServices = new ArrayList<SERVICE>();
     } 
     
     public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-    	GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<SERVICE> clService,VIEW view)
+    	GeoJsfMapHelper<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<SERVICE> clService,VIEW view)
     {
-    	GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> gjm = new GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>(clService);
+    	GeoJsfMapHelper<L,D,SERVICE,LAYER,VIEW,VL> gjm = new GeoJsfMapHelper<L,D,SERVICE,LAYER,VIEW,VL>(clService);
     	gjm.setView(view);
     	gjm.buildDmLayer();gjm.selectAll();
     	gjm.buildServices();
@@ -45,7 +45,7 @@ public class GeoJsfMap <L extends UtilsLang,D extends UtilsDescription,SERVICE e
     }
     
     public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-	GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> build(final Class<SERVICE> clService, final Class<VIEW> clView, final Class<VL> clVl, LAYER layer)
+	GeoJsfMapHelper<L,D,SERVICE,LAYER,VIEW,VL> build(final Class<SERVICE> clService, final Class<VIEW> clView, final Class<VL> clVl, LAYER layer)
 	{
     	VIEW view = null;
     	VL vl = null;

@@ -1,4 +1,5 @@
-package org.geojsf.interfaces.model.openlayers;
+package org.geojsf.interfaces.model;
+
 
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;

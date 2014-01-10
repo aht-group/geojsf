@@ -1,6 +1,7 @@
-package org.geojsf.interfaces.model.openlayers;
+package org.geojsf.interfaces.model;
 
 import java.util.List;
+
 
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
