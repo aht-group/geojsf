@@ -16,8 +16,8 @@ public interface GeoJsfView<L extends UtilsLang,
 {
 	public static final String extractId = "geoJsfView";
 	
-	MAP getView();
-	void setView(MAP view);
+	MAP getMap();
+	void setMap(MAP view);
 	
 	LAYER getLayer();
 	void setLayer(LAYER layer);

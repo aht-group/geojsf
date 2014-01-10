@@ -44,7 +44,7 @@ public class XmlMapFactory implements Serializable
 		}
 		
 		
-		if(ejb.getLayer()!=null && ejb.getLayer().size()>0)
+		if(ejb.getViews()!=null && ejb.getViews().size()>0)
 		{
 			
 		}

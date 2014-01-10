@@ -27,8 +27,8 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
-	@Override public DefaultGeoJsfMap getView() {return view;}
-	@Override public void setView(DefaultGeoJsfMap view) {this.view = view;}
+	@Override public DefaultGeoJsfMap getMap() {return view;}
+	@Override public void setMap(DefaultGeoJsfMap view) {this.view = view;}
 	
 	@Override public DefaultGeoJsfLayer getLayer() {return layer;}
 	@Override public void setLayer(DefaultGeoJsfLayer layer) {this.layer = layer;}

@@ -97,7 +97,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 		{
 			Map xml = fView.build(ejb);
 			
-			for(VL vl : ejb.getLayer())
+			for(VL vl : ejb.getViews())
 			{
 				xml.getLayer().add(fLayer.build(vl));
 			}

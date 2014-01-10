@@ -18,10 +18,10 @@ public interface GeoJsfMap<L extends UtilsLang,
 						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 			extends EjbWithId,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
 {
-	public static final String extractId = "geoJsfView";
+	public static final String extractId = "geoJsfMap";
 	
-	List<VIEW> getLayer();
-	void setLayer(List<VIEW> layer);
+	List<VIEW> getViews();
+	void setViews(List<VIEW> views);
 	
 	Double getX();
 	void setX(Double x);

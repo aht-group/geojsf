@@ -131,14 +131,14 @@ public class DbViewInit <L extends UtilsLang,
 	private void iuViewLayers(VIEW view, List<Layer> layers) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException, UtilsIntegrityException
 	{
 		view = fGeo.load(cView, view);
-		logger.trace("Layer: "+view.getLayer().size());
+		logger.trace("Layer: "+view.getViews().size());
 		
-		for(VL vl : view.getLayer())
+		for(VL vl : view.getViews())
 		{
 			fGeo.rm(cViewLayer, vl);
 		}
 		view = fGeo.load(cView, view);
-		logger.trace("Layer: "+view.getLayer().size());
+		logger.trace("Layer: "+view.getViews().size());
 		
 		int i=1;
 		for(Layer layer : layers)
@@ -149,6 +149,6 @@ public class DbViewInit <L extends UtilsLang,
 			i++;
 		}
 		view = fSecurity.update(view);
-		logger.trace("Layer: "+view.getLayer().size());
+		logger.trace("Layer: "+view.getViews().size());
 	}
 }

@@ -67,6 +67,6 @@ public class OSMViewFactory
 	//	view.getLayer().add(fViewLayer.create(view, layerAhtRoads, 1, true,true));
 	//	view.getLayer().add(fViewLayer.create(view, layerAhtStreams, 2, true,true));
 	//	view.getLayer().add(fViewLayer.create(view, layerAhtRestricted, 3, true,true));
-		view.getLayer().add(fViewLayer.create(view, layerOsmBasic, 4, true,true));
+		view.getViews().add(fViewLayer.create(view, layerOsmBasic, 4, true,true));
 	}
 }

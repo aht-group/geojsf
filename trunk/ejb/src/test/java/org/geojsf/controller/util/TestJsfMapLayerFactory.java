@@ -63,7 +63,7 @@ public class TestJsfMapLayerFactory extends AbstractGeoJsfEjbTest
 		{
 			for(DefaultGeoJsfLayer layer : service.getLayer())
 			{
-				Assert.assertEquals(view.getLayer().get(i).getLayer().getCode(), layer.getCode());
+				Assert.assertEquals(view.getViews().get(i).getLayer().getCode(), layer.getCode());
 				i++;
 			}
 		}

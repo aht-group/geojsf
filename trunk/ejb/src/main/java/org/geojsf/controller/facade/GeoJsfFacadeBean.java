@@ -35,7 +35,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 		VIEW load(Class<VIEW> cView, VIEW view)
 	{
 		view = em.find(cView, view.getId());
-		view.getLayer().size();
+		view.getViews().size();
 		return view;
 	}
 
@@ -61,7 +61,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 		void rm(Class<VL> cViewLayer, VL viewLayer)
 	{
 		viewLayer = em.find(cViewLayer, viewLayer.getId());
-		viewLayer.getView().getLayer().remove(viewLayer);
+		viewLayer.getMap().getViews().remove(viewLayer);
 		em.remove(viewLayer);
 	}
 }
