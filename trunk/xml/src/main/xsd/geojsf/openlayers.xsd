@@ -62,11 +62,11 @@
     <xsd:element name="maps">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element ref="ol:view" maxOccurs="unbounded"/>
+                <xsd:element ref="ol:map" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
-    <xsd:element name="view">
+    <xsd:element name="map">
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element ref="ol:layer" maxOccurs="unbounded"/>

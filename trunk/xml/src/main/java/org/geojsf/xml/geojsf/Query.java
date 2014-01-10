@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import org.geojsf.xml.openlayers.Layer;
+import org.geojsf.xml.openlayers.Map;
 import org.geojsf.xml.openlayers.Repository;
 import org.geojsf.xml.openlayers.Service;
-import org.geojsf.xml.openlayers.View;
 
 
 /**
@@ -26,7 +26,7 @@ import org.geojsf.xml.openlayers.View;
  *         &lt;element ref="{http://geojsf.sf.net/openlayers}repository"/>
  *         &lt;element ref="{http://geojsf.sf.net/openlayers}service"/>
  *         &lt;element ref="{http://geojsf.sf.net/openlayers}layer"/>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}view"/>
+ *         &lt;element ref="{http://geojsf.sf.net/openlayers}map"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,7 +40,7 @@ import org.geojsf.xml.openlayers.View;
     "repository",
     "service",
     "layer",
-    "view"
+    "map"
 })
 @XmlRootElement(name = "query")
 public class Query
@@ -55,7 +55,7 @@ public class Query
     @XmlElement(namespace = "http://geojsf.sf.net/openlayers", required = true)
     protected Layer layer;
     @XmlElement(namespace = "http://geojsf.sf.net/openlayers", required = true)
-    protected View view;
+    protected Map map;
 
     /**
      * Gets the value of the repository property.
@@ -142,31 +142,31 @@ public class Query
     }
 
     /**
-     * Gets the value of the view property.
+     * Gets the value of the map property.
      * 
      * @return
      *     possible object is
-     *     {@link View }
+     *     {@link Map }
      *     
      */
-    public View getView() {
-        return view;
+    public Map getMap() {
+        return map;
     }
 
     /**
-     * Sets the value of the view property.
+     * Sets the value of the map property.
      * 
      * @param value
      *     allowed object is
-     *     {@link View }
+     *     {@link Map }
      *     
      */
-    public void setView(View value) {
-        this.view = value;
+    public void setMap(Map value) {
+        this.map = value;
     }
 
-    public boolean isSetView() {
-        return (this.view!= null);
+    public boolean isSetMap() {
+        return (this.map!= null);
     }
 
 }

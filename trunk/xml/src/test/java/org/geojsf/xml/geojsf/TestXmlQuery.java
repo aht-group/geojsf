@@ -10,7 +10,7 @@ import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.openlayers.TestXmlLayer;
 import org.geojsf.xml.openlayers.TestXmlRepository;
 import org.geojsf.xml.openlayers.TestXmlService;
-import org.geojsf.xml.openlayers.TestXmlView;
+import org.geojsf.xml.openlayers.TestXmlMap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -43,7 +43,7 @@ public class TestXmlQuery extends AbstractXmlGmlTest
     		xml.setService(TestXmlService.create(false));
     		xml.setRepository(TestXmlRepository.create(false));
     		xml.setLayer(TestXmlLayer.create(false));
-    		xml.setView(TestXmlView.create(false));
+    		xml.setMap(TestXmlMap.create(false));
     	}
     	
     	return xml;

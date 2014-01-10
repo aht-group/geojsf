@@ -3,7 +3,7 @@ package org.geojsf.util.wfs;
 import java.io.Serializable;
 
 import org.geojsf.xml.ogc.Distance;
-import org.geojsf.xml.openlayers.View;
+import org.geojsf.xml.openlayers.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,13 +19,13 @@ public class OpenLayers implements Serializable
 	private OlClick click;
 	private OlSearchRadius searchRadius;
 	
-	private View view;
+	private Map view;
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Constructor<<<<<<<<<<<<<<<<<<<<<<
 
 	public OpenLayers(String viewCode)
 	{
-		view = new View();
+		view = new Map();
 		view.setCode("myCode");
 		
 		click = new OlClick();
@@ -40,8 +40,8 @@ public class OpenLayers implements Serializable
 	public OlWmsLayer getWmsLayer() {return wmsLayer;}
 	public void setWmsLayer(OlWmsLayer layerOptions) {this.wmsLayer = layerOptions;}
 	
-	public View getView() {return view;}
-	public void setView(View view) {this.view = view;}
+	public Map getView() {return view;}
+	public void setView(Map view) {this.view = view;}
 	
 	public OlClick getClick() {return click;}
 	public void setClick(OlClick click) {this.click = click;}

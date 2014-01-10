@@ -34,7 +34,7 @@ public class TestXmlMaps extends AbstractXmlOpenlayersTest
 
     	if(withChilds)
     	{
-    		xml.getView().add(TestXmlView.create(false));
+    		xml.getMap().add(TestXmlMap.create(false));
     	}
     	
     	return xml;

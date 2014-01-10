@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
 
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.Layers;
-import org.geojsf.xml.openlayers.View;
+import org.geojsf.xml.openlayers.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,10 +18,10 @@ public class OlWmsLayer implements Serializable
 	
 	public static final long serialVersionUID=1;
 	
-	private Map<String,Layer> mAvailableLayer;
-	private Map<String,Boolean> mapViewShow,mapViewLegendShow;
+	private java.util.Map<String,Layer> mAvailableLayer;
+	private java.util.Map<String,Boolean> mapViewShow,mapViewLegendShow;
 	
-	private View view;
+	private Map view;
 	
 //	private EdtMultiSelectionControl layerControl;
 	private List<Layer> layers;
@@ -30,7 +29,7 @@ public class OlWmsLayer implements Serializable
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Fields<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 
-	public OlWmsLayer(Layers availableLayer, View view)
+	public OlWmsLayer(Layers availableLayer, Map view)
 	{
 		this.view=view;
 		initAvailable(availableLayer.getLayer());

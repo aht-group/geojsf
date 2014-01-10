@@ -7,7 +7,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
 import org.geojsf.factory.xml.openlayers.XmlLayerFactory;
 import org.geojsf.factory.xml.openlayers.XmlServiceFactory;
-import org.geojsf.factory.xml.openlayers.XmlViewFactory;
+import org.geojsf.factory.xml.openlayers.XmlMapFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
@@ -16,7 +16,7 @@ import org.geojsf.interfaces.rest.GeoJsfDatabaseRest;
 import org.geojsf.util.query.OpenLayersQuery;
 import org.geojsf.xml.openlayers.Layers;
 import org.geojsf.xml.openlayers.Repository;
-import org.geojsf.xml.openlayers.View;
+import org.geojsf.xml.openlayers.Map;
 import org.geojsf.xml.openlayers.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,19 +90,19 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	public Maps exportViews()
 	{
 		Maps views = new Maps();
-		XmlViewFactory fView = new XmlViewFactory(OpenLayersQuery.get(OpenLayersQuery.Key.view, null));
+		XmlMapFactory fView = new XmlMapFactory(OpenLayersQuery.get(OpenLayersQuery.Key.view, null));
 		XmlLayerFactory fLayer = new XmlLayerFactory(OpenLayersQuery.get(OpenLayersQuery.Key.viewLayer, null));
 		
 		for(VIEW ejb : fSecurity.all(cView))
 		{
-			View xml = fView.build(ejb);
+			Map xml = fView.build(ejb);
 			
 			for(VL vl : ejb.getLayer())
 			{
 				xml.getLayer().add(fLayer.build(vl));
 			}
 			
-			views.getView().add(xml);
+			views.getMap().add(xml);
 		}
 		
 		return views;

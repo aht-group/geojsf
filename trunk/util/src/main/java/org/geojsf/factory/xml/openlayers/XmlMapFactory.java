@@ -11,28 +11,28 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.xml.geojsf.Query;
-import org.geojsf.xml.openlayers.View;
+import org.geojsf.xml.openlayers.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlViewFactory implements Serializable
+public class XmlMapFactory implements Serializable
 {
-	final static Logger logger = LoggerFactory.getLogger(XmlViewFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(XmlMapFactory.class);
 	
 	public static final long serialVersionUID=1;
 	
-	private View q;
+	private Map q;
 	
-	public XmlViewFactory(Query query){this(query.getView());}
-	public XmlViewFactory(View q)
+	public XmlMapFactory(Query query){this(query.getMap());}
+	public XmlMapFactory(Map q)
 	{
 		this.q=q;
 	}
 
 	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
-		View build (GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> ejb)
+		Map build (GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> ejb)
 	{
-		View xml = new View();
+		Map xml = new Map();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
 		if(q.isSetZoom()){xml.setZoom(ejb.getZoom());}
 		if(q.isSetX()){xml.setX(ejb.getX());}
