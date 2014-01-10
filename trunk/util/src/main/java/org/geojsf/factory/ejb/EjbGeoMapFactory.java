@@ -12,37 +12,39 @@ import org.geojsf.interfaces.model.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+public class EjbGeoMapFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 {
-	final static Logger logger = LoggerFactory.getLogger(EjbGeoLayerFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(EjbGeoMapFactory.class);
 	
-	final Class<LAYER> clLayer;
+	final Class<MAP> cView;
 	private EjbLangFactory<L> fLang;
     
     public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
-    	EjbGeoLayerFactory<L,D,SERVICE,LAYER,MAP,VIEW> factory(final Class<L> cLang,final Class<LAYER> clLayer)
+    	EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW> factory(final Class<L> cLang,final Class<MAP> cView)
     {
-        return new EjbGeoLayerFactory<L,D,SERVICE,LAYER,MAP,VIEW>(cLang,clLayer);
+        return new EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW>(cLang,cView);
     }
     
-    public EjbGeoLayerFactory(final Class<L> cLang, final Class<LAYER> clLayer)
+    public EjbGeoMapFactory(final Class<L> cLang,final Class<MAP> cView)
     {
-    	fLang = EjbLangFactory.createFactory(cLang);
-        this.clLayer = clLayer;
+        this.cView = cView;
+        fLang = EjbLangFactory.createFactory(cLang);
     } 
 	
-	public LAYER build(String code, SERVICE service, String[] langKeys) throws UtilsIntegrityException
+	public MAP create(String code, int zoom, double x, double y, String[] langKeys) throws UtilsIntegrityException
 	{
-		LAYER ejb;
+		MAP ejb;
 		try
 		{
-			ejb = clLayer.newInstance();
+			ejb = cView.newInstance();
 			ejb.setName(fLang.createEmpty(langKeys));
 		}
 		catch (InstantiationException e) {throw new UtilsIntegrityException(e.getMessage());}
 		catch (IllegalAccessException e) {throw new UtilsIntegrityException(e.getMessage());}
 		ejb.setCode(code);
-		ejb.setService(service);
+		ejb.setZoom(zoom);
+		ejb.setX(x);
+		ejb.setY(y);
         return ejb;
     }
 }

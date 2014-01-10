@@ -5,8 +5,8 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.EjbGeoServiceFactory;
+import org.geojsf.factory.ejb.EjbGeoMapFactory;
 import org.geojsf.factory.ejb.EjbGeoViewFactory;
-import org.geojsf.factory.ejb.EjbGeoViewLayerFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
@@ -24,8 +24,8 @@ public class AbstractGeoJsfUtilTest
 	
 	protected EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efService;
 	protected EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efLayer;
-	protected EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efView;
-	protected EjbGeoViewLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efViewLayer;
+	protected EjbGeoMapFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efView;
+	protected EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efViewLayer;
 	
 	@BeforeClass
     public static void initLogger()
@@ -48,7 +48,7 @@ public class AbstractGeoJsfUtilTest
 	{
 		efService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		efLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
-		efView = EjbGeoViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfMap.class);
-		efViewLayer = EjbGeoViewLayerFactory.factory(DefaultGeoJsfView.class);
+		efView = EjbGeoMapFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfMap.class);
+		efViewLayer = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
 	}
 }

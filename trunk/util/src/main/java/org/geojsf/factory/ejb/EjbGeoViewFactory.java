@@ -1,7 +1,6 @@
 package org.geojsf.factory.ejb;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
@@ -12,39 +11,34 @@ import org.geojsf.interfaces.model.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoViewFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
+public class EjbGeoViewFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoViewFactory.class);
 	
-	final Class<VIEW> cView;
-	private EjbLangFactory<L> fLang;
-    
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
-    	EjbGeoViewFactory<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<L> cLang,final Class<VIEW> cView)
-    {
-        return new EjbGeoViewFactory<L,D,SERVICE,LAYER,VIEW,VL>(cLang,cView);
-    }
-    
-    public EjbGeoViewFactory(final Class<L> cLang,final Class<VIEW> cView)
-    {
-        this.cView = cView;
-        fLang = EjbLangFactory.createFactory(cLang);
-    } 
+	final Class<VIEW> clViewLayer;
 	
-	public VIEW create(String code, int zoom, double x, double y, String[] langKeys) throws UtilsIntegrityException
+    public EjbGeoViewFactory(final Class<VIEW> clViewLayer)
+    {
+        this.clViewLayer = clViewLayer;
+    } 
+    
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+    	EjbGeoViewFactory<L,D,SERVICE,LAYER,MAP,VIEW> factory(final Class<VIEW> clViewLayer)
+    {
+        return new EjbGeoViewFactory<L,D,SERVICE,LAYER,MAP,VIEW>(clViewLayer);
+    }
+	
+	public VIEW create(MAP view, LAYER layer, int orderNo, boolean visible, boolean legend) throws UtilsIntegrityException
 	{
 		VIEW ejb;
-		try
-		{
-			ejb = cView.newInstance();
-			ejb.setName(fLang.createEmpty(langKeys));
-		}
+		try {ejb = clViewLayer.newInstance();}
 		catch (InstantiationException e) {throw new UtilsIntegrityException(e.getMessage());}
 		catch (IllegalAccessException e) {throw new UtilsIntegrityException(e.getMessage());}
-		ejb.setCode(code);
-		ejb.setZoom(zoom);
-		ejb.setX(x);
-		ejb.setY(y);
+		ejb.setMap(view);
+		ejb.setLayer(layer);
+		ejb.setOrderNo(orderNo);
+		ejb.setVisible(visible);
+		ejb.setLegend(legend);
         return ejb;
     }
 }
