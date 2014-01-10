@@ -25,12 +25,12 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
-import org.geojsf.controller.util.GeoJsfMap;
+import org.geojsf.controller.util.GeoJsfMapHelper;
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.exception.UnconsistentConfgurationException;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
-import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
-import org.geojsf.interfaces.model.openlayers.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.util.GeoJsfJsLoader;
@@ -96,7 +96,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		 }
 		 else
 		 {
-			 GeoJsfMap map = (GeoJsfMap) getAttributes().get("value");
+			 GeoJsfMapHelper map = (GeoJsfMapHelper) getAttributes().get("value");
 			 serviceList = map.getLayerServices();
 			 if (serviceList.size()==0)
 			 {

@@ -13,6 +13,18 @@
     <packaging>jar</packaging>
     <name>GeoJSF - EJB</name>
    
+   	<dependencyManagement>
+		<dependencies>      	         
+			<dependency>
+				<groupId>org.geojsf</groupId>
+				<artifactId>geojsf-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+   
    <build>
       <plugins>
          <plugin>
@@ -29,18 +41,6 @@
          </plugin>
       </plugins>
    </build>
-   
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.geojsf</groupId>
-				<artifactId>geojsf-bom</artifactId>
-				<version>${project.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 		
 	<dependencies>
 		<dependency>
