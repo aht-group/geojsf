@@ -3,10 +3,10 @@ package org.geojsf.test;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.factory.ejb.openlayer.EjbGeoLayerFactory;
-import org.geojsf.factory.ejb.openlayer.EjbGeoServiceFactory;
-import org.geojsf.factory.ejb.openlayer.EjbGeoViewFactory;
-import org.geojsf.factory.ejb.openlayer.EjbGeoViewLayerFactory;
+import org.geojsf.factory.ejb.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.EjbGeoServiceFactory;
+import org.geojsf.factory.ejb.EjbGeoViewFactory;
+import org.geojsf.factory.ejb.EjbGeoViewLayerFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;

@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 
-import org.geojsf.factory.ejb.openlayer.EjbGeoLayerFactory;
-import org.geojsf.factory.ejb.openlayer.EjbGeoServiceFactory;
+import org.geojsf.factory.ejb.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.EjbGeoServiceFactory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
