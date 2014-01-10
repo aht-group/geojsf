@@ -56,8 +56,8 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 	
-	@Override public List<DefaultGeoJsfView> getLayer() {if(layer==null){layer=new ArrayList<DefaultGeoJsfView>();}return layer;}
-	@Override public void setLayer(List<DefaultGeoJsfView> layer) {this.layer=layer;}
+	@Override public List<DefaultGeoJsfView> getViews() {if(layer==null){layer=new ArrayList<DefaultGeoJsfView>();}return layer;}
+	@Override public void setViews(List<DefaultGeoJsfView> layer) {this.layer=layer;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	

@@ -34,7 +34,7 @@ public class EjbGeoViewLayerFactory<L extends UtilsLang,D extends UtilsDescripti
 		try {ejb = clViewLayer.newInstance();}
 		catch (InstantiationException e) {throw new UtilsIntegrityException(e.getMessage());}
 		catch (IllegalAccessException e) {throw new UtilsIntegrityException(e.getMessage());}
-		ejb.setView(view);
+		ejb.setMap(view);
 		ejb.setLayer(layer);
 		ejb.setOrderNo(orderNo);
 		ejb.setVisible(visible);

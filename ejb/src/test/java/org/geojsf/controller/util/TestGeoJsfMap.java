@@ -75,7 +75,7 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 			int i=service.getLayer().size()-1;
 			for(DefaultGeoJsfLayer layer : service.getLayer())
 			{
-				Assert.assertEquals(view.getLayer().get(i).getLayer().getCode(), layer.getCode());
+				Assert.assertEquals(view.getViews().get(i).getLayer().getCode(), layer.getCode());
 				i--;
 			}
 		}

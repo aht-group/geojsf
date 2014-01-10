@@ -55,9 +55,9 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
 			vl = clVl.newInstance();
 			vl.setLayer(layer);
 			vl.setOrderNo(1);
-			vl.setView(view);
+			vl.setMap(view);
 			vl.setVisible(true);
-			view.getLayer().add(vl);
+			view.getViews().add(vl);
 		}
 		catch (InstantiationException e) {e.printStackTrace();}
 		catch (IllegalAccessException e) {e.printStackTrace();}
@@ -68,7 +68,7 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     private void buildDmLayer()
     {
     	List<LAYER> list = new ArrayList<LAYER>();
-    	for(VL vl: view.getLayer())
+    	for(VL vl: view.getViews())
     	{
     		list.add(vl.getLayer());
     	}
@@ -93,7 +93,7 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     {
     	layerServices.clear();
     	List<LAYER> layers = new ArrayList<LAYER>();
-    	for(VL vl : view.getLayer())
+    	for(VL vl : view.getViews())
 		{
 			logger.info("vl.layer="+vl.getLayer().getCode()+"."+vl.getLayer().getService().getCode());
 			if(dmLayer.isSelected(vl.getLayer().getId()))

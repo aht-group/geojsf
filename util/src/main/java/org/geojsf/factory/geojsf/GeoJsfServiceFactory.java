@@ -39,7 +39,7 @@ public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription
 	 
 	public List<SERVICE> build(VIEW view)
 	{
-		return build(view.getLayer());
+		return build(view.getViews());
     }
 	
 	public List<SERVICE> build(List<VL> list)
