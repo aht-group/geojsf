@@ -11,21 +11,21 @@ import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
-import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfViewLayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,MAP,VL>>
 			implements DmSingleSelect<LAYER>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMapHelper.class);
 	
-	private GeoJsfServiceFactory<L,D,SERVICE,LAYER,VIEW,VL> fMapLayer;
+	private GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VL> fMapLayer;
 	
 	private List<SERVICE> layerServices;
-	private VIEW view;
+	private MAP view;
 	private PrimefacesEjbIdDataModel<LAYER> dmLayer;
 
 	private GeoJsfMapHelper(final Class<SERVICE> clService)
@@ -34,20 +34,20 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     	layerServices = new ArrayList<SERVICE>();
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-    	GeoJsfMapHelper<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<SERVICE> clService,VIEW view)
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,MAP,VL>>
+    	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL> factory(final Class<SERVICE> clService,MAP view)
     {
-    	GeoJsfMapHelper<L,D,SERVICE,LAYER,VIEW,VL> gjm = new GeoJsfMapHelper<L,D,SERVICE,LAYER,VIEW,VL>(clService);
+    	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL> gjm = new GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL>(clService);
     	gjm.setView(view);
     	gjm.buildDmLayer();gjm.selectAll();
     	gjm.buildServices();
     	return gjm;
     }
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
-	GeoJsfMapHelper<L,D,SERVICE,LAYER,VIEW,VL> build(final Class<SERVICE> clService, final Class<VIEW> clView, final Class<VL> clVl, LAYER layer)
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,MAP,VL>>
+	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VL> build(final Class<SERVICE> clService, final Class<MAP> clView, final Class<VL> clVl, LAYER layer)
 	{
-    	VIEW view = null;
+    	MAP view = null;
     	VL vl = null;
 		try
 		{
@@ -120,8 +120,8 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     	logger.info("--- DEBUG END ---");
     }
 	
-    public VIEW getView() {return view;}
-	public void setView(VIEW view) {this.view = view;} 
+    public MAP getView() {return view;}
+	public void setView(MAP view) {this.view = view;} 
     
     public PrimefacesEjbIdDataModel<LAYER> getDmLayer() {return dmLayer;}
     public List<SERVICE> getLayerServices() {return layerServices;}

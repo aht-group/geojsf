@@ -18,7 +18,7 @@ import org.geojsf.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
-import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfViewLayer;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.View;
@@ -30,7 +30,7 @@ public class DbViewInit <L extends UtilsLang,
 						D extends UtilsDescription,
 						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
 						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+						VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
 						VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbViewInit.class);
@@ -64,7 +64,7 @@ public class DbViewInit <L extends UtilsLang,
 					D extends UtilsDescription,
 					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
 					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+					VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
 					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 		DbViewInit<L,D,SERVICE,LAYER,VIEW,VL>
 		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<VIEW> cView,final Class<VL> cViewLayer,UtilsSecurityFacade fAcl,GeoJsfFacade fGeo)
