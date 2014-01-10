@@ -27,7 +27,7 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fService;
 	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer> fLayer;	
 	
-	private GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
+	private GeoJsfMapHelper<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
 			gsmView,gjmLayer;
 	
 	@Before
@@ -37,11 +37,11 @@ public class TestGeoJsfMap extends AbstractGeoJsfEjbTest
 		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
 		
 		view = DummyViewFactory.build();
-		gsmView = GeoJsfMap.factory(DefaultGeoJsfService.class, view);
+		gsmView = GeoJsfMapHelper.factory(DefaultGeoJsfService.class, view);
 			
 		service = fService.build("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");
 		layer = fLayer.build("basic", service,DefaultGeoJsfLang.defaultLangs);layer.setId(1);
-		gjmLayer = GeoJsfMap.build(DefaultGeoJsfService.class, DefaultGeoJsfView.class, DefaultGeoJsfViewLayer.class, layer);
+		gjmLayer = GeoJsfMapHelper.build(DefaultGeoJsfService.class, DefaultGeoJsfView.class, DefaultGeoJsfViewLayer.class, layer);
 	}
 	
 	private DefaultGeoJsfView view;

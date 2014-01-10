@@ -16,10 +16,10 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
 import org.geojsf.factory.ejb.openlayer.EjbGeoViewLayerFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
-import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
-import org.geojsf.interfaces.model.openlayers.GeoJsfService;
-import org.geojsf.interfaces.model.openlayers.GeoJsfView;
-import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewLayer;
 import org.geojsf.xml.openlayers.Layer;
 import org.geojsf.xml.openlayers.View;
 import org.geojsf.xml.openlayers.Views;

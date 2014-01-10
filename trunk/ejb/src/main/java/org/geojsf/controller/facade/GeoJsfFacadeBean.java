@@ -8,10 +8,10 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 import org.geojsf.interfaces.facade.GeoJsfFacade;
-import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
-import org.geojsf.interfaces.model.openlayers.GeoJsfService;
-import org.geojsf.interfaces.model.openlayers.GeoJsfView;
-import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewLayer;
 
 public class GeoJsfFacadeBean implements GeoJsfFacade
 {	

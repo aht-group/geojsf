@@ -10,10 +10,10 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 import org.geojsf.factory.xml.gml.XmlCoordinatesFactory;
-import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
-import org.geojsf.interfaces.model.openlayers.GeoJsfService;
-import org.geojsf.interfaces.model.openlayers.GeoJsfView;
-import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewLayer;
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
 import org.geojsf.xml.geojsf.Coordinate;
 import org.geojsf.xml.gml.Coordinates;

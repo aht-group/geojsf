@@ -5,10 +5,10 @@ import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
-import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
-import org.geojsf.interfaces.model.openlayers.GeoJsfService;
-import org.geojsf.interfaces.model.openlayers.GeoJsfView;
-import org.geojsf.interfaces.model.openlayers.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewLayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
