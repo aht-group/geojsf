@@ -10,11 +10,11 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
-public interface GeoJsfView<L extends UtilsLang,
+public interface GeoJsfMap<L extends UtilsLang,
 						D extends UtilsDescription,
 						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
 						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+						VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
 						VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 			extends EjbWithId,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
 {

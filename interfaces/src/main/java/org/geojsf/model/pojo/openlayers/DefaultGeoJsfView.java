@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
@@ -13,7 +13,7 @@ import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 
 public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfView<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
+								GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfView,DefaultGeoJsfViewLayer>
 {
 	public static enum Code {welcome}
 	

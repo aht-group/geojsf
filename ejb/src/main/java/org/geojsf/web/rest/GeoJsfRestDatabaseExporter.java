@@ -10,7 +10,7 @@ import org.geojsf.factory.xml.openlayers.XmlServiceFactory;
 import org.geojsf.factory.xml.openlayers.XmlViewFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
-import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfViewLayer;
 import org.geojsf.interfaces.rest.GeoJsfDatabaseRest;
 import org.geojsf.util.query.OpenLayersQuery;
@@ -25,7 +25,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 									D extends UtilsDescription,
 									SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
 									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-									VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+									VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
 									VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
 				implements GeoJsfDatabaseRest
 {
@@ -49,7 +49,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 					D extends UtilsDescription,
 					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
 					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+					VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
 					VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>,
 					LT extends UtilsStatus<L,D>>
 		GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,VIEW,VL>
