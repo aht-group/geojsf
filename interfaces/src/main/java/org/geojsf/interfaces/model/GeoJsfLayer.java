@@ -10,10 +10,10 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
 public interface GeoJsfLayer<L extends UtilsLang,
 							D extends UtilsDescription,
-							SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VL>,
-							LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VL>,
-							MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VL>,
-							VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,MAP,VL>>
+							SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,
+							LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
+							MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
+							VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 			extends EjbWithId,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
 {
 	public static final String extractId = "geoJsfLayer";

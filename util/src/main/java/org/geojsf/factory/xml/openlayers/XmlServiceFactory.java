@@ -8,7 +8,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
-import org.geojsf.interfaces.model.GeoJsfViewLayer;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.openlayers.Service;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class XmlServiceFactory implements Serializable
 		this.q=q;
 	}
 
-	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfViewLayer<L,D,SERVICE,LAYER,VIEW,VL>>
+	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
 		Service build (GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL> ejb)
 	{
 		Service xml = new Service();
