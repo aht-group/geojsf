@@ -1,7 +1,6 @@
 package org.geojsf.component;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,8 +18,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
-import org.geojsf.controller.util.GeoJsfMap;
-import org.geojsf.interfaces.model.openlayers.GeoJsfLayer;
+import org.geojsf.controller.util.GeoJsfMapHelper;
+import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
@@ -45,7 +45,7 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 
 	final static Logger logger = LoggerFactory.getLogger(LayerSwitcher.class);
 	public UISelectMany selector;
-	private GeoJsfMap geoJsfMap;
+	private GeoJsfMapHelper geoJsfMap;
 	
 	private java.util.Map<String, String> availableLayers;
 	private String[] selectedArray;
@@ -57,7 +57,7 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 	
 	public String init()
 	{			
-		geoJsfMap = (GeoJsfMap) getAttributes().get("value");
+		geoJsfMap = (GeoJsfMapHelper) getAttributes().get("value");
 		availableLayers = new HashMap<String, String>();
 		
 		logger.info("Loading Layer options.");
@@ -132,12 +132,12 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 			
 	
 
-	public GeoJsfMap<DefaultGeoJsfLang, DefaultGeoJsfDescription, DefaultGeoJsfService, DefaultGeoJsfLayer, DefaultGeoJsfView, DefaultGeoJsfViewLayer> getGeoJsfMap() {
+	public GeoJsfMapHelper<DefaultGeoJsfLang, DefaultGeoJsfDescription, DefaultGeoJsfService, DefaultGeoJsfLayer, DefaultGeoJsfView, DefaultGeoJsfViewLayer> getGeoJsfMap() {
 		return geoJsfMap;
 	}
 
 	public void setGeoJsfMap(
-			GeoJsfMap<DefaultGeoJsfLang, DefaultGeoJsfDescription, DefaultGeoJsfService, DefaultGeoJsfLayer, DefaultGeoJsfView, DefaultGeoJsfViewLayer> geoJsfMap) {
+			GeoJsfMapHelper<DefaultGeoJsfLang, DefaultGeoJsfDescription, DefaultGeoJsfService, DefaultGeoJsfLayer, DefaultGeoJsfView, DefaultGeoJsfViewLayer> geoJsfMap) {
 		this.geoJsfMap = geoJsfMap;
 	}
 	
