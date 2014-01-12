@@ -17,21 +17,21 @@ public class DummyViewFactory
 {
 	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
 	private EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fLayer;
-	private EjbGeoMapFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fView;
-	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fViewLayer;
+	private EjbGeoMapFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fMap;
+	private EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fView;
 	
 	public static DefaultGeoJsfService serviceOsm,serviceAht;
 	private DefaultGeoJsfLayer layerOsmBasic,layerAhtRoads,layerAhtStreams,layerAhtRestricted;
-	private DefaultGeoJsfMap view;
+	private DefaultGeoJsfMap map;
 	
-	public DefaultGeoJsfMap getView() {return view;}
+	public DefaultGeoJsfMap getMap() {return map;}
 
 	public DummyViewFactory() throws UtilsIntegrityException
 	{
 		fService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		fLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
-		fView = EjbGeoMapFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfMap.class);
-		fViewLayer = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
+		fMap = EjbGeoMapFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfMap.class);
+		fView = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
 		
 		initServices();
 		initLayer();
@@ -43,7 +43,15 @@ public class DummyViewFactory
 		DummyViewFactory f = null;
 		try {f = new DummyViewFactory();}
 		catch (UtilsIntegrityException e) {e.printStackTrace();}
-		return f.getView();
+		return f.getMap();
+	}
+	
+	public static DefaultGeoJsfView buildView()
+	{
+		DummyViewFactory f = null;
+		try {f = new DummyViewFactory();}
+		catch (UtilsIntegrityException e) {e.printStackTrace();}
+		return new DefaultGeoJsfView();
 	}
 	
 	private void initServices() throws UtilsIntegrityException
@@ -54,7 +62,6 @@ public class DummyViewFactory
 	
 	private void initLayer() throws UtilsIntegrityException
 	{
-	
 		layerOsmBasic = fLayer.build("basic", serviceOsm,DefaultGeoJsfLang.defaultLangs);layerOsmBasic.setId(1);
 		layerAhtRoads = fLayer.build("roads",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRoads.setId(2);
 		layerAhtStreams = fLayer.build("streams",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtStreams.setId(3);
@@ -63,10 +70,10 @@ public class DummyViewFactory
 	
 	private void initViews() throws UtilsIntegrityException
 	{
-		view = fView.create("view",5,0,0,DefaultGeoJsfLang.defaultLangs);
-		view.getViews().add(fViewLayer.create(view, layerAhtRoads, 1, true,true));
-		view.getViews().add(fViewLayer.create(view, layerAhtStreams, 2, true,true));
-		view.getViews().add(fViewLayer.create(view, layerAhtRestricted, 3, true,true));
-		view.getViews().add(fViewLayer.create(view, layerOsmBasic, 4, true,true));
+		map = fMap.create("defaultMap",5,0,0,DefaultGeoJsfLang.defaultLangs);map.setId(1);
+		map.getViews().add(fView.create(map, layerAhtRoads, 1, true,true));
+		map.getViews().add(fView.create(map, layerAhtStreams, 2, true,true));
+		map.getViews().add(fView.create(map, layerAhtRestricted, 3, true,true));
+		map.getViews().add(fView.create(map, layerOsmBasic, 4, true,true));
 	}
 }
