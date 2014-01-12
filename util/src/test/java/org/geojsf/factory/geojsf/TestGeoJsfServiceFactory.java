@@ -6,12 +6,14 @@ import java.util.List;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
+import org.geojsf.test.GeoJsfUtilsTestBootstrap;
+import org.geojsf.util.GeojsfDatastructureDebugger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

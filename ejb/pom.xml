@@ -43,10 +43,21 @@
    </build>
 		
 	<dependencies>
+		<!-- Logging -->
 		<dependency>
    	   		<groupId>org.slf4j</groupId>
    	   		<artifactId>slf4j-api</artifactId>
    	   	</dependency>
+   	   	<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
    	   	
    	   	<!-- XML -->
 		<dependency>
@@ -150,11 +161,6 @@
 		<dependency>  
 			<groupId>org.primefaces</groupId>  
 			<artifactId>primefaces</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

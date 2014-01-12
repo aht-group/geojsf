@@ -13,6 +13,10 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 
+/**
+ * @deprecated Use {@link DummyViewFactory} instead.  
+ */
+@Deprecated
 public class OSMViewFactory
 {
 	private EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
@@ -54,7 +58,6 @@ public class OSMViewFactory
 	
 	private void initLayer() throws UtilsIntegrityException
 	{
-	
 		layerOsmBasic = fLayer.build("basic", serviceOsm,DefaultGeoJsfLang.defaultLangs);layerOsmBasic.setId(1);
 		layerAhtRoads = fLayer.build("roads",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtRoads.setId(2);
 		layerAhtStreams = fLayer.build("streams",serviceAht,DefaultGeoJsfLang.defaultLangs);layerAhtStreams.setId(3);
