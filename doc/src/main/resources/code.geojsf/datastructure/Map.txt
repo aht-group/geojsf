@@ -1,0 +1,11 @@
+public class DefaultGeoJsfMap
+{
+	private long id;	
+	private String code;
+	private Double x,y;
+	private Integer zoom;	
+	private List<DefaultGeoJsfView> layer;
+	private Map<String,DefaultGeoJsfLang> name;
+	private Map<String,DefaultGeoJsfDescription> desc;
+	...
+}

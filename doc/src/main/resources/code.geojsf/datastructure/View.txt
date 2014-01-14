@@ -1,0 +1,9 @@
+public class DefaultGeoJsfView
+{
+	private long id;
+	private DefaultGeoJsfMap view;
+	private DefaultGeoJsfLayer layer;
+	private int orderNo;
+	private Boolean visible,legend;
+	...
+}
