@@ -1,0 +1,8 @@
+public class DefaultGeoJsfService
+{
+	private long id;
+	private String code;
+	private String url;
+	private List<DefaultGeoJsfLayer> layer;
+	...
+}

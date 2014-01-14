@@ -1,0 +1,10 @@
+public class DefaultGeoJsfLayer
+{
+	private long id;
+	private DefaultGeoJsfService service;
+	private String code;
+	private boolean temporalLayer;
+	private Map<String,DefaultGeoJsfLang> name;
+	private Map<String,DefaultGeoJsfDescription> desc;
+	...
+}
