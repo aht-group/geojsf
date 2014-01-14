@@ -25,14 +25,19 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
-import org.geojsf.controller.util.GeoJsfMapHelper;
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.exception.UnconsistentConfgurationException;
+import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
+import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
+import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.xml.gml.Coordinates;
 import org.slf4j.Logger;
@@ -46,7 +51,7 @@ import org.slf4j.LoggerFactory;
 public class Map extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
-	private List<GeoJsfService> serviceList;
+	private List<DefaultGeoJsfService> serviceList;
 	
 	private Coordinates coords = new Coordinates();
 	
@@ -71,7 +76,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String fallback() throws Exception
 	{
-		 serviceList = new ArrayList<GeoJsfService>();
+		 serviceList = new ArrayList<DefaultGeoJsfService>();
 		 logger.debug("Checking value existence ...");
 		 if (getAttributes().get("value")==null)
 		 {
@@ -96,8 +101,11 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		 }
 		 else
 		 {
-			 GeoJsfMapHelper map = (GeoJsfMapHelper) getAttributes().get("value");
-			 serviceList = map.getLayerServices();
+		//	 GeoJsfMapHelper map = (GeoJsfMapHelper) getAttributes().get("value");
+			 DefaultGeoJsfMap map = (DefaultGeoJsfMap) getAttributes().get("value");
+			 GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
+			 fService = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
+			 serviceList = fService.build(map);
 			 if (serviceList.size()==0)
 			 {
 				 noLayersGiven = true;
@@ -420,9 +428,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	public Coordinates getCoords() {return coords;}
 	public void setCoords(Coordinates coords) {this.coords = coords;}
 	
-	public List<GeoJsfService> getServiceList() {return serviceList;}
-	public void setServiceList(ArrayList<GeoJsfService> serviceList) {this.serviceList = serviceList;}
-
 	public Date getTimeInfo() {
 		return timeInfo;
 	}
@@ -430,4 +435,7 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 	public void setTimeInfo(Date timeInfo) {
 		this.timeInfo = timeInfo;
 	}
+
+	public List<DefaultGeoJsfService> getServiceList() {return serviceList;}
+	public void setServiceList(List<DefaultGeoJsfService> serviceList) {this.serviceList = serviceList;}
 }
