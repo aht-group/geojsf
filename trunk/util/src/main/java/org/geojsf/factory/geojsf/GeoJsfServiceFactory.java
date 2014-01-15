@@ -15,7 +15,7 @@ import org.geojsf.interfaces.model.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
+public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfServiceFactory.class);
 	
@@ -31,21 +31,27 @@ public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription
     	orderedServices = new ArrayList<SERVICE>();
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
-    	GeoJsfServiceFactory<L,D,SERVICE,LAYER,VIEW,VL> factory(final Class<SERVICE> clService)
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+    	GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW> factory(final Class<SERVICE> clService)
     {
-        return new GeoJsfServiceFactory<L,D,SERVICE,LAYER,VIEW,VL>(clService);
+        return new GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW>(clService);
     }
 	 
-	public List<SERVICE> build(VIEW view)
+	public List<SERVICE> build(MAP map)
 	{
-		return build(view.getViews());
+		return build(map.getViews());
     }
 	
-	public List<SERVICE> build(List<VL> list)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<SERVICE> buildI(GeoJsfMap map)
+	{
+		return build(map.getViews());
+    }
+	
+	public List<SERVICE> build(List<VIEW> list)
 	{
 		List<LAYER> tmp = new ArrayList<LAYER>();
-		for(VL vl : list)
+		for(VIEW vl : list)
 		{
 			tmp.add(vl.getLayer());
 		}
