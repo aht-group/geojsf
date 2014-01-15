@@ -48,7 +48,8 @@ import org.slf4j.LoggerFactory;
 	@ResourceDependency(library = "geojsf", name = "geojsf.css", target = "head")})
 @FacesComponent(value="org.geojsf.component.Map")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Map extends UINamingContainer implements ClientBehaviorHolder
+public class Map
+	   extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
 	private List<DefaultGeoJsfService> serviceList;
@@ -73,7 +74,6 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		super.processEvent(event);
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String fallback() throws Exception
 	{
 		 serviceList = new ArrayList<DefaultGeoJsfService>();
@@ -101,11 +101,14 @@ public class Map extends UINamingContainer implements ClientBehaviorHolder
 		 }
 		 else
 		 {
-		//	 GeoJsfMapHelper map = (GeoJsfMapHelper) getAttributes().get("value");
-			 DefaultGeoJsfMap map = (DefaultGeoJsfMap) getAttributes().get("value");
+			 @SuppressWarnings("rawtypes")
+			 GeoJsfMap map = (GeoJsfMap)getAttributes().get("value");
+			 
 			 GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
 			 fService = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
-			 serviceList = fService.build(map);
+			 
+			 serviceList = fService.buildI(map);
+			 
 			 if (serviceList.size()==0)
 			 {
 				 noLayersGiven = true;
