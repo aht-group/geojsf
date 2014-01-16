@@ -13,6 +13,7 @@ import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.model.SampleSpatialEntity;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestWfsPointQuery extends AbstractGeoJsfUtilTest
@@ -27,11 +28,20 @@ public class TestWfsPointQuery extends AbstractGeoJsfUtilTest
 								(null,wfsPp,null,SampleSpatialEntity.class);
 	}
 	
-	@Test
-	public void test()
+	@Ignore @Test
+	public void geometryColumn()
 	{
 		String expected = "the_geom";
 		String actual = wfsPq.getGeometryColumnName(SampleSpatialEntity.class);
 		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void propertyFields()
+	{
+		String[] expecteds = {"withoutColumn","withColumnName"};
+		String[] actuals = wfsPq.getPropertyColumnNames(SampleSpatialEntity.class);
+		Assert.assertEquals(2, actuals.length);
+		Assert.assertArrayEquals(expecteds, actuals);
 	}
 }

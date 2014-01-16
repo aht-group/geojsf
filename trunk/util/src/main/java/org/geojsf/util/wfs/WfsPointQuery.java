@@ -2,6 +2,7 @@ package org.geojsf.util.wfs;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,18 +47,19 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 	
 	private Class<T> type;
 	private String geometryColumn;
-	
+	private String[] queryProperties;
 		
-	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<T> type)
+	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<T> clazz)
 	{
 		this.fGeo=fGeo;
 		this.propertyProvider=propertyProvider;
 		this.layer=layer;
-		this.type=type;
+		this.type=clazz;
 		logger.info("Using URL:"+propertyProvider.getGeoServerRestUrl()+" with layer:"+layer);
 		
 		nsGml = Namespace.getNamespace("gml", "http://www.opengis.net/gml");
 		geometryColumn = getGeometryColumnName(type);
+		queryProperties = getPropertyColumnNames(type);
 	}
 	
 	protected String getGeometryColumnName(Class<T> clazz)
@@ -80,6 +82,32 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 		return column.name();
 	}
 	
+	protected String[] getPropertyColumnNames(Class<T> clazz)
+	{
+		List<String> propertyFields = new ArrayList<String>();
+	
+		for(Field field : clazz.getDeclaredFields())
+		{
+			if(!field.getName().equals("geometry") && !field.getName().equals("id") && !Modifier.isStatic(field.getModifiers()))
+			{
+				Annotation annotation = field.getAnnotation(Column.class);
+				if(annotation==null)
+				{
+					propertyFields.add(field.getName());
+				}
+				else
+				{
+					Column column = (Column)annotation;
+					propertyFields.add(column.name());
+				}
+			}
+		}
+		String[] result = new String[propertyFields.size()];
+		propertyFields.toArray(result);
+		
+		return result;
+	}
+	
 	public List<T> execute(Coordinate coordinate, Distance distance)
 	{
 		return execute(XmlCoordinatesFactory.build(coordinate),distance);
@@ -88,8 +116,7 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 	public List<T> execute(Coordinates coordinates, Distance distance)
 	{				
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
-													  propertyProvider.getProperties(type),
-													  geometryColumn,
+													  queryProperties, geometryColumn,
 													  coordinates,distance);
 		
 		WfsHttpRequest r = new WfsHttpRequest(propertyProvider.getGeoServerRestUrl()+"/wcs");

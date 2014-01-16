@@ -156,7 +156,7 @@
 		<dependency>
          <groupId>org.hibernate.javax.persistence</groupId>
          <artifactId>hibernate-jpa-2.0-api</artifactId>
-         <scope>test</scope>
+         <scope>provided</scope>
       </dependency>
       <dependency>
             <groupId>org.hibernate</groupId>
@@ -167,7 +167,6 @@
       <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-spatial</artifactId>
-            <version>4.0-M1</version>
             <scope>test</scope>
             <exclusions>
 	         	<exclusion>
