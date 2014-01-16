@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
+import org.geojsf.test.model.SampleSpatialEntity;
 import org.jdom2.Namespace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,5 +45,17 @@ public class GeoJsfGetFeaturePropertyProvider implements WfsGetFeaturePropertyPr
 	public Namespace getNameSpace()
 	{
 		return Namespace.getNamespace("geojsf", "http://www.geojsf.org");
+	}
+
+	@Override
+	public String getGeometryColumn(Class<?> type)
+	{
+		return "the_geom";
+	}
+
+	@Override
+	public String getGeoServerRestUrl()
+	{
+		return "http://www.geojsf.org/geoserver";
 	}
 }

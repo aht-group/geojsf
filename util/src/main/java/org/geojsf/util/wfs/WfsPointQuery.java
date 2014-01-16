@@ -7,12 +7,12 @@ import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 import org.geojsf.factory.xml.gml.XmlCoordinatesFactory;
+import org.geojsf.interfaces.model.EjbWithGeometry;
 import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
 import org.geojsf.xml.geojsf.Coordinate;
@@ -28,38 +28,42 @@ import org.jdom2.xpath.XPathFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WfsPointQuery<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
+public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
 {
 	final static Logger logger = LoggerFactory.getLogger(WfsPointQuery.class);
 	
-	private String url;
 	private LAYER layer;
 	private WfsGetFeaturePropertyProvider propertyProvider;
 	private UtilsIdFacade fGeo;
 	
 	private Namespace nsGml;
+	
+	private Class<T> type;
 		
-	public WfsPointQuery(UtilsIdFacade fGeo, String url, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer)
+	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<T> type)
 	{
 		this.fGeo=fGeo;
-		this.url=url;
-		this.layer=layer;
 		this.propertyProvider=propertyProvider;
-		logger.info("Using URL:"+url+" with layer:"+layer);
+		this.layer=layer;
+		this.type=type;
+		logger.info("Using URL:"+propertyProvider.getGeoServerRestUrl()+" with layer:"+layer);
 		
 		nsGml = Namespace.getNamespace("gml", "http://www.opengis.net/gml");
 	}
 	
-	public <T extends EjbWithId> List<T> execute(Class<T> type, Coordinate coordinate, Distance distance)
+	public List<T> execute(Coordinate coordinate, Distance distance)
 	{
-		return execute(type,XmlCoordinatesFactory.build(coordinate),distance);
+		return execute(XmlCoordinatesFactory.build(coordinate),distance);
 	}
 	
-	public <T extends EjbWithId> List<T> execute(Class<T> type, Coordinates coordinates, Distance distance)
+	public List<T> execute(Coordinates coordinates, Distance distance)
 	{				
-		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),propertyProvider.getProperties(type),coordinates,distance);
+		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
+													  propertyProvider.getProperties(type),
+													  propertyProvider.getGeometryColumn(type),
+													  coordinates,distance);
 		
-		WfsHttpRequest r = new WfsHttpRequest(url+"/wcs");
+		WfsHttpRequest r = new WfsHttpRequest(propertyProvider.getGeoServerRestUrl()+"/wcs");
 		
 		Document doc = r.request(gf);
 		
@@ -67,7 +71,6 @@ public class WfsPointQuery<L extends UtilsLang,D extends UtilsDescription,SERVIC
 		StringBuffer xpath = new StringBuffer();
 		xpath.append("//gml:featureMember");
 		xpath.append("/").append(nsQuery.getPrefix()).append(":").append(layer.getCode());
-//		xpath.append("/").append(nsQuery.getPrefix()).append(":").append("fid");
 		
 		logger.info("XPATH: "+xpath.toString());
 		XPathExpression<Element> xpe = XPathFactory.instance().compile(xpath.toString(),Filters.element(), null,nsQuery,nsGml);

@@ -152,6 +152,43 @@
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
 		</dependency>
+		
+		<dependency>
+         <groupId>org.hibernate.javax.persistence</groupId>
+         <artifactId>hibernate-jpa-2.0-api</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.1.0.Final</version>
+            <scope>test</scope>
+      </dependency>
+      <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-spatial</artifactId>
+            <version>4.0-M1</version>
+            <scope>test</scope>
+            <exclusions>
+	         	<exclusion>
+	         		<groupId>org.hibernate</groupId>
+	         		<artifactId>hibernate-core</artifactId>
+	         	</exclusion>
+	         	<exclusion>
+	         		<groupId>dom4j</groupId>
+	         		<artifactId>dom4j</artifactId>
+	         	</exclusion>
+	         	<exclusion>
+	         		<groupId>xerces</groupId>
+	         		<artifactId>xercesImpl</artifactId>
+	         	</exclusion>
+	         	<exclusion>
+	         		<groupId>org.jboss.logging</groupId>
+	         		<artifactId>jboss-logging</artifactId>
+	         	</exclusion>
+	         </exclusions>
+        </dependency>
+		
 		<dependency>
 			<groupId>com.vividsolutions</groupId>
 			<artifactId>jts</artifactId>

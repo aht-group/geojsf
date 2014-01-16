@@ -10,6 +10,7 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
+import org.geojsf.test.model.SampleSpatialEntity;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.gml.Coordinates;
 import org.geojsf.xml.ogc.Distance;
@@ -46,7 +47,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		distance.setUnits("degree");
 		distance.setValue("1.074");
 		
-		GetFeature gf = PointQueryFactory.cGetFeature(config.getString("geoserver.test.pointquery.layer"),properties,coordinates,distance);
+		GetFeature gf = PointQueryFactory.cGetFeature(config.getString("geoserver.test.pointquery.layer"),properties,"the_geom",coordinates,distance);
 		
 		WfsHttpRequest r = new WfsHttpRequest(config.getString(GeoServerConfigKeys.restUrl)+"/wcs");
 		JDomUtil.debug(r.request(gf));
@@ -58,7 +59,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 //ahtutils.highlight:point
 		UtilsIdFacade fGeo = getGeoFacade();
 		
-		String restUrl = "http://www.geojsf.org/geoserver";
+		
 		
 		Coordinates coordinates = new Coordinates();
 		coordinates.setValue("5.4,6.2");
@@ -67,8 +68,8 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		distance.setUnits("degree");
 		distance.setValue("1.074");
 		
-		WfsPointQuery pq = new WfsPointQuery(fGeo,restUrl,new GeoJsfGetFeaturePropertyProvider(),layer);
-		List<SampleSpatialEntity> list = pq.execute(SampleSpatialEntity.class,coordinates,distance);
+		WfsPointQuery pq = new WfsPointQuery(fGeo,new GeoJsfGetFeaturePropertyProvider(),layer,SampleSpatialEntity.class);
+		List<SampleSpatialEntity> list = pq.execute(coordinates,distance);
 //ahtutils.highlight:point
 	}
 	
