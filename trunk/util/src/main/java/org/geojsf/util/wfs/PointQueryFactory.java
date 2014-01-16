@@ -25,31 +25,28 @@ public class PointQueryFactory
 		
 	}
 	
-	public GetFeature createGetFeature(String typeName, List<String> properties)
+	public GetFeature createGetFeature(String typeName, List<String> properties, String geometryColumn)
 	{
 		GetFeature gFeature = new GetFeature();
 		gFeature.setService("WFS");
 		gFeature.setVersion("1.0.0");
 		gFeature.setOutputFormat("GML2");
 		
-		gFeature.setQuery(createQuery(typeName,properties));
+		gFeature.setQuery(createQuery(typeName,properties,geometryColumn));
 		
 		return gFeature;
 	}
 	
-
-    /**
-     * @depreciated
-     */	
-	public static GetFeature cGetFeature(String typeName, List<String> properties, Coordinates coordinates, Distance distance)
+	@Deprecated
+	public static GetFeature cGetFeature(String typeName, List<String> properties, String geometryColumn, Coordinates coordinates, Distance distance)
 	{
 		PointQueryFactory pwf = new PointQueryFactory();
 		pwf.setCoordinates(coordinates);
 		pwf.setDistance(distance);
-		return pwf.createGetFeature(typeName, properties);
+		return pwf.createGetFeature(typeName, properties, geometryColumn);
 	}
 	
-	private Query createQuery(String typeName, List<String> properties)
+	private Query createQuery(String typeName, List<String> properties, String geometryColumn)
 	{
 		Query q = new Query();
 		q.setTypeName(typeName);
@@ -61,24 +58,24 @@ public class PointQueryFactory
 			q.getPropertyName().add(pn);
 		}
 		
-		q.setFilter(createFilter());
+		q.setFilter(createFilter(geometryColumn));
 		
 		return q;
 	}
 	
-	private Filter createFilter()
+	private Filter createFilter(String geometryColumn)
 	{
 		Filter filter = new Filter();
-		filter.setDWithin(createDWithin(distance));
+		filter.setDWithin(createDWithin(distance,geometryColumn));
 		return filter;
 	}
 	
-	private DWithin createDWithin(Distance distance)
+	private DWithin createDWithin(Distance distance, String geometryColumn)
 	{
 		DWithin dw = new DWithin();
 		
 		PropertyName pn = new PropertyName();
-		pn.setValue("the_geom");
+		pn.setValue(geometryColumn);
 		dw.setPropertyName(pn);
 		
 		dw.setPoint(createPoint());
