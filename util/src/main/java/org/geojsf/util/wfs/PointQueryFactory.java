@@ -1,7 +1,5 @@
 package org.geojsf.util.wfs;
 
-import java.util.List;
-
 import org.geojsf.xml.gml.Coordinates;
 import org.geojsf.xml.gml.Point;
 import org.geojsf.xml.ogc.DWithin;
@@ -25,7 +23,15 @@ public class PointQueryFactory
 		
 	}
 	
-	public GetFeature createGetFeature(String typeName, List<String> properties, String geometryColumn)
+	public static GetFeature cGetFeature(String typeName, String[] properties, String geometryColumn, Coordinates coordinates, Distance distance)
+	{
+		PointQueryFactory pwf = new PointQueryFactory();
+		pwf.setCoordinates(coordinates);
+		pwf.setDistance(distance);
+		return pwf.createGetFeature(typeName, properties, geometryColumn);
+	}
+	
+	private GetFeature createGetFeature(String typeName, String[] properties, String geometryColumn)
 	{
 		GetFeature gFeature = new GetFeature();
 		gFeature.setService("WFS");
@@ -36,17 +42,10 @@ public class PointQueryFactory
 		
 		return gFeature;
 	}
+
+
 	
-	@Deprecated
-	public static GetFeature cGetFeature(String typeName, List<String> properties, String geometryColumn, Coordinates coordinates, Distance distance)
-	{
-		PointQueryFactory pwf = new PointQueryFactory();
-		pwf.setCoordinates(coordinates);
-		pwf.setDistance(distance);
-		return pwf.createGetFeature(typeName, properties, geometryColumn);
-	}
-	
-	private Query createQuery(String typeName, List<String> properties, String geometryColumn)
+	private Query createQuery(String typeName, String[] properties, String geometryColumn)
 	{
 		Query q = new Query();
 		q.setTypeName(typeName);
@@ -54,7 +53,7 @@ public class PointQueryFactory
 		for(String s : properties)
 		{
 			PropertyName pn = new PropertyName();
-			pn.setValue(s);
+			pn.setValue(s.toLowerCase());
 			q.getPropertyName().add(pn);
 		}
 		

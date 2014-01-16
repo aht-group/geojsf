@@ -1,6 +1,5 @@
 package org.geojsf.util.wfs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
@@ -37,8 +36,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	
 	public void pointQuery()
 	{
-		List<String> properties = new ArrayList<String>();
-		properties.add("city_name");
+		String[] properties = {"city_name"};
 		
 		Coordinates coordinates = new Coordinates();
 		coordinates.setValue("18.337941894531248,13.19704345703125");
@@ -58,8 +56,6 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	{
 //ahtutils.highlight:point
 		UtilsIdFacade fGeo = getGeoFacade();
-		
-		
 		
 		Coordinates coordinates = new Coordinates();
 		coordinates.setValue("5.4,6.2");

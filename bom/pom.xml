@@ -105,6 +105,13 @@
 				<artifactId>jts</artifactId>
 				<version>1.12</version>
 			</dependency>
+			
+			<!-- Hibernate -->
+			<dependency>
+	            <groupId>org.hibernate</groupId>
+	            <artifactId>hibernate-spatial</artifactId>
+	            <version>4.0-M1</version>
+	        </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

@@ -16,11 +16,17 @@ public class SampleSpatialEntity implements Serializable,EjbWithGeometry<Point>
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Fields<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	
 	private long id;
-	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>Getters and Setters<<<<<<<<<<<<<<<<<<<<<<<<<<<	
-	
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
+	
+	private String withoutColumn;
+	public String getWithoutColumn() {return withoutColumn;}
+	public void setWithoutColumn(String withoutColumn) {this.withoutColumn = withoutColumn;}
+	
+	@Column(name="withColumnName")
+	private String withColumn;
+	public String getWithColumn() {return withColumn;}
+	public void setWitColumn(String withColumn) {this.withColumn = withColumn;}
 	
 	@Type(type = "org.hibernate.spatial.GeometryType")
 	@Column(name="the_geom", columnDefinition="Geometry")
