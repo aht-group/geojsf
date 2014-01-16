@@ -48,12 +48,6 @@ public class GeoJsfGetFeaturePropertyProvider implements WfsGetFeaturePropertyPr
 	}
 
 	@Override
-	public String getGeometryColumn(Class<?> type)
-	{
-		return "the_geom";
-	}
-
-	@Override
 	public String getGeoServerRestUrl()
 	{
 		return "http://www.geojsf.org/geoserver";

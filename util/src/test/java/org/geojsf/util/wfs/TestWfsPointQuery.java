@@ -11,6 +11,7 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.model.SampleSpatialEntity;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,6 +30,8 @@ public class TestWfsPointQuery extends AbstractGeoJsfUtilTest
 	@Test
 	public void test()
 	{
-
+		String expected = "the_geom";
+		String actual = wfsPq.getGeometryColumnName(SampleSpatialEntity.class);
+		Assert.assertEquals(expected, actual);
 	}
 }

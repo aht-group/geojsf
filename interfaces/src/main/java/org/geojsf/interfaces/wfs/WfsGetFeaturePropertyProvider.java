@@ -12,6 +12,5 @@ public interface WfsGetFeaturePropertyProvider
 	Namespace getNameSpace();
 
 	List<String> getProperties(Class<?> type);
-	String getGeometryColumn(Class<?> type);
 }
 //ahtutils.highlight:interface
