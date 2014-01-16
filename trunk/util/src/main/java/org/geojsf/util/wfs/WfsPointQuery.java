@@ -1,13 +1,18 @@
 package org.geojsf.util.wfs;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
 
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
+import org.geojsf.exception.GeoJsfDeveloperException;
 import org.geojsf.factory.xml.gml.XmlCoordinatesFactory;
 import org.geojsf.interfaces.model.EjbWithGeometry;
 import org.geojsf.interfaces.model.GeoJsfLayer;
@@ -28,6 +33,7 @@ import org.jdom2.xpath.XPathFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("rawtypes")
 public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
 {
 	final static Logger logger = LoggerFactory.getLogger(WfsPointQuery.class);
@@ -39,6 +45,8 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 	private Namespace nsGml;
 	
 	private Class<T> type;
+	private String geometryColumn;
+	
 		
 	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<T> type)
 	{
@@ -49,6 +57,27 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 		logger.info("Using URL:"+propertyProvider.getGeoServerRestUrl()+" with layer:"+layer);
 		
 		nsGml = Namespace.getNamespace("gml", "http://www.opengis.net/gml");
+		geometryColumn = getGeometryColumnName(type);
+	}
+	
+	protected String getGeometryColumnName(Class<T> clazz)
+	{
+		Field geometryField=null;
+		for(Field field : clazz.getDeclaredFields())
+		{
+			if(field.getName().equals("geometry"))
+			{
+				geometryField = field;
+				break;
+			}
+		}
+		if(geometryField==null){throw new GeoJsfDeveloperException("Class "+clazz.getName()+" does not provide a field \"geometry\"");}
+		
+		Annotation annotation = geometryField.getAnnotation(Column.class);
+		if(annotation==null){throw new GeoJsfDeveloperException("Field \"geometry\" in "+clazz.getName()+" does not has the javax.persistence.Column annotation");}
+		
+		Column column = (Column)annotation;
+		return column.name();
 	}
 	
 	public List<T> execute(Coordinate coordinate, Distance distance)
@@ -60,7 +89,7 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 	{				
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  propertyProvider.getProperties(type),
-													  propertyProvider.getGeometryColumn(type),
+													  geometryColumn,
 													  coordinates,distance);
 		
 		WfsHttpRequest r = new WfsHttpRequest(propertyProvider.getGeoServerRestUrl()+"/wcs");
