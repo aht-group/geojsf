@@ -1,7 +1,9 @@
 package org.geojsf.factory.txt;
 
-import java.text.DecimalFormat;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +16,9 @@ public class TxtIsoTimeFactory
 	
 	public static String toDate(Date date)
 	{
-		StringBuffer sb = new StringBuffer();
-		
-		return sb.toString();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		df.setTimeZone(TimeZone.getTimeZone("UTC"));
+		return df.format(date);
 	}
 	
 	public static String toRange(Date dateFrom, Date dateTo)
