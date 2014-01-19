@@ -29,7 +29,7 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 	@Test
 	public void value()
 	{
-		String expected = "2011-08-20T12:00:00Z";
+		String expected = "2011-08-20T12:00:00:000Z";
 		
 		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		calendar.set(Calendar.DAY_OF_MONTH, 20);
@@ -38,6 +38,7 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.HOUR_OF_DAY, 12);
 		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
 		TimeZone tz = calendar.getTimeZone();
 		
 		d1 = calendar.getTime();
