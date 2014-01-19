@@ -83,7 +83,7 @@ public class Player extends UINamingContainer implements ClientBehaviorHolder
 	public void encodeAll(FacesContext ctx) throws IOException
 	{
 		map = (Map) findComponent("testForm:map");
-		logger.info("Map found with " +map.getServiceList().size() +" layer definitions. Current time: " +map.getTimeInfo().toGMTString());
+		logger.info("Map found with " +map.getServiceList().size() +" layer definitions. Current time: ");
 		for (GeoJsfService service : map.getServiceList())
 		{
 			logger.info("Does Service has temporal information? " +map.hasTemporalLayer(service));
