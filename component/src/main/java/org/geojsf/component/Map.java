@@ -62,7 +62,7 @@ public class Map
 	private Integer height = 400;
 	private Boolean noLayersGiven = false;
 	private Boolean hasTimeDefinition = false;
-	private Date timeInfo = null;
+	private String timeInfo = null;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -349,8 +349,15 @@ public class Map
 			if (comp.getClass().getSimpleName().toString().equals("Time"))
 			{
 				Time t = (Time) comp;
-				timeInfo = t.getValue();
-				logger.info("Getting date from Time component: "+TxtIsoTimeFactory.toDate(timeInfo));
+				if (null!=t.getValue())
+				{
+					timeInfo = TxtIsoTimeFactory.toDate(t.getValue());
+				}
+				else
+				{
+					timeInfo = TxtIsoTimeFactory.toRange(t.getRangeFrom(), t.getRangeTo());
+				}
+				logger.info("time set to " +timeInfo);
 			}
 		}
 	}
@@ -373,8 +380,7 @@ public class Map
 		
 		if (hasTemporalLayer(service) && null!=timeInfo)
 		{
-			String timeString = TxtIsoTimeFactory.toDate(timeInfo);
-			writer.writeText("params.time      = '"+timeString +"';" +System.getProperty("line.separator"),null);
+			writer.writeText("params.time      = '"+timeInfo +"';" +System.getProperty("line.separator"),null);
 		}
 		
 		writer.writeText("params.transparent = true;" +System.getProperty("line.separator"),null);
@@ -426,14 +432,6 @@ public class Map
 	
 	public Coordinates getCoords() {return coords;}
 	public void setCoords(Coordinates coords) {this.coords = coords;}
-	
-	public Date getTimeInfo() {
-		return timeInfo;
-	}
-
-	public void setTimeInfo(Date timeInfo) {
-		this.timeInfo = timeInfo;
-	}
 
 	public List<DefaultGeoJsfService> getServiceList() {return serviceList;}
 	public void setServiceList(List<DefaultGeoJsfService> serviceList) {this.serviceList = serviceList;}
