@@ -1,14 +1,11 @@
 package org.geojsf.component;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UINamingContainer;
-import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ComponentSystemEvent;
@@ -21,13 +18,15 @@ import org.slf4j.LoggerFactory;
 
 @FacesComponent(value="org.geojsf.component.Time")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Time extends UINamingContainer implements ClientBehaviorHolder
+public class Time extends UIComponentBase
 {
 	final static Logger logger = LoggerFactory.getLogger(Time.class);
 	
-	private String value;
-	private String pattern;
-	private Date date;
+	private static enum Attribute {value, rangeFrom, rangeTo}
+	
+	private Date value;
+	private Date rangeFrom;
+	private Date rangeTo;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -38,6 +37,10 @@ public class Time extends UINamingContainer implements ClientBehaviorHolder
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"TimeManager.js");
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"WMS.js");
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"DimensionManager.js");
+			Map<String,Object> map = this.getAttributes();
+			this.value     = (Date) map.get(Attribute.value.toString());
+			this.rangeFrom = (Date) map.get(Attribute.rangeFrom.toString());
+			this.rangeTo   = (Date) map.get(Attribute.rangeTo.toString());
 		}
 		super.processEvent(event);
 	}
@@ -45,36 +48,36 @@ public class Time extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void encodeAll(FacesContext ctx) throws IOException
 	{
-		try {
-			logger.info("Using time information: " +getDate().toGMTString());
-		} catch (ParseException e) {
-			logger.error("Could not parse date: " +e.getMessage());
-		}
+		logger.info("Time component info already rendered in Map.");
 	}
 
-	public String getValue() {
+	public Date getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public Date getRangeFrom() {
+		return rangeFrom;
+	}
+
+	public Date getRangeTo() {
+		return rangeTo;
+	}
+
+	public void setValue(Date value) {
 		this.value = value;
 	}
 
-	public String getPattern() {
-		return pattern;
+	public void setRangeFrom(Date rangeFrom) {
+		this.rangeFrom = rangeFrom;
 	}
 
-	public void setPattern(String pattern) {
-		this.pattern = pattern;
+	public void setRangeTo(Date rangeTo) {
+		this.rangeTo = rangeTo;
 	}
 
-	public Date getDate() throws ParseException {
-		DateFormat df = new SimpleDateFormat(pattern);
-		date =  df.parse(value);  
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
+	@Override
+	public String getFamily() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
