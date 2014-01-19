@@ -1,5 +1,6 @@
 package org.geojsf.factory.txt;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -52,6 +53,19 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 	{
 		String expected = "2011-08-20T12:00:00:000Z/2011-08-25T12:00:00:000Z";
 		String actual = TxtIsoTimeFactory.toRange(d1, d2);
+	
+		logger.info("ISO result       : " +actual);
+		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void list()
+	{
+		String expected = "2011-08-20T12:00:00:000Z,2011-08-25T12:00:00:000Z";
+		ArrayList<Date> list = new ArrayList<Date>();
+		list.add(d1);
+		list.add(d2);
+		String actual = TxtIsoTimeFactory.toList(list);
 	
 		logger.info("ISO result       : " +actual);
 		Assert.assertEquals(expected, actual);
