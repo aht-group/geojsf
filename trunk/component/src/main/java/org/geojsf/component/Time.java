@@ -1,6 +1,7 @@
 package org.geojsf.component;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -22,11 +23,12 @@ public class Time extends UIComponentBase
 {
 	final static Logger logger = LoggerFactory.getLogger(Time.class);
 	
-	private static enum Attribute {value, rangeFrom, rangeTo}
+	private static enum Attribute {value, rangeFrom, rangeTo, timeList}
 	
 	private Date value;
 	private Date rangeFrom;
 	private Date rangeTo;
+	private ArrayList<Date> timeList;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -41,6 +43,7 @@ public class Time extends UIComponentBase
 			this.value     = (Date) map.get(Attribute.value.toString());
 			this.rangeFrom = (Date) map.get(Attribute.rangeFrom.toString());
 			this.rangeTo   = (Date) map.get(Attribute.rangeTo.toString());
+			this.timeList  = (ArrayList<Date>) map.get(Attribute.timeList.toString());
 		}
 		super.processEvent(event);
 	}
@@ -73,6 +76,14 @@ public class Time extends UIComponentBase
 
 	public void setRangeTo(Date rangeTo) {
 		this.rangeTo = rangeTo;
+	}
+
+	public ArrayList<Date> getTimeList() {
+		return timeList;
+	}
+
+	public void setTimeList(ArrayList<Date> timeList) {
+		this.timeList = timeList;
 	}
 
 	@Override

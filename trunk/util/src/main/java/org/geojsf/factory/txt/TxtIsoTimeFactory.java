@@ -2,6 +2,7 @@ package org.geojsf.factory.txt;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -19,6 +20,17 @@ public class TxtIsoTimeFactory
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss:SSS'Z'");
 		df.setTimeZone(TimeZone.getTimeZone("UTC"));
 		return df.format(date);
+	}
+	
+	public static String toList(ArrayList<Date> timeList)
+	{
+		StringBuffer sb = new StringBuffer();
+		for (Date date : timeList)
+		{
+			sb.append(toDate(date));
+			sb.append(",");
+		}
+		return sb.toString().substring(0, sb.toString().length()-1);
 	}
 	
 	public static String toRange(Date dateFrom, Date dateTo)

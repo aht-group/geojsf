@@ -353,9 +353,13 @@ public class Map
 				{
 					timeInfo = TxtIsoTimeFactory.toDate(t.getValue());
 				}
-				else
+				else if (null!=t.getRangeFrom())
 				{
 					timeInfo = TxtIsoTimeFactory.toRange(t.getRangeFrom(), t.getRangeTo());
+				}
+				else
+				{
+					timeInfo = TxtIsoTimeFactory.toList(t.getTimeList());
 				}
 				logger.info("time set to " +timeInfo);
 			}
