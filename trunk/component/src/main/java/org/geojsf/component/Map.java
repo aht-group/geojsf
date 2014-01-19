@@ -28,6 +28,7 @@ import javax.faces.event.PostAddToViewEvent;
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.exception.UnconsistentConfgurationException;
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
+import org.geojsf.factory.txt.TxtIsoTimeFactory;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
@@ -348,12 +349,8 @@ public class Map
 			if (comp.getClass().getSimpleName().toString().equals("Time"))
 			{
 				Time t = (Time) comp;
-				try {
-					timeInfo = t.getDate();
-					logger.debug("Getting date from Time component: "+timeInfo.toGMTString());
-				} catch (ParseException e) {
-					logger.error("Could not get date from Time component:" +e.getMessage());
-				}
+				timeInfo = t.getValue();
+				logger.info("Getting date from Time component: "+TxtIsoTimeFactory.toDate(timeInfo));
 			}
 		}
 	}
@@ -376,8 +373,7 @@ public class Map
 		
 		if (hasTemporalLayer(service) && null!=timeInfo)
 		{
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-			String timeString = df.format(timeInfo);
+			String timeString = TxtIsoTimeFactory.toDate(timeInfo);
 			writer.writeText("params.time      = '"+timeString +"';" +System.getProperty("line.separator"),null);
 		}
 		
