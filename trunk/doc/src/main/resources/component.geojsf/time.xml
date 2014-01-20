@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jsf:component xmlns:jsf="http://www.openfuxml.org/jsf">
+    <jsf:attribute name="orientation" required="true" shortDescription="/geojsf-doc/src/main/resources/component.geojsf/time.xml"/>
+</jsf:component>
