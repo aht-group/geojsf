@@ -21,11 +21,11 @@ import org.slf4j.LoggerFactory;
 
 @ResourceDependencies({
 	@ResourceDependency(library = "geojsf", name = "scalebar-thin.css", target = "head")})
-@FacesComponent(value="org.geojsf.component.Scale")
+@FacesComponent(value="org.geojsf.component.ScaleBar")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Scale extends UINamingContainer implements ClientBehaviorHolder
+public class ScaleBar extends UINamingContainer implements ClientBehaviorHolder
 {
-	final static Logger logger = LoggerFactory.getLogger(Scale.class);
+	final static Logger logger = LoggerFactory.getLogger(ScaleBar.class);
 	
 	private static enum Attribute {orientation, system, major, sub}
 	

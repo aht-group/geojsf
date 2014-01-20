@@ -12,9 +12,15 @@
 		</component>
 	</tag>
 	<tag>
-		<tag-name>scale</tag-name>
+		<tag-name>IosCheckbox</tag-name>
 		<component>
-			<component-type>org.geojsf.component.Scale</component-type>
+			<component-type>org.geojsf.component.IosCheckbox</component-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>scaleBar</tag-name>
+		<component>
+			<component-type>org.geojsf.component.ScaleBar</component-type>
 		</component>
 	</tag>
 	<tag>
