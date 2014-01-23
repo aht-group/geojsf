@@ -132,6 +132,13 @@
 		    <url>http://repository.primefaces.org</url>  
 		    <layout>default</layout>  
 		</repository>
+		<repository>
+			<id>aht-3rdparty</id>
+			<name>AHT Nexus Third Party</name>
+			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+		</repository>
 		
     </repositories>
 
