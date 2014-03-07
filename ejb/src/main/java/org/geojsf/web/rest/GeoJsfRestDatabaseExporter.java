@@ -5,12 +5,13 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
+import org.geojsf.factory.xml.geojsf.XmlViewFactory;
 import org.geojsf.factory.xml.openlayers.XmlLayerFactory;
-import org.geojsf.factory.xml.openlayers.XmlServiceFactory;
 import org.geojsf.factory.xml.openlayers.XmlMapFactory;
+import org.geojsf.factory.xml.openlayers.XmlServiceFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.rest.GeoJsfDatabaseRest;
 import org.geojsf.util.query.OpenLayersQuery;
@@ -23,10 +24,10 @@ import org.slf4j.LoggerFactory;
 
 public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 									D extends UtilsDescription,
-									SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
-									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-									VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
-									VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
+									SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,
+									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
+									MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
+									VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 				implements GeoJsfDatabaseRest
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfRestDatabaseExporter.class);
@@ -35,27 +36,29 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	
 	private final Class<SERVICE> cService;
 	private final Class<LAYER> cLayer;
+	private final Class<MAP> cMap;
 	private final Class<VIEW> cView;
 	
-	private GeoJsfRestDatabaseExporter(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)
+	private GeoJsfRestDatabaseExporter(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VIEW> cView)
 	{
 		this.fSecurity=fSecurity;
 		this.cService=cService;
 		this.cLayer=cLayer;
+		this.cMap=cMap;
 		this.cView=cView;
 	}
 	
 	public static <L extends UtilsLang,
 					D extends UtilsDescription,
-					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
-					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-					VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
-					VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,
+					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
+					MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
+					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>,
 					LT extends UtilsStatus<L,D>>
-		GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,VIEW,VL>
-		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<VIEW> cView)
+		GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW>
+		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VIEW> cView)
 	{
-		return new GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,VIEW,VL>(fSecurity,cService,cLayer,cView);
+		return new GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW>(fSecurity,cService,cLayer,cMap,cView);
 	}
 
 	@Override
@@ -87,25 +90,25 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	}
 
 	@Override
-	public Maps exportViews()
+	public Maps exportMaps()
 	{
-		Maps views = new Maps();
-		XmlMapFactory fView = new XmlMapFactory(OpenLayersQuery.get(OpenLayersQuery.Key.view, null));
-		XmlLayerFactory fLayer = new XmlLayerFactory(OpenLayersQuery.get(OpenLayersQuery.Key.viewLayer, null));
+		Maps maps = new Maps();
+		XmlMapFactory fMap = new XmlMapFactory(OpenLayersQuery.get(OpenLayersQuery.Key.map, null));
+		XmlViewFactory fView = new XmlViewFactory(OpenLayersQuery.get(OpenLayersQuery.Key.view, null));
 		
-		for(VIEW ejb : fSecurity.all(cView))
+		for(MAP map : fSecurity.all(cMap))
 		{
-			Map xml = fView.build(ejb);
+			Map xml = fMap.build(map);
 			
-			for(VL vl : ejb.getViews())
+			for(VIEW view : map.getViews())
 			{
-				xml.getLayer().add(fLayer.build(vl));
+				xml.getView().add(fView.build(view));
 			}
 			
-			views.getMap().add(xml);
+			maps.getMap().add(xml);
 		}
 		
-		return views;
+		return maps;
 	}
 
 	public String importGeoJsf(Repository repository)

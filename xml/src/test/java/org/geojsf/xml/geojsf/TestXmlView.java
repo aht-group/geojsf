@@ -10,35 +10,35 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlQuery extends AbstractXmlGeojsfTest
+public class TestXmlView extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlQuery.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlView.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, Query.class);
+		setXmlFile(dirSuffix, View.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Query actual = create(true);
-    	Query expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Query.class);
+    	View actual = create(true);
+    	View expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), View.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Query create(boolean withChilds)
+    public static View create(boolean withChilds)
     {
-    	Query xml = new Query();
-
+    	View xml = new View();
+    	xml.setId(123);
+    	xml.setNr(1);
+    	xml.setVisible(true);
+    	xml.setLegend(false);
+     	
     	if(withChilds)
     	{
-    		xml.setService(TestXmlService.create(false));
-    		xml.setRepository(TestXmlRepository.create(false));
     		xml.setLayer(TestXmlLayer.create(false));
-    		xml.setMap(TestXmlMap.create(false));
-    		xml.setView(TestXmlView.create(false));
     	}
     	
     	return xml;
@@ -50,8 +50,8 @@ public class TestXmlQuery extends AbstractXmlGeojsfTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlQuery.initFiles();	
-		TestXmlQuery test = new TestXmlQuery();
+		TestXmlView.initFiles();	
+		TestXmlView test = new TestXmlView();
 		test.save();
     }
 }

@@ -12,6 +12,7 @@
 				<xsd:element ref="geojsf:service" maxOccurs="1"/>
 				<xsd:element ref="geojsf:layer" maxOccurs="1"/>
 				<xsd:element ref="geojsf:map" maxOccurs="1"/>
+				<xsd:element ref="geojsf:view" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>  
@@ -73,8 +74,6 @@
             <xsd:attribute name="workspace" type="xsd:string"/>
             <xsd:attribute name="name" type="xsd:string"/>
             <xsd:attribute name="label" type="xsd:string"/>
-            <xsd:attribute name="visible" type="xsd:boolean"/>
-            <xsd:attribute name="showLegend" type="xsd:boolean"/>
             <xsd:attribute name="temporal" type="xsd:boolean"/>
         </xsd:complexType>
     </xsd:element>
@@ -91,10 +90,21 @@
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="view">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="geojsf:layer" maxOccurs="1"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="nr" type="xsd:int"/>
+            <xsd:attribute name="visible" type="xsd:boolean"/>
+            <xsd:attribute name="legend" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
     <xsd:element name="map">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element ref="geojsf:layer" maxOccurs="unbounded"/>
+                <xsd:element ref="geojsf:view" maxOccurs="unbounded"/>
                 <xsd:element ref="us:langs" maxOccurs="1"/>
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:long"/>

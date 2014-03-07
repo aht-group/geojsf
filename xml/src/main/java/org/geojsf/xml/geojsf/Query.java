@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{http://www.geojsf.org}service"/>
  *         &lt;element ref="{http://www.geojsf.org}layer"/>
  *         &lt;element ref="{http://www.geojsf.org}map"/>
+ *         &lt;element ref="{http://www.geojsf.org}view"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,7 +37,8 @@ import javax.xml.bind.annotation.XmlType;
     "repository",
     "service",
     "layer",
-    "map"
+    "map",
+    "view"
 })
 @XmlRootElement(name = "query")
 public class Query
@@ -52,6 +54,8 @@ public class Query
     protected Layer layer;
     @XmlElement(required = true)
     protected Map map;
+    @XmlElement(required = true)
+    protected View view;
 
     /**
      * Gets the value of the repository property.
@@ -163,6 +167,34 @@ public class Query
 
     public boolean isSetMap() {
         return (this.map!= null);
+    }
+
+    /**
+     * Gets the value of the view property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link View }
+     *     
+     */
+    public View getView() {
+        return view;
+    }
+
+    /**
+     * Sets the value of the view property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link View }
+     *     
+     */
+    public void setView(View value) {
+        this.view = value;
+    }
+
+    public boolean isSetView() {
+        return (this.view!= null);
     }
 
 }

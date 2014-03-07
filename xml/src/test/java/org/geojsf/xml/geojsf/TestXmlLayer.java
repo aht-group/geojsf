@@ -38,8 +38,6 @@ public class TestXmlLayer extends AbstractXmlGeojsfTest
     	xml.setCode("myCode");
     	xml.setWorkspace("myWorkspace");
     	xml.setName("myName");
-    	xml.setVisible(true);
-    	xml.setShowLegend(true);
     	xml.setTemporal(true);
     	
     	if(withChilds)
