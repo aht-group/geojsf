@@ -9,12 +9,13 @@ import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.geojsf.Repository;
 import org.geojsf.xml.geojsf.Service;
+import org.geojsf.xml.geojsf.View;
 
 public class OpenLayersQuery
 {
-	public static enum Key {service,repositoryService,
-							layer,viewLayer,
-							view}
+	public static enum Key {repositoryService,
+							service,layer,map,view,
+							viewLayer}
 	
 	private static java.util.Map<Key,Query> mQueries;
 	
@@ -29,8 +30,9 @@ public class OpenLayersQuery
 				case service: q.setService(service());break;
 				case repositoryService: q.setRepository(repositoryService());break;
 				case layer: q.setLayer(layer());break;
+				case view: q.setView(view());break;
 				case viewLayer: q.setLayer(viewLayer());break;
-				case view: q.setMap(map());break;
+				case map: q.setMap(map());break;
 			}
 			mQueries.put(key, q);
 		}
@@ -72,6 +74,16 @@ public class OpenLayersQuery
 	{	
 		Layer xml = new Layer();
 		xml.setCode("");
+		return xml;
+	}
+	
+	public static View view()
+	{	
+		View xml = new View();
+		xml.setLegend(true);
+		xml.setNr(1);
+		xml.setVisible(true);
+		xml.setLayer(viewLayer());
 		return xml;
 	}
 	

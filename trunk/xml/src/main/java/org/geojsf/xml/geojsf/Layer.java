@@ -30,8 +30,6 @@ import net.sf.ahtutils.xml.status.Langs;
  *       &lt;attribute name="workspace" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="label" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="visible" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="showLegend" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *       &lt;attribute name="temporal" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -68,10 +66,6 @@ public class Layer
     protected String name;
     @XmlAttribute(name = "label")
     protected String label;
-    @XmlAttribute(name = "visible")
-    protected Boolean visible;
-    @XmlAttribute(name = "showLegend")
-    protected Boolean showLegend;
     @XmlAttribute(name = "temporal")
     protected Boolean temporal;
 
@@ -301,70 +295,6 @@ public class Layer
 
     public boolean isSetLabel() {
         return (this.label!= null);
-    }
-
-    /**
-     * Gets the value of the visible property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isVisible() {
-        return visible;
-    }
-
-    /**
-     * Sets the value of the visible property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setVisible(boolean value) {
-        this.visible = value;
-    }
-
-    public boolean isSetVisible() {
-        return (this.visible!= null);
-    }
-
-    public void unsetVisible() {
-        this.visible = null;
-    }
-
-    /**
-     * Gets the value of the showLegend property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isShowLegend() {
-        return showLegend;
-    }
-
-    /**
-     * Sets the value of the showLegend property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setShowLegend(boolean value) {
-        this.showLegend = value;
-    }
-
-    public boolean isSetShowLegend() {
-        return (this.showLegend!= null);
-    }
-
-    public void unsetShowLegend() {
-        this.showLegend = null;
     }
 
     /**

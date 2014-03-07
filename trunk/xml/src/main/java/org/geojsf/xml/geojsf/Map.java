@@ -23,7 +23,7 @@ import net.sf.ahtutils.xml.status.Langs;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://www.geojsf.org}layer" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.geojsf.org}view" maxOccurs="unbounded"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
@@ -40,7 +40,7 @@ import net.sf.ahtutils.xml.status.Langs;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "layer",
+    "view",
     "langs"
 })
 @XmlRootElement(name = "map")
@@ -50,7 +50,7 @@ public class Map
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<Layer> layer;
+    protected List<View> view;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Langs langs;
     @XmlAttribute(name = "id")
@@ -65,40 +65,40 @@ public class Map
     protected Integer zoom;
 
     /**
-     * Gets the value of the layer property.
+     * Gets the value of the view property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the layer property.
+     * This is why there is not a <CODE>set</CODE> method for the view property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getLayer().add(newItem);
+     *    getView().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Layer }
+     * {@link View }
      * 
      * 
      */
-    public List<Layer> getLayer() {
-        if (layer == null) {
-            layer = new ArrayList<Layer>();
+    public List<View> getView() {
+        if (view == null) {
+            view = new ArrayList<View>();
         }
-        return this.layer;
+        return this.view;
     }
 
-    public boolean isSetLayer() {
-        return ((this.layer!= null)&&(!this.layer.isEmpty()));
+    public boolean isSetView() {
+        return ((this.view!= null)&&(!this.view.isEmpty()));
     }
 
-    public void unsetLayer() {
-        this.layer = null;
+    public void unsetView() {
+        this.view = null;
     }
 
     /**

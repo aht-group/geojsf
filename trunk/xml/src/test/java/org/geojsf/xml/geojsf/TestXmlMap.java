@@ -41,7 +41,7 @@ public class TestXmlMap extends AbstractXmlGeojsfTest
      	
     	if(withChilds)
     	{
-    		xml.getLayer().add(TestXmlLayer.create(false));
+    		xml.getView().add(TestXmlView.create(false));
     		xml.setLangs(new Langs());
     	}
     	

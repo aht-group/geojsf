@@ -23,7 +23,7 @@ public interface GeoJsfDatabaseRest
 	
 	@GET @Path("/export/views")
 	@Produces(MediaType.APPLICATION_XML)
-	Maps exportViews();
+	Maps exportMaps();
 	
 	@POST @Path("/import")
 	@Produces(MediaType.TEXT_PLAIN)
