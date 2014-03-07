@@ -1,7 +1,5 @@
 package org.geojsf.xml.geojsf;
 
-import java.io.File;
-
 import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

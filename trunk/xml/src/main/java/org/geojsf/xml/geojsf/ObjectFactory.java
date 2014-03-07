@@ -30,6 +30,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Scale }
+     * 
+     */
+    public Scale createScale() {
+        return new Scale();
+    }
+
+    /**
      * Create an instance of {@link Maps }
      * 
      */
