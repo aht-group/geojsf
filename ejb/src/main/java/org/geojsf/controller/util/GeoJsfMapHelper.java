@@ -16,7 +16,7 @@ import org.geojsf.interfaces.model.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+@Deprecated
 public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 			implements DmSingleSelect<LAYER>
 {
