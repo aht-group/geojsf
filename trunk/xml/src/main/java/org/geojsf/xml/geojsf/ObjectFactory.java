@@ -30,6 +30,62 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Maps }
+     * 
+     */
+    public Maps createMaps() {
+        return new Maps();
+    }
+
+    /**
+     * Create an instance of {@link Map }
+     * 
+     */
+    public Map createMap() {
+        return new Map();
+    }
+
+    /**
+     * Create an instance of {@link Layer }
+     * 
+     */
+    public Layer createLayer() {
+        return new Layer();
+    }
+
+    /**
+     * Create an instance of {@link Legend }
+     * 
+     */
+    public Legend createLegend() {
+        return new Legend();
+    }
+
+    /**
+     * Create an instance of {@link Service }
+     * 
+     */
+    public Service createService() {
+        return new Service();
+    }
+
+    /**
+     * Create an instance of {@link Repository }
+     * 
+     */
+    public Repository createRepository() {
+        return new Repository();
+    }
+
+    /**
+     * Create an instance of {@link Layers }
+     * 
+     */
+    public Layers createLayers() {
+        return new Layers();
+    }
+
+    /**
      * Create an instance of {@link Coordinate }
      * 
      */

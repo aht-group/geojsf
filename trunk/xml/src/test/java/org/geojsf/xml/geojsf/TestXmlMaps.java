@@ -1,38 +1,42 @@
-package org.geojsf.xml.openlayers;
+package org.geojsf.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.xml.geojsf.Maps;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlLegend extends AbstractXmlOpenlayersTest
+public class TestXmlMaps extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlLegend.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlMaps.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, "legend");
+		setXmlFile(dirSuffix, Maps.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Legend actual = create(true);
-    	Legend expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Legend.class);
+    	Maps actual = create(true);
+    	Maps expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Maps.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Legend create(boolean withChilds)
+    public static Maps create(boolean withChilds)
     {
-    	Legend xml = new Legend();
-    	xml.setId(1);
-    	xml.setUrl("myUrl");
+    	Maps xml = new Maps();
+
+    	if(withChilds)
+    	{
+    		xml.getMap().add(TestXmlMap.create(false));
+    	}
     	
     	return xml;
     }
@@ -43,8 +47,8 @@ public class TestXmlLegend extends AbstractXmlOpenlayersTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlLegend.initFiles();	
-		TestXmlLegend test = new TestXmlLegend();
+		TestXmlMaps.initFiles();	
+		TestXmlMaps test = new TestXmlMaps();
 		test.save();
     }
 }

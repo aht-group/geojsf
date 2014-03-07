@@ -1,4 +1,4 @@
-package org.geojsf.xml.openlayers;
+package org.geojsf.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
@@ -6,20 +6,21 @@ import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.xml.geojsf.Layer;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class TestXmlLayer extends AbstractXmlOpenlayersTest
+public class TestXmlLayer extends AbstractXmlGeojsfTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlLayer.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, "layer");
+		setXmlFile(dirSuffix, Layer.class);
 	}
     
     @Test

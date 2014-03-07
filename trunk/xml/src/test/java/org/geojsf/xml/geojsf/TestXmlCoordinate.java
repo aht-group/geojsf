@@ -1,25 +1,23 @@
 package org.geojsf.xml.geojsf;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.geojsf.xml.geojsf.Coordinate;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlCoordinate extends AbstractXmlGmlTest
+public class TestXmlCoordinate extends AbstractXmlGeojsfTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlCoordinate.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,"coordinate.xml");
+		setXmlFile(dirSuffix, "coordinate");
 	}
     
     @Test

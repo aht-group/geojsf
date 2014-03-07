@@ -8,9 +8,8 @@ public class GeoJsfNsPrefixMapper extends NamespacePrefixMapper implements NsPre
 {
     public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix)
     {
-    	if("http://geojsf.sf.net/geojsf".equals(namespaceUri) ){return "geojsf";}
+    	if("http://www.geojsf.org".equals(namespaceUri) ){return "geojsf";}
     	if("http://www.geojsf.org/geoserver".equals(namespaceUri) ){return "g";}
-    	if("http://geojsf.sf.net/openlayers".equals(namespaceUri) ){return "ol";}
     	if("http://www.opengis.net/gml".equals(namespaceUri) ){return "gml";}
     	if("http://www.opengis.net/wfs".equals(namespaceUri) ){return "wfs";}
     	

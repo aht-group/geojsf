@@ -7,10 +7,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import org.geojsf.xml.openlayers.Layer;
-import org.geojsf.xml.openlayers.Map;
-import org.geojsf.xml.openlayers.Repository;
-import org.geojsf.xml.openlayers.Service;
 
 
 /**
@@ -23,10 +19,10 @@ import org.geojsf.xml.openlayers.Service;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}repository"/>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}service"/>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}layer"/>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}map"/>
+ *         &lt;element ref="{http://www.geojsf.org}repository"/>
+ *         &lt;element ref="{http://www.geojsf.org}service"/>
+ *         &lt;element ref="{http://www.geojsf.org}layer"/>
+ *         &lt;element ref="{http://www.geojsf.org}map"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,13 +44,13 @@ public class Query
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(namespace = "http://geojsf.sf.net/openlayers", required = true)
+    @XmlElement(required = true)
     protected Repository repository;
-    @XmlElement(namespace = "http://geojsf.sf.net/openlayers", required = true)
+    @XmlElement(required = true)
     protected Service service;
-    @XmlElement(namespace = "http://geojsf.sf.net/openlayers", required = true)
+    @XmlElement(required = true)
     protected Layer layer;
-    @XmlElement(namespace = "http://geojsf.sf.net/openlayers", required = true)
+    @XmlElement(required = true)
     protected Map map;
 
     /**

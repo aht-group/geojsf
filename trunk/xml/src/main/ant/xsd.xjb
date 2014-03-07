@@ -28,12 +28,6 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
-	<jxb:bindings schemaLocation="../xsd/geojsf/openlayers.xsd" node="/xsd:schema">
-        <jxb:schemaBindings>
-            <jxb:package name="org.geojsf.xml.openlayers"/>
-        </jxb:schemaBindings>
-    </jxb:bindings>
-    
     <jxb:bindings schemaLocation="../xsd/geojsf/gml.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.xml.gml"/>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ol:repository xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ol="http://geojsf.sf.net/openlayers">
-    <ol:layers wms="myWms" wcs="myWcs"/>
-    <ol:maps/>
-    <ol:service id="1" code="myCode" url="http://geojsf.sf.net" wms="wms" wcs="wcs"/>
-    <ol:service id="1" code="myCode" url="http://geojsf.sf.net" wms="wms" wcs="wcs"/>
-</ol:repository>

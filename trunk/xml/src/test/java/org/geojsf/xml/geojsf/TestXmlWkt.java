@@ -1,6 +1,5 @@
 package org.geojsf.xml.geojsf;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
@@ -11,14 +10,14 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlWkt extends AbstractXmlGmlTest
+public class TestXmlWkt extends AbstractXmlGeojsfTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlWkt.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new File(rootDir,Wkt.class.getSimpleName()+".xml");
+		setXmlFile(dirSuffix, Wkt.class);
 	}
     
     @Test

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<geojsf:layers xmlns:us="http://ahtutils.aht-group.com/status" xmlns:geojsf="http://www.geojsf.org" wms="myWms" wcs="myWcs">
+    <geojsf:layer id="1" code="myCode" workspace="myWorkspace" name="myName" visible="true" showLegend="true" temporal="true"/>
+</geojsf:layers>

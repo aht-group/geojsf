@@ -4,11 +4,11 @@ import java.util.Hashtable;
 
 import net.sf.ahtutils.controller.util.query.StatusQuery;
 
+import org.geojsf.xml.geojsf.Layer;
+import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Query;
-import org.geojsf.xml.openlayers.Layer;
-import org.geojsf.xml.openlayers.Repository;
-import org.geojsf.xml.openlayers.Service;
-import org.geojsf.xml.openlayers.Map;
+import org.geojsf.xml.geojsf.Repository;
+import org.geojsf.xml.geojsf.Service;
 
 public class OpenLayersQuery
 {

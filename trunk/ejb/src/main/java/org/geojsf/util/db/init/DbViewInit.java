@@ -20,9 +20,9 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfView;
-import org.geojsf.xml.openlayers.Layer;
-import org.geojsf.xml.openlayers.Map;
-import org.geojsf.xml.openlayers.Maps;
+import org.geojsf.xml.geojsf.Layer;
+import org.geojsf.xml.geojsf.Map;
+import org.geojsf.xml.geojsf.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

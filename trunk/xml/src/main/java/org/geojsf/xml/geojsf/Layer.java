@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.openlayers;
+package org.geojsf.xml.geojsf;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -22,8 +22,8 @@ import net.sf.ahtutils.xml.status.Langs;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}legend"/>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}service"/>
+ *         &lt;element ref="{http://www.geojsf.org}legend"/>
+ *         &lt;element ref="{http://www.geojsf.org}service"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />

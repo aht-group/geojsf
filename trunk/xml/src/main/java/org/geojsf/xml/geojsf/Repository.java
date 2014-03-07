@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.openlayers;
+package org.geojsf.xml.geojsf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,9 +21,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}layers"/>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}maps"/>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}service" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.geojsf.org}layers"/>
+ *         &lt;element ref="{http://www.geojsf.org}maps"/>
+ *         &lt;element ref="{http://www.geojsf.org}service" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

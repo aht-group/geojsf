@@ -2,7 +2,6 @@
 <xsd:schema targetNamespace="http://www.geojsf.org/government"
     xmlns:gov="http://www.geojsf.org/government"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<xsd:import namespace="http://geojsf.sf.net/openlayers" schemaLocation="openlayers.xsd"/>
 	<xsd:element name="region">
         <xsd:complexType>
             <xsd:sequence>

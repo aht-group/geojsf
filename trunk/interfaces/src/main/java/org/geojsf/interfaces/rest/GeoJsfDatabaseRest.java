@@ -7,9 +7,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.geojsf.xml.openlayers.Layers;
-import org.geojsf.xml.openlayers.Repository;
-import org.geojsf.xml.openlayers.Maps;
+import org.geojsf.xml.geojsf.Layers;
+import org.geojsf.xml.geojsf.Maps;
+import org.geojsf.xml.geojsf.Repository;
 
 public interface GeoJsfDatabaseRest
 {	

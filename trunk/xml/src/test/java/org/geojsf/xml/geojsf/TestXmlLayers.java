@@ -1,47 +1,43 @@
-package org.geojsf.xml.openlayers;
+package org.geojsf.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
-import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.xml.geojsf.Layers;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlMap extends AbstractXmlOpenlayersTest
+public class TestXmlLayers extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlMap.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlLayers.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, Map.class);
+		setXmlFile(dirSuffix, Layers.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Map actual = create(true);
-    	Map expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Map.class);
+    	Layers actual = create(true);
+    	Layers expected = (Layers)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Layers.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Map create(boolean withChilds)
+    public static Layers create(boolean withChilds)
     {
-    	Map xml = new Map();
-    	xml.setId(123);
-    	xml.setCode("myCode");
-    	xml.setX(3.4);
-    	xml.setY(5.6);
-    	xml.setZoom(3);
+    	Layers xml = new Layers();
+    	xml.setWms("myWms");
+    	xml.setWcs("myWcs");
      	
     	if(withChilds)
     	{
     		xml.getLayer().add(TestXmlLayer.create(false));
-    		xml.setLangs(new Langs());
     	}
     	
     	return xml;
@@ -53,8 +49,8 @@ public class TestXmlMap extends AbstractXmlOpenlayersTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlMap.initFiles();	
-		TestXmlMap test = new TestXmlMap();
+		TestXmlLayers.initFiles();	
+		TestXmlLayers test = new TestXmlLayers();
 		test.save();
     }
 }
