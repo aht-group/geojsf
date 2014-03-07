@@ -17,8 +17,8 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfView;
-import org.geojsf.xml.openlayers.Layer;
-import org.geojsf.xml.openlayers.Layers;
+import org.geojsf.xml.geojsf.Layer;
+import org.geojsf.xml.geojsf.Layers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -6,8 +6,8 @@ import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 
 import org.apache.commons.jxpath.JXPathContext;
-import org.geojsf.xml.openlayers.Repository;
-import org.geojsf.xml.openlayers.Map;
+import org.geojsf.xml.geojsf.Map;
+import org.geojsf.xml.geojsf.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

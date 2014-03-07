@@ -4,7 +4,6 @@
     xmlns:geojsf="http://www.geojsf.org"
     xmlns:gov="http://www.geojsf.org/government"
     xmlns:geoserver="http://www.geojsf.org/geoserver"
-    xmlns:ol="http://geojsf.sf.net/openlayers"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:ogc="http://www.opengis.net/ogc"
     xmlns:wfs="http://www.opengis.net/wfs"
@@ -16,7 +15,6 @@
     xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
     jaxb:extensionBindingPrefixes="xjc"
     jaxb:version="2.0">
-    <xsd:import namespace="http://geojsf.sf.net/openlayers" schemaLocation="geojsf/openlayers.xsd"/>
     <xsd:import namespace="http://www.geojsf.org/geoserver" schemaLocation="geojsf/geoserver.xsd"/>
     <xsd:import namespace="http://www.geojsf.org/government" schemaLocation="geojsf/gov.xsd"/>
     <xsd:import namespace="http://www.geojsf.org" schemaLocation="geojsf/geojsf.xsd"/>

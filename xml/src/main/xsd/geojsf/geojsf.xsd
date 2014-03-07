@@ -2,15 +2,16 @@
 <xsd:schema targetNamespace="http://www.geojsf.org"
     xmlns:geojsf="http://www.geojsf.org"
     xmlns:ol="http://geojsf.sf.net/openlayers"
+    xmlns:us="http://ahtutils.aht-group.com/status"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<xsd:import namespace="http://geojsf.sf.net/openlayers" schemaLocation="openlayers.xsd"/>
+	<xsd:import namespace="http://ahtutils.aht-group.com/status" schemaLocation="../../../../../../ahtutils/xml/src/main/xsd/aht/status.xsd"/>
 	<xsd:element name="query">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref="ol:repository" maxOccurs="1"/>
-				<xsd:element ref="ol:service" maxOccurs="1"/>
-				<xsd:element ref="ol:layer" maxOccurs="1"/>
-				<xsd:element ref="ol:map" maxOccurs="1"/>
+				<xsd:element ref="geojsf:repository" maxOccurs="1"/>
+				<xsd:element ref="geojsf:service" maxOccurs="1"/>
+				<xsd:element ref="geojsf:layer" maxOccurs="1"/>
+				<xsd:element ref="geojsf:map" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>  
@@ -27,6 +28,80 @@
                     <xsd:attribute name="type" type="xsd:string"/>
                 </xsd:extension>
             </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="repository">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="geojsf:layers" maxOccurs="1"/>
+                <xsd:element ref="geojsf:maps" maxOccurs="1"/>
+                <xsd:element ref="geojsf:service" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="service">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="geojsf:layer" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="url" type="xsd:string"/>
+            <xsd:attribute name="wms" type="xsd:string"/>
+            <xsd:attribute name="wcs" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="layers">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geojsf:layer" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="wms" type="xsd:string"/>
+			<xsd:attribute name="wcs" type="xsd:string"/>
+		</xsd:complexType>
+    </xsd:element>
+    <xsd:element name="layer">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="us:langs" maxOccurs="1"/>
+                <xsd:element ref="geojsf:legend" maxOccurs="1"/>
+                <xsd:element ref="geojsf:service" maxOccurs="1"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="workspace" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="label" type="xsd:string"/>
+            <xsd:attribute name="visible" type="xsd:boolean"/>
+            <xsd:attribute name="showLegend" type="xsd:boolean"/>
+            <xsd:attribute name="temporal" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="legend">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="url" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="maps">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="geojsf:map" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="map">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="geojsf:layer" maxOccurs="unbounded"/>
+                <xsd:element ref="us:langs" maxOccurs="1"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="x" type="xsd:double"/>
+            <xsd:attribute name="y" type="xsd:double"/>
+            <xsd:attribute name="zoom" type="xsd:int"/>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>

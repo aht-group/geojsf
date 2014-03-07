@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.openlayers;
+package org.geojsf.xml.geojsf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import net.sf.ahtutils.xml.status.Langs;
 
 
 /**
@@ -22,13 +23,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}layer" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.geojsf.org}layer" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="url" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="wms" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="wcs" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="x" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="y" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -38,26 +40,29 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "layer"
+    "layer",
+    "langs"
 })
-@XmlRootElement(name = "service")
-public class Service
+@XmlRootElement(name = "map")
+public class Map
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<Layer> layer;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Langs langs;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
     protected String code;
-    @XmlAttribute(name = "url")
-    protected String url;
-    @XmlAttribute(name = "wms")
-    protected String wms;
-    @XmlAttribute(name = "wcs")
-    protected String wcs;
+    @XmlAttribute(name = "x")
+    protected Double x;
+    @XmlAttribute(name = "y")
+    protected Double y;
+    @XmlAttribute(name = "zoom")
+    protected Integer zoom;
 
     /**
      * Gets the value of the layer property.
@@ -94,6 +99,34 @@ public class Service
 
     public void unsetLayer() {
         this.layer = null;
+    }
+
+    /**
+     * Gets the value of the langs property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Langs }
+     *     
+     */
+    public Langs getLangs() {
+        return langs;
+    }
+
+    /**
+     * Sets the value of the langs property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Langs }
+     *     
+     */
+    public void setLangs(Langs value) {
+        this.langs = value;
+    }
+
+    public boolean isSetLangs() {
+        return (this.langs!= null);
     }
 
     /**
@@ -157,87 +190,99 @@ public class Service
     }
 
     /**
-     * Gets the value of the url property.
+     * Gets the value of the x property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Double }
      *     
      */
-    public String getUrl() {
-        return url;
+    public double getX() {
+        return x;
     }
 
     /**
-     * Sets the value of the url property.
+     * Sets the value of the x property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Double }
      *     
      */
-    public void setUrl(String value) {
-        this.url = value;
+    public void setX(double value) {
+        this.x = value;
     }
 
-    public boolean isSetUrl() {
-        return (this.url!= null);
+    public boolean isSetX() {
+        return (this.x!= null);
+    }
+
+    public void unsetX() {
+        this.x = null;
     }
 
     /**
-     * Gets the value of the wms property.
+     * Gets the value of the y property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Double }
      *     
      */
-    public String getWms() {
-        return wms;
+    public double getY() {
+        return y;
     }
 
     /**
-     * Sets the value of the wms property.
+     * Sets the value of the y property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Double }
      *     
      */
-    public void setWms(String value) {
-        this.wms = value;
+    public void setY(double value) {
+        this.y = value;
     }
 
-    public boolean isSetWms() {
-        return (this.wms!= null);
+    public boolean isSetY() {
+        return (this.y!= null);
+    }
+
+    public void unsetY() {
+        this.y = null;
     }
 
     /**
-     * Gets the value of the wcs property.
+     * Gets the value of the zoom property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Integer }
      *     
      */
-    public String getWcs() {
-        return wcs;
+    public int getZoom() {
+        return zoom;
     }
 
     /**
-     * Sets the value of the wcs property.
+     * Sets the value of the zoom property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Integer }
      *     
      */
-    public void setWcs(String value) {
-        this.wcs = value;
+    public void setZoom(int value) {
+        this.zoom = value;
     }
 
-    public boolean isSetWcs() {
-        return (this.wcs!= null);
+    public boolean isSetZoom() {
+        return (this.zoom!= null);
+    }
+
+    public void unsetZoom() {
+        this.zoom = null;
     }
 
 }

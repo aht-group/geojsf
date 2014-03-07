@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.openlayers;
+package org.geojsf.xml.geojsf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import net.sf.ahtutils.xml.status.Langs;
 
 
 /**
@@ -23,14 +22,13 @@ import net.sf.ahtutils.xml.status.Langs;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}layer" maxOccurs="unbounded"/>
- *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
+ *         &lt;element ref="{http://www.geojsf.org}layer" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="x" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="y" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="url" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="wms" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="wcs" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,29 +38,26 @@ import net.sf.ahtutils.xml.status.Langs;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "layer",
-    "langs"
+    "layer"
 })
-@XmlRootElement(name = "map")
-public class Map
+@XmlRootElement(name = "service")
+public class Service
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<Layer> layer;
-    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
-    protected Langs langs;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
     protected String code;
-    @XmlAttribute(name = "x")
-    protected Double x;
-    @XmlAttribute(name = "y")
-    protected Double y;
-    @XmlAttribute(name = "zoom")
-    protected Integer zoom;
+    @XmlAttribute(name = "url")
+    protected String url;
+    @XmlAttribute(name = "wms")
+    protected String wms;
+    @XmlAttribute(name = "wcs")
+    protected String wcs;
 
     /**
      * Gets the value of the layer property.
@@ -99,34 +94,6 @@ public class Map
 
     public void unsetLayer() {
         this.layer = null;
-    }
-
-    /**
-     * Gets the value of the langs property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Langs }
-     *     
-     */
-    public Langs getLangs() {
-        return langs;
-    }
-
-    /**
-     * Sets the value of the langs property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Langs }
-     *     
-     */
-    public void setLangs(Langs value) {
-        this.langs = value;
-    }
-
-    public boolean isSetLangs() {
-        return (this.langs!= null);
     }
 
     /**
@@ -190,99 +157,87 @@ public class Map
     }
 
     /**
-     * Gets the value of the x property.
+     * Gets the value of the url property.
      * 
      * @return
      *     possible object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public double getX() {
-        return x;
+    public String getUrl() {
+        return url;
     }
 
     /**
-     * Sets the value of the x property.
+     * Sets the value of the url property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public void setX(double value) {
-        this.x = value;
+    public void setUrl(String value) {
+        this.url = value;
     }
 
-    public boolean isSetX() {
-        return (this.x!= null);
-    }
-
-    public void unsetX() {
-        this.x = null;
+    public boolean isSetUrl() {
+        return (this.url!= null);
     }
 
     /**
-     * Gets the value of the y property.
+     * Gets the value of the wms property.
      * 
      * @return
      *     possible object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public double getY() {
-        return y;
+    public String getWms() {
+        return wms;
     }
 
     /**
-     * Sets the value of the y property.
+     * Sets the value of the wms property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public void setY(double value) {
-        this.y = value;
+    public void setWms(String value) {
+        this.wms = value;
     }
 
-    public boolean isSetY() {
-        return (this.y!= null);
-    }
-
-    public void unsetY() {
-        this.y = null;
+    public boolean isSetWms() {
+        return (this.wms!= null);
     }
 
     /**
-     * Gets the value of the zoom property.
+     * Gets the value of the wcs property.
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public int getZoom() {
-        return zoom;
+    public String getWcs() {
+        return wcs;
     }
 
     /**
-     * Sets the value of the zoom property.
+     * Sets the value of the wcs property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public void setZoom(int value) {
-        this.zoom = value;
+    public void setWcs(String value) {
+        this.wcs = value;
     }
 
-    public boolean isSetZoom() {
-        return (this.zoom!= null);
-    }
-
-    public void unsetZoom() {
-        this.zoom = null;
+    public boolean isSetWcs() {
+        return (this.wcs!= null);
     }
 
 }

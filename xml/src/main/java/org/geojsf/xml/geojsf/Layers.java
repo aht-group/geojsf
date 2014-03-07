@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.openlayers;
+package org.geojsf.xml.geojsf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://geojsf.sf.net/openlayers}layer" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.geojsf.org}layer" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="wms" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="wcs" type="{http://www.w3.org/2001/XMLSchema}string" />

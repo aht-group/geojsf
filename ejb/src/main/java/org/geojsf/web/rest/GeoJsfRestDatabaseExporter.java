@@ -14,10 +14,10 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.rest.GeoJsfDatabaseRest;
 import org.geojsf.util.query.OpenLayersQuery;
-import org.geojsf.xml.openlayers.Layers;
-import org.geojsf.xml.openlayers.Repository;
-import org.geojsf.xml.openlayers.Map;
-import org.geojsf.xml.openlayers.Maps;
+import org.geojsf.xml.geojsf.Layers;
+import org.geojsf.xml.geojsf.Map;
+import org.geojsf.xml.geojsf.Maps;
+import org.geojsf.xml.geojsf.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

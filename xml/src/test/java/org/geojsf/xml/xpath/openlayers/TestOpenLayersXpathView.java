@@ -4,9 +4,9 @@ import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 
 import org.geojsf.test.AbstractGeoJsfXmlTest;
-import org.geojsf.xml.openlayers.Repository;
-import org.geojsf.xml.openlayers.Map;
-import org.geojsf.xml.openlayers.Maps;
+import org.geojsf.xml.geojsf.Map;
+import org.geojsf.xml.geojsf.Maps;
+import org.geojsf.xml.geojsf.Repository;
 import org.geojsf.xml.xpath.OpenLayersXpath;
 import org.junit.BeforeClass;
 import org.junit.Test;
