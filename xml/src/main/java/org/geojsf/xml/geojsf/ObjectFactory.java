@@ -38,27 +38,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Maps }
+     * Create an instance of {@link Coordinate }
      * 
      */
-    public Maps createMaps() {
-        return new Maps();
+    public Coordinate createCoordinate() {
+        return new Coordinate();
     }
 
     /**
-     * Create an instance of {@link Map }
+     * Create an instance of {@link Scales }
      * 
      */
-    public Map createMap() {
-        return new Map();
+    public Scales createScales() {
+        return new Scales();
     }
 
     /**
-     * Create an instance of {@link View }
+     * Create an instance of {@link Query }
      * 
      */
-    public View createView() {
-        return new View();
+    public Query createQuery() {
+        return new Query();
+    }
+
+    /**
+     * Create an instance of {@link Repository }
+     * 
+     */
+    public Repository createRepository() {
+        return new Repository();
+    }
+
+    /**
+     * Create an instance of {@link Layers }
+     * 
+     */
+    public Layers createLayers() {
+        return new Layers();
     }
 
     /**
@@ -86,35 +102,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Repository }
+     * Create an instance of {@link Maps }
      * 
      */
-    public Repository createRepository() {
-        return new Repository();
+    public Maps createMaps() {
+        return new Maps();
     }
 
     /**
-     * Create an instance of {@link Layers }
+     * Create an instance of {@link Map }
      * 
      */
-    public Layers createLayers() {
-        return new Layers();
+    public Map createMap() {
+        return new Map();
     }
 
     /**
-     * Create an instance of {@link Coordinate }
+     * Create an instance of {@link View }
      * 
      */
-    public Coordinate createCoordinate() {
-        return new Coordinate();
-    }
-
-    /**
-     * Create an instance of {@link Query }
-     * 
-     */
-    public Query createQuery() {
-        return new Query();
+    public View createView() {
+        return new View();
     }
 
     /**
