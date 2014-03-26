@@ -139,9 +139,7 @@
 			<releases><enabled>true</enabled></releases>
 			<snapshots><enabled>true</enabled></snapshots>
 		</repository>
-		
     </repositories>
-
 		
 	<build>
 		<pluginManagement>
@@ -149,7 +147,7 @@
 				<plugin>
 					<groupId>net.sf.ahtutils</groupId>
 					<artifactId>ahtutils-maven</artifactId>
-					<version>0.2.5-SNAPSHOT</version>
+					<version>0.2.6-SNAPSHOT</version>
 				</plugin>
 								<plugin>
 					<groupId>org.eclipse.m2e</groupId>

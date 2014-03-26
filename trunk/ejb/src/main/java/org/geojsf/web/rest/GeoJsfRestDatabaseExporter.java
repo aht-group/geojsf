@@ -54,7 +54,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
 					MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
 					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>,
-					LT extends UtilsStatus<L,D>>
+					LT extends UtilsStatus<LT,L,D>>
 		GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW>
 		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VIEW> cView)
 	{

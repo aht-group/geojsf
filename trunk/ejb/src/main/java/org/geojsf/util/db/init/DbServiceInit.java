@@ -44,7 +44,7 @@ public class DbServiceInit <L extends UtilsLang,
 					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
 					VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
 					VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
-					LT extends UtilsStatus<L,D>>
+					LT extends UtilsStatus<LT,L,D>>
 		DbServiceInit<L,D,SERVICE,LAYER,VIEW,VL>
 		factory(final Class<SERVICE> cService, UtilsSecurityFacade fAcl)
 	{
