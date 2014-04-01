@@ -50,6 +50,7 @@ public class Map
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
 	private List<DefaultGeoJsfService> serviceList;
+	private List<String> temporalLayerNames;
 	
 	private Coordinates coords = new Coordinates();
 	
@@ -73,6 +74,7 @@ public class Map
 	
 	public String fallback() throws Exception
 	{
+		 temporalLayerNames = new ArrayList<String>();
 		 serviceList = new ArrayList<DefaultGeoJsfService>();
 		 logger.debug("Checking value existence ...");
 		 if (getAttributes().get("value")==null)
@@ -208,7 +210,9 @@ public class Map
             			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
             			String lat = params.get("org.geojsf.coordinates.lat");
             			String lon = params.get("org.geojsf.coordinates.lon");
+            			String scl = params.get("org.geojsf.coordinates.scale");
             			ajaxEvent.setLatLon(lat,lon);
+            			ajaxEvent.setScale(scl);
             			behavior.broadcast(ajaxEvent);
             		}
             	}
@@ -333,7 +337,7 @@ public class Map
 		for (Object o : service.getLayer())
 		{
 			GeoJsfLayer layer = (GeoJsfLayer) o;
-			if (layer.isTemporalLayer()) {temporal = true;}
+			if (layer.isTemporalLayer()) {temporal = true; temporalLayerNames.add(service.getCode());}
 		}
 		return temporal;
 	}
@@ -387,6 +391,10 @@ public class Map
 		writer.writeText("params.format      = 'image/png';" +System.getProperty("line.separator"),null);
 		writer.writeText("var options = {};" +System.getProperty("line.separator"),null);
 		writer.writeText("options.isBaseLayer = " +baseLayer +";" +System.getProperty("line.separator"), null);
+	//	writer.writeText("options.scales = [10, 10000, 100000];" +System.getProperty("line.separator"), null);
+	//	writer.writeText("options.maxScale = 10;" +System.getProperty("line.separator"), null);
+	//	writer.writeText("options.minScale = 100000;" +System.getProperty("line.separator"), null);
+	//	writer.writeText("options.units = 'm';" +System.getProperty("line.separator"), null);
 		writer.writeText("GeoJSF.addLayer(name, url, params, options);" +System.getProperty("line.separator"),null);
 		writer.writeText(System.getProperty("line.separator"), null);
 	}
@@ -435,4 +443,7 @@ public class Map
 
 	public List<DefaultGeoJsfService> getServiceList() {return serviceList;}
 	public void setServiceList(List<DefaultGeoJsfService> serviceList) {this.serviceList = serviceList;}
+
+	public List<String> getTemporalLayerNames() {return temporalLayerNames;}
+	public void setTemporalLayerNames(List<String> temporalLayerNames) {this.temporalLayerNames = temporalLayerNames;}
 }
