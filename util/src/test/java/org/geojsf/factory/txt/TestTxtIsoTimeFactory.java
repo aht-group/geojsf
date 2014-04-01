@@ -41,7 +41,7 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 	@Test
 	public void value()
 	{
-		String expected = "2011-08-20T12:00:00:000Z";
+		String expected = "2011-08-20T12:00:00Z";
 		String actual = TxtIsoTimeFactory.toDate(d1);
 		
 		logger.info("ISO result       : " +actual);
@@ -51,7 +51,7 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 	@Test
 	public void range()
 	{
-		String expected = "2011-08-20T12:00:00:000Z/2011-08-25T12:00:00:000Z";
+		String expected = "2011-08-20T12:00:00Z/2011-08-25T12:00:00Z";
 		String actual = TxtIsoTimeFactory.toRange(d1, d2);
 	
 		logger.info("ISO result       : " +actual);
@@ -61,7 +61,7 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 	@Test
 	public void list()
 	{
-		String expected = "2011-08-20T12:00:00:000Z,2011-08-25T12:00:00:000Z";
+		String expected = "2011-08-20T12:00:00Z,2011-08-25T12:00:00Z";
 		ArrayList<Date> list = new ArrayList<Date>();
 		list.add(d1);
 		list.add(d2);
