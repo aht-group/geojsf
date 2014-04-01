@@ -1,12 +1,23 @@
 var GeoJsfControl = {	
 
-		addZoom : function(type)
+		addZoom : function(type, position)
 		{
 			var zoom;
+			var style;
+			if (position=="right")
+			{
+				style = "92%;";
+			}
+			else
+			{
+				style = "5%;";
+			}
 			if (type=="button")
 			{
 				this.zoom = new OpenLayers.Control.Zoom();
 				GeoJSF.map.addControl(this.zoom);
+				var originalStyle = this.zoom.draw.parentNode.getAttribute("style");
+				this.zoom.draw.setAttribute("style", originalStyle +" left: " +style +";");
 			}
 			if (type=="slider")
 			{
@@ -14,7 +25,10 @@ var GeoJsfControl = {
 				GeoJSF.map.addControl(this.zoom);
 				 for (var p = 0; p < 4; p++) {
 				        this.zoom.buttons[p].style.display = 'none';
+				        this.zoom.buttons[p].style.left    = style;
 				 }
+				 var originalStyle = this.zoom.zoombarDiv.getAttribute("style");
+				 this.zoom.zoombarDiv.setAttribute("style", originalStyle +" left: " +style +";");
 			}
 		},
 		
