@@ -55,7 +55,7 @@ var GeoJSF = {
 		         }, 
 
 		         trigger: function(e) {
-		        	 jsf.ajax.request(id, 'click', {render: updateOnClick, execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick', 'org.geojsf.coordinates.lat': this.map.getLonLatFromViewPortPx(e.xy).lat, 'org.geojsf.coordinates.lon': this.map.getLonLatFromViewPortPx(e.xy).lon});
+		        	 jsf.ajax.request(id, 'click', {render: updateOnClick, execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick','org.geojsf.coordinates.scale': this.map.getScale(),  'org.geojsf.coordinates.lat': this.map.getLonLatFromViewPortPx(e.xy).lat, 'org.geojsf.coordinates.lon': this.map.getLonLatFromViewPortPx(e.xy).lon});
 		         }
 		     });
 		},
@@ -155,9 +155,44 @@ var GeoJSF = {
 			console.log(data);
 		},
 		
+		toggleService : function(serviceId, layer)
+		{
+			console.log("Setting " + serviceId + " to active with " +layer);
+		},
+		
 		testAjaxData : function(xhr, status, args)
 		{
-			console.log(args.test);
+			//The args attribute is filled by the server using PrimeFaces ResponseWriter method
+			var activeLayers = JSON.parse( args.activeLayers );
+	//		console.log(activeLayers);
+			for(var service in activeLayers)
+			{
+				var serviceObj = activeLayers[service];
+		        this.toggleService(serviceObj.serviceId, serviceObj.layer);
+		    }
+		},
+		
+		testAjaxButtonData : function(xhr, status, args)
+		{
+			//The args attribute is filled by the server using PrimeFaces ResponseWriter method
+			var activeLayers = JSON.parse( args.activeLayers );
+	//		console.log(activeLayers);
+			for(var service in activeLayers)
+			{
+				var serviceObj = activeLayers[service];
+		        this.toggleService(serviceObj.serviceId, serviceObj.layer);
+		    }
+		},
+		
+		updateTime : function(layerName, time)
+		{
+			 var layer = this.map.getLayersByName(layerName);
+			 var params  = {};
+			 var date  = new Date(time);
+			 var isoTime = date.toISOString();
+			 params.time = isoTime;
+			 console.log("Merging new Time parameter: " +isoTime);
+			 this.layer.mergeNewParams(params);
 		}
 		
 		
