@@ -17,7 +17,7 @@ public class TxtIsoTimeFactory
 	
 	public static String toDate(Date date)
 	{
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss:SSS'Z'");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		df.setTimeZone(TimeZone.getTimeZone("UTC"));
 		return df.format(date);
 	}
