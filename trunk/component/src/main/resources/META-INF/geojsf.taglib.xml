@@ -36,6 +36,12 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>timeControl</tag-name>
+		<component>
+			<component-type>org.geojsf.component.TimeControl</component-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>externalScript</tag-name>
 		<component>
 			<component-type>org.geojsf.component.UIExternalScript</component-type>
