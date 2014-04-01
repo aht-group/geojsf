@@ -22,7 +22,7 @@ public class Zoom extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Zoom.class);
 	
-	private String type;
+	private String type, position;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -38,10 +38,13 @@ public class Zoom extends UINamingContainer implements ClientBehaviorHolder
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		ResponseWriter writer = ctx.getResponseWriter();
-		writer.writeText("GeoJsfControl.addZoom('" +type +"');", null);
+		writer.writeText("GeoJsfControl.addZoom('" +type +"','" +position +"');", null);
 		logger.info("adding " +type);
 	}
 
 	public String getType() {return type;}
 	public void setType(String type) {this.type = type;}
+
+	public String getPosition() {return position;}
+	public void setPosition(String position) {this.position = position;}
 }
