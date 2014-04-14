@@ -86,7 +86,7 @@ public class Player extends UINamingContainer implements ClientBehaviorHolder
 		logger.info("Map found with " +map.getServiceList().size() +" layer definitions. Current time: ");
 		for (GeoJsfService service : map.getServiceList())
 		{
-			logger.info("Does Service has temporal information? " +map.hasTemporalLayer(service));
+			logger.info("Does Service has temporal information? " +!MapUtil.hasTemporalLayer(service).isEmpty());
 			for (Object o : service.getLayer())
 			{
 				GeoJsfLayer layer = (GeoJsfLayer) o;
