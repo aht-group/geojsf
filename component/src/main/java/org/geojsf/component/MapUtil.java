@@ -138,6 +138,7 @@ public class MapUtil {
 	{
 		 map.setTemporalLayerNames(new ArrayList<String>());
 		 map.setServiceList(new ArrayList<DefaultGeoJsfService>());
+		 logger.info("Initial layer configuration.");
 		 logger.debug("Checking value existence ...");
 		 if (map.getAttributes().get("value")==null)
 		 {

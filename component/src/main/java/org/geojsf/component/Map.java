@@ -62,6 +62,7 @@ public class Map
 	private Boolean hasTimeDefinition = false;
 	private String timeInfo = null;
 	private Scales scales = null;
+	private Boolean initStage = true;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -70,15 +71,6 @@ public class Map
 		{
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"OpenLayers.js");
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"GeoJSF.js");
-			
-			try {
-				MapUtil.initLayerConfiguration(this);
-			} catch (UnconsistentConfgurationException e) {
-				logger.warn("Problem occured when processing layers: " +e.getMessage());
-			} catch (Exception e) {
-				e.printStackTrace();
-				this.setRendered(false);
-			}
 		}
 		super.processEvent(event);
 	}
@@ -92,6 +84,15 @@ public class Map
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		logger.info("entering encodebegin");
+
+		try {
+			if (initStage) {MapUtil.initLayerConfiguration(this);}
+		} catch (UnconsistentConfgurationException e) {
+			logger.warn("Problem occured when processing layers: " +e.getMessage());
+		} catch (Exception e) {
+			logger.warn("Problem occured when processing layers: " +e.getMessage());
+			this.setRendered(false);
+		}
 		
 		if (this.isRendered())
 		{
@@ -107,37 +108,31 @@ public class Map
 				writer.startElement("center", this);
 				writer.writeText("no layers given.", null);
 				writer.endElement("center");
+				logger.warn("Map can not be rendered without layers!");
 			}
 			else
 			{
-				renderer.renderLinebreaks(1);
-				writer.startElement("script", this);
-				writer.writeText("jsf.ajax.addOnEvent(GeoJSF.ajaxResponse);", null);
-				renderer.renderLinebreaks(1);
-				writer.writeText("// GeoJSF: Initializing OpenLayers map"+System.getProperty("line.separator"), null);
-				writer.writeText("GeoJSF.bootstrap();" +System.getProperty("line.separator"), null);
-				writer.writeText("GeoJSF.addClickHandler('" +this.getClientId() +"','" +this.getClientId() +":resetLayers','" +JsfRenderUtil.encodeAjax(this) +"');" +System.getProperty("line.separator"), null);
-				writer.writeText("GeoJSF.initMap('" +this.getClientId() +"','');" +System.getProperty("line.separator"), null);
-				if (this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME")!=null)
+				if(initStage)
 				{
-					writer.writeText("OpenLayers.ImgPath='" +this.getFacesContext().getExternalContext().getRequestContextPath() +"/" +this.getFacesContext().getExternalContext().getInitParameter("geojsf.THEME") +"/';" +System.getProperty("line.separator"), null);
-				}
-			    
-				writer.writeText("GeoJSF.resetLayers();", null);
-				renderer.renderLinebreaks(2);
-				writer.writeText("// GeoJSF: Adding layers"+System.getProperty("line.separator"), null);
-				writer.writeText("// GeoJSF: The last given layer will be taken as base layer:"+System.getProperty("line.separator"), null);
+					//First, render the JavaScript code to initialize the map
+					renderer.renderMapInitialization(this.getFacesContext());
+					
+					//Next, render the base layer (adding overlays first results in error)
+					GeoJsfService baseLayer = serviceList.get(serviceList.size()-1);
+					encodeLayer(baseLayer, true, writer, renderer);
+					
+					//Finally, render the overlay layers
+					//for (int i=0;i<serviceList.size()-1;i++)
+			 		for(int i=serviceList.size()-2;i==0;i--) //GEO-64
+					{	
+						GeoJsfService service = serviceList.get(i);
+			 			encodeLayer(service, false, writer, renderer);  
+					}
+			 		
+			 		//Set flag that map initiation is completed and not to be repeated
+			 		initStage = false;
+			 		logger.info("Map initialization completed!");
 				
-				//First, add the last layer as base layer - adding overlays first results in error
-				GeoJsfService baseLayer = serviceList.get(serviceList.size()-1);
-				encodeLayer(baseLayer, true, writer);
-				logger.info("Service list has " +serviceList.size() +" elements.");
-				//Now add the overlay layers
-				//for (int i=0;i<serviceList.size()-1;i++)
-		 		for(int i=serviceList.size()-2;i==0;i--) //GEO-64
-				{	
-					GeoJsfService service = serviceList.get(i);
-		 			encodeLayer(service, false, writer);  
 	} } } }
 	
 	@Override
@@ -147,32 +142,32 @@ public class Map
 		writer.endElement("script"); 
 	}
 	
-	public void encodeLayer(GeoJsfService service, Boolean baseLayer, ResponseWriter writer) throws IOException
+	public void encodeLayer(GeoJsfService service, Boolean baseLayer, ResponseWriter writer, JsfRenderUtil renderer) throws IOException
 	{
 		String sLayers = TxtOpenlayersLayerFactory.buildLayerString(service);
 		logger.info("Adding "+service.getCode()+": "+sLayers);
-		writer.writeText("var url    = '" +service.getUrl() +"';" +System.getProperty("line.separator"),null);
-	    writer.writeText("var name   = '" +service.getId() +"';" +System.getProperty("line.separator"),null);
-		writer.writeText("var params = {};" +System.getProperty("line.separator"), null);
-		writer.writeText("params.layers      = '"+sLayers+"';" +System.getProperty("line.separator"),null);
+		renderer.renderTextWithLB("var url    = '" +service.getUrl() +"';");
+		renderer.renderTextWithLB("var name   = '" +service.getId() +"';");
+		renderer.renderTextWithLB("var params = {};");
+		renderer.renderTextWithLB("params.layers      = '"+sLayers+"';");
 		ArrayList<String> localTemporalLayer = MapUtil.hasTemporalLayer(service);
 		if (localTemporalLayer.size()>0 && null!=timeInfo)
 		{
 			temporalLayerNames.addAll(localTemporalLayer);
-			writer.writeText("params.time      = '"+timeInfo +"';" +System.getProperty("line.separator"),null);
+			renderer.renderTextWithLB("params.time      = '"+timeInfo +"';");
 		}
 		
-		writer.writeText("params.transparent = true;" +System.getProperty("line.separator"),null);
-		writer.writeText("params.format      = 'image/png';" +System.getProperty("line.separator"),null);
-		writer.writeText("var options = {};" +System.getProperty("line.separator"),null);
-		writer.writeText("options.isBaseLayer = " +baseLayer +";" +System.getProperty("line.separator"), null);
+		renderer.renderTextWithLB("params.transparent = true;");
+		renderer.renderTextWithLB("params.format      = 'image/png';");
+		renderer.renderTextWithLB("var options = {};");
+		renderer.renderTextWithLB("options.isBaseLayer = " +baseLayer +";");
 		
 	//	writer.writeText("options.scales = [10, 10000, 100000];" +System.getProperty("line.separator"), null);
 	//	writer.writeText("options.maxScale = 10;" +System.getProperty("line.separator"), null);
 	//	writer.writeText("options.minScale = 100000;" +System.getProperty("line.separator"), null);
 	//	writer.writeText("options.units = 'm';" +System.getProperty("line.separator"), null);
-		writer.writeText("GeoJSF.addLayer(name, url, params, options);" +System.getProperty("line.separator"),null);
-		writer.writeText(System.getProperty("line.separator"), null);
+		renderer.renderTextWithLB("GeoJSF.addLayer(name, url, params, options);");
+		renderer.renderLinebreaks(1);
 	}
 	
 	
@@ -221,13 +216,17 @@ public class Map
 	
 	@Override
 	public void restoreState(FacesContext context, Object state) {
-	    
+	    Object[] storedState = (Object[]) state;
+	    logger.info("Restoring state.");
+		serviceList = (List<DefaultGeoJsfService>) storedState[1];
+		initStage   = (Boolean) storedState[0];
 	}
 	
 	@Override
 	public Object saveState(FacesContext context) {
 	    Object[] rtrn = new Object[2];
-	    
+	    rtrn[0] = initStage;
+	    rtrn[1] = serviceList;
 	    return rtrn;
 	}
 	
@@ -267,4 +266,7 @@ public class Map
 
 	public String getTimeInfo() {return timeInfo;}
 	public void setTimeInfo(String timeInfo) {this.timeInfo = timeInfo;}
+
+	public Boolean getInitStage() {return initStage;}
+	public void setInitStage(Boolean initStage) {this.initStage = initStage;}
 }

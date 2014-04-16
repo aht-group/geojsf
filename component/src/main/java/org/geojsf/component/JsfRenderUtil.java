@@ -8,6 +8,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import org.slf4j.Logger;
@@ -80,6 +81,38 @@ public class JsfRenderUtil {
 			}
 		}
 		return updateOnClick.toString();
+	}
+	
+	public void renderMapInitialization(FacesContext context) throws IOException
+	{
+		renderLinebreaks(1);
+		Map map = (Map) component;
+		writer.startElement("script", map);
+		renderTextWithLB("jsf.ajax.addOnEvent(GeoJSF.ajaxResponse);");
+		renderTextWithLB("// GeoJSF: Initializing OpenLayers map");
+		renderTextWithLB("GeoJSF.bootstrap();");
+		renderTextWithLB("GeoJSF.addClickHandler('" +map.getClientId() +"','" +map.getClientId() +":resetLayers','" +encodeAjax(map) +"');");
+		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"','');");
+		
+		if (context.getExternalContext().getInitParameter("geojsf.THEME")!=null)
+		{
+			renderTextWithLB("OpenLayers.ImgPath='" +context.getExternalContext().getRequestContextPath() +"/" +context.getExternalContext().getInitParameter("geojsf.THEME") +"/';");
+		}
+	    
+		writer.writeText("GeoJSF.resetLayers();", null);
+		renderLinebreaks(2);
+		renderTextWithLB("// GeoJSF: Adding layers");
+		renderTextWithLB("// GeoJSF: The last given layer will be taken as base layer:");
+		renderLinebreaks(1);
+	}
+	
+	public void renderTextWithLB(String text)
+	{
+		try {
+			writer.writeText(text +System.getProperty("line.separator"), null);
+		} catch (IOException e) {
+			logger.info("Problem rendering " +text +" using JsfRenderUtil");
+		}
 	}
 
 }
