@@ -83,6 +83,7 @@ var GeoJSF = {
 			this.map.zoomToMaxExtent();
 		},
 		
+		// Deprecated - Logic will be placed in server bean soon
 		toggleComplexLayer : function(layerCode, shown) 
 		{
 			var layerArray = layerCode.split(":");
@@ -129,6 +130,7 @@ var GeoJSF = {
 		    }
 		},
 		
+		// Deprecated
 		toggleLayer : function(layerName, shown) 
 		{
 		    var layers = GeoJSF.map.getLayersByName(layerName);
@@ -140,6 +142,7 @@ var GeoJSF = {
 		    }
 		},
 		
+		// Deprecated
 		setLayers : function(checkboxIds, numberOfOptions) 
 		{
 			for (var i=0;i<numberOfOptions;i++)
@@ -155,35 +158,6 @@ var GeoJSF = {
 			console.log(data);
 		},
 		
-		toggleService : function(serviceId, layer)
-		{
-			console.log("Setting " + serviceId + " to active with " +layer);
-		},
-		
-		testAjaxData : function(xhr, status, args)
-		{
-			//The args attribute is filled by the server using PrimeFaces ResponseWriter method
-			var activeLayers = JSON.parse( args.activeLayers );
-	//		console.log(activeLayers);
-			for(var service in activeLayers)
-			{
-				var serviceObj = activeLayers[service];
-		        this.toggleService(serviceObj.serviceId, serviceObj.layer);
-		    }
-		},
-		
-		testAjaxButtonData : function(xhr, status, args)
-		{
-			//The args attribute is filled by the server using PrimeFaces ResponseWriter method
-			var activeLayers = JSON.parse( args.activeLayers );
-	//		console.log(activeLayers);
-			for(var service in activeLayers)
-			{
-				var serviceObj = activeLayers[service];
-		        this.toggleService(serviceObj.serviceId, serviceObj.layer);
-		    }
-		},
-		
 		updateTime : function(layerName, time)
 		{
 			 var layer = this.map.getLayersByName(layerName);
@@ -193,6 +167,31 @@ var GeoJSF = {
 			 params.time = isoTime;
 			 console.log("Merging new Time parameter: " +isoTime);
 			 this.layer.mergeNewParams(params);
+		},
+		
+		switchLayer : function(serviceId, layerId, elementId)
+		{
+			 var checkbox = document.getElementById(elementId);
+			 var active   = checkbox.checked;
+			 console.log("Switching: " +layerId +" of service "+ serviceId +" to " +active);
+			 // This is the pure JSF based approach, not having an 'oncomplete' method:	 
+			 // jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
+			 
+			 // This is the PrimeFaces based solution along with an 'oncomplete' call
+			 PrimeFaces.ab({process: '@all', 
+				 			source: elementId, 
+				 			event: 'layerSwitch', 
+				 			params: [{name: 'org.geojsf.switch.service', value: serviceId},{name: 'org.geojsf.switch.layer', value: layerId},{name: 'org.geojsf.switch.on', value: active}, ],
+				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
+		},
+		
+		performLayerSwitch : function(xhr, status, args)
+		{
+			console.log("Performing layer switch via OpenLayers.");
+			console.log(args);
+			console.log(args.toggleLayer);
+			var command = JSON.parse(args.toggleLayer);
+			console.log("OpenLayers: Please set " +command.serviceId +" to have the layers " +command.layer +" using the method " +command.command);
 		}
 		
 		
