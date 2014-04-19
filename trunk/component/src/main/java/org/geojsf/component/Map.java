@@ -131,7 +131,7 @@ public class Map
 			 		
 			 		//Set flag that map initiation is completed and not to be repeated
 			 		initStage = false;
-			 		logger.info("Map initialization completed!");
+			 		logger.info("Map initialization completed for " +this.getClientId() +" (ID: " +this.getId() +")");
 				
 	} } } }
 	

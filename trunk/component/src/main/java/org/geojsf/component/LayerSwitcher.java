@@ -1,25 +1,22 @@
 package org.geojsf.component;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 
-import javax.faces.application.Application;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
-import javax.faces.component.UISelectItem;
 import javax.faces.component.UISelectMany;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
-import javax.faces.component.html.HtmlSelectManyCheckbox;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
+import org.geojsf.component.LayerSwitchHelper.Service;
 import org.geojsf.controller.util.GeoJsfMapHelper;
-import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
@@ -27,63 +24,53 @@ import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.primefaces.component.behavior.ajax.AjaxBehavior;
-import org.primefaces.component.selectmanycheckbox.SelectManyCheckbox;
+import org.primefaces.component.selectbooleanbutton.SelectBooleanButton;
+import org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox;
 import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-
 
 @ResourceDependencies({
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+	@ResourceDependency(library = "geojsf", name = "ios.js", target = "head"),
+	@ResourceDependency(library = "geojsf", name = "ios.css", target = "head"),
 	@ResourceDependency(library = "geojsf", name = "geojsf.css", target = "head")})
 @FacesComponent(value="org.geojsf.component.LayerSwitcher")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHolder{
-
+	
 	final static Logger logger = LoggerFactory.getLogger(LayerSwitcher.class);
+	
+	private Boolean initStage = true;
+	private LayerSwitchHelper helper;
 	public UISelectMany selector;
+	Hashtable<String, Service> services;
 	private GeoJsfMapHelper geoJsfMap;
-	
-	private java.util.Map<String, String> availableLayers;
-	private String[] selectedArray;
-	
-
-	private String layerArray;
-	
-	Gson gson = new Gson();
-	
-	public String init()
-	{			
-		geoJsfMap = (GeoJsfMapHelper) getAttributes().get("value");
-		availableLayers = new HashMap<String, String>();
-		
-		logger.info("Loading Layer options.");
-		for (Object o : geoJsfMap.getDmLayer())
-		{
-			GeoJsfLayer layer = (GeoJsfLayer) o;
-			availableLayers.put(layer.getCode(), layer.getCode());
-		}
-		selectedArray = new String[availableLayers.size()];
-		return layerArray;
-	}
 	
 	public void decode(FacesContext context)
 	{
 		logger.info("Entering decode");
+		
 		java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
 		String behaviorEvent = params.get("javax.faces.behavior.event");
-	    logger.info("Got this event: " +behaviorEvent);
-	    SelectManyCheckbox selectorComponent = (SelectManyCheckbox) this.getFacesContext().getViewRoot().findComponent("fLayer:selector");
-	    String[] values = (String[]) selectorComponent.getValue();
-	    StringBuffer buffer = new StringBuffer();
-	    for (String value : values)
-	    {
-	    	buffer.append(value + "---");
-	    }
-	    RequestContext.getCurrentInstance().addCallbackParam("test", gson.toJson(selectorComponent.getValue()));
 		
+	    logger.info("Got this event: " +behaviorEvent);
+	    
+	    if (behaviorEvent.equals("layerSwitch"))
+			{
+				String serviceId = params.get("org.geojsf.switch.service");
+				String layerId   = params.get("org.geojsf.switch.layer");
+				Boolean active   = new Boolean(params.get("org.geojsf.switch.on"));
+				logger.info("Trying to generate command to set layer " +layerId +" of service " +serviceId +" to " +active);				
+				helper = new LayerSwitchHelper(services);
+				logger.debug("Current LayerSwitchHelper content: " +helper.toString());
+				String toggleCommand = helper.toggleLayer(serviceId, layerId, active);
+				services = helper.getServices();
+				logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +layerId +" of service " +serviceId +" to " +active);
+				RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
+				RequestContext.getCurrentInstance().addCallbackParam("switchLayer", true);
+			}
 	    java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
 		if (behaviors.isEmpty())
 		{
@@ -93,40 +80,65 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 	}
 	
 	@Override
-	public void encodeBegin(FacesContext ctx) throws IOException
+	public void encodeAll(FacesContext ctx) throws IOException
 	{
 		logger.info("entering encodebegin");
-		init();
 		
-		//Add the SelectManyCheckbox
-		Application app = FacesContext.getCurrentInstance().getApplication();
-		selector = (HtmlSelectManyCheckbox) app.createComponent(HtmlSelectManyCheckbox.COMPONENT_TYPE);
-		selector = new SelectManyCheckbox();
-		selector.setId("selector");
-		selector.setValue(selectedArray);
-		selector.setTransient(false);
-		Integer number = 0;
-		for (Object o : geoJsfMap.getDmLayer())
+		if (initStage)
 		{
-			GeoJsfLayer layer = (GeoJsfLayer) o;
-			selectedArray[number]=layer.getService() +":" +layer.getCode();
-			UISelectItem item = new UISelectItem();
-			item.setItemLabel(layer.getService().getCode() +"->" +layer.getCode());
-			item.setItemValue(layer.getService() +":" +layer.getCode());
-			item.setId("layerSelect" +number);
-			selector.getChildren().add(item);
-			number++;
+			
+			String mapId = (String) this.getAttributes().get("mapId");
+			Map map = (Map) this.getFacesContext().getViewRoot().findComponent(mapId);
+			logger.debug("LayerSwitcher found Map component: " +map.getClientId() +" with " +map.getServiceList().size() +" services.");
+					
+			LayerSwitchHelper helper = new LayerSwitchHelper(map.getServiceList());
+			services = helper.getServices();
+			for (String serviceId : services.keySet())
+			{
+		//		logger.info("Found service: ");
+				org.geojsf.component.LayerSwitchHelper.Service service = services.get(serviceId);
+				for (String layerId : service.getLayer().keySet())
+				{
+			//		logger.info("Found layer: ");
+					String value = serviceId +":" +layerId;
+					String label = "Show name for " +layerId;
+					String id    = "layerselect" +layerId;
+					SelectBooleanCheckbox checkbox = new SelectBooleanCheckbox();
+					
+					checkbox.setOnchange("GeoJSF.switchLayer('" +serviceId +"','" +layerId +"','" +this.getNamingContainer().getClientId() +":" +id +"_input')");
+					checkbox.setValue(value);
+					checkbox.setTitle(label);
+					checkbox.setLabel(label);
+					checkbox.setId(id);
+					
+					this.getChildren().add(checkbox);
+				}
+			}
+			this.encodeChildren(ctx);
+			initStage=false;
 		}
-		this.getChildren().add(selector);
-		logger.info("Populated these values: " +selector.getSelectedValues().toString());
-		
-		
-		//Add a AJAX client behavior to enable a client and server communication
-		AjaxBehavior ajax = new AjaxBehavior();
-		ajax.setProcess("@form");
-		ajax.setOncomplete("GeoJSF.testAjaxData(xhr, status, args)");
-		selector.addClientBehavior("change", ajax);
-//		ajax.setOncomplete("GeoJSF.setLayers('" +this.getParent().getClientId() +":selector:', "+number+")");
+	}
+	
+	// -------------------------------------------
+	// JSF Methods for State Saving and Event Name
+	// -------------------------------------------
+	
+	@Override
+	public void restoreState(FacesContext context, Object state) {
+	    Object[] storedState = (Object[]) state;
+	    logger.info("Restoring state.");
+	    initStage   = (Boolean) storedState[0];
+	    services    = (Hashtable<String, Service>) storedState[1];
+		helper      = new LayerSwitchHelper(services);
+		logger.debug("Current LayerSwitchHelper content: " +helper.toString());
+	}
+	
+	@Override
+	public Object saveState(FacesContext context) {
+	    Object[] rtrn = new Object[2];
+	    rtrn[0] = initStage;
+	    rtrn[1] = services;
+	    return rtrn;
 	}
 			
 	
@@ -140,23 +152,16 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 		this.geoJsfMap = geoJsfMap;
 	}
 	
-	public java.util.Map<String, String> getAvailableLayers() {
-		return availableLayers;
-	}
-
-	public void setAvailableLayers(java.util.Map<String, String> availableLayers) {
-		this.availableLayers = availableLayers;
-	}
-
 	@Override
-	public String getFamily() {
-		return null;
-	}
-	public String[] getSelectedArray() {
-		return selectedArray;
-	}
+	public String getFamily() {return null;}
 
-	public void setSelectedArray(String[] selectedArray) {
-		this.selectedArray = selectedArray;
-	}
+
+	public Boolean getInitStage() {return initStage;}
+	public void setInitStage(Boolean initStage) {this.initStage = initStage;}
+
+	public LayerSwitchHelper getHelper() {return helper;}
+	public void setHelper(LayerSwitchHelper helper) {this.helper = helper;}
+
+	public Hashtable<String, Service> getServices() {return services;}
+	public void setServices(Hashtable<String, Service> services) {this.services = services;}
 }
