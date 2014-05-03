@@ -3,8 +3,11 @@ package org.geojsf.doc.ofx;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import net.sf.ahtutils.doc.DocumentationCommentBuilder;
+import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
 import net.sf.ahtutils.xml.status.Description;
 import net.sf.ahtutils.xml.status.Lang;
+import net.sf.ahtutils.xml.status.Translations;
 import net.sf.ahtutils.xml.xpath.StatusXpath;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
@@ -31,20 +34,16 @@ import org.openfuxml.renderer.latex.content.table.LatexTableRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class OfxLayerTableFactory
+public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 {
 	final static Logger logger = LoggerFactory.getLogger(OfxLayerTableFactory.class);
 	
 	private static String keyCaption = "geojsfTableLayerCaption";
 	private int[] colWidths = {15,30,70};
-	
-	private Configuration config;
-	private String lang;
-	
-	public OfxLayerTableFactory(Configuration config,String lang)
+		
+	public OfxLayerTableFactory(Configuration config,String lang,Translations translations)
 	{
-		this.config=config;
-		this.lang=lang;
+		super(config,lang,translations);
 	}
 	
 	public String toLatex(String id, Service service, Layers layers, String[] headerKeys) throws OfxAuthoringException
@@ -89,7 +88,6 @@ public class OfxLayerTableFactory
 	
 	private Specification createSpecifications()
 	{
-
 		Columns cols = new Columns();
 
 		cols.getColumn().add(OfxColumnFactory.percentage(colWidths[0]));
@@ -102,15 +100,9 @@ public class OfxLayerTableFactory
 	}
 	
 	private Content createContent(String[] headerKeys, Layers layers) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
-	{
-		Row row = new Row();
-		for(String headerKey : headerKeys)
-		{
-			row.getCell().add(OfxCellFactory.createParagraphCell(lang+"-"+headerKey));
-		}
-		
+	{	
 		Head head = new Head();
-		head.getRow().add(row);
+		head.getRow().add(this.createHeaderRow(headerKeys));
 		
 		Body body = new Body();
 		
