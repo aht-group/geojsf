@@ -2,6 +2,7 @@ package org.geojsf.factory.xml.openlayers;
 
 import java.io.Serializable;
 
+import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
@@ -37,16 +38,22 @@ public class XmlMapFactory implements Serializable
 		if(q.isSetZoom()){xml.setZoom(ejb.getZoom());}
 		if(q.isSetX()){xml.setX(ejb.getX());}
 		if(q.isSetY()){xml.setY(ejb.getY());}
+				
+		if(ejb.getViews()!=null && ejb.getViews().size()>0)
+		{
+			
+		}
+		
 		if(q.isSetLangs())
 		{
 			XmlLangsFactory f = new XmlLangsFactory(q.getLangs());
 			xml.setLangs(f.getUtilsLangs(ejb.getName()));
 		}
 		
-		
-		if(ejb.getViews()!=null && ejb.getViews().size()>0)
+		if(q.isSetDescriptions())
 		{
-			
+			XmlDescriptionsFactory f = new XmlDescriptionsFactory(q.getDescriptions());
+			xml.setDescriptions(f.create(ejb.getDescription()));
 		}
 		
 		return xml;
