@@ -98,7 +98,7 @@ public class OfxServiceListFactory
 			text = d.getValue();
 		}
 		catch (ExlpXpathNotFoundException e){text = e.getMessage();}
-		catch (ExlpXpathNotUniqueException e){text = e.getMessage();}		
+		catch (ExlpXpathNotUniqueException e){text = e.getMessage();}
 		
 		Paragraph p = new Paragraph();
 		p.getContent().add(text);

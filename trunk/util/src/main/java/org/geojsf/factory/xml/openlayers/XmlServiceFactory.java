@@ -55,7 +55,6 @@ public class XmlServiceFactory implements Serializable
 		{
 			XmlDescriptionsFactory f = new XmlDescriptionsFactory(q.getDescriptions());
 			xml.setDescriptions(f.create(ejb.getDescription()));
-			
 		}
 		
 		return xml;

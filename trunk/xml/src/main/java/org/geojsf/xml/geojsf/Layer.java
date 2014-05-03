@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 
 
@@ -22,6 +23,7 @@ import net.sf.ahtutils.xml.status.Langs;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
  *         &lt;element ref="{http://www.geojsf.org}legend"/>
  *         &lt;element ref="{http://www.geojsf.org}service"/>
  *       &lt;/sequence>
@@ -41,6 +43,7 @@ import net.sf.ahtutils.xml.status.Langs;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "langs",
+    "descriptions",
     "legend",
     "service"
 })
@@ -52,6 +55,8 @@ public class Layer
     private final static long serialVersionUID = 1L;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Langs langs;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Descriptions descriptions;
     @XmlElement(required = true)
     protected Legend legend;
     @XmlElement(required = true)
@@ -95,6 +100,34 @@ public class Layer
 
     public boolean isSetLangs() {
         return (this.langs!= null);
+    }
+
+    /**
+     * Gets the value of the descriptions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Descriptions }
+     *     
+     */
+    public Descriptions getDescriptions() {
+        return descriptions;
+    }
+
+    /**
+     * Sets the value of the descriptions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Descriptions }
+     *     
+     */
+    public void setDescriptions(Descriptions value) {
+        this.descriptions = value;
+    }
+
+    public boolean isSetDescriptions() {
+        return (this.descriptions!= null);
     }
 
     /**
