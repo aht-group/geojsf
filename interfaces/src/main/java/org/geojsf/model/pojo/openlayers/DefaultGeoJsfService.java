@@ -2,14 +2,16 @@ package org.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+
+import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-
-import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 
 public class DefaultGeoJsfService implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfService<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
@@ -39,6 +41,12 @@ public class DefaultGeoJsfService implements Serializable,EjbRemoveable,EjbPersi
 	
 	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
 	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
+	
+//	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@MapKey(name = "lkey")
+	protected Map<String, DefaultGeoJsfLang> name;
+	public Map<String, DefaultGeoJsfLang> getName() {if(name==null){name=new Hashtable<String,DefaultGeoJsfLang>();}return name;}
+	public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
 	
 //	@Override public List<GeoLayer> getLayer() {if(layer==null){layer=new ArrayList<GeoLayer>();}return layer;}
 //	@Override public void setLayer(List<GeoLayer> layer) {this.layer=layer;}
