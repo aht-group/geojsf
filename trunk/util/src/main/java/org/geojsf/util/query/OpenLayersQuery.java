@@ -101,6 +101,7 @@ public class OpenLayersQuery
 		xml.setX(0);
 		xml.setY(0);
 		xml.setLangs(StatusQuery.langs());
+		xml.setDescriptions(StatusQuery.descriptions());
 		return xml;
 	}
 }
