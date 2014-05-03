@@ -2,12 +2,14 @@ package org.geojsf.factory.xml.openlayers;
 
 import java.io.Serializable;
 
+import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
 import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.geojsf.Service;
@@ -41,6 +43,19 @@ public class XmlServiceFactory implements Serializable
 			{
 				xml.getLayer().add(f.build(layer));
 			}
+		}
+		
+		if(q.isSetLangs())
+		{
+			XmlLangsFactory f = new XmlLangsFactory(q.getLangs());
+			xml.setLangs(f.getUtilsLangs(ejb.getName()));
+		}
+		
+		if(q.isSetDescriptions())
+		{
+			XmlDescriptionsFactory f = new XmlDescriptionsFactory(q.getDescriptions());
+			xml.setDescriptions(f.create(ejb.getDescription()));
+			
 		}
 		
 		return xml;

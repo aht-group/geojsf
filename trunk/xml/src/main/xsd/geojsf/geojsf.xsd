@@ -62,6 +62,8 @@
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element ref="geojsf:layer" maxOccurs="unbounded"/>
+                <xsd:element ref="us:langs" maxOccurs="1"/>
+                <xsd:element ref="us:descriptions" maxOccurs="1"/>
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:long"/>
             <xsd:attribute name="code" type="xsd:string"/>
