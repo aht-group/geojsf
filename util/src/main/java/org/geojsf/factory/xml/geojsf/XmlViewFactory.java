@@ -36,6 +36,7 @@ public class XmlViewFactory implements Serializable
 		
 		if(q.isSetVisible()){xml.setVisible(ejb.isVisible());}
 		if(q.isSetLegend()){xml.setLegend(ejb.isLegend());}
+		if(q.isSetNr()){xml.setNr(ejb.getOrderNo());}
 		
 		if(q.isSetLayer())
 		{

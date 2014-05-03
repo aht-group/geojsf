@@ -3,6 +3,8 @@ package org.geojsf.doc.ofx;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import net.sf.ahtutils.xml.status.Description;
+import net.sf.ahtutils.xml.status.Lang;
 import net.sf.ahtutils.xml.xpath.StatusXpath;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
@@ -34,7 +36,7 @@ public class OfxLayerTableFactory
 	final static Logger logger = LoggerFactory.getLogger(OfxLayerTableFactory.class);
 	
 	private static String keyCaption = "geojsfTableLayerCaption";
-	private int[] colWidths = {10,20};
+	private int[] colWidths = {15,30,70};
 	
 	private Configuration config;
 	private String lang;
@@ -92,6 +94,7 @@ public class OfxLayerTableFactory
 
 		cols.getColumn().add(OfxColumnFactory.percentage(colWidths[0]));
 		cols.getColumn().add(OfxColumnFactory.flex(colWidths[1]));
+		cols.getColumn().add(OfxColumnFactory.flex(colWidths[2]));
 		
 		Specification specification = new Specification();
 		specification.setColumns(cols);
@@ -128,8 +131,28 @@ public class OfxLayerTableFactory
 	{		
 		Row row = new Row();
 		
+		String text,description;
+		
+		try
+		{
+			Lang l = StatusXpath.getLang(layer.getLangs(), lang);
+			text = l.getTranslation();
+		}
+		catch (ExlpXpathNotFoundException e){text = e.getMessage();}
+		catch (ExlpXpathNotUniqueException e){text = e.getMessage();}
+		
+		try
+		{
+			Description d = StatusXpath.getDescription(layer.getDescriptions(), lang);
+			description = d.getValue();
+		}
+		catch (ExlpXpathNotFoundException e){description = e.getMessage();}
+		catch (ExlpXpathNotUniqueException e){description = e.getMessage();}
+		
+		
 		row.getCell().add(OfxCellFactory.createParagraphCell(layer.getCode()));
-		row.getCell().add(OfxCellFactory.createParagraphCell(StatusXpath.getLang(layer.getLangs(), lang).getTranslation()));
+		row.getCell().add(OfxCellFactory.createParagraphCell(text));
+		row.getCell().add(OfxCellFactory.createParagraphCell(description));
 
 		return row;
 	}

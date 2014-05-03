@@ -2,6 +2,7 @@ package org.geojsf.factory.xml.openlayers;
 
 import java.io.Serializable;
 
+import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
@@ -47,6 +48,12 @@ public class XmlLayerFactory implements Serializable
 		{
 			XmlLangsFactory f = new XmlLangsFactory(q.getLangs());
 			xml.setLangs(f.getUtilsLangs(ejb.getName()));
+		}
+		
+		if(q.isSetDescriptions())
+		{
+			XmlDescriptionsFactory f = new XmlDescriptionsFactory(q.getDescriptions());
+			xml.setDescriptions(f.create(ejb.getDescription()));
 		}
 				
 		return xml;

@@ -76,9 +76,10 @@ public class GeoJsfLatexDocumentationFactory
 	{
 		logger.info("Creating Layer.Descriptions");
 		
-		String[] headerKeys = new String[2];
-		headerKeys[0] = "geoJsfTableLayerName";
-		headerKeys[1] = "geoJsfTableLayerDescription";
+		String[] headerKeys = new String[3];
+		headerKeys[0] = "geoJsfTableLayerCode";
+		headerKeys[1] = "geoJsfTableLayerName";
+		headerKeys[2] = "geoJsfTableLayerDescription";
 		
 		for(String lang : langs)
 		{
