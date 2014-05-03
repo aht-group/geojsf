@@ -7,7 +7,7 @@ import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Maps;
 import org.geojsf.xml.geojsf.Repository;
-import org.geojsf.xml.xpath.OpenLayersXpath;
+import org.geojsf.xml.xpath.GeoJsfXpath;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -49,26 +49,26 @@ public class TestOpenLayersXpathView extends AbstractGeoJsfXmlTest
     @Test
     public void testCode1() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
-    	Map actual = OpenLayersXpath.getView(createRepository(), xml1.getCode());
+    	Map actual = GeoJsfXpath.getView(createRepository(), xml1.getCode());
     	assertJaxbEquals(xml1,actual);
     }
     
     @Test
     public void testCode2() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
-    	Map actual = OpenLayersXpath.getView(createRepository(), xml2.getCode());
+    	Map actual = GeoJsfXpath.getView(createRepository(), xml2.getCode());
     	assertJaxbEquals(xml2,actual);
     }
 
     @Test(expected=ExlpXpathNotFoundException.class)
     public void testNotFound() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
-    	OpenLayersXpath.getView(createRepository(), "-1");
+    	GeoJsfXpath.getView(createRepository(), "-1");
     }
     
     @Test(expected=ExlpXpathNotUniqueException.class)
     public void testUnique() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
-    	OpenLayersXpath.getView(createRepository(), xml3.getCode());
+    	GeoJsfXpath.getView(createRepository(), xml3.getCode());
     }
 }

@@ -3,6 +3,7 @@ package org.geojsf.doc.ofx;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.xml.status.Description;
 import net.sf.ahtutils.xml.status.Lang;
 import net.sf.ahtutils.xml.status.Translations;
@@ -64,7 +65,7 @@ public class OfxServiceListFactory
 			catch (ExlpXpathNotUniqueException e) {e.printStackTrace();}
 		}
 		
-		JaxbUtil.info(list);
+		JaxbUtil.trace(list);
 		
 		return list;
 	}
