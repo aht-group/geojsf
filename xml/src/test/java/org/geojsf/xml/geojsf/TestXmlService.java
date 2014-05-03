@@ -2,10 +2,11 @@ package org.geojsf.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
+import net.sf.ahtutils.xml.status.Descriptions;
+import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.geojsf.xml.geojsf.Service;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -41,6 +42,8 @@ public class TestXmlService extends AbstractXmlGeojsfTest
     	if(withChilds)
     	{
     		xml.getLayer().add(TestXmlLayer.create(false));xml.getLayer().add(TestXmlLayer.create(false));
+    		xml.setLangs(new Langs());
+    		xml.setDescriptions(new Descriptions());
     	}
     	
     	return xml;

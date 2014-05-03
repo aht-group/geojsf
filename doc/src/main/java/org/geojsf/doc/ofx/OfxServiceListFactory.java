@@ -3,7 +3,10 @@ package org.geojsf.doc.ofx;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import net.sf.ahtutils.xml.status.Description;
+import net.sf.ahtutils.xml.status.Lang;
 import net.sf.ahtutils.xml.status.Translations;
+import net.sf.ahtutils.xml.xpath.StatusXpath;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.xml.JaxbUtil;
@@ -26,9 +29,11 @@ public class OfxServiceListFactory
 {
 	final static Logger logger = LoggerFactory.getLogger(OfxServiceListFactory.class);
 	
+	private String lang;
+	
 	public OfxServiceListFactory(Configuration config,String lang, Translations translations)
 	{
-		
+		this.lang=lang;
 	}
 	
 	public String toLatex(java.util.List<Service> lRc) throws OfxAuthoringException
@@ -78,10 +83,10 @@ public class OfxServiceListFactory
 	private Item renderListItem(Service service) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{
 		String description,text;
-/*		
+		
 		try
 		{
-			Lang l = StatusXpath.getLang(category.getLangs(), lang);
+			Lang l = StatusXpath.getLang(service.getLangs(), lang);
 			description = l.getTranslation();
 		}
 		catch (ExlpXpathNotFoundException e){description = e.getMessage();}
@@ -89,15 +94,11 @@ public class OfxServiceListFactory
 		
 		try
 		{
-			Description d = StatusXpath.getDescription(category.getDescriptions(), lang);
+			Description d = StatusXpath.getDescription(service.getDescriptions(), lang);
 			text = d.getValue();
 		}
 		catch (ExlpXpathNotFoundException e){text = e.getMessage();}
 		catch (ExlpXpathNotUniqueException e){text = e.getMessage();}		
-*/
-		
-		description = service.getCode();
-		text = service.getCode();
 		
 		Paragraph p = new Paragraph();
 		p.getContent().add(text);

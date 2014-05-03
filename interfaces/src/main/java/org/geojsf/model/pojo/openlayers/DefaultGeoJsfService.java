@@ -45,11 +45,14 @@ public class DefaultGeoJsfService implements Serializable,EjbRemoveable,EjbPersi
 //	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 //	@MapKey(name = "lkey")
 	protected Map<String, DefaultGeoJsfLang> name;
-	public Map<String, DefaultGeoJsfLang> getName() {if(name==null){name=new Hashtable<String,DefaultGeoJsfLang>();}return name;}
-	public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
+	@Override public Map<String, DefaultGeoJsfLang> getName() {if(name==null){name=new Hashtable<String,DefaultGeoJsfLang>();}return name;}
+	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
 	
-//	@Override public List<GeoLayer> getLayer() {if(layer==null){layer=new ArrayList<GeoLayer>();}return layer;}
-//	@Override public void setLayer(List<GeoLayer> layer) {this.layer=layer;}
+//	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@MapKey(name = "lkey")
+	protected Map<String, DefaultGeoJsfDescription> description;
+	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
+	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	

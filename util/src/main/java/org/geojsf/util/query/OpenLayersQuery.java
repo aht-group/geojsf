@@ -46,7 +46,9 @@ public class OpenLayersQuery
 
 		xml.setCode("");
 		xml.setUrl("");
-
+		xml.setLangs(StatusQuery.langs());
+		xml.setDescriptions(StatusQuery.descriptions());
+		
 		return xml;
 	}
 	
