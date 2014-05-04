@@ -141,6 +141,11 @@
             <xsd:attribute name="lat" type="xsd:double"/>
             <xsd:attribute name="lon" type="xsd:double"/>
             <xsd:attribute name="zoom" type="xsd:int"/>
+            <xsd:attribute name="scale" type="xsd:double"/>
+            <xsd:attribute name="bottom" type="xsd:double"/>
+            <xsd:attribute name="left" type="xsd:double"/>
+            <xsd:attribute name="right" type="xsd:double"/>
+            <xsd:attribute name="top" type="xsd:double"/>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>

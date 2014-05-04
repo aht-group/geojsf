@@ -22,6 +22,11 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="lon" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="scale" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="bottom" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="left" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="right" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="top" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -45,6 +50,16 @@ public class ViewPort
     protected Double lon;
     @XmlAttribute(name = "zoom")
     protected Integer zoom;
+    @XmlAttribute(name = "scale")
+    protected Double scale;
+    @XmlAttribute(name = "bottom")
+    protected Double bottom;
+    @XmlAttribute(name = "left")
+    protected Double left;
+    @XmlAttribute(name = "right")
+    protected Double right;
+    @XmlAttribute(name = "top")
+    protected Double top;
 
     /**
      * Gets the value of the id property.
@@ -172,6 +187,166 @@ public class ViewPort
 
     public void unsetZoom() {
         this.zoom = null;
+    }
+
+    /**
+     * Gets the value of the scale property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public double getScale() {
+        return scale;
+    }
+
+    /**
+     * Sets the value of the scale property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setScale(double value) {
+        this.scale = value;
+    }
+
+    public boolean isSetScale() {
+        return (this.scale!= null);
+    }
+
+    public void unsetScale() {
+        this.scale = null;
+    }
+
+    /**
+     * Gets the value of the bottom property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public double getBottom() {
+        return bottom;
+    }
+
+    /**
+     * Sets the value of the bottom property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setBottom(double value) {
+        this.bottom = value;
+    }
+
+    public boolean isSetBottom() {
+        return (this.bottom!= null);
+    }
+
+    public void unsetBottom() {
+        this.bottom = null;
+    }
+
+    /**
+     * Gets the value of the left property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public double getLeft() {
+        return left;
+    }
+
+    /**
+     * Sets the value of the left property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setLeft(double value) {
+        this.left = value;
+    }
+
+    public boolean isSetLeft() {
+        return (this.left!= null);
+    }
+
+    public void unsetLeft() {
+        this.left = null;
+    }
+
+    /**
+     * Gets the value of the right property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public double getRight() {
+        return right;
+    }
+
+    /**
+     * Sets the value of the right property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setRight(double value) {
+        this.right = value;
+    }
+
+    public boolean isSetRight() {
+        return (this.right!= null);
+    }
+
+    public void unsetRight() {
+        this.right = null;
+    }
+
+    /**
+     * Gets the value of the top property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public double getTop() {
+        return top;
+    }
+
+    /**
+     * Sets the value of the top property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setTop(double value) {
+        this.top = value;
+    }
+
+    public boolean isSetTop() {
+        return (this.top!= null);
+    }
+
+    public void unsetTop() {
+        this.top = null;
     }
 
 }
