@@ -135,4 +135,12 @@
             <xsd:attribute name="zoom" type="xsd:int"/>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="viewPort">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="lat" type="xsd:double"/>
+            <xsd:attribute name="lon" type="xsd:double"/>
+            <xsd:attribute name="zoom" type="xsd:int"/>
+        </xsd:complexType>
+    </xsd:element>
 </xsd:schema>
