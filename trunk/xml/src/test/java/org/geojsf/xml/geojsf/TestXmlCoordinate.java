@@ -34,6 +34,11 @@ public class TestXmlCoordinate extends AbstractXmlGeojsfTest
     	xml.setLat(1.234);
     	xml.setLon(5.678);
     	
+    	if(withChilds)
+    	{
+    	
+    	}
+    	
     	return xml;
     }
     

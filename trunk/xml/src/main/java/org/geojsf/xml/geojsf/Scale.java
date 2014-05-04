@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;simpleContent>
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
  *       &lt;attribute name="unit" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/extension>
  *   &lt;/simpleContent>
  * &lt;/complexType>
@@ -41,6 +42,8 @@ public class Scale
     protected double value;
     @XmlAttribute(name = "unit")
     protected String unit;
+    @XmlAttribute(name = "zoom")
+    protected Integer zoom;
 
     /**
      * Gets the value of the value property.
@@ -88,6 +91,38 @@ public class Scale
 
     public boolean isSetUnit() {
         return (this.unit!= null);
+    }
+
+    /**
+     * Gets the value of the zoom property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public int getZoom() {
+        return zoom;
+    }
+
+    /**
+     * Sets the value of the zoom property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setZoom(int value) {
+        this.zoom = value;
+    }
+
+    public boolean isSetZoom() {
+        return (this.zoom!= null);
+    }
+
+    public void unsetZoom() {
+        this.zoom = null;
     }
 
 }

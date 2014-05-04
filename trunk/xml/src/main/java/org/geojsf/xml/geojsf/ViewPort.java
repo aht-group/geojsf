@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -18,11 +19,12 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element ref="{http://www.geojsf.org}scale"/>
+ *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="lon" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="scale" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="bottom" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="left" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="right" type="{http://www.w3.org/2001/XMLSchema}double" />
@@ -35,23 +37,23 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
+@XmlType(name = "", propOrder = {
+    "scale"
+})
 @XmlRootElement(name = "viewPort")
 public class ViewPort
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
+    @XmlElement(required = true)
+    protected Scale scale;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "lat")
     protected Double lat;
     @XmlAttribute(name = "lon")
     protected Double lon;
-    @XmlAttribute(name = "zoom")
-    protected Integer zoom;
-    @XmlAttribute(name = "scale")
-    protected Double scale;
     @XmlAttribute(name = "bottom")
     protected Double bottom;
     @XmlAttribute(name = "left")
@@ -60,6 +62,34 @@ public class ViewPort
     protected Double right;
     @XmlAttribute(name = "top")
     protected Double top;
+
+    /**
+     * Gets the value of the scale property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Scale }
+     *     
+     */
+    public Scale getScale() {
+        return scale;
+    }
+
+    /**
+     * Sets the value of the scale property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Scale }
+     *     
+     */
+    public void setScale(Scale value) {
+        this.scale = value;
+    }
+
+    public boolean isSetScale() {
+        return (this.scale!= null);
+    }
 
     /**
      * Gets the value of the id property.
@@ -155,70 +185,6 @@ public class ViewPort
 
     public void unsetLon() {
         this.lon = null;
-    }
-
-    /**
-     * Gets the value of the zoom property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public int getZoom() {
-        return zoom;
-    }
-
-    /**
-     * Sets the value of the zoom property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setZoom(int value) {
-        this.zoom = value;
-    }
-
-    public boolean isSetZoom() {
-        return (this.zoom!= null);
-    }
-
-    public void unsetZoom() {
-        this.zoom = null;
-    }
-
-    /**
-     * Gets the value of the scale property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
-     */
-    public double getScale() {
-        return scale;
-    }
-
-    /**
-     * Sets the value of the scale property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
-     */
-    public void setScale(double value) {
-        this.scale = value;
-    }
-
-    public boolean isSetScale() {
-        return (this.scale!= null);
-    }
-
-    public void unsetScale() {
-        this.scale = null;
     }
 
     /**

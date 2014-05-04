@@ -34,8 +34,6 @@ public class TestXmlViewPort extends AbstractXmlGeojsfTest
     	xml.setId(123);
     	xml.setLat(1.23);
     	xml.setLon(4.56);
-    	xml.setZoom(6);
-    	xml.setScale(1.11);
     	xml.setTop(2.22);
     	xml.setLeft(3.33);
     	xml.setRight(4.44);
@@ -43,7 +41,7 @@ public class TestXmlViewPort extends AbstractXmlGeojsfTest
      	
     	if(withChilds)
     	{
-    		
+    		xml.setScale(TestXmlScale.create(false));
     	}
     	
     	return xml;
