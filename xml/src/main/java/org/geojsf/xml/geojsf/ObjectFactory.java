@@ -133,4 +133,12 @@ public class ObjectFactory {
         return new Wkt();
     }
 
+    /**
+     * Create an instance of {@link ViewPort }
+     * 
+     */
+    public ViewPort createViewPort() {
+        return new ViewPort();
+    }
+
 }
