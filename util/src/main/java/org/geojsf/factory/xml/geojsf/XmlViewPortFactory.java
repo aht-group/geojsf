@@ -9,6 +9,7 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.ViewPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,9 @@ public class XmlViewPortFactory implements Serializable
 		
 		xml.setLon(map.getX());
 		xml.setLat(map.getY());
-		xml.setZoom(map.getZoom());
+		
+		xml.setScale(new Scale());
+		xml.getScale().setZoom(map.getZoom());
 			
 		return xml;
 	}
