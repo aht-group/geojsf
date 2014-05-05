@@ -5,13 +5,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.el.MethodExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
 import javax.faces.component.UINamingContainer;
-import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
@@ -21,20 +18,16 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
+import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
+import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.exception.UnconsistentConfgurationException;
-import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
-import org.geojsf.factory.txt.TxtIsoTimeFactory;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
-import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
-import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.xml.geojsf.Scales;
 import org.geojsf.xml.gml.Coordinates;
@@ -46,11 +39,11 @@ import org.slf4j.LoggerFactory;
 	@ResourceDependency(library = "geojsf", name = "geojsf.css", target = "head")})
 @FacesComponent(value="org.geojsf.component.Map")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Map
-	   extends UINamingContainer implements ClientBehaviorHolder
+public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>> 
+	extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
-	private List<DefaultGeoJsfService> serviceList;
+	private List<SERVICE> serviceList;
 	private List<String> temporalLayerNames;
 	
 	private Coordinates coords = new Coordinates();
@@ -58,8 +51,6 @@ public class Map
 	//Define attributes of the component
 	private Integer width = null;
 	private Integer height = 400;
-	private Boolean noLayersGiven = false;
-	private Boolean hasTimeDefinition = false;
 	private String timeInfo = null;
 	private Scales scales = null;
 	private Boolean initStage = true;
@@ -84,12 +75,16 @@ public class Map
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		logger.info("entering encodebegin");
-
-		try {
+		try
+		{
 			if (initStage) {MapUtil.initLayerConfiguration(this);}
-		} catch (UnconsistentConfgurationException e) {
+		}
+		catch (UnconsistentConfgurationException e)
+		{
 			logger.warn("Problem occured when processing layers: " +e.getMessage());
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			logger.warn("Problem occured when processing layers: " +e.getMessage());
 			this.setRendered(false);
 		}
@@ -118,22 +113,24 @@ public class Map
 					renderer.renderMapInitialization(this.getFacesContext());
 					
 					//Next, render the base layer (adding overlays first results in error)
-					GeoJsfService baseLayer = serviceList.get(serviceList.size()-1);
+					SERVICE baseLayer = serviceList.get(serviceList.size()-1);
 					encodeLayer(baseLayer, true, writer, renderer);
 					
 					//Finally, render the overlay layers
 					//for (int i=0;i<serviceList.size()-1;i++)
 			 		for(int i=serviceList.size()-2;i==0;i--) //GEO-64
 					{	
-						GeoJsfService service = serviceList.get(i);
+			 			SERVICE service = serviceList.get(i);
 			 			encodeLayer(service, false, writer, renderer);  
 					}
 			 		
 			 		//Set flag that map initiation is completed and not to be repeated
 			 		initStage = false;
 			 		logger.info("Map initialization completed for " +this.getClientId() +" (ID: " +this.getId() +")");
-				
-	} } } }
+				}
+			}
+		}
+	}
 	
 	@Override
 	public void encodeEnd(FacesContext ctx) throws IOException
@@ -142,9 +139,10 @@ public class Map
 		writer.endElement("script"); 
 	}
 	
-	public void encodeLayer(GeoJsfService service, Boolean baseLayer, ResponseWriter writer, JsfRenderUtil renderer) throws IOException
+	public void encodeLayer(SERVICE service, Boolean baseLayer, ResponseWriter writer, JsfRenderUtil renderer) throws IOException
 	{
 		String sLayers = TxtOpenlayersLayerFactory.buildLayerString(service);
+//		String sLayers = "x";
 		logger.info("Adding "+service.getCode()+": "+sLayers);
 		renderer.renderTextWithLB("var url    = '" +service.getUrl() +"';");
 		renderer.renderTextWithLB("var name   = '" +service.getId() +"';");
@@ -207,23 +205,30 @@ public class Map
             			ajaxEvent.setLatLon(lat,lon);
             			ajaxEvent.setScale(scl);
             			behavior.broadcast(ajaxEvent);
-	} } } } }
+            		}
+            	}
+            }
+        }
+	}
 	
 	
 	// -------------------------------------------
 	// JSF Methods for State Saving and Event Name
 	// -------------------------------------------
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public void restoreState(FacesContext context, Object state) {
+	public void restoreState(FacesContext context, Object state)
+	{
 	    Object[] storedState = (Object[]) state;
 	    logger.info("Restoring state.");
-		serviceList = (List<DefaultGeoJsfService>) storedState[1];
+		serviceList = (List<SERVICE>) storedState[1];
 		initStage   = (Boolean) storedState[0];
 	}
 	
 	@Override
-	public Object saveState(FacesContext context) {
+	public Object saveState(FacesContext context)
+	{
 	    Object[] rtrn = new Object[2];
 	    rtrn[0] = initStage;
 	    rtrn[1] = serviceList;
@@ -255,8 +260,8 @@ public class Map
 	public Coordinates getCoords() {return coords;}
 	public void setCoords(Coordinates coords) {this.coords = coords;}
 
-	public List<DefaultGeoJsfService> getServiceList() {return serviceList;}
-	public void setServiceList(List<DefaultGeoJsfService> serviceList) {this.serviceList = serviceList;}
+	public List<SERVICE> getServiceList() {return serviceList;}
+	public void setServiceList(List<SERVICE> serviceList) {this.serviceList = serviceList;}
 
 	public List<String> getTemporalLayerNames() {return temporalLayerNames;}
 	public void setTemporalLayerNames(List<String> temporalLayerNames) {this.temporalLayerNames = temporalLayerNames;}

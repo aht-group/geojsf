@@ -18,19 +18,25 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
+import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
+import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+
 import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @FacesComponent(value="org.geojsf.component.Player")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Player extends UINamingContainer implements ClientBehaviorHolder
+public class Player <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+	extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Player.class);
 	
-	private Map map;
+	private Map<L,D,SERVICE,LAYER,MAP,VIEW> map;
 	
 	private String pattern;
 	private String target;
@@ -82,14 +88,14 @@ public class Player extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void encodeAll(FacesContext ctx) throws IOException
 	{
-		map = (Map) findComponent("testForm:map");
+		map = (Map<L,D,SERVICE,LAYER,MAP,VIEW>) findComponent("testForm:map");
 		logger.info("Map found with " +map.getServiceList().size() +" layer definitions. Current time: ");
-		for (GeoJsfService service : map.getServiceList())
+		for (SERVICE service : map.getServiceList())
 		{
 			logger.info("Does Service has temporal information? " +!MapUtil.hasTemporalLayer(service).isEmpty());
 			for (Object o : service.getLayer())
 			{
-				GeoJsfLayer layer = (GeoJsfLayer) o;
+				LAYER layer = (LAYER) o;
 				logger.info("Layer: " +layer.getName());
 			}
 		}
