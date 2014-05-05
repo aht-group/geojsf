@@ -19,8 +19,8 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MapUtil {
-	
+public class MapUtil
+{	
 	final static Logger logger = LoggerFactory.getLogger(MapUtil.class);
 	
 	public static String searchTimeDefinition(UIComponent map)
