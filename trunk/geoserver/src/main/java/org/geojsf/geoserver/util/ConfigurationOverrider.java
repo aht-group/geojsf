@@ -1,5 +1,6 @@
 package org.geojsf.geoserver.util;
 
+import java.io.File;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.configuration.Configuration;
@@ -40,7 +41,14 @@ public class ConfigurationOverrider
 			{
 				String key = getKey(dataStore);
 				String value = config.getString(key);
-				logger.trace("Key:"+key+" "+value);
+				logger.warn("Key:"+key+" "+value);
+				
+				StringBuffer sb = new StringBuffer();
+				sb.append(config.getString("geoserver.dir.shape"));
+				sb.append(File.separator);
+				sb.append(value);
+				logger.warn(sb.toString());
+				
 				dataStore.getShapeDir().setUrl(value);
 			}
 			catch (NoSuchElementException e){}
@@ -65,8 +73,6 @@ public class ConfigurationOverrider
 			key = base+".host";
 			try{dataStore.getPostgis().getConnection().getHost().setName(config.getString(key));}
 			catch (NoSuchElementException e){logger.debug("Key "+key+" not found");}
-			
-			
 		}
 	}
 	

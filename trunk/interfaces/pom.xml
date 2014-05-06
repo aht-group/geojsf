@@ -66,10 +66,6 @@
 					<artifactId>exlp-util</artifactId>
 					<groupId>net.sf.exlp</groupId>
 				</exclusion>
-				<exclusion>
-					<artifactId>ahtutils-xml</artifactId>
-					<groupId>net.sf.ahtutils</groupId>
-				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
