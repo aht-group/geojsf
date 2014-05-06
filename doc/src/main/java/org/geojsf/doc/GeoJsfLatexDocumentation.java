@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.sf.ahtutils.doc.latex.AbstractLatexDocumentationBuilder;
-import net.sf.ahtutils.doc.latex.UtilsLatexDocumentationBuilder.InstallationArchitecture;
-import net.sf.ahtutils.doc.latex.UtilsLatexDocumentationBuilder.InstallationCode;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
@@ -38,6 +36,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	private final static String dirMap = "section/geojsf/map";
 	
 	public static enum InstallationCode {instGeoserver}
+	public static enum InstallationType {standalone}
 
 	private Translations translations;
 	
@@ -167,10 +166,10 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	}
 	
 	public void render(InstallationCode code) throws UtilsConfigurationException{render(code.toString());}
-	public void render(InstallationCode code, InstallationArchitecture... architectures) throws UtilsConfigurationException
+	public void render(InstallationCode code, InstallationType... types) throws UtilsConfigurationException
 	{
-		String[] classifier = new String[architectures.length];
-		for(int i=0;i<architectures.length;i++){classifier[i]=architectures[i].toString();}
+		String[] classifier = new String[types.length];
+		for(int i=0;i<types.length;i++){classifier[i]=types[i].toString();}
 		render(code.toString(),classifier);
 	}
 }
