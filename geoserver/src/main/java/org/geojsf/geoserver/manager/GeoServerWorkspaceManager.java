@@ -16,6 +16,7 @@ public class GeoServerWorkspaceManager
 	final static Logger logger = LoggerFactory.getLogger(GeoServerWorkspaceManager.class);
 	
 	private GeoServerRest rest;
+	public static String cjgKeyWorkspace = "geoserver.workspace";
 	public static String wsXml = "workspace.xml";
 
 	public GeoServerWorkspaceManager(GeoServerRest rest)

@@ -2,7 +2,6 @@ package org.geojsf.util.db.init;
 
 import java.util.List;
 
-import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
 import net.sf.ahtutils.db.ejb.AhtDbEjbUpdater;
 import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
@@ -11,6 +10,7 @@ import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
 import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
+import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
@@ -26,33 +26,33 @@ import org.geojsf.xml.geojsf.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DbViewInit <L extends UtilsLang,
+public class DbMapInit <L extends UtilsLang,
 						D extends UtilsDescription,
 						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,
 						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
 						MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
 						VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 {
-	final static Logger logger = LoggerFactory.getLogger(DbViewInit.class);
+	final static Logger logger = LoggerFactory.getLogger(DbMapInit.class);
 	
 	private final Class<MAP> cMap;
     private final Class<LAYER> cLayer;
     private final Class<VIEW> cView;
     
-    private UtilsSecurityFacade fSecurity;
+    private UtilsFacade fUtils;
     private GeoJsfFacade fGeo;
     
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     private EjbGeoViewFactory<L,D,SERVICE,LAYER,MAP,VIEW> efView;
     
-    public DbViewInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cMap,final Class<VIEW> cView, UtilsSecurityFacade fAcl, GeoJsfFacade fGeo)
+    public DbMapInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cMap,final Class<VIEW> cView, UtilsFacade fUtils, GeoJsfFacade fGeo)
 	{       
         this.cLayer = cLayer;
         this.cMap = cMap;
         this.cView = cView;
         
-        this.fSecurity=fAcl;
+        this.fUtils=fUtils;
         this.fGeo=fGeo;
 		
 		ejbLangFactory = EjbLangFactory.createFactory(cL);
@@ -66,10 +66,10 @@ public class DbViewInit <L extends UtilsLang,
 					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
 					MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
 					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
-		DbViewInit<L,D,SERVICE,LAYER,MAP,VIEW>
-		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cView,final Class<VIEW> cViewLayer,UtilsSecurityFacade fAcl,GeoJsfFacade fGeo)
+		DbMapInit<L,D,SERVICE,LAYER,MAP,VIEW>
+		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cView,final Class<VIEW> cViewLayer,UtilsFacade fUtils,GeoJsfFacade fGeo)
 	{
-		return new DbViewInit<L,D,SERVICE,LAYER,MAP,VIEW>(cL,cD,cLayer,cView,cViewLayer,fAcl,fGeo);
+		return new DbMapInit<L,D,SERVICE,LAYER,MAP,VIEW>(cL,cD,cLayer,cView,cViewLayer,fUtils,fGeo);
 	}
 	
 	public void iuMaps(Maps maps) throws UtilsConfigurationException
@@ -77,29 +77,29 @@ public class DbViewInit <L extends UtilsLang,
 		logger.debug("i/u "+Maps.class.getSimpleName()+" with "+maps.getMap()+" "+Map.class.getSimpleName());
 		
 		AhtDbEjbUpdater<MAP> ejbUpdater = AhtDbEjbUpdater.createFactory(cMap);
-		ejbUpdater.dbEjbs(fSecurity.all(cMap));
+		ejbUpdater.dbEjbs(fUtils.all(cMap));
 
-		for(Map view : maps.getMap())
+		for(Map map : maps.getMap())
 		{
-			ejbUpdater.actualAdd(view.getCode());
+			ejbUpdater.actualAdd(map.getCode());
 			
 			MAP ejb;
 			try
 			{
-				ejb = fSecurity.fByCode(cMap,view.getCode());
-				ejbLangFactory.rmLang(fSecurity,ejb);
-				ejbDescriptionFactory.rmDescription(fSecurity,ejb);
+				ejb = fUtils.fByCode(cMap,map.getCode());
+				ejbLangFactory.rmLang(fUtils,ejb);
+				ejbDescriptionFactory.rmDescription(fUtils,ejb);
 			}
 			catch (UtilsNotFoundException e)
 			{
 				try
 				{
 					ejb = cMap.newInstance();
-					ejb.setCode(view.getCode());
+					ejb.setCode(map.getCode());
 					ejb.setX(0d);
 					ejb.setY(0d);
 					ejb.setZoom(1);
-					ejb = (MAP)fSecurity.persist(ejb);
+					ejb = (MAP)fUtils.persist(ejb);
 				}
 				catch (InstantiationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 				catch (IllegalAccessException e2) {throw new UtilsConfigurationException(e2.getMessage());}
@@ -108,14 +108,14 @@ public class DbViewInit <L extends UtilsLang,
 			
 			try
 			{
-				ejb.setName(ejbLangFactory.getLangMap(view.getLangs()));
-				ejb.setZoom(view.getZoom());
-				ejb.setX(view.getX());
-				ejb.setY(view.getY());
-//				aclCategory.setDescription(ejbDescriptionFactory.create(category.getDescriptions()));
-				ejb=fSecurity.update(ejb);
+				ejb.setName(ejbLangFactory.getLangMap(map.getLangs()));
+				ejb.setDescription(ejbDescriptionFactory.create(map.getDescriptions()));
+				ejb.setZoom(map.getZoom());
+				ejb.setX(map.getX());
+				ejb.setY(map.getY());
+				ejb=fUtils.update(ejb);
 				
-				iuViews(ejb,view.getView());
+				iuViews(ejb,map.getView());
 			}
 			catch (UtilsContraintViolationException e) {logger.error("",e);}
 			catch (InstantiationException e) {logger.error("",e);}
@@ -125,7 +125,7 @@ public class DbViewInit <L extends UtilsLang,
 			catch (UtilsNotFoundException e) {logger.error("",e);}
 		}
 		
-		ejbUpdater.remove(fSecurity);
+		ejbUpdater.remove(fUtils);
 		logger.trace("initUpdateUsecaseCategories finished");
 	}
 	
@@ -144,13 +144,13 @@ public class DbViewInit <L extends UtilsLang,
 		int i=1;
 		for(View view : views)
 		{
-			LAYER l = fSecurity.fByCode(cLayer, view.getLayer().getCode());
+			LAYER l = fUtils.fByCode(cLayer, view.getLayer().getCode());
 
 			VIEW vl = efView.create(ejbMap, l, i, (view.isSetVisible() && view.isVisible()), (view.isSetLegend() && view.isLegend()));
-			fSecurity.persist(vl);
+			fUtils.persist(vl);
 			i++;
 		}
-		ejbMap = fSecurity.update(ejbMap);
+		ejbMap = fUtils.update(ejbMap);
 		logger.trace("Layer: "+ejbMap.getViews().size());
 	}
 }
