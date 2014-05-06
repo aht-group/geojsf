@@ -32,7 +32,7 @@ public class GeoServerRestWorkspaceWrapper
 	public Workspaces getWorkspaces() throws IOException
 	{		
 		String xml = XmlUtil.defaultXmlHeader+rest.workspaces();
-		logger.info(xml);
+		logger.trace(xml);
 		
 		InputStream is = IOUtils.toInputStream(xml, xmlEncoding);
 		Document doc = JDomUtil.load(is, xmlEncoding);

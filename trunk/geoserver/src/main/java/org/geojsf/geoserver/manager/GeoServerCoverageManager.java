@@ -16,6 +16,7 @@ public class GeoServerCoverageManager
 {		
 	final static Logger logger = LoggerFactory.getLogger(GeoServerCoverageManager.class);
 	
+	public static final String geoserverUrlPrefix = "file:";
 	public static String xml = "coveragestores.xml";
 	private GeoServerCoverageRest rest;
 

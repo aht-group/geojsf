@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.geoserver.manager.GeoServerCoverageManager;
+import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.xml.geoserver.CoverageStore;
 import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.DataStore;
@@ -16,6 +18,7 @@ public class ConfigurationOverrider
 {
 	final static Logger logger = LoggerFactory.getLogger(ConfigurationOverrider.class);
 
+	public static final String cfgKeyOverrideCoverageDir = "geoserver.override.shape";
 	public static final Namespace ns = Namespace.getNamespace("g","http://www.geojsf.org/geoserver");
 	
 	private Configuration config;
@@ -23,6 +26,11 @@ public class ConfigurationOverrider
 	public ConfigurationOverrider(Configuration config)
 	{
 		this.config = config;
+		
+		if(config.containsKey(cfgKeyOverrideCoverageDir))
+		{
+			logger.info("Using "+cfgKeyOverrideCoverageDir+" "+config.getString(cfgKeyOverrideCoverageDir));
+		}
 	}
 	
 	public void overrideDataStores(DataStores dataStores)
@@ -42,12 +50,6 @@ public class ConfigurationOverrider
 				String key = getKey(dataStore);
 				String value = config.getString(key);
 				logger.warn("Key:"+key+" "+value);
-				
-				StringBuffer sb = new StringBuffer();
-				sb.append(config.getString("geoserver.dir.shape"));
-				sb.append(File.separator);
-				sb.append(value);
-				logger.warn(sb.toString());
 				
 				dataStore.getShapeDir().setUrl(value);
 			}
@@ -89,9 +91,35 @@ public class ConfigurationOverrider
 		String key = getKey(cs);
 		try
 		{
-			String value = config.getString(key);
-			logger.trace("Key:"+key+" "+value);
-			cs.setUrl(value);
+			if(config.containsKey(key))
+			{
+				String value = config.getString(key);
+				cs.setUrl(value);
+				logger.warn("Individual Override "+key+" "+cs.getUrl());
+			}
+			else
+			{
+				if(cs.getUrl().startsWith(GeoServerCoverageManager.geoserverUrlPrefix))
+				{
+					StringBuffer sb = new StringBuffer();
+					sb.append(config.getString(cfgKeyOverrideCoverageDir));
+					sb.append(File.separator);
+					sb.append(cs.getUrl().substring(GeoServerCoverageManager.geoserverUrlPrefix.length()));
+					cs.setUrl(sb.toString());
+					logger.warn("Directory Override "+key+" "+cs.getUrl());
+				}
+				else
+				{
+					logger.warn("Unhandled URL structure :"+cs.getUrl());
+					logger.warn("Please contatct GeoJSF Developer");
+				}
+			}
+			
+			
+			
+			
+			
+			
 		}
 		catch (NoSuchElementException e)
 		{
@@ -117,8 +145,7 @@ public class ConfigurationOverrider
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append("geoserver.coverages");
-//		sb.append(cs.getWorkspace().getName());
-		sb.append(".cblt.dss");
+		sb.append(".").append(config.getString(GeoServerWorkspaceManager.cjgKeyWorkspace));
 		sb.append(".").append(cs.getName());
 		
 		String key = sb.toString();
