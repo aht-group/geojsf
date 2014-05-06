@@ -3,6 +3,9 @@ package org.geojsf.doc;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import net.sf.ahtutils.doc.latex.AbstractLatexDocumentationBuilder;
+import net.sf.ahtutils.doc.latex.UtilsLatexDocumentationBuilder.InstallationArchitecture;
+import net.sf.ahtutils.doc.latex.UtilsLatexDocumentationBuilder.InstallationCode;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
@@ -26,19 +29,17 @@ import org.openfuxml.exception.OfxAuthoringException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfLatexDocumentationFactory
+public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 {	
-	final static Logger logger = LoggerFactory.getLogger(GeoJsfLatexDocumentationFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(GeoJsfLatexDocumentation.class);
 	
 	private final static String dirDescriptions = "description/geojsf";
 	private final static String dirLayer = "tab/geojsf/layer";
 	private final static String dirMap = "section/geojsf/map";
 	
-	private Configuration config;
-	
-	private String baseLatexDir;
+	public static enum InstallationCode {instGeoserver}
+
 	private Translations translations;
-	private String[] langs;
 	
 	private Repository repository;
 	private Layers layers;
@@ -46,13 +47,10 @@ public class GeoJsfLatexDocumentationFactory
 	
 	private String[] headerKeysLayer,headerKeysMapView;
 	
-	public GeoJsfLatexDocumentationFactory(Configuration config, Translations translations,String[] langs)
+	public GeoJsfLatexDocumentation(Configuration config, Translations translations,String[] langs)
 	{
-		this.config=config;
+		super(config,langs,null);
 		this.translations=translations;
-		this.langs=langs;
-		baseLatexDir=config.getString(GeoJsfDocumentation.keyBaseDocDir);
-		logger.info("Using basedir "+baseLatexDir+" for GeoJsf configuration");
 		
 		headerKeysLayer = new String[3];
 		headerKeysLayer[0] = "geoJsfTableLayerCode";
@@ -63,6 +61,19 @@ public class GeoJsfLatexDocumentationFactory
 		headerKeysMapView[0] = "geoJsfTableMapViewNr";
 		headerKeysMapView[1] = "geoJsfTableMapViewLayerName";
 //		headerKeysMapView[2] = "geoJsfTableLayerDescription";
+	}
+	
+	@Override protected void applyBaseLatexDir()
+	{
+		baseLatexDir=config.getString(GeoJsfDocumentation.keyBaseDocDir);
+	}
+	
+	@Override protected void applyConfigCodes()
+	{
+		logger.debug("Setting fixed config-codes");
+		
+		//Installation
+		addConfig(InstallationCode.instGeoserver.toString(),"ofx.geojsf/installation/geoserver.xml","admin/installation/geoserver");
 	}
 	
 	public void loadRepository(String fileName) throws FileNotFoundException
@@ -153,5 +164,13 @@ public class GeoJsfLatexDocumentationFactory
 				catch (OfxAuthoringException e) {throw new UtilsConfigurationException(e.getMessage());}
 			}
 		}
+	}
+	
+	public void render(InstallationCode code) throws UtilsConfigurationException{render(code.toString());}
+	public void render(InstallationCode code, InstallationArchitecture... architectures) throws UtilsConfigurationException
+	{
+		String[] classifier = new String[architectures.length];
+		for(int i=0;i<architectures.length;i++){classifier[i]=architectures[i].toString();}
+		render(code.toString(),classifier);
 	}
 }
