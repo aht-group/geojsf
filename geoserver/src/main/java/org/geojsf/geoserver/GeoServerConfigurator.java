@@ -38,6 +38,10 @@ public class GeoServerConfigurator
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoServerConfigurator.class);
 	
+	public static final String cfgKeyRestUrl = "geoserver.rest.import.url";
+	public static final String cfgKeyRestUser = "geoserver.rest.import.user";
+	public static final String cfgKeyRestPwd = "geoserver.rest.import.password";
+	
 	private ConfigurationOverrider configOverrider;
 	
 	private Workspace workspace;
@@ -49,14 +53,15 @@ public class GeoServerConfigurator
 	private GeoServerStyleManager styleManager;
 	private GeoServerLayerManager layerManager;
 	
-	private File fBase;
+	private String configBaseDir;
 	
 	public GeoServerConfigurator(String configBaseDir, GeoServerRest rest, Configuration config) throws MalformedURLException
 	{
-		configOverrider = new ConfigurationOverrider(config);
-		fBase = new File(configBaseDir);
-		logger.info("Using configuration directory: "+fBase.getAbsolutePath());
+		this.configBaseDir=configBaseDir;
+		logger.info("Using configuration directory: "+configBaseDir);
 		
+		configOverrider = new ConfigurationOverrider(config);
+
 		workspaceManager = new GeoServerWorkspaceManager(rest);
 		dataStoreManager = new GeoServerDataStoreManager(rest);
 		coverageManager = new GeoServerCoverageManager(rest);
@@ -67,7 +72,7 @@ public class GeoServerConfigurator
 	
 	public void configureWorkspace() throws GeoServerConfigurationException, IOException
 	{
-		workspace = JaxbUtil.loadJAXB(new File(fBase,GeoServerWorkspaceManager.wsXml), Workspace.class);
+		workspace = JaxbUtil.loadJAXB(configBaseDir+File.separator+GeoServerWorkspaceManager.wsXml, Workspace.class);
 		logger.info("Configuring workspace "+workspace.getName());
 		boolean wsAvailable = workspaceManager.isAvailable(workspace);
 		if(wsAvailable)
@@ -88,8 +93,7 @@ public class GeoServerConfigurator
 	
 	private void configureStyles() throws IOException
 	{
-		File f = new File(fBase,GeoServerLayerManager.xml);
-		Layers layers = JaxbUtil.loadJAXB(f.getAbsolutePath(), Layers.class);
+		Layers layers = JaxbUtil.loadJAXB(configBaseDir+File.separator+GeoServerLayerManager.xml, Layers.class);
 		for(Layer layer : layers.getLayer())
 		{
 			if(!styleManager.isAvailable(workspace, layer.getStyle().getName()))
@@ -101,8 +105,7 @@ public class GeoServerConfigurator
 	
 	private void configureLayer() throws FileNotFoundException
 	{
-		File f = new File(fBase,GeoServerLayerManager.xml);
-		Layers layers = JaxbUtil.loadJAXB(f.getAbsolutePath(), Layers.class);
+		Layers layers = JaxbUtil.loadJAXB(configBaseDir+File.separator+GeoServerLayerManager.xml, Layers.class);
 		for(Layer layer : layers.getLayer())
 		{
 			layerManager.updateLayer(workspace,layer);
@@ -111,9 +114,7 @@ public class GeoServerConfigurator
 	
 	private void configureStyle(Style style) throws IOException
 	{
-		logger.info("Configuring style "+style.getName());
-		File f = new File(fBase,"styles"+File.separator+style.getName()+".xml");
-		Document doc = JDomUtil.load(f);
+		Document doc = JDomUtil.load(configBaseDir+File.separator+"styles"+File.separator+style.getName()+".xml");
 		styleManager.createStyle(workspace.getName(),doc);
 	}
 	
@@ -122,7 +123,7 @@ public class GeoServerConfigurator
 		logger.info("Configuring datasources");
 		try
 		{
-			DataStores dataStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerDataStoreManager.dsXml), DataStores.class);
+			DataStores dataStores = JaxbUtil.loadJAXB(configBaseDir+File.separator+GeoServerDataStoreManager.dsXml, DataStores.class);
 			
 			JaxbUtil.trace(dataStores);
 			configOverrider.overrideDataStores(dataStores);
@@ -150,11 +151,10 @@ public class GeoServerConfigurator
 	{
 		try
 		{
-			FeatureTypes fts = JaxbUtil.loadJAXB(new File(fBase,GeoServerFeatureTypeManager.xml), FeatureTypes.class);
+			FeatureTypes fts = JaxbUtil.loadJAXB(configBaseDir+File.separator+GeoServerFeatureTypeManager.xml, FeatureTypes.class);
 			for(FeatureType ft : fts.getFeatureType())
 			{
-				File f = new File(fBase,"featureTypes"+File.separator+ft.getName()+".xml");
-				Document doc = JDomUtil.load(f);
+				Document doc = JDomUtil.load(configBaseDir+File.separator+"featureTypes"+File.separator+ft.getName()+".xml");
 				featureTypeManager.createFeatureType(workspace.getName(), ft.getDataStore().getName(), doc);
 			}
 		}
@@ -167,7 +167,7 @@ public class GeoServerConfigurator
 		logger.info("Configuring "+CoverageStores.class.getSimpleName());
 		try
 		{
-			CoverageStores coverageStores = JaxbUtil.loadJAXB(new File(fBase,GeoServerCoverageManager.xml), CoverageStores.class);
+			CoverageStores coverageStores = JaxbUtil.loadJAXB(configBaseDir+File.separator+GeoServerCoverageManager.xml, CoverageStores.class);
 			configOverrider.overrideCoverageStores(coverageStores);
 			
 			JaxbUtil.trace(coverageStores);
@@ -184,12 +184,10 @@ public class GeoServerConfigurator
 					coverageManager.createCoverageStore(workspace, cs);
 					for(Coverage c : cs.getCoverages().getCoverage())
 					{
-						File f = new File(fBase,"coverages"+File.separator+c.getName()+".xml");
-						Document coverage = JDomUtil.load(f);
+						Document coverage = JDomUtil.load(configBaseDir+File.separator+"coverages"+File.separator+c.getName()+".xml");
 						coverageManager.createCoverage(workspace.getName(), cs.getName(), coverage);
 //						logger.info("Creating coverage "+c.getName());
 					}
-					
 				}
 			}
 		}

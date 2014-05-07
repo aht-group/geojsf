@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ofx:section xmlns:ofx="http://www.openfuxml.org"
-	id="section.admin.installation.geoserver">
+			xmlns:l="http://www.openfuxml.org/list"
+			xmlns:text="http://www.openfuxml.org/text"
+			id="section.admin.installation.geoserver">
 	<ofx:title lang="en">GeoServer</ofx:title>
 	
 	<ofx:paragraph lang="en">
@@ -28,6 +30,66 @@
 	
 	<ofx:section id="section.admin.installation.geoserver.configuration">
 		<ofx:title lang="en">Configuration</ofx:title>
+		
+		<ofx:paragraph lang="en">
+			There are several individual configurations required for GeoServer to properly show the maps
+			required for this information system. These configurations include:
+		</ofx:paragraph>
+		
+		<l:list>
+		    <l:type ordering="unordered"/>
+		    
+		    <l:item>
+		    	<ofx:paragraph lang="en">
+					A new <text:emphasis bold="true">workspace</text:emphasis> has to be created where all settings are done.
+				</ofx:paragraph>
+		    </l:item>
+		    
+		    <l:item>
+		    	<ofx:paragraph lang="en">
+					The <text:emphasis bold="true">data stores</text:emphasis> have to be configured. The most important one the is connection the
+					PostGIS database.
+				</ofx:paragraph>
+		    </l:item>
+		    
+		    <l:item>
+		    	<ofx:paragraph lang="en">
+					The <text:emphasis bold="true">coverage store</text:emphasis> need to be added for each raster data source.
+				</ofx:paragraph>
+		    </l:item>
+		    
+		    <l:item>
+		    	<ofx:paragraph lang="en">
+					The <text:emphasis bold="true">feature types</text:emphasis> are individual tables of the data store and provide access to vector data.
+				</ofx:paragraph>
+		    </l:item>
+		    
+		   	<l:item>
+		    	<ofx:paragraph lang="en">
+					All <text:emphasis bold="true">layers</text:emphasis> have to be configured, either with a coverage stroe or a feature type.
+				</ofx:paragraph>
+		    </l:item>
+		    
+		   	<l:item>
+		    	<ofx:paragraph lang="en">
+					For each layer a individual <text:emphasis bold="true">style</text:emphasis> has to be configured with a Styled Layer Descriptor (SLD).
+				</ofx:paragraph>
+		    </l:item>
+		    
+		</l:list>
+		
+		<ofx:paragraph lang="en">
+			A manual configuration is possible, but takes a long time for all settings. Thus, a configuration tool is provided to automatically configure GeoServer
+			with all required settings. The configuration tool connects to the REST interface of GeoServer. 
+		</ofx:paragraph>
+		<ofx:listing external="listing/admin/installation/geoserver/configuration.txt"/>
+		
+		<ofx:paragraph lang="en">
+			The configuration tools needs a properties file with several entries, the path to the file has to be specified in the command line and needs to contain these
+			entries: 
+		</ofx:paragraph>
+		<ofx:listing external="listing/admin/installation/geoserver/properties.txt"/>
+		
 	</ofx:section>
 	   
 </ofx:section>
