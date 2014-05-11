@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data xmlns="http://www.geojsf.org/monitoring" xmlns:geojsf="http://www.geojsf.org" id="123" record="2011-11-11T11:11:11" range="345">
+    <value type="myT">123.3</value>
+    <value type="myT">123.3</value>
+    <geojsf:wkt type="myType">myWKT</geojsf:wkt>
+</data>
