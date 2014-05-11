@@ -30,6 +30,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Wkt }
+     * 
+     */
+    public Wkt createWkt() {
+        return new Wkt();
+    }
+
+    /**
      * Create an instance of {@link Scale }
      * 
      */
@@ -123,14 +131,6 @@ public class ObjectFactory {
      */
     public View createView() {
         return new View();
-    }
-
-    /**
-     * Create an instance of {@link Wkt }
-     * 
-     */
-    public Wkt createWkt() {
-        return new Wkt();
     }
 
     /**
