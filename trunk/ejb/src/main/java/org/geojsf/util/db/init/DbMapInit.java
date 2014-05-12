@@ -111,8 +111,8 @@ public class DbMapInit <L extends UtilsLang,
 				ejb.setName(ejbLangFactory.getLangMap(map.getLangs()));
 				ejb.setDescription(ejbDescriptionFactory.create(map.getDescriptions()));
 				ejb.setZoom(map.getZoom());
-				ejb.setLat(map.getX());
-				ejb.setLon(map.getY());
+				ejb.setLat(map.getLat());
+				ejb.setLon(map.getLon());
 				ejb=fUtils.update(ejb);
 				
 				iuViews(ejb,map.getView());

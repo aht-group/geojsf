@@ -11,7 +11,7 @@ import org.geojsf.xml.geojsf.Repository;
 import org.geojsf.xml.geojsf.Service;
 import org.geojsf.xml.geojsf.View;
 
-public class OpenLayersQuery
+public class GeoJsfQuery
 {
 	public static enum Key {repositoryService,
 							service,layer,map,view,
@@ -98,8 +98,8 @@ public class OpenLayersQuery
 		Map xml = new Map();
 		xml.setCode("");
 		xml.setZoom(0);
-		xml.setX(0);
-		xml.setY(0);
+		xml.setLat(0);
+		xml.setLon(0);
 		xml.setLangs(StatusQuery.langs());
 		xml.setDescriptions(StatusQuery.descriptions());
 		return xml;

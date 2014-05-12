@@ -16,7 +16,7 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.test.AbstractGeoJsfEjbTest;
 import org.geojsf.test.GeoJsfEjbTestBootstrap;
 import org.geojsf.util.GeojsfDatastructureDebugger;
-import org.geojsf.util.query.OpenLayersQuery;
+import org.geojsf.util.query.GeoJsfQuery;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,7 +45,7 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		
 		Assert.assertEquals(2, actual.size());
 		
-		XmlRepositoryFactory f = new XmlRepositoryFactory(OpenLayersQuery.get(OpenLayersQuery.Key.repositoryService, null));
+		XmlRepositoryFactory f = new XmlRepositoryFactory(GeoJsfQuery.get(GeoJsfQuery.Key.repositoryService, null));
 		JaxbUtil.error(f.build(actual));
     }
 	

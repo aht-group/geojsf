@@ -13,7 +13,7 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.rest.GeoJsfDatabaseRest;
-import org.geojsf.util.query.OpenLayersQuery;
+import org.geojsf.util.query.GeoJsfQuery;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Maps;
@@ -63,7 +63,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	public Repository exportServices()
 	{
 		Repository repository = new Repository();
-		XmlServiceFactory f = new XmlServiceFactory(OpenLayersQuery.get(OpenLayersQuery.Key.service, null));
+		XmlServiceFactory f = new XmlServiceFactory(GeoJsfQuery.get(GeoJsfQuery.Key.service, null));
 		
 		for(SERVICE service : fSecurity.all(cService))
 		{
@@ -77,7 +77,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	public Layers exportLayers()
 	{
 		Layers layers = new Layers();
-		XmlLayerFactory f = new XmlLayerFactory(OpenLayersQuery.get(OpenLayersQuery.Key.layer, null));
+		XmlLayerFactory f = new XmlLayerFactory(GeoJsfQuery.get(GeoJsfQuery.Key.layer, null));
 		
 		for(LAYER layer : fSecurity.all(cLayer))
 		{
@@ -91,8 +91,8 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	public Maps exportMaps()
 	{
 		Maps maps = new Maps();
-		XmlMapFactory fMap = new XmlMapFactory(OpenLayersQuery.get(OpenLayersQuery.Key.map, null));
-		XmlViewFactory fView = new XmlViewFactory(OpenLayersQuery.get(OpenLayersQuery.Key.view, null));
+		XmlMapFactory fMap = new XmlMapFactory(GeoJsfQuery.get(GeoJsfQuery.Key.map, null));
+		XmlViewFactory fView = new XmlViewFactory(GeoJsfQuery.get(GeoJsfQuery.Key.view, null));
 		
 		for(MAP map : fSecurity.all(cMap))
 		{

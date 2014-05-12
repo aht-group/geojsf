@@ -36,8 +36,8 @@ public class TestXmlMap extends AbstractXmlGeojsfTest
     	Map xml = new Map();
     	xml.setId(123);
     	xml.setCode("myCode");
-    	xml.setX(3.4);
-    	xml.setY(5.6);
+    	xml.setLat(3.4);
+    	xml.setLon(5.6);
     	xml.setZoom(3);
      	
     	if(withChilds)
