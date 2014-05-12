@@ -23,11 +23,11 @@ public interface GeoJsfMap<L extends UtilsLang,
 	List<VIEW> getViews();
 	void setViews(List<VIEW> views);
 	
-	Double getX();
-	void setX(Double x);
+	Double getLat();
+	void setLat(Double lat);
 	
-	Double getY();
-	void setY(Double y);
+	Double getLon();
+	void setLon(Double lon);
 	
 	Integer getZoom();
 	void setZoom(Integer zoom);

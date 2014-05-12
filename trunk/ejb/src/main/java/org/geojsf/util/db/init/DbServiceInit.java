@@ -24,10 +24,10 @@ import org.slf4j.LoggerFactory;
 
 public class DbServiceInit <L extends UtilsLang,
 							D extends UtilsDescription,
-							SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
-							LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-							VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
-							VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
+							SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,
+							LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
+							MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
+							VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbServiceInit.class);
 	
@@ -50,15 +50,15 @@ public class DbServiceInit <L extends UtilsLang,
 	
 	public static <L extends UtilsLang,
 					D extends UtilsDescription,
-					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
-					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-					VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
-					VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>,
+					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,
+					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
+					MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
+					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>,
 					LT extends UtilsStatus<LT,L,D>>
-		DbServiceInit<L,D,SERVICE,LAYER,VIEW,VL>
+		DbServiceInit<L,D,SERVICE,LAYER,MAP,VIEW>
 		factory(final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService, UtilsFacade fAcl)
 	{
-		return new DbServiceInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cService,fAcl);
+		return new DbServiceInit<L,D,SERVICE,LAYER,MAP,VIEW>(cL,cD,cService,fAcl);
 	}
 	
 	public void iuServices(Repository repository) throws UtilsConfigurationException

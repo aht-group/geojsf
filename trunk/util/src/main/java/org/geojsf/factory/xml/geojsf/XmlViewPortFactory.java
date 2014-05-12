@@ -25,8 +25,8 @@ public class XmlViewPortFactory implements Serializable
 	{
 		ViewPort xml = new ViewPort();
 		
-		xml.setLon(map.getX());
-		xml.setLat(map.getY());
+		xml.setLon(map.getLon());
+		xml.setLat(map.getLat());
 		
 		xml.setScale(new Scale());
 		xml.getScale().setZoom(map.getZoom());
