@@ -30,8 +30,8 @@ import net.sf.ahtutils.xml.status.Langs;
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="x" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="y" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="lon" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -62,10 +62,10 @@ public class Map
     protected Long id;
     @XmlAttribute(name = "code")
     protected String code;
-    @XmlAttribute(name = "x")
-    protected Double x;
-    @XmlAttribute(name = "y")
-    protected Double y;
+    @XmlAttribute(name = "lat")
+    protected Double lat;
+    @XmlAttribute(name = "lon")
+    protected Double lon;
     @XmlAttribute(name = "zoom")
     protected Integer zoom;
 
@@ -223,67 +223,67 @@ public class Map
     }
 
     /**
-     * Gets the value of the x property.
+     * Gets the value of the lat property.
      * 
      * @return
      *     possible object is
      *     {@link Double }
      *     
      */
-    public double getX() {
-        return x;
+    public double getLat() {
+        return lat;
     }
 
     /**
-     * Sets the value of the x property.
+     * Sets the value of the lat property.
      * 
      * @param value
      *     allowed object is
      *     {@link Double }
      *     
      */
-    public void setX(double value) {
-        this.x = value;
+    public void setLat(double value) {
+        this.lat = value;
     }
 
-    public boolean isSetX() {
-        return (this.x!= null);
+    public boolean isSetLat() {
+        return (this.lat!= null);
     }
 
-    public void unsetX() {
-        this.x = null;
+    public void unsetLat() {
+        this.lat = null;
     }
 
     /**
-     * Gets the value of the y property.
+     * Gets the value of the lon property.
      * 
      * @return
      *     possible object is
      *     {@link Double }
      *     
      */
-    public double getY() {
-        return y;
+    public double getLon() {
+        return lon;
     }
 
     /**
-     * Sets the value of the y property.
+     * Sets the value of the lon property.
      * 
      * @param value
      *     allowed object is
      *     {@link Double }
      *     
      */
-    public void setY(double value) {
-        this.y = value;
+    public void setLon(double value) {
+        this.lon = value;
     }
 
-    public boolean isSetY() {
-        return (this.y!= null);
+    public boolean isSetLon() {
+        return (this.lon!= null);
     }
 
-    public void unsetY() {
-        this.y = null;
+    public void unsetLon() {
+        this.lon = null;
     }
 
     /**

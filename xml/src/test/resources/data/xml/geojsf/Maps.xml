@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <geojsf:maps xmlns:us="http://ahtutils.aht-group.com/status" xmlns:geojsf="http://www.geojsf.org">
-    <geojsf:map id="123" code="myCode" x="3.4" y="5.6" zoom="3"/>
+    <geojsf:map id="123" code="myCode" lat="3.4" lon="5.6" zoom="3"/>
 </geojsf:maps>

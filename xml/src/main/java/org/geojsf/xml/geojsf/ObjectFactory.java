@@ -46,67 +46,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Coordinate }
+     * Create an instance of {@link ViewPort }
      * 
      */
-    public Coordinate createCoordinate() {
-        return new Coordinate();
-    }
-
-    /**
-     * Create an instance of {@link Scales }
-     * 
-     */
-    public Scales createScales() {
-        return new Scales();
-    }
-
-    /**
-     * Create an instance of {@link Query }
-     * 
-     */
-    public Query createQuery() {
-        return new Query();
-    }
-
-    /**
-     * Create an instance of {@link Repository }
-     * 
-     */
-    public Repository createRepository() {
-        return new Repository();
-    }
-
-    /**
-     * Create an instance of {@link Layers }
-     * 
-     */
-    public Layers createLayers() {
-        return new Layers();
-    }
-
-    /**
-     * Create an instance of {@link Layer }
-     * 
-     */
-    public Layer createLayer() {
-        return new Layer();
-    }
-
-    /**
-     * Create an instance of {@link Legend }
-     * 
-     */
-    public Legend createLegend() {
-        return new Legend();
-    }
-
-    /**
-     * Create an instance of {@link Service }
-     * 
-     */
-    public Service createService() {
-        return new Service();
+    public ViewPort createViewPort() {
+        return new ViewPort();
     }
 
     /**
@@ -134,11 +78,67 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ViewPort }
+     * Create an instance of {@link Layer }
      * 
      */
-    public ViewPort createViewPort() {
-        return new ViewPort();
+    public Layer createLayer() {
+        return new Layer();
+    }
+
+    /**
+     * Create an instance of {@link Legend }
+     * 
+     */
+    public Legend createLegend() {
+        return new Legend();
+    }
+
+    /**
+     * Create an instance of {@link Service }
+     * 
+     */
+    public Service createService() {
+        return new Service();
+    }
+
+    /**
+     * Create an instance of {@link Repository }
+     * 
+     */
+    public Repository createRepository() {
+        return new Repository();
+    }
+
+    /**
+     * Create an instance of {@link Layers }
+     * 
+     */
+    public Layers createLayers() {
+        return new Layers();
+    }
+
+    /**
+     * Create an instance of {@link Scales }
+     * 
+     */
+    public Scales createScales() {
+        return new Scales();
+    }
+
+    /**
+     * Create an instance of {@link Coordinate }
+     * 
+     */
+    public Coordinate createCoordinate() {
+        return new Coordinate();
+    }
+
+    /**
+     * Create an instance of {@link Query }
+     * 
+     */
+    public Query createQuery() {
+        return new Query();
     }
 
 }
