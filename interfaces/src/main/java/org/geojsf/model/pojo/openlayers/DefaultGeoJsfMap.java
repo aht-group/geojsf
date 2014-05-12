@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
+
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-
-import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 
 public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
@@ -23,7 +23,7 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	
 	private String code;
 	
-	private Double x,y;
+	private Double lat,lon;
 	
 	private Integer zoom;
 	
@@ -41,11 +41,11 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
 	
-	@Override public Double getX() {return x;}
-	@Override public void setX(Double x) {this.x = x;}
+	@Override public Double getLat() {return lat;}
+	@Override public void setLat(Double x) {this.lon = lon;}
 	
-	@Override public Double getY() {return y;}
-	@Override public void setY(Double y) {this.y = y;}
+	@Override public Double getLon() {return lon;}
+	@Override public void setLon(Double lon) {this.lon = lon;}
 	
 	@Override public Integer getZoom() {return zoom;}
 	@Override public void setZoom(Integer zoom) {this.zoom = zoom;}

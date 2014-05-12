@@ -36,8 +36,8 @@ public class XmlMapFactory implements Serializable
 		Map xml = new Map();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
 		if(q.isSetZoom()){xml.setZoom(ejb.getZoom());}
-		if(q.isSetX()){xml.setX(ejb.getX());}
-		if(q.isSetY()){xml.setY(ejb.getY());}
+		if(q.isSetX()){xml.setX(ejb.getLat());}
+		if(q.isSetY()){xml.setY(ejb.getLon());}
 				
 		if(ejb.getViews()!=null && ejb.getViews().size()>0)
 		{

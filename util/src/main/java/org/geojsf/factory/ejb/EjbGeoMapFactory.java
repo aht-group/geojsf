@@ -43,8 +43,8 @@ public class EjbGeoMapFactory<L extends UtilsLang,D extends UtilsDescription,SER
 		catch (IllegalAccessException e) {throw new UtilsIntegrityException(e.getMessage());}
 		ejb.setCode(code);
 		ejb.setZoom(zoom);
-		ejb.setX(x);
-		ejb.setY(y);
+		ejb.setLat(x);
+		ejb.setLon(y);
         return ejb;
     }
 }

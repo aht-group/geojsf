@@ -3,7 +3,6 @@ package org.geojsf.web.rest;
 import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
 import org.geojsf.factory.xml.geojsf.XmlViewFactory;
 import org.geojsf.factory.xml.openlayers.XmlLayerFactory;
@@ -37,15 +36,15 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	private final Class<SERVICE> cService;
 	private final Class<LAYER> cLayer;
 	private final Class<MAP> cMap;
-	private final Class<VIEW> cView;
+//	private final Class<VIEW> cView;
 	
-	private GeoJsfRestDatabaseExporter(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VIEW> cView)
+	private GeoJsfRestDatabaseExporter(UtilsSecurityFacade fSecurity,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap)
 	{
 		this.fSecurity=fSecurity;
 		this.cService=cService;
 		this.cLayer=cLayer;
 		this.cMap=cMap;
-		this.cView=cView;
+//		this.cView=cView;
 	}
 	
 	public static <L extends UtilsLang,
@@ -53,12 +52,11 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,
 					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
 					MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
-					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>,
-					LT extends UtilsStatus<LT,L,D>>
+					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 		GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW>
-		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VIEW> cView)
+		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap)
 	{
-		return new GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW>(fSecurity,cService,cLayer,cMap,cView);
+		return new GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW>(fSecurity,cService,cLayer,cMap);
 	}
 
 	@Override
