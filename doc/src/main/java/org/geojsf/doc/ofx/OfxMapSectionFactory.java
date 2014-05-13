@@ -93,9 +93,12 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 		{
 			Description d = StatusXpath.getDescription(map.getDescriptions(), lang);
 			p.getContent().add(d.getValue());
+			
 		}
 		catch (ExlpXpathNotFoundException e){throw new OfxAuthoringException(e.getMessage());}
 		catch (ExlpXpathNotUniqueException e){throw new OfxAuthoringException(e.getMessage());}
+		
+		JaxbUtil.trace(p);
 		
 		return p;
 	}
