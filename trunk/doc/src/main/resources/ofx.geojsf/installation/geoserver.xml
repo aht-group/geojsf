@@ -91,5 +91,17 @@
 		<ofx:listing external="listing/admin/installation/geoserver/properties.txt"/>
 		
 	</ofx:section>
+	
+	
+	<ofx:section id="section.admin.installation.geoserver.database">
+		<ofx:title lang="en">Database Tuning</ofx:title>
+		
+		<ofx:paragraph lang="en">
+			The geospatial tables are managed by the Application Server. To improve the performance of the system,
+			some additional database indexes have to be created manually. 
+		</ofx:paragraph>
+		<ofx:listing external="listing/admin/installation/geoserver/database.txt"/>
+		
+	</ofx:section>
 	   
 </ofx:section>
