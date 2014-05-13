@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
 import net.sf.exlp.util.xml.JDomUtil;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
@@ -39,13 +40,16 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		String[] properties = {"city_name"};
 		
 		Coordinates coordinates = new Coordinates();
-		coordinates.setValue("18.337941894531248,13.19704345703125");
+		coordinates.setValue("8,17");
 		
+		// Unit ignored: http://jira.codehaus.org/browse/GEOS-937
 		Distance distance = new Distance();
-		distance.setUnits("degree");
-		distance.setValue("1.074");
+		distance.setUnits("meter");
+		distance.setValue("99000");
 		
 		GetFeature gf = PointQueryFactory.cGetFeature(config.getString("geoserver.test.pointquery.layer"),properties,"the_geom",coordinates,distance);
+		
+		JaxbUtil.info(gf);
 		
 		WfsHttpRequest r = new WfsHttpRequest(config.getString(GeoServerConfigKeys.restUrl)+"/wcs");
 		JDomUtil.debug(r.request(gf));

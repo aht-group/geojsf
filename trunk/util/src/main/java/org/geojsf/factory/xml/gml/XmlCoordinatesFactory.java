@@ -15,7 +15,7 @@ public class XmlCoordinatesFactory implements Serializable
 	public static Coordinates build (Coordinate coordinate)
 	{
 		Coordinates xml = new Coordinates();
-		xml.setValue(coordinate.getLat()+","+coordinate.getLon());
+		xml.setValue(coordinate.getLon()+","+coordinate.getLat());
 		return xml;
 	}
 }

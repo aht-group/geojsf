@@ -8,10 +8,13 @@ import org.geojsf.xml.ogc.Filter;
 import org.geojsf.xml.ogc.PropertyName;
 import org.geojsf.xml.wfs.GetFeature;
 import org.geojsf.xml.wfs.Query;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PointQueryFactory
 {	
+	final static Logger logger = LoggerFactory.getLogger(PointQueryFactory.class);
+	
 	private Coordinates coordinates;
 	private Distance distance;
 	
@@ -78,7 +81,7 @@ public class PointQueryFactory
 		dw.setPropertyName(pn);
 		
 		dw.setPoint(createPoint());
-		dw.setDistance(distance);
+		dw.setDistance(checkDistanceUnit(distance));
 		
 		return dw;
 	}
@@ -91,5 +94,25 @@ public class PointQueryFactory
 		point.setCoordinates(coordinates);
 		
 		return point;
+	}
+	
+	private Distance checkDistanceUnit(Distance distance)
+	{
+		if(distance.getUnits().equals("degree")){return distance;}
+		if(distance.getUnits().equals("meter"))
+		{
+			logger.debug("Converting to degree");
+			Double m = new Double(distance.getValue());
+			Double latTraveledDeg = (1 / 110.54) * (m/1000);
+			Distance result = new Distance();
+			result.setUnits("degree");
+			result.setValue(latTraveledDeg.toString());
+			return result;
+		}
+		else
+		{
+			logger.warn("Unkniwn unit: "+distance.getUnits());
+			return null;
+		}
 	}
 }
