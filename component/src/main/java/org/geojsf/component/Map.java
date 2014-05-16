@@ -121,6 +121,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 			 		//Set flag that map initiation is completed and not to be repeated
 			 		initStage = false;
 			 		logger.info("Map initialization completed for " +this.getClientId() +" (ID: " +this.getId() +")");
+			 		writer.endElement("script"); 
 				}
 			}
 		}
@@ -143,13 +144,6 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		}
  		
  		if(addScriptTag){writer.endElement("script");}
-	}
-	
-	@Override
-	public void encodeEnd(FacesContext ctx) throws IOException
-	{
-		ResponseWriter writer = ctx.getResponseWriter();
-		writer.endElement("script"); 
 	}
 	
 	public void encodeLayer(SERVICE service, Boolean baseLayer, ResponseWriter writer, JsfRenderUtil renderer) throws IOException

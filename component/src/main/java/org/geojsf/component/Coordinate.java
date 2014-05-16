@@ -42,6 +42,8 @@ public class Coordinate extends UIPanel implements ClientBehaviorHolder
 		String orientation = map.get(Attribute.orientation.toString()).toString();
 		
 		ResponseWriter writer = ctx.getResponseWriter();
+		writer.startElement("script", this);
 		writer.writeText("GeoJsfCoordinate.addCoordinatesControl('"+orientation+"');", null); 
+		writer.endElement("script");
 	}
 }
