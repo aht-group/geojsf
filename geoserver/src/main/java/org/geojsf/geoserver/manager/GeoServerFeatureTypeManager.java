@@ -2,8 +2,6 @@ package org.geojsf.geoserver.manager;
 
 import java.io.IOException;
 
-import net.sf.exlp.util.xml.JDomUtil;
-
 import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.interfaces.rest.geoserver.GeoServerFeatureTypeRest;
 import org.geojsf.xml.geoserver.DataStore;

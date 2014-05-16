@@ -10,8 +10,6 @@ import org.apache.commons.io.IOUtils;
 import org.geojsf.factory.xml.geoserver.XmlFeatureTypeFactory;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.interfaces.rest.geoserver.GeoServerFeatureTypeRest;
-import org.geojsf.xml.geoserver.CoverageStore;
-import org.geojsf.xml.geoserver.CoverageStores;
 import org.geojsf.xml.geoserver.FeatureType;
 import org.geojsf.xml.geoserver.FeatureTypes;
 import org.jdom2.Document;
