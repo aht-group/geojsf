@@ -54,6 +54,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	private String timeInfo = null;
 	private Scales scales = null;
 	private Boolean initStage = true;
+	private Boolean refreshLayersOnUpdate = true;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -107,22 +108,15 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 			}
 			else
 			{
-				if(initStage)
+				if(!refreshLayersOnUpdate && initStage || refreshLayersOnUpdate)
 				{
+					
+					
 					//First, render the JavaScript code to initialize the map
 					renderer.renderMapInitialization(this.getFacesContext());
 					
-					//Next, render the base layer (adding overlays first results in error)
-					SERVICE baseLayer = serviceList.get(serviceList.size()-1);
-					encodeLayer(baseLayer, true, writer, renderer);
-					
-					//Finally, render the overlay layers
-					//for (int i=0;i<serviceList.size()-1;i++)
-			 		for(int i=serviceList.size()-2;i==0;i--) //GEO-64
-					{	
-			 			SERVICE service = serviceList.get(i);
-			 			encodeLayer(service, false, writer, renderer);  
-					}
+					//Next, render the layers
+					renderLayers(writer, renderer, false);
 			 		
 			 		//Set flag that map initiation is completed and not to be repeated
 			 		initStage = false;
@@ -130,6 +124,25 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 				}
 			}
 		}
+	}
+	
+	public void renderLayers(ResponseWriter writer, JsfRenderUtil renderer, Boolean addScriptTag) throws IOException
+	{
+		if(addScriptTag){writer.startElement("script", this);}
+		
+		//First, render the base layer (adding overlays first results in error)
+		SERVICE baseLayer = serviceList.get(serviceList.size()-1);
+		encodeLayer(baseLayer, true, writer, renderer);
+		
+		//Finally, render the overlay layers
+		//for (int i=0;i<serviceList.size()-1;i++)
+ 		for(int i=serviceList.size()-2;i==0;i--) //GEO-64
+		{	
+ 			SERVICE service = serviceList.get(i);
+ 			encodeLayer(service, false, writer, renderer);  
+		}
+ 		
+ 		if(addScriptTag){writer.endElement("script");}
 	}
 	
 	@Override
@@ -274,4 +287,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 
 	public Boolean getInitStage() {return initStage;}
 	public void setInitStage(Boolean initStage) {this.initStage = initStage;}
+
+	public Boolean getRefreshLayersOnUpdate() {return refreshLayersOnUpdate;}
+	public void setRefreshLayersOnUpdate(Boolean refreshLayersOnUpdate) {this.refreshLayersOnUpdate = refreshLayersOnUpdate;}
 }
