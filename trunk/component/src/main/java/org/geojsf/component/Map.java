@@ -78,7 +78,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		logger.info("entering encodebegin");
 		try
 		{
-			if (initStage) {MapUtil.initLayerConfiguration(this);}
+			if (true) {MapUtil.initLayerConfiguration(this);}
 		}
 		catch (UnconsistentConfgurationException e)
 		{
