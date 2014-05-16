@@ -9,7 +9,6 @@ import org.apache.commons.io.IOUtils;
 import org.geojsf.factory.xml.geoserver.XmlStylesFactory;
 import org.geojsf.interfaces.rest.GeoServerRestInterface;
 import org.geojsf.interfaces.rest.geoserver.GeoServerStyleRest;
-import org.geojsf.xml.geoserver.DataStores;
 import org.geojsf.xml.geoserver.Styles;
 import org.jdom2.Document;
 import org.jdom2.Element;
