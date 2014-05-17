@@ -12,7 +12,7 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
-import org.geojsf.interfaces.rest.GeoJsfDatabaseRest;
+import org.geojsf.interfaces.rest.db.GeoJsfDatabaseExportRest;
 import org.geojsf.util.query.GeoJsfQuery;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Map;
@@ -27,7 +27,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
 									MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
 									VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
-				implements GeoJsfDatabaseRest
+				implements GeoJsfDatabaseExportRest
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfRestDatabaseExporter.class);
 	
@@ -107,11 +107,5 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 		}
 		
 		return maps;
-	}
-
-	public String importGeoJsf(Repository repository)
-	{
-		logger.error("NYI");
-		return null;
 	}
 }
