@@ -1,6 +1,6 @@
 package org.geojsf.web.rest;
 
-import net.sf.ahtutils.controller.interfaces.UtilsSecurityFacade;
+import net.sf.ahtutils.interfaces.facade.UtilsSecurityFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
