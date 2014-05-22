@@ -51,10 +51,10 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		super(config,langs,null);
 		this.translations=translations;
 		
-		headerKeysLayer = new String[3];
-		headerKeysLayer[0] = "geoJsfTableLayerCode";
-		headerKeysLayer[1] = "geoJsfTableLayerName";
-		headerKeysLayer[2] = "geoJsfTableLayerDescription";
+		headerKeysLayer = new String[2];
+		headerKeysLayer[0] = "geoJsfTableLayerNameCode";
+//		headerKeysLayer[1] = "geoJsfTableLayerName";
+		headerKeysLayer[1] = "geoJsfTableLayerDescription";
 		
 		headerKeysMapView = new String[2];
 		headerKeysMapView[0] = "geoJsfTableMapViewNr";

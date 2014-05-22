@@ -18,7 +18,9 @@ import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Service;
 import org.openfuxml.content.ofx.Comment;
+import org.openfuxml.content.ofx.Paragraph;
 import org.openfuxml.content.table.Body;
+import org.openfuxml.content.table.Cell;
 import org.openfuxml.content.table.Columns;
 import org.openfuxml.content.table.Content;
 import org.openfuxml.content.table.Head;
@@ -39,7 +41,6 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 	final static Logger logger = LoggerFactory.getLogger(OfxLayerTableFactory.class);
 	
 	private static String keyCaption = "geojsfTableLayerCaption";
-	private int[] colWidths = {15,30,70};
 		
 	public OfxLayerTableFactory(Configuration config,String lang,Translations translations)
 	{
@@ -90,9 +91,8 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 	{
 		Columns cols = new Columns();
 
-		cols.getColumn().add(OfxColumnFactory.percentage(colWidths[0]));
-		cols.getColumn().add(OfxColumnFactory.flex(colWidths[1]));
-		cols.getColumn().add(OfxColumnFactory.flex(colWidths[2]));
+		cols.getColumn().add(OfxColumnFactory.percentage(30));
+		cols.getColumn().add(OfxColumnFactory.flex(100));
 		
 		Specification specification = new Specification();
 		specification.setColumns(cols);
@@ -108,7 +108,6 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		for(Layer layer : layers.getLayer())
 		{
-
 			body.getRow().add(createRow(layer));
 		}
 		
@@ -141,9 +140,21 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		catch (ExlpXpathNotFoundException e){description = e.getMessage();}
 		catch (ExlpXpathNotUniqueException e){description = e.getMessage();}
 		
+		Paragraph p1 = new Paragraph();
+		p1.getContent().add(text);
 		
-		row.getCell().add(OfxCellFactory.createParagraphCell(layer.getCode()));
-		row.getCell().add(OfxCellFactory.createParagraphCell(text));
+		Paragraph p2 = new Paragraph();
+		p2.getContent().add("("+layer.getCode()+")");
+		
+		Cell cell = new Cell();
+		cell.getContent().add(p1);
+		cell.getContent().add(p2);
+		
+		row.getCell().add(cell);
+		
+//		row.getCell().add(OfxCellFactory.createParagraphCell(layer.getCode()));
+//		row.getCell().add(OfxCellFactory.createParagraphCell(text));
+		
 		row.getCell().add(OfxCellFactory.createParagraphCell(description));
 
 		return row;
