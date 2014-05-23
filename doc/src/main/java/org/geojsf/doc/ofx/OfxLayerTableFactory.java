@@ -40,7 +40,7 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 {
 	final static Logger logger = LoggerFactory.getLogger(OfxLayerTableFactory.class);
 	
-	private static String keyCaption = "geojsfTableLayerCaption";
+	private static String keyCaption = "geojsfTableLayerCaptionPrefix";
 		
 	public OfxLayerTableFactory(Configuration config,String lang,Translations translations)
 	{
@@ -62,9 +62,15 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 			table.setId(id);
 			table.setComment(comment);
 			
-	//		Lang lCaption = StatusXpath.getLang(translations, captionKey, lang);
-	//		table.setTitle(XmlTitleFactory.build(lCaption.getTranslation()));
-			table.setTitle(XmlTitleFactory.build("test Title"));
+			try
+			{
+				Lang lCaption = StatusXpath.getLang(translations, keyCaption, lang);
+				Lang lService = StatusXpath.getLang(service.getLangs(), lang);
+				
+				table.setTitle(XmlTitleFactory.build(lCaption.getTranslation()+" "+lService.getTranslation()));
+			}
+			catch (ExlpXpathNotFoundException e) {e.printStackTrace();}
+			catch (ExlpXpathNotUniqueException e) {e.printStackTrace();}	
 			
 			LatexTableRenderer renderer = new LatexTableRenderer(false);
 			renderer.render(table);
@@ -91,8 +97,11 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 	{
 		Columns cols = new Columns();
 
-		cols.getColumn().add(OfxColumnFactory.percentage(30));
-		cols.getColumn().add(OfxColumnFactory.flex(100));
+//		cols.getColumn().add(OfxColumnFactory.percentage(30));
+//		cols.getColumn().add(OfxColumnFactory.flex(100));
+		
+		cols.getColumn().add(OfxColumnFactory.flex(25));
+		cols.getColumn().add(OfxColumnFactory.flex(75));
 		
 		Specification specification = new Specification();
 		specification.setColumns(cols);
