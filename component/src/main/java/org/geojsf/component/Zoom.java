@@ -38,7 +38,9 @@ public class Zoom extends UINamingContainer implements ClientBehaviorHolder
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		ResponseWriter writer = ctx.getResponseWriter();
-		writer.writeText("GeoJsfControl.addZoom('" +type +"','" +position +"');", null);
+		writer.startElement("script", this);
+		writer.writeText("GeoJsfControl.addZoom('" +type +"','" +position +"');", null); 
+		writer.endElement("script");
 		logger.info("adding " +type);
 	}
 
