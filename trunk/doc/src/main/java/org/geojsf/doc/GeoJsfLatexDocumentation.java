@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import net.sf.ahtutils.doc.latex.AbstractLatexDocumentationBuilder;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
+import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
@@ -23,6 +24,8 @@ import org.geojsf.xml.geojsf.Repository;
 import org.geojsf.xml.geojsf.Service;
 import org.geojsf.xml.geojsf.View;
 import org.geojsf.xml.xpath.GeoJsfXpath;
+import org.openfuxml.content.ofx.Section;
+import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,7 +98,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	
 	public void saveServiceDescription() throws UtilsConfigurationException
 	{
-		logger.info("Creating Layer.Descriptions");
+		logger.info("Creating "+Service.class.getSimpleName()+"."+Descriptions.class.getSimpleName());
 		for(String lang : langs)
 		{
 			File f = new File(baseLatexDir,lang+"/"+dirDescriptions+"/services.tex");
@@ -112,7 +115,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	
 	public void saveLayerTables(String idPrefix) throws UtilsConfigurationException
 	{
-		logger.info("Creating Layer.Descriptions");		
+		logger.info("Creating "+Layer.class.getSimpleName()+"."+Table.class.getSimpleName());
 		for(String lang : langs)
 		{
 			for(Service service : repository.getService())
@@ -131,7 +134,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	
 	public void saveMapSections(int sectionLevel,String idPrefix) throws UtilsConfigurationException
 	{
-		logger.info("Creating Sections (Maps)");	
+		logger.info("Creating "+Map.class.getSimpleName()+"."+Section.class.getSimpleName());
 		for(Map map : maps.getMap())
 		{
 			for(View view : map.getView())
