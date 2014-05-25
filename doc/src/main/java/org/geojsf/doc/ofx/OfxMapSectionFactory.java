@@ -29,6 +29,7 @@ import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.factory.table.OfxCellFactory;
 import org.openfuxml.factory.table.OfxColumnFactory;
+import org.openfuxml.factory.xml.layout.XmlFloatFactory;
 import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
 import org.openfuxml.factory.xml.ofx.content.structure.XmlParagraphFactory;
 import org.openfuxml.factory.xml.ofx.content.structure.XmlSectionFactory;
@@ -88,7 +89,6 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 	private Paragraph buildIntrodruction(Map map) throws OfxAuthoringException
 	{
 		Paragraph p = XmlParagraphFactory.build();
-		
 		try
 		{
 			Description d = StatusXpath.getDescription(map.getDescriptions(), lang);
@@ -133,6 +133,7 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		Specification specification = new Specification();
 		specification.setColumns(cols);
+		specification.setFloat(XmlFloatFactory.build(false));
 		return specification;
 	}
 	

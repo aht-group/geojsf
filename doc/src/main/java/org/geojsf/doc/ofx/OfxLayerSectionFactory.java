@@ -30,19 +30,20 @@ import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.factory.table.OfxCellFactory;
 import org.openfuxml.factory.table.OfxColumnFactory;
+import org.openfuxml.factory.xml.layout.XmlFloatFactory;
 import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
 import org.openfuxml.factory.xml.ofx.content.text.XmlTitleFactory;
 import org.openfuxml.renderer.latex.content.table.LatexTableRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
+public class OfxLayerSectionFactory extends AbstractUtilsOfxDocumentationFactory
 {
-	final static Logger logger = LoggerFactory.getLogger(OfxLayerTableFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(OfxLayerSectionFactory.class);
 	
 	private static String keyCaption = "geojsfTableLayerCaptionPrefix";
 		
-	public OfxLayerTableFactory(Configuration config,String lang,Translations translations)
+	public OfxLayerSectionFactory(Configuration config,String lang,Translations translations)
 	{
 		super(config,lang,translations);
 	}
@@ -105,6 +106,7 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		Specification specification = new Specification();
 		specification.setColumns(cols);
+		specification.setFloat(XmlFloatFactory.build(false));
 		return specification;
 	}
 	

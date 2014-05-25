@@ -13,7 +13,7 @@ import net.sf.exlp.util.io.StringIO;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.doc.ofx.OfxLayerTableFactory;
+import org.geojsf.doc.ofx.OfxLayerSectionFactory;
 import org.geojsf.doc.ofx.OfxMapSectionFactory;
 import org.geojsf.doc.ofx.OfxServiceListFactory;
 import org.geojsf.xml.geojsf.Layer;
@@ -113,7 +113,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		}
 	}
 	
-	public void saveLayerTables(String idPrefix) throws UtilsConfigurationException
+	public void writerLayerSection(String idPrefix) throws UtilsConfigurationException
 	{
 		logger.info("Creating "+Layer.class.getSimpleName()+"."+Table.class.getSimpleName());
 		for(String lang : langs)
@@ -123,7 +123,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 				File f = new File(baseLatexDir,lang+"/"+dirLayer+"/"+service.getCode()+".tex");
 				try
 				{
-					OfxLayerTableFactory latexFactory = new OfxLayerTableFactory(config,lang,translations);
+					OfxLayerSectionFactory latexFactory = new OfxLayerSectionFactory(config,lang,translations);
 					String content = latexFactory.toLatex(idPrefix+".layer."+service.getCode(),service,layers,headerKeysLayer);
 					StringIO.writeTxt(f, content);
 				}
