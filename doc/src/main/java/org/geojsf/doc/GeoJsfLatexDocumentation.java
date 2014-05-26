@@ -3,7 +3,7 @@ package org.geojsf.doc;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import net.sf.ahtutils.doc.latex.AbstractLatexDocumentationBuilder;
+import net.sf.ahtutils.doc.latex.builder.AbstractLatexDocumentationBuilder;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Translations;
@@ -13,8 +13,8 @@ import net.sf.exlp.util.io.StringIO;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.doc.ofx.OfxLayerSectionFactory;
-import org.geojsf.doc.ofx.OfxMapSectionFactory;
+import org.geojsf.doc.ofx.OfxSectionLayerFactory;
+import org.geojsf.doc.ofx.OfxSectionMapFactory;
 import org.geojsf.doc.ofx.OfxServiceListFactory;
 import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
@@ -27,6 +27,7 @@ import org.geojsf.xml.xpath.GeoJsfXpath;
 import org.openfuxml.content.ofx.Section;
 import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
+import org.openfuxml.interfaces.CrossMediaManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,9 +50,9 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	
 	private String[] headerKeysLayer,headerKeysMapView;
 	
-	public GeoJsfLatexDocumentation(Configuration config, Translations translations,String[] langs)
+	public GeoJsfLatexDocumentation(Configuration config, Translations translations,String[] langs, CrossMediaManager cmm)
 	{
-		super(config,langs,null);
+		super(config,translations,langs,cmm);
 		this.translations=translations;
 		
 		headerKeysLayer = new String[2];
@@ -123,7 +124,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 				File f = new File(baseLatexDir,lang+"/"+dirLayer+"/"+service.getCode()+".tex");
 				try
 				{
-					OfxLayerSectionFactory latexFactory = new OfxLayerSectionFactory(config,lang,translations);
+					OfxSectionLayerFactory latexFactory = new OfxSectionLayerFactory(config,lang,translations);
 					String content = latexFactory.toLatex(idPrefix+".layer."+service.getCode(),service,layers,headerKeysLayer);
 					StringIO.writeTxt(f, content);
 				}
@@ -159,7 +160,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 					
 				try
 				{
-					OfxMapSectionFactory latexFactory = new OfxMapSectionFactory(config,lang,translations);
+					OfxSectionMapFactory latexFactory = new OfxSectionMapFactory(config,lang,translations);
 					String content = latexFactory.toLatex(sectionLevel,map,headerKeysMapView);
 					StringIO.writeTxt(f, content);
 				}
