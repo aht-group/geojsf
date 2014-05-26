@@ -39,14 +39,14 @@ import org.openfuxml.renderer.latex.preamble.LatexPreamble;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
+public class OfxSectionMapFactory extends AbstractUtilsOfxDocumentationFactory
 {
-	final static Logger logger = LoggerFactory.getLogger(OfxMapSectionFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(OfxSectionMapFactory.class);
 	
 	private int[] colWidths = {5,100};
 	private String keyTableTitle = "geoJsfTableMapTableTitlePrefix";
 	
-	public OfxMapSectionFactory(Configuration config,String lang, Translations translations)
+	public OfxSectionMapFactory(Configuration config,String lang, Translations translations)
 	{
 		super(config,lang,translations);
 	}

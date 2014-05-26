@@ -37,13 +37,13 @@ import org.openfuxml.renderer.latex.content.table.LatexTableRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class OfxLayerSectionFactory extends AbstractUtilsOfxDocumentationFactory
+public class OfxSectionLayerFactory extends AbstractUtilsOfxDocumentationFactory
 {
-	final static Logger logger = LoggerFactory.getLogger(OfxLayerSectionFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(OfxSectionLayerFactory.class);
 	
 	private static String keyCaption = "geojsfTableLayerCaptionPrefix";
 		
-	public OfxLayerSectionFactory(Configuration config,String lang,Translations translations)
+	public OfxSectionLayerFactory(Configuration config,String lang,Translations translations)
 	{
 		super(config,lang,translations);
 	}
