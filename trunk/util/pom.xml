@@ -26,11 +26,18 @@
 	</dependencyManagement>
 	
 	<dependencies>
+		<!-- GeoJSF -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-xml</artifactId>
 			<type>jar</type>
 		</dependency>
+		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-interfaces</artifactId>
+		</dependency>
+		
+		
 		<dependency>
 			<groupId>net.sf.exlp</groupId>
 			<artifactId>exlp-util</artifactId>
@@ -51,14 +58,25 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.geojsf</groupId>
-			<artifactId>geojsf-interfaces</artifactId>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		
+		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -111,6 +129,7 @@
 			</exclusions>
 		</dependency>
 		
+		<!-- REST -->
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
@@ -127,16 +146,7 @@
 			<artifactId>resteasy-jaxb-provider</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
