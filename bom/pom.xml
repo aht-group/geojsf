@@ -51,6 +51,11 @@
                 <artifactId>geojsf-ejb</artifactId>
                 <version>${project.version}</version>
             </dependency>
+			<dependency>
+                <groupId>org.geojsf</groupId>
+                <artifactId>geojsf-entities</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.geojsf</groupId>
                 <artifactId>geojsf-component</artifactId>
