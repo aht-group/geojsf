@@ -81,7 +81,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		addConfig(InstallationCode.instGeoserver.toString(),"ofx.geojsf/installation/geoserver.xml","admin/installation/geoserver");
 		
 		//GeoJSF
-		addConfig(GeoJsfCode.datastructure.toString(),"ofx.geojsf/geojsf/datastructure.xml","geojsf");
+		addConfig(GeoJsfCode.datastructure.toString(),"ofx.geojsf/geojsf/datastructure.xml","geojsf/datastructure");
 	}
 	
 	public void loadRepository(String fileName) throws FileNotFoundException
