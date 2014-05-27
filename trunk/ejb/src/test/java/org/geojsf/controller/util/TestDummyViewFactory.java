@@ -79,7 +79,8 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		
 		logger.info("***********************");
 		logger.info("This is the MAP");
-		GeojsfDatastructureDebugger.debug(map);
+		GeojsfDatastructureDebugger<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> gdsd = new GeojsfDatastructureDebugger<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>();
+		gdsd.debug(map);
 		
 		GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
 		fService = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
@@ -89,7 +90,7 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		List<DefaultGeoJsfService> list = fService.build(map);
 		for(DefaultGeoJsfService service : list)
 		{
-			GeojsfDatastructureDebugger.debug(service);
+			gdsd.debug(service);
 		}
 		
 	}
