@@ -11,7 +11,7 @@
 	
     <artifactId>geojsf-entities</artifactId>
     <packaging>jar</packaging>
-    <name>GeoJSF - EJB</name>
+    <name>GeoJSF - Entities</name>
    
    	<dependencyManagement>
 		<dependencies>      	         
