@@ -1,12 +1,17 @@
 digraph b { 
 
 
-  ratio=0.9;
-  ranksep=0.2;
+  ratio=1.0;
+  ranksep=0.5;
   overlap=false;
 
   0 [label="Service",style=filled,fixedsize=false];
-  1 [label="Layer",style=filled,fixedsize=false];
+  1 [label="Map",style=filled,fixedsize=false];
+  2 [label="Layer",style=filled,fixedsize=false];
+  3 [label="View",style=filled,fixedsize=false];
 
+"2" -> "3" [dir=none];
+"0" -> "2" ;
+"1" -> "3" ;
 }
 

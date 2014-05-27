@@ -33,6 +33,10 @@
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-interfaces</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-entities</artifactId>
+		</dependency>
 		
 		<dependency>
 			<groupId>net.sf.exlp</groupId>
@@ -73,6 +77,28 @@
 			<artifactId>ahtutils-doc</artifactId>
 		</dependency>	
 
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Test -->
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+ 			<scope>test</scope>
+		</dependency>
 	</dependencies>
     
 </project>

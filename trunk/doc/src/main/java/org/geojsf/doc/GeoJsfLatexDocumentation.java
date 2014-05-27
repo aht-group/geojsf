@@ -41,6 +41,8 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	
 	public static enum InstallationCode {instGeoserver}
 	public static enum InstallationType {standalone}
+	
+	public static enum GeoJsfCode {datastructure}
 
 	private Translations translations;
 	
@@ -77,6 +79,9 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		
 		//Installation
 		addConfig(InstallationCode.instGeoserver.toString(),"ofx.geojsf/installation/geoserver.xml","admin/installation/geoserver");
+		
+		//GeoJSF
+		addConfig(GeoJsfCode.datastructure.toString(),"ofx.geojsf/geojsf/datastructure.xml","geojsf");
 	}
 	
 	public void loadRepository(String fileName) throws FileNotFoundException
@@ -175,5 +180,10 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		String[] classifier = new String[types.length];
 		for(int i=0;i<types.length;i++){classifier[i]=types[i].toString();}
 		render(code.toString(),classifier);
+	}
+	
+	public void render(GeoJsfCode code) throws UtilsConfigurationException
+	{
+		render(code.toString());
 	}
 }
