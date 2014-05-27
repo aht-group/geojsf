@@ -6,13 +6,17 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.OneToMany;
+
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
+import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
+@EjbErNode(name="Service",category="geojsf")
 public class DefaultGeoJsfService implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfService<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
 {
@@ -26,7 +30,10 @@ public class DefaultGeoJsfService implements Serializable,EjbRemoveable,EjbPersi
 	
 	private String url;
 	
+	@OneToMany
 	private List<DefaultGeoJsfLayer> layer;
+	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
+	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
 	
 	//******************************************************************************
 	
@@ -39,8 +46,7 @@ public class DefaultGeoJsfService implements Serializable,EjbRemoveable,EjbPersi
 	@Override public String getUrl() {return url;}
 	@Override public void setUrl(String url) {this.url=url;}
 	
-	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
-	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
+
 	
 //	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 //	@MapKey(name = "lkey")

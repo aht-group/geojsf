@@ -5,13 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.OneToMany;
+
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
+import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
+@EjbErNode(name="Map",category="geojsf")
 public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
 {
@@ -20,6 +24,8 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	public static final long serialVersionUID=1;
 	
 	private long id;
+	@Override public long getId() {return id;}
+	@Override public void setId(long id) {this.id = id;}
 	
 	private String code;
 	
@@ -31,12 +37,12 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	
 	private Map<String, DefaultGeoJsfDescription> description;
 	
+	@OneToMany
 	private List<DefaultGeoJsfView> layer;
 	
 	//******************************************************************************
 	
-	@Override public long getId() {return id;}
-	@Override public void setId(long id) {this.id = id;}
+
 	
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}

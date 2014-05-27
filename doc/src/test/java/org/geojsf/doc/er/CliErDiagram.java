@@ -35,7 +35,7 @@ public class CliErDiagram
 	
 	public void create() throws IOException, ClassNotFoundException
 	{
-		File fSrc = new File("../interfaces/src/main/java");
+		File fSrc = new File("../entities/src/main/java");
 		File fDot = new File("../doc/src/main/resources/listing.geojsf/er.dot");
 		File fSvg = new File("../doc/src/main/resources/svg.geojsf/er.svg");
 		
@@ -46,8 +46,8 @@ public class CliErDiagram
 		JaxbUtil.info(g);
 		
 		gdc.setOverlap(false);
-		gdc.setRatio(0.9);
-		gdc.setRanksep(0.2);
+		gdc.setRatio(1);
+		gdc.setRanksep(0.5);
 		
 		gdc.convert(g);
 		gdc.save(fDot);
@@ -55,7 +55,7 @@ public class CliErDiagram
 		ErImageWriter w = new ErImageWriter("dot");
 		w.svg(fDot, fSvg);
 	}
-
+	
 	public static void main(String args[]) throws Exception
 	{
 		GeoJsfDocTestBootstrap.init();

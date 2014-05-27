@@ -2,13 +2,17 @@ package org.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
 
+import javax.persistence.ManyToOne;
+
+import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
+import net.sf.ahtutils.model.qualifier.EjbErNode;
+
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
-
+@EjbErNode(name="View",category="geojsf")
 public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfView<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
 {
@@ -17,8 +21,13 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	
 	private long id;
 	
+	@ManyToOne
 	private DefaultGeoJsfMap view;
+	
+	@ManyToOne
 	private DefaultGeoJsfLayer layer;
+	
+	
 	private int orderNo;
 	private Boolean visible,legend;
 	

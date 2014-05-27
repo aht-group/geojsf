@@ -32,5 +32,18 @@
 			<artifactId>geojsf-interfaces</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- JPA -->
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+ 			<scope>provided</scope>
+		</dependency>
+		
 	</dependencies>
 </project>
