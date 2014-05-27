@@ -62,6 +62,19 @@
 			<groupId>net.sf.ahtutils</groupId>
 			<artifactId>ahtutils-doc</artifactId>
 		</dependency>
+		
+		<!-- MetaChart -->
+		<dependency>
+			<groupId>org.metachart</groupId>
+			<artifactId>metachart-core</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-doc</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
     
