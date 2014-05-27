@@ -1,30 +1,33 @@
 package org.geojsf.util;
 
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
+import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
+import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+
+import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeojsfDatastructureDebugger
+public class GeojsfDatastructureDebugger <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeojsfDatastructureDebugger.class);
 	
-	public static void debug(DefaultGeoJsfMap map)
+	public void debug(MAP map)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append("Map.").append(map.getId());
 		sb.append(" code=").append(map.getCode());
 		logger.info(sb.toString());
-		for(DefaultGeoJsfView view : map.getViews())
+		for(VIEW view : map.getViews())
 		{
 			debug(1,view);
 		}
 	}
 	
-	public static void debug(DefaultGeoJsfView view){debug(0,view);}
-	public static void debug(int indent, DefaultGeoJsfView view)
+	public void debug(VIEW view){debug(0,view);}
+	public void debug(int indent, VIEW view)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append(tab(indent));
@@ -34,8 +37,8 @@ public class GeojsfDatastructureDebugger
 		debug(indent+1,view.getLayer());
 	}
 	
-	public static void debug(DefaultGeoJsfLayer layer){debug(0,layer);}
-	public static void debug(int indent, DefaultGeoJsfLayer layer)
+	public void debug(LAYER layer){debug(0,layer);}
+	public void debug(int indent, LAYER layer)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append(tab(indent));
@@ -45,15 +48,15 @@ public class GeojsfDatastructureDebugger
 		debug(indent+1,layer.getService());
 	}
 	
-	public static void debug(DefaultGeoJsfService service){debug(0,service);}
-	public static void debug(int indent, DefaultGeoJsfService service)
+	public void debug(SERVICE service){debug(0,service);}
+	public void debug(int indent, SERVICE service)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append(tab(indent));
 		sb.append("Service.").append(service.getId());
 		sb.append(" code=").append(service.getCode());
 		logger.info(sb.toString());
-		for(DefaultGeoJsfLayer layer : service.getLayer())
+		for(LAYER layer : service.getLayer())
 		{
 			debug(indent+1,layer);
 		}
