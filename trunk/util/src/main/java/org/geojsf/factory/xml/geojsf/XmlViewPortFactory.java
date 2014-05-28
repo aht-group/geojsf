@@ -20,6 +20,9 @@ public class XmlViewPortFactory implements Serializable
 	
 	public static final long serialVersionUID=1;
 
+	
+	
+	
 	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 		ViewPort build (MAP map)
 	{
@@ -31,6 +34,15 @@ public class XmlViewPortFactory implements Serializable
 		xml.setScale(new Scale());
 		xml.getScale().setZoom(map.getZoom());
 			
+		return xml;
+	}
+	
+	public static ViewPort build(){return new ViewPort();}
+	public static ViewPort build(double lon, double lat)
+	{
+		ViewPort xml = build();
+		xml.setLon(lon);
+		xml.setLat(lat);
 		return xml;
 	}
 }

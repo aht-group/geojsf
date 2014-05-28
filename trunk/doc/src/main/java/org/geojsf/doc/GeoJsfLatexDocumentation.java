@@ -2,6 +2,7 @@ package org.geojsf.doc;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import net.sf.ahtutils.doc.latex.builder.AbstractLatexDocumentationBuilder;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
@@ -16,6 +17,7 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.doc.ofx.OfxSectionLayerFactory;
 import org.geojsf.doc.ofx.OfxSectionMapFactory;
 import org.geojsf.doc.ofx.OfxServiceListFactory;
+import org.geojsf.util.wms.WmsTileDownloader;
 import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Map;
@@ -166,11 +168,24 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 				try
 				{
 					OfxSectionMapFactory latexFactory = new OfxSectionMapFactory(config,lang,translations);
-					String content = latexFactory.toLatex(sectionLevel,map,headerKeysMapView);
-					StringIO.writeTxt(f, content);
+					Section section = latexFactory.create(map, headerKeysMapView);
+					this.writeSection(sectionLevel,section, f);
 				}
 				catch (OfxAuthoringException e) {throw new UtilsConfigurationException(e.getMessage());}
+				catch (IOException e) {e.printStackTrace();}
 			}
+		}
+	}
+	
+	public void downloadMapTiles(File fBase)
+	{
+		WmsTileDownloader tileDownloader = new WmsTileDownloader(repository.getService().get(0));
+		logger.info("Downloading Map Tiles");
+		for(Map map : maps.getMap())
+		{
+			logger.info("  "+map.getCode());
+			File f = new File(fBase,map.getCode()+".png");
+			tileDownloader.download(map,f);
 		}
 	}
 	

@@ -1,8 +1,5 @@
 package org.geojsf.doc.ofx;
 
-import java.io.IOException;
-import java.io.StringWriter;
-
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
 import net.sf.ahtutils.xml.status.Description;
@@ -16,6 +13,8 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.View;
+import org.openfuxml.content.media.Image;
+import org.openfuxml.content.media.Media;
 import org.openfuxml.content.ofx.Comment;
 import org.openfuxml.content.ofx.Paragraph;
 import org.openfuxml.content.ofx.Section;
@@ -29,13 +28,12 @@ import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.factory.table.OfxCellFactory;
 import org.openfuxml.factory.table.OfxColumnFactory;
+import org.openfuxml.factory.xml.layout.XmlAlignmentFactory;
 import org.openfuxml.factory.xml.layout.XmlFloatFactory;
 import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
 import org.openfuxml.factory.xml.ofx.content.structure.XmlParagraphFactory;
 import org.openfuxml.factory.xml.ofx.content.structure.XmlSectionFactory;
 import org.openfuxml.factory.xml.ofx.content.text.XmlTitleFactory;
-import org.openfuxml.renderer.latex.content.structure.LatexSectionRenderer;
-import org.openfuxml.renderer.latex.preamble.LatexPreamble;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,20 +49,7 @@ public class OfxSectionMapFactory extends AbstractUtilsOfxDocumentationFactory
 		super(config,lang,translations);
 	}
 	
-	public String toLatex(int sectionLevel, Map map,String[] headerKeys) throws OfxAuthoringException
-	{
-		try
-		{
-			LatexSectionRenderer renderer = new LatexSectionRenderer(sectionLevel,new LatexPreamble());
-			renderer.render(create(map,headerKeys));
-			StringWriter sw = new StringWriter();
-			renderer.write(sw);
-			return sw.toString();
-		}
-		catch (IOException e) {throw new OfxAuthoringException(e.getMessage());}
-	}
-	
-	private Section create(Map map,String[] headerKeys) throws OfxAuthoringException
+	public Section create(Map map,String[] headerKeys) throws OfxAuthoringException
 	{
 		Comment comment = XmlCommentFactory.build();
 		DocumentationCommentBuilder.doNotModify(comment);
@@ -81,6 +66,7 @@ public class OfxSectionMapFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		section.getContent().add(buildIntrodruction(map));
 		section.getContent().add(buildTable(headerKeys,map));
+		section.getContent().add(buildImage(map));
 		
 		JaxbUtil.trace(section);
 		return section;
@@ -124,7 +110,6 @@ public class OfxSectionMapFactory extends AbstractUtilsOfxDocumentationFactory
 	
 	private Specification createSpecifications()
 	{
-
 		Columns cols = new Columns();
 
 		cols.getColumn().add(OfxColumnFactory.percentage(colWidths[0]));
@@ -135,6 +120,29 @@ public class OfxSectionMapFactory extends AbstractUtilsOfxDocumentationFactory
 		specification.setColumns(cols);
 		specification.setFloat(XmlFloatFactory.build(false));
 		return specification;
+	}
+	
+	private Image buildImage(Map map) throws OfxAuthoringException
+	{
+		Image image = new Image();
+		image.setId("image."+map.getCode());
+		image.setAlignment(XmlAlignmentFactory.buildHorizontal(XmlAlignmentFactory.Horizontal.center));
+		
+		try
+		{
+			Lang l = StatusXpath.getLang(map.getLangs(), lang);
+			image.setTitle(XmlTitleFactory.build(l.getTranslation()));
+		}
+		catch (ExlpXpathNotFoundException e) {throw new OfxAuthoringException(e.getMessage());}
+		catch (ExlpXpathNotUniqueException e) {throw new OfxAuthoringException(e.getMessage());}
+		
+		
+		Media media = new Media();
+	//	media.setSrc("png.dss-doc/maps/"+map.getCode()+".png");
+		media.setDst("gis/maps/"+map.getCode());
+		image.setMedia(media);
+		return image;
+		
 	}
 	
 	private Content createContent(String[] headerKeys, java.util.List<View> views) throws OfxAuthoringException
