@@ -10,11 +10,12 @@ import org.geojsf.interfaces.model.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeojsfDatastructureDebugger <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+public class GeojsfDatastructureDebugger 
 {
 	final static Logger logger = LoggerFactory.getLogger(GeojsfDatastructureDebugger.class);
 	
-	public void debug(MAP map)
+	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+		void debug(MAP map)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append("Map.").append(map.getId());
@@ -26,8 +27,13 @@ public class GeojsfDatastructureDebugger <L extends UtilsLang,D extends UtilsDes
 		}
 	}
 	
-	public void debug(VIEW view){debug(0,view);}
-	public void debug(int indent, VIEW view)
+	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+		void debug(VIEW view)
+	{
+		debug(0,view);
+	}
+	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+		void debug(int indent, VIEW view)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append(tab(indent));
@@ -37,8 +43,10 @@ public class GeojsfDatastructureDebugger <L extends UtilsLang,D extends UtilsDes
 		debug(indent+1,view.getLayer());
 	}
 	
-	public void debug(LAYER layer){debug(0,layer);}
-	public void debug(int indent, LAYER layer)
+	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+		void debug(LAYER layer){debug(0,layer);}
+	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+		void debug(int indent, LAYER layer)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append(tab(indent));
@@ -48,8 +56,10 @@ public class GeojsfDatastructureDebugger <L extends UtilsLang,D extends UtilsDes
 		debug(indent+1,layer.getService());
 	}
 	
-	public void debug(SERVICE service){debug(0,service);}
-	public void debug(int indent, SERVICE service)
+	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+		void debug(SERVICE service){debug(0,service);}
+	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+		void debug(int indent, SERVICE service)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append(tab(indent));
