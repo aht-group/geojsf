@@ -37,6 +37,10 @@
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-entities</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-util</artifactId>
+		</dependency>
 		
 		<dependency>
 			<groupId>net.sf.exlp</groupId>
