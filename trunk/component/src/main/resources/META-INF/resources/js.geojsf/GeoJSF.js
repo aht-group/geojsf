@@ -11,15 +11,16 @@ var GeoJSF = {
 		    head.appendChild(s);
 		},
 		
-		initMap : function(mapDiv,msOptions)
+		initMap : function(mapDiv,msOptions,height, width)
 		{
-			this.map = new OpenLayers.Map(mapDiv,{controls: [], theme: null});
+			this.map = new OpenLayers.Map(mapDiv,{controls: [],bbox: '2.0,4.19999980926514,25.3300018310547,21.5', version: '1.1.0', request: 'GetMap',srs: 'EPSG:4326', height: height, width: width, theme: null});
 		    var click = new OpenLayers.Control.Click();
 		    this.map.addControl(click);
 		    click.activate();
 		    this.switcher = new OpenLayers.Control.LayerSwitcher({'ascending':false});
 		    var touchUI = new OpenLayers.Control.TouchNavigation();
 		    this.map.addControl(touchUI);
+		    OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 		    //Activate for debugging
 		    //this.map.addControl(this.switcher);
 		},
@@ -185,14 +186,72 @@ var GeoJSF = {
 				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
 		},
 		
+		switchLayer : function(layerId, element)
+		{
+			 // This is the pure JSF based approach, not having an 'oncomplete' method:	 
+			 // jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
+			 
+			 // This is the PrimeFaces based solution along with an 'oncomplete' call
+			 PrimeFaces.ab({process: '@all', 
+				 			source: element, 
+				 			event: 'layerSwitch', 
+				 			params: [{name: 'org.geojsf.switch.layer', value: layerId}],
+				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
+		},
+		
+		switchLayer : function(layerId)
+		{
+			 // This is the pure JSF based approach, not having an 'oncomplete' method:	 
+			 // jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
+			 
+			 // This is the PrimeFaces based solution along with an 'oncomplete' call
+			 PrimeFaces.ab({process: '@all', 
+				 			source: 'source', 
+				 			event: 'layerSwitch', 
+				 			params: [{name: 'org.geojsf.switch.layer', value: layerId}],
+				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
+		},
+		
 		performLayerSwitch : function(xhr, status, args)
 		{
 			console.log("Performing layer switch via OpenLayers.");
 			console.log(args);
 			console.log(args.toggleLayer);
 			var command = JSON.parse(args.toggleLayer);
-			console.log("OpenLayers: Please set " +command.serviceId +" to have the layers " +command.layer +" using the method " +command.command);
+		//    alert("OpenLayers: Please set " +command.serviceId +" to have the layers " +command.layer +" using the method " +command.command);
+			if (command.command == "hide")
+				{
+					var layers = GeoJSF.map.getLayersByName(command.serviceId);
+				    if(layers.length === 1) {
+				    	layers[0].setVisibility(false);
+				    } else {console.log('big problem');}
+				}
+			if (command.command == "show")
+				{
+					var layers = GeoJSF.map.getLayersByName(command.serviceId);
+				    if(layers.length === 1) {
+				    	layers[0].setVisibility(true);
+				    } else {console.log('big problem');}
+				}
+		    if (command.command == "merge")
+				{
+			    	var layers = GeoJSF.map.getLayersByName(command.serviceId);
+			    	var layersToAdd = "";
+				    if(layers.length === 1) {
+				    	var wmsLayer = layers[0];
+				    	var params = wmsLayer.params;
+				    	for (var counter in command.layer)
+				    		{
+					    		layersToAdd += command.layer[counter];
+					    		layersToAdd += ",";
+				    		}
+				    	var layerList = layersToAdd.substring(0, layersToAdd.length - 1);
+				    	var wmsLayer = layers[0];
+				    	console.log("Trying to add " +layerList +" to Layer " +wmsLayer.url);
+				    	params.layers = layerList;
+				    	console.log("New parameter set: " +params);
+				    	wmsLayer.mergeNewParams(params);
+				    	} else {console.log('big problem');}
+			}
 		}
-		
-		
 };

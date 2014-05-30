@@ -71,10 +71,21 @@
 			<component-type>org.geojsf.component.Zoom</component-type>
 		</component>
 	</tag>	
-		<tag>
+	<tag>
 		<tag-name>viewport</tag-name>
 		<component>
 			<component-type>org.geojsf.component.Viewport</component-type>
 		</component>
-	</tag>	
+	</tag>
+<!-- <tag>
+		<tag-name>switchLayer</tag-name>
+		<behavior>
+			<behavior-id>org.geojsf.SwitchLayer</behavior-id>
+		</behavior>
+		<attribute>
+		    <description>ID of the layer that is to be switched</description>
+		    <name>layerId</name>
+		    <required>true</required>
+  		</attribute>
+	</tag>	-->
 </facelet-taglib>
