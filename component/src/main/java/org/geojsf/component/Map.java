@@ -3,12 +3,14 @@ package org.geojsf.component;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UINamingContainer;
+import javax.faces.component.UISelectMany;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
@@ -21,6 +23,7 @@ import javax.faces.event.PostAddToViewEvent;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
+import org.geojsf.component.LayerSwitchHelper.Service;
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.exception.UnconsistentConfgurationException;
 import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
@@ -31,6 +34,7 @@ import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.xml.geojsf.Scales;
 import org.geojsf.xml.gml.Coordinates;
+import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,6 +59,11 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	private Scales scales = null;
 	private Boolean initStage = true;
 	private Boolean refreshLayersOnUpdate = true;
+	
+	//These are related to the switching of layers
+	private LayerSwitchHelper helper;
+	Hashtable<String, Service> services;
+	Hashtable<String, String>  layerNames;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -110,7 +119,9 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 			{
 				if(!refreshLayersOnUpdate && initStage || refreshLayersOnUpdate)
 				{
-					
+					LayerSwitchHelper helper = new LayerSwitchHelper(this.getServiceList());
+					services   = helper.getServices();
+					layerNames = helper.getLayerNames();
 					
 					//First, render the JavaScript code to initialize the map
 					renderer.renderMapInitialization(this.getFacesContext());
@@ -185,16 +196,15 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
 		String behaviorEvent = params.get("javax.faces.behavior.event");
 	    logger.info("Handling event of type: " +behaviorEvent +" in decode phase.");
-	              
-		java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
-		if (behaviors.isEmpty())
-		{
-			logger.error("no behaviors.exiting.");
-			return;
-		}
 	           
-        if (behaviorEvent != null)
+        if (null!= behaviorEvent && behaviorEvent.equals("mapClick"))
         {
+        	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
+     		if (behaviors.isEmpty())
+     		{
+     			logger.error("no behaviors.exiting.");
+     			return;
+     		}
             List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
             if (behaviors.size() > 0)
             {
@@ -216,6 +226,22 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
             	}
             }
         }
+        if (null!= behaviorEvent && behaviorEvent.equals("layerSwitch"))
+		{
+        	logger.info("Switching layer");
+			String serviceId = params.get("org.geojsf.switch.service");
+			String layerId   = params.get("org.geojsf.switch.layer");
+			Boolean active   = new Boolean(params.get("org.geojsf.switch.on"));
+			logger.info("Trying to generate command to set layer " +layerId +" of service " +serviceId +" to " +active);				
+			helper = new LayerSwitchHelper(services, layerNames);
+			logger.debug("Current LayerSwitchHelper content: " +helper.toString());
+	//		String toggleCommand = helper.toggleLayer(serviceId, layerId, active);
+			String toggleCommand = helper.toggleLayer(layerId);
+			services = helper.getServices();
+			logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +layerId +" of service " +serviceId +" to " +active);
+			RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
+			RequestContext.getCurrentInstance().addCallbackParam("switchLayer", true);
+		}
 	}
 	
 	
@@ -231,14 +257,20 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	    logger.info("Restoring state.");
 		serviceList = (List<SERVICE>) storedState[1];
 		initStage   = (Boolean) storedState[0];
+		services    = (Hashtable<String, Service>) storedState[2];
+	    layerNames  = (Hashtable<String, String>) storedState[3];
+		helper      = new LayerSwitchHelper(services, layerNames);
+		logger.debug("Current LayerSwitchHelper content: " +helper.toString());
 	}
 	
 	@Override
 	public Object saveState(FacesContext context)
 	{
-	    Object[] rtrn = new Object[2];
+	    Object[] rtrn = new Object[4];
 	    rtrn[0] = initStage;
 	    rtrn[1] = serviceList;
+	    rtrn[2] = services;
+	    rtrn[3] = layerNames;
 	    return rtrn;
 	}
 	
