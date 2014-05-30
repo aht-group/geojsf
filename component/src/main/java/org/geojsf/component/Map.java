@@ -49,7 +49,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	private Coordinates coords = new Coordinates();
 	
 	//Define attributes of the component
-	private Integer width = null;
+	private Integer width = 300;
 	private Integer height = 400;
 	private String timeInfo = null;
 	private Scales scales = null;

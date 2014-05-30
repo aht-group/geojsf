@@ -92,7 +92,7 @@ public class JsfRenderUtil {
 		renderTextWithLB("// GeoJSF: Initializing OpenLayers map");
 		renderTextWithLB("GeoJSF.bootstrap();");
 		renderTextWithLB("GeoJSF.addClickHandler('" +map.getClientId() +"','" +map.getClientId() +":resetLayers','" +encodeAjax(map) +"');");
-		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"','');");
+		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"'," +map.getHeight() +", " +map.getWidth() +",'');");
 		
 		if (context.getExternalContext().getInitParameter("geojsf.THEME")!=null)
 		{

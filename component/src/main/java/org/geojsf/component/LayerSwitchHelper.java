@@ -22,21 +22,26 @@ public class LayerSwitchHelper implements Serializable{
 	Gson gson = new Gson();
 	
 	Hashtable<String, Service> services;
+	Hashtable<String, String>  layerNames;
 	
+
 	public LayerSwitchHelper(List list)
 	{
 		buildInternalListFromMapLayers(list);
 	}
 	
-	public LayerSwitchHelper(Hashtable<String, Service> services)
+	public LayerSwitchHelper(Hashtable<String, Service> services, Hashtable<String, String> layerNames)
 	{
-		this.services = services;
+		this.services   = services;
+		this.layerNames = layerNames;
 	}
 	
 	private void buildInternalListFromMapLayers(List<DefaultGeoJsfService> serviceList) {
 		
-		services = new Hashtable<String, Service>();
+		services        = new Hashtable<String, Service>();
+		layerNames      = new Hashtable<String, String>();
 		Service service = new Service();
+		
 		logger.info("Service list of map has " +serviceList.size() +" services.");
 		//Construct the simplified dedicated services list from the Map datamodel
 		for (GeoJsfService geoService : serviceList)
@@ -49,7 +54,8 @@ public class LayerSwitchHelper implements Serializable{
     		{
     			GeoJsfLayer geoLayer = (GeoJsfLayer) o;
     			layers.put(geoLayer.getId() +"", true);
-    			logger.info("Processing Layer " +geoLayer.getId());
+    			layerNames.put(geoLayer.getId() +"", geoLayer.getCode());
+    			logger.info("Processing Layer " +geoLayer.getCode() +" with ID "+geoLayer.getId());
     		}
     		service.setLayer(layers);
     		services.put(service.getServiceId(), service);
@@ -85,37 +91,68 @@ public class LayerSwitchHelper implements Serializable{
 		public void setLayer(ArrayList<String> layer) {this.layer = layer;}
 	}
 
+
+	public String toggleLayer(String layerId)
+	{
+		String serviceId = getServiceFor(layerId);
+		Service service  = services.get(serviceId);
+		Boolean visible  = service.getLayer().get(layerId);
+		return toggleLayer(serviceId, layerId, !visible);
+	}
+	
+	public String getServiceFor(String layerId)
+	{
+		String serviceForLayer = "notdefined";
+		for (String serviceId : services.keySet())
+		{
+			Service service = services.get(serviceId);
+			if (service.layer.keySet().contains(layerId))
+			{
+				serviceForLayer = serviceId;
+			}
+		}
+		return serviceForLayer;
+	}
+	
 	public String toggleLayer(String serviceId, String layerId, Boolean active)
 	{
 		Order order     = new Order();
 		String command  = null;
-		
 		Service service = services.get(serviceId);
-		ArrayList<String> activeLayers = new ArrayList<String>();
 		
+		// The following code is building the list of layers that are to be shown after the command is executed
+		// First, set the requested layer to the requested status
+		service.getLayer().put(layerId, active);
+		
+		// Then process the complete list of layers assigned to the requested layers service
+		ArrayList<String> activeLayers = new ArrayList<String>();
 		for (String layer : service.getLayer().keySet())
 		{
 			Boolean visible  = service.getLayer().get(layer);
-			if (visible) {activeLayers.add(layer);}
+			if (visible) {activeLayers.add(layerNames.get(layer));}
 		}
+	
+		// Use MERGE command as standard
+		command = "merge";
 		
-		//To illustrate the cases, the following code is not very optimized
-		
+		// Now let's see if there is another option that is more appropriate
 		//If the only layer active is the one that should be hidden, hide the whole service
-		if (activeLayers.size()==1 && !active)
-		{command = "hide";activeLayers.remove(layerId);}
-		
-		//If there are other active layers, merge the newly constructed service
-		if (activeLayers.size()>1 && !active)
-		{command = "merge";activeLayers.remove(layerId);}
+		if (activeLayers.size()==0 && !active && service.getLayer().size()==1)
+		{command = "hide";}
 		
 		//If the layer should be shown and the service is hidden right now and there is only one layer in the service, show it back
-		if (active && activeLayers.isEmpty() && service.getLayer().size()==1)
-		{command = "show";activeLayers.add(layerId);}
-		
-		//If there are layer shown in the service right now and the requested one should be added, merge the params
-		if (active && !activeLayers.isEmpty())
-		{command = "merge";activeLayers.add(layerId);}
+		if (active && activeLayers.size()==1 && service.getLayer().size()==1)
+		{command = "show";}
+
+		//This is obsolete since it is covered indirectly by the code above
+		//If there are other active layers, merge the newly constructed service
+		/*		if (activeLayers.size()>1 && !active && service.getLayer().size()>1)
+				{command = "merge";}
+				
+				//If the layer should be shown and the service is hidden right now and there is only one layer in the service, show it back
+				if (active && activeLayers.isEmpty() && service.getLayer().size()>1)
+				{command = "merge";}
+		*/
 		
 		order.setCommand(command);
 		order.setServiceId(serviceId);
@@ -125,6 +162,10 @@ public class LayerSwitchHelper implements Serializable{
 
 	public Hashtable<String, Service> getServices() {return services;}
 	public void setServices(Hashtable<String, Service> services) {this.services = services;}
+	
+	public Hashtable<String, String> getLayerNames() {return layerNames;}
+	public void setLayerNames(Hashtable<String, String> layerNames) {this.layerNames = layerNames;}
+
 	
 	public String toString()
 	{

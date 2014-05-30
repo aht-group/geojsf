@@ -24,7 +24,6 @@ import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.primefaces.component.behavior.ajax.AjaxBehavior;
-import org.primefaces.component.selectbooleanbutton.SelectBooleanButton;
 import org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox;
 import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
@@ -46,6 +45,7 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 	private LayerSwitchHelper helper;
 	public UISelectMany selector;
 	Hashtable<String, Service> services;
+	Hashtable<String, String>  layerNames;
 	private GeoJsfMapHelper geoJsfMap;
 	
 	public void decode(FacesContext context)
@@ -57,15 +57,16 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 		
 	    logger.info("Got this event: " +behaviorEvent);
 	    
-	    if (behaviorEvent.equals("layerSwitch"))
+	    if (null!= behaviorEvent && behaviorEvent.equals("layerSwitch"))
 			{
 				String serviceId = params.get("org.geojsf.switch.service");
 				String layerId   = params.get("org.geojsf.switch.layer");
 				Boolean active   = new Boolean(params.get("org.geojsf.switch.on"));
 				logger.info("Trying to generate command to set layer " +layerId +" of service " +serviceId +" to " +active);				
-				helper = new LayerSwitchHelper(services);
+				helper = new LayerSwitchHelper(services, layerNames);
 				logger.debug("Current LayerSwitchHelper content: " +helper.toString());
-				String toggleCommand = helper.toggleLayer(serviceId, layerId, active);
+		//		String toggleCommand = helper.toggleLayer(serviceId, layerId, active);
+				String toggleCommand = helper.toggleLayer(layerId);
 				services = helper.getServices();
 				logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +layerId +" of service " +serviceId +" to " +active);
 				RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
@@ -92,14 +93,13 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 			logger.debug("LayerSwitcher found Map component: " +map.getClientId() +" with " +map.getServiceList().size() +" services.");
 					
 			LayerSwitchHelper helper = new LayerSwitchHelper(map.getServiceList());
-			services = helper.getServices();
+			services   = helper.getServices();
+			layerNames = helper.getLayerNames();
 			for (String serviceId : services.keySet())
 			{
-		//		logger.info("Found service: ");
 				org.geojsf.component.LayerSwitchHelper.Service service = services.get(serviceId);
 				for (String layerId : service.getLayer().keySet())
 				{
-			//		logger.info("Found layer: ");
 					String value = serviceId +":" +layerId;
 					String label = "Show name for " +layerId;
 					String id    = "layerselect" +layerId;
@@ -111,7 +111,12 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 					checkbox.setLabel(label);
 					checkbox.setId(id);
 					
-					this.getChildren().add(checkbox);
+					AjaxBehavior ajax = new AjaxBehavior();
+					ajax.setOncomplete("GeoJSF.performLayerSwitch(xhr, status, args)");
+					
+					checkbox.addClientBehavior("layerSwitch", ajax);
+				//  Inactive since a new approach utilizing the JavaScript API externally is being tested.	
+				//	this.getChildren().add(checkbox);
 				}
 			}
 			this.encodeChildren(ctx);
@@ -129,15 +134,17 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 	    logger.info("Restoring state.");
 	    initStage   = (Boolean) storedState[0];
 	    services    = (Hashtable<String, Service>) storedState[1];
-		helper      = new LayerSwitchHelper(services);
+	    layerNames  = (Hashtable<String, String>) storedState[2];
+		helper      = new LayerSwitchHelper(services, layerNames);
 		logger.debug("Current LayerSwitchHelper content: " +helper.toString());
 	}
 	
 	@Override
 	public Object saveState(FacesContext context) {
-	    Object[] rtrn = new Object[2];
+	    Object[] rtrn = new Object[3];
 	    rtrn[0] = initStage;
 	    rtrn[1] = services;
+	    rtrn[2] = layerNames;
 	    return rtrn;
 	}
 			
