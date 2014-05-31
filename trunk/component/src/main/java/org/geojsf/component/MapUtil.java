@@ -1,6 +1,7 @@
 package org.geojsf.component;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import javax.faces.component.UIComponent;
 
@@ -73,6 +74,7 @@ public class MapUtil
 		}
 	}
 	
+	@Deprecated
 	public static DefaultGeoJsfService layerToService(Layer layer)
 	{
 		 String url = (String) layer.getUrl();
@@ -134,10 +136,12 @@ public class MapUtil
 		baseLayer.setIsBaseLayer(true);
 	}
 	
-	public static void initLayerConfiguration(Map map) throws Exception
+	public static DefaultGeoJsfMap initLayerConfiguration(Map map) throws Exception
 	{
 		 map.setTemporalLayerNames(new ArrayList<String>());
 		 map.setServiceList(new ArrayList<DefaultGeoJsfService>());
+		 DefaultGeoJsfMap dmMap         = new DefaultGeoJsfMap();
+		 dmMap.setViews(new ArrayList<DefaultGeoJsfView>());
 		 logger.info("Initial layer configuration.");
 		 logger.debug("Checking value existence ...");
 		 if (map.getAttributes().get("value")==null)
@@ -148,6 +152,10 @@ public class MapUtil
 			 }
 			 else
 			 {
+				 Hashtable<Integer, DefaultGeoJsfService>          services         = new Hashtable<Integer, DefaultGeoJsfService>();
+				 Hashtable<Integer, ArrayList<DefaultGeoJsfLayer>> layersForService = new Hashtable<Integer, ArrayList<DefaultGeoJsfLayer>>();
+				 Integer layerId = 1;
+				 
 				 MapUtil.setBaseLayer(map);
 				 logger.debug("No value given - falling back to simple version");
 				 for (UIComponent child : map.getChildren())
@@ -156,7 +164,50 @@ public class MapUtil
 					 if (child.getClass().getSimpleName().equals("Layer"))
 					 {
 						 Layer layer = (Layer) child;
-						 map.getServiceList().add(MapUtil.layerToService(layer));
+						 Integer serviceId = 0;
+						 String  layerUrl  = layer.getUrl();
+						 String  layerList = layer.getLayers();
+						 
+						 DefaultGeoJsfService dmService = new DefaultGeoJsfService();
+						 DefaultGeoJsfView dmView       = new DefaultGeoJsfView();
+						 
+						 // Check if there is already a service prepared for this URL and
+						 // assign the correct (or a new incremented) ID/Service for that
+						 for (Integer id : services.keySet())
+						 {
+							 if (services.get(id).getUrl().equals(layerUrl))
+							 {
+								 serviceId = id;
+								 dmService = services.get(id);
+							 }
+						 }
+						 if (serviceId.equals(0))
+						 {
+							 serviceId = services.size()+1;
+							 dmService  = new DefaultGeoJsfService();
+							 dmService.setUrl(layerUrl);
+							 dmService.setId(serviceId);
+							 dmService.setLayer(new ArrayList<DefaultGeoJsfLayer>());
+							 services.put(serviceId, dmService);
+						 }
+						 
+						 // Now add all the Layers to View and Service
+						 String layerString = (String)layerList;
+						 for (String string : layerString.split(","))
+						 {
+							 DefaultGeoJsfLayer layerToAdd = new DefaultGeoJsfLayer();
+							 layerToAdd.setId(layerId++);
+							 layerToAdd.setTemporalLayer(layer.getHasTemporalLayer());
+							 layerToAdd.setCode(string);
+							 layerToAdd.setService(dmService);
+							 dmService.getLayer().add(layerToAdd);
+							 dmView.setLayer(layerToAdd);
+							 dmView.setVisible(true);
+							 dmMap.getViews().add(dmView);
+						 }
+						 // Deprecated since migrating to new DataModel
+						 // map.getServiceList().add(MapUtil.layerToService(layer));
+						 map.getServiceList().add(dmService);
 					 }
 				 } 
 			 }
@@ -165,7 +216,7 @@ public class MapUtil
 		 {
 			 @SuppressWarnings("rawtypes")
 			 GeoJsfMap mapDm = (GeoJsfMap)map.getAttributes().get("value");
-			 
+			 dmMap           = (DefaultGeoJsfMap)map.getAttributes().get("value");
 			 GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
 			 fService = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
 			 
@@ -176,6 +227,7 @@ public class MapUtil
 			 }
 		 }
 		 map.setTimeInfo(MapUtil.searchTimeDefinition(map));
+		 return dmMap;
 	}
 	
 	public static String buildStyle(Integer height, Integer width)

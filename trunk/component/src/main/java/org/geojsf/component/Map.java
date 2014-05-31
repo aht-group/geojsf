@@ -10,7 +10,6 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UINamingContainer;
-import javax.faces.component.UISelectMany;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
@@ -31,6 +30,10 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.xml.geojsf.Scales;
 import org.geojsf.xml.gml.Coordinates;
@@ -49,6 +52,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
 	private List<SERVICE> serviceList;
 	private List<String> temporalLayerNames;
+	private DefaultGeoJsfMap dmMap;
 	
 	private Coordinates coords = new Coordinates();
 	
@@ -87,7 +91,14 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		logger.info("entering encodebegin");
 		try
 		{
-			if (true) {MapUtil.initLayerConfiguration(this);}
+			if (true) 
+			{
+				dmMap = MapUtil.initLayerConfiguration(this);
+				for (DefaultGeoJsfView view : dmMap.getViews())
+					{
+						view.setVisible(true);
+					}
+			}
 		}
 		catch (UnconsistentConfgurationException e)
 		{
@@ -175,6 +186,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		
 		renderer.renderTextWithLB("params.transparent = true;");
 		renderer.renderTextWithLB("params.format      = 'image/png';");
+	//	renderer.renderTextWithLB("params.makeTheUrlLong      = 'longText';");
 		renderer.renderTextWithLB("var options = {};");
 		renderer.renderTextWithLB("options.isBaseLayer = " +baseLayer +";");
 		
@@ -196,7 +208,59 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
 		String behaviorEvent = params.get("javax.faces.behavior.event");
 	    logger.info("Handling event of type: " +behaviorEvent +" in decode phase.");
-	           
+	    
+	    // Create a new GeoJsfMap from the given (maybe manipulated) map object
+	    try {
+			dmMap = MapUtil.initLayerConfiguration(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    
+	    // This will be compared to the values stored in the session before (activate this to check)
+    	// logger.info("Services: " +new LayerSwitchHelper(services, layerNames).toString());
+    	
+		if (null!=services)
+		{
+			// Iterate through all Views (that hold the information if a Layer is visible)
+			for (DefaultGeoJsfView view : dmMap.getViews())
+			{
+				Integer serviceId = (int) view.getLayer().getService().getId();
+				Integer layerId   = (int) view.getLayer().getId();
+				
+				// Check the visibility value before and currently
+				Boolean before    = services.get(serviceId +"").getLayer().get(layerId +"");
+				Boolean now       = view.isVisible();
+				
+				if (before.equals(now))
+				{
+					// If there is no change, do nothing
+					// logger.info("Layer " +view.getLayer().getCode() +" did not change it's visibility. Still " +view.isVisible());
+				}
+				else
+				{
+					// If there is a new value, generate a command to toggle the assigned service in OpenLayers using hide/show/merge
+					logger.info("Trying to change (" +view.getLayer().getId() +") " +view.getLayer().getCode() +" of Service " +view.getLayer().getService().getId() +" from "+before +" to " +now);
+
+					// Restore the LayerSwitchHelper with the information saved in the run before
+					// (see save/restore methods)
+					helper = new LayerSwitchHelper(services, layerNames);
+
+					// Generate the command using the LayerSwitchHelper 
+					// logger.info("Current LayerSwitchHelper content: " +helper.toString());
+					String toggleCommand = helper.toggleLayer(view.getLayer().getId() +"");
+					
+					// Get the new service Hashtable so it will be saved as a reference for the current state for the next run
+					services = helper.getServices();
+					
+					// Now send the command (JSON-String representation of the Command object) to the client using PrimeFaces CallbackParam methodology
+					// This can be used in the oncomplete AJAX-callback JavaScript function like performLayerSwitch(xhr, status, args)
+					logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +view.getLayer().getId() +" of service " +view.getLayer().getService().getId() +" to " +view.isVisible());
+					RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
+				}
+			}
+		}
+		
+		// Handling of mapClick event fired by JavaScript API
         if (null!= behaviorEvent && behaviorEvent.equals("mapClick"))
         {
         	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
@@ -226,21 +290,30 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
             	}
             }
         }
+        
+        // Handling of layerSwitch event fired by JavaScript API
         if (null!= behaviorEvent && behaviorEvent.equals("layerSwitch"))
 		{
-        	logger.info("Switching layer");
-			String serviceId = params.get("org.geojsf.switch.service");
-			String layerId   = params.get("org.geojsf.switch.layer");
-			Boolean active   = new Boolean(params.get("org.geojsf.switch.on"));
-			logger.info("Trying to generate command to set layer " +layerId +" of service " +serviceId +" to " +active);				
+        	logger.info("Received layerSwitch event from JavaScript API.");
+        	
+        	// Read information from request
+        	// The service ID and the state are calculated from the data and current state now
+        	// String serviceIdParam = params.get("org.geojsf.switch.service");
+        	// Boolean active        = new Boolean(params.get("org.geojsf.switch.on"));
+			String layerId        = params.get("org.geojsf.switch.layer");
+			
+			// Restore the LayerSwitchHelper with current state and information
 			helper = new LayerSwitchHelper(services, layerNames);
-			logger.debug("Current LayerSwitchHelper content: " +helper.toString());
-	//		String toggleCommand = helper.toggleLayer(serviceId, layerId, active);
+			// logger.debug("Current LayerSwitchHelper content: " +helper.toString());
+			
+			// Generate command to switch layer in OpenLayers using GeoJSF JavaScript API
 			String toggleCommand = helper.toggleLayer(layerId);
+			
+			// Get the state to be saved in session
 			services = helper.getServices();
-			logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +layerId +" of service " +serviceId +" to " +active);
+			
+			logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand);
 			RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
-			RequestContext.getCurrentInstance().addCallbackParam("switchLayer", true);
 		}
 	}
 	
@@ -259,6 +332,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		initStage   = (Boolean) storedState[0];
 		services    = (Hashtable<String, Service>) storedState[2];
 	    layerNames  = (Hashtable<String, String>) storedState[3];
+	    dmMap       = (DefaultGeoJsfMap) storedState[4];
 		helper      = new LayerSwitchHelper(services, layerNames);
 		logger.debug("Current LayerSwitchHelper content: " +helper.toString());
 	}
@@ -266,11 +340,12 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	@Override
 	public Object saveState(FacesContext context)
 	{
-	    Object[] rtrn = new Object[4];
+	    Object[] rtrn = new Object[5];
 	    rtrn[0] = initStage;
 	    rtrn[1] = serviceList;
 	    rtrn[2] = services;
 	    rtrn[3] = layerNames;
+	    rtrn[4] = dmMap;
 	    return rtrn;
 	}
 	
@@ -316,4 +391,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 
 	public Boolean getRefreshLayersOnUpdate() {return refreshLayersOnUpdate;}
 	public void setRefreshLayersOnUpdate(Boolean refreshLayersOnUpdate) {this.refreshLayersOnUpdate = refreshLayersOnUpdate;}
+
+	public DefaultGeoJsfMap getDmMap() {return dmMap;}
+	public void setDmMap(DefaultGeoJsfMap dmMap) {this.dmMap = dmMap;}
 }
