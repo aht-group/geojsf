@@ -212,6 +212,19 @@ var GeoJSF = {
 				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
 		},
 		
+		refreshMap : function()
+		{
+			 // This is the pure JSF based approach, not having an 'oncomplete' method:	 
+			 // jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
+			 
+			 // This is the PrimeFaces based solution along with an 'oncomplete' call
+			 PrimeFaces.ab({process: '@all', 
+				 			source: 'source', 
+				 			event: 'layerSwitch', 
+				 			params: [],
+				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
+		},
+		
 		performLayerSwitch : function(xhr, status, args)
 		{
 			console.log("Performing layer switch via OpenLayers.");
