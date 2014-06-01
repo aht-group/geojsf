@@ -52,7 +52,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
 	private List<SERVICE> serviceList;
 	private List<String> temporalLayerNames;
-	private DefaultGeoJsfMap dmMap;
+	private MAP dmMap;
 	
 	private Coordinates coords = new Coordinates();
 	
@@ -93,8 +93,9 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		{
 			if (true) 
 			{
-				dmMap = MapUtil.initLayerConfiguration(this);
-				for (DefaultGeoJsfView view : dmMap.getViews())
+				MapUtil util = new MapUtil();
+				dmMap = (MAP) util.initLayerConfiguration(this);
+				for (VIEW view : dmMap.getViews())
 					{
 						view.setVisible(true);
 					}
@@ -180,7 +181,9 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		ArrayList<String> localTemporalLayer = MapUtil.hasTemporalLayer(service);
 		if (localTemporalLayer.size()>0 && null!=timeInfo)
 		{
-			temporalLayerNames.addAll(localTemporalLayer);
+			logger.info("Found time layers in Service " +service.getId() +": " +localTemporalLayer.toString());
+		//	temporalLayerNames.addAll(localTemporalLayer);
+			temporalLayerNames.add(service.getId() +"");
 			renderer.renderTextWithLB("params.time      = '"+timeInfo +"';");
 		}
 		
@@ -211,7 +214,8 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	    
 	    // Create a new GeoJsfMap from the given (maybe manipulated) map object
 	    try {
-			dmMap = MapUtil.initLayerConfiguration(this);
+	    	MapUtil util = new MapUtil();
+			dmMap = (MAP) util.initLayerConfiguration(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -222,7 +226,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		if (null!=services)
 		{
 			// Iterate through all Views (that hold the information if a Layer is visible)
-			for (DefaultGeoJsfView view : dmMap.getViews())
+			for (VIEW view : dmMap.getViews())
 			{
 				Integer serviceId = (int) view.getLayer().getService().getId();
 				Integer layerId   = (int) view.getLayer().getId();
@@ -332,7 +336,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		initStage   = (Boolean) storedState[0];
 		services    = (Hashtable<String, Service>) storedState[2];
 	    layerNames  = (Hashtable<String, String>) storedState[3];
-	    dmMap       = (DefaultGeoJsfMap) storedState[4];
+	    dmMap       = (MAP) storedState[4];
 		helper      = new LayerSwitchHelper(services, layerNames);
 		logger.debug("Current LayerSwitchHelper content: " +helper.toString());
 	}
@@ -392,6 +396,6 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	public Boolean getRefreshLayersOnUpdate() {return refreshLayersOnUpdate;}
 	public void setRefreshLayersOnUpdate(Boolean refreshLayersOnUpdate) {this.refreshLayersOnUpdate = refreshLayersOnUpdate;}
 
-	public DefaultGeoJsfMap getDmMap() {return dmMap;}
-	public void setDmMap(DefaultGeoJsfMap dmMap) {this.dmMap = dmMap;}
+	public MAP getDmMap() {return dmMap;}
+	public void setDmMap(MAP dmMap) {this.dmMap = dmMap;}
 }
