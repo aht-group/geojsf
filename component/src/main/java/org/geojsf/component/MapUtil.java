@@ -5,12 +5,16 @@ import java.util.Hashtable;
 
 import javax.faces.component.UIComponent;
 
+import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
+import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+
 import org.geojsf.exception.UnconsistentConfgurationException;
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
 import org.geojsf.factory.txt.TxtIsoTimeFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
@@ -20,7 +24,7 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MapUtil
+public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 {	
 	final static Logger logger = LoggerFactory.getLogger(MapUtil.class);
 	
@@ -136,12 +140,12 @@ public class MapUtil
 		baseLayer.setIsBaseLayer(true);
 	}
 	
-	public static DefaultGeoJsfMap initLayerConfiguration(Map map) throws Exception
+	public  MAP initLayerConfiguration(Map map) throws Exception
 	{
 		 map.setTemporalLayerNames(new ArrayList<String>());
-		 map.setServiceList(new ArrayList<DefaultGeoJsfService>());
-		 DefaultGeoJsfMap dmMap         = new DefaultGeoJsfMap();
-		 dmMap.setViews(new ArrayList<DefaultGeoJsfView>());
+		 map.setServiceList(new ArrayList<SERVICE>());
+		 MAP dmMap = (MAP) new DefaultGeoJsfMap();
+		 dmMap.setViews(new ArrayList<VIEW>());
 		 logger.info("Initial layer configuration.");
 		 logger.debug("Checking value existence ...");
 		 if (map.getAttributes().get("value")==null)
@@ -168,8 +172,8 @@ public class MapUtil
 						 String  layerUrl  = layer.getUrl();
 						 String  layerList = layer.getLayers();
 						 
-						 DefaultGeoJsfService dmService = new DefaultGeoJsfService();
-						 DefaultGeoJsfView dmView       = new DefaultGeoJsfView();
+						 SERVICE dmService = (SERVICE) new DefaultGeoJsfService();
+						 VIEW dmView       = (VIEW) new DefaultGeoJsfView();
 						 
 						 // Check if there is already a service prepared for this URL and
 						 // assign the correct (or a new incremented) ID/Service for that
@@ -178,24 +182,24 @@ public class MapUtil
 							 if (services.get(id).getUrl().equals(layerUrl))
 							 {
 								 serviceId = id;
-								 dmService = services.get(id);
+								 dmService = (SERVICE) services.get(id);
 							 }
 						 }
 						 if (serviceId.equals(0))
 						 {
 							 serviceId = services.size()+1;
-							 dmService  = new DefaultGeoJsfService();
+							 dmService  = (SERVICE) new DefaultGeoJsfService();
 							 dmService.setUrl(layerUrl);
 							 dmService.setId(serviceId);
-							 dmService.setLayer(new ArrayList<DefaultGeoJsfLayer>());
-							 services.put(serviceId, dmService);
+							 dmService.setLayer(new ArrayList<LAYER>());
+							 services.put(serviceId, (DefaultGeoJsfService) dmService);
 						 }
 						 
 						 // Now add all the Layers to View and Service
 						 String layerString = (String)layerList;
 						 for (String string : layerString.split(","))
 						 {
-							 DefaultGeoJsfLayer layerToAdd = new DefaultGeoJsfLayer();
+							 LAYER layerToAdd = (LAYER) new DefaultGeoJsfLayer();
 							 layerToAdd.setId(layerId++);
 							 layerToAdd.setTemporalLayer(layer.getHasTemporalLayer());
 							 layerToAdd.setCode(string);
@@ -215,8 +219,8 @@ public class MapUtil
 		 else
 		 {
 			 @SuppressWarnings("rawtypes")
-			 GeoJsfMap mapDm = (GeoJsfMap)map.getAttributes().get("value");
-			 dmMap           = (DefaultGeoJsfMap)map.getAttributes().get("value");
+			 MAP mapDm = (MAP)map.getAttributes().get("value");
+			 dmMap           = (MAP)map.getAttributes().get("value");
 			 GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
 			 fService = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
 			 
