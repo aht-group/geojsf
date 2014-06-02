@@ -53,8 +53,8 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	private Coordinates coords = new Coordinates();
 	
 	//Define attributes of the component
-	private Integer width = 300;
-	private Integer height = 400;
+	private Integer width = null;
+	private Integer height = null;
 	private String timeInfo = null;
 	private Scales scales = null;
 	private Boolean initStage = true;
