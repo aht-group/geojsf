@@ -1,7 +1,6 @@
 package org.geojsf.doc.ofx;
 
-import java.io.IOException;
-import java.io.StringWriter;
+import java.util.List;
 
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
@@ -17,6 +16,8 @@ import org.geojsf.doc.GeoJsfDocumentation;
 import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Service;
+import org.openfuxml.content.media.Image;
+import org.openfuxml.content.media.Media;
 import org.openfuxml.content.ofx.Comment;
 import org.openfuxml.content.ofx.Paragraph;
 import org.openfuxml.content.table.Body;
@@ -33,56 +34,47 @@ import org.openfuxml.factory.table.OfxColumnFactory;
 import org.openfuxml.factory.xml.layout.XmlFloatFactory;
 import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
 import org.openfuxml.factory.xml.ofx.content.text.XmlTitleFactory;
-import org.openfuxml.renderer.latex.content.table.LatexTableRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class OfxSectionLayerFactory extends AbstractUtilsOfxDocumentationFactory
+public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 {
-	final static Logger logger = LoggerFactory.getLogger(OfxSectionLayerFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(OfxLayerTableFactory.class);
 	
 	private static String keyCaption = "geojsfTableLayerCaptionPrefix";
 		
-	public OfxSectionLayerFactory(Configuration config,String lang,Translations translations)
+	public OfxLayerTableFactory(Configuration config,String lang,Translations translations)
 	{
 		super(config,lang,translations);
 	}
 	
-	public String toLatex(String id, Service service, Layers layers, String[] headerKeys) throws OfxAuthoringException
-	{
+	public Table build(String id, Service service, Layers layers, List<String> headerKeys) throws OfxAuthoringException
+	{	
+		Comment comment = XmlCommentFactory.build();
+		DocumentationCommentBuilder.fixedId(comment, id);
+		DocumentationCommentBuilder.translationKeys(comment,config,GeoJsfDocumentation.keyTranslationFile);
+		DocumentationCommentBuilder.tableHeaders(comment,headerKeys);
+		DocumentationCommentBuilder.tableKey(comment,keyCaption,"Table Caption");
+		DocumentationCommentBuilder.doNotModify(comment);
+		
+		Table table = toOfx(headerKeys,getLayersInService(service, layers));
+		table.setId(id);
+		table.setComment(comment);
+		
 		try
-		{			
-			Comment comment = XmlCommentFactory.build();
-			DocumentationCommentBuilder.fixedId(comment, id);
-			DocumentationCommentBuilder.translationKeys(comment,config,GeoJsfDocumentation.keyTranslationFile);
-			DocumentationCommentBuilder.tableHeaders(comment,headerKeys);
-			DocumentationCommentBuilder.tableKey(comment,keyCaption,"Table Caption");
-			DocumentationCommentBuilder.doNotModify(comment);
+		{
+			Lang lCaption = StatusXpath.getLang(translations, keyCaption, lang);
+			Lang lService = StatusXpath.getLang(service.getLangs(), lang);
 			
-			Table table = toOfx(headerKeys,getLayersInService(service, layers));
-			table.setId(id);
-			table.setComment(comment);
-			
-			try
-			{
-				Lang lCaption = StatusXpath.getLang(translations, keyCaption, lang);
-				Lang lService = StatusXpath.getLang(service.getLangs(), lang);
-				
-				table.setTitle(XmlTitleFactory.build(lCaption.getTranslation()+" "+lService.getTranslation()));
-			}
-			catch (ExlpXpathNotFoundException e) {e.printStackTrace();}
-			catch (ExlpXpathNotUniqueException e) {e.printStackTrace();}	
-			
-			LatexTableRenderer renderer = new LatexTableRenderer(false);
-			renderer.render(table);
-			StringWriter actual = new StringWriter();
-			renderer.write(actual);
-			return actual.toString();
+			table.setTitle(XmlTitleFactory.build(lCaption.getTranslation()+" "+lService.getTranslation()));
 		}
-		catch (IOException e) {throw new OfxAuthoringException(e.getMessage());}
+		catch (ExlpXpathNotFoundException e) {e.printStackTrace();}
+		catch (ExlpXpathNotUniqueException e) {e.printStackTrace();}	
+		
+		return table;
 	}
 	
-	public Table toOfx(String[] headerKeys, Layers layers) throws OfxAuthoringException
+	public Table toOfx(List<String> headerKeys, Layers layers) throws OfxAuthoringException
 	{
 		Table table = new Table();
 		table.setSpecification(createSpecifications());
@@ -110,7 +102,7 @@ public class OfxSectionLayerFactory extends AbstractUtilsOfxDocumentationFactory
 		return specification;
 	}
 	
-	private Content createContent(String[] headerKeys, Layers layers) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
+	private Content createContent(List<String> headerKeys, Layers layers) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{	
 		Head head = new Head();
 		head.getRow().add(this.createHeaderRow(headerKeys));
@@ -156,10 +148,21 @@ public class OfxSectionLayerFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		Paragraph p2 = new Paragraph();
 		p2.getContent().add("("+layer.getCode()+")");
+	
+		
+		Image image = new Image();
+		image.setId("image."+layer.getCode());	
+		
+		Media media = new Media();
+	//	media.setSrc("png.dss-doc/maps/"+map.getCode()+".png");
+		media.setDst("gis/maps/climate");
+		image.setMedia(media);
+		
 		
 		Cell cell = new Cell();
-		cell.getContent().add(p1);
-		cell.getContent().add(p2);
+		cell.getContent().add(image);
+//		cell.getContent().add(p1);
+//		cell.getContent().add(p2);
 		
 		row.getCell().add(cell);
 		
