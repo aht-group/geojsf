@@ -183,12 +183,13 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 			 }
 			 else
 			 {
-				 Hashtable<Integer, SERVICE>          services         = new Hashtable<Integer, SERVICE>();
-				 Hashtable<Integer, ArrayList<LAYER>> layersForService = new Hashtable<Integer, ArrayList<LAYER>>();
-				 Integer layerId = 1;
-				 
-				 MapUtil.setBaseLayer(map);
 				 logger.debug("No value given - falling back to simple version");
+				 
+				 Hashtable<Integer, SERVICE> services = new Hashtable<Integer, SERVICE>();
+				 Integer layerId = 1;
+
+				 MapUtil.setBaseLayer(map);
+				 
 				 for (UIComponent child : map.getChildren())
 				 {
 					 logger.info("Found child of type: " +child.getClass().getSimpleName());
