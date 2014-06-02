@@ -28,40 +28,31 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public void setId(long id) {this.id = id;}
 	
 	private String code;
-	
-	private Double lat,lon;
-	
-	private Integer zoom;
-	
-	private Map<String, DefaultGeoJsfLang> name;
-	
-	private Map<String, DefaultGeoJsfDescription> description;
-	
-	@OneToMany
-	private List<DefaultGeoJsfView> layer;
-	
-	//******************************************************************************
-	
-
-	
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
 	
+	private Double lat;
 	@Override public Double getLat() {return lat;}
-	@Override public void setLat(Double x) {this.lon = lon;}
+	@Override public void setLat(Double lat) {this.lat = lat;}
 	
+	private Double lon;
 	@Override public Double getLon() {return lon;}
 	@Override public void setLon(Double lon) {this.lon = lon;}
 	
+	private Integer zoom;
 	@Override public Integer getZoom() {return zoom;}
 	@Override public void setZoom(Integer zoom) {this.zoom = zoom;}
 	
+	private Map<String, DefaultGeoJsfLang> name;
 	@Override public Map<String, DefaultGeoJsfLang> getName() {return name;}
 	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
 	
+	private Map<String, DefaultGeoJsfDescription> description;
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 	
+	@OneToMany
+	private List<DefaultGeoJsfView> layer;
 	@Override public List<DefaultGeoJsfView> getViews() {if(layer==null){layer=new ArrayList<DefaultGeoJsfView>();}return layer;}
 	@Override public void setViews(List<DefaultGeoJsfView> layer) {this.layer=layer;}
 	
