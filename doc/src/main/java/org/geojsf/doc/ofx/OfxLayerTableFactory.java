@@ -16,6 +16,7 @@ import org.geojsf.doc.GeoJsfDocumentation;
 import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Service;
+import org.openfuxml.content.layout.Width;
 import org.openfuxml.content.media.Image;
 import org.openfuxml.content.media.Media;
 import org.openfuxml.content.ofx.Comment;
@@ -29,7 +30,6 @@ import org.openfuxml.content.table.Row;
 import org.openfuxml.content.table.Specification;
 import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
-import org.openfuxml.factory.table.OfxCellFactory;
 import org.openfuxml.factory.table.OfxColumnFactory;
 import org.openfuxml.factory.xml.layout.XmlFloatFactory;
 import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
@@ -144,19 +144,17 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		catch (ExlpXpathNotUniqueException e){description = e.getMessage();}
 		
 		Paragraph p1 = new Paragraph();
-		p1.getContent().add(text);
-		
-		Paragraph p2 = new Paragraph();
-		p2.getContent().add("("+layer.getCode()+")");
+		p1.getContent().add(text+" ("+layer.getCode()+")");
 	
-		
-		Image image = new Image();
-		image.setId("image."+layer.getCode());	
-		
 		Media media = new Media();
-	//	media.setSrc("png.dss-doc/maps/"+map.getCode()+".png");
 		media.setDst("gis/maps/climate");
+		Image image = new Image();
 		image.setMedia(media);
+		
+		Width width = new Width();
+		width.setUnit("cm");
+		width.setValue(2);
+		image.setWidth(width);
 		
 		
 		Cell cell = new Cell();
@@ -169,7 +167,14 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 //		row.getCell().add(OfxCellFactory.createParagraphCell(layer.getCode()));
 //		row.getCell().add(OfxCellFactory.createParagraphCell(text));
 		
-		row.getCell().add(OfxCellFactory.createParagraphCell(description));
+		Paragraph p = new Paragraph();
+		p.getContent().add(description);
+		
+		Cell cellDescription = new Cell();
+		cellDescription.getContent().add(p1);
+		cellDescription.getContent().add(p);
+		
+		row.getCell().add(cellDescription);
 
 		return row;
 	}
