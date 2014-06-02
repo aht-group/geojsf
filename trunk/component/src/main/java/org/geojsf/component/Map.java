@@ -3,6 +3,7 @@ package org.geojsf.component;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -292,6 +293,20 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
             		}
             	}
             }
+        }
+        
+        // Handling of mapClick event fired by JavaScript API
+        if (null!= behaviorEvent && behaviorEvent.equals("updateTime"))
+        {
+        	logger.info("Received updateTime event from JavaScript API.");
+        	
+        	// Read current time from request
+        	// Time is given in ms format as String
+			String timeString        = params.get("org.geojsf.update.time");
+			Long   time              = Long.parseLong(timeString);
+			
+			MapUtil.updateTime(this, time);
+			
         }
         
         // Handling of layerSwitch event fired by JavaScript API

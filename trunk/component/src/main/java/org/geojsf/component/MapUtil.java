@@ -1,6 +1,7 @@
 package org.geojsf.component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 
 import javax.faces.component.UIComponent;
@@ -77,6 +78,19 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 			}
 		}
 		return timeInfo;
+	}
+	
+	public static void updateTime(UIComponent map, Long time)
+	{
+		for (UIComponent comp : map.getChildren())
+		{
+			if (comp.getClass().getSimpleName().toString().equals("Time"))
+			{
+				Time t = (Time) comp;
+				t.setValue(new Date(time));
+				logger.info("updated time to " +t.getValue().toGMTString());
+			}
+		}
 	}
 	
 	public static Boolean containsLayer(UIComponent map)
@@ -268,7 +282,9 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 		sb.append("width: ");
 		if(width!=null){sb.append(width +"px;");}
 		else{sb.append("100%;");}
-		sb.append("height: " +height + "px;");
+		sb.append("height: ");
+		if(height!=null){sb.append(height +"px;");}
+		else{sb.append("100%;");}
 		return sb.toString();
 	}
 	
