@@ -114,5 +114,10 @@ public class JsfRenderUtil {
 			logger.info("Problem rendering " +text +" using JsfRenderUtil");
 		}
 	}
+	
+	public void renderPlayerInitialization(ResponseWriter writer)
+	{
+		
+	}
 
 }

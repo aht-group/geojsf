@@ -51,7 +51,7 @@ public class Time extends UIComponentBase
 	@Override
 	public void encodeAll(FacesContext ctx) throws IOException
 	{
-		logger.info("Time component info already rendered in Map.");
+		logger.info("Time component info already rendered in Map. This client Id is: " +this.getClientId());
 	}
 
 	public Date getValue() {
