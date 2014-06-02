@@ -3,6 +3,8 @@ package org.geojsf.doc;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.ahtutils.doc.latex.builder.AbstractLatexDocumentationBuilder;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
@@ -14,8 +16,8 @@ import net.sf.exlp.util.io.StringIO;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.doc.ofx.OfxSectionLayerFactory;
-import org.geojsf.doc.ofx.OfxSectionMapFactory;
+import org.geojsf.doc.ofx.OfxLayerTableFactory;
+import org.geojsf.doc.ofx.OfxMapSectionFactory;
 import org.geojsf.doc.ofx.OfxServiceListFactory;
 import org.geojsf.util.wms.WmsTileDownloader;
 import org.geojsf.xml.geojsf.Layer;
@@ -52,21 +54,21 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	private Layers layers;
 	private Maps maps;
 	
-	private String[] headerKeysLayer,headerKeysMapView;
+	private List<String> headerKeysLayer,headerKeysMapView;
 	
 	public GeoJsfLatexDocumentation(Configuration config, Translations translations,String[] langs, CrossMediaManager cmm)
 	{
 		super(config,translations,langs,cmm);
 		this.translations=translations;
 		
-		headerKeysLayer = new String[2];
-		headerKeysLayer[0] = "geoJsfTableLayerNameCode";
+		headerKeysLayer = new ArrayList<String>();
+		headerKeysLayer.add("geoJsfTableLayerNameCode");
 //		headerKeysLayer[1] = "geoJsfTableLayerName";
-		headerKeysLayer[1] = "geoJsfTableLayerDescription";
+		headerKeysLayer.add("geoJsfTableLayerDescription");
 		
-		headerKeysMapView = new String[2];
-		headerKeysMapView[0] = "geoJsfTableMapViewNr";
-		headerKeysMapView[1] = "geoJsfTableMapViewLayerName";
+		headerKeysMapView = new ArrayList<String>();
+		headerKeysMapView.add("geoJsfTableMapViewNr");
+		headerKeysMapView.add("geoJsfTableMapViewLayerName");
 //		headerKeysMapView[2] = "geoJsfTableLayerDescription";
 	}
 	
@@ -121,7 +123,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		}
 	}
 	
-	public void writerLayerSection(String idPrefix) throws UtilsConfigurationException
+	public void writerLayerTables(String idPrefix) throws UtilsConfigurationException
 	{
 		logger.info("Creating "+Layer.class.getSimpleName()+"."+Table.class.getSimpleName());
 		for(String lang : langs)
@@ -131,11 +133,12 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 				File f = new File(baseLatexDir,lang+"/"+dirLayer+"/"+service.getCode()+".tex");
 				try
 				{
-					OfxSectionLayerFactory latexFactory = new OfxSectionLayerFactory(config,lang,translations);
-					String content = latexFactory.toLatex(idPrefix+".layer."+service.getCode(),service,layers,headerKeysLayer);
-					StringIO.writeTxt(f, content);
+					OfxLayerTableFactory latexFactory = new OfxLayerTableFactory(config,lang,translations);
+					Table table = latexFactory.build(idPrefix+".layer."+service.getCode(),service,layers,headerKeysLayer);
+					this.writeTable(table, f);
 				}
 				catch (OfxAuthoringException e) {throw new UtilsConfigurationException(e.getMessage());}
+				catch (IOException e) {e.printStackTrace();}
 			}
 		}
 	}
@@ -167,7 +170,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 					
 				try
 				{
-					OfxSectionMapFactory latexFactory = new OfxSectionMapFactory(config,lang,translations);
+					OfxMapSectionFactory latexFactory = new OfxMapSectionFactory(config,lang,translations);
 					Section section = latexFactory.create(map, headerKeysMapView);
 					this.writeSection(sectionLevel,section, f);
 				}

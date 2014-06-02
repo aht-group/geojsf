@@ -1,5 +1,7 @@
 package org.geojsf.doc.ofx;
 
+import java.util.List;
+
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
 import net.sf.ahtutils.xml.status.Description;
@@ -37,19 +39,19 @@ import org.openfuxml.factory.xml.ofx.content.text.XmlTitleFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class OfxSectionMapFactory extends AbstractUtilsOfxDocumentationFactory
+public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 {
-	final static Logger logger = LoggerFactory.getLogger(OfxSectionMapFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(OfxMapSectionFactory.class);
 	
 	private int[] colWidths = {5,100};
 	private String keyTableTitle = "geoJsfTableMapTableTitlePrefix";
 	
-	public OfxSectionMapFactory(Configuration config,String lang, Translations translations)
+	public OfxMapSectionFactory(Configuration config,String lang, Translations translations)
 	{
 		super(config,lang,translations);
 	}
 	
-	public Section create(Map map,String[] headerKeys) throws OfxAuthoringException
+	public Section create(Map map,List<String> headerKeys) throws OfxAuthoringException
 	{
 		Comment comment = XmlCommentFactory.build();
 		DocumentationCommentBuilder.doNotModify(comment);
@@ -89,7 +91,7 @@ public class OfxSectionMapFactory extends AbstractUtilsOfxDocumentationFactory
 		return p;
 	}
 	
-	public Table buildTable(String[] headerKeys, Map map) throws OfxAuthoringException
+	public Table buildTable(List<String> headerKeys, Map map) throws OfxAuthoringException
 	{
 		Table table = new Table();
 		table.setSpecification(createSpecifications());
@@ -142,10 +144,9 @@ public class OfxSectionMapFactory extends AbstractUtilsOfxDocumentationFactory
 		media.setDst("gis/maps/"+map.getCode());
 		image.setMedia(media);
 		return image;
-		
 	}
 	
-	private Content createContent(String[] headerKeys, java.util.List<View> views) throws OfxAuthoringException
+	private Content createContent(List<String> headerKeys, java.util.List<View> views) throws OfxAuthoringException
 	{		
 		Head head = new Head();
 		head.getRow().add(super.createHeaderRow(headerKeys));
