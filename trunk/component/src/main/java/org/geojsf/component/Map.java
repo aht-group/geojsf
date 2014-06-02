@@ -30,10 +30,6 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.xml.geojsf.Scales;
 import org.geojsf.xml.gml.Coordinates;
@@ -93,21 +89,24 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		{
 			if (true) 
 			{
-				MapUtil util = new MapUtil();
-				dmMap = (MAP) util.initLayerConfiguration(this);
+				// TODO: Really a new instance required, or should it be in the constructor?
+				MapUtil<L,D,SERVICE,LAYER,MAP,VIEW> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW>(ctx);
+				dmMap = util.initLayerConfiguration(this);
 				for (VIEW view : dmMap.getViews())
-					{
-						view.setVisible(true);
-					}
+				{
+					view.setVisible(true);
+				}
 			}
 		}
 		catch (UnconsistentConfgurationException e)
 		{
 			logger.warn("Problem occured when processing layers: " +e.getMessage());
+			e.printStackTrace();
 		}
 		catch (Exception e)
 		{
 			logger.warn("Problem occured when processing layers: " +e.getMessage());
+			e.printStackTrace();
 			this.setRendered(false);
 		}
 		
@@ -213,12 +212,12 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	    logger.info("Handling event of type: " +behaviorEvent +" in decode phase.");
 	    
 	    // Create a new GeoJsfMap from the given (maybe manipulated) map object
-	    try {
-	    	MapUtil util = new MapUtil();
-			dmMap = (MAP) util.initLayerConfiguration(this);
-		} catch (Exception e) {
-			e.printStackTrace();
+	    try
+	    {
+	    	MapUtil<L,D,SERVICE,LAYER,MAP,VIEW> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW>(context);
+			dmMap = util.initLayerConfiguration(this);
 		}
+	    catch (Exception e) {e.printStackTrace();}
 	    
 	    // This will be compared to the values stored in the session before (activate this to check)
     	// logger.info("Services: " +new LayerSwitchHelper(services, layerNames).toString());

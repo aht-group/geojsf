@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
@@ -16,17 +17,41 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
-import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
-import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
 {	
 	final static Logger logger = LoggerFactory.getLogger(MapUtil.class);
+	
+	private Class<SERVICE> clService;
+	private Class<LAYER> clLayer;
+	private Class<MAP> clMap;
+	private Class<VIEW> clView; 
+	
+	@SuppressWarnings("unchecked")
+	public MapUtil(FacesContext context)
+	{
+		try
+		{
+			clService = (Class<SERVICE>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.SERVICE"));
+			clLayer = (Class<LAYER>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.LAYER"));
+			clMap = (Class<MAP>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.MAP"));
+			clView = (Class<VIEW>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.VIEW"));
+			
+			logger.info("Using "+clService.getName());
+			logger.info("Using "+clLayer.getName());
+			logger.info("Using "+clMap.getName());
+			logger.info("Using "+clView.getName());
+		}
+		catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	public static String searchTimeDefinition(UIComponent map)
 	{
@@ -140,11 +165,13 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 		baseLayer.setIsBaseLayer(true);
 	}
 	
-	public  MAP initLayerConfiguration(Map map) throws Exception
+	public MAP initLayerConfiguration(Map<L,D,SERVICE,LAYER,MAP,VIEW> map) throws Exception
 	{
 		 map.setTemporalLayerNames(new ArrayList<String>());
 		 map.setServiceList(new ArrayList<SERVICE>());
-		 MAP dmMap = (MAP) new DefaultGeoJsfMap();
+		 
+		 MAP dmMap = clMap.newInstance();
+		 
 		 dmMap.setViews(new ArrayList<VIEW>());
 		 logger.info("Initial layer configuration.");
 		 logger.debug("Checking value existence ...");
@@ -156,8 +183,8 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 			 }
 			 else
 			 {
-				 Hashtable<Integer, DefaultGeoJsfService>          services         = new Hashtable<Integer, DefaultGeoJsfService>();
-				 Hashtable<Integer, ArrayList<DefaultGeoJsfLayer>> layersForService = new Hashtable<Integer, ArrayList<DefaultGeoJsfLayer>>();
+				 Hashtable<Integer, SERVICE>          services         = new Hashtable<Integer, SERVICE>();
+				 Hashtable<Integer, ArrayList<LAYER>> layersForService = new Hashtable<Integer, ArrayList<LAYER>>();
 				 Integer layerId = 1;
 				 
 				 MapUtil.setBaseLayer(map);
@@ -172,8 +199,8 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 						 String  layerUrl  = layer.getUrl();
 						 String  layerList = layer.getLayers();
 						 
-						 SERVICE dmService = (SERVICE) new DefaultGeoJsfService();
-						 VIEW dmView       = (VIEW) new DefaultGeoJsfView();
+						 SERVICE dmService = clService.newInstance();
+						 VIEW dmView       = clView.newInstance();
 						 
 						 // Check if there is already a service prepared for this URL and
 						 // assign the correct (or a new incremented) ID/Service for that
@@ -188,18 +215,18 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 						 if (serviceId.equals(0))
 						 {
 							 serviceId = services.size()+1;
-							 dmService  = (SERVICE) new DefaultGeoJsfService();
+							 dmService  = clService.newInstance();
 							 dmService.setUrl(layerUrl);
 							 dmService.setId(serviceId);
 							 dmService.setLayer(new ArrayList<LAYER>());
-							 services.put(serviceId, (DefaultGeoJsfService) dmService);
+							 services.put(serviceId, dmService);
 						 }
 						 
 						 // Now add all the Layers to View and Service
 						 String layerString = (String)layerList;
 						 for (String string : layerString.split(","))
 						 {
-							 LAYER layerToAdd = (LAYER) new DefaultGeoJsfLayer();
+							 LAYER layerToAdd = clLayer.newInstance();
 							 layerToAdd.setId(layerId++);
 							 layerToAdd.setTemporalLayer(layer.getHasTemporalLayer());
 							 layerToAdd.setCode(string);
@@ -221,8 +248,8 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 			 @SuppressWarnings("rawtypes")
 			 MAP mapDm = (MAP)map.getAttributes().get("value");
 			 dmMap           = (MAP)map.getAttributes().get("value");
-			 GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
-			 fService = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
+			 GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW> fService;
+			 fService = GeoJsfServiceFactory.factory(clService);
 			 
 			 map.setServiceList(fService.buildI(mapDm));
 			 if (MapUtil.containsLayer(map))
