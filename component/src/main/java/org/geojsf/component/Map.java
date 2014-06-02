@@ -54,7 +54,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	
 	//Define attributes of the component
 	private Integer width = null;
-	private Integer height = null;
+	private Integer height = 400;
 	private String timeInfo = null;
 	private Scales scales = null;
 	private Boolean initStage = true;

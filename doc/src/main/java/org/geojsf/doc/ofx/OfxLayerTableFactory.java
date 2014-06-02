@@ -93,8 +93,8 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 //		cols.getColumn().add(OfxColumnFactory.percentage(30));
 //		cols.getColumn().add(OfxColumnFactory.flex(100));
 		
-		cols.getColumn().add(OfxColumnFactory.flex(25));
-		cols.getColumn().add(OfxColumnFactory.flex(75));
+		cols.getColumn().add(OfxColumnFactory.flex(15));
+		cols.getColumn().add(OfxColumnFactory.flex(85));
 		
 		Specification specification = new Specification();
 		specification.setColumns(cols);
