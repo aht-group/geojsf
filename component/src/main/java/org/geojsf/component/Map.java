@@ -85,6 +85,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
+		logger.info("Should encode begin be processed?" +this.isRendered());
 		if (this.isRendered())
 		{
 			logger.info("entering encodebegin");
@@ -155,6 +156,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	
 	public void renderLayers(ResponseWriter writer, JsfRenderUtil renderer, Boolean addScriptTag) throws IOException
 	{
+		logger.info("Should render layers be processed?" +this.isRendered());
 		if(addScriptTag){writer.startElement("script", this);}
 		
 		//First, render the base layer (adding overlays first results in error)
@@ -174,6 +176,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	
 	public void encodeLayer(SERVICE service, Boolean baseLayer, ResponseWriter writer, JsfRenderUtil renderer) throws IOException
 	{
+		logger.info("Should encode layers be processed?" +this.isRendered());
 		String sLayers = TxtOpenlayersLayerFactory.buildLayerString(service);
 //		String sLayers = "x";
 		logger.info("Adding "+service.getCode()+": "+sLayers);
@@ -211,6 +214,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	
 	public void decode(FacesContext context)
 	{
+		logger.info("Should decode phase be processed?" +this.isRendered());
 		if (this.isRendered())
 		{
 			java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
@@ -351,34 +355,42 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	@Override
 	public void restoreState(FacesContext context, Object state)
 	{
-	    Object[] storedState = (Object[]) state;
-	    logger.info("Restoring state.");
-		try {
-		initStage   = (Boolean) storedState[0];
-		serviceList = (List<SERVICE>) storedState[1];
-		services    = (Hashtable<String, Service>) storedState[2];
-	    layerNames  = (Hashtable<String, String>) storedState[3];
-	    dmMap       = (MAP) storedState[4];
-		helper      = new LayerSwitchHelper(services, layerNames);
-		}
-		catch (Exception e)
+		logger.info("Should the state be restored? " +this.isRendered());
+		if (this.isRendered())
 		{
-			logger.info("Exception when restoring: " +e.getMessage());
+			Object[] storedState = (Object[]) state;
+		    logger.info("Restoring state.");
+			try {
+			initStage   = (Boolean) storedState[0];
+			serviceList = (List<SERVICE>) storedState[1];
+			services    = (Hashtable<String, Service>) storedState[2];
+		    layerNames  = (Hashtable<String, String>) storedState[3];
+		    dmMap       = (MAP) storedState[4];
+			helper      = new LayerSwitchHelper(services, layerNames);
+			}
+			catch (Exception e)
+			{
+				logger.info("Exception when restoring: " +e.getMessage());
+			}
+			logger.info("Stage completed. Is this map rendered? " +this.isRendered());
+			logger.debug("Current LayerSwitchHelper content: " +helper.toString());
 		}
-		logger.info("Stage completed. Is this map rendered? " +this.isRendered());
-		logger.debug("Current LayerSwitchHelper content: " +helper.toString());
 	}
 	
 	@Override
 	public Object saveState(FacesContext context)
 	{
-	    Object[] rtrn = new Object[5];
-	    rtrn[0] = initStage;
-	    rtrn[1] = serviceList;
-	    rtrn[2] = services;
-	    rtrn[3] = layerNames;
-	    rtrn[4] = dmMap;
-	    return rtrn;
+		Object[] rtrn = new Object[5];
+		logger.info("Should the state be saved?" +this.isRendered());
+		if (this.isRendered())
+		{
+			rtrn[0] = initStage;
+		    rtrn[1] = serviceList;
+		    rtrn[2] = services;
+		    rtrn[3] = layerNames;
+		    rtrn[4] = dmMap;
+		}
+		return rtrn;
 	}
 	
 	@Override
