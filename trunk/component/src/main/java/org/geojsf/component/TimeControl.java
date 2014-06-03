@@ -37,8 +37,8 @@ public class TimeControl extends UIComponentBase
 	private Time targetTime;
 	private Date now;
 	
-	private Date min = new DateTime().minusMonths(24).toDate();
-	private Date max = new DateTime(min).plusMonths(12).toDate();
+	private Date min;
+	private Date max;
 	private Long step;
 	private Double framerate;
 	

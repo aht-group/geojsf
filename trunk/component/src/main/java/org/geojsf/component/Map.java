@@ -85,66 +85,69 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		logger.info("entering encodebegin");
-		try
-		{
-			if (true) 
-			{
-				// TODO: Really a new instance required, or should it be in the constructor?
-				MapUtil<L,D,SERVICE,LAYER,MAP,VIEW> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW>(ctx);
-				dmMap = util.initLayerConfiguration(this);
-				for (VIEW view : dmMap.getViews())
-				{
-					view.setVisible(true);
-				}
-			}
-		}
-		catch (UnconsistentConfgurationException e)
-		{
-			logger.warn("Problem occured when processing layers: " +e.getMessage());
-			e.printStackTrace();
-		}
-		catch (Exception e)
-		{
-			logger.warn("Problem occured when processing layers: " +e.getMessage());
-			e.printStackTrace();
-			this.setRendered(false);
-		}
-		
 		if (this.isRendered())
 		{
-			ResponseWriter writer = ctx.getResponseWriter();
-			JsfRenderUtil renderer = new JsfRenderUtil(writer, this);
-			renderer.renderLinebreaks(2);
-			renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width));
-			
-			writer.writeText(System.getProperty("line.separator"), null);
-			
-			if (serviceList.isEmpty())
+			logger.info("entering encodebegin");
+			try
 			{
-				writer.startElement("center", this);
-				writer.writeText("no layers given.", null);
-				writer.endElement("center");
-				logger.warn("Map can not be rendered without layers!");
-			}
-			else
-			{
-				if(!refreshLayersOnUpdate && initStage || refreshLayersOnUpdate)
+				if (true) 
 				{
-					LayerSwitchHelper helper = new LayerSwitchHelper(this.getServiceList());
-					services   = helper.getServices();
-					layerNames = helper.getLayerNames();
-					
-					//First, render the JavaScript code to initialize the map
-					renderer.renderMapInitialization(this.getFacesContext());
-					
-					//Next, render the layers
-					renderLayers(writer, renderer, false);
-			 		
-			 		//Set flag that map initiation is completed and not to be repeated
-			 		initStage = false;
-			 		logger.info("Map initialization completed for " +this.getClientId() +" (ID: " +this.getId() +")");
-			 		writer.endElement("script"); 
+					// TODO: Really a new instance required, or should it be in the constructor?
+					MapUtil<L,D,SERVICE,LAYER,MAP,VIEW> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW>(ctx);
+					dmMap = util.initLayerConfiguration(this);
+					for (VIEW view : dmMap.getViews())
+					{
+						view.setVisible(true);
+					}
+				}
+			}
+			catch (UnconsistentConfgurationException e)
+			{
+				logger.warn("Problem occured when processing layers: " +e.getMessage());
+				e.printStackTrace();
+			}
+			catch (Exception e)
+			{
+				logger.warn("Problem occured when processing layers: " +e.getMessage());
+				e.printStackTrace();
+				this.setRendered(false);
+			}
+			
+			if (this.isRendered())
+			{
+				ResponseWriter writer = ctx.getResponseWriter();
+				JsfRenderUtil renderer = new JsfRenderUtil(writer, this);
+				renderer.renderLinebreaks(2);
+				renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width));
+				
+				writer.writeText(System.getProperty("line.separator"), null);
+				
+				if (serviceList.isEmpty())
+				{
+					writer.startElement("center", this);
+					writer.writeText("no layers given.", null);
+					writer.endElement("center");
+					logger.warn("Map can not be rendered without layers!");
+				}
+				else
+				{
+					if(!refreshLayersOnUpdate && initStage || refreshLayersOnUpdate)
+					{
+						LayerSwitchHelper helper = new LayerSwitchHelper(this.getServiceList());
+						services   = helper.getServices();
+						layerNames = helper.getLayerNames();
+						
+						//First, render the JavaScript code to initialize the map
+						renderer.renderMapInitialization(this.getFacesContext());
+						
+						//Next, render the layers
+						renderLayers(writer, renderer, false);
+				 		
+				 		//Set flag that map initiation is completed and not to be repeated
+				 		initStage = false;
+				 		logger.info("Map initialization completed for " +this.getClientId() +" (ID: " +this.getId() +")");
+				 		writer.endElement("script"); 
+					}
 				}
 			}
 		}
@@ -208,130 +211,134 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	
 	public void decode(FacesContext context)
 	{
-		java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
-		String behaviorEvent = params.get("javax.faces.behavior.event");
-	    logger.info("Handling event of type: " +behaviorEvent +" in decode phase.");
-	    
-	    // Create a new GeoJsfMap from the given (maybe manipulated) map object
-	    try
-	    {
-	    	MapUtil<L,D,SERVICE,LAYER,MAP,VIEW> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW>(context);
-			dmMap = util.initLayerConfiguration(this);
-		}
-	    catch (Exception e) {e.printStackTrace();}
-	    
-	    // This will be compared to the values stored in the session before (activate this to check)
-    	// logger.info("Services: " +new LayerSwitchHelper(services, layerNames).toString());
-    	
-		if (null!=services)
+		if (this.isRendered())
 		{
-			// Iterate through all Views (that hold the information if a Layer is visible)
-			for (VIEW view : dmMap.getViews())
-			{
-				Integer serviceId = (int) view.getLayer().getService().getId();
-				Integer layerId   = (int) view.getLayer().getId();
-				
-				// Check the visibility value before and currently
-				Boolean before    = services.get(serviceId +"").getLayer().get(layerId +"");
-				Boolean now       = view.isVisible();
-				
-				if (before.equals(now))
-				{
-					// If there is no change, do nothing
-					// logger.info("Layer " +view.getLayer().getCode() +" did not change it's visibility. Still " +view.isVisible());
-				}
-				else
-				{
-					// If there is a new value, generate a command to toggle the assigned service in OpenLayers using hide/show/merge
-					logger.info("Trying to change (" +view.getLayer().getId() +") " +view.getLayer().getCode() +" of Service " +view.getLayer().getService().getId() +" from "+before +" to " +now);
-
-					// Restore the LayerSwitchHelper with the information saved in the run before
-					// (see save/restore methods)
-					helper = new LayerSwitchHelper(services, layerNames);
-
-					// Generate the command using the LayerSwitchHelper 
-					// logger.info("Current LayerSwitchHelper content: " +helper.toString());
-					String toggleCommand = helper.toggleLayer(view.getLayer().getId() +"");
-					
-					// Get the new service Hashtable so it will be saved as a reference for the current state for the next run
-					services = helper.getServices();
-					
-					// Now send the command (JSON-String representation of the Command object) to the client using PrimeFaces CallbackParam methodology
-					// This can be used in the oncomplete AJAX-callback JavaScript function like performLayerSwitch(xhr, status, args)
-					logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +view.getLayer().getId() +" of service " +view.getLayer().getService().getId() +" to " +view.isVisible());
-					RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
-				}
+			java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
+			String behaviorEvent = params.get("javax.faces.behavior.event");
+		    logger.info("Handling event of type: " +behaviorEvent +" in decode phase.");
+		    
+		    // Create a new GeoJsfMap from the given (maybe manipulated) map object
+		    try
+		    {
+		    	MapUtil<L,D,SERVICE,LAYER,MAP,VIEW> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW>(context);
+				dmMap = util.initLayerConfiguration(this);
 			}
-		}
-		
-		// Handling of mapClick event fired by JavaScript API
-        if (null!= behaviorEvent && behaviorEvent.equals("mapClick"))
-        {
-        	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
-     		if (behaviors.isEmpty())
-     		{
-     			logger.error("no behaviors.exiting.");
-     			return;
-     		}
-            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
-            if (behaviors.size() > 0)
-            {
-            	String behaviorSource = params.get("javax.faces.source");
-            	String clientId = getClientId(context);
-            	if (behaviorSource != null && behaviorSource.equals(clientId))
-            	{
-            		for (ClientBehavior behavior: behaviorsForEvent)
-            		{
-            			logger.info("Found " +behavior.getClass().toString());
-            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
-            			String lat = params.get("org.geojsf.coordinates.lat");
-            			String lon = params.get("org.geojsf.coordinates.lon");
-            			String scl = params.get("org.geojsf.coordinates.scale");
-            			ajaxEvent.setLatLon(lat,lon);
-            			ajaxEvent.setScale(scl);
-            			behavior.broadcast(ajaxEvent);
-            		}
-            	}
-            }
-        }
-        
-        // Handling of mapClick event fired by JavaScript API
-        if (null!= behaviorEvent && behaviorEvent.equals("updateTime"))
-        {
-        	logger.info("Received updateTime event from JavaScript API.");
-        	
-        	// Read current time from request
-        	// Time is given in ms format as String
-			String timeString        = params.get("org.geojsf.update.time");
-			Long   time              = Long.parseLong(timeString);
+		    catch (Exception e) {e.printStackTrace();}
+		    
+		    // This will be compared to the values stored in the session before (activate this to check)
+	    	// logger.info("Services: " +new LayerSwitchHelper(services, layerNames).toString());
+		    
+		    /*
+		    if (null!=services && ((null != behaviorEvent && !behaviorEvent.equals("layerSwitch")) || null==behaviorEvent))
+			{
+				// Iterate through all Views (that hold the information if a Layer is visible)
+				for (VIEW view : dmMap.getViews())
+				{
+					Integer serviceId = (int) view.getLayer().getService().getId();
+					Integer layerId   = (int) view.getLayer().getId();
+					
+					// Check the visibility value before and currently
+					Boolean before    = services.get(serviceId +"").getLayer().get(layerId +"");
+					Boolean now       = view.isVisible();
+					
+					if (before.equals(now))
+					{
+						// If there is no change, do nothing
+						// logger.info("Layer " +view.getLayer().getCode() +" did not change it's visibility. Still " +view.isVisible());
+					}
+					else
+					{
+						// If there is a new value, generate a command to toggle the assigned service in OpenLayers using hide/show/merge
+						logger.info("Trying to change (" +view.getLayer().getId() +") " +view.getLayer().getCode() +" of Service " +view.getLayer().getService().getId() +" from "+before +" to " +now);
+
+						// Restore the LayerSwitchHelper with the information saved in the run before
+						// (see save/restore methods)
+						helper = new LayerSwitchHelper(services, layerNames);
+
+						// Generate the command using the LayerSwitchHelper 
+						// logger.info("Current LayerSwitchHelper content: " +helper.toString());
+						String toggleCommand = helper.toggleLayer(view.getLayer().getId() +"");
+						
+						// Get the new service Hashtable so it will be saved as a reference for the current state for the next run
+						services = helper.getServices();
+						
+						// Now send the command (JSON-String representation of the Command object) to the client using PrimeFaces CallbackParam methodology
+						// This can be used in the oncomplete AJAX-callback JavaScript function like performLayerSwitch(xhr, status, args)
+						logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +view.getLayer().getId() +" of service " +view.getLayer().getService().getId() +" to " +view.isVisible());
+						RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
+					}
+				}
+			} */
 			
-			MapUtil.updateTime(this, time);
-			
-        }
-        
-        // Handling of layerSwitch event fired by JavaScript API
-        if (null!= behaviorEvent && behaviorEvent.equals("layerSwitch"))
-		{
-        	logger.info("Received layerSwitch event from JavaScript API.");
-        	
-        	// Read information from request
-        	// The service ID and the state are calculated from the data and current state now
-        	// String serviceIdParam = params.get("org.geojsf.switch.service");
-        	// Boolean active        = new Boolean(params.get("org.geojsf.switch.on"));
-			String layerId        = params.get("org.geojsf.switch.layer");
-			
-			// Restore the LayerSwitchHelper with current state and information
-			helper = new LayerSwitchHelper(services, layerNames);
-			// logger.debug("Current LayerSwitchHelper content: " +helper.toString());
-			
-			// Generate command to switch layer in OpenLayers using GeoJSF JavaScript API
-			String toggleCommand = helper.toggleLayer(layerId);
-			
-			// Get the state to be saved in session
-			services = helper.getServices();
-			
-			logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand);
-			RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
+			// Handling of mapClick event fired by JavaScript API
+	        if (null!= behaviorEvent && behaviorEvent.equals("mapClick"))
+	        {
+	        	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
+	     		if (behaviors.isEmpty())
+	     		{
+	     			logger.error("no behaviors.exiting.");
+	     			return;
+	     		}
+	            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
+	            if (behaviors.size() > 0)
+	            {
+	            	String behaviorSource = params.get("javax.faces.source");
+	            	String clientId = getClientId(context);
+	            	if (behaviorSource != null && behaviorSource.equals(clientId))
+	            	{
+	            		for (ClientBehavior behavior: behaviorsForEvent)
+	            		{
+	            			logger.info("Found " +behavior.getClass().toString());
+	            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
+	            			String lat = params.get("org.geojsf.coordinates.lat");
+	            			String lon = params.get("org.geojsf.coordinates.lon");
+	            			String scl = params.get("org.geojsf.coordinates.scale");
+	            			ajaxEvent.setLatLon(lat,lon);
+	            			ajaxEvent.setScale(scl);
+	            			behavior.broadcast(ajaxEvent);
+	            		}
+	            	}
+	            }
+	        }
+	        
+	        // Handling of mapClick event fired by JavaScript API
+	        if (null!= behaviorEvent && behaviorEvent.equals("updateTime"))
+	        {
+	        	logger.info("Received updateTime event from JavaScript API.");
+	        	
+	        	// Read current time from request
+	        	// Time is given in ms format as String
+				String timeString        = params.get("org.geojsf.update.time");
+				Long   time              = Long.parseLong(timeString);
+				
+				MapUtil.updateTime(this, time);
+				
+	        }
+	        
+	        // Handling of layerSwitch event fired by JavaScript API
+	        if (null!= behaviorEvent && behaviorEvent.equals("layerSwitch"))
+			{
+	        	logger.info("Received layerSwitch event from JavaScript API.");
+	        	
+	        	// Read information from request
+	        	// The service ID and the state are calculated from the data and current state now
+	        	// String serviceIdParam = params.get("org.geojsf.switch.service");
+	        	// Boolean active        = new Boolean(params.get("org.geojsf.switch.on"));
+				String layerId        = params.get("org.geojsf.switch.layer");
+				
+				// Restore the LayerSwitchHelper with current state and information
+				helper = new LayerSwitchHelper(services, layerNames);
+				// logger.debug("Current LayerSwitchHelper content: " +helper.toString());
+				
+				// Generate command to switch layer in OpenLayers using GeoJSF JavaScript API
+				String toggleCommand = helper.toggleLayer(layerId);
+				
+				// Get the state to be saved in session
+				services = helper.getServices();
+				
+				logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand);
+				RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
+			}
 		}
 	}
 	
@@ -346,12 +353,19 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	{
 	    Object[] storedState = (Object[]) state;
 	    logger.info("Restoring state.");
-		serviceList = (List<SERVICE>) storedState[1];
+		try {
 		initStage   = (Boolean) storedState[0];
+		serviceList = (List<SERVICE>) storedState[1];
 		services    = (Hashtable<String, Service>) storedState[2];
 	    layerNames  = (Hashtable<String, String>) storedState[3];
 	    dmMap       = (MAP) storedState[4];
 		helper      = new LayerSwitchHelper(services, layerNames);
+		}
+		catch (Exception e)
+		{
+			logger.info("Exception when restoring: " +e.getMessage());
+		}
+		logger.info("Stage completed. Is this map rendered? " +this.isRendered());
 		logger.debug("Current LayerSwitchHelper content: " +helper.toString());
 	}
 	
