@@ -161,13 +161,22 @@ var GeoJSF = {
 		
 		updateTime : function(layerName, time)
 		{
-			 var layer = this.map.getLayersByName(layerName);
-			 var params  = {};
+			 var layers = this.map.getLayersByName(layerName);
+			 var layer  = layers[0];
+			 var params = {};
 			 var date  = new Date(time);
 			 var isoTime = date.toISOString();
 			 params.time = isoTime;
 			 console.log("Merging new Time parameter: " +isoTime);
-			 this.layer.mergeNewParams(params);
+			 layer.mergeNewParams(params);
+			 
+			// This is the PrimeFaces based solution along with an 'oncomplete' call
+			 PrimeFaces.ab({process: '@all', 
+				 			source: this.map.div, 
+				 			event: 'updateTime', 
+				 			params: [{name: 'org.geojsf.update.time', value: time}],
+				 			oncomplete: function(xhr, status, args) {console.log("Back in client.");}});
+		
 		},
 		
 		switchLayer : function(serviceId, layerId, elementId)
