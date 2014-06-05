@@ -28,16 +28,19 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 	final static Logger logger = LoggerFactory.getLogger(TestDummyViewFactory.class);
 	
 	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fJsf;
+	private DummyViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> dvf;
 	
 	@Before
 	public void init() throws UtilsIntegrityException
 	{
 		fJsf = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
-		map = DummyViewFactory.build();
+		dvf = DummyViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfDescription.class,DefaultGeoJsfService.class,DefaultGeoJsfLayer.class,DefaultGeoJsfMap.class,DefaultGeoJsfView.class);
+		map = dvf.getMap();
 	}
 	
 	private DefaultGeoJsfMap map;
-	
+	public DefaultGeoJsfMap getMap() {return map;}
+
 	@Test
 	public void test()
     {	
@@ -53,8 +56,8 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 	public void serviceOrdering()
 	{
 		List<DefaultGeoJsfService> actual = fJsf.build(map);
-		Assert.assertEquals(DummyViewFactory.serviceOsm.getCode(), actual.get(1).getCode());
-		Assert.assertEquals(DummyViewFactory.serviceAht.getCode(), actual.get(0).getCode());
+		Assert.assertEquals(dvf.getServiceOsm().getCode(), actual.get(1).getCode());
+		Assert.assertEquals(dvf.getServiceAht().getCode(), actual.get(0).getCode());
 	}
 	
 	@Test
@@ -71,11 +74,13 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		}
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws UtilsIntegrityException
 	{
 		GeoJsfEjbTestBootstrap.init();
 		
-		DefaultGeoJsfMap map = DummyViewFactory.build();
+		TestDummyViewFactory tdv = new TestDummyViewFactory();
+		tdv.init();
+		DefaultGeoJsfMap map = tdv.getMap();
 		
 		logger.info("***********************");
 		logger.info("This is the MAP");
