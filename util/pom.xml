@@ -39,6 +39,7 @@
 		<dependency>
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-entities</artifactId>
+			<scope>test</scope>
 		</dependency>
 		
 		
