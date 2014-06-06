@@ -10,6 +10,7 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.geojsf.View;
 import org.slf4j.Logger;
@@ -44,6 +45,16 @@ public class XmlViewFactory implements Serializable
 			xml.setLayer(f.build(ejb.getLayer()));
 		}
 			
+		return xml;
+	}
+	
+	public static View build(int nr, boolean visible, boolean legend, Layer layer)
+	{
+		View xml = new View();
+		xml.setNr(nr);
+		xml.setLegend(legend);
+		xml.setVisible(true);
+		xml.setLayer(layer);
 		return xml;
 	}
 }

@@ -9,6 +9,7 @@ import org.apache.commons.jxpath.JXPathContext;
 import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Map;
+import org.geojsf.xml.geojsf.Maps;
 import org.geojsf.xml.geojsf.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +20,15 @@ public class GeoJsfXpath
 		
 	public static Map getView(Repository repo,String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{
-		JXPathContext context = JXPathContext.newContext(repo);
-			
+		return getMap(repo.getMaps(),code);
+	}
+	
+	public static Map getMap(Maps maps, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
+	{
+		JXPathContext context = JXPathContext.newContext(maps);
+		
 		@SuppressWarnings("unchecked")
-		List<Map> listResult = (List<Map>)context.selectNodes("/maps/map[@code='"+code+"']");
+		List<Map> listResult = (List<Map>)context.selectNodes("/map[@code='"+code+"']");
 		if(listResult.size()==0){throw new ExlpXpathNotFoundException("No "+Map.class.getSimpleName()+" for code="+code);}
 		else if(listResult.size()>1){throw new ExlpXpathNotUniqueException("Multiple "+Map.class.getSimpleName()+" for code="+code);}
 		return listResult.get(0);
