@@ -33,6 +33,7 @@ import net.sf.ahtutils.xml.status.Langs;
  *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="lon" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="scale" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -68,6 +69,8 @@ public class Map
     protected Double lon;
     @XmlAttribute(name = "zoom")
     protected Integer zoom;
+    @XmlAttribute(name = "scale")
+    protected Double scale;
 
     /**
      * Gets the value of the view property.
@@ -316,6 +319,38 @@ public class Map
 
     public void unsetZoom() {
         this.zoom = null;
+    }
+
+    /**
+     * Gets the value of the scale property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public double getScale() {
+        return scale;
+    }
+
+    /**
+     * Sets the value of the scale property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setScale(double value) {
+        this.scale = value;
+    }
+
+    public boolean isSetScale() {
+        return (this.scale!= null);
+    }
+
+    public void unsetScale() {
+        this.scale = null;
     }
 
 }

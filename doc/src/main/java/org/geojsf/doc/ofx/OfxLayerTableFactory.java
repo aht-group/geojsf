@@ -147,7 +147,7 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		p1.getContent().add(text+" ("+layer.getCode()+")");
 	
 		Media media = new Media();
-		media.setDst("gis/maps/climate");
+		media.setDst("gis/layer/"+layer.getCode().replaceAll("\\.", ""));
 		Image image = new Image();
 		image.setMedia(media);
 		

@@ -12,7 +12,7 @@ public class XmlScaleFactory implements Serializable
 	
 	public static final long serialVersionUID=1;
 
-	public static Scale build(int scale)
+	public static Scale build(double scale)
 	{
 		Scale xml = new Scale();
 		xml.setValue(scale);

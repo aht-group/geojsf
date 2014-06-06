@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import net.sf.exlp.util.xml.JaxbUtil;
+
 import org.apache.commons.io.FileUtils;
 import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
 import org.geojsf.factory.xml.geojsf.XmlViewPortFactory;
@@ -22,11 +24,16 @@ public class WmsTileDownloader
 	
 	private Service service;
 	
+	private int width;
+	private int height;
+	
 	public WmsTileDownloader(Service service)
 	{
 		this.service=service;
+		width=600;
+		height=400;
 	}
-	
+
 	public void download(Map map, File fDst)
 	{
 		String urlRequest = calculateRequest(map);
@@ -47,9 +54,6 @@ public class WmsTileDownloader
 	
 	public String calculateRequest(Map map)
 	{
-		int width=600;
-		int height=400;
-		
 		StringBuffer sb = new StringBuffer();
 		sb.append(service.getUrl());
 		sb.append("?service=WMS&version=1.1.0&request=GetMap&layers=cblt.dss:");
@@ -62,14 +66,25 @@ public class WmsTileDownloader
 		
 		
 		ViewPort viewPort = XmlViewPortFactory.build(map.getLon(), map.getLat());
-		viewPort.setScale(XmlScaleFactory.build(400000));
+		
+		if(map.isSetScale())
+		{
+			viewPort.setScale(XmlScaleFactory.build(map.getScale()));
+		}
+		else
+		{
+			viewPort.setScale(XmlScaleFactory.build(2000000));
+		}
+		
 		calculateBoundingBox(viewPort,width,height);
+		
+		JaxbUtil.info(viewPort);
 		
 		sb.append("&bbox=");
 		sb.append(viewPort.getLeft()).append(",");
+		sb.append(viewPort.getBottom()).append(",");
 		sb.append(viewPort.getRight()).append(",");
-		sb.append(viewPort.getTop()).append(",");
-		sb.append(viewPort.getBottom());
+		sb.append(viewPort.getTop());
 
 		sb.append("&width=800&height=600&format=image/png");
 		
@@ -91,7 +106,10 @@ public class WmsTileDownloader
 		
 		viewPort.setLeft(viewPort.getLon()-halfWidth);
 		viewPort.setRight(viewPort.getLon()+halfWidth);
-		viewPort.setTop(viewPort.getLat()-halfHeight);
-		viewPort.setBottom(viewPort.getLat()+halfHeight);
+		viewPort.setTop(viewPort.getLat()+halfHeight);
+		viewPort.setBottom(viewPort.getLat()-halfHeight);
 	}
+	
+	public void setWidth(int width) {this.width = width;}
+	public void setHeight(int height) {this.height = height;}
 }

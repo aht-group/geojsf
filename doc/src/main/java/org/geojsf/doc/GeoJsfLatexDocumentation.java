@@ -19,6 +19,9 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.doc.ofx.OfxLayerTableFactory;
 import org.geojsf.doc.ofx.OfxMapSectionFactory;
 import org.geojsf.doc.ofx.OfxServiceListFactory;
+import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
+import org.geojsf.factory.xml.geojsf.XmlMapFactory;
+import org.geojsf.factory.xml.geojsf.XmlViewFactory;
 import org.geojsf.util.wms.WmsTileDownloader;
 import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
@@ -180,14 +183,43 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		}
 	}
 	
-	public void downloadMapTiles(File fBase)
+	public void downloadTilesMap(File fBase)
 	{
 		WmsTileDownloader tileDownloader = new WmsTileDownloader(repository.getService().get(0));
+		tileDownloader.setWidth(60);
+		tileDownloader.setHeight(40);
 		logger.info("Downloading Map Tiles");
 		for(Map map : maps.getMap())
 		{
 			logger.info("  "+map.getCode());
-			File f = new File(fBase,map.getCode()+".png");
+			tileDownloader.download(map,new File(fBase,map.getCode()+".png"));
+		}
+	}
+	
+	public void downloadTilesLayer(Maps layerInfo, File fBase)
+	{
+		WmsTileDownloader tileDownloader = new WmsTileDownloader(repository.getService().get(0));
+		logger.info("Downloading Layer Tiles");
+		for(Layer layer : layers.getLayer())
+		{
+			Map mapRef=null;
+			try{mapRef = GeoJsfXpath.getMap(layerInfo, layer.getCode());}
+			catch (ExlpXpathNotFoundException e)
+			{
+				try {mapRef = GeoJsfXpath.getMap(layerInfo, "default");}
+				catch (ExlpXpathNotFoundException e1) {e1.printStackTrace();}
+				catch (ExlpXpathNotUniqueException e1) {e1.printStackTrace();}
+			}
+			catch (ExlpXpathNotUniqueException e) {e.printStackTrace();}
+			
+			Map map = XmlMapFactory.build(mapRef.getLat(), mapRef.getLon());
+			map.setZoom(mapRef.getZoom());
+			if(mapRef.isSetScale()){map.setScale(mapRef.getScale());}
+			map.getView().add(XmlViewFactory.build(1, true, false, XmlLayerFactory.build(layer.getCode())));
+			
+			logger.info("  "+layer.getCode());
+			File f = new File(fBase,layer.getCode().replaceAll("\\.", "")+".png");
+			JaxbUtil.trace(map);
 			tileDownloader.download(map,f);
 		}
 	}
