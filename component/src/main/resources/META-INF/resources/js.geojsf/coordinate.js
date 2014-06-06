@@ -1,6 +1,6 @@
 var GeoJsfCoordinate = {	
 
-		addCoordinatesControl : function(position)
+		addCoordinatesControl : function(position, precision)
 		{
 			// Apply given style
 			var style = "z-index: 1001; margin: 2px; ";
@@ -22,7 +22,7 @@ var GeoJsfCoordinate = {
 			 }
 
 			mousePosition = new OpenLayers.Control.MousePosition({ prefix: '<nobr>', emptyString: ''});
-			mousePosition.formatOutput = function(lonlat) {return [lonlat.lat, lonlat.lon].join(", ");}
+			mousePosition.formatOutput = function(lonlat) {return [(lonlat.lat).toFixed(precision), (lonlat.lon).toFixed(precision)].join(", ");}
 			GeoJSF.map.addControl(mousePosition);
 			mousePosition.element.setAttribute("style", style);
 			return mousePosition;
