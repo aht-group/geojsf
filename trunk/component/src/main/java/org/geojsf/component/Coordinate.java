@@ -23,7 +23,7 @@ public class Coordinate extends UIPanel implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Coordinate.class);
 	
-	private static enum Attribute {orientation}
+	private static enum Attribute {orientation, precision}
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -41,9 +41,20 @@ public class Coordinate extends UIPanel implements ClientBehaviorHolder
 		Map<String,Object> map = this.getAttributes();
 		String orientation = map.get(Attribute.orientation.toString()).toString();
 		
+		// Precision defaults to 5
+		String precision   = null;
+		if (null!=map.get(Attribute.precision.toString()))
+		{
+		    precision   = map.get(Attribute.precision.toString()).toString();
+		}
+		else
+		{
+			precision   = "5";
+		}
+		
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("script", this);
-		writer.writeText("GeoJsfCoordinate.addCoordinatesControl('"+orientation+"');", null); 
+		writer.writeText("GeoJsfCoordinate.addCoordinatesControl('"+orientation+"'," +precision +");", null); 
 		writer.endElement("script");
 	}
 }
