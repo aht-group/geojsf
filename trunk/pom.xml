@@ -127,12 +127,22 @@
 			<layout>default</layout>
 		</repository>
 		
+		<!-- Only temporarily required until developer has fixed the bug for maven central -->
+		<repository>
+			<id>bintray</id>
+			<name>bintray</name>
+			<snapshots><enabled>false</enabled></snapshots>
+			<url>http://dl.bintray.com/filosganga/maven</url>
+			<layout>default</layout>
+		</repository>
+		
 		<repository>  
 		    <id>prime-repo</id>  
 		    <name>PrimeFaces Maven Repository</name>  
 		    <url>http://repository.primefaces.org</url>  
 		    <layout>default</layout>  
 		</repository>
+		
 		<repository>
 			<id>aht-3rdparty</id>
 			<name>AHT Nexus Third Party</name>
