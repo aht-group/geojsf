@@ -36,6 +36,13 @@
 			<artifactId>geojsf-entities</artifactId>
 		</dependency>
 	
+		<!-- AHT Utils -->
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-jsf</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
 		<dependency>
 		    <groupId>com.sun.faces</groupId>
 		    <artifactId>jsf-api</artifactId>
