@@ -46,6 +46,18 @@
 		<!-- GeoJSF -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-xml</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>ahtutils-xml</artifactId>
+					<groupId>net.sf.ahtutils</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- Test -->
+		<dependency>
+			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-entities</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -73,6 +85,12 @@
    	   		<scope>provided</scope>
    	   	</dependency>
    	   	
+   	   	<!-- AHT Utils -->
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-jsf</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>net.sf.ahtutils</groupId>
 			<artifactId>ahtutils-util</artifactId>
@@ -128,16 +146,7 @@
 			<artifactId>geojsf-interfaces</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.geojsf</groupId>
-			<artifactId>geojsf-xml</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>ahtutils-xml</artifactId>
-					<groupId>net.sf.ahtutils</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+		
 		
 		<dependency>
 		   <groupId>org.jboss.spec</groupId>
@@ -160,10 +169,7 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-jsf</artifactId>
-		</dependency>
+
 
 		<dependency>  
 			<groupId>org.primefaces</groupId>  
