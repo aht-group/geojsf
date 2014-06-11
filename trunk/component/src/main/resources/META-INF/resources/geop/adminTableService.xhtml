@@ -13,17 +13,17 @@
         
 	<composite:implementation>
 		<p:dataTable var="s" value="#{adminMapServiceBean.services}"
-							selection="#{adminMapServiceBean.service}" selectionMode="single" rowKey="#{s.id}"
-							draggableRows="true">
+						selection="#{adminMapServiceBean.service}" selectionMode="single" rowKey="#{s.id}"
+						draggableRows="true">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.mapServices}">
-                    <aht:icon type="add" listener="#{adminMapServiceBean.addService()}" update=":pgCenter :pgEast"/>
+                    <aht:icon type="add" listener="#{adminMapServiceBean.addService()}" update=":pgCenter :sLayer"/>
                 </aht:pfDataTableHeader>
             </f:facet>
-            <p:ajax event="rowSelect" update=":pgCenter :pgEast" listener="#{adminMapServiceBean.selectService}"/>
+            <p:ajax event="rowSelect" update=":pgCenter :sLayer" listener="#{adminMapServiceBean.selectService}"/>
             <p:ajax event="rowReorder" listener="#{adminMapServiceBean.reorderService}"/>
-            <p:column headerText="#{msg.mapCode}" sortBy="#{s.code}">
-				<h:outputText value="#{s.code}" />  
+            <p:column headerText="#{msg.mapServiceName}" sortBy="#{s.code}">
+				<h:outputText value="#{s.name[userBean.localeCode].lang}" />  
 			</p:column>
 		</p:dataTable>
    </composite:implementation>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:aht="http://ahtutils.sourceforge.net/jsf"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	<composite:interface>
+
+	</composite:interface>
+        
+	<composite:implementation>
+		<p:panel header="#{msg.mapLayer}">
+			<f:facet name="actions">
+				<aht:icon type="save" listener="#{adminMapServiceBean.saveLayer()}" update=":pgCenter :sLayer"/>
+			</f:facet>
+			<h:panelGrid columns="2" columnClasses=",w100">
+							<h:outputText value="#{msg.mapCode}"/>
+							<p:inputText value="#{adminMapServiceBean.layer.code}"/>
+							 <h:outputText value="#{msg.mapTemporalLayer}" />  
+        					<p:selectBooleanCheckbox value="#{adminMapServiceBean.layer.temporalLayer}" />  
+							<h:outputText value="#{msg.mapService}"/>
+							<p:selectOneMenu styleClass="w100" value="#{adminMapServiceBean.layer.service}" effect="fade" converter="GeoServiceConverter">  
+								<f:selectItems value="#{adminMapServiceBean.services}" var="s" itemLabel="#{s.code}" itemValue="#{s}"/>
+							</p:selectOneMenu>
+						</h:panelGrid>
+						<aht:tabTranslationEditor value="#{adminMapServiceBean.layer}"
+							keys="#{translationBean.langKeys}" withDescription="true"
+							labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"/>
+		</p:panel>
+   </composite:implementation>
+</html>
