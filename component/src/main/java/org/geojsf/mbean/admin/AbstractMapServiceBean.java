@@ -68,6 +68,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		efLang = EjbLangFactory.createFactory(cLang);
     	efDescription = EjbDescriptionFactory.createFactory(clDescription);
     	efService = EjbGeoServiceFactory.factory(cService);
+    	efLayer = EjbGeoLayerFactory.factory(cLang,cLayer);
     	efMap = EjbGeoMapFactory.factory(cLang, cMap);
     	efView = EjbGeoViewFactory.factory(cView);
 	}
@@ -79,7 +80,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	
 	public void addService() throws UtilsIntegrityException, InstantiationException, IllegalAccessException
 	{
-		service = efService.build("ocde", "http");
+		service = efService.build(null, null);
 		
 		service.setName(efLang.createEmpty(langKeys));
 		service.setDescription(efDescription.createEmpty(langKeys));
@@ -115,7 +116,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	public void addLayer() throws UtilsIntegrityException, UtilsNotFoundException, InstantiationException, IllegalAccessException
 	{
 		logger.info("addLayer ");
-		layer = efLayer.build("", service,langKeys);
+		layer = efLayer.build(null, service,langKeys);
 		
 		layer.setDescription(efDescription.createEmpty(langKeys));
 	}
