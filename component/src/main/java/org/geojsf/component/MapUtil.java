@@ -18,7 +18,9 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,22 +36,32 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 	@SuppressWarnings("unchecked")
 	public MapUtil(FacesContext context)
 	{
-		try
+		if(context.getExternalContext().getInitParameter("org.geojsf.SERVICE")==null)
 		{
-			clService = (Class<SERVICE>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.SERVICE"));
-			clLayer = (Class<LAYER>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.LAYER"));
-			clMap = (Class<MAP>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.MAP"));
-			clView = (Class<VIEW>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.VIEW"));
-			
-			logger.info("Using "+clService.getName());
-			logger.info("Using "+clLayer.getName());
-			logger.info("Using "+clMap.getName());
-			logger.info("Using "+clView.getName());
+			clService = (Class<SERVICE>)DefaultGeoJsfService.class;
+			clLayer = (Class<LAYER>)DefaultGeoJsfLayer.class;
+			clMap = (Class<MAP>)DefaultGeoJsfMap.class;
+			clView = (Class<VIEW>)DefaultGeoJsfView.class;
 		}
-		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		else
+		{
+			try
+			{
+				clService = (Class<SERVICE>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.SERVICE"));
+				clLayer = (Class<LAYER>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.LAYER"));
+				clMap = (Class<MAP>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.MAP"));
+				clView = (Class<VIEW>) Class.forName(context.getExternalContext().getInitParameter("org.geojsf.VIEW"));
+			}
+			catch (ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
 		}
+		
+		logger.info("Using SERVICE "+clService.getName());
+		logger.info("Using LAYER "+clLayer.getName());
+		logger.info("Using MAP "+clMap.getName());
+		logger.info("Using MAP "+clView.getName());
 	}
 	
 	
@@ -184,7 +196,17 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 		 map.setTemporalLayerNames(new ArrayList<String>());
 		 map.setServiceList(new ArrayList<SERVICE>());
 		 
-		 MAP dmMap = clMap.newInstance();
+		 
+		 MAP dmMap=null;
+		try {
+			dmMap = clMap.newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 
 		 dmMap.setViews(new ArrayList<VIEW>());
 		 logger.info("Initial layer configuration.");
