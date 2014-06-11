@@ -24,8 +24,8 @@ public class AbstractGeoJsfUtilTest
 	
 	protected EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efService;
 	protected EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efLayer;
-	protected EjbGeoMapFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efView;
-	protected EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efViewLayer;
+	protected EjbGeoMapFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efMap;
+	protected EjbGeoViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> efView;
 	
 	@BeforeClass
     public static void initLogger()
@@ -48,7 +48,7 @@ public class AbstractGeoJsfUtilTest
 	{
 		efService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		efLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
-		efView = EjbGeoMapFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfMap.class);
-		efViewLayer = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
+		efMap = EjbGeoMapFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfMap.class);
+		efView = EjbGeoViewFactory.factory(DefaultGeoJsfView.class);
 	}
 }
