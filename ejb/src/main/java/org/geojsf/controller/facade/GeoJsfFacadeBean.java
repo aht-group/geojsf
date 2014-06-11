@@ -1,6 +1,12 @@
 package org.geojsf.controller.facade;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
@@ -20,6 +26,18 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 	public GeoJsfFacadeBean(EntityManager em)
 	{
 		this.em=em;
+	}
+	
+	@Override public <T extends Object> List<T> all(Class<T> type)
+	{
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(type);
+		Root<T> from = criteriaQuery.from(type);
+		
+		CriteriaQuery<T> select = criteriaQuery.select(from);
+		
+		TypedQuery<T> typedQuery = em.createQuery(select);
+		return typedQuery.getResultList();
 	}
 	
 	@Override public <T extends Object> T find(Class<T> type, long id) throws UtilsNotFoundException
