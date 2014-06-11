@@ -22,7 +22,7 @@
 							 <h:outputText value="#{msg.mapTemporalLayer}" />  
         					<p:selectBooleanCheckbox value="#{adminMapServiceBean.layer.temporalLayer}" />  
 							<h:outputText value="#{msg.mapService}"/>
-							<p:selectOneMenu styleClass="w100" value="#{adminMapServiceBean.layer.service}" effect="fade" converter="GeoServiceConverter">  
+							<p:selectOneMenu styleClass="w100" value="#{adminMapServiceBean.layer.service}" effect="fade">  
 								<f:selectItems value="#{adminMapServiceBean.services}" var="s" itemLabel="#{s.code}" itemValue="#{s}"/>
 							</p:selectOneMenu>
 						</h:panelGrid>
