@@ -160,7 +160,7 @@
 					<artifactId>ahtutils-maven</artifactId>
 					<version>0.2.6-SNAPSHOT</version>
 				</plugin>
-								<plugin>
+				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
 					<version>1.0.0</version>

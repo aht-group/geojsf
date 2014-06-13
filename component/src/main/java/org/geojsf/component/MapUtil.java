@@ -18,9 +18,7 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,10 +36,11 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 	{
 		if(context.getExternalContext().getInitParameter("org.geojsf.SERVICE")==null)
 		{
-			clService = (Class<SERVICE>)DefaultGeoJsfService.class;
-			clLayer = (Class<LAYER>)DefaultGeoJsfLayer.class;
-			clMap = (Class<MAP>)DefaultGeoJsfMap.class;
-			clView = (Class<VIEW>)DefaultGeoJsfView.class;
+			//GEO-131
+//			clService = (Class<SERVICE>)DefaultGeoJsfService.class;
+//			clLayer = (Class<LAYER>)DefaultGeoJsfLayer.class;
+//			clMap = (Class<MAP>)DefaultGeoJsfMap.class;
+//			clView = (Class<VIEW>)DefaultGeoJsfView.class;
 		}
 		else
 		{
@@ -63,8 +62,6 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 		logger.info("Using MAP "+clMap.getName());
 		logger.info("Using MAP "+clView.getName());
 	}
-	
-	
 	
 	public static String searchTimeDefinition(UIComponent map)
 	{
