@@ -443,6 +443,6 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	public Boolean getRefreshLayersOnUpdate() {return refreshLayersOnUpdate;}
 	public void setRefreshLayersOnUpdate(Boolean refreshLayersOnUpdate) {this.refreshLayersOnUpdate = refreshLayersOnUpdate;}
 
-	public MAP getDmMap() return dmMap;}
+	public MAP getDmMap() {return dmMap;}
 	public void setDmMap(MAP dmMap) {this.dmMap = dmMap;}
 }
