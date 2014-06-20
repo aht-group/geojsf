@@ -74,6 +74,10 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"OpenLayers.js");
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"GeoJSF.js");
 		}
+		else
+		{
+			logger.info("received ComponentSystemEvent: " +event.getClass().getName());
+		}
 		super.processEvent(event);
 	}
 	
@@ -192,8 +196,10 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 			temporalLayerNames.add(service.getId() +"");
 			renderer.renderTextWithLB("params.time      = '"+timeInfo +"';");
 		}
-		
-		renderer.renderTextWithLB("params.transparent = true;");
+		if (!baseLayer)
+		{
+			renderer.renderTextWithLB("params.transparent = true;");
+		}
 		renderer.renderTextWithLB("params.format      = 'image/png';");
 	//	renderer.renderTextWithLB("params.makeTheUrlLong      = 'longText';");
 		renderer.renderTextWithLB("var options = {};");
@@ -215,6 +221,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	public void decode(FacesContext context)
 	{
 		logger.info("Should decode phase be processed?" +this.isRendered());
+		logger.info("Current Phase: " +context.getCurrentPhaseId().toString());
 		if (this.isRendered())
 		{
 			java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
@@ -232,8 +239,8 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		    // This will be compared to the values stored in the session before (activate this to check)
 	    	// logger.info("Services: " +new LayerSwitchHelper(services, layerNames).toString());
 		    
-		    /*
-		    if (null!=services && ((null != behaviorEvent && !behaviorEvent.equals("layerSwitch")) || null==behaviorEvent))
+		    
+		    if (null!=services && ((null != behaviorEvent && !behaviorEvent.equals("layerSwitch")) || null==behaviorEvent || behaviorEvent.equals("updateLayer")))
 			{
 				// Iterate through all Views (that hold the information if a Layer is visible)
 				for (VIEW view : dmMap.getViews())
@@ -242,13 +249,13 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 					Integer layerId   = (int) view.getLayer().getId();
 					
 					// Check the visibility value before and currently
-					Boolean before    = services.get(serviceId +"").getLayer().get(layerId +"");
+					Boolean before    = (Boolean) services.get(serviceId +"").getLayer().get(layerId +"");
 					Boolean now       = view.isVisible();
 					
 					if (before.equals(now))
 					{
 						// If there is no change, do nothing
-						// logger.info("Layer " +view.getLayer().getCode() +" did not change it's visibility. Still " +view.isVisible());
+						 logger.info("Layer " +view.getLayer().getCode() +" did not change it's visibility. Still " +view.isVisible());
 					}
 					else
 					{
@@ -272,7 +279,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 						RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
 					}
 				}
-			} */
+			}
 			
 			// Handling of mapClick event fired by JavaScript API
 	        if (null!= behaviorEvent && behaviorEvent.equals("mapClick"))
@@ -436,6 +443,6 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	public Boolean getRefreshLayersOnUpdate() {return refreshLayersOnUpdate;}
 	public void setRefreshLayersOnUpdate(Boolean refreshLayersOnUpdate) {this.refreshLayersOnUpdate = refreshLayersOnUpdate;}
 
-	public MAP getDmMap() {return dmMap;}
+	public MAP getDmMap() return dmMap;}
 	public void setDmMap(MAP dmMap) {this.dmMap = dmMap;}
 }

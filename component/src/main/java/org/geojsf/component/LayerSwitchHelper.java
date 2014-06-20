@@ -5,8 +5,13 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
+import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+
 import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 
 
-public class LayerSwitchHelper implements Serializable{
+public class LayerSwitchHelper<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>> implements Serializable{
 	
 	private static final long serialVersionUID = -418623496825143747L;
 
@@ -36,7 +41,7 @@ public class LayerSwitchHelper implements Serializable{
 		this.layerNames = layerNames;
 	}
 	
-	private void buildInternalListFromMapLayers(List<DefaultGeoJsfService> serviceList) {
+	private void buildInternalListFromMapLayers(List<SERVICE> serviceList) {
 		
 		services        = new Hashtable<String, Service>();
 		layerNames      = new Hashtable<String, String>();
@@ -44,7 +49,7 @@ public class LayerSwitchHelper implements Serializable{
 		
 		logger.info("Service list of map has " +serviceList.size() +" services.");
 		//Construct the simplified dedicated services list from the Map datamodel
-		for (GeoJsfService geoService : serviceList)
+		for (SERVICE geoService : serviceList)
 		{
 			logger.info("Processing Service " +geoService.getId());
 			service = new Service();
