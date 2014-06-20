@@ -1,33 +1,12 @@
 package org.geojsf.component;
 
-import java.io.IOException;
-import java.util.Hashtable;
-import java.util.List;
-
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
-import javax.faces.component.UISelectMany;
-import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
-
-import org.geojsf.component.LayerSwitchHelper.Service;
-import org.geojsf.controller.util.GeoJsfMapHelper;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
-import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
-import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import org.primefaces.component.behavior.ajax.AjaxBehavior;
-import org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox;
-import org.primefaces.context.RequestContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 @ResourceDependencies({
@@ -38,7 +17,13 @@ import org.slf4j.LoggerFactory;
 @FacesComponent(value="org.geojsf.component.LayerSwitcher")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHolder{
-	
+
+	@Override
+	public String getFamily() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/*
 	final static Logger logger = LoggerFactory.getLogger(LayerSwitcher.class);
 	
 	private Boolean initStage = true;
@@ -171,4 +156,5 @@ public class LayerSwitcher extends UIComponentBase implements ClientBehaviorHold
 
 	public Hashtable<String, Service> getServices() {return services;}
 	public void setServices(Hashtable<String, Service> services) {this.services = services;}
+	*/
 }

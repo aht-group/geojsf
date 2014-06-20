@@ -1,6 +1,7 @@
 var GeoJSF = {	
 		map: null,
 		switcher: null,
+		commandCorrect: true,
 		
 		bootstrap : function()
 		{
@@ -229,17 +230,17 @@ var GeoJSF = {
 			 // This is the PrimeFaces based solution along with an 'oncomplete' call
 			 PrimeFaces.ab({process: '@all', 
 				 			source: 'source', 
-				 			event: 'layerSwitch', 
+				 			event: 'updateMap', 
 				 			params: [],
 				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
 		},
 		
 		performLayerSwitch : function(xhr, status, args)
 		{
+			try {
 			console.log("Performing layer switch via OpenLayers.");
-			console.log(args);
-			console.log(args.toggleLayer);
 			var command = JSON.parse(args.toggleLayer);
+			
 		//    alert("OpenLayers: Please set " +command.serviceId +" to have the layers " +command.layer +" using the method " +command.command);
 			if (command.command == "hide")
 				{
@@ -275,5 +276,9 @@ var GeoJSF = {
 				    	wmsLayer.mergeNewParams(params);
 				    	} else {console.log('big problem');}
 			}
+			} catch(e) {
+				 console.log("A problem occured when interpreting layer switch command. Maybe NULL?");
+			}
+			finally {}
 		}
 };

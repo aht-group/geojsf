@@ -38,6 +38,7 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
+		logger.info("Rendering Viewport.");
 		Map<String,Object> map = this.getAttributes();
 		double lat = new Double(map.get(Attribute.lat.toString()).toString());
 		double lon = new Double(map.get(Attribute.lon.toString()).toString());

@@ -74,7 +74,7 @@ public class JsfRenderUtil {
 				}
 				if (cl.getClass().getName().equals("org.primefaces.component.behavior.ajax.AjaxBehavior"))
 				{
-					org.primefaces.component.behavior.ajax.AjaxBehavior ajax = (org.primefaces.component.behavior.ajax.AjaxBehavior) cl;
+					org.primefaces.behavior.ajax.AjaxBehavior ajax = (org.primefaces.behavior.ajax.AjaxBehavior) cl;
 					updateOnClick.append(ajax.getUpdate().replaceAll(":", ""));
 					logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
 				}
