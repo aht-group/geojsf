@@ -11,6 +11,7 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Query;
 import org.slf4j.Logger;
@@ -30,8 +31,8 @@ public class XmlMapFactory implements Serializable
 		this.q=q;
 	}
 
-	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>, VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
-		Map build (GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL> ejb)
+	public <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
+		Map build (GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP> ejb)
 	{
 		Map xml = new Map();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}

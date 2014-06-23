@@ -9,6 +9,7 @@ import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
@@ -30,7 +31,7 @@ public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 	private DefaultGeoJsfLayer layerA;
 	private DefaultGeoJsfLayer layerB;
 	
-	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView> fService;
+	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort> fService;
 	
 	@Before
 	public void init() throws UtilsIntegrityException

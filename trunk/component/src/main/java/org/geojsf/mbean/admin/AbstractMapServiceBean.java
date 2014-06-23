@@ -21,10 +21,11 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>> 
+public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -32,10 +33,10 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	
 	protected EjbLangFactory<L> efLang;
 	protected EjbDescriptionFactory<D> efDescription;
-	protected EjbGeoServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW> efService;
-	protected EjbGeoLayerFactory<L,D,SERVICE,LAYER,MAP,VIEW> efLayer;
-	protected EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW> efMap;
-	protected EjbGeoViewFactory<L,D,SERVICE,LAYER,MAP,VIEW> efView;
+	protected EjbGeoServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> efService;
+	protected EjbGeoLayerFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> efLayer;
+	protected EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> efMap;
+	protected EjbGeoViewFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> efView;
 	
 	protected GeoJsfUtilsFacade fGeo;
 	

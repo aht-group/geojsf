@@ -6,7 +6,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
-public interface GeoJsfView<L extends UtilsLang,
+public interface GeoJsfViewPort<L extends UtilsLang,
 						D extends UtilsDescription,
 						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>,
 						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,
@@ -15,21 +15,6 @@ public interface GeoJsfView<L extends UtilsLang,
 						VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
 			extends EjbWithId,EjbRemoveable
 {
-	public static final String extractId = "geoJsfView";
-	
-	MAP getMap();
-	void setMap(MAP view);
-	
-	LAYER getLayer();
-	void setLayer(LAYER layer);
-	
-	int getOrderNo();
-	void setOrderNo(int orderNo);
-	
-	Boolean isVisible();
-	void setVisible(Boolean visible);
-	
-	Boolean isLegend();
-	void setLegend(Boolean legend);
+	public static final String extractId = "geoJsfViewPort";
 	
 }

@@ -17,17 +17,14 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DbLayerInit <L extends UtilsLang,
-						D extends UtilsDescription,
-						SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
-						LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-						VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
-						VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
+public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
+
 {
 	final static Logger logger = LoggerFactory.getLogger(DbLayerInit.class);
 	
@@ -37,7 +34,7 @@ public class DbLayerInit <L extends UtilsLang,
     private UtilsFacade fUtils;
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
-    private EjbGeoLayerFactory<L,D,SERVICE,LAYER,VIEW,VL> ejbLayerFactory;
+    private EjbGeoLayerFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> ejbLayerFactory;
     
     public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<SERVICE> cService, final Class<LAYER> cLayer,UtilsFacade fUtils)
 	{       
@@ -51,16 +48,11 @@ public class DbLayerInit <L extends UtilsLang,
 		ejbLayerFactory = EjbGeoLayerFactory.factory(cL, cLayer);
 	}
 	
-	public static <L extends UtilsLang,
-					D extends UtilsDescription,
-					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,VIEW,VL>,
-					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,VIEW,VL>,
-					VIEW extends GeoJsfMap<L,D,SERVICE,LAYER,VIEW,VL>,
-					VL extends GeoJsfView<L,D,SERVICE,LAYER,VIEW,VL>>
-		DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL>
+	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
+		DbLayerInit<L,D,SERVICE,LAYER,MAP,VIEW,VP>
 		factory(final Class<L> cL, final Class<D> cD,final Class<SERVICE> cService, final Class<LAYER> cLayer,UtilsFacade fUtils)
 	{
-		return new DbLayerInit<L,D,SERVICE,LAYER,VIEW,VL>(cL,cD,cService,cLayer,fUtils);
+		return new DbLayerInit<L,D,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cService,cLayer,fUtils);
 	}
 
 	public void iuLayers(Layers layers, String[] langKeys) throws UtilsConfigurationException

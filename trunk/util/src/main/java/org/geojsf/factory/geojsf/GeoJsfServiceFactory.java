@@ -12,10 +12,11 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfServiceFactory.class);
 	
@@ -31,10 +32,10 @@ public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription
     	orderedServices = new ArrayList<SERVICE>();
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
-    	GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW> factory(final Class<SERVICE> clService)
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
+    	GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> factory(final Class<SERVICE> clService)
     {
-        return new GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW>(clService);
+        return new GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP>(clService);
     }
 	 
 	public List<SERVICE> build(MAP map)

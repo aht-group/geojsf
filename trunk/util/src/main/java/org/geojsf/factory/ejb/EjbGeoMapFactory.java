@@ -8,20 +8,20 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoMapFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
-{
+public class EjbGeoMapFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>{
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoMapFactory.class);
 	
 	final Class<MAP> cMap;
 	private EjbLangFactory<L> fLang;
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
-    	EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW> factory(final Class<L> cLang,final Class<MAP> cMap)
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
+    	EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> factory(final Class<L> cLang,final Class<MAP> cMap)
     {
-        return new EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW>(cLang,cMap);
+        return new EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP>(cLang,cMap);
     }
     
     public EjbGeoMapFactory(final Class<L> cLang,final Class<MAP> cMap)
