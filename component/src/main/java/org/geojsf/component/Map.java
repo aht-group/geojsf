@@ -3,7 +3,6 @@ package org.geojsf.component;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -31,6 +30,7 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.xml.geojsf.Scales;
 import org.geojsf.xml.gml.Coordinates;
@@ -43,7 +43,7 @@ import org.slf4j.LoggerFactory;
 	@ResourceDependency(library = "geojsf", name = "geojsf.css", target = "head")})
 @FacesComponent(value="org.geojsf.component.Map")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>> 
+public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>> 
 	extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
@@ -98,7 +98,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 				if (true) 
 				{
 					// TODO: Really a new instance required, or should it be in the constructor?
-					MapUtil<L,D,SERVICE,LAYER,MAP,VIEW> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW>(ctx);
+					MapUtil<L,D,SERVICE,LAYER,MAP,VIEW,VP> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW,VP>(ctx);
 					dmMap = util.initLayerConfiguration(this);
 					for (VIEW view : dmMap.getViews())
 					{
@@ -231,7 +231,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		    // Create a new GeoJsfMap from the given (maybe manipulated) map object
 		    try
 		    {
-		    	MapUtil<L,D,SERVICE,LAYER,MAP,VIEW> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW>(context);
+		    	MapUtil<L,D,SERVICE,LAYER,MAP,VIEW,VP> util = new MapUtil<L,D,SERVICE,LAYER,MAP,VIEW,VP>(context);
 				dmMap = util.initLayerConfiguration(this);
 			}
 		    catch (Exception e) {e.printStackTrace();}

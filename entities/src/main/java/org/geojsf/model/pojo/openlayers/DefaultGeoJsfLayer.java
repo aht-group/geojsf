@@ -15,7 +15,7 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 @EjbErNode(name="Layer",category="geojsf")
 public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
+								GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort>
 {
 	public static enum Code {welcome}
 	

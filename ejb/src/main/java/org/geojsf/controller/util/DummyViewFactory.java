@@ -12,13 +12,14 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 
-public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
 {
-	private EjbGeoServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW> fService;
-	private EjbGeoLayerFactory<L,D,SERVICE,LAYER,MAP,VIEW> fLayer;
-	private EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW> fMap;
-	private EjbGeoViewFactory<L,D,SERVICE,LAYER,MAP,VIEW> fView;
+	private EjbGeoServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> fService;
+	private EjbGeoLayerFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> fLayer;
+	private EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> fMap;
+	private EjbGeoViewFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> fView;
 	
 	public SERVICE serviceOsm,serviceAht;
 	public SERVICE getServiceOsm() {return serviceOsm;}
@@ -38,10 +39,10 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,SER
 	
 	private final String[] langs = {"en","de"};
 	
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
-    	DummyViewFactory<L,D,SERVICE,LAYER,MAP,VIEW> factory(final Class<L> clLang,final Class<D> clDescription,final Class<SERVICE> clService,final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)
+    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
+		DummyViewFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> factory(final Class<L> clLang,final Class<D> clDescription,final Class<SERVICE> clService,final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)
     {
-        return new DummyViewFactory<L,D,SERVICE,LAYER,MAP,VIEW>(clLang,clDescription,clService,clLayer,clMap,clView);
+        return new DummyViewFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP>(clLang,clDescription,clService,clLayer,clMap,clView);
     }
 	
     public DummyViewFactory(final Class<L> clLang,final Class<D> clDescription,final Class<SERVICE> clService,final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)

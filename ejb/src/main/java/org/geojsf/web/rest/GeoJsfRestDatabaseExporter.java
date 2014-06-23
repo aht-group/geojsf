@@ -12,6 +12,7 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.rest.db.GeoJsfDatabaseExportRest;
 import org.geojsf.util.query.GeoJsfQuery;
 import org.geojsf.xml.geojsf.Layers;
@@ -21,12 +22,7 @@ import org.geojsf.xml.geojsf.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
-									D extends UtilsDescription,
-									SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,
-									LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
-									MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
-									VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
 				implements GeoJsfDatabaseExportRest
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfRestDatabaseExporter.class);
@@ -47,16 +43,11 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 //		this.cView=cView;
 	}
 	
-	public static <L extends UtilsLang,
-					D extends UtilsDescription,
-					SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,
-					LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,
-					MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,
-					VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
-		GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW>
+	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
+		GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW,VP>
 		factory(UtilsSecurityFacade fSecurity, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap)
 	{
-		return new GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW>(fSecurity,cService,cLayer,cMap);
+		return new GeoJsfRestDatabaseExporter<L,D,SERVICE,LAYER,MAP,VIEW,VP>(fSecurity,cService,cLayer,cMap);
 	}
 
 	@Override

@@ -17,12 +17,13 @@ import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW>,LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW>,VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW>>
+public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
 {	
 	final static Logger logger = LoggerFactory.getLogger(MapUtil.class);
 	
@@ -188,7 +189,7 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 		baseLayer.setIsBaseLayer(true);
 	}
 	
-	public MAP initLayerConfiguration(Map<L,D,SERVICE,LAYER,MAP,VIEW> map) throws Exception
+	public MAP initLayerConfiguration(Map<L,D,SERVICE,LAYER,MAP,VIEW,VP> map) throws Exception
 	{
 		 map.setTemporalLayerNames(new ArrayList<String>());
 		 map.setServiceList(new ArrayList<SERVICE>());
@@ -282,7 +283,7 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 			 @SuppressWarnings("rawtypes")
 			 MAP mapDm = (MAP)map.getAttributes().get("value");
 			 dmMap           = (MAP)map.getAttributes().get("value");
-			 GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW> fService;
+			 GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> fService;
 			 fService = GeoJsfServiceFactory.factory(clService);
 			 
 			 map.setServiceList(fService.buildI(mapDm));
