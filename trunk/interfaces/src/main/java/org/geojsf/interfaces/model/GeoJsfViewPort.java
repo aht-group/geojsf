@@ -17,4 +17,12 @@ public interface GeoJsfViewPort<L extends UtilsLang,
 {
 	public static final String extractId = "geoJsfViewPort";
 	
+	double getLat();
+	void setLat(double lat);
+	
+	double getLon();
+	void setLon(double lon);
+	
+	double getScale();
+	void setScale(double scale);
 }

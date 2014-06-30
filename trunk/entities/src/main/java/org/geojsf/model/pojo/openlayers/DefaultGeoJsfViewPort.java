@@ -2,8 +2,6 @@ package org.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
 
-import javax.persistence.ManyToOne;
-
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
@@ -22,6 +20,18 @@ public class DefaultGeoJsfViewPort implements Serializable,EjbRemoveable,EjbPers
 	private long id;
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
+	
+	private double lat;
+	@Override public double getLat(){return lat;}
+	@Override public void setLat(double lat){this.lat = lat;}
+	
+	private double lon;
+	@Override public double getLon(){return lon;}
+	@Override public void setLon(double lon){this.lon = lon;}
+	
+	private double scale;
+	@Override public double getScale(){return scale;}
+	@Override public void setScale(double scale){this.scale = scale;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	
