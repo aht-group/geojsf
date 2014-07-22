@@ -314,5 +314,10 @@ public class ViewPort
     public void unsetTop() {
         this.top = null;
     }
+    
+    public String toString()
+    {
+		return "Center of Viewport: " +this.getLon() +"/" +this.getLat() +" with Bounds: (" +this.getTop() +"," +this.getBottom() +"," +this.getRight() +"," +this.getLeft() +")";
+    }
 
 }
