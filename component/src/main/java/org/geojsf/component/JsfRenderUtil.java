@@ -106,7 +106,7 @@ public class JsfRenderUtil {
 						}
 						logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
 					}
-					if (cl.getClass().getName().equals("org.primefaces.component.behavior.ajax.AjaxBehavior"))
+					if (cl.getClass().getName().equals("org.primefaces.behavior.ajax.AjaxBehavior"))
 					{
 						org.primefaces.behavior.ajax.AjaxBehavior ajax = (org.primefaces.behavior.ajax.AjaxBehavior) cl;
 						updateOnClick.append(ajax.getUpdate().replaceAll(":", ""));
