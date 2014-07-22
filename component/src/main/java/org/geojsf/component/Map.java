@@ -336,7 +336,8 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	     			return;
 	     		}
 	            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
-	            if (behaviors.size() > 0)
+	            
+	            if (null != behaviorsForEvent)
 	            {
 	            	String behaviorSource = params.get("javax.faces.source");
 	            	String clientId = getClientId(context);
