@@ -70,19 +70,28 @@ var GeoJSF = {
 		
 		initMap : function(mapDiv,msOptions,height, width)
 		{
-			GeoJSF.map = new OpenLayers.Map(mapDiv,{controls: [], version: '1.1.0', request: 'GetMap',srs: 'EPSG:4326', height: height, width: width, theme: null, 
+			GeoJSF.map = new OpenLayers.Map(mapDiv,{
 				eventListeners: {
-				//	"moveend": GeoJSF.processEventMove,
-					"click":   GeoJSF.processEventClick
-		        }});
+				//	'moveend': GeoJSF.processEventMove,
+					'click':   GeoJSF.processEventClick
+		        },
+				controls: [], 
+				version: '1.1.0', 
+				request: 'GetMap',
+				srs: 'EPSG:4326', 
+				height: height, 
+				width: width, 
+				theme: null, 
+				});
 		//    var click = new OpenLayers.Control.Click();
 		//    this.map.addControl(click);
 		//    click.activate();
-		    this.switcher = new OpenLayers.Control.LayerSwitcher({'ascending':false});
-		    var touchUI = new OpenLayers.Control.TouchNavigation();
-		    this.map.addControl(touchUI);
+		    
+		//    var touchUI = new OpenLayers.Control.TouchNavigation();
+		//    this.map.addControl(touchUI);
 		    OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 		    //Activate for debugging
+		    //this.switcher = new OpenLayers.Control.LayerSwitcher({'ascending':false});
 		    //this.map.addControl(this.switcher);
 		},
 
@@ -207,7 +216,7 @@ var GeoJSF = {
 			 
 			 // This is the PrimeFaces based solution along with an 'oncomplete' call
 			 PrimeFaces.ab({process: '@all', 
-				 			source: 'source', 
+				 			source: GeoJSF.id, 
 				 			event: 'layerSwitch', 
 				 			params: [{name: 'org.geojsf.switch.layer', value: layerId}],
 				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
