@@ -83,6 +83,41 @@ public class JsfRenderUtil {
 		return updateOnClick.toString();
 	}
 	
+	public static String encodeAjax(ClientBehaviorHolder comp, String eventName)
+	{
+		StringBuffer updateOnClick = new StringBuffer();
+		java.util.Map<String, List<ClientBehavior>> behaviors = comp.getClientBehaviors();
+		for (String key : behaviors.keySet())
+		{
+			List<ClientBehavior> c = behaviors.get(key);
+			for (ClientBehavior cl : c)
+			{
+				if (key.equals(eventName))
+				{
+					logger.info("Detected " +cl.toString() +" added as ClientBehavior");
+					if (cl.getClass().getName().equals("javax.faces.component.behavior.AjaxBehavior"))
+					{
+						AjaxBehavior ajax = (AjaxBehavior) cl;
+						Collection<String> renderList = ajax.getRender();
+						for (String str : renderList)
+						{
+							str = str.replaceAll(":", "");
+							updateOnClick.append(str +" ");
+						}
+						logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
+					}
+					if (cl.getClass().getName().equals("org.primefaces.component.behavior.ajax.AjaxBehavior"))
+					{
+						org.primefaces.behavior.ajax.AjaxBehavior ajax = (org.primefaces.behavior.ajax.AjaxBehavior) cl;
+						updateOnClick.append(ajax.getUpdate().replaceAll(":", ""));
+						logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
+					}
+				}
+			}
+		}
+		return updateOnClick.toString();
+	}
+	
 	public void renderMapInitialization(FacesContext context) throws IOException
 	{
 		renderLinebreaks(1);
@@ -92,6 +127,7 @@ public class JsfRenderUtil {
 		renderTextWithLB("// GeoJSF: Initializing OpenLayers map");
 		renderTextWithLB("GeoJSF.bootstrap();");
 		renderTextWithLB("GeoJSF.addClickHandler('" +map.getClientId() +"','" +map.getClientId() +":resetLayers','" +encodeAjax(map) +"');");
+		renderTextWithLB("GeoJSF.setAjaxUpdates('" +encodeAjax(map, "mapClick") +"', '" +encodeAjax(map, "mapMove") +"');");
 		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"'," +map.getHeight() +", " +map.getWidth() +",'');");
 		
 		if (context.getExternalContext().getInitParameter("geojsf.THEME")!=null)
