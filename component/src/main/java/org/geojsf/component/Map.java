@@ -138,7 +138,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 				{
 					if(!refreshLayersOnUpdate && initStage || refreshLayersOnUpdate)
 					{
-						LayerSwitchHelper helper = new LayerSwitchHelper(this.getServiceList());
+						helper = new LayerSwitchHelper(this.getServiceList());
 						services   = helper.getServices();
 						layerNames = helper.getLayerNames();
 						
@@ -240,7 +240,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	    	// logger.info("Services: " +new LayerSwitchHelper(services, layerNames).toString());
 		    
 		    
-		    if (null!=services && ((null != behaviorEvent && !behaviorEvent.equals("layerSwitch")) || null==behaviorEvent || behaviorEvent.equals("updateLayer")))
+		    if (null!=services && ((null != behaviorEvent && !behaviorEvent.equals("layerSwitch")) || null==behaviorEvent || behaviorEvent.equals("updateMap")))
 			{
 				// Iterate through all Views (that hold the information if a Layer is visible)
 				for (VIEW view : dmMap.getViews())
@@ -301,11 +301,63 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	            		{
 	            			logger.info("Found " +behavior.getClass().toString());
 	            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
+	            			
+	            			try {
 	            			String lat = params.get("org.geojsf.coordinates.lat");
 	            			String lon = params.get("org.geojsf.coordinates.lon");
 	            			String scl = params.get("org.geojsf.coordinates.scale");
 	            			ajaxEvent.setLatLon(lat,lon);
 	            			ajaxEvent.setScale(scl);
+	            			} catch (Exception ex) {logger.error("Could not read coordinates and scale.");}
+	            			
+	            			try {
+	            			String viewPortCenterLon = params.get("org.geojsf.viewport.lon");
+	            			String viewPortCenterLat = params.get("org.geojsf.viewport.lat");
+	            			String viewPortBottom    = params.get("org.geojsf.viewport.bottom");
+	            			String viewPortTop       = params.get("org.geojsf.viewport.top");
+	            			String viewPortLeft      = params.get("org.geojsf.viewport.left");
+	            			String viewPortRight     = params.get("org.geojsf.viewport.right");
+	            			ajaxEvent.setViewport(viewPortCenterLat, viewPortCenterLon, viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
+	            			} catch (Exception ex) {logger.error("Could not read viewport.");}
+	            			
+	            			behavior.broadcast(ajaxEvent);
+	            		}
+	            	}
+	            }
+	        }
+	        
+	     // Handling of mapMove event fired by JavaScript API
+	        if (null!= behaviorEvent && behaviorEvent.equals("mapMove"))
+	        {
+	        	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
+	     		if (behaviors.isEmpty())
+	     		{
+	     			logger.error("no behaviors.exiting.");
+	     			return;
+	     		}
+	            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
+	            if (behaviors.size() > 0)
+	            {
+	            	String behaviorSource = params.get("javax.faces.source");
+	            	String clientId = getClientId(context);
+	            	if (behaviorSource != null && behaviorSource.equals(clientId))
+	            	{
+	            		for (ClientBehavior behavior: behaviorsForEvent)
+	            		{
+	            			logger.info("Found " +behavior.getClass().toString());
+	            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
+	            			
+	            			try {
+	            			String viewPortCenterLon = params.get("org.geojsf.viewport.lon");
+	            			String viewPortCenterLat = params.get("org.geojsf.viewport.lat");
+	            			String viewPortBottom    = params.get("org.geojsf.viewport.bottom");
+	            			String viewPortTop       = params.get("org.geojsf.viewport.top");
+	            			String viewPortLeft      = params.get("org.geojsf.viewport.left");
+	            			String viewPortRight     = params.get("org.geojsf.viewport.right");
+	            			ajaxEvent.setViewport(viewPortCenterLat, viewPortCenterLon, viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
+	            			} catch (Exception ex) {logger.error("Could not read viewport.");}
+		            			
+	            			
 	            			behavior.broadcast(ajaxEvent);
 	            		}
 	            	}
@@ -379,8 +431,6 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 			{
 				logger.info("Exception when restoring: " +e.getMessage());
 			}
-			logger.info("Stage completed. Is this map rendered? " +this.isRendered());
-			logger.debug("Current LayerSwitchHelper content: " +helper.toString());
 		}
 	}
 	
@@ -405,6 +455,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	{
 		ArrayList<String> events = new ArrayList<String>();
 		events.add("mapClick");
+		events.add("mapMove");
 		return events;
 	}
 
