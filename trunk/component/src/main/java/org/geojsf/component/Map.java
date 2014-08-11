@@ -239,8 +239,29 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		    // This will be compared to the values stored in the session before (activate this to check)
 	    	// logger.info("Services: " +new LayerSwitchHelper(services, layerNames).toString());
 		    
+		    // For better reading of the following, some Booleans are defined here
 		    
-		    if (null!=services && ((null != behaviorEvent && !behaviorEvent.equals("layerSwitch")) || null==behaviorEvent || behaviorEvent.equals("updateMap")))
+		    Boolean isLayerSwitchEvent = false;
+		    Boolean isUpdateMapEvent   = false;
+		    Boolean isUpdateModelEvent = false;
+		    Boolean isUpdateTimeEvent  = false;
+		    Boolean isMapClickEvent    = false;
+		    Boolean isMapMoveEvent     = false;
+		    
+		    if (null!=behaviorEvent)
+		    {
+		    	isLayerSwitchEvent = behaviorEvent.equals("layerSwitch");
+			    isUpdateMapEvent   = behaviorEvent.equals("updateMap");
+			    isUpdateModelEvent = behaviorEvent.equals("updateModel");
+			    isUpdateTimeEvent  = behaviorEvent.equals("updateTime");
+			    isMapClickEvent    = behaviorEvent.equals("mapClick");
+			    isMapMoveEvent     = behaviorEvent.equals("mapMove");
+		    }
+		    
+		    
+		    
+		    //if (null!=services && ((null != behaviorEvent && !isLayerSwitchEvent) || null==behaviorEvent || isUpdateMapEvent))
+		    if (null!=services && isUpdateMapEvent)
 			{
 				// Iterate through all Views (that hold the information if a Layer is visible)
 				for (VIEW view : dmMap.getViews())
@@ -282,7 +303,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 			}
 			
 			// Handling of mapClick event fired by JavaScript API
-	        if (null!= behaviorEvent && behaviorEvent.equals("mapClick"))
+	        if (null!= behaviorEvent && isMapClickEvent)
 	        {
 	        	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
 	     		if (behaviors.isEmpty())
@@ -327,7 +348,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	        }
 	        
 	     // Handling of mapMove event fired by JavaScript API
-	        if (null!= behaviorEvent && behaviorEvent.equals("mapMove"))
+	        if (null!= behaviorEvent && isMapMoveEvent)
 	        {
 	        	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
 	     		if (behaviors.isEmpty())
@@ -366,7 +387,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	        }
 	        
 	        // Handling of mapClick event fired by JavaScript API
-	        if (null!= behaviorEvent && behaviorEvent.equals("updateTime"))
+	        if (null!= behaviorEvent && isUpdateTimeEvent)
 	        {
 	        	logger.info("Received updateTime event from JavaScript API.");
 	        	
@@ -380,7 +401,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 	        }
 	        
 	        // Handling of layerSwitch event fired by JavaScript API
-	        if (null!= behaviorEvent && behaviorEvent.equals("layerSwitch"))
+	        if (null!= behaviorEvent && isLayerSwitchEvent)
 			{
 	        	logger.info("Received layerSwitch event from JavaScript API.");
 	        	
@@ -397,11 +418,25 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 				// Generate command to switch layer in OpenLayers using GeoJSF JavaScript API
 				String toggleCommand = helper.toggleLayer(layerId);
 				
+				for (VIEW view : dmMap.getViews())
+				{
+					if (view.getLayer().getId() == new Long(layerId))
+					{
+						view.setVisible(!view.isVisible());
+					}
+				}
+				
 				// Get the state to be saved in session
 				services = helper.getServices();
 				
 				logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand);
 				RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
+			}
+	        
+	        // This one is just used to update the JSF components after updating the datamodel in the first run
+	        if (null!= behaviorEvent && isUpdateModelEvent)
+			{
+	        	logger.info("Updating Model.");
 			}
 		}
 	}
@@ -457,6 +492,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,SERVICE extends
 		ArrayList<String> events = new ArrayList<String>();
 		events.add("mapClick");
 		events.add("mapMove");
+		events.add("updateModel");
 		return events;
 	}
 
