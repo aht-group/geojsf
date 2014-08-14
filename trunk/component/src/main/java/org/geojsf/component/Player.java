@@ -91,7 +91,7 @@ public class Player <L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 	{
 		map = (Map<L,D,SERVICE,LAYER,MAP,VIEW,VP>) findComponent("testForm:map");
 		logger.info("Map found with " +map.getServiceList().size() +" layer definitions. Current time: ");
-		for (SERVICE service : map.getServiceList())
+		/*for (SERVICE service : map.getServiceList())
 		{
 			logger.info("Does Service has temporal information? " +!MapUtil.hasTemporalLayer(service).isEmpty());
 			for (Object o : service.getLayer())
@@ -99,7 +99,7 @@ public class Player <L extends UtilsLang,D extends UtilsDescription,SERVICE exte
 				LAYER layer = (LAYER) o;
 				logger.info("Layer: " +layer.getName());
 			}
-		}
+		}*/
 		
 		//Render instructions:
 		// Init the timeStep and currentTime

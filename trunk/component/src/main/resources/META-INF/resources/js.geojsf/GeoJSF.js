@@ -12,19 +12,21 @@ var GeoJSF = {
 		updateOnMove: null,
 		id: null,
 		
-		bootstrap : function()
-		{
-			var head = document.getElementsByTagName("head")[0];
-		    var s = document.createElement("script");
-		    s.type = "text/javascript";
-		    s.src = "http://openlayers.org/api/OpenLayers.js";
-		    head.appendChild(s);
-		},
-		
 		setAjaxUpdates : function(updateClicks, updateMove)
 		{
 			this.updateOnClick = updateClicks;
 			this.updateOnMove  = updateMove;
+		},
+		
+		addLoadEvent : function()
+		{
+			OpenLayers.Event.observe(window, "load", GeoJSF.registerEventHandlers ); 
+		},
+		
+		registerEventHandlers : function()
+		{
+			GeoJSF.map.events.register("moveend",GeoJSF.map,GeoJSF.processEventMove ,true);
+			GeoJSF.map.events.register("click",  GeoJSF.map,GeoJSF.processEventClick,true);
 		},
 		
 		processEventMove : function(event)
@@ -36,56 +38,60 @@ var GeoJSF = {
 			this.viewportBoundBottom = event.object.getExtent().bottom;
 			this.viewportBoundLeft = event.object.getExtent().left;
 			this.viewportBoundRight = event.object.getExtent().right;
-			console.log(event.type +" has triggered change to center " +this.centerLon +"/"  +this.centerLat +" Bounds: (" +this.viewportBoundTop);
-			//console.log(event.object.getExtent());
-			//console.log(event.object.getCenter());
+			console.log(event.type +" has triggered change to center " +this.centerLon +"/"  +this.centerLat);
 			
 			try {
-			jsf.ajax.request(GeoJSF.id, 'move', {
-						render: GeoJSF.updateOnMove,
-						execute: '@form',
-						'javax.faces.behavior.event': 'mapMove',
-						'javax.faces.partial.event': 'mapMove',
-						'org.geojsf.viewport.lon': this.centerLon,  
-						'org.geojsf.viewport.lat': this.centerLat,
-						'org.geojsf.viewport.bottom': this.viewportBoundBottom,
-						'org.geojsf.viewport.top': this.viewportBoundTop,
-						'org.geojsf.viewport.left': this.viewportBoundLeft,
-						'org.geojsf.viewport.right': this.viewportBoundRight});
-			console.log("completed mapMove.");
+				PrimeFaces.ab({
+					process:  '@form', 
+		 			source:   GeoJSF.map.div, 
+		 			event:    'mapMove', 
+		 			update:   GeoJSF.updateOnMove,
+					params: [
+		 			         {name: 'org.geojsf.viewport.lon',     value: this.centerLon},
+		 			         {name: 'org.geojsf.viewport.lat',     value: this.centerLat},
+		 			         {name: 'org.geojsf.viewport.bottom',  value: this.viewportBoundBottom},
+		 			         {name: 'org.geojsf.viewport.top',     value: this.viewportBoundTop},
+		 			         {name: 'org.geojsf.viewport.left',    value: this.viewportBoundLeft},
+		 			         {name: 'org.geojsf.viewport.right',   value: this.viewportBoundRight},
+		 			         {name: 'org.geojsf.coodinates.scale', value: GeoJSF.map.getScale()},
+		 			        ],
+		 			oncomplete: function(xhr, status, args) {console.log('map move AJAX request sent.')}
+				});
 			} catch(e) {
-				 console.log("MapMove failed.");
+				 console.log("MapMove failed." +e);
 			}
 			finally {}
 		},
 		
 		processEventClick : function(event)
 		{
-			console.log("mapClick");
+			console.log("mapClick detected");
 			try {
-			jsf.ajax.request(GeoJSF.id, 'click', {
-						render: GeoJSF.updateOnClick,
-						execute: '@form',
-						'javax.faces.behavior.event': 'mapClick',
-						'javax.faces.partial.event': 'mapClick',	
-						'org.geojsf.coordinates.scale': GeoJSF.map.getScale(),
-						'org.geojsf.coordinates.lat': GeoJSF.map.getLonLatFromViewPortPx(event.xy).lat,
-						'org.geojsf.coordinates.lon': GeoJSF.map.getLonLatFromViewPortPx(event.xy).lon
-			});
-			console.log("completed mapClick.");
-		} catch(e) {
-			 console.log("MapClick failed.");
-		}
-		finally {}
+				PrimeFaces.ab({
+					process:  '@form', 
+		 			source:   GeoJSF.map.div, 
+		 			event:    'mapClick', 
+		 			update:   GeoJSF.updateOnClick,
+					params: [
+		 			         {name: 'org.geojsf.coordinates.lon',  value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lon},
+		 			         {name: 'org.geojsf.coordinates.lat',  value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lat},
+		 			         {name: 'org.geojsf.coodinates.scale', value: GeoJSF.map.getScale()}
+		 			        ],
+		 			oncomplete: function(xhr, status, args) {console.log('mapClick AJAX request sent.')}
+				});
+			} catch(e) {
+				 console.log("MapClick failed." +e);
+			}
+				finally {}
 		},
 		
 		initMap : function(mapDiv,msOptions,height, width)
 		{
 			GeoJSF.map = new OpenLayers.Map(mapDiv,{
-				eventListeners: {
-					'moveend': GeoJSF.processEventMove,
-					'click':   GeoJSF.processEventClick
-		        },
+			//	eventListeners: {
+				//	'moveend': GeoJSF.processEventMove,
+				//	'click':   GeoJSF.processEventClick
+		       // },
 				controls: [new OpenLayers.Control.Navigation()], 
 				version: '1.1.0', 
 				request: 'GetMap',
@@ -94,53 +100,7 @@ var GeoJSF = {
 				width: width, 
 				theme: null, 
 				});
-		//    var click = new OpenLayers.Control.Click();
-		//    this.map.addControl(click);
-		//    click.activate();
-		    
-		//    var touchUI = new OpenLayers.Control.DragPan();
-		//    this.map.addControl(touchUI);
 		    OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
-		    //Activate for debugging
-		    //this.switcher = new OpenLayers.Control.LayerSwitcher({'ascending':false});
-		    //this.map.addControl(this.switcher);
-		},
-
-		addLoadEvent : function(func)
-		{
-			OpenLayers.Event.observe(window, "load", func ); 
-		},
-		
-		addClickHandler : function (id, resetId, updateOnClick)
-		{
-			this.id = id;
-			/* OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
-		         defaultHandlerOptions: {
-		             'single': true,
-		             'double': false,
-		             'pixelTolerance': 0,
-		             'stopSingle': false,
-		             'stopDouble': false
-		         },
-
-		         initialize: function(options) {
-		             this.handlerOptions = OpenLayers.Util.extend(
-		                 {}, this.defaultHandlerOptions
-		             );
-		             OpenLayers.Control.prototype.initialize.apply(
-		                 this, arguments
-		             ); 
-		             this.handler = new OpenLayers.Handler.Click(
-		                 this, {
-		                     'click': this.trigger
-		                 }, this.handlerOptions
-		             );
-		         }, 
-
-		         trigger: function(e) {
-		        	 jsf.ajax.request(id, 'click', {render: updateOnClick, execute: '@form', 'javax.faces.behavior.event': 'mapClick','javax.faces.partial.event': 'mapClick','org.geojsf.coordinates.scale': this.map.getScale(),  'org.geojsf.coordinates.lat': this.map.getLonLatFromViewPortPx(e.xy).lat, 'org.geojsf.coordinates.lon': this.map.getLonLatFromViewPortPx(e.xy).lon});
-		         }
-		     });*/
 		},
 		
 		// Remove all layers and add the base layer again
@@ -152,7 +112,6 @@ var GeoJSF = {
 					    this.map.removeLayer(map.layers[i]);
 					}
 				}
-			
 		},
 		
 		addLayer : function(name, url, layers, params)
@@ -191,57 +150,35 @@ var GeoJSF = {
 		
 		},
 		
-		switchLayer : function(serviceId, layerId, elementId)
-		{
-			 var checkbox = document.getElementById(elementId);
-			 var active   = checkbox.checked;
-			 console.log("Switching: " +layerId +" of service "+ serviceId +" to " +active);
-			 // This is the pure JSF based approach, not having an 'oncomplete' method:	 
-			 // jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
-			 
-			 // This is the PrimeFaces based solution along with an 'oncomplete' call
-			 PrimeFaces.ab({process: '@all', 
-				 			source: elementId, 
-				 			event: 'layerSwitch', 
-				 			params: [{name: 'org.geojsf.switch.service', value: serviceId},{name: 'org.geojsf.switch.layer', value: layerId},{name: 'org.geojsf.switch.on', value: active}, ],
-				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
-		},
-		
-		switchLayer : function(element, layerId)
+		switchLayerClassic : function(layerId)
 		{
 			 // This is the pure JSF based approach, not having an 'oncomplete' method:	 
 			 // jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
 			 
-			console.log(element.getAttribute("id"));
-			
-			 // This is the PrimeFaces based solution along with an 'oncomplete' call
-			 PrimeFaces.ab({process: '@all', 
-				 			source: GeoJSF.id, 
-				 			event: 'layerSwitch', 
-				 			params: [{name: 'org.geojsf.switch.layer', value: layerId}],
-				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
+			console.log("switch request detected for layer " +layerId);
+			try{ 
+				PrimeFaces.ab({
+			 			process: '@form', 
+			 			source: GeoJSF.map.div, 
+			 			event: 'layerSwitch', 
+			 			update: '@form',
+			 			params: [{name: 'org.geojsf.switch.layer', value: layerId}],
+			 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}
+				});
+			} catch(e) {
+				 console.log("layer switch failed." +e);
+			} 
+			finally {}
 		},
 		
 		secondRun : function()
 		{
-			// This is the PrimeFaces based solution along with an 'oncomplete' call
-			 PrimeFaces.ab({process: '@all', 
-				 			source: GeoJSF.id, 
+			PrimeFaces.ab({process: '@all', 
+				 			source: GeoJSF.map.div, 
+				 			update: '@form',
 				 			event: 'updateModel', 
-				 			oncomplete: function(xhr, status, args) {console.log("Update complete.");}});
-		},
-		
-		switchLayer : function(layerId)
-		{
-			 // This is the pure JSF based approach, not having an 'oncomplete' method:	 
-			 // jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
-			 
-			 // This is the PrimeFaces based solution along with an 'oncomplete' call
-			 PrimeFaces.ab({process: '@all', 
-				 			source: GeoJSF.id, 
-				 			event: 'layerSwitch', 
-				 			params: [{name: 'org.geojsf.switch.layer', value: layerId}],
-				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
+				 			oncomplete: function(xhr, status, args) {console.log("Update complete.");}
+			});
 		},
 		
 		refreshMap : function()
@@ -251,7 +188,7 @@ var GeoJSF = {
 			 
 			 // This is the PrimeFaces based solution along with an 'oncomplete' call
 			 PrimeFaces.ab({process: '@all', 
-				 			source: 'source', 
+				 			source: GeoJSF.map.div, 
 				 			event: 'updateMap', 
 				 			params: [],
 				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});

@@ -6,8 +6,8 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
 import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.slf4j.Logger;
