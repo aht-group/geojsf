@@ -35,6 +35,7 @@ public class TestXmlQuery extends AbstractXmlGeojsfTest
     	if(withChilds)
     	{
     		xml.setService(TestXmlService.create(false));
+    		xml.setCategory(TestXmlCategory.create(false));
     		xml.setRepository(TestXmlRepository.create(false));
     		xml.setLayer(TestXmlLayer.create(false));
     		xml.setMap(TestXmlMap.create(false));

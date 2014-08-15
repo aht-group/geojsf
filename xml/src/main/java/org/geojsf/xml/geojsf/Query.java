@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element ref="{http://www.geojsf.org}repository"/>
  *         &lt;element ref="{http://www.geojsf.org}service"/>
+ *         &lt;element ref="{http://www.geojsf.org}category"/>
  *         &lt;element ref="{http://www.geojsf.org}layer"/>
  *         &lt;element ref="{http://www.geojsf.org}map"/>
  *         &lt;element ref="{http://www.geojsf.org}view"/>
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "repository",
     "service",
+    "category",
     "layer",
     "map",
     "view"
@@ -50,6 +52,8 @@ public class Query
     protected Repository repository;
     @XmlElement(required = true)
     protected Service service;
+    @XmlElement(required = true)
+    protected Category category;
     @XmlElement(required = true)
     protected Layer layer;
     @XmlElement(required = true)
@@ -111,6 +115,34 @@ public class Query
 
     public boolean isSetService() {
         return (this.service!= null);
+    }
+
+    /**
+     * Gets the value of the category property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Category }
+     *     
+     */
+    public Category getCategory() {
+        return category;
+    }
+
+    /**
+     * Sets the value of the category property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Category }
+     *     
+     */
+    public void setCategory(Category value) {
+        this.category = value;
+    }
+
+    public boolean isSetCategory() {
+        return (this.category!= null);
     }
 
     /**

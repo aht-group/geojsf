@@ -11,6 +11,10 @@ import org.geojsf.xml.geojsf.Repository;
 
 public interface GeoJsfDatabaseExportRest
 {	
+	@GET @Path("/geojsf/categories")
+	@Produces(MediaType.APPLICATION_XML)
+	Repository exportCategories();
+	
 	@GET @Path("/geojsf/services")
 	@Produces(MediaType.APPLICATION_XML)
 	Repository exportServices();
