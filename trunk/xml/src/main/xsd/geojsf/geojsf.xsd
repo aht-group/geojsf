@@ -101,6 +101,7 @@
                 <xsd:element ref="us:descriptions" maxOccurs="1"/>
                 <xsd:element ref="geojsf:legend" maxOccurs="1"/>
                 <xsd:element ref="geojsf:service" maxOccurs="1"/>
+                <xsd:element ref="geojsf:category" maxOccurs="1"/>
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:long"/>
             <xsd:attribute name="code" type="xsd:string"/>

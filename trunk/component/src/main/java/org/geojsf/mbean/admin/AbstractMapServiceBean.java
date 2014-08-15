@@ -222,7 +222,8 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	public void saveLayer() throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException
 	{
 		logger.info("saveLayer "+layer);
-		layer.setService(fGeo.find(cService, layer.getService().getId()));
+		layer.setService(fGeo.find(cService, layer.getService()));
+		layer.setCategory(fGeo.find(cCategory, layer.getCategory()));
 		layer = fGeo.save(layer);
 		reloadLayer();
 	}

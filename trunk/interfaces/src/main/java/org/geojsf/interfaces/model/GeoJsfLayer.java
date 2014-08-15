@@ -23,6 +23,9 @@ public interface GeoJsfLayer<L extends UtilsLang,
 	SERVICE getService();
 	void setService(SERVICE service);
 	
+	CATEGORY getCategory();
+	void setCategory(CATEGORY category);
+	
 	boolean isTemporalLayer();
 	void setTemporalLayer(boolean temporalLayer);
 }

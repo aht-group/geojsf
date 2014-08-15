@@ -29,6 +29,11 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	private DefaultGeoJsfService service;
 	@Override public DefaultGeoJsfService getService() {return service;}
 	@Override public void setService(DefaultGeoJsfService service) {this.service = service;}
+	
+	@ManyToOne
+	private DefaultGeoJsfCategory category;
+	@Override public DefaultGeoJsfCategory getCategory(){return category;}
+	@Override public void setCategory(DefaultGeoJsfCategory category){this.category = category;}
 
 	private String code;
 	@Override public String getCode() {return code;}

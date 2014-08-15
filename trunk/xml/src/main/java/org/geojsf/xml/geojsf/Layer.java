@@ -26,6 +26,7 @@ import net.sf.ahtutils.xml.status.Langs;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
  *         &lt;element ref="{http://www.geojsf.org}legend"/>
  *         &lt;element ref="{http://www.geojsf.org}service"/>
+ *         &lt;element ref="{http://www.geojsf.org}category"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -45,7 +46,8 @@ import net.sf.ahtutils.xml.status.Langs;
     "langs",
     "descriptions",
     "legend",
-    "service"
+    "service",
+    "category"
 })
 @XmlRootElement(name = "layer")
 public class Layer
@@ -61,6 +63,8 @@ public class Layer
     protected Legend legend;
     @XmlElement(required = true)
     protected Service service;
+    @XmlElement(required = true)
+    protected Category category;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
@@ -184,6 +188,34 @@ public class Layer
 
     public boolean isSetService() {
         return (this.service!= null);
+    }
+
+    /**
+     * Gets the value of the category property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Category }
+     *     
+     */
+    public Category getCategory() {
+        return category;
+    }
+
+    /**
+     * Sets the value of the category property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Category }
+     *     
+     */
+    public void setCategory(Category value) {
+        this.category = value;
+    }
+
+    public boolean isSetCategory() {
+        return (this.category!= null);
     }
 
     /**
