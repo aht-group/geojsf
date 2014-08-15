@@ -8,6 +8,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
 import org.geojsf.interfaces.facade.GeoJsfFacade;
+import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
@@ -22,8 +23,7 @@ import org.geojsf.xml.geojsf.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DbGeoServerInit <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
-
+public class DbGeoServerInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbGeoServerInit.class);
 	
@@ -56,20 +56,20 @@ public class DbGeoServerInit <L extends UtilsLang,D extends UtilsDescription,SER
 		ejbDescriptionFactory = EjbDescriptionFactory.createFactory(cD);
 	}
 	
-	public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
-		DbGeoServerInit<L,D,SERVICE,LAYER,MAP,VIEW,VP>
+	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
+		DbGeoServerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
 		factory(final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, UtilsFacade fUtils, GeoJsfFacade fGeo)
 	{
-		return new DbGeoServerInit<L,D,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cService,cLayer,cMap,cView,fUtils,fGeo);
+		return new DbGeoServerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cService,cLayer,cMap,cView,fUtils,fGeo);
 	}
 
 	public void iuGeoJsf(Repository repository, Layers layers, Maps maps, String[] langKeys) throws UtilsConfigurationException
 	{
 		logger.info("Importing/Updating GeoJSF "+Service.class.getSimpleName()+"/"+Layer.class.getSimpleName()+"/"+Map.class.getSimpleName());
 		
-		DbServiceInit<L,D,SERVICE,LAYER,MAP,VIEW,VP> serviceInit = DbServiceInit.factory(cL,cD,cService,fUtils);
-		DbLayerInit<L,D,SERVICE,LAYER,MAP,VIEW,VP> layerInit = DbLayerInit.factory(cL,cD,cService,cLayer,fUtils);
-		DbMapInit<L,D,SERVICE,LAYER,MAP,VIEW,VP> viewInit = DbMapInit.factory(cL,cD,cLayer,cMap,cView,fUtils,fGeo);
+		DbServiceInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> serviceInit = DbServiceInit.factory(cL,cD,cService,fUtils);
+		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> layerInit = DbLayerInit.factory(cL,cD,cService,cLayer,fUtils);
+		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> viewInit = DbMapInit.factory(cL,cD,cLayer,cMap,cView,fUtils,fGeo);
 		
 		serviceInit.iuServices(repository);
 		layerInit.iuLayers(layers, langKeys);

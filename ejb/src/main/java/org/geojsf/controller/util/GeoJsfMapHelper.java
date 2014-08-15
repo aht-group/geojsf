@@ -9,6 +9,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
 
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
+import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
@@ -20,12 +21,12 @@ import org.slf4j.LoggerFactory;
 //REmove au-jsf from pom when deleting!!
 
 @Deprecated
-public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
+public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 	implements DmSingleSelect<LAYER>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMapHelper.class);
 	
-	private GeoJsfServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> fMapLayer;
+	private GeoJsfServiceFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fMapLayer;
 	
 	private List<SERVICE> layerServices;
 	private MAP map;
@@ -37,10 +38,10 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     	layerServices = new ArrayList<SERVICE>();
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
-		GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VIEW,VP> factory(final Class<SERVICE> clService,MAP view)
+    public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
+    	GeoJsfMapHelper<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> factory(final Class<SERVICE> clService,MAP view)
     {
-    	GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VIEW,VP> gjm = new GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VIEW,VP>(clService);
+    	GeoJsfMapHelper<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> gjm = new GeoJsfMapHelper<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(clService);
     	gjm.setMap(view);
     	gjm.buildDmLayer();gjm.selectAll();
     	gjm.buildServices();
@@ -48,8 +49,8 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,SER
     }
     
     @Deprecated
-    public static <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
-		GeoJsfMapHelper<L,D,SERVICE,LAYER,MAP,VIEW,VP> build(final Class<SERVICE> clService, final Class<MAP> clMap, final Class<VIEW> clVl, LAYER layer)
+    public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
+    	GeoJsfMapHelper<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> build(final Class<SERVICE> clService, final Class<MAP> clMap, final Class<VIEW> clVl, LAYER layer)
 	{
     	MAP map = null;
     	VIEW view = null;
