@@ -17,7 +17,7 @@
 				selection="#{adminMapServiceBean.layer}" selectionMode="single" rowKey="#{l.id}">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.mapAvailableLayers}">
-                    <aht:icon type="add" listener="#{adminMapServiceBean.addLayer()}" update=":sLayer"/>
+                    <aht:icon type="geojsfAdd" listener="#{adminMapServiceBean.addLayer()}" update=":sLayer"/>
                 </aht:pfDataTableHeader>
             </f:facet>
 			<p:ajax event="rowSelect" listener="#{adminMapServiceBean.selectLayer}" update=":sLayer"/>
