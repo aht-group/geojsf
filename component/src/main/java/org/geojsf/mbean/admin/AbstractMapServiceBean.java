@@ -9,6 +9,7 @@ import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
 import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
+import net.sf.ahtutils.jsf.util.FacesContextMessage;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
@@ -103,6 +104,27 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		service = fGeo.save(service);
 		reloadServices();
 		reloadLayer();
+	}
+	
+	public void cancelService() throws UtilsContraintViolationException, UtilsLockingException
+	{
+		service=null;
+	}
+	
+	public void rm(SERVICE item)
+	{
+		logger.info("rm "+item);
+		try
+		{
+			fGeo.rm(item);
+			layer=null;
+			service=null;
+			reloadServices();
+		}
+		catch (UtilsIntegrityException e)
+		{
+			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
+		}
 	}
 	
 	

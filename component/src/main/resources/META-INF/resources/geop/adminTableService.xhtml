@@ -17,10 +17,10 @@
 						draggableRows="true">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.mapServices}">
-                    <aht:icon type="add" listener="#{adminMapServiceBean.addService()}" update=":pgCenter :sLayer"/>
+                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addService()}" update=":fService :pgCenter :sLayer"/>
                 </aht:pfDataTableHeader>
             </f:facet>
-            <p:ajax event="rowSelect" update=":pgCenter :sLayer" listener="#{adminMapServiceBean.selectService}"/>
+            <p:ajax event="rowSelect" update=":fService :pgCenter :sLayer" listener="#{adminMapServiceBean.selectService}"/>
             <p:ajax event="rowReorder" listener="#{adminMapServiceBean.reorderService}"/>
             <p:column headerText="#{msg.mapServiceName}" sortBy="#{s.code}">
 				<h:outputText value="#{s.name[userBean.localeCode].lang}" />  
