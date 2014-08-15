@@ -46,35 +46,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ViewPort }
+     * Create an instance of {@link Coordinate }
      * 
      */
-    public ViewPort createViewPort() {
-        return new ViewPort();
+    public Coordinate createCoordinate() {
+        return new Coordinate();
     }
 
     /**
-     * Create an instance of {@link Maps }
+     * Create an instance of {@link Scales }
      * 
      */
-    public Maps createMaps() {
-        return new Maps();
+    public Scales createScales() {
+        return new Scales();
     }
 
     /**
-     * Create an instance of {@link Map }
+     * Create an instance of {@link Query }
      * 
      */
-    public Map createMap() {
-        return new Map();
+    public Query createQuery() {
+        return new Query();
     }
 
     /**
-     * Create an instance of {@link View }
+     * Create an instance of {@link Repository }
      * 
      */
-    public View createView() {
-        return new View();
+    public Repository createRepository() {
+        return new Repository();
+    }
+
+    /**
+     * Create an instance of {@link Layers }
+     * 
+     */
+    public Layers createLayers() {
+        return new Layers();
     }
 
     /**
@@ -102,43 +110,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Repository }
+     * Create an instance of {@link Maps }
      * 
      */
-    public Repository createRepository() {
-        return new Repository();
+    public Maps createMaps() {
+        return new Maps();
     }
 
     /**
-     * Create an instance of {@link Layers }
+     * Create an instance of {@link Map }
      * 
      */
-    public Layers createLayers() {
-        return new Layers();
+    public Map createMap() {
+        return new Map();
     }
 
     /**
-     * Create an instance of {@link Scales }
+     * Create an instance of {@link View }
      * 
      */
-    public Scales createScales() {
-        return new Scales();
+    public View createView() {
+        return new View();
     }
 
     /**
-     * Create an instance of {@link Coordinate }
+     * Create an instance of {@link Category }
      * 
      */
-    public Coordinate createCoordinate() {
-        return new Coordinate();
+    public Category createCategory() {
+        return new Category();
     }
 
     /**
-     * Create an instance of {@link Query }
+     * Create an instance of {@link ViewPort }
      * 
      */
-    public Query createQuery() {
-        return new Query();
+    public ViewPort createViewPort() {
+        return new ViewPort();
     }
 
 }

@@ -15,11 +15,7 @@ public class TestXmlRepository extends AbstractXmlGeojsfTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlRepository.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		setXmlFile(dirSuffix, Repository.class);
-	}
+	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, Repository.class);}
     
     @Test
     public void test() throws FileNotFoundException
@@ -38,6 +34,7 @@ public class TestXmlRepository extends AbstractXmlGeojsfTest
     		xml.setMaps(TestXmlMaps.create(false));
     		xml.setLayers(TestXmlLayers.create(false));
     		xml.getService().add(TestXmlService.create(false));xml.getService().add(TestXmlService.create(false));
+    		xml.getCategory().add(TestXmlCategory.create(false));xml.getCategory().add(TestXmlCategory.create(false));
     	}
     	
     	return xml;
