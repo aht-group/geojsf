@@ -28,18 +28,21 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 {
 	final static Logger logger = LoggerFactory.getLogger(DbLayerInit.class);
 	
+	private final Class<CATEGORY> cCategory;
+	private final Class<SERVICE> cService;
     private final Class<LAYER> cLayer;
-    private final Class<SERVICE> cService;
     
     private UtilsFacade fUtils;
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     private EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> ejbLayerFactory;
     
-    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<SERVICE> cService, final Class<LAYER> cLayer,UtilsFacade fUtils)
+    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer,UtilsFacade fUtils)
 	{       
+    	this.cCategory = cCategory;
+    	this.cService = cService;
         this.cLayer = cLayer;
-        this.cService = cService;
+        
         
         this.fUtils=fUtils;
 		
@@ -50,9 +53,9 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
-		factory(final Class<L> cL, final Class<D> cD,final Class<SERVICE> cService, final Class<LAYER> cLayer,UtilsFacade fUtils)
+		factory(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer,UtilsFacade fUtils)
 	{
-		return new DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cService,cLayer,fUtils);
+		return new DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cCategory,cService,cLayer,fUtils);
 	}
 
 	public void iuLayers(Layers layers, String[] langKeys) throws UtilsConfigurationException
@@ -67,10 +70,12 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 		{
 			updateLayer.actualAdd(layer.getCode());
 			
-			SERVICE service;			
+			SERVICE service;
+			CATEGORY category;
 			try
 			{
 				service = fUtils.fByCode(cService, layer.getService().getCode());
+				category = fUtils.fByCode(cCategory, layer.getCategory().getCode());
 			}
 			catch (UtilsNotFoundException e1) {throw new UtilsConfigurationException(e1.getMessage());}
 			
@@ -86,7 +91,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 			{
 				try
 				{
-					ejb = ejbLayerFactory.build(layer.getCode(), service, langKeys);					
+					ejb = ejbLayerFactory.build(layer.getCode(), service, category, langKeys);					
 					ejb = (LAYER)fUtils.persist(ejb);
 				}
 

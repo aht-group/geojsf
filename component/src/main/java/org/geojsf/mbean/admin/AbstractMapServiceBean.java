@@ -102,14 +102,15 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		service.setDescription(efDescription.createEmpty(langKeys));
 		
 		layer=null;
+		category = null;
 	}
 
 	public void selectService() throws UtilsNotFoundException
 	{
 		service = fGeo.load(cService,service);
 		logger.info("selectService "+service);
-		reloadLayer();
 		layer=null;
+		category = null;
 	}
 	
 	public void rm(SERVICE item)
@@ -133,12 +134,12 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		logger.info("saveService "+service);
 		service = fGeo.save(service);
 		reloadServices();
-		reloadLayer();
 	}
 	
 	public void cancelService() throws UtilsContraintViolationException, UtilsLockingException
 	{
 		service=null;
+		category=null;
 	}
 	
 	// CATEGORY
@@ -153,15 +154,17 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		category = efCategory.build(null);
 		
 		category.setName(efLang.createEmpty(langKeys));
-		category.setDescription(efDescription.createEmpty(langKeys));		
+		category.setDescription(efDescription.createEmpty(langKeys));
+		service=null;
 	}
 	
 	public void selectCategory() throws UtilsNotFoundException
 	{
-//		service = fGeo.load(cService,service);
+		category = fGeo.load(cCategory,category);
 		logger.info("selectCategory "+category);
-//		reloadLayer();
+		reloadLayer();
 		layer=null;
+		service=null;
 	}
 	
 	public void rm(CATEGORY item)
@@ -172,6 +175,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 			fGeo.rm(item);
 			reloadCategories();
 			category=null;
+			service=null;
 		}
 		catch (UtilsIntegrityException e)
 		{
@@ -184,25 +188,27 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		logger.info("saveCategory "+category);
 		category = fGeo.save(category);
 		reloadCategories();
+		service=null;
 	}
 	
 	public void cancelCategory()
 	{
 		category=null;
+		service=null;
 	}
 	
 	// LAYER
 	protected void reloadLayer()
 	{
-		service = fGeo.load(cService, service);
-		layers = service.getLayer();
+		category = fGeo.load(cCategory, category);
+		layers = category.getLayer();
 		logger.info("#Layer:"+layers.size());
 	}
 	
 	public void addLayer() throws UtilsIntegrityException, UtilsNotFoundException, InstantiationException, IllegalAccessException
 	{
 		logger.info("addLayer ");
-		layer = efLayer.build(null, service,langKeys);
+		layer = efLayer.build(null, service,category,langKeys);
 		
 		layer.setDescription(efDescription.createEmpty(langKeys));
 	}
@@ -214,6 +220,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		
 		VIEW view = efView.build();
 		view.setLayer(layer);
+		view.setVisible(true);
 		
 		map = efMap.build();
 		map.getViews().add(view);

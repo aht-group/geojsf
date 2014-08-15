@@ -1,8 +1,12 @@
 package org.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
+
+import javax.persistence.OneToMany;
 
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
@@ -27,13 +31,11 @@ public class DefaultGeoJsfCategory implements Serializable,EjbRemoveable,EjbPers
 	private String code;
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
-	
-/*	
+		
 	@OneToMany
 	private List<DefaultGeoJsfLayer> layer;
 	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
 	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
-*/	
 
 
 //	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)

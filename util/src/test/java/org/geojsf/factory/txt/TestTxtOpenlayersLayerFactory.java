@@ -2,6 +2,7 @@ package org.geojsf.factory.txt;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 
+import org.geojsf.model.pojo.openlayers.DefaultGeoJsfCategory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
@@ -17,6 +18,7 @@ public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 	
 	private static String[] langKeys = {"de","en"};
 	
+	private DefaultGeoJsfCategory cat1;
 	private DefaultGeoJsfService service;
 	private DefaultGeoJsfLayer layerA;
 	private DefaultGeoJsfLayer layerB;
@@ -26,9 +28,10 @@ public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 	{
 		initGenericFactories();
 		
+		cat1 = efCategory.build("cat");
 		service = efService.build("code1", "http://1");
-		layerA = efLayer.build("A", service, langKeys);
-		layerB = efLayer.build("B", service, langKeys);
+		layerA = efLayer.build("A", service, cat1, langKeys);
+		layerB = efLayer.build("B", service, cat1, langKeys);
 	}
 	
 	@Test
