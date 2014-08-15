@@ -1,5 +1,7 @@
 package org.geojsf.interfaces.model;
 
+import java.util.List;
+
 import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
@@ -19,9 +21,7 @@ public interface GeoJsfCategory<L extends UtilsLang,
 			extends EjbSaveable,EjbRemoveable,
 					EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
 {
-	public static final String extractId = "geoJsfCategory";
-/*	
 	List<LAYER> getLayer();
 	void setLayer(List<LAYER> layer);
-*/
+
 }

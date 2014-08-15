@@ -3,6 +3,7 @@ package org.geojsf.test;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.EjbGeoMapFactory;
 import org.geojsf.factory.ejb.EjbGeoServiceFactory;
@@ -24,6 +25,7 @@ public class AbstractGeoJsfUtilTest
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfUtilTest.class);
 	
+	protected EjbGeoCategoryFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort> efCategory;
 	protected EjbGeoServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort> efService;
 	protected EjbGeoLayerFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort> efLayer;
 	protected EjbGeoMapFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort> efMap;
@@ -48,6 +50,7 @@ public class AbstractGeoJsfUtilTest
 	
 	protected void initGenericFactories()
 	{
+		efCategory = EjbGeoCategoryFactory.factory(DefaultGeoJsfCategory.class);
 		efService = EjbGeoServiceFactory.factory(DefaultGeoJsfService.class);
 		efLayer = EjbGeoLayerFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfLayer.class);
 		efMap = EjbGeoMapFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfMap.class);

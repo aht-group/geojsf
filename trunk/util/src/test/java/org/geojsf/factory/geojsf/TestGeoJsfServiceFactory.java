@@ -26,6 +26,7 @@ public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 	
 	private static String[] langKeys = {"de","en"};
 	
+	private DefaultGeoJsfCategory cat1;
 	private DefaultGeoJsfService service1;
 	private DefaultGeoJsfService service2;
 	private List<DefaultGeoJsfLayer> layers;
@@ -39,10 +40,11 @@ public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 	{
 		initGenericFactories();
 		
+		cat1 = efCategory.build("cat");
 		service1 = efService.build("service1", "http://1");
 		service2 = efService.build("service2", "http://2");
-		layerA = efLayer.build("A", service1, langKeys);
-		layerB = efLayer.build("B", service2, langKeys);
+		layerA = efLayer.build("A", service1, cat1, langKeys);
+		layerB = efLayer.build("B", service2, cat1, langKeys);
 		
 		layers = new ArrayList<DefaultGeoJsfLayer>();
 		layers.add(layerA);

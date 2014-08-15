@@ -15,12 +15,12 @@
 		<p:dataTable var="c" value="#{adminMapServiceBean.categories}"
 						selection="#{adminMapServiceBean.category}" selectionMode="single" rowKey="#{c.id}">
 			<f:facet name="header">
-                <aht:pfDataTableHeader title="#{msg.geojsfLayerCategories}">
-                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addCategory()}" update=":fCategory :pgCenter :sLayer"/>
+                <aht:pfDataTableHeader title="#{msg.geoJsfCategories}">
+                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addCategory()}" update=":rowServices"/>
                 </aht:pfDataTableHeader>
             </f:facet>
-            <p:ajax event="rowSelect" update=":fCategory :pgCenter :sLayer" listener="#{adminMapServiceBean.selectCategory}"/>
-            <p:column headerText="#{msg.geojsfLayerCategory}" sortBy="#{c.code}">
+            <p:ajax event="rowSelect" update=":rowServices" listener="#{adminMapServiceBean.selectCategory}"/>
+            <p:column headerText="#{msg.geoJsfCategory}" sortBy="#{c.code}">
 				<h:outputText value="#{c.name[userBean.localeCode].lang}" />  
 			</p:column>
 		</p:dataTable>
