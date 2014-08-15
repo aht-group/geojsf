@@ -1,21 +1,20 @@
 package org.geojsf.model.pojo.openlayers;
 
 import java.io.Serializable;
+import java.util.Hashtable;
 import java.util.Map;
-
-import javax.persistence.ManyToOne;
 
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
-import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-@EjbErNode(name="Layer",category="geojsf")
-public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort>
+@EjbErNode(name="Category",category="geojsf")
+public class DefaultGeoJsfCategory implements Serializable,EjbRemoveable,EjbPersistable,
+			GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort>
 {
 	public static enum Code {welcome}
 	
@@ -25,33 +24,36 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
-	@ManyToOne
-	private DefaultGeoJsfService service;
-	@Override public DefaultGeoJsfService getService() {return service;}
-	@Override public void setService(DefaultGeoJsfService service) {this.service = service;}
-
 	private String code;
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
 	
-	private Map<String, DefaultGeoJsfLang> name;
-	@Override public Map<String, DefaultGeoJsfLang> getName() {return name;}
+/*	
+	@OneToMany
+	private List<DefaultGeoJsfLayer> layer;
+	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
+	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
+*/	
+
+
+//	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@MapKey(name = "lkey")
+	protected Map<String, DefaultGeoJsfLang> name;
+	@Override public Map<String, DefaultGeoJsfLang> getName() {if(name==null){name=new Hashtable<String,DefaultGeoJsfLang>();}return name;}
 	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
 	
-	private Map<String, DefaultGeoJsfDescription> description;
+//	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@MapKey(name = "lkey")
+	protected Map<String, DefaultGeoJsfDescription> description;
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
-
-	private boolean temporalLayer;
-	@Override public boolean isTemporalLayer() {return temporalLayer;}
-	@Override public void setTemporalLayer(boolean temporalLayer) {this.temporalLayer = temporalLayer;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	
 	public boolean equals(Object object)
 	{
-        return (object instanceof DefaultGeoJsfLayer)
-             ? id == ((DefaultGeoJsfLayer) object).getId()
+        return (object instanceof DefaultGeoJsfCategory)
+             ? id == ((DefaultGeoJsfCategory) object).getId()
              : (object == this);
     }
 	
