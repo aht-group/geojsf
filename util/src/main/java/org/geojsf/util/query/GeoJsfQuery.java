@@ -78,11 +78,15 @@ public class GeoJsfQuery
 	{
 		Service service = new Service();
 		service.setCode("");
+		
+		Category category = new Category();
+		category.setCode("");
 
 		Layer xml = new Layer();
 		xml.setTemporal(false);
 		xml.setCode("");
 		xml.setService(service);
+		xml.setCategory(category);
 		xml.setLangs(StatusQuery.langs());
 		xml.setDescriptions(StatusQuery.descriptions());
 		return xml;

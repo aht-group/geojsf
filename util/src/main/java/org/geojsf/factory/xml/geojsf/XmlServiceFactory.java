@@ -7,7 +7,6 @@ import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
-import org.geojsf.factory.xml.openlayers.XmlLayerFactory;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
@@ -50,7 +49,7 @@ public class XmlServiceFactory implements Serializable
 		
 		if(q.isSetLangs())
 		{
-			XmlLangsFactory f = new XmlLangsFactory(q.getLangs());
+			XmlLangsFactory<L> f = new XmlLangsFactory<L>(q.getLangs());
 			xml.setLangs(f.getUtilsLangs(ejb.getName()));
 		}
 		

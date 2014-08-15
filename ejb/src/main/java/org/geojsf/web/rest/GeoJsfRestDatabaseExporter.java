@@ -5,9 +5,9 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
 import org.geojsf.factory.xml.geojsf.XmlCategoryFactory;
+import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
 import org.geojsf.factory.xml.geojsf.XmlServiceFactory;
 import org.geojsf.factory.xml.geojsf.XmlViewFactory;
-import org.geojsf.factory.xml.openlayers.XmlLayerFactory;
 import org.geojsf.factory.xml.openlayers.XmlMapFactory;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;

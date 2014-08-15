@@ -43,9 +43,11 @@ public class TestXmlLayer extends AbstractXmlGeojsfTest
     	if(withChilds)
     	{
     		xml.setLegend(TestXmlLegend.create(false));
-    		xml.setService(TestXmlService.create(false));
     		xml.setLangs(new Langs());
     		xml.setDescriptions(new Descriptions());
+    		
+    		xml.setService(TestXmlService.create(false));
+    		xml.setCategory(TestXmlCategory.create(false));
     	}
     	
     	return xml;
