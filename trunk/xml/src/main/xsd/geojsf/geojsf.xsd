@@ -10,6 +10,7 @@
 			<xsd:sequence>
 				<xsd:element ref="geojsf:repository" maxOccurs="1"/>
 				<xsd:element ref="geojsf:service" maxOccurs="1"/>
+				<xsd:element ref="geojsf:category" maxOccurs="1"/>
 				<xsd:element ref="geojsf:layer" maxOccurs="1"/>
 				<xsd:element ref="geojsf:map" maxOccurs="1"/>
 				<xsd:element ref="geojsf:view" maxOccurs="1"/>

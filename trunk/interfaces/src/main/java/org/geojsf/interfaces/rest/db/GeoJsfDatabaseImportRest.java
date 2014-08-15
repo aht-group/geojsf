@@ -24,6 +24,11 @@ public interface GeoJsfDatabaseImportRest
 	@Consumes(MediaType.APPLICATION_XML)
 	DataUpdate importGeoJsfServices(Repository repository);
 	
+	@POST @Path("/geojsf/categories")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	DataUpdate importGeoJsfCategories(Repository categories);
+	
 	@POST @Path("/geojsf/layer")
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)

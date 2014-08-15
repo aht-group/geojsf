@@ -4,6 +4,7 @@ import java.util.Hashtable;
 
 import net.sf.ahtutils.controller.util.query.StatusQuery;
 
+import org.geojsf.xml.geojsf.Category;
 import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Query;
@@ -14,11 +15,12 @@ import org.geojsf.xml.geojsf.View;
 public class GeoJsfQuery
 {
 	public static enum Key {repositoryService,
-							service,layer,map,view,
+							category,service,layer,map,view,
 							viewLayer}
 	
 	private static java.util.Map<Key,Query> mQueries;
 	
+	public static Query get(Key key){return get(key,null);}
 	public static Query get(Key key, String lang)
 	{
 		if(mQueries==null){mQueries = new Hashtable<Key,Query>();}
@@ -28,6 +30,7 @@ public class GeoJsfQuery
 			switch(key)
 			{
 				case service: q.setService(service());break;
+				case category: q.setCategory(category());break;
 				case repositoryService: q.setRepository(repositoryService());break;
 				case layer: q.setLayer(layer());break;
 				case view: q.setView(view());break;
@@ -46,6 +49,18 @@ public class GeoJsfQuery
 
 		xml.setCode("");
 		xml.setUrl("");
+		xml.setLangs(StatusQuery.langs());
+		xml.setDescriptions(StatusQuery.descriptions());
+		
+		return xml;
+	}
+	
+	public static Category category()
+	{
+		Category xml = new Category();
+
+		xml.setCode("");
+		
 		xml.setLangs(StatusQuery.langs());
 		xml.setDescriptions(StatusQuery.descriptions());
 		

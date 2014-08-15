@@ -10,7 +10,7 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
 public interface GeoJsfCategory<L extends UtilsLang,
 								D extends UtilsDescription,
-								C extends GeoJsfCategory<L,D,C,SERVICE,LAYER,MAP,VIEW,VP>,
+								CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
 								SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>,
 								LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,
 								MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>,

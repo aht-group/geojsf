@@ -1,4 +1,4 @@
-package org.geojsf.factory.xml.openlayers;
+package org.geojsf.factory.xml.geojsf;
 
 import java.io.Serializable;
 
@@ -7,6 +7,7 @@ import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
+import org.geojsf.factory.xml.openlayers.XmlLayerFactory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
