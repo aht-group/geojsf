@@ -13,11 +13,13 @@ import net.sf.ahtutils.jsf.util.FacesContextMessage;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
+import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.EjbGeoMapFactory;
 import org.geojsf.factory.ejb.EjbGeoServiceFactory;
 import org.geojsf.factory.ejb.EjbGeoViewFactory;
 import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
+import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
@@ -26,7 +28,7 @@ import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescription,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
+public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,SERVICE,LAYER,MAP,VIEW,VP>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -34,6 +36,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	
 	protected EjbLangFactory<L> efLang;
 	protected EjbDescriptionFactory<D> efDescription;
+	protected EjbGeoCategoryFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efCategory;
 	protected EjbGeoServiceFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> efService;
 	protected EjbGeoLayerFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> efLayer;
 	protected EjbGeoMapFactory<L,D,SERVICE,LAYER,MAP,VIEW,VP> efMap;
@@ -47,6 +50,9 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	protected List<SERVICE> services;
 	public List<SERVICE> getServices() {return services;}
 	
+	protected List<CATEGORY> categories;
+	public List<CATEGORY> getCategories() {return categories;}
+	
 	protected List<LAYER> layers;
 	public List<LAYER> getLayers() {return layers;}
 	
@@ -54,20 +60,27 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	public SERVICE getService() {return service;}
 	public void setService(SERVICE service) {this.service = service;}
 	
+	protected CATEGORY category;
+	public CATEGORY getCategory(){return category;}
+	public void setCategory(CATEGORY category){this.category = category;}
+
 	protected LAYER layer;
 	public LAYER getLayer() {return layer;}
 	public void setLayer(LAYER layer) {this.layer = layer;}
 	
 	private String[] langKeys;
+	private Class<CATEGORY> cCategory;
 	private Class<SERVICE> cService;
 	private Class<LAYER> cLayer;
 	
-	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView)
+	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView)
 	{
 		this.langKeys=langKeys;
+		this.cCategory=cCategory;
 		this.cService=cService;
 		this.cLayer=cLayer;
 		efLang = EjbLangFactory.createFactory(cLang);
+		efCategory = EjbGeoCategoryFactory.factory(cCategory);
     	efDescription = EjbDescriptionFactory.createFactory(clDescription);
     	efService = EjbGeoServiceFactory.factory(cService);
     	efLayer = EjbGeoLayerFactory.factory(cLang,cLayer);
@@ -75,6 +88,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
     	efView = EjbGeoViewFactory.factory(cView);
 	}
 	
+	//SERVICES
 	protected void reloadServices()
 	{
 		services = fGeo.all(cService);
@@ -98,19 +112,6 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		layer=null;
 	}
 	
-	public void saveService() throws UtilsContraintViolationException, UtilsLockingException
-	{
-		logger.info("saveService "+service);
-		service = fGeo.save(service);
-		reloadServices();
-		reloadLayer();
-	}
-	
-	public void cancelService() throws UtilsContraintViolationException, UtilsLockingException
-	{
-		service=null;
-	}
-	
 	public void rm(SERVICE item)
 	{
 		logger.info("rm "+item);
@@ -127,6 +128,68 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		}
 	}
 	
+	public void saveService() throws UtilsContraintViolationException, UtilsLockingException
+	{
+		logger.info("saveService "+service);
+		service = fGeo.save(service);
+		reloadServices();
+		reloadLayer();
+	}
+	
+	public void cancelService() throws UtilsContraintViolationException, UtilsLockingException
+	{
+		service=null;
+	}
+	
+	// CATEGORY
+	protected void reloadCategories()
+	{
+		categories = fGeo.all(cCategory);
+	}
+	
+	public void addCategory() throws UtilsIntegrityException, InstantiationException, IllegalAccessException
+	{
+		logger.info("ADD CAtegory");
+		category = efCategory.build(null);
+		
+		category.setName(efLang.createEmpty(langKeys));
+		category.setDescription(efDescription.createEmpty(langKeys));		
+	}
+	
+	public void selectCategory() throws UtilsNotFoundException
+	{
+//		service = fGeo.load(cService,service);
+		logger.info("selectCategory "+category);
+//		reloadLayer();
+		layer=null;
+	}
+	
+	public void rm(CATEGORY item)
+	{
+		logger.info("rm "+item);
+		try
+		{
+			fGeo.rm(item);
+			reloadCategories();
+			category=null;
+		}
+		catch (UtilsIntegrityException e)
+		{
+			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
+		}
+	}
+	
+	public void saveCategory() throws UtilsContraintViolationException, UtilsLockingException
+	{
+		logger.info("saveCategory "+category);
+		category = fGeo.save(category);
+		reloadCategories();
+	}
+	
+	public void cancelCategory()
+	{
+		category=null;
+	}
 	
 	// LAYER
 	protected void reloadLayer()

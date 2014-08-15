@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{http://www.geojsf.org}layers"/>
  *         &lt;element ref="{http://www.geojsf.org}maps"/>
  *         &lt;element ref="{http://www.geojsf.org}service" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.geojsf.org}category" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,7 +37,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "layers",
     "maps",
-    "service"
+    "service",
+    "category"
 })
 @XmlRootElement(name = "repository")
 public class Repository
@@ -50,6 +52,8 @@ public class Repository
     protected Maps maps;
     @XmlElement(required = true)
     protected List<Service> service;
+    @XmlElement(required = true)
+    protected List<Category> category;
 
     /**
      * Gets the value of the layers property.
@@ -142,6 +146,43 @@ public class Repository
 
     public void unsetService() {
         this.service = null;
+    }
+
+    /**
+     * Gets the value of the category property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the category property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getCategory().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Category }
+     * 
+     * 
+     */
+    public List<Category> getCategory() {
+        if (category == null) {
+            category = new ArrayList<Category>();
+        }
+        return this.category;
+    }
+
+    public boolean isSetCategory() {
+        return ((this.category!= null)&&(!this.category.isEmpty()));
+    }
+
+    public void unsetCategory() {
+        this.category = null;
     }
 
 }
