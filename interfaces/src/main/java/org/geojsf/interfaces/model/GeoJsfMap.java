@@ -2,6 +2,8 @@ package org.geojsf.interfaces.model;
 
 import java.util.List;
 
+import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.with.EjbWithCode;
@@ -17,7 +19,9 @@ public interface GeoJsfMap<L extends UtilsLang,
 						MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
 						VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
 						VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-			extends EjbWithId,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
+			extends EjbWithId,EjbWithCode,
+					EjbSaveable,EjbRemoveable,
+					EjbWithLang<L>,EjbWithDescription<D>
 {
 	public static final String extractId = "geoJsfMap";
 	
