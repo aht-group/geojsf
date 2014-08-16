@@ -82,6 +82,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 		LAYER load(Class<LAYER> cLayer, LAYER layer)
 	{
 		layer = em.find(cLayer, layer.getId());
+		if(layer.getViewPort()!=null){layer.getViewPort().getId();}
 		return layer;
 	}
 
