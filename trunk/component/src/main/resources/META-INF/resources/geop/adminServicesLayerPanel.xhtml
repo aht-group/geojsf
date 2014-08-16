@@ -14,7 +14,9 @@
 	<composite:implementation>
 		<p:panel header="#{msg.mapLayer}">
 			<f:facet name="actions">
-				<aht:icon type="save" listener="#{adminMapServiceBean.saveLayer()}" update=":pgCenter :sLayer"/>
+				<aht:icon type="geoJsfCancel" listener="#{adminMapServiceBean.cancelLayer()}" update=":pgCenter :sLayer"/>
+				<aht:icon type="geoJsfSave" listener="#{adminMapServiceBean.saveLayer()}" update=":pgCenter :sLayer"/>
+				<aht:icon type="geoJsfDelete" listener="#{adminMapServiceBean.rm(adminMapServiceBean.layer)}" update=":pgCenter :sLayer"/>	
 			</f:facet>
 			<h:panelGrid columns="2" columnClasses=",w100">
 				<p:outputLabel value="#{msg.mapCode}"/>

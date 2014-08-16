@@ -16,8 +16,8 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 
@@ -52,11 +52,11 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 
 	@Override
 	public <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-		MAP load(Class<MAP> cView, MAP view)
+		MAP load(Class<MAP> cView, MAP map)
 	{
-		view = em.find(cView, view.getId());
-		view.getViews().size();
-		return view;
+		map = em.find(cView, map.getId());
+		map.getViews().size();
+		return map;
 	}
 	
 	@Override
@@ -87,10 +87,20 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 
 	@Override
 	public <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-		void rm(Class<VIEW> cViewLayer, VIEW viewLayer)
+		void rm(Class<VIEW> cView, VIEW view)
 	{
-		viewLayer = em.find(cViewLayer, viewLayer.getId());
-		viewLayer.getMap().getViews().remove(viewLayer);
-		em.remove(viewLayer);
+		view = em.find(cView, view.getId());
+		view.getMap().getViews().remove(view);
+		em.remove(view);
+	}
+
+	@Override
+	public <L extends UtilsLang, D extends UtilsDescription, CATEGORY extends GeoJsfCategory<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, SERVICE extends GeoJsfService<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, LAYER extends GeoJsfLayer<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, MAP extends GeoJsfMap<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, VIEW extends GeoJsfView<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, VP extends GeoJsfViewPort<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>>
+		void rm(Class<LAYER> cLayer, LAYER layer)
+	{
+		layer = em.find(cLayer, layer.getId());
+		layer.getCategory().getLayer().remove(layer);
+		layer.getService().getLayer().remove(layer);
+		em.remove(layer);
 	}
 }

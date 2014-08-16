@@ -80,8 +80,8 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		this.cService=cService;
 		this.cLayer=cLayer;
 		efLang = EjbLangFactory.createFactory(cLang);
-		efCategory = EjbGeoCategoryFactory.factory(cCategory);
     	efDescription = EjbDescriptionFactory.createFactory(clDescription);
+    	efCategory = EjbGeoCategoryFactory.factory(cCategory);
     	efService = EjbGeoServiceFactory.factory(cService);
     	efLayer = EjbGeoLayerFactory.factory(cLang,cLayer);
     	efMap = EjbGeoMapFactory.factory(cLang, cMap);
@@ -195,6 +195,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	{
 		category=null;
 		service=null;
+		layer=null;
 	}
 	
 	// LAYER
@@ -233,5 +234,18 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		layer.setCategory(fGeo.find(cCategory, layer.getCategory()));
 		layer = fGeo.save(layer);
 		reloadLayer();
+	}
+	
+	public void rm(LAYER item)
+	{
+		logger.info("rm "+item);
+		fGeo.rm(cLayer,item);
+		reloadLayer();
+		layer=null;
+	}
+	
+	public void cancelLayer()
+	{
+		layer=null;
 	}
 }
