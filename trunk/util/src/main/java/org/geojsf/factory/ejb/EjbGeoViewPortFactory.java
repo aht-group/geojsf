@@ -46,4 +46,16 @@ public class EjbGeoViewPortFactory<L extends UtilsLang,D extends UtilsDescriptio
 		catch (IllegalAccessException e) {e.printStackTrace();}
         return ejb;
     }
+	
+	public VP build()
+	{
+		VP ejb = null;
+		try
+		{
+			ejb = cViewPort.newInstance();
+		}
+		catch (InstantiationException e) {e.printStackTrace();}
+		catch (IllegalAccessException e) {e.printStackTrace();}
+        return ejb;
+    }
 }

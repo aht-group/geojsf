@@ -47,6 +47,10 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 
+	private DefaultGeoJsfViewPort viewPort;
+	public DefaultGeoJsfViewPort getViewPort(){return viewPort;}
+	public void setViewPort(DefaultGeoJsfViewPort viewPort){this.viewPort = viewPort;}
+	
 	private boolean temporalLayer;
 	@Override public boolean isTemporalLayer() {return temporalLayer;}
 	@Override public void setTemporalLayer(boolean temporalLayer) {this.temporalLayer = temporalLayer;}

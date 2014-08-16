@@ -26,6 +26,9 @@ public interface GeoJsfLayer<L extends UtilsLang,
 	CATEGORY getCategory();
 	void setCategory(CATEGORY category);
 	
+	VP getViewPort();
+	void setViewPort(VP viewPort);
+	
 	boolean isTemporalLayer();
 	void setTemporalLayer(boolean temporalLayer);
 }
