@@ -234,6 +234,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		layer.setCategory(fGeo.find(cCategory, layer.getCategory()));
 		layer = fGeo.save(layer);
 		reloadLayer();
+		selectLayer();
 	}
 	
 	public void rm(LAYER item)

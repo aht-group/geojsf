@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<s:translations xmlns:s="http://ahtutils.aht-group.com/status">
+	<s:translation key="geoJsfCategories">
+		<s:langs>
+			<s:lang key="de" translation="Kategorien"/>
+			<s:lang key="en" translation="Categories"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfCategory">
+		<s:langs>
+			<s:lang key="de" translation="Kategorie"/>
+			<s:lang key="en" translation="Category"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfCategories">
+		<s:langs>
+			<s:lang key="de" translation="Kategorien"/>
+			<s:lang key="en" translation="Categories"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfDetailsThamaticMap">
+		<s:langs>
+			<s:lang key="de" translation="Details der thematischen Karte"/>
+			<s:lang key="en" translation="Details Thematic Map"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfDetailsView">
+		<s:langs>
+			<s:lang key="de" translation="Details der Ebene"/>
+			<s:lang key="en" translation="Details Layer"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfLayer">
+		<s:langs>
+			<s:lang key="de" translation="Ebene"/>
+			<s:lang key="en" translation="Layer"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfOrderNo">
+		<s:langs>
+			<s:lang key="de" translation="#"/>
+			<s:lang key="en" translation="#"/>
+		</s:langs>
+	</s:translation>
+	
+</s:translations>

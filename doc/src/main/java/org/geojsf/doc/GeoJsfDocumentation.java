@@ -7,4 +7,6 @@ public interface GeoJsfDocumentation
 	public static String keyTranslationFile = "net.sf.ahtutils.doc.file.translation";
 	public static String keyViews = "net.sf.ahtutils.doc.file.views";
 	public static String keyRoles = "net.sf.ahtutils.doc.file.roles";
+	
+	public static String msgGeoAdmin = "msg.geojsf/admin.xml";
 }
