@@ -19,7 +19,7 @@
 	                   <aht:icon type="geoJsfAdd" listener="#{adminMapThematicBean.addMap()}" update=":rowMaps"/>
 				</aht:pfDataTableHeader>
 			</f:facet>
-			<p:ajax event="rowSelect" update=":pgCenter :pgEast" listener="#{adminMapThematicBean.selectMap}"/>
+			<p:ajax event="rowSelect" update=":sMap :sView" listener="#{adminMapThematicBean.selectMap}"/>
 			<p:column headerText="#{msg.Name}" sortBy="#{m.name[userBean.localeCode].lang}">
 				<h:outputText value="#{m.name[userBean.localeCode].lang}" /> 
 			</p:column>
