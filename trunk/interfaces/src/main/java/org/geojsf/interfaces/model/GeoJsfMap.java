@@ -28,6 +28,9 @@ public interface GeoJsfMap<L extends UtilsLang,
 	List<VIEW> getViews();
 	void setViews(List<VIEW> views);
 	
+	VP getViewPort();
+	void setViewPort(VP viewPort);
+	
 	Double getLat();
 	void setLat(Double lat);
 	

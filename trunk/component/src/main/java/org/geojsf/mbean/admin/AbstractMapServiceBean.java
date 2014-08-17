@@ -18,6 +18,7 @@ import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.EjbGeoMapFactory;
 import org.geojsf.factory.ejb.EjbGeoServiceFactory;
 import org.geojsf.factory.ejb.EjbGeoViewFactory;
+import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
 import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
@@ -41,6 +42,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	protected EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efLayer;
 	protected EjbGeoMapFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efMap;
 	protected EjbGeoViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efView;
+	private EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efViewPort;
 	
 	protected GeoJsfUtilsFacade fGeo;
 	
@@ -68,12 +70,16 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	public LAYER getLayer() {return layer;}
 	public void setLayer(LAYER layer) {this.layer = layer;}
 	
+	protected VP viewPort;
+	public VP getViewPort(){return viewPort;}
+	public void setViewPort(VP viewPort){this.viewPort = viewPort;}
+
 	private String[] langKeys;
 	private Class<CATEGORY> cCategory;
 	private Class<SERVICE> cService;
 	private Class<LAYER> cLayer;
 	
-	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView)
+	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort)
 	{
 		this.langKeys=langKeys;
 		this.cCategory=cCategory;
@@ -86,6 +92,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
     	efLayer = EjbGeoLayerFactory.factory(cLang,cLayer);
     	efMap = EjbGeoMapFactory.factory(cLang, cMap);
     	efView = EjbGeoViewFactory.factory(cView);
+    	efViewPort = EjbGeoViewPortFactory.factory(cLang,cViewPort);
 	}
 	
 	//SERVICES
@@ -103,6 +110,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		
 		layer=null;
 		category = null;
+		viewPort=null;
 	}
 
 	public void selectService() throws UtilsNotFoundException
@@ -111,6 +119,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		logger.info("selectService "+service);
 		layer=null;
 		category = null;
+		viewPort=null;
 	}
 	
 	public void rm(SERVICE item)
@@ -140,6 +149,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	{
 		service=null;
 		category=null;
+		viewPort=null;
 	}
 	
 	// CATEGORY
@@ -165,6 +175,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		reloadLayer();
 		layer=null;
 		service=null;
+		viewPort=null;
 	}
 	
 	public void rm(CATEGORY item)
@@ -196,6 +207,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		category=null;
 		service=null;
 		layer=null;
+		viewPort=null;
 	}
 	
 	// LAYER
@@ -214,10 +226,12 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		layer.setDescription(efDescription.createEmpty(langKeys));
 	}
 	
-	public void selectLayer() throws UtilsNotFoundException
+	public void selectLayer() throws UtilsNotFoundException, UtilsContraintViolationException, UtilsLockingException
 	{
 		logger.info("selectLayer "+layer);
 		layer = fGeo.load(cLayer,layer);
+		if(layer.getViewPort()==null){addViewPort();}
+		else{viewPort=layer.getViewPort();}
 		
 		VIEW view = efView.build();
 		view.setLayer(layer);
@@ -243,10 +257,21 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		fGeo.rm(cLayer,item);
 		reloadLayer();
 		layer=null;
+		viewPort=null;
 	}
 	
 	public void cancelLayer()
 	{
 		layer=null;
+		viewPort=null;
+	}
+	
+	// View Port
+	private void addViewPort() throws UtilsContraintViolationException, UtilsLockingException
+	{
+		viewPort = efViewPort.build();
+		viewPort = fGeo.save(viewPort);
+		layer.setViewPort(viewPort);
+		layer = fGeo.update(layer);
 	}
 }

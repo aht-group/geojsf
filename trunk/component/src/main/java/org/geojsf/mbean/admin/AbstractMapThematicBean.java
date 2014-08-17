@@ -19,6 +19,7 @@ import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.EjbGeoMapFactory;
 import org.geojsf.factory.ejb.EjbGeoServiceFactory;
 import org.geojsf.factory.ejb.EjbGeoViewFactory;
+import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
 import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
@@ -43,6 +44,7 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 	protected EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efLayer;
 	protected EjbGeoMapFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efMap;
 	protected EjbGeoViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efView;
+	private EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efViewPort;	
 	
 	protected GeoJsfUtilsFacade fGeo;
 	
@@ -67,13 +69,17 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 	public CATEGORY getCategory(){return category;}
 	public void setCategory(CATEGORY category){this.category = category;}
 	
+	protected VP viewPort;
+	public VP getViewPort(){return viewPort;}
+	public void setViewPort(VP viewPort){this.viewPort = viewPort;}
+	
 	private String[] langKeys;
 	private Class<MAP> cMap;
 	private Class<VIEW> cView;
 	private Class<CATEGORY> cCategory;
 	private Class<LAYER> cLayer;
 	
-	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView)
+	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView,final Class<VP> cViewPort)
 	{
 		this.langKeys=langKeys;
 		this.cMap=cMap;
@@ -88,6 +94,7 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
     	efLayer = EjbGeoLayerFactory.factory(cLang,cLayer);
     	efMap = EjbGeoMapFactory.factory(cLang, cMap);
     	efView = EjbGeoViewFactory.factory(cView);
+    	efViewPort = EjbGeoViewPortFactory.factory(cLang,cViewPort);
 	}
 	
 	protected void reloadMaps()
@@ -95,7 +102,7 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 		maps = fGeo.all(cMap);
 	}
 	
-	public void selectMap() throws UtilsNotFoundException
+	public void selectMap() throws UtilsNotFoundException, UtilsContraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.selectEntity(map));
 		missingLangsMap();
@@ -104,9 +111,11 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 	}
 	protected void missingLangsMap(){}
 	
-	protected void reloadMap()
+	protected void reloadMap() throws UtilsContraintViolationException, UtilsLockingException
 	{
 		map = fGeo.load(cMap,map);
+		if(map.getViewPort()==null){addViewPort();}
+		else{viewPort=map.getViewPort();}
 	}
 	
 	public void addMap()
@@ -229,7 +238,15 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 		category = fGeo.load(cCategory,category);
 		layers = category.getLayer();
 		logger.info(AbstractLogMessage.selectOneMenuChange(category));
-		
+	}
+	
+	// View Port
+	private void addViewPort() throws UtilsContraintViolationException, UtilsLockingException
+	{
+		viewPort = efViewPort.build();
+		viewPort = fGeo.save(viewPort);
+		map.setViewPort(viewPort);
+		map = fGeo.update(map);
 	}
 	
 }
