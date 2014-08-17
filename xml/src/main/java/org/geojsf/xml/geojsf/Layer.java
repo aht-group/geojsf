@@ -27,6 +27,7 @@ import net.sf.ahtutils.xml.status.Langs;
  *         &lt;element ref="{http://www.geojsf.org}legend"/>
  *         &lt;element ref="{http://www.geojsf.org}service"/>
  *         &lt;element ref="{http://www.geojsf.org}category"/>
+ *         &lt;element ref="{http://www.geojsf.org}viewPort"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -47,7 +48,8 @@ import net.sf.ahtutils.xml.status.Langs;
     "descriptions",
     "legend",
     "service",
-    "category"
+    "category",
+    "viewPort"
 })
 @XmlRootElement(name = "layer")
 public class Layer
@@ -65,6 +67,8 @@ public class Layer
     protected Service service;
     @XmlElement(required = true)
     protected Category category;
+    @XmlElement(required = true)
+    protected ViewPort viewPort;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
@@ -216,6 +220,34 @@ public class Layer
 
     public boolean isSetCategory() {
         return (this.category!= null);
+    }
+
+    /**
+     * Gets the value of the viewPort property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ViewPort }
+     *     
+     */
+    public ViewPort getViewPort() {
+        return viewPort;
+    }
+
+    /**
+     * Sets the value of the viewPort property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ViewPort }
+     *     
+     */
+    public void setViewPort(ViewPort value) {
+        this.viewPort = value;
+    }
+
+    public boolean isSetViewPort() {
+        return (this.viewPort!= null);
     }
 
     /**

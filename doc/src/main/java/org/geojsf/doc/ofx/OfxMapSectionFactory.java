@@ -112,13 +112,13 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 	
 	private Specification createSpecifications()
 	{
+		Specification specification = new Specification();
+		
 		Columns cols = new Columns();
-
 		cols.getColumn().add(OfxColumnFactory.percentage(colWidths[0]));
 		cols.getColumn().add(OfxColumnFactory.flex(colWidths[1]));
 //		cols.getColumn().add(OfxColumnFactory.flex(colWidths[2]));
 		
-		Specification specification = new Specification();
 		specification.setColumns(cols);
 		specification.setFloat(XmlFloatFactory.build(false));
 		return specification;

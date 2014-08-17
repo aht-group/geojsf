@@ -48,6 +48,8 @@ public class TestXmlLayer extends AbstractXmlGeojsfTest
     		
     		xml.setService(TestXmlService.create(false));
     		xml.setCategory(TestXmlCategory.create(false));
+    		
+    		xml.setViewPort(TestXmlViewPort.create(false));
     	}
     	
     	return xml;

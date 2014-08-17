@@ -5,4 +5,5 @@
     <geojsf:legend id="1" url="myUrl"/>
     <geojsf:service id="1" code="myCode" url="http://geojsf.sf.net" wms="wms" wcs="wcs"/>
     <geojsf:category id="1" code="myCode"/>
+    <geojsf:viewPort id="123" lat="1.23" lon="4.56" bottom="5.55" left="3.33" right="4.44" top="2.22"/>
 </geojsf:layer>

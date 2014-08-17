@@ -9,6 +9,7 @@ import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
 import org.geojsf.factory.xml.geojsf.XmlServiceFactory;
 import org.geojsf.factory.xml.geojsf.XmlViewFactory;
 import org.geojsf.factory.xml.openlayers.XmlMapFactory;
+import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
@@ -18,6 +19,7 @@ import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.rest.db.GeoJsfDatabaseExportRest;
 import org.geojsf.util.query.GeoJsfQuery;
 import org.geojsf.xml.geojsf.Category;
+import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Maps;
@@ -31,7 +33,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfRestDatabaseExporter.class);
 	
-	private UtilsSecurityFacade fGeo;
+	private GeoJsfUtilsFacade fGeo;
 	
 	private final Class<SERVICE> cService;
 	private final Class<CATEGORY> cCategory;
@@ -39,7 +41,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 	private final Class<MAP> cMap;
 //	private final Class<VIEW> cView;
 	
-	private GeoJsfRestDatabaseExporter(UtilsSecurityFacade fGeo,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap)
+	private GeoJsfRestDatabaseExporter(GeoJsfUtilsFacade fGeo,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap)
 	{
 		this.fGeo=fGeo;
 		this.cCategory=cCategory;
@@ -51,7 +53,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		GeoJsfRestDatabaseExporter<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
-		factory(UtilsSecurityFacade fGeo, final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap)
+		factory(GeoJsfUtilsFacade fGeo, final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap)
 	{
 		return new GeoJsfRestDatabaseExporter<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(fGeo,cCategory,cService,cLayer,cMap);
 	}
@@ -90,11 +92,13 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 	@Override
 	public Layers exportLayers()
 	{
+		logger.info("Export "+Layer.class.getSimpleName());
 		Layers layers = new Layers();
 		XmlLayerFactory f = new XmlLayerFactory(GeoJsfQuery.get(GeoJsfQuery.Key.layer, null));
 		
 		for(LAYER layer : fGeo.all(cLayer))
 		{
+			layer = fGeo.load(cLayer,layer);
 			layers.getLayer().add(f.build(layer));
 		}
 		

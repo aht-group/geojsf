@@ -118,6 +118,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ViewPort }
+     * 
+     */
+    public ViewPort createViewPort() {
+        return new ViewPort();
+    }
+
+    /**
      * Create an instance of {@link Maps }
      * 
      */
@@ -139,14 +147,6 @@ public class ObjectFactory {
      */
     public View createView() {
         return new View();
-    }
-
-    /**
-     * Create an instance of {@link ViewPort }
-     * 
-     */
-    public ViewPort createViewPort() {
-        return new ViewPort();
     }
 
 }
