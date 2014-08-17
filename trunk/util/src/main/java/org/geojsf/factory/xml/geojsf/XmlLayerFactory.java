@@ -63,6 +63,12 @@ public class XmlLayerFactory implements Serializable
 			XmlDescriptionsFactory f = new XmlDescriptionsFactory(q.getDescriptions());
 			xml.setDescriptions(f.create(ejb.getDescription()));
 		}
+		
+		if(q.isSetViewPort() && ejb.getViewPort()!=null)
+		{
+			XmlViewPortFactory f = new XmlViewPortFactory(q.getViewPort());
+			xml.setViewPort(f.build(ejb.getViewPort()));
+		}
 				
 		return xml;
 	}

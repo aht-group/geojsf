@@ -22,7 +22,36 @@ public class XmlViewPortFactory implements Serializable
 	
 	public static final long serialVersionUID=1;
 
+	private ViewPort q;
 	
+	public XmlViewPortFactory(ViewPort q)
+	{
+		this.q=q;
+	}
+	
+	public <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
+		ViewPort build (VP ejb)
+	{
+		ViewPort xml = new ViewPort();
+		
+		if(q.isSetId()){xml.setId(ejb.getId());}
+		
+		if(q.isSetLat()){xml.setLat(ejb.getLat());}
+		if(q.isSetLon()){xml.setLon(ejb.getLon());}
+		
+		if(q.isSetLeft()){xml.setLeft(ejb.getMarginLeft());}
+		if(q.isSetRight()){xml.setRight(ejb.getMarginRight());}
+		if(q.isSetTop()){xml.setTop(ejb.getMarginTop());}
+		if(q.isSetBottom()){xml.setBottom(ejb.getMarginBottom());}
+		
+		if(q.isSetScale())
+		{
+			xml.setScale(XmlScaleFactory.build(ejb));
+		}
+		
+		return xml;
+	}
+		
 	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		ViewPort build (MAP map)
 	{

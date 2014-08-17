@@ -9,8 +9,10 @@ import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.geojsf.Repository;
+import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.Service;
 import org.geojsf.xml.geojsf.View;
+import org.geojsf.xml.geojsf.ViewPort;
 
 public class GeoJsfQuery
 {
@@ -89,6 +91,27 @@ public class GeoJsfQuery
 		xml.setCategory(category);
 		xml.setLangs(StatusQuery.langs());
 		xml.setDescriptions(StatusQuery.descriptions());
+		xml.setViewPort(viewPort());
+		return xml;
+	}
+	
+	public static ViewPort viewPort()
+	{
+		ViewPort xml = new ViewPort();
+		xml.setLat(0);
+		xml.setLon(0);
+		xml.setLeft(0);
+		xml.setRight(0);
+		xml.setTop(0);
+		xml.setBottom(0);
+		xml.setScale(scale());
+		return xml;
+	}
+	
+	public static Scale scale()
+	{
+		Scale xml = new Scale();
+		xml.setValue(0);
 		return xml;
 	}
 	

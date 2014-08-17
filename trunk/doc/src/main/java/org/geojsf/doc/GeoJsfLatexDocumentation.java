@@ -16,6 +16,7 @@ import net.sf.exlp.util.io.StringIO;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.doc.ofx.OfxCategoryLayerSectionFactory;
 import org.geojsf.doc.ofx.OfxLayerTableFactory;
 import org.geojsf.doc.ofx.OfxMapSectionFactory;
 import org.geojsf.doc.ofx.OfxServiceListFactory;
@@ -23,6 +24,7 @@ import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
 import org.geojsf.factory.xml.geojsf.XmlMapFactory;
 import org.geojsf.factory.xml.geojsf.XmlViewFactory;
 import org.geojsf.util.wms.WmsTileDownloader;
+import org.geojsf.xml.geojsf.Category;
 import org.geojsf.xml.geojsf.Layer;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Map;
@@ -43,7 +45,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfLatexDocumentation.class);
 	
 	private final static String dirDescriptions = "description/geojsf";
-	private final static String dirLayer = "tab/geojsf/layer";
+	private final static String dirLayer = "section/geojsf/layer";
 	private final static String dirMap = "section/geojsf/map";
 	
 	public static enum InstallationCode {instGeoserver}
@@ -54,6 +56,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	private Translations translations;
 	
 	private Repository repository;
+	private Repository categories;
 	private Layers layers;
 	private Maps maps;
 	
@@ -91,23 +94,10 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		addConfig(GeoJsfCode.datastructure.toString(),"ofx.geojsf/geojsf/datastructure.xml","geojsf/datastructure");
 	}
 	
-	public void loadRepository(String fileName) throws FileNotFoundException
-	{
-		repository = JaxbUtil.loadJAXB(fileName,Repository.class);
-		JaxbUtil.trace(repository);
-	}
-	
-	public void loadLayers(String fileName) throws FileNotFoundException
-	{
-		layers = JaxbUtil.loadJAXB(fileName,Layers.class);
-		JaxbUtil.trace(layers);
-	}
-	
-	public void loadMaps(String fileName) throws FileNotFoundException
-	{
-		maps = JaxbUtil.loadJAXB(fileName,Maps.class);
-		JaxbUtil.trace(maps);
-	}
+	public void loadRepository(String fileName) throws FileNotFoundException {repository = JaxbUtil.loadJAXB(fileName,Repository.class);JaxbUtil.trace(repository);}
+	public void loadCategories(String fileName) throws FileNotFoundException {categories = JaxbUtil.loadJAXB(fileName,Repository.class);JaxbUtil.trace(repository);}
+	public void loadLayers(String fileName) throws FileNotFoundException{layers = JaxbUtil.loadJAXB(fileName,Layers.class);JaxbUtil.trace(layers);}
+	public void loadMaps(String fileName) throws FileNotFoundException{maps = JaxbUtil.loadJAXB(fileName,Maps.class);JaxbUtil.trace(maps);}
 	
 	public void saveServiceDescription() throws UtilsConfigurationException
 	{
@@ -126,24 +116,39 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		}
 	}
 	
-	public void writerLayerTables(String idPrefix) throws UtilsConfigurationException
+	public void writeLayerSections(int sectionLevel,String idPrefix) throws UtilsConfigurationException
 	{
-		logger.info("Creating "+Layer.class.getSimpleName()+"."+Table.class.getSimpleName());
-		for(String lang : langs)
+		logger.info("Creating "+Map.class.getSimpleName()+"."+Section.class.getSimpleName());
+		
+		for(Category category : categories.getCategory())
 		{
-			for(Service service : repository.getService())
+			logger.info("Category: "+category.getCode());
+			for(Layer layer : layers.getLayer())
 			{
-				File f = new File(baseLatexDir,lang+"/"+dirLayer+"/"+service.getCode()+".tex");
-				try
+				if(layer.getCategory().getCode().equals(category.getCode()))
 				{
-					OfxLayerTableFactory latexFactory = new OfxLayerTableFactory(config,lang,translations);
-					Table table = latexFactory.build(idPrefix+".layer."+service.getCode(),service,layers,headerKeysLayer);
-					this.writeTable(table, f);
+					category.getLayer().add(layer);
 				}
-				catch (OfxAuthoringException e) {throw new UtilsConfigurationException(e.getMessage());}
-				catch (IOException e) {e.printStackTrace();}
+			}
+			for(String lang : langs)
+			{
+				writeLayerSection(sectionLevel,idPrefix, lang,category);
 			}
 		}
+	}
+	
+	private void writeLayerSection(int sectionLevel,String idPrefix, String lang, Category category) throws UtilsConfigurationException
+	{
+		File fTex = new File(baseLatexDir,lang+"/"+dirLayer+"/"+category.getCode()+".tex");
+		
+		try
+		{
+			OfxCategoryLayerSectionFactory lfSectionLayer = new OfxCategoryLayerSectionFactory(config,lang,translations);
+			Section section = lfSectionLayer.create(category, headerKeysMapView);
+			this.writeSection(sectionLevel,section,fTex);
+		}
+		catch (OfxAuthoringException e) {throw new UtilsConfigurationException(e.getMessage());}
+		catch (IOException e) {e.printStackTrace();}
 	}
 	
 	public void saveMapSections(int sectionLevel,String idPrefix) throws UtilsConfigurationException
