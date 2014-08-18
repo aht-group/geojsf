@@ -36,15 +36,14 @@ public class TestXmlMap extends AbstractXmlGeojsfTest
     	Map xml = new Map();
     	xml.setId(123);
     	xml.setCode("myCode");
-    	xml.setLat(3.4);
-    	xml.setLon(5.6);
-    	xml.setZoom(3);
      	
     	if(withChilds)
     	{
     		xml.getView().add(TestXmlView.create(false));
     		xml.setLangs(new Langs());
     		xml.setDescriptions(new Descriptions());
+    		
+    		xml.setViewPort(TestXmlViewPort.create(false));
     	}
     	
     	return xml;
