@@ -139,11 +139,9 @@ public class GeoJsfQuery
 		
 		Map xml = new Map();
 		xml.setCode("");
-		xml.setZoom(0);
-		xml.setLat(0);
-		xml.setLon(0);
 		xml.setLangs(StatusQuery.langs());
 		xml.setDescriptions(StatusQuery.descriptions());
+		xml.setViewPort(viewPort());
 		return xml;
 	}
 }

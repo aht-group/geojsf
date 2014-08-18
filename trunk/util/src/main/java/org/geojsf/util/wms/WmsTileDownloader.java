@@ -40,16 +40,13 @@ public class WmsTileDownloader
 		
 		logger.info("Request: "+urlRequest);
 		
-		try {
+		try
+		{
 			URL url = new URL(urlRequest);
 			FileUtils.copyURLToFile(url,fDst);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		catch (MalformedURLException e) {e.printStackTrace();}
+		catch (IOException e) {e.printStackTrace();}
 	}
 	
 	public String calculateRequest(Map map)

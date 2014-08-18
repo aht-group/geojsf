@@ -7,6 +7,7 @@ import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
+import org.geojsf.factory.xml.geojsf.XmlViewPortFactory;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfService;
@@ -37,9 +38,6 @@ public class XmlMapFactory implements Serializable
 	{
 		Map xml = new Map();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
-		if(q.isSetZoom()){xml.setZoom(ejb.getZoom());}
-		if(q.isSetLat()){xml.setLat(ejb.getLat());}
-		if(q.isSetLon()){xml.setLon(ejb.getLon());}
 				
 		if(ejb.getViews()!=null && ejb.getViews().size()>0)
 		{
@@ -48,7 +46,7 @@ public class XmlMapFactory implements Serializable
 		
 		if(q.isSetLangs())
 		{
-			XmlLangsFactory f = new XmlLangsFactory(q.getLangs());
+			XmlLangsFactory<L> f = new XmlLangsFactory<L>(q.getLangs());
 			xml.setLangs(f.getUtilsLangs(ejb.getName()));
 		}
 		
@@ -56,6 +54,12 @@ public class XmlMapFactory implements Serializable
 		{
 			XmlDescriptionsFactory f = new XmlDescriptionsFactory(q.getDescriptions());
 			xml.setDescriptions(f.create(ejb.getDescription()));
+		}
+		
+		if(q.isSetViewPort() && ejb.getViewPort()!=null)
+		{
+			XmlViewPortFactory f = new XmlViewPortFactory(q.getViewPort());
+			xml.setViewPort(f.build(ejb.getViewPort()));
 		}
 		
 		return xml;

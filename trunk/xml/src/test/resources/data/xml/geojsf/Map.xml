@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<geojsf:map xmlns:us="http://ahtutils.aht-group.com/status" xmlns:geojsf="http://www.geojsf.org" id="123" code="myCode" lat="3.4" lon="5.6" zoom="3">
+<geojsf:map xmlns:us="http://ahtutils.aht-group.com/status" xmlns:geojsf="http://www.geojsf.org" id="123" code="myCode">
     <geojsf:view id="123" nr="1" visible="true" legend="false"/>
     <us:langs/>
     <us:descriptions/>
+    <geojsf:viewPort id="123" lat="1.23" lon="4.56" bottom="5.55" left="3.33" right="4.44" top="2.22"/>
 </geojsf:map>

@@ -27,6 +27,7 @@ import net.sf.ahtutils.xml.status.Langs;
  *         &lt;element ref="{http://www.geojsf.org}view" maxOccurs="unbounded"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
+ *         &lt;element ref="{http://www.geojsf.org}viewPort"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -45,7 +46,8 @@ import net.sf.ahtutils.xml.status.Langs;
 @XmlType(name = "", propOrder = {
     "view",
     "langs",
-    "descriptions"
+    "descriptions",
+    "viewPort"
 })
 @XmlRootElement(name = "map")
 public class Map
@@ -59,6 +61,8 @@ public class Map
     protected Langs langs;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Descriptions descriptions;
+    @XmlElement(required = true)
+    protected ViewPort viewPort;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
@@ -163,6 +167,34 @@ public class Map
 
     public boolean isSetDescriptions() {
         return (this.descriptions!= null);
+    }
+
+    /**
+     * Gets the value of the viewPort property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ViewPort }
+     *     
+     */
+    public ViewPort getViewPort() {
+        return viewPort;
+    }
+
+    /**
+     * Sets the value of the viewPort property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ViewPort }
+     *     
+     */
+    public void setViewPort(ViewPort value) {
+        this.viewPort = value;
+    }
+
+    public boolean isSetViewPort() {
+        return (this.viewPort!= null);
     }
 
     /**
