@@ -73,8 +73,8 @@ var GeoJSF = {
 		 			event:    'mapClick', 
 		 			update:   GeoJSF.updateOnClick,
 					params: [
-		 			         {name: 'org.geojsf.coordinates.lon',		value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lon},
-		 			         {name: 'org.geojsf.coordinates.lat',		value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lat},
+		 			         {name: 'org.geojsf.click.lon',				value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lon},
+		 			         {name: 'org.geojsf.click.lat',				value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lat},
 		 			         {name: 'org.geojsf.viewport.center.lat',	value: GeoJSF.map.getExtent().getCenterLonLat().lat},
 		 			         {name: 'org.geojsf.viewport.center.lon',  	value: GeoJSF.map.getExtent().getCenterLonLat().lon},
 		 			         {name: 'org.geojsf.viewport.bottom',		value: GeoJSF.map.getExtent().bottom},

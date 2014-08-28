@@ -9,6 +9,8 @@ import javax.faces.event.FacesListener;
 import org.geojsf.xml.geojsf.Coordinate;
 import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.ViewPort;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This type of event is used in combination with the <f:ajax> tag.
@@ -19,21 +21,59 @@ import org.geojsf.xml.geojsf.ViewPort;
  */
 public class MapAjaxEvent extends AjaxBehaviorEvent
 {
+	final static Logger logger = LoggerFactory.getLogger(MapAjaxEvent.class);
 	private static final long serialVersionUID = 1L;
-	private Coordinate coordinate;
+	
+	private final static String keyClickLat = "org.geojsf.click.lat";
+	private final static String keyClickLon = "org.geojsf.click.lon";	
+	private Coordinate click;
+	public Coordinate getClickCoordinate(){return click;}
+
 	private ViewPort viewPort;
+	public ViewPort getViewPort() {return viewPort;}
+//	public void setViewPort(ViewPort viewPort) {this.viewPort = viewPort;}
 	
 	public MapAjaxEvent(UIComponent component, ClientBehavior behavior)
 	{
 		super(component, behavior);
 	}
 	
-	public void setLatLon(String lat, String lon)
+	
+	public void setClickCoordinates(java.util.Map<String,String> params)
 	{
-		//Because the only the value String is relevant right now, the Coordinates are constructed from a given String 
-		coordinate = new Coordinate();
-		coordinate.setLat(new Double(lat));
-		coordinate.setLon(new Double(lon));
+		logger.info("lat "+params.containsKey(keyClickLat));
+		logger.info("lon "+params.containsKey(keyClickLon));
+		if(params.containsKey(keyClickLat) && params.containsKey(keyClickLon))
+		{
+			String lat = params.get(keyClickLat);
+			String lon = params.get(keyClickLon);
+			setClickCoordinates(lat,lon);
+		}
+	}
+	
+	public void setClickCoordinates(String lat, String lon)
+	{
+		click = new Coordinate();
+		click.setLat(new Double(lat));
+		click.setLon(new Double(lon));
+		logger.info("CLick: lat:"+lat+" lon:"+lon);
+	}
+	
+	public void setViewport(java.util.Map<String,String> params)
+	{
+		try
+		{
+			String viewPortCenterLon = params.get("org.geojsf.viewport.center.lon");   
+			String viewPortCenterLat = params.get("org.geojsf.viewport.center.lat");
+			String viewPortBottom    = params.get("org.geojsf.viewport.bottom");
+			String viewPortTop       = params.get("org.geojsf.viewport.top");
+			String viewPortLeft      = params.get("org.geojsf.viewport.left");
+			String viewPortRight     = params.get("org.geojsf.viewport.right");
+			
+			setViewport(viewPortCenterLat, viewPortCenterLon, viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
+			addScale(params.get("org.geojsf.viewport.scale"));
+		}
+		catch (Exception ex) {}
 	}
 	
 	public void setViewport(String lat, String lon, String top, String bottom, String left, String right)
@@ -47,25 +87,16 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 		viewPort.setRight(new Double(right));
 	}
 	
-	public void addScale(Scale scale)
+	public void addScale(String scale)
 	{
-		viewPort.setScale(scale);
+		Scale scl = new Scale();
+		scl.setValue(new Double(scale));
+		addScale(scl);
 	}
-	
-	public Coordinate getCoordinate()
-	{
-		return coordinate;
-	}
+	public void addScale(Scale scale){viewPort.setScale(scale);}
+
 
 	@Override public boolean isAppropriateListener(FacesListener faceslistener) {return (faceslistener instanceof AjaxBehaviorListener);}
     @Override public void processListener(FacesListener faceslistener) {((AjaxBehaviorListener) faceslistener).processAjaxBehavior(this);}
-
-	public ViewPort getViewPort() {
-		return viewPort;
-	}
-
-	public void setViewPort(ViewPort viewPort) {
-		this.viewPort = viewPort;
-	}
 
 }
