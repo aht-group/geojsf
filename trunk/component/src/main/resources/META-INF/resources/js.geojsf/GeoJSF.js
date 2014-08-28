@@ -75,8 +75,8 @@ var GeoJSF = {
 					params: [
 		 			         {name: 'org.geojsf.coordinates.lon',		value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lon},
 		 			         {name: 'org.geojsf.coordinates.lat',		value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lat},
-		 			         {name: 'org.geojsf.viewport.center.lat',	value: GeoJSF.map.getExtent().centerLonLat.lat},
-		 			         {name: 'org.geojsf.viewport.center.lon',  	value: GeoJSF.map.getExtent().centerLonLat.lon},
+		 			         {name: 'org.geojsf.viewport.center.lat',	value: GeoJSF.map.getExtent().getCenterLonLat().lat},
+		 			         {name: 'org.geojsf.viewport.center.lon',  	value: GeoJSF.map.getExtent().getCenterLonLat().lon},
 		 			         {name: 'org.geojsf.viewport.bottom',		value: GeoJSF.map.getExtent().bottom},
 		 			         {name: 'org.geojsf.viewport.top',			value: GeoJSF.map.getExtent().top},
 		 			         {name: 'org.geojsf.viewport.left',			value: GeoJSF.map.getExtent().left},
