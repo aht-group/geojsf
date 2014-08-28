@@ -70,6 +70,17 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 			String viewPortLeft      = params.get("org.geojsf.viewport.left");
 			String viewPortRight     = params.get("org.geojsf.viewport.right");
 			
+			boolean debug = false;
+			if(debug)
+			{
+				logger.info("org.geojsf.viewport.center.lon "+viewPortCenterLon);
+				logger.info("org.geojsf.viewport.center.lat "+viewPortCenterLat);
+				logger.info("org.geojsf.viewport.bottom "+viewPortBottom);
+				logger.info("org.geojsf.viewport.top "+viewPortTop);
+				logger.info("org.geojsf.viewport.left "+viewPortLeft);
+				logger.info("org.geojsf.viewport.right "+viewPortRight);
+			}
+			
 			setViewport(viewPortCenterLat, viewPortCenterLon, viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
 			addScale(params.get("org.geojsf.viewport.scale"));
 		}
