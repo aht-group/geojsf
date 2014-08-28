@@ -26,7 +26,6 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import org.geojsf.component.entities.OlLayer;
 import org.geojsf.component.entities.OlService;
 import org.geojsf.event.MapAjaxEvent;
-import org.geojsf.factory.txt.TxtOpenlayersLayerFactory;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
@@ -34,7 +33,6 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.util.GeoJsfJsLoader;
-import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.Scales;
 import org.geojsf.xml.gml.Coordinates;
 import org.primefaces.context.RequestContext;
@@ -314,8 +312,6 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 			    isMapMoveEvent     = behaviorEvent.equals("mapMove");
 		    }
 		    
-		    
-		    
 		    //if (null!=services && ((null != behaviorEvent && !isLayerSwitchEvent) || null==behaviorEvent || isUpdateMapEvent))
 		    if (null!=serviceList)
 			{
@@ -367,31 +363,9 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	            			logger.info("Found " +behavior.getClass().toString());
 	            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
 	            			
-	            			try
-	            			{
-		            			String lat = params.get("org.geojsf.coordinates.lat");
-		            			String lon = params.get("org.geojsf.coordinates.lon");
-		            			ajaxEvent.setLatLon(lat,lon);
-	            			}
-	            			catch (Exception ex) {logger.error("Could not read coordinates and scale.");}
-	            			
-	            			try
-	            			{
-		            			String viewPortCenterLon = params.get("org.geojsf.viewport.center.lon");   
-		            			String viewPortCenterLat = params.get("org.geojsf.viewport.center.lat");
-		            			String viewPortBottom    = params.get("org.geojsf.viewport.bottom");
-		            			String viewPortTop       = params.get("org.geojsf.viewport.top");
-		            			String viewPortLeft      = params.get("org.geojsf.viewport.left");
-		            			String viewPortRight     = params.get("org.geojsf.viewport.right");
-		            			ajaxEvent.setViewport(viewPortCenterLat, viewPortCenterLon, viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
-		            			
-		            			String scl = params.get("org.geojsf.viewport.scale");
-		            			Scale scale = new Scale();
-		            			scale.setValue(new Double(scl));
-
-		            			ajaxEvent.addScale(scale);
-	            			}
-	            			catch (Exception ex) {ex.printStackTrace();logger.error("Could not read viewport.");}
+	            			logger.info("Setting CLiCK ");
+	            			ajaxEvent.setClickCoordinates(params);
+	            			ajaxEvent.setViewport(params);
 	            			
 	            			behavior.broadcast(ajaxEvent);
 	            		}
@@ -420,18 +394,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	            		{
 	            			logger.info("Found " +behavior.getClass().toString());
 	            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
-	            			
-	            			try {
-	            			String viewPortCenterLon = params.get("org.geojsf.viewport.lon");
-	            			String viewPortCenterLat = params.get("org.geojsf.viewport.lat");
-	            			String viewPortBottom    = params.get("org.geojsf.viewport.bottom");
-	            			String viewPortTop       = params.get("org.geojsf.viewport.top");
-	            			String viewPortLeft      = params.get("org.geojsf.viewport.left");
-	            			String viewPortRight     = params.get("org.geojsf.viewport.right");
-	            			ajaxEvent.setViewport(viewPortCenterLat, viewPortCenterLon, viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
-	            			} catch (Exception ex) {logger.error("Could not read viewport.");}
-		            			
-	            			
+	            			ajaxEvent.setViewport(params);
 	            			behavior.broadcast(ajaxEvent);
 	            		}
 	            	}
