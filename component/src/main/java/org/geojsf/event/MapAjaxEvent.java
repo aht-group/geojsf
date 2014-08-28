@@ -7,6 +7,7 @@ import javax.faces.event.AjaxBehaviorListener;
 import javax.faces.event.FacesListener;
 
 import org.geojsf.xml.geojsf.Coordinate;
+import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.ViewPort;
 
 /**
@@ -21,7 +22,6 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 	private static final long serialVersionUID = 1L;
 	private Coordinate coordinate;
 	private ViewPort viewPort;
-	private Float scale;
 	
 	public MapAjaxEvent(UIComponent component, ClientBehavior behavior)
 	{
@@ -47,17 +47,14 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 		viewPort.setRight(new Double(right));
 	}
 	
+	public void addScale(Scale scale)
+	{
+		viewPort.setScale(scale);
+	}
+	
 	public Coordinate getCoordinate()
 	{
 		return coordinate;
-	}
-
-	public Float getScale() {
-		return scale;
-	}
-
-	public void setScale(String scale) {
-		this.scale = new Float(scale);
 	}
 
 	@Override public boolean isAppropriateListener(FacesListener faceslistener) {return (faceslistener instanceof AjaxBehaviorListener);}

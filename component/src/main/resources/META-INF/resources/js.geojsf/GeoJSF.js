@@ -47,13 +47,13 @@ var GeoJSF = {
 		 			event:    'mapMove', 
 		 			update:   GeoJSF.updateOnMove,
 					params: [
-		 			         {name: 'org.geojsf.viewport.lon',     value: this.centerLon},
-		 			         {name: 'org.geojsf.viewport.lat',     value: this.centerLat},
+		 			         {name: 'org.geojsf.viewport.center.lon',     value: this.centerLon},
+		 			         {name: 'org.geojsf.viewport.center.lat',     value: this.centerLat},
 		 			         {name: 'org.geojsf.viewport.bottom',  value: this.viewportBoundBottom},
 		 			         {name: 'org.geojsf.viewport.top',     value: this.viewportBoundTop},
 		 			         {name: 'org.geojsf.viewport.left',    value: this.viewportBoundLeft},
 		 			         {name: 'org.geojsf.viewport.right',   value: this.viewportBoundRight},
-		 			         {name: 'org.geojsf.coodinates.scale', value: GeoJSF.map.getScale()},
+		 			         {name: 'org.geojsf.viewport.scale', value: GeoJSF.map.getScale()},
 		 			        ],
 		 			oncomplete: function(xhr, status, args) {console.log('map move AJAX request sent.')}
 				});
@@ -73,9 +73,15 @@ var GeoJSF = {
 		 			event:    'mapClick', 
 		 			update:   GeoJSF.updateOnClick,
 					params: [
-		 			         {name: 'org.geojsf.coordinates.lon',  value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lon},
-		 			         {name: 'org.geojsf.coordinates.lat',  value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lat},
-		 			         {name: 'org.geojsf.coodinates.scale', value: GeoJSF.map.getScale()}
+		 			         {name: 'org.geojsf.coordinates.lon',		value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lon},
+		 			         {name: 'org.geojsf.coordinates.lat',		value: GeoJSF.map.getLonLatFromViewPortPx(event.xy).lat},
+		 			         {name: 'org.geojsf.viewport.center.lat',	value: GeoJSF.map.getExtent().centerLonLat.lat},
+		 			         {name: 'org.geojsf.viewport.center.lon',  	value: GeoJSF.map.getExtent().centerLonLat.lon},
+		 			         {name: 'org.geojsf.viewport.bottom',		value: GeoJSF.map.getExtent().bottom},
+		 			         {name: 'org.geojsf.viewport.top',			value: GeoJSF.map.getExtent().top},
+		 			         {name: 'org.geojsf.viewport.left',			value: GeoJSF.map.getExtent().left},
+		 			         {name: 'org.geojsf.viewport.right',		value: GeoJSF.map.getExtent().right},
+		 			         {name: 'org.geojsf.viewport.scale',		value: GeoJSF.map.getScale()}
 		 			        ],
 		 			oncomplete: function(xhr, status, args) {console.log('mapClick AJAX request sent.')}
 				});
