@@ -34,6 +34,7 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.util.GeoJsfJsLoader;
+import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.Scales;
 import org.geojsf.xml.gml.Coordinates;
 import org.primefaces.context.RequestContext;
@@ -366,23 +367,31 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	            			logger.info("Found " +behavior.getClass().toString());
 	            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
 	            			
-	            			try {
-	            			String lat = params.get("org.geojsf.coordinates.lat");
-	            			String lon = params.get("org.geojsf.coordinates.lon");
-	            			String scl = params.get("org.geojsf.coordinates.scale");
-	            			ajaxEvent.setLatLon(lat,lon);
-	            			ajaxEvent.setScale(scl);
-	            			} catch (Exception ex) {logger.error("Could not read coordinates and scale.");}
+	            			try
+	            			{
+		            			String lat = params.get("org.geojsf.coordinates.lat");
+		            			String lon = params.get("org.geojsf.coordinates.lon");
+		            			ajaxEvent.setLatLon(lat,lon);
+	            			}
+	            			catch (Exception ex) {logger.error("Could not read coordinates and scale.");}
 	            			
-	            			try {
-	            			String viewPortCenterLon = params.get("org.geojsf.viewport.lon");
-	            			String viewPortCenterLat = params.get("org.geojsf.viewport.lat");
-	            			String viewPortBottom    = params.get("org.geojsf.viewport.bottom");
-	            			String viewPortTop       = params.get("org.geojsf.viewport.top");
-	            			String viewPortLeft      = params.get("org.geojsf.viewport.left");
-	            			String viewPortRight     = params.get("org.geojsf.viewport.right");
-	            			ajaxEvent.setViewport(viewPortCenterLat, viewPortCenterLon, viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
-	            			} catch (Exception ex) {logger.error("Could not read viewport.");}
+	            			try
+	            			{
+		            			String viewPortCenterLon = params.get("org.geojsf.viewport.center.lon");   
+		            			String viewPortCenterLat = params.get("org.geojsf.viewport.center.lat");
+		            			String viewPortBottom    = params.get("org.geojsf.viewport.bottom");
+		            			String viewPortTop       = params.get("org.geojsf.viewport.top");
+		            			String viewPortLeft      = params.get("org.geojsf.viewport.left");
+		            			String viewPortRight     = params.get("org.geojsf.viewport.right");
+		            			ajaxEvent.setViewport(viewPortCenterLat, viewPortCenterLon, viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
+		            			
+		            			String scl = params.get("org.geojsf.viewport.scale");
+		            			Scale scale = new Scale();
+		            			scale.setValue(new Double(scl));
+
+		            			ajaxEvent.addScale(scale);
+	            			}
+	            			catch (Exception ex) {ex.printStackTrace();logger.error("Could not read viewport.");}
 	            			
 	            			behavior.broadcast(ajaxEvent);
 	            		}

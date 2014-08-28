@@ -8,7 +8,7 @@ public class GeoJsfDistanceFactory
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfDistanceFactory.class);
 	
-	public static Distance build(int px, float scale)
+	public static Distance build(int px, double scale)
 	{
 		double radius = scale * px / 3300;
 		
