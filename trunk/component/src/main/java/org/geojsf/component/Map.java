@@ -142,7 +142,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 				}
 				else
 				{
-					if(initStage)
+					if(true)
 					{
 						// First - build a list of OpenLayers Services from the list of VIEWs. These are used to render the map layers initially
 						serviceList = new Hashtable<Long, OlService>();
@@ -213,24 +213,38 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		
 		//First, render the base layer (adding overlays first results in error)
 		Long baseLayerId = orderedLayers.get(orderedLayers.size()-1);
-		
-		encodeOlService(serviceList.get(baseLayerId), true, writer, renderer);
+		if (orderedLayers.size()==1)
+		{
+			encodeOlService(serviceList.get(baseLayerId), true, true, writer, renderer);
+		}
+		else
+		{
+			encodeOlService(serviceList.get(baseLayerId), true, false, writer, renderer);
+		}
+		renderer.renderTextWithLB("GeoJSF.eventsRegistered = false;");
 		
 		//Finally, render the overlay layers
 		//for (int i=0;i<serviceList.size()-1;i++)
  		for(int i=orderedLayers.size()-2;i==0;i--) //GEO-64
 		{	
  			OlService service = serviceList.get(orderedLayers.get(i));
- 			encodeOlService(service, false, writer, renderer);  
+ 			if (i==0)
+ 			{
+ 				encodeOlService(service, false, true, writer, renderer);
+ 			}
+ 			else
+ 			{
+ 				encodeOlService(service, false, false, writer, renderer);
+ 			}
+ 			  
 		}
  		
  		if(addScriptTag){writer.endElement("script");}
 	}
 	
-	public void encodeOlService(OlService service, Boolean baseLayer, ResponseWriter writer, JsfRenderUtil renderer) throws IOException
+	public void encodeOlService(OlService service, Boolean baseLayer, Boolean lastLayer, ResponseWriter writer, JsfRenderUtil renderer) throws IOException
 	{
 		String sLayers = buildLayerString(service);
-
 		logger.info("Adding to service " +service.getId() +": "+sLayers);
 		renderer.renderTextWithLB("var url        = '" +service.getUrl() +"';");
 		renderer.renderTextWithLB("var name       = '" +service.getId() +"';");
@@ -259,6 +273,10 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	//	writer.writeText("options.units = 'm';" +System.getProperty("line.separator"), null);
 		renderer.renderTextWithLB("GeoJSF.addLayer(name, url, params, options);");
 		renderer.renderLinebreaks(1);
+		if (lastLayer)
+		{
+			renderer.renderTextWithLB("GeoJSF.register(" +service.getId() +");");
+		}
 	}
 	
 	

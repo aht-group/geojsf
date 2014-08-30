@@ -11,6 +11,8 @@ var GeoJSF = {
 		updateOnClick: null,
 		updateOnMove: null,
 		id: null,
+		lastLayer: null,
+		eventsRegistered: false,
 		
 		setAjaxUpdates : function(updateClicks, updateMove)
 		{
@@ -18,15 +20,52 @@ var GeoJSF = {
 			this.updateOnMove  = updateMove;
 		},
 		
+		// Deprecated, now done in "loadend" event of last layer
 		addLoadEvent : function()
 		{
-			OpenLayers.Event.observe(window, "load", GeoJSF.registerEventHandlers ); 
+		//	OpenLayers.Event.observe(GeoJSF.map.div, "load", GeoJSF.registerEventHandlers ); 
 		},
 		
-		registerEventHandlers : function()
+		register : function(layerName)
 		{
-			GeoJSF.map.events.register("moveend",GeoJSF.map,GeoJSF.processEventMove ,true);
-			GeoJSF.map.events.register("click",  GeoJSF.map,GeoJSF.processEventClick,true);
+			try {
+				var layers = this.map.getLayersByName(layerName);
+				if(layers.length === 1) {
+					loadLayer = layers[0];
+				    loadLayer.events.register("loadend", loadLayer, function(e) {GeoJSF.lastLayer = layerName; GeoJSF.registerEventHandlers(e);} );
+			    }
+			    console.log("loadend event processing completed."); 
+			} catch (e)
+			{
+					console.log("Problem when adding loadend event listener: " +e);
+			}
+		},
+		
+		registerEventHandlers : function(e)
+		{
+			if (!GeoJSF.eventsRegistered){
+				try {
+				console.log("Trying to register event handlers");
+				GeoJSF.map.events.register("moveend",GeoJSF.map,GeoJSF.processEventMove ,true);
+				GeoJSF.map.events.register("click",  GeoJSF.map,GeoJSF.processEventClick,true);
+			 	console.log("Done registering.");
+			 	GeoJSF.eventsRegistered = true;
+				}
+				catch (e) {alert("Problem with registering Map events: " +e)}
+			}
+			else
+			{
+				try{
+					console.log("Removing listener for " +GeoJSF.lastLayer);
+					var layers = this.map.getLayersByName(GeoJSF.lastLayer);
+					if(layers.length === 1) {
+						loadLayer = layers[0];
+						loadLayer.events.remove("loadend");
+					}
+				} catch (e)
+				{
+					console.log("Problem when removing loadend listener: " +e);}
+			}
 		},
 		
 		processEventMove : function(event)
