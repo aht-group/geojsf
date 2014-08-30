@@ -123,7 +123,7 @@ public class JsfRenderUtil {
 		renderLinebreaks(1);
 		Map map = (Map) component;
 		writer.startElement("script", map);
-		renderTextWithLB("GeoJSF.addLoadEvent();");
+	//	renderTextWithLB("GeoJSF.addLoadEvent();");
 		renderTextWithLB("// GeoJSF: Initializing OpenLayers map");
 		renderTextWithLB("GeoJSF.setAjaxUpdates('" +encodeAjax(map, "mapClick") +"', '" +encodeAjax(map, "mapMove") +"');");
 		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"'," +map.getHeight() +", " +map.getWidth() +",'');");
