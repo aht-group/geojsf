@@ -3,6 +3,7 @@ package org.geojsf.component;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -575,7 +576,10 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	public String buildLayerString(OlService service)
 	{
 		StringBuffer sb = new StringBuffer();
-		for (Long i : service.getLayerVisibility().keySet())
+		List<Long> list = new ArrayList<Long>();
+		list.addAll(service.getLayerVisibility().keySet());
+		Collections.reverse(list);
+		for (Long i : list)
 		{
 			sb.append(layerNames.get(i) +",");
 		}
