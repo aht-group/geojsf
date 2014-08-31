@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.faces.application.ResourceDependencies;
@@ -164,7 +165,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 								OlService service = new OlService();
 								service.setUrl(viewService.getUrl());
 								service.setId(viewService.getId());
-								service.setLayerVisibility(new Hashtable<Long, Boolean>());
+								service.setLayerVisibility(new LinkedHashMap<Long, Boolean>());
 								service.getLayerVisibility().put(viewLayer.getId(), view.isVisible());
 								layerNames.put(viewLayer.getId(), viewLayer.getCode());
 								serviceForUrl.put(viewService.getUrl(), service);

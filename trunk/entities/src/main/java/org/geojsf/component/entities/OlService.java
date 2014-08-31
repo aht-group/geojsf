@@ -2,6 +2,7 @@ package org.geojsf.component.entities;
 
 import java.io.Serializable;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 
 public class OlService implements Serializable {
 	
@@ -9,7 +10,7 @@ public class OlService implements Serializable {
 	private long id;
 	private String code;
 	private String url;
-	private Hashtable<Long, Boolean> layerVisibility;
+	private LinkedHashMap<Long, Boolean> layerVisibility;
 	
 	public long getId() {return id;}
 	public void setId(long id) {this.id = id;}
@@ -21,8 +22,8 @@ public class OlService implements Serializable {
 	public void setUrl(String url) {this.url=url;}
 	
 	public Boolean isLayerVisible(Long layerId) {return layerVisibility.get(layerId);}
-	public void setLayerVisibility(Hashtable<Long, Boolean> layerVisibility) {this.layerVisibility = layerVisibility;}
-	public Hashtable<Long, Boolean> getLayerVisibility() {return layerVisibility;}
+	public void setLayerVisibility(LinkedHashMap<Long, Boolean> layerVisibility) {this.layerVisibility = layerVisibility;}
+	public LinkedHashMap<Long, Boolean> getLayerVisibility() {return layerVisibility;}
 	public void setVisibility(Long layerId, Boolean visibility)
 	{
 		this.getLayerVisibility().put(layerId, visibility);
