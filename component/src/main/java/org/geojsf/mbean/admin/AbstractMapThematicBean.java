@@ -44,7 +44,7 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 	protected EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efLayer;
 	protected EjbGeoMapFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efMap;
 	protected EjbGeoViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efView;
-	private EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efViewPort;	
+	protected EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efViewPort;	
 	
 	protected GeoJsfUtilsFacade fGeo;
 	
@@ -116,6 +116,15 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 		map = fGeo.load(cMap,map);
 		if(map.getViewPort()==null){addViewPort();}
 		else{viewPort=map.getViewPort();}
+		logger.info(map.getViewPort().toString());
+	}
+	
+	private void addViewPort() throws UtilsContraintViolationException, UtilsLockingException
+	{
+		viewPort = efViewPort.build();
+		viewPort = fGeo.save(viewPort);
+		map.setViewPort(viewPort);
+		map = fGeo.update(map);
 	}
 	
 	public void addMap()
@@ -239,14 +248,4 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 		layers = category.getLayer();
 		logger.info(AbstractLogMessage.selectOneMenuChange(category));
 	}
-	
-	// View Port
-	private void addViewPort() throws UtilsContraintViolationException, UtilsLockingException
-	{
-		viewPort = efViewPort.build();
-		viewPort = fGeo.save(viewPort);
-		map.setViewPort(viewPort);
-		map = fGeo.update(map);
-	}
-	
 }

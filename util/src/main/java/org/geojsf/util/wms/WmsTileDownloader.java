@@ -8,8 +8,6 @@ import java.net.URL;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.io.FileUtils;
-import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
-import org.geojsf.factory.xml.geojsf.XmlViewPortFactory;
 import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Service;
 import org.geojsf.xml.geojsf.ViewPort;
@@ -37,7 +35,6 @@ public class WmsTileDownloader
 	public void download(Map map, File fDst)
 	{
 		String urlRequest = calculateRequest(map);
-		
 		logger.info("Request: "+urlRequest);
 		
 		try
@@ -61,27 +58,15 @@ public class WmsTileDownloader
 		}
 		sb.deleteCharAt(sb.length()-1);
 		
+//		calculateBoundingBox(map.getViewPort(),width,height);
 		
-		ViewPort viewPort = XmlViewPortFactory.build(map.getLon(), map.getLat());
-		
-		if(map.isSetScale())
-		{
-			viewPort.setScale(XmlScaleFactory.build(map.getScale()));
-		}
-		else
-		{
-			viewPort.setScale(XmlScaleFactory.build(2000000));
-		}
-		
-		calculateBoundingBox(viewPort,width,height);
-		
-		JaxbUtil.info(viewPort);
+		JaxbUtil.info(map.getViewPort());
 		
 		sb.append("&bbox=");
-		sb.append(viewPort.getLeft()).append(",");
-		sb.append(viewPort.getBottom()).append(",");
-		sb.append(viewPort.getRight()).append(",");
-		sb.append(viewPort.getTop());
+		sb.append(map.getViewPort().getLeft()).append(",");
+		sb.append(map.getViewPort().getBottom()).append(",");
+		sb.append(map.getViewPort().getRight()).append(",");
+		sb.append(map.getViewPort().getTop());
 
 		sb.append("&width=800&height=600&format=image/png");
 		
