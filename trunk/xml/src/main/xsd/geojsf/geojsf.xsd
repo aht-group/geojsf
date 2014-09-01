@@ -135,10 +135,6 @@
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:long"/>
             <xsd:attribute name="code" type="xsd:string"/>
-            <xsd:attribute name="lat" type="xsd:double"/>
-            <xsd:attribute name="lon" type="xsd:double"/>
-            <xsd:attribute name="zoom" type="xsd:int"/>
-            <xsd:attribute name="scale" type="xsd:double"/>
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="view">

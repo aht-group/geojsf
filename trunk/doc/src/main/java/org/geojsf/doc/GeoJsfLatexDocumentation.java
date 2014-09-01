@@ -17,7 +17,6 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.doc.ofx.OfxCategoryLayerSectionFactory;
-import org.geojsf.doc.ofx.OfxLayerTableFactory;
 import org.geojsf.doc.ofx.OfxMapSectionFactory;
 import org.geojsf.doc.ofx.OfxServiceListFactory;
 import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
@@ -34,7 +33,6 @@ import org.geojsf.xml.geojsf.Service;
 import org.geojsf.xml.geojsf.View;
 import org.geojsf.xml.xpath.GeoJsfXpath;
 import org.openfuxml.content.ofx.Section;
-import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.interfaces.media.CrossMediaManager;
 import org.slf4j.Logger;
@@ -196,36 +194,32 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		logger.info("Downloading Map Tiles");
 		for(Map map : maps.getMap())
 		{
-			logger.info("  "+map.getCode());
-			tileDownloader.download(map,new File(fBase,map.getCode()+".png"));
+			if(!map.getCode().equals("landBushfire"))
+			{
+				logger.info("  "+map.getCode());
+				tileDownloader.download(map,new File(fBase,map.getCode()+".png"));
+			}
+			
 		}
 	}
 	
-	public void downloadTilesLayer(Maps layerInfo, File fBase)
+	public void downloadTilesLayer(File fBase)
 	{
 		WmsTileDownloader tileDownloader = new WmsTileDownloader(repository.getService().get(0));
 		logger.info("Downloading Layer Tiles");
 		for(Layer layer : layers.getLayer())
 		{
-			Map mapRef=null;
-			try{mapRef = GeoJsfXpath.getMap(layerInfo, layer.getCode());}
-			catch (ExlpXpathNotFoundException e)
+			if(!layer.getCategory().getCode().equals("development"))
 			{
-				try {mapRef = GeoJsfXpath.getMap(layerInfo, "default");}
-				catch (ExlpXpathNotFoundException e1) {e1.printStackTrace();}
-				catch (ExlpXpathNotUniqueException e1) {e1.printStackTrace();}
+				JaxbUtil.trace(layer);
+				Map map = XmlMapFactory.build(layer.getViewPort());
+				map.getView().add(XmlViewFactory.build(1, true, false, XmlLayerFactory.build(layer.getCode())));
+				
+				logger.info("  "+layer.getCode());
+				File f = new File(fBase,layer.getCode().replaceAll("\\.", "")+".png");
+				JaxbUtil.trace(map);
+				tileDownloader.download(map,f);
 			}
-			catch (ExlpXpathNotUniqueException e) {e.printStackTrace();}
-			
-			Map map = XmlMapFactory.build(mapRef.getLat(), mapRef.getLon());
-			map.setZoom(mapRef.getZoom());
-			if(mapRef.isSetScale()){map.setScale(mapRef.getScale());}
-			map.getView().add(XmlViewFactory.build(1, true, false, XmlLayerFactory.build(layer.getCode())));
-			
-			logger.info("  "+layer.getCode());
-			File f = new File(fBase,layer.getCode().replaceAll("\\.", "")+".png");
-			JaxbUtil.trace(map);
-			tileDownloader.download(map,f);
 		}
 	}
 	

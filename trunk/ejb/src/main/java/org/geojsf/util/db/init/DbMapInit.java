@@ -88,9 +88,6 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY 
 				{
 					ejb = cMap.newInstance();
 					ejb.setCode(map.getCode());
-					ejb.setLat(0d);
-					ejb.setLon(0d);
-					ejb.setZoom(1);
 					ejb = (MAP)fUtils.persist(ejb);
 				}
 				catch (InstantiationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
@@ -102,9 +99,6 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY 
 			{
 				ejb.setName(ejbLangFactory.getLangMap(map.getLangs()));
 				ejb.setDescription(ejbDescriptionFactory.create(map.getDescriptions()));
-				ejb.setZoom(map.getZoom());
-				ejb.setLat(map.getLat());
-				ejb.setLon(map.getLon());
 				ejb=fUtils.update(ejb);
 				
 				iuViews(ejb,map.getView());

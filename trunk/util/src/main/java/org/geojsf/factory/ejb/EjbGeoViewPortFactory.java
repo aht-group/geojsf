@@ -10,6 +10,7 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
+import org.geojsf.xml.geojsf.ViewPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,4 +59,19 @@ public class EjbGeoViewPortFactory<L extends UtilsLang,D extends UtilsDescriptio
 		catch (IllegalAccessException e) {e.printStackTrace();}
         return ejb;
     }
+	
+	public VP update(VP viewPort, ViewPort xmlViewPort)
+	{
+		viewPort.setScale(xmlViewPort.getScale().getValue());
+		
+		viewPort.setMarginLeft(xmlViewPort.getLeft());
+		viewPort.setMarginRight(xmlViewPort.getRight());
+		viewPort.setMarginTop(xmlViewPort.getTop());
+		viewPort.setMarginBottom(xmlViewPort.getBottom());
+		
+		viewPort.setLat(xmlViewPort.getLat());
+		viewPort.setLon(xmlViewPort.getLon());
+		
+		return viewPort;
+	}
 }

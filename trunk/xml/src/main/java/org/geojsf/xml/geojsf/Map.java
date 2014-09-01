@@ -31,10 +31,6 @@ import net.sf.ahtutils.xml.status.Langs;
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="lon" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="scale" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -67,14 +63,6 @@ public class Map
     protected Long id;
     @XmlAttribute(name = "code")
     protected String code;
-    @XmlAttribute(name = "lat")
-    protected Double lat;
-    @XmlAttribute(name = "lon")
-    protected Double lon;
-    @XmlAttribute(name = "zoom")
-    protected Integer zoom;
-    @XmlAttribute(name = "scale")
-    protected Double scale;
 
     /**
      * Gets the value of the view property.
@@ -255,134 +243,6 @@ public class Map
 
     public boolean isSetCode() {
         return (this.code!= null);
-    }
-
-    /**
-     * Gets the value of the lat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
-     */
-    public double getLat() {
-        return lat;
-    }
-
-    /**
-     * Sets the value of the lat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
-     */
-    public void setLat(double value) {
-        this.lat = value;
-    }
-
-    public boolean isSetLat() {
-        return (this.lat!= null);
-    }
-
-    public void unsetLat() {
-        this.lat = null;
-    }
-
-    /**
-     * Gets the value of the lon property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
-     */
-    public double getLon() {
-        return lon;
-    }
-
-    /**
-     * Sets the value of the lon property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
-     */
-    public void setLon(double value) {
-        this.lon = value;
-    }
-
-    public boolean isSetLon() {
-        return (this.lon!= null);
-    }
-
-    public void unsetLon() {
-        this.lon = null;
-    }
-
-    /**
-     * Gets the value of the zoom property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public int getZoom() {
-        return zoom;
-    }
-
-    /**
-     * Sets the value of the zoom property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setZoom(int value) {
-        this.zoom = value;
-    }
-
-    public boolean isSetZoom() {
-        return (this.zoom!= null);
-    }
-
-    public void unsetZoom() {
-        this.zoom = null;
-    }
-
-    /**
-     * Gets the value of the scale property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
-     */
-    public double getScale() {
-        return scale;
-    }
-
-    /**
-     * Sets the value of the scale property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
-     */
-    public void setScale(double value) {
-        this.scale = value;
-    }
-
-    public boolean isSetScale() {
-        return (this.scale!= null);
-    }
-
-    public void unsetScale() {
-        this.scale = null;
     }
 
 }

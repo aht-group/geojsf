@@ -56,6 +56,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 	{
 		map = em.find(cView, map.getId());
 		map.getViews().size();
+		if(map.getViewPort()!=null){map.getViewPort().getId();}
 		return map;
 	}
 	

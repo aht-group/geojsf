@@ -1,6 +1,5 @@
 package org.geojsf.web.rest;
 
-import net.sf.ahtutils.interfaces.facade.UtilsSecurityFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
@@ -115,6 +114,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 		
 		for(MAP map : fGeo.all(cMap))
 		{
+			map = fGeo.load(cMap,map);
 			Map xml = fMap.build(map);
 			
 			for(VIEW view : map.getViews())
