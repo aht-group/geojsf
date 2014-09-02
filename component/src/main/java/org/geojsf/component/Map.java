@@ -508,6 +508,10 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 				{command = "merge";}
 		*/
 		
+		// To have the correct layer allignement for OpenLayers, reverse the list order
+		Collections.reverse(activeLayers);
+		
+		// Create the layer switch command for JavaScript GeoJSF logic
 		order.setCommand(command);
 		order.setServiceId(serviceId);
 		order.setLayer(activeLayers);
