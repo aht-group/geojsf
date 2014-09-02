@@ -87,7 +87,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		}
 		else
 		{
-			logger.info("received ComponentSystemEvent: " +event.getClass().getName());
+			logger.debug("received ComponentSystemEvent: " +event.getClass().getName());
 		}
 		super.processEvent(event);
 	}
@@ -171,7 +171,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 								layerNames.put(viewLayer.getId(), viewLayer.getCode());
 								serviceForUrl.put(viewService.getUrl(), service);
 								orderedLayers.add(service.getId());
-								logger.info("Added layer " +viewLayer.getCode() +" to be " +view.isVisible());
+								logger.debug("Added layer " +viewLayer.getCode() +" to be " +view.isVisible());
 							}
 							else
 							{
@@ -179,7 +179,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 								layerNames.put(viewLayer.getId(), viewLayer.getCode());
 								service.getLayerVisibility().put(viewLayer.getId(), view.isVisible());
 							//	orderedLayers.add(service.getId());
-								logger.info("Added layer " +viewLayer.getCode() +" to be " +view.isVisible() +" to existing Service.");
+								logger.debug("Added layer " +viewLayer.getCode() +" to be " +view.isVisible() +" to existing Service.");
 							}
 						}
 						
@@ -191,7 +191,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 							serviceList.put(service.getId(), service);
 						}
 						
-						logger.info("Transfered " +serviceList.size() +" services from " +serviceForUrl.size() +" and the size of orderedLayers is " +orderedLayers.size());
+						logger.debug("Transfered " +serviceList.size() +" services from " +serviceForUrl.size() +" and the size of orderedLayers is " +orderedLayers.size());
 						
 						//First, render the JavaScript code to initialize the map
 						renderer.renderMapInitialization(this.getFacesContext());
@@ -201,7 +201,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 				 		
 				 		//Set flag that map initiation is completed and not to be repeated
 				 		initStage = false;
-				 		logger.info("Map initialization completed for " +this.getClientId() +" (ID: " +this.getId() +")");
+				 		logger.info("Map initialization completed for " +this.getClientId() +" (ID: " +this.getId() +") holding " +serviceList.size() +" layers.");
 				 		writer.endElement("script"); 
 					}
 				}
@@ -210,7 +210,6 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	
 	public void renderLayers(ResponseWriter writer, JsfRenderUtil renderer, Boolean addScriptTag) throws IOException
 	{
-		logger.info("Should render layers be processed?" +this.isRendered());
 		if(addScriptTag){writer.startElement("script", this);}
 		
 		//First, render the base layer (adding overlays first results in error)
@@ -247,7 +246,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	public void encodeOlService(OlService service, Boolean baseLayer, Boolean lastLayer, ResponseWriter writer, JsfRenderUtil renderer) throws IOException
 	{
 		String sLayers = buildLayerString(service);
-		logger.info("Adding to service " +service.getId() +": "+sLayers);
+		logger.debug("Adding to service " +service.getId() +": "+sLayers);
 		renderer.renderTextWithLB("var url        = '" +service.getUrl() +"';");
 		renderer.renderTextWithLB("var name       = '" +service.getId() +"';");
 		renderer.renderTextWithLB("var params     = {};");
@@ -288,14 +287,13 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	
 	public void decode(FacesContext context)
 	{
-		logger.info("Should decode phase be processed?" +this.isRendered());
-		logger.info("Current Phase: " +context.getCurrentPhaseId().toString());
+		logger.debug("Current Phase: " +context.getCurrentPhaseId().toString());
 
 		if (this.isRendered())
 		{
 			java.util.Map<String,String> params = context.getExternalContext().getRequestParameterMap();
 			String behaviorEvent = params.get("javax.faces.behavior.event");
-		    logger.info("Handling event of type: " +behaviorEvent +" in decode phase.");
+		    logger.debug("Handling event of type: " +behaviorEvent +" in decode phase.");
 		    
 		    // Create a new GeoJsfMap from the given (maybe manipulated) map object
 		    try
@@ -309,7 +307,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		    	logger.error("NO SERVICES?");
 		    	return;
 		    }
-		    logger.info("Service List has " +serviceList.size() +" entries in decode after restore.");
+		    logger.debug("Service List has " +serviceList.size() +" entries in decode after restore.");
 		    // This will be compared to the values stored in the session before (activate this to check)
 	    	// logger.info("Services: " +new LayerSwitchHelper(services, layerNames).toString());
 		    
@@ -344,12 +342,12 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 					// Check the visibility value before and currently
 					Boolean before    = (Boolean) serviceList.get(serviceId).isLayerVisible(layerId);
 					Boolean now       = view.isVisible();
-					logger.info("Checking " +dmMap.getViews().size() +" for changes.");
-					logger.info("Checking " +view.getLayer().getCode());
+					logger.trace("Checking " +dmMap.getViews().size() +"of dmMap for changes.");
+					logger.trace("Checking layer " +view.getLayer().getCode());
 					if (before.equals(now))
 					{
 						// If there is no change, do nothing
-						 logger.info("Layer " +view.getLayer().getCode() +" did not change it's visibility. Still " +view.isVisible());
+						 logger.debug("Layer " +view.getLayer().getCode() +" did not change it's visibility. Still " +view.isVisible());
 					}
 					else
 					{
@@ -357,7 +355,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 						changedState     = now;
 						layerThatChanged = view.getLayer().getId();
 						
-						logger.info("Layer " +layerThatChanged +" changed to " +changedState);
+						logger.debug("Layer " +layerThatChanged +" changed to " +changedState);
 					}
 				}
 			}
@@ -380,10 +378,10 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	            	{
 	            		for (ClientBehavior behavior: behaviorsForEvent)
 	            		{
-	            			logger.info("Found " +behavior.getClass().toString());
+	            			logger.trace("Found " +behavior.getClass().toString());
 	            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
 	            			
-	            			logger.info("Setting CLiCK ");
+	            			logger.trace("Setting CLiCK ");
 	            			ajaxEvent.setClickCoordinates(params);
 	            			ajaxEvent.setViewport(params);
 	            			
@@ -412,7 +410,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	            	{
 	            		for (ClientBehavior behavior: behaviorsForEvent)
 	            		{
-	            			logger.info("Found " +behavior.getClass().toString());
+	            			logger.trace("Found " +behavior.getClass().toString());
 	            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
 	            			ajaxEvent.setViewport(params);
 	            			behavior.broadcast(ajaxEvent);
@@ -438,26 +436,26 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	        if (null!=serviceList && isUpdateMapEvent)
 	        {
 	        	try{
-	        	logger.info("State Problem?");
-	        	logger.info("Looking for the changed layer: " +layerThatChanged +" now in state " +changedState);
+	        	logger.trace("State Problem?");
+	        	logger.debug("Looking for the changed layer: " +layerThatChanged +" now in state " +changedState);
 	        	VIEW view = null;
 	        	for (VIEW viewIterated : dmMap.getViews())
 				{
 					if (viewIterated.getLayer().getId() == layerThatChanged)
 					{
 						view = viewIterated;
-						logger.info("Found view to be changed: " +view.getLayer().getCode());
+						logger.trace("Found view to be changed: " +view.getLayer().getCode());
 					}
 				}
 	        	
 	        	// If there is a new value, generate a command to toggle the assigned service in OpenLayers using hide/show/merge
-				logger.info("Trying to change (" +view.getLayer().getId() +") " +view.getLayer().getCode() +" of Service " +view.getLayer().getService().getId() +" to " +changedState);
+				logger.info("Changing visibility of layer (" +view.getLayer().getId() +") " +view.getLayer().getCode() +" of Service " +view.getLayer().getService().getId() +" to " +changedState);
 
 				String toggleCommand = toggleLayer(view.getLayer().getService().getId(), view.getLayer().getId(), view.isVisible());
 				
 				// Now send the command (JSON-String representation of the Command object) to the client using PrimeFaces CallbackParam methodology
 				// This can be used in the oncomplete AJAX-callback JavaScript function like performLayerSwitch(xhr, status, args)
-				logger.info("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +view.getLayer().getId() +" of service " +view.getLayer().getService().getId() +" to " +view.isVisible());
+				logger.debug("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +view.getLayer().getId() +" of service " +view.getLayer().getService().getId() +" to " +view.isVisible());
 				RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
 	        	} catch (Exception e)
 	        	{
@@ -527,11 +525,10 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	@Override
 	public void restoreState(FacesContext context, Object state)
 	{
-		logger.info("Should the state be restored? " +this.isRendered());
 		if (this.isRendered())
 		{
 			Object[] storedState = (Object[]) state;
-		    logger.info("Restoring state.");
+		    logger.debug("Restoring state.");
 			try {
 			initStage        = (Boolean) storedState[0];
 			serviceList      = (Hashtable<Long, OlService>) storedState[1];
@@ -542,7 +539,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 			}
 			catch (Exception e)
 			{
-				logger.info("Exception when restoring: " +e.getMessage());
+				logger.error("Exception when restoring: " +e.getMessage());
 			}
 		}
 	}
@@ -551,7 +548,6 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	public Object saveState(FacesContext context)
 	{
 		Object[] rtrn = new Object[7];
-		logger.info("Should the state be saved?" +this.isRendered());
 		if (this.isRendered())
 		{
 			rtrn[0] = initStage;
