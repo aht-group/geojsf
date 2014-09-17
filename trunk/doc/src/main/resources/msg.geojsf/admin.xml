@@ -4,48 +4,49 @@
 		<s:langs>
 			<s:lang key="de" translation="Kategorien"/>
 			<s:lang key="en" translation="Categories"/>
+			<s:lang key="fr" translation="Catégories"/>
 		</s:langs>
 	</s:translation>
 	<s:translation key="geoJsfCategory">
 		<s:langs>
 			<s:lang key="de" translation="Kategorie"/>
 			<s:lang key="en" translation="Category"/>
-		</s:langs>
-	</s:translation>
-	<s:translation key="geoJsfCategories">
-		<s:langs>
-			<s:lang key="de" translation="Kategorien"/>
-			<s:lang key="en" translation="Categories"/>
+			<s:lang key="fr" translation="Catégorie"/>
 		</s:langs>
 	</s:translation>
 	<s:translation key="geoJsfDetailsThamaticMap">
 		<s:langs>
 			<s:lang key="de" translation="Details der thematischen Karte"/>
 			<s:lang key="en" translation="Details Thematic Map"/>
+			<s:lang key="fr" translation="Détails Carte thématique"/>
 		</s:langs>
 	</s:translation>
 	<s:translation key="geoJsfDetailsView">
 		<s:langs>
 			<s:lang key="de" translation="Details der Ebene"/>
 			<s:lang key="en" translation="Details Layer"/>
+			<s:lang key="fr" translation="Détails Couche"/>
 		</s:langs>
 	</s:translation>
 	<s:translation key="geoJsfLayer">
 		<s:langs>
 			<s:lang key="de" translation="Ebene"/>
 			<s:lang key="en" translation="Layer"/>
+			<s:lang key="fr" translation="Couche"/>
 		</s:langs>
 	</s:translation>
 	<s:translation key="geoJsfOrderNo">
 		<s:langs>
 			<s:lang key="de" translation="#"/>
 			<s:lang key="en" translation="#"/>
+			<s:lang key="fr" translation="#"/>
 		</s:langs>
 	</s:translation>
 		<s:translation key="geoJsfViewLayerDefaultVisible">
 		<s:langs>
 			<s:lang key="de" translation="Sichtbar"/>
 			<s:lang key="en" translation="Visible"/>
+			<s:lang key="fr" translation="Visible"/>
 		</s:langs>
 	</s:translation>
 </s:translations>
