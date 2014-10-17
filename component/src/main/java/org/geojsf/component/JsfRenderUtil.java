@@ -51,6 +51,7 @@ public class JsfRenderUtil {
 		
 	}
 	
+	@Deprecated
 	public static String encodeAjax(ClientBehaviorHolder comp)
 	{
 		StringBuffer updateOnClick = new StringBuffer();
@@ -98,19 +99,25 @@ public class JsfRenderUtil {
 					if (cl.getClass().getName().equals("javax.faces.component.behavior.AjaxBehavior"))
 					{
 						AjaxBehavior ajax = (AjaxBehavior) cl;
-						Collection<String> renderList = ajax.getRender();
-						for (String str : renderList)
+						if (null!=ajax.getRender())
 						{
-							str = str.replaceAll(":", "");
-							updateOnClick.append(str +" ");
+							Collection<String> renderList = ajax.getRender();
+							for (String str : renderList)
+							{
+								str = str.replaceAll(":", "");
+								updateOnClick.append(str +" ");
+							}
+							logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
 						}
-						logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
 					}
 					if (cl.getClass().getName().equals("org.primefaces.behavior.ajax.AjaxBehavior"))
 					{
 						org.primefaces.behavior.ajax.AjaxBehavior ajax = (org.primefaces.behavior.ajax.AjaxBehavior) cl;
-						updateOnClick.append(ajax.getUpdate().replaceAll(":", ""));
-						logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
+						if (null!=ajax.getUpdate())
+						{
+							updateOnClick.append(ajax.getUpdate().replaceAll(":", ""));
+							logger.info("Adding " +updateOnClick.toString() +" to " +key +" event.");
+						}
 					}
 				}
 			}
