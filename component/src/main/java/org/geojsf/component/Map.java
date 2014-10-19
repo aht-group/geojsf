@@ -100,6 +100,14 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
+		if (null == dmMap)
+		{
+			this.setRendered(false);
+			for (UIComponent child : this.getChildren())
+			{
+				child.setRendered(false);
+			}	
+		}
 		if (this.isRendered())
 		{
 			logger.debug("entering encodebegin");
@@ -135,7 +143,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 				renderer.renderLinebreaks(1);
 				
 				// Check if the list of VIEWs is empty
-				if (dmMap.getViews().isEmpty())
+				if (null == dmMap || dmMap.getViews().isEmpty())
 				{
 					writer.startElement("center", this);
 					writer.writeText("no layers given.", null);
