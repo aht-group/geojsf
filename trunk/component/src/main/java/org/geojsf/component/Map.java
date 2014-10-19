@@ -100,15 +100,16 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		if (null == dmMap)
+/*		if (null == dmMap)
 		{
+			logger.error("There is no data);
 			this.setRendered(false);
 			for (UIComponent child : this.getChildren())
 			{
 				child.setRendered(false);
 			}	
 		}
-		if (this.isRendered())
+*/		if (this.isRendered())
 		{
 			logger.debug("entering encodebegin");
 			try

@@ -14,6 +14,7 @@
 				<xsd:element ref="geojsf:layer" maxOccurs="1"/>
 				<xsd:element ref="geojsf:map" maxOccurs="1"/>
 				<xsd:element ref="geojsf:view" maxOccurs="1"/>
+				<xsd:element ref="geojsf:viewPort" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>  
@@ -146,6 +147,13 @@
             <xsd:attribute name="nr" type="xsd:int"/>
             <xsd:attribute name="visible" type="xsd:boolean"/>
             <xsd:attribute name="legend" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="viewPorts">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="geojsf:viewPort" maxOccurs="unbounded"/>
+            </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="viewPort">

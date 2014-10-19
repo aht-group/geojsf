@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{http://www.geojsf.org}layer"/>
  *         &lt;element ref="{http://www.geojsf.org}map"/>
  *         &lt;element ref="{http://www.geojsf.org}view"/>
+ *         &lt;element ref="{http://www.geojsf.org}viewPort"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,7 +41,8 @@ import javax.xml.bind.annotation.XmlType;
     "category",
     "layer",
     "map",
-    "view"
+    "view",
+    "viewPort"
 })
 @XmlRootElement(name = "query")
 public class Query
@@ -60,6 +62,8 @@ public class Query
     protected Map map;
     @XmlElement(required = true)
     protected View view;
+    @XmlElement(required = true)
+    protected ViewPort viewPort;
 
     /**
      * Gets the value of the repository property.
@@ -227,6 +231,34 @@ public class Query
 
     public boolean isSetView() {
         return (this.view!= null);
+    }
+
+    /**
+     * Gets the value of the viewPort property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ViewPort }
+     *     
+     */
+    public ViewPort getViewPort() {
+        return viewPort;
+    }
+
+    /**
+     * Sets the value of the viewPort property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ViewPort }
+     *     
+     */
+    public void setViewPort(ViewPort value) {
+        this.viewPort = value;
+    }
+
+    public boolean isSetViewPort() {
+        return (this.viewPort!= null);
     }
 
 }

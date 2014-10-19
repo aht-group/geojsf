@@ -149,4 +149,12 @@ public class ObjectFactory {
         return new View();
     }
 
+    /**
+     * Create an instance of {@link ViewPorts }
+     * 
+     */
+    public ViewPorts createViewPorts() {
+        return new ViewPorts();
+    }
+
 }

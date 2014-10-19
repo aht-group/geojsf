@@ -7,6 +7,7 @@ import org.geojsf.factory.xml.geojsf.XmlCategoryFactory;
 import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
 import org.geojsf.factory.xml.geojsf.XmlServiceFactory;
 import org.geojsf.factory.xml.geojsf.XmlViewFactory;
+import org.geojsf.factory.xml.geojsf.XmlViewPortFactory;
 import org.geojsf.factory.xml.openlayers.XmlMapFactory;
 import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
 import org.geojsf.interfaces.model.GeoJsfCategory;
@@ -24,6 +25,8 @@ import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Maps;
 import org.geojsf.xml.geojsf.Repository;
 import org.geojsf.xml.geojsf.Service;
+import org.geojsf.xml.geojsf.ViewPort;
+import org.geojsf.xml.geojsf.ViewPorts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,23 +41,23 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 	private final Class<CATEGORY> cCategory;
 	private final Class<LAYER> cLayer;
 	private final Class<MAP> cMap;
-//	private final Class<VIEW> cView;
+	private final Class<VP> cViewPort;
 	
-	private GeoJsfRestDatabaseExporter(GeoJsfUtilsFacade fGeo,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap)
+	private GeoJsfRestDatabaseExporter(GeoJsfUtilsFacade fGeo,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort)
 	{
 		this.fGeo=fGeo;
 		this.cCategory=cCategory;
 		this.cService=cService;
 		this.cLayer=cLayer;
 		this.cMap=cMap;
-//		this.cView=cView;
+		this.cViewPort=cViewPort;
 	}
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		GeoJsfRestDatabaseExporter<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
-		factory(GeoJsfUtilsFacade fGeo, final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap)
+		factory(GeoJsfUtilsFacade fGeo, final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort)
 	{
-		return new GeoJsfRestDatabaseExporter<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(fGeo,cCategory,cService,cLayer,cMap);
+		return new GeoJsfRestDatabaseExporter<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(fGeo,cCategory,cService,cLayer,cMap,cViewPort);
 	}
 
 	@Override
@@ -104,8 +107,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 		return layers;
 	}
 
-	@Override
-	public Maps exportMaps()
+	@Override public Maps exportMaps()
 	{
 		logger.info("Export GeoJsf "+Map.class.getSimpleName());
 		Maps maps = new Maps();
@@ -126,5 +128,18 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 		}
 		
 		return maps;
+	}
+
+	@Override public ViewPorts exportViewPorts()
+	{
+		logger.info("Export GeoJsf "+ViewPort.class.getSimpleName());
+		XmlViewPortFactory f = new XmlViewPortFactory(GeoJsfQuery.get(GeoJsfQuery.Key.viewPort, null));
+		
+		ViewPorts viewPorts = new ViewPorts();
+		for(VP vp : fGeo.all(cViewPort))
+		{
+			viewPorts.getViewPort().add(f.build(vp));
+		}
+		return viewPorts;
 	}
 }

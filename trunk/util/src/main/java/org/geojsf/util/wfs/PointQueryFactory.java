@@ -46,8 +46,6 @@ public class PointQueryFactory
 		return gFeature;
 	}
 
-
-	
 	private Query createQuery(String typeName, String[] properties, String geometryColumn)
 	{
 		Query q = new Query();

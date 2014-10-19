@@ -11,6 +11,7 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
+import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.ViewPort;
 import org.slf4j.Logger;
@@ -24,6 +25,7 @@ public class XmlViewPortFactory implements Serializable
 
 	private ViewPort q;
 	
+	public XmlViewPortFactory(Query query){this(query.getViewPort());}
 	public XmlViewPortFactory(ViewPort q)
 	{
 		this.q=q;

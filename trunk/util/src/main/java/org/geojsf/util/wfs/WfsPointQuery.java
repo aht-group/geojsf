@@ -12,6 +12,8 @@ import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.exlp.util.xml.JDomUtil;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.exception.GeoJsfDeveloperException;
 import org.geojsf.factory.xml.gml.XmlCoordinatesFactory;
@@ -38,7 +40,6 @@ import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("rawtypes")
 public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-
 {
 	final static Logger logger = LoggerFactory.getLogger(WfsPointQuery.class);
 	
@@ -121,7 +122,7 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  queryProperties, geometryColumn,
 													  coordinates,distance);
-		
+		JaxbUtil.info(gf);
 		WfsHttpRequest r = new WfsHttpRequest(propertyProvider.getGeoServerRestUrl()+"/wcs");
 		
 		Document doc = r.request(gf);
@@ -136,11 +137,12 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 		List<Element> elements = xpe.evaluate(doc);
 		logger.info("Elements: "+elements.size());
 		
-//		JDomUtil.debug(doc);
+		JDomUtil.debug(doc);
 		
 		List<T> result = new ArrayList<T>();
 		for (Element e : elements)
 		{	
+			JDomUtil.debug(e);
 			try
 			{
 				String s = e.getAttributeValue("fid");

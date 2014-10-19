@@ -6,4 +6,5 @@
     <geojsf:layer id="1" code="myCode" workspace="myWorkspace" name="myName" temporal="true"/>
     <geojsf:map id="123" code="myCode"/>
     <geojsf:view id="123" nr="1" visible="true" legend="false"/>
+    <geojsf:viewPort id="123" lat="1.23" lon="4.56" bottom="5.55" left="3.33" right="4.44" top="2.22"/>
 </geojsf:query>
