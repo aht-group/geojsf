@@ -13,6 +13,8 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
+import net.sf.ahtutils.jsf.util.ComponentAttribute;
+
 import org.geojsf.util.GeoJsfJsLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,19 +42,13 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 	{
 		logger.info("Rendering Viewport.");
 		Map<String,Object> map = this.getAttributes();
-		double lat = new Double(map.get(Attribute.lat.toString()).toString());
-		double lon = new Double(map.get(Attribute.lon.toString()).toString());
-		int zoom = new Integer(map.get(Attribute.zoom.toString()).toString());
+		double lat             = ComponentAttribute.getDouble("lat", 0.0 ,ctx,  this);
+		double lon             = ComponentAttribute.getDouble("lon", 0.0 ,ctx,  this);
+		int zoom               = ComponentAttribute.getInteger("zoom", 0 ,ctx,  this);
 		
 		ResponseWriter writer = ctx.getResponseWriter();
-		try {
 		writer.startElement("script", this);
 		writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +zoom +");", null); 
 		writer.endElement("script");
-		}
-		catch (Exception e)
-		{
-			logger.error("Could not render ViewPort! Reason: " +e.toString());
-		}
 	}
 }
