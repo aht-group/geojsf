@@ -17,7 +17,7 @@ import org.geojsf.xml.geojsf.ViewPort;
 public class GeoJsfQuery
 {
 	public static enum Key {repositoryService,
-							category,service,layer,map,view,
+							category,service,layer,map,view,viewPort,
 							viewLayer}
 	
 	private static java.util.Map<Key,Query> mQueries;
@@ -37,6 +37,7 @@ public class GeoJsfQuery
 				case layer: q.setLayer(layer());break;
 				case view: q.setView(view());break;
 				case viewLayer: q.setLayer(viewLayer());break;
+				case viewPort: q.setViewPort(viewPort());break;
 				case map: q.setMap(map());break;
 			}
 			mQueries.put(key, q);
@@ -98,6 +99,7 @@ public class GeoJsfQuery
 	public static ViewPort viewPort()
 	{
 		ViewPort xml = new ViewPort();
+		xml.setId(0);
 		xml.setLat(0);
 		xml.setLon(0);
 		xml.setLeft(0);
@@ -133,7 +135,7 @@ public class GeoJsfQuery
 	}
 	
 	public static Map map()
-	{		
+	{
 		Layer layer = new Layer();
 		layer.setCode("");
 		

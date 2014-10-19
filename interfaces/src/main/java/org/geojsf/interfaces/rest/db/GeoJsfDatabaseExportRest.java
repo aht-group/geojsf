@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import org.geojsf.xml.geojsf.Layers;
 import org.geojsf.xml.geojsf.Maps;
 import org.geojsf.xml.geojsf.Repository;
+import org.geojsf.xml.geojsf.ViewPorts;
 
 public interface GeoJsfDatabaseExportRest
 {	
@@ -26,6 +27,10 @@ public interface GeoJsfDatabaseExportRest
 	@GET @Path("/geojsf/views")
 	@Produces(MediaType.APPLICATION_XML)
 	Maps exportMaps();
+	
+	@GET @Path("/geojsf/viewPorts")
+	@Produces(MediaType.APPLICATION_XML)
+	ViewPorts exportViewPorts();
 	
 //	@POST @Path("/import")
 //	@Produces(MediaType.TEXT_PLAIN)

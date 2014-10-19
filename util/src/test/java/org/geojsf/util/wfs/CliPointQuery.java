@@ -37,21 +37,21 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	
 	public void pointQuery()
 	{
-		String[] properties = {"city_name"};
+		String[] properties = {"NAME"};
 		
 		Coordinates coordinates = new Coordinates();
 		coordinates.setValue("8,17");
 		
 		// Unit ignored: http://jira.codehaus.org/browse/GEOS-937
 		Distance distance = new Distance();
-		distance.setUnits("meter");
+		distance.setUnits("degree");
 		distance.setValue("99000");
 		
-		GetFeature gf = PointQueryFactory.cGetFeature(config.getString("geoserver.test.pointquery.layer"),properties,"the_geom",coordinates,distance);
+		GetFeature gf = PointQueryFactory.cGetFeature("tiger:poi",properties,"the_geom",coordinates,distance);
 		
 		JaxbUtil.info(gf);
 		
-		WfsHttpRequest r = new WfsHttpRequest(config.getString(GeoServerConfigKeys.restUrl)+"/wcs");
+		WfsHttpRequest r = new WfsHttpRequest("http://localhost:8080/geoserver/wcs");
 		JDomUtil.debug(r.request(gf));
 	}
 
