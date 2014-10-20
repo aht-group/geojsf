@@ -1,6 +1,5 @@
 package org.geojsf.factory.ejb;
 
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
@@ -20,22 +19,19 @@ public class EjbGeoViewPortFactory<L extends UtilsLang,D extends UtilsDescriptio
 	
 	final Class<VP> cViewPort;
 	
-	private EjbLangFactory<L> fLang;
-	
-    public EjbGeoViewPortFactory(final Class<L> cLang, final Class<VP> cViewPort)
+    public EjbGeoViewPortFactory(final Class<VP> cViewPort)
     {
         this.cViewPort = cViewPort;
-        
-        fLang = EjbLangFactory.createFactory(cLang);
     } 
     
     public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-		EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> factory(final Class<L> cLang, final Class<VP> cViewPort)
+		EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> factory(final Class<VP> cViewPort)
     {
-        return new EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cLang,cViewPort);
+        return new EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cViewPort);
     }
 	
-	public VP build(String[] langKeys)
+    @Deprecated //Remove method
+	public VP build2(String[] langKeys)
 	{
 		VP ejb = null;
 		try
@@ -59,6 +55,13 @@ public class EjbGeoViewPortFactory<L extends UtilsLang,D extends UtilsDescriptio
 		catch (IllegalAccessException e) {e.printStackTrace();}
         return ejb;
     }
+	
+	public VP build(ViewPort viewPort)
+	{
+		VP ejb = build();
+		ejb = update(ejb,viewPort);
+		return ejb;
+	}
 	
 	public VP update(VP viewPort, ViewPort xmlViewPort)
 	{

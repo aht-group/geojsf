@@ -34,6 +34,7 @@ public class DbGeoServerInit <L extends UtilsLang,D extends UtilsDescription,CAT
     private final Class<LAYER> cLayer;
     private final Class<MAP> cMap;
     private final Class<VIEW> cView;
+    private final Class<VP> cVp;
    
     private UtilsFacade fUtils;
     private GeoJsfFacade fGeo;
@@ -41,7 +42,7 @@ public class DbGeoServerInit <L extends UtilsLang,D extends UtilsDescription,CAT
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     
-    public DbGeoServerInit(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, UtilsFacade fUtils, GeoJsfFacade fGeo)
+    public DbGeoServerInit(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade fGeo)
 	{       
     	this.cL = cL;
     	this.cD = cD;
@@ -50,6 +51,7 @@ public class DbGeoServerInit <L extends UtilsLang,D extends UtilsDescription,CAT
         this.cLayer = cLayer;
         this.cMap = cMap;
         this.cView = cView;
+        this.cVp = cVp;
         
         this.fUtils = fUtils;
         this.fGeo = fGeo;
@@ -60,9 +62,9 @@ public class DbGeoServerInit <L extends UtilsLang,D extends UtilsDescription,CAT
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		DbGeoServerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
-		factory(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, UtilsFacade fUtils, GeoJsfFacade fGeo)
+		factory(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade fGeo)
 	{
-		return new DbGeoServerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cCategory,cService,cLayer,cMap,cView,fUtils,fGeo);
+		return new DbGeoServerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cCategory,cService,cLayer,cMap,cView,cVp,fUtils,fGeo);
 	}
 
 	public void iuGeoJsf(Repository repository, Layers layers, Maps maps, String[] langKeys) throws UtilsConfigurationException
@@ -71,7 +73,7 @@ public class DbGeoServerInit <L extends UtilsLang,D extends UtilsDescription,CAT
 		
 		DbServiceInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> serviceInit = DbServiceInit.factory(cL,cD,cService,fUtils);
 		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> layerInit = DbLayerInit.factory(cL,cD,cCategory,cService,cLayer,fUtils);
-		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> viewInit = DbMapInit.factory(cL,cD,cLayer,cMap,cView,fUtils,fGeo);
+		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> viewInit = DbMapInit.factory(cL,cD,cLayer,cMap,cView,cVp,fUtils,fGeo);
 		
 		serviceInit.iuServices(repository);
 		layerInit.iuLayers(layers, langKeys);

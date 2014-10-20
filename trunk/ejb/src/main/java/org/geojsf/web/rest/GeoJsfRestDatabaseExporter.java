@@ -1,5 +1,8 @@
 package org.geojsf.web.rest;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
@@ -135,10 +138,24 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 		logger.info("Export GeoJsf "+ViewPort.class.getSimpleName());
 		XmlViewPortFactory f = new XmlViewPortFactory(GeoJsfQuery.get(GeoJsfQuery.Key.viewPort, null));
 		
+		Set<Long> geoJsfViewports = new HashSet<Long>();
+		for(MAP map : fGeo.all(cMap))
+		{
+			if(map.getViewPort()!=null){geoJsfViewports.add(map.getViewPort().getId());}
+		}
+		for(LAYER layer : fGeo.all(cLayer))
+		{
+			layer = fGeo.load(cLayer,layer);
+			if(layer.getViewPort()!=null){geoJsfViewports.add(layer.getViewPort().getId());}
+		}
+		
 		ViewPorts viewPorts = new ViewPorts();
 		for(VP vp : fGeo.all(cViewPort))
 		{
-			viewPorts.getViewPort().add(f.build(vp));
+			if(!geoJsfViewports.contains(vp.getId()))
+			{
+				viewPorts.getViewPort().add(f.build(vp));
+			}
 		}
 		return viewPorts;
 	}

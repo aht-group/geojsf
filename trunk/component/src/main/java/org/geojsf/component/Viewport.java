@@ -41,10 +41,9 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		logger.info("Rendering Viewport.");
-		Map<String,Object> map = this.getAttributes();
-		double lat             = ComponentAttribute.getDouble("lat", 0.0 ,ctx,  this);
-		double lon             = ComponentAttribute.getDouble("lon", 0.0 ,ctx,  this);
-		int zoom               = ComponentAttribute.getInteger("zoom", 0 ,ctx,  this);
+		double lat             = ComponentAttribute.getDouble(Attribute.lat.toString(), 0.0 ,ctx,  this);
+		double lon             = ComponentAttribute.getDouble(Attribute.lon.toString(), 0.0 ,ctx,  this);
+		int zoom               = ComponentAttribute.getInteger(Attribute.zoom.toString(), 0 ,ctx,  this);
 		
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("script", this);
