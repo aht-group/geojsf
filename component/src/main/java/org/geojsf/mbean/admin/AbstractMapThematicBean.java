@@ -94,7 +94,7 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
     	efLayer = EjbGeoLayerFactory.factory(cLang,cLayer);
     	efMap = EjbGeoMapFactory.factory(cLang, cMap);
     	efView = EjbGeoViewFactory.factory(cView);
-    	efViewPort = EjbGeoViewPortFactory.factory(cLang,cViewPort);
+    	efViewPort = EjbGeoViewPortFactory.factory(cViewPort);
 	}
 	
 	protected void reloadMaps()

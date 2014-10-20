@@ -43,7 +43,9 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY 
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     private EjbGeoViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efView;
     
-    public DbMapInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cMap,final Class<VIEW> cView, UtilsFacade fUtils, GeoJsfFacade fGeo)
+    private DbViewPortInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> dbVpInit;
+    
+    public DbMapInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cMap,final Class<VIEW> cView, final Class<VP> cVp, UtilsFacade fUtils, GeoJsfFacade fGeo)
 	{       
         this.cLayer = cLayer;
         this.cMap = cMap;
@@ -55,13 +57,15 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY 
 		ejbLangFactory = EjbLangFactory.createFactory(cL);
 		ejbDescriptionFactory = EjbDescriptionFactory.createFactory(cD);
 		efView = EjbGeoViewFactory.factory(cView);
+		
+		dbVpInit = DbViewPortInit.factory(cVp,fUtils);
 	}
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
-		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cView,final Class<VIEW> cViewLayer,UtilsFacade fUtils,GeoJsfFacade fGeo)
+		factory(final Class<L> cL,final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cMap,final Class<VIEW> cView,final Class<VP> cVp,UtilsFacade fUtils,GeoJsfFacade fGeo)
 	{
-		return new DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cLayer,cView,cViewLayer,fUtils,fGeo);
+		return new DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cLayer,cMap,cView,cVp,fUtils,fGeo);
 	}
 	
 	public void iuMaps(Maps maps) throws UtilsConfigurationException
@@ -102,6 +106,11 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY 
 				ejb=fUtils.update(ejb);
 				
 				iuViews(ejb,map.getView());
+				if(map.isSetViewPort())
+				{
+					ejb = fGeo.load(cMap,ejb);
+					dbVpInit.iuViewPort(ejb,map.getViewPort());
+				}
 			}
 			catch (UtilsContraintViolationException e) {logger.error("",e);}
 			catch (InstantiationException e) {logger.error("",e);}
