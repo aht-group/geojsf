@@ -68,7 +68,19 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 	
 	protected String getGeometryColumnName(Class<T> clazz)
 	{
+		Field geometryField = getGeometryfield(clazz);
+		
+		Annotation annotation = geometryField.getAnnotation(Column.class);
+		if(annotation==null){throw new GeoJsfDeveloperException("Field \"geometry\" in "+clazz.getName()+" does not has the javax.persistence.Column annotation");}
+		
+		Column column = (Column)annotation;
+		return column.name();
+	}
+	
+	private Field getGeometryfield(Class<?> clazz)
+	{
 		Field geometryField=null;
+		
 		for(Field field : clazz.getDeclaredFields())
 		{
 			if(field.getName().equals("geometry"))
@@ -77,13 +89,19 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 				break;
 			}
 		}
-		if(geometryField==null){throw new GeoJsfDeveloperException("Class "+clazz.getName()+" does not provide a field \"geometry\"");}
-		
-		Annotation annotation = geometryField.getAnnotation(Column.class);
-		if(annotation==null){throw new GeoJsfDeveloperException("Field \"geometry\" in "+clazz.getName()+" does not has the javax.persistence.Column annotation");}
-		
-		Column column = (Column)annotation;
-		return column.name();
+		if(geometryField==null)
+		{
+			if(clazz.getSuperclass().getSimpleName().equals("Object"))
+			{
+				throw new GeoJsfDeveloperException("Class "+clazz.getName()+" does not provide a field \"geometry\"");
+			}
+			else
+			{
+				geometryField = getGeometryfield(clazz.getSuperclass());
+			}
+			
+		}
+		return geometryField;
 	}
 	
 	protected String[] getPropertyColumnNames(Class<T> clazz)
