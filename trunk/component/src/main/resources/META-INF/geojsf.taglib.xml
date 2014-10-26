@@ -77,6 +77,12 @@
 			<component-type>org.geojsf.component.Viewport</component-type>
 		</component>
 	</tag>
+	<tag>
+		<tag-name>legend</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Legend</component-type>
+		</component>
+	</tag>
 <!-- <tag>
 		<tag-name>switchLayer</tag-name>
 		<behavior>
