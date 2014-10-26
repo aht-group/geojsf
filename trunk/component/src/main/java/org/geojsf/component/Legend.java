@@ -41,10 +41,12 @@ public class Legend extends UIPanel implements ClientBehaviorHolder
 		GeoJsfView view        = (GeoJsfView) map.get(Attribute.view.toString());
 		String serviceUrl      = view.getLayer().getService().getUrl();
 		String layerName       = view.getLayer().getCode();
+		String imageUrl        = serviceUrl +"?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&TRANSPARENT=true&STRICT=false&layer=" +layerName +"";
 		
-		// Attach a component to display an image showing the Legend offered by the Service
-		UIGraphic legendImage  = new UIGraphic();
-		legendImage.setUrl(serviceUrl +"?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&TRANSPARENT=true&WIDTH=20&HEIGHT=20&STRICT=false&layer=" +layerName +"");
-		this.getChildren().add(legendImage);
+		// Show the image by rendering an IMG tag directly
+		ResponseWriter writer = ctx.getResponseWriter();
+		writer.startElement("img", this);
+		writer.writeAttribute("src", imageUrl, null);
+		writer.endElement("img");
 	}
 }
