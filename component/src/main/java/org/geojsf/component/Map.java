@@ -590,9 +590,16 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		Collections.reverse(list);
 		for (Long i : list)
 		{
-			sb.append(layerNames.get(i) +",");
+			if (service.getLayerVisibility().get(i))
+			{
+				sb.append(layerNames.get(i) +",");
+			}
 		}
-	return sb.deleteCharAt(sb.length()-1).toString();
+		if (sb.length()>0)
+		{
+			sb.deleteCharAt(sb.length()-1);
+		}
+	return sb.toString();
 	}
 	
 	public Boolean containsLayer()
