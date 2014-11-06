@@ -59,7 +59,7 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 		this.propertyProvider=propertyProvider;
 		this.layer=layer;
 		this.type=clazz;
-		logger.info("Using URL:"+propertyProvider.getGeoServerRestUrl()+" with layer:"+layer);
+		logger.info("Using URL:"+layer.getService().getWms()+" with layer:"+layer);
 		
 		nsGml = Namespace.getNamespace("gml", "http://www.opengis.net/gml");
 		geometryColumn = getGeometryColumnName(type);
@@ -141,7 +141,7 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 													  queryProperties, geometryColumn,
 													  coordinates,distance);
 		JaxbUtil.info(gf);
-		WfsHttpRequest r = new WfsHttpRequest(propertyProvider.getGeoServerRestUrl()+"/wcs");
+		WfsHttpRequest r = new WfsHttpRequest(layer.getService().getWcs());
 		
 		Document doc = r.request(gf);
 		

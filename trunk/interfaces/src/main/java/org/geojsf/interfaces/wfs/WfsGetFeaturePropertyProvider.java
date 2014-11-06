@@ -6,7 +6,7 @@ import org.jdom2.Namespace;
 public interface WfsGetFeaturePropertyProvider
 {
 	String getWorkspace();
-	String getGeoServerRestUrl();
 	Namespace getNameSpace();
+//	String getGeoServerRestUrl();
 }
 //ahtutils.highlight:interface
