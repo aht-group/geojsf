@@ -19,10 +19,12 @@
 				<aht:icon type="geoJsfDelete" listener="#{adminMapServiceBean.rm(adminMapServiceBean.service)}" update=":rowServices"/>
 			</f:facet>
 			<h:panelGrid columns="2" columnClasses=",w100">
-				<h:outputText value="#{msg.mapCode}"/>
+				<p:outputLabel value="#{msg.mapCode}"/>
 				<p:inputText value="#{adminMapServiceBean.service.code}" placeholder="#{msg.EnterUniqueCode}"/>
-				<h:outputText value="#{msg.mapUrl}"/>
-				<p:inputText value="#{adminMapServiceBean.service.url}"/>
+				<p:outputLabel value="#{msg.geoJsfServiceWms}"/>
+				<p:inputText value="#{adminMapServiceBean.service.wms}"/>
+				<p:outputLabel value="#{msg.geoJsfServiceWcs}"/>
+				<p:inputText value="#{adminMapServiceBean.service.wcs}"/>
 			</h:panelGrid>
 			<aht:tabTranslationEditor value="#{adminMapServiceBean.service}"
 					labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"

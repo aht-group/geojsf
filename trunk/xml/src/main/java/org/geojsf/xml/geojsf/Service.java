@@ -30,7 +30,6 @@ import net.sf.ahtutils.xml.status.Langs;
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="url" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="wms" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="wcs" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -62,8 +61,6 @@ public class Service
     protected Long id;
     @XmlAttribute(name = "code")
     protected String code;
-    @XmlAttribute(name = "url")
-    protected String url;
     @XmlAttribute(name = "wms")
     protected String wms;
     @XmlAttribute(name = "wcs")
@@ -220,34 +217,6 @@ public class Service
 
     public boolean isSetCode() {
         return (this.code!= null);
-    }
-
-    /**
-     * Gets the value of the url property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Sets the value of the url property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUrl(String value) {
-        this.url = value;
-    }
-
-    public boolean isSetUrl() {
-        return (this.url!= null);
     }
 
     /**

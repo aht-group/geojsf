@@ -22,8 +22,11 @@ public interface GeoJsfService<L extends UtilsLang,
 {
 	public static final String extractId = "geoJsfService";
 	
-	String getUrl();
-	void setUrl(String url);
+	String getWms();
+	void setWms(String wms);
+	
+	String getWcs();
+	void setWcs(String wcs);
 	
 	List<LAYER> getLayer();
 	void setLayer(List<LAYER> layer);

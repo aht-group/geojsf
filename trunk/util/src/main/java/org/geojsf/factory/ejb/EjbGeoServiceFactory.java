@@ -30,13 +30,13 @@ public class EjbGeoServiceFactory<L extends UtilsLang,D extends UtilsDescription
         return new EjbGeoServiceFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(clService);
     }
 	
-	public SERVICE build(String code, String url) throws UtilsIntegrityException
+	public SERVICE build(String code, String wms) throws UtilsIntegrityException
 	{
 		SERVICE ejb;
 		try {ejb = clService.newInstance();}
 		catch (InstantiationException e) {throw new UtilsIntegrityException(e.getMessage());}
 		catch (IllegalAccessException e) {throw new UtilsIntegrityException(e.getMessage());}
-		ejb.setUrl(url);
+		ejb.setWms(wms);
 		ejb.setCode(code);
         return ejb;
     }

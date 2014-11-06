@@ -136,7 +136,7 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,CATEGORY ext
 				
 				if (!serviceForUrl.containsKey(compLayer.getUrl()))
 				{
-					service.setUrl(compLayer.getUrl());
+					service.setWms(compLayer.getUrl());
 					service.setId(serviceId);
 					serviceId++;
 					dmLayer.setService(service);

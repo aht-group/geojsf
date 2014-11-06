@@ -49,7 +49,7 @@ public class WmsTileDownloader
 	public String calculateRequest(Map map)
 	{
 		StringBuffer sb = new StringBuffer();
-		sb.append(service.getUrl());
+		sb.append(service.getWms());
 		sb.append("?service=WMS&version=1.1.0&request=GetMap&layers=cblt.dss:");
 		
 		for(int i=map.getView().size();i>0;i--)
