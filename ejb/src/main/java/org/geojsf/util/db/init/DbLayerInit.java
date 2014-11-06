@@ -13,6 +13,7 @@ import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
+import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
@@ -33,29 +34,34 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
     private final Class<LAYER> cLayer;
     
     private UtilsFacade fUtils;
+    private GeoJsfFacade fGeo;
+    
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     private EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> ejbLayerFactory;
     
-    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer,UtilsFacade fUtils)
+    private DbViewPortInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> dbVpInit;
+    
+    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade fGeo)
 	{       
     	this.cCategory = cCategory;
     	this.cService = cService;
         this.cLayer = cLayer;
         
-        
         this.fUtils=fUtils;
+        this.fGeo=fGeo;
 		
 		ejbLangFactory = EjbLangFactory.createFactory(cL);
 		ejbDescriptionFactory = EjbDescriptionFactory.createFactory(cD);
 		ejbLayerFactory = EjbGeoLayerFactory.factory(cL, cLayer);
+		dbVpInit = DbViewPortInit.factory(cVp,fUtils);
 	}
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
-		factory(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer,UtilsFacade fUtils)
+		factory(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,UtilsFacade fUtils,GeoJsfFacade fGeo)
 	{
-		return new DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cCategory,cService,cLayer,fUtils);
+		return new DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cCategory,cService,cLayer,cVp,fUtils,fGeo);
 	}
 
 	public void iuLayers(Layers layers, String[] langKeys) throws UtilsConfigurationException
@@ -108,6 +114,12 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 				ejb.setService(fUtils.fByCode(cService, layer.getService().getCode()));
 				
 				ejb=(LAYER)fUtils.update(ejb);
+				
+				if(layer.isSetViewPort())
+				{
+					ejb = fGeo.load(cLayer,ejb);
+					dbVpInit.iuViewPort(ejb,layer.getViewPort());
+				}
 			}
 			catch (UtilsContraintViolationException e) {logger.error("",e);}
 			catch (InstantiationException e) {logger.error("",e);}

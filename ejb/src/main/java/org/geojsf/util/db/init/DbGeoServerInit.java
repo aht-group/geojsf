@@ -72,7 +72,7 @@ public class DbGeoServerInit <L extends UtilsLang,D extends UtilsDescription,CAT
 		logger.info("Importing/Updating GeoJSF "+Service.class.getSimpleName()+"/"+Layer.class.getSimpleName()+"/"+Map.class.getSimpleName());
 		
 		DbServiceInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> serviceInit = DbServiceInit.factory(cL,cD,cService,fUtils);
-		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> layerInit = DbLayerInit.factory(cL,cD,cCategory,cService,cLayer,fUtils);
+		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> layerInit = DbLayerInit.factory(cL,cD,cCategory,cService,cLayer,cVp,fUtils,fGeo);
 		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> viewInit = DbMapInit.factory(cL,cD,cLayer,cMap,cView,cVp,fUtils,fGeo);
 		
 		serviceInit.iuServices(repository);
