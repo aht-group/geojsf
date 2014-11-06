@@ -170,21 +170,21 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 							layer.setName(viewLayer.getCode());
 							layer.setVisible(view.isVisible());
 							
-							if (!serviceForUrl.containsKey(viewService.getUrl()))
+							if (!serviceForUrl.containsKey(viewService.getWms()))
 							{
 								OlService service = new OlService();
-								service.setUrl(viewService.getUrl());
+								service.setUrl(viewService.getWms());
 								service.setId(viewService.getId());
 								service.setLayerVisibility(new LinkedHashMap<Long, Boolean>());
 								service.getLayerVisibility().put(viewLayer.getId(), view.isVisible());
 								layerNames.put(viewLayer.getId(), viewLayer.getCode());
-								serviceForUrl.put(viewService.getUrl(), service);
+								serviceForUrl.put(viewService.getWms(), service);
 								orderedLayers.add(service.getId());
 								logger.debug("Added layer " +viewLayer.getCode() +" to be " +view.isVisible());
 							}
 							else
 							{
-								OlService service = serviceForUrl.get(viewService.getUrl());
+								OlService service = serviceForUrl.get(viewService.getWms());
 								layerNames.put(viewLayer.getId(), viewLayer.getCode());
 								service.getLayerVisibility().put(viewLayer.getId(), view.isVisible());
 							//	orderedLayers.add(service.getId());

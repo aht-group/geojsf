@@ -39,7 +39,7 @@ public class Legend extends UIPanel implements ClientBehaviorHolder
 		
 		// Read the information from the attribute
 		GeoJsfView view        = (GeoJsfView) map.get(Attribute.view.toString());
-		String serviceUrl      = view.getLayer().getService().getUrl();
+		String serviceUrl      = view.getLayer().getService().getWms();
 		String layerName       = view.getLayer().getCode();
 		String imageUrl        = serviceUrl +"?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&TRANSPARENT=true&STRICT=false&layer=" +layerName +"";
 		

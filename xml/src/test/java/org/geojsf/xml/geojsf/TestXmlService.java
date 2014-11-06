@@ -35,7 +35,6 @@ public class TestXmlService extends AbstractXmlGeojsfTest
     	Service xml = new Service();
     	xml.setId(1);
     	xml.setCode("myCode");
-    	xml.setUrl("http://geojsf.sf.net");
     	xml.setWms("wms");
     	xml.setWcs("wcs");
     	    	

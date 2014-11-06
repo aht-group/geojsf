@@ -116,7 +116,7 @@ public class GeoJsfMapHelper <L extends UtilsLang,D extends UtilsDescription,CAT
     	logger.info("--- DEBUG START ---");
     	for(SERVICE service : layerServices)
     	{
-    		logger.info(service.getId()+" "+service.getCode()+" "+service.getUrl());
+    		logger.info(service.getId()+" "+service.getCode()+" "+service.getWms());
     		for(LAYER layer : service.getLayer())
     		{
     			logger.info("\t"+layer.getId()+" "+layer.getCode());

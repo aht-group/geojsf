@@ -36,7 +36,8 @@ public class XmlServiceFactory implements Serializable
 	{
 		Service xml = new Service();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
-		if(q.isSetUrl()){xml.setUrl(ejb.getUrl());}
+		if(q.isSetWms()){xml.setWms(ejb.getWms());}
+		if(q.isSetWcs()){xml.setWcs(ejb.getWcs());}
 		
 		if(q.isSetLayer() && ejb.getLayer()!=null && ejb.getLayer().size()>0)
 		{

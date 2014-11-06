@@ -25,28 +25,28 @@ public class DefaultGeoJsfService implements Serializable,EjbRemoveable,EjbPersi
 	public static final long serialVersionUID=1;
 	
 	private long id;
+	@Override public long getId() {return id;}
+	@Override public void setId(long id) {this.id = id;}
 	
 	private String code;
+	@Override public String getCode() {return code;}
+	@Override public void setCode(String code) {this.code = code;}
 	
-	private String url;
+//	@NotNull
+	private String wms;
+	@Override public String getWms(){return wms;}
+	@Override public void setWms(String wms){this.wms = wms;}
+
+//	@NotNull
+	private String wcs;
+	@Override public String getWcs(){return wcs;}
+	@Override public void setWcs(String wcs){this.wcs = wcs;}
 	
 	@OneToMany
 	private List<DefaultGeoJsfLayer> layer;
 	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
 	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
-	
-	//******************************************************************************
-	
-	@Override public long getId() {return id;}
-	@Override public void setId(long id) {this.id = id;}
-	
-	@Override public String getCode() {return code;}
-	@Override public void setCode(String code) {this.code = code;}
-	
-	@Override public String getUrl() {return url;}
-	@Override public void setUrl(String url) {this.url=url;}
-	
-
+		
 	
 //	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 //	@MapKey(name = "lkey")

@@ -51,7 +51,8 @@ public class GeoJsfQuery
 		Service xml = new Service();
 
 		xml.setCode("");
-		xml.setUrl("");
+		xml.setWms("");
+		xml.setWcs("");
 		xml.setLangs(StatusQuery.langs());
 		xml.setDescriptions(StatusQuery.descriptions());
 		

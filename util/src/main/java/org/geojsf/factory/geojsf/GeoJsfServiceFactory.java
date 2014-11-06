@@ -73,28 +73,28 @@ public class GeoJsfServiceFactory<L extends UtilsLang,D extends UtilsDescription
 		List<SERVICE> services = new ArrayList<SERVICE>();
 		for(SERVICE s : orderedServices)
 		{
-			services.add(mapService.get(s.getUrl()));
+			services.add(mapService.get(s.getWms()));
 		}
 		return services;
 	}
 	
 	private SERVICE getService(SERVICE service)
 	{
-		if(!mapService.containsKey(service.getUrl()))
+		if(!mapService.containsKey(service.getWms()))
 		{
 			try
 			{
 				SERVICE s = clService.newInstance();
 				s.setId(service.getId());
 				s.setCode(service.getCode());
-				s.setUrl(service.getUrl());
-				mapService.put(service.getUrl(), s);
+				s.setWms(service.getWms());
+				mapService.put(service.getWms(), s);
 				orderedServices.add(s);
 			}
 			catch (InstantiationException e) {e.printStackTrace();}
 			catch (IllegalAccessException e) {e.printStackTrace();}
 			
 		}
-		return mapService.get(service.getUrl());
+		return mapService.get(service.getWms());
 	}
 }

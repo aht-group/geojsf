@@ -81,7 +81,6 @@
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:long"/>
             <xsd:attribute name="code" type="xsd:string"/>
-            <xsd:attribute name="url" type="xsd:string"/>
             <xsd:attribute name="wms" type="xsd:string"/>
             <xsd:attribute name="wcs" type="xsd:string"/>
         </xsd:complexType>

@@ -42,11 +42,26 @@
 			<s:lang key="fr" translation="#"/>
 		</s:langs>
 	</s:translation>
-		<s:translation key="geoJsfViewLayerDefaultVisible">
+	<s:translation key="geoJsfViewLayerDefaultVisible">
 		<s:langs>
 			<s:lang key="de" translation="Sichtbar"/>
 			<s:lang key="en" translation="Visible"/>
 			<s:lang key="fr" translation="Visible"/>
+		</s:langs>
+	</s:translation>
+	
+	<s:translation key="geoJsfServiceWms">
+		<s:langs>
+			<s:lang key="de" translation="WMS"/>
+			<s:lang key="en" translation="WMS"/>
+			<s:lang key="fr" translation="WMS"/>
+		</s:langs>
+	</s:translation>
+		<s:translation key="geoJsfServiceWcs">
+		<s:langs>
+			<s:lang key="de" translation="WCS"/>
+			<s:lang key="en" translation="WCS"/>
+			<s:lang key="fr" translation="WCS"/>
 		</s:langs>
 	</s:translation>
 </s:translations>
