@@ -26,9 +26,4 @@ public class GeoJsfGetFeaturePropertyProvider implements WfsGetFeaturePropertyPr
 		return Namespace.getNamespace("geojsf", "http://www.geojsf.org");
 	}
 
-	@Override
-	public String getGeoServerRestUrl()
-	{
-		return "http://www.geojsf.org/geoserver";
-	}
 }
