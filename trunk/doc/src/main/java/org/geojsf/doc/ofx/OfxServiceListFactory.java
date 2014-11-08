@@ -21,8 +21,12 @@ import org.openfuxml.content.ofx.Comment;
 import org.openfuxml.content.ofx.Paragraph;
 import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
+import org.openfuxml.interfaces.DefaultSettingsManager;
+import org.openfuxml.interfaces.media.CrossMediaManager;
+import org.openfuxml.media.cross.NoOpCrossMediaManager;
 import org.openfuxml.renderer.latex.content.list.LatexListRenderer;
 import org.openfuxml.renderer.latex.content.structure.LatexSectionRenderer;
+import org.openfuxml.util.settings.OfxDefaultSettingsProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,17 +36,22 @@ public class OfxServiceListFactory
 	
 	private String lang;
 	
+	private CrossMediaManager cmm;
+	private DefaultSettingsManager dsm;
+	
 	public OfxServiceListFactory(Configuration config,String lang, Translations translations)
 	{
 		this.lang=lang;
+		cmm = new NoOpCrossMediaManager();
+		dsm = new OfxDefaultSettingsProvider();
 	}
 	
 	public String toLatex(java.util.List<Service> lRc) throws OfxAuthoringException
 	{
 		try
 		{
-			LatexListRenderer renderer = new LatexListRenderer(false);
-			renderer.render(create(lRc),new LatexSectionRenderer(0,null));
+			LatexListRenderer renderer = new LatexListRenderer(cmm,dsm,false);
+			renderer.render(create(lRc),new LatexSectionRenderer(cmm,dsm,0,null));
 			StringWriter sw = new StringWriter();
 			renderer.write(sw);
 			return sw.toString();

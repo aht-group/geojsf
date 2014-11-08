@@ -34,6 +34,7 @@ import org.geojsf.xml.geojsf.View;
 import org.geojsf.xml.xpath.GeoJsfXpath;
 import org.openfuxml.content.ofx.Section;
 import org.openfuxml.exception.OfxAuthoringException;
+import org.openfuxml.interfaces.DefaultSettingsManager;
 import org.openfuxml.interfaces.media.CrossMediaManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,9 +61,9 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	
 	private List<String> headerKeysLayer,headerKeysMapView;
 	
-	public GeoJsfLatexDocumentation(Configuration config, Translations translations,String[] langs, CrossMediaManager cmm)
+	public GeoJsfLatexDocumentation(Configuration config, Translations translations,String[] langs, CrossMediaManager cmm,DefaultSettingsManager dsm)
 	{
-		super(config,translations,langs,cmm);
+		super(config,translations,langs,cmm,dsm);
 		this.translations=translations;
 		
 		headerKeysLayer = new ArrayList<String>();
