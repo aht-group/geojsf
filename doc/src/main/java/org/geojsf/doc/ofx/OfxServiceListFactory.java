@@ -26,7 +26,7 @@ import org.openfuxml.interfaces.media.CrossMediaManager;
 import org.openfuxml.media.cross.NoOpCrossMediaManager;
 import org.openfuxml.renderer.latex.content.list.LatexListRenderer;
 import org.openfuxml.renderer.latex.content.structure.LatexSectionRenderer;
-import org.openfuxml.util.settings.OfxDefaultSettingsProvider;
+import org.openfuxml.util.settings.OfxDefaultSettingsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +43,7 @@ public class OfxServiceListFactory
 	{
 		this.lang=lang;
 		cmm = new NoOpCrossMediaManager();
-		dsm = new OfxDefaultSettingsProvider();
+		dsm = new OfxDefaultSettingsManager();
 	}
 	
 	public String toLatex(java.util.List<Service> lRc) throws OfxAuthoringException
