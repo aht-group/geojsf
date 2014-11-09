@@ -34,6 +34,7 @@ import org.geojsf.xml.geojsf.View;
 import org.geojsf.xml.xpath.GeoJsfXpath;
 import org.openfuxml.content.ofx.Section;
 import org.openfuxml.exception.OfxAuthoringException;
+import org.openfuxml.exception.OfxConfigurationException;
 import org.openfuxml.interfaces.DefaultSettingsManager;
 import org.openfuxml.interfaces.media.CrossMediaManager;
 import org.slf4j.Logger;
@@ -147,7 +148,8 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 			this.writeSection(sectionLevel,section,fTex);
 		}
 		catch (OfxAuthoringException e) {throw new UtilsConfigurationException(e.getMessage());}
-		catch (IOException e) {e.printStackTrace();}
+		catch (IOException e) {throw new UtilsConfigurationException(e.getMessage());}
+		catch (OfxConfigurationException e) {throw new UtilsConfigurationException(e.getMessage());}
 	}
 	
 	public void saveMapSections(int sectionLevel,String idPrefix) throws UtilsConfigurationException
@@ -182,7 +184,8 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 					this.writeSection(sectionLevel,section, f);
 				}
 				catch (OfxAuthoringException e) {throw new UtilsConfigurationException(e.getMessage());}
-				catch (IOException e) {e.printStackTrace();}
+				catch (IOException e) {throw new UtilsConfigurationException(e.getMessage());}
+				catch (OfxConfigurationException e) {throw new UtilsConfigurationException(e.getMessage());}
 			}
 		}
 	}
@@ -224,15 +227,15 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		}
 	}
 	
-	public void render(InstallationCode code) throws UtilsConfigurationException{render(code.toString());}
-	public void render(InstallationCode code, InstallationType... types) throws UtilsConfigurationException
+	public void render(InstallationCode code) throws UtilsConfigurationException, OfxConfigurationException{render(code.toString());}
+	public void render(InstallationCode code, InstallationType... types) throws UtilsConfigurationException, OfxConfigurationException
 	{
 		String[] classifier = new String[types.length];
 		for(int i=0;i<types.length;i++){classifier[i]=types[i].toString();}
 		render(code.toString(),classifier);
 	}
 	
-	public void render(GeoJsfCode code) throws UtilsConfigurationException
+	public void render(GeoJsfCode code) throws UtilsConfigurationException, OfxConfigurationException
 	{
 		render(code.toString());
 	}
