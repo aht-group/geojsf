@@ -1,32 +1,32 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides: jboss
+# Provides: geoserver
 # Required-Start: $local_fs $remote_fs $network $syslog
 # Required-Stop: $local_fs $remote_fs $network $syslog
 # Should-Start: postgresql
 # Default-Start: 2 3 4 5
 # Default-Stop: 0 1 6
-# Short-Description: Start/Stop for JBoss AS
+# Short-Description: Management of JBoss AS
 ### END INIT INFO
 
-#Defining JBOSS_HOME
-JBOSS_HOME=/opt/jboss-eap-6.1
+#Defining directories
+JAVA_HOME=/opt/jdk1.7.0_71
+export GEOSERVER_HOME=/opt/geoserver-2.6.0
+export JAVA_HOME=/opt/jdk1.7.0_71
+export GEOSERVER_DATA_DIR=/home/geoserver/data_dir
+export GEOSERVER_GEOJSON_LEGACY_CRS=true
 
 case "$1" in
 start)
-echo "Starting JBoss AS"
-start-stop-daemon --start --quiet --background --chuid jboss --exec ${JBOSS_HOME}/bin/standalone.sh
+echo "Starting Geoserver"
+start-stop-daemon --start --quiet --background --chuid geoserver --exec ${GEOSERVER_HOME}/bin/startup.sh
 ;;
 stop)
-echo "Stopping JBoss AS"
-start-stop-daemon --start --quiet --background --chuid jboss --exec ${JBOSS_HOME}/bin/jboss-admin.sh -- --connect command=:shutdown
-;;
-log)
-echo "Showing server.log ..."
-tail -1000f ${JBOSS_HOME}/standalone/log/server.log
+echo "Stopping Geoserver"
+start-stop-daemon --start --quiet --background --chuid geoserver --exec ${GEOSERVER_HOME}/bin/shutdown.sh -- --connect command=:shutdown
 ;;
 *)
-echo "Usage: /etc/init.d/jboss {start|stop|log}"
+echo "Usage: /etc/init.d/geoserver {start|stop}"
 exit 1
 ;; esac
 exit 0
