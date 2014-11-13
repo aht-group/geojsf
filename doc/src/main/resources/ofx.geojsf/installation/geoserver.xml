@@ -32,6 +32,17 @@
 		<ofx:title lang="en">Configuration</ofx:title>
 		
 		<ofx:paragraph lang="en">
+			To avoid porblems with the JBoss server, the port of the GeoServers web interface needs to be changed to 8088. This can be done by editing the following line in the 
+			<text:emphasis italic="true">etc/jetty.xml</text:emphasis> file of your GeoServer installation:
+		</ofx:paragraph>
+		
+		<ofx:listing>
+				<ofx:raw><![CDATA[
+				<set name="port"><SystemProperty name="jetty.port" default="8088"/></set>
+				]]></ofx:raw>
+		</ofx:listing>
+		
+		<ofx:paragraph lang="en">
 			There are several individual configurations required for GeoServer to properly show the maps
 			required for this information system. These configurations include:
 		</ofx:paragraph>
