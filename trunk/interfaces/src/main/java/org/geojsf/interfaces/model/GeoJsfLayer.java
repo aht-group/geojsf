@@ -18,8 +18,6 @@ public interface GeoJsfLayer<L extends UtilsLang,
 							VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 			extends EjbSaveable,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
 {
-	public static final String extractId = "geoJsfLayer";
-	
 	SERVICE getService();
 	void setService(SERVICE service);
 	

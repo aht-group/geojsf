@@ -19,9 +19,7 @@ public interface GeoJsfService<L extends UtilsLang,
 								VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
 								VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 			extends EjbSaveable,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>,EjbRemoveable
-{
-	public static final String extractId = "geoJsfService";
-	
+{	
 	String getWms();
 	void setWms(String wms);
 	
