@@ -51,7 +51,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	public static enum InstallationCode {instGeoserver}
 	public static enum InstallationType {standalone}
 	
-	public static enum GeoJsfCode {datastructure}
+	public static enum GeoJsfCode {datastructure,aServices,aMaps}
 
 	private Translations translations;
 	
@@ -92,6 +92,8 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		
 		//GeoJSF
 		addConfig(GeoJsfCode.datastructure.toString(),"ofx.geojsf/geojsf/datastructure.xml","geojsf/datastructure");
+		addConfig(GeoJsfCode.aServices.toString(),"ofx.geojsf/prototype/admin/services.xml","geojsf/admin/services");
+		addConfig(GeoJsfCode.aMaps.toString(),"ofx.geojsf/prototype/admin/maps.xml","geojsf/admin/maps");
 	}
 	
 	public void loadRepository(String fileName) throws FileNotFoundException {repository = JaxbUtil.loadJAXB(fileName,Repository.class);JaxbUtil.trace(repository);}
@@ -235,6 +237,10 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		render(code.toString(),classifier);
 	}
 	
+	public void render(int lvl,GeoJsfCode code) throws UtilsConfigurationException, OfxConfigurationException
+	{
+		render(lvl,code.toString());
+	}
 	public void render(GeoJsfCode code) throws UtilsConfigurationException, OfxConfigurationException
 	{
 		render(code.toString());

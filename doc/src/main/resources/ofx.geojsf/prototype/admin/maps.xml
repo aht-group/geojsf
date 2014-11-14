@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ofx:section xmlns:ofx="http://www.openfuxml.org"
+			xmlns:l="http://www.openfuxml.org/list"
+			xmlns:text="http://www.openfuxml.org/text"
+			id="section.admin.geojsf.maps">
+	<ofx:title lang="en">Thematic Maps</ofx:title>
+	
+	<ofx:paragraph lang="en">
+		GeoServer is an open-source server written in Java an allows users to
+		share, process and edit geospatial data.
+	</ofx:paragraph>
+		   
+</ofx:section>

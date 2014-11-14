@@ -22,9 +22,7 @@ public interface GeoJsfMap<L extends UtilsLang,
 			extends EjbWithId,EjbWithCode,
 					EjbSaveable,EjbRemoveable,
 					EjbWithLang<L>,EjbWithDescription<D>
-{
-	public static final String extractId = "geoJsfMap";
-	
+{	
 	List<VIEW> getViews();
 	void setViews(List<VIEW> views);
 	
