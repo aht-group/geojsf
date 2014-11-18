@@ -62,4 +62,13 @@ public class XmlServiceFactory implements Serializable
 		
 		return xml;
 	}
+	
+	public static Service build(String code, String wms, String wcs)
+	{
+		Service xml = new Service();
+		xml.setCode(code);
+		xml.setWms(wms);
+		xml.setWcs(wcs);
+		return xml;
+	}
 }
