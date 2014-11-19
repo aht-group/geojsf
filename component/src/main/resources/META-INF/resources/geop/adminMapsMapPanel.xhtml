@@ -12,13 +12,13 @@
 	</composite:interface>
         
 	<composite:implementation>
-		<p:panel id="pMap" header="#{msg.geoJsfDetailsThamaticMap}" rendered="#{not empty adminMapThematicBean.map}">
+		<p:panel id="pMap" header="#{msg.geoJsfDetailsThamaticMap}" rendered="#{not empty adminMapThematicBean.map}" styleClass="auNoTop,auPanelWithGrid">
 			<f:facet name="actions">
 				<aht:icon type="geoJsfCancel" listener="#{adminMapThematicBean.cancelMap()}" update=":rowMaps"/>
 				<aht:icon type="geoJsfSave" listener="#{adminMapThematicBean.saveMap()}" update=":rowMaps"/>
 				<aht:icon type="geoJsfDelete" listener="#{adminMapThematicBean.rmMap()}" update=":rowMaps"/>
 			</f:facet>
-			<h:panelGrid columns="2" columnClasses=",w100">
+			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
 				<h:outputText value="#{msg.mapCode}"/>
 				<p:inputText value="#{adminMapThematicBean.map.code}"/>
 			</h:panelGrid>
