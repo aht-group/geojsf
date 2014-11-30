@@ -136,8 +136,6 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 			map.setName(efLang.createEmpty(langKeys));
 			map.setDescription(efDescription.createEmpty(langKeys));
 		}
-		catch (InstantiationException e) {e.printStackTrace();}
-		catch (IllegalAccessException e) {e.printStackTrace();}
 		catch (UtilsIntegrityException e) {e.printStackTrace();}
 	}
 	
