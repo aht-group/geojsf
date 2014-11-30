@@ -35,15 +35,7 @@ public class EjbGeoMapFactory<L extends UtilsLang,D extends UtilsDescription,CAT
 	public MAP create(String code, int zoom, double x, double y, String[] langKeys)
 	{
 		MAP ejb = build();
-		try {
-			ejb.setName(fLang.createEmpty(langKeys));
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ejb.setName(fLang.createEmpty(langKeys));
 		ejb.setCode(code);
 		ejb.setZoom(zoom);
 		ejb.setLat(x);
