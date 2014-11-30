@@ -2,8 +2,6 @@ package org.geojsf.util.wfs;
 
 import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 
-import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
-import org.geojsf.factory.xml.geojsf.XmlServiceFactory;
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfCategory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
@@ -15,7 +13,6 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.model.SampleSpatialEntity;
-import org.geojsf.xml.geojsf.Layer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
