@@ -256,10 +256,11 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	{
 		String sLayers = buildLayerString(service);
 		logger.debug("Adding to service " +service.getId() +": "+sLayers);
-		renderer.renderTextWithLB("var url        = '" +service.getUrl() +"';");
-		renderer.renderTextWithLB("var name       = '" +service.getId() +"';");
-		renderer.renderTextWithLB("var params     = {};");
-		renderer.renderTextWithLB("params.layers  = '"+sLayers+"';");
+		renderer.renderTextWithLB("var url            = '" +service.getUrl() +"';");
+		renderer.renderTextWithLB("var name           = '" +service.getId() +"';");
+		renderer.renderTextWithLB("var params         = {};");
+		renderer.renderTextWithLB("params.layers      = '"+sLayers+"';");
+		
 	/*	ArrayList<String> localTemporalLayer = MapUtil.hasTemporalLayer(service);
 		if (localTemporalLayer.size()>0 && null!=timeInfo)
 		{
@@ -271,12 +272,15 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	*/	if (!baseLayer)
 		{
 			renderer.renderTextWithLB("params.transparent = true;");
+			renderer.renderTextWithLB("params.tiled       = true;");
+	        renderer.renderTextWithLB("params.tilesorigin = GeoJSF.map.maxExtent.left + ',' + GeoJSF.map.maxExtent.bottom;");
 		}
 		renderer.renderTextWithLB("params.format      = 'image/png';");
 	//	renderer.renderTextWithLB("params.makeTheUrlLong      = 'longText';");
 		renderer.renderTextWithLB("var options = {};");
 		renderer.renderTextWithLB("options.isBaseLayer = " +baseLayer +";");
-		
+		renderer.renderTextWithLB("options.singleTile  =  true;");
+	//	renderer.renderTextWithLB("options.ratio       =  1;");
 	//	writer.writeText("options.scales = [10, 10000, 100000];" +System.getProperty("line.separator"), null);
 	//	writer.writeText("options.maxScale = 10;" +System.getProperty("line.separator"), null);
 	//	writer.writeText("options.minScale = 100000;" +System.getProperty("line.separator"), null);
