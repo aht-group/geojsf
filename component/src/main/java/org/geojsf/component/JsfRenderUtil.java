@@ -134,7 +134,7 @@ public class JsfRenderUtil {
 		renderTextWithLB("// GeoJSF: Initializing OpenLayers map");
 		renderTextWithLB("GeoJSF.setAjaxUpdates('" +encodeAjax(map, "mapClick") +"', '" +encodeAjax(map, "mapMove") +"');");
 		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"'," +map.getHeight() +", " +map.getWidth() +",'');");
-		
+	//	renderTextWithLB("GeoJSF.map.tileSize = new OpenLayers.Size(256,256);");
 		if (context.getExternalContext().getInitParameter("geojsf.THEME")!=null)
 		{
 			renderTextWithLB("OpenLayers.ImgPath='" +context.getExternalContext().getRequestContextPath() +"/" +context.getExternalContext().getInitParameter("geojsf.THEME") +"/';");

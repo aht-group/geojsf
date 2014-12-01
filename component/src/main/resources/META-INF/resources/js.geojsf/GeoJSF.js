@@ -132,6 +132,7 @@ var GeoJSF = {
 		
 		initMap : function(mapDiv,msOptions,height, width)
 		{
+			sizeParam = new OpenLayers.Size(256,256);
 			GeoJSF.map = new OpenLayers.Map(mapDiv,{
 			//	eventListeners: {
 				//	'moveend': GeoJSF.processEventMove,
@@ -144,6 +145,7 @@ var GeoJSF = {
 				height: height, 
 				width: width, 
 				theme: null, 
+				tileSize: sizeParam,
 				});
 		    OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 		},
@@ -161,6 +163,9 @@ var GeoJSF = {
 		
 		addLayer : function(name, url, layers, params)
 		{
+		//	layers.tiled = true;
+	    //    layers.tilesorigin = GeoJSF.map.maxExtent.left + ',' + GeoJSF.map.maxExtent.bottom;
+	        
 			var layer = new OpenLayers.Layer.WMS(
 					  name, 
 					  url, 
