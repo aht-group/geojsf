@@ -41,10 +41,21 @@
 	</dependencyManagement>
 	
 	<dependencies>
+		<!-- XML -->
+		<dependency>
+   	   		<groupId>net.sf.ahtutils</groupId>
+   	   		<artifactId>ahtutils-xml</artifactId>
+   	   	</dependency>
+		<dependency>
+   	   		<groupId>net.sf.exlp</groupId>
+   	   		<artifactId>exlp-xml</artifactId>
+   	   	</dependency>
+	
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -52,7 +63,7 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- XML -->
+		<!-- JAXB -->
       	<dependency>
    	   	<groupId>javax.xml.bind</groupId>
    	   		<artifactId>jaxb-api</artifactId>
@@ -68,6 +79,13 @@
    	   		<artifactId>jaxb-xjc</artifactId>
    	   		<scope>provided</scope>
    	   	</dependency>
+   	   	<dependency>
+		    <groupId>commons-jxpath</groupId>
+		    <artifactId>commons-jxpath</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+   	   	
+   	   	<!-- Testing -->
 		<dependency>
    	   		<groupId>junit</groupId>
    	   		<artifactId>junit</artifactId>
@@ -80,22 +98,9 @@
    	   		<scope>test</scope>
    	   	</dependency>
    	   	<dependency>
-		    <groupId>commons-jxpath</groupId>
-		    <artifactId>commons-jxpath</artifactId>
-		</dependency>
-   	   	<dependency>
-   	   		<groupId>net.sf.ahtutils</groupId>
-   	   		<artifactId>ahtutils-xml</artifactId>
-   	   	</dependency>
-
-   	   	<dependency>
    	   		<groupId>net.sf.ahtutils</groupId>
    	   		<artifactId>ahtutils-test</artifactId>
    	   		<scope>test</scope>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>net.sf.exlp</groupId>
-   	   		<artifactId>exlp-xml</artifactId>
    	   	</dependency>
 	</dependencies>
    
