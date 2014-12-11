@@ -486,3 +486,7 @@ div.olControlZoom{
 #olControlZoomIn {
 	display: none;
 }
+
+.oTileImage {
+	cursor: default;
+}
