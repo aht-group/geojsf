@@ -46,8 +46,9 @@ var GeoJSF = {
 			if (!GeoJSF.eventsRegistered){
 				try {
 				console.log("Trying to register event handlers");
-				GeoJSF.map.events.register("moveend",GeoJSF.map,GeoJSF.processEventMove ,true);
 				GeoJSF.map.events.register("click",  GeoJSF.map,GeoJSF.processEventClick,true);
+				GeoJSF.map.events.register("movestart",GeoJSF.map,GeoJSF.processEventMoveStart ,true);
+				GeoJSF.map.events.register("moveend",GeoJSF.map,GeoJSF.processEventMove ,true);
 			 	console.log("Done registering.");
 			 	GeoJSF.eventsRegistered = true;
 				}
@@ -78,7 +79,10 @@ var GeoJSF = {
 			this.viewportBoundLeft = event.object.getExtent().left;
 			this.viewportBoundRight = event.object.getExtent().right;
 			console.log(event.type +" has triggered change to center " +this.centerLon +"/"  +this.centerLat);
-			
+			$('.olTileImage').each(function(idx){
+		        console.log( $(this) );
+		    });
+		
 			try {
 				PrimeFaces.ab({
 					process:  '@form', 
@@ -102,9 +106,27 @@ var GeoJSF = {
 			finally {}
 		},
 		
+		processEventMoveStart : function(event)
+		{
+			console.log("mapMoveStart");
+			$('.olTileImage').each(function(idx){
+		        console.log( $(this) );
+		//      $(this).css('cursor','default ');
+		    });
+		},
+		
 		processEventClick : function(event)
 		{
 			console.log("mapClick detected");
+			GeoJSF.map.div.style.cursor = 'default ';
+			console.log(GeoJSF.map.div);
+			$(GeoJSF.map.div).css('cursor','default ');
+		    $(GeoJSF.map.div.id).children( ".olTileImage" ).each(function(i) { 
+		    });
+		    
+		    $('.olTileImage').each(function(idx){
+		        $(this).css('cursor','default ');
+		    });
 			try {
 				PrimeFaces.ab({
 					process:  '@form', 
@@ -148,6 +170,19 @@ var GeoJSF = {
 				tileSize: sizeParam,
 				});
 		    OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
+		    
+		    // 
+		    if (!window.jQuery) {
+		    	  console.log("Bootstrap jQuery if not present.");
+		    	  var jq = document.createElement('script'); jq.type = 'text/javascript';
+		    	  // Path to jquery.js file, eg. Google hosted version
+		    	  jq.src = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js';
+		    	  document.getElementsByTagName('head')[0].appendChild(jq);
+		    	  alert("Added jQuery.");
+		    	}
+		    $(GeoJSF.map.div).on('mouseout', function() {
+		    	$(this).css('cursor','default ');
+		    });
 		},
 		
 		// Remove all layers and add the base layer again
