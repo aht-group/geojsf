@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIGraphic;
 import javax.faces.component.UIPanel;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
@@ -14,6 +13,7 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
+import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +24,7 @@ public class Legend extends UIPanel implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Legend.class);
 	
-	private static enum Attribute {view}
+	private static enum Attribute {view,layer}
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -39,8 +39,22 @@ public class Legend extends UIPanel implements ClientBehaviorHolder
 		
 		// Read the information from the attribute
 		GeoJsfView view        = (GeoJsfView) map.get(Attribute.view.toString());
-		String serviceUrl      = view.getLayer().getService().getWms();
-		String layerName       = view.getLayer().getCode();
+		GeoJsfLayer layer      = (GeoJsfLayer) map.get(Attribute.layer.toString());
+		
+		String serviceUrl = null;
+		String layerName = null;
+		
+		if(view!=null)
+		{
+			serviceUrl      = view.getLayer().getService().getWms();
+			layerName       = view.getLayer().getCode();
+		}
+		else if(layer!=null)
+		{
+			serviceUrl      = layer.getService().getWms();
+			layerName       = layer.getCode();
+		}
+		
 		String imageUrl        = serviceUrl +"?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&TRANSPARENT=true&STRICT=false&layer=" +layerName +"";
 		
 		// Show the image by rendering an IMG tag directly
