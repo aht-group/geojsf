@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ManyToOne;
 
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
@@ -112,16 +113,20 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 		{
 			if(!field.getName().equals("geometry") && !field.getName().equals("id") && !Modifier.isStatic(field.getModifiers()))
 			{
-				Annotation annotation = field.getAnnotation(Column.class);
-				if(annotation==null)
+				boolean fieldAdded = false;
+				if(field.getAnnotation(Column.class)!=null)
 				{
-					propertyFields.add(field.getName());
-				}
-				else
-				{
-					Column column = (Column)annotation;
+					Column column = (Column)field.getAnnotation(Column.class);
 					propertyFields.add(column.name());
+					fieldAdded = true;
 				}
+				if(!fieldAdded && field.getAnnotation(ManyToOne.class)!=null)
+				{
+					propertyFields.add(field.getName()+"_id");
+					fieldAdded = true;
+				}
+				
+				if(!fieldAdded){propertyFields.add(field.getName());}
 			}
 		}
 		String[] result = new String[propertyFields.size()];
