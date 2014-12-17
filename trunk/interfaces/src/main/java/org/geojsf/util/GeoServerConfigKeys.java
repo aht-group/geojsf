@@ -10,6 +10,10 @@ public interface GeoServerConfigKeys
 //ahtutils.highlight:keys	
 	public static String workspace = "geoserver.workspace";
 	
+	public static String restExportUrl = "geoserver.rest.export.url";
+	public static String restExportUser = "geoserver.rest.export.user";
+	public static String restExportPassword = "geoserver.rest.export.password";
+	
 	public static String restUrl = "geoserver.rest.url";
 	public static String restUser = "geoserver.rest.user";
 	public static String restPassword = "geoserver.rest.password";
