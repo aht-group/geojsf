@@ -83,6 +83,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		if(event instanceof PostAddToViewEvent)
 		{
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"OpenLayers.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"scalebar.js");
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"GeoJSF.js");
 		}
 		else

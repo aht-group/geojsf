@@ -1,4 +1,6 @@
 var GeoJsfControl = {	
+		
+		scalebar: null,
 
 		addZoom : function(type, position)
 		{
@@ -78,6 +80,43 @@ var GeoJsfControl = {
 			var originalStyle = scaleBar.element.parentNode.getAttribute("style");
 			scaleBar.element.setAttribute("style", originalStyle +style);
 			return scaleBar;
+		},
+		
+		addScaleBar : function(position, system, major, sub)
+		{
+			// Apply given style
+		//	var style = "z-index: 1001; margin: 20px; ";
+			var style = "margin: 30px; ";
+			if (position=="northeast")
+			 {
+				style = style +"right: 0px; left: 70%; top: 0px;"
+			 }
+			if (position=="northwest")
+			 {
+			 	style = style +"left: 0px; right: 70%; top: 0px;"
+			 }
+			if (position=="southeast")
+			 {
+			 	style = style +"right: 0px; left: 70%; bottom: 0px;"
+			 }
+			if (position=="southwest")
+			 {
+			 	style = style +"left: 0px; right: 70%; bottom: 0px;"
+			 }
+
+			scaleBar = new OpenLayers.Control.ScaleBar({
+				displaySystem: system,
+				divisions: major,
+			    subdivisions: sub
+			});
+				this.scaleBar = new OpenLayers.Control.ScaleLine();
+			GeoJSF.map.addControl(this.scaleBar);
+			return this.scaleBar;
+		},
+		
+		removeScaleBar : function()
+		{
+			GeoJSF.map.removeControl(GeoJsfControl.scaleBar);
 		},
 		
 		addTimeManager : function()
