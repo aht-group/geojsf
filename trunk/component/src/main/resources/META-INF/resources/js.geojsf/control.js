@@ -24,11 +24,23 @@ var GeoJsfControl = {
 				this.zoom = new OpenLayers.Control.PanZoomBar();
 				GeoJSF.map.addControl(this.zoom);
 				 for (var p = 0; p < 4; p++) {
-				        this.zoom.buttons[p].style.display = 'none';
-				        this.zoom.buttons[p].style.left    = style;
+					    var originalStyleP = this.zoom.buttons[p].firstChild.getAttribute("style");
+					    console.log("Original Style: " +originalStyleP);
+				        this.zoom.buttons[p].firstChild.setAttribute("style", originalStyleP +" display: none !important;");
+				        console.log("new Style: " +this.zoom.buttons[p].getAttribute("style"));
 				 }
+				 for (var p = 4; p < 6; p++) {
+					    var originalStyleP = this.zoom.buttons[p].getAttribute("style");
+					    console.log("Original Style: " +originalStyleP);
+				        this.zoom.buttons[p].setAttribute("style", originalStyleP +" left: " +style +";");
+				        console.log("new Style: " +this.zoom.buttons[p].getAttribute("style"));
+				 }
+				 var originalStyleSlider = this.zoom.slider.getAttribute("style");
+				 this.zoom.slider.setAttribute("style", originalStyleSlider +" left: " +style +";");
 				 var originalStyle = this.zoom.zoombarDiv.getAttribute("style");
+				 console.log("Original Style: " +originalStyle);
 				 this.zoom.zoombarDiv.setAttribute("style", originalStyle +" left: " +style +";");
+				 console.log("new Style: " +this.zoom.zoombarDiv.getAttribute("style"));
 			}
 		},
 		
