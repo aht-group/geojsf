@@ -25,6 +25,8 @@ import javax.faces.event.PostAddToViewEvent;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
+import org.geojsf.component.JsfRenderUtil;
+import org.geojsf.component.MapUtil;
 import org.geojsf.component.entities.OlLayer;
 import org.geojsf.component.entities.OlService;
 import org.geojsf.event.MapAjaxEvent;
@@ -277,6 +279,20 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	        renderer.renderTextWithLB("params.tilesorigin = GeoJSF.map.maxExtent.left + ',' + GeoJSF.map.maxExtent.bottom;");
 		}
 		renderer.renderTextWithLB("params.format      = 'image/png';");
+		Hashtable<String,String> parameters = MapUtil.searchSqlViewParameters(this);
+		if (parameters.size()>0)
+		{
+			StringBuffer sb = new StringBuffer();
+			sb.append("params.viewparams  = '");
+			for (String key : parameters.keySet())
+			{
+				sb.append(key +":" +parameters.get(key) +";");
+			}
+			sb.append("';");
+			renderer.renderTextWithLB(sb.toString());
+		}
+		
+		
 	//	renderer.renderTextWithLB("params.makeTheUrlLong      = 'longText';");
 		renderer.renderTextWithLB("var options = {};");
 		renderer.renderTextWithLB("options.isBaseLayer = " +baseLayer +";");
