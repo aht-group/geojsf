@@ -87,6 +87,24 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,CATEGORY ext
 		return timeInfo;
 	}
 	
+	public static Hashtable<String,String> searchSqlViewParameters(UIComponent map)
+	{
+		Hashtable<String,String> parameters = new Hashtable<String,String>();
+		for (UIComponent comp : map.getChildren())
+		{
+			if (comp.getClass().getSimpleName().toString().equals("SqlViewParameter"))
+			{
+				SqlViewParameter s = (SqlViewParameter) comp;
+				if (null!=s.getValue())
+				{
+					parameters.put(s.getKey(), s.getValue());
+				}
+				logger.info("Added SQLViewParameter: " +s.getKey() +"=" +s.getValue());
+			}
+		}
+		return parameters;
+	}
+	
 	public MAP buildViewsFromLayers(UIComponent map)
 	{
 		MAP dmMap = null;
