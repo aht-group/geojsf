@@ -88,7 +88,7 @@ public class Time extends UIComponentBase
 
 	@Override
 	public String getFamily() {
-		// TODO Auto-generated method stub
+		// TODO @hh Is null really correct?
 		return null;
 	}
 }

@@ -111,18 +111,16 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 			{
 				child.setRendered(false);
 			}	
-		}
-*/		if (this.isRendered())
+		}*/
+		if (this.isRendered())
 		{
 			logger.debug("entering encodebegin");
 			try
 			{
-					// TODO: Really a new instance required, or should it be in the constructor?
-				
-					if (!containsLayer())
-					{
-						dmMap           = (MAP)getAttributes().get("value");
-					}
+				if (!containsLayer())
+				{
+					dmMap = (MAP)getAttributes().get("value");
+				}
 					else
 					{
 						MapUtil mapUtil = new MapUtil(ctx);
