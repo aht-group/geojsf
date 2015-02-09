@@ -1,3 +1,25 @@
+/**
+ * Protect window.console method calls, e.g. console is not defined on IE
+ * unless dev tools are open, and IE doesn't define console.debug
+ */
+(function() {
+  if (!window.console) {
+    window.console = {};
+  }
+  // union of Chrome, FF, IE, and Safari console methods
+  var m = [
+    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+  ];
+  // define undefined methods as noops to prevent errors
+  for (var i = 0; i < m.length; i++) {
+    if (!window.console[m[i]]) {
+      window.console[m[i]] = function() {};
+    }    
+  } 
+})();
+
 var GeoJSF = {	
 		map: null,
 		switcher: null,
@@ -13,6 +35,7 @@ var GeoJSF = {
 		id: null,
 		lastLayer: null,
 		eventsRegistered: false,
+		baseLayer: null,
 		
 		setAjaxUpdates : function(updateClicks, updateMove)
 		{
@@ -24,6 +47,16 @@ var GeoJSF = {
 		addLoadEvent : function()
 		{
 		//	OpenLayers.Event.observe(GeoJSF.map.div, "load", GeoJSF.registerEventHandlers ); 
+		},
+		
+		getCurrentLocation : function()
+		{
+			navigator.geolocation.getCurrentPosition(GeoJSF.processCurrentLocation);
+		},
+		
+		processCurrentLocation : function(location)
+		{
+		    console.log("You are at: (lat/lon) (" +location.coords.latitude +"/" +location.coords.longitude +") with an accurancy of " +location.coords.accuracy);
 		},
 		
 		register : function(layerName)
@@ -168,10 +201,39 @@ var GeoJSF = {
 				width: width, 
 				theme: null, 
 				tileSize: sizeParam,
+			//	allOverlays: true,
 				});
+
+			/* This is experimental adding of Google and/or OpenStreetMap layers
+					 GeoJSF.baseLayer = new OpenLayers.Layer.Google(
+					            "Google Streets", // the default
+					            {numZoomLevels: 20}
+					        );
+					 GeoJSF.baseLayer = new OpenLayers.Layer.OSM();
+				 	var osm = new OpenLayers.Layer.OSM();            
+				    var gmap = new OpenLayers.Layer.Google("Google Streets");
+				    var google_maps = new OpenLayers.Layer.Google(
+				   	     "Google Maps", {
+				   	          numZoomLevels: 20
+				   	     }
+				   	);
+				   	var google_satellite = new OpenLayers.Layer.Google(
+				        "Google Satellite", {
+				           type: google.maps.MapTypeId.SATELLITE,
+				         numZoomLevels: 20
+				    }
+				  	);
+				  	GeoJSF.map.addLayers([this.google_maps, this.google_satellite]);
+				    GeoJSF.map.addLayers([osm]);
+					this.map.addLayer(new OpenLayers.Layer.OSM());
+					GeoJSF.map.addLayer(GeoJSF.baseLayer);
+			*/
+			
 		    OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
-		    
-		    // 
+		    // For centering the map
+		    // GeoJSF.map.setCenter( new OpenLayers.LonLat(30.06119013, -1.95854944) .transform( new OpenLayers.Projection("EPSG:4326"), this.map.getProjectionObject() ), 17 );
+
+		    // Bootstrapping jQuery
 		    if (!window.jQuery) {
 		    	  console.log("Bootstrap jQuery if not present.");
 		    	  var jq = document.createElement('script'); jq.type = 'text/javascript';
@@ -186,7 +248,7 @@ var GeoJSF = {
 		},
 		
 		// Remove all layers and add the base layer again
-		resetLayers : function()
+			resetLayers : function()
 		{
 			if (this.map.layers)
 				{
@@ -196,6 +258,22 @@ var GeoJSF = {
 				}
 		},
 		
+		/*		
+		resetLayers : function()
+		{
+			if (GeoJSF.map)
+				{
+					if (GeoJSF.map.layers)
+					{
+						for (var i = GeoJSF.map.layers.length - 1; i >= 0; i--) {
+						    GeoJSF.map.removeLayer(GeoJSF.map.layers[i]);
+						}
+					}
+				}
+			
+			GeoJSF.map.addLayer(GeoJSF.baseLayer);
+		},
+		*/
 		addLayer : function(name, url, layers, params)
 		{
 		//	layers.tiled = true;
