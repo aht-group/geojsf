@@ -51,39 +51,23 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 	
 	private Namespace nsGml;
 	
-	private Class<G> cGeometry;
 	private Class<I> cId;
 	
 	private String geometryColumn;
 	private String[] queryProperties;
 		
-	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<G> cGeometry)
+	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<G> cGeometry,Class<I> cId)
 	{
 		this.fGeo=fGeo;
 		this.propertyProvider=propertyProvider;
 		this.layer=layer;
-		this.cGeometry=cGeometry;
-		
+		this.cId=cId;
 		
 		logger.info("Using URL:"+layer.getService().getWms()+" with layer:"+layer);
 		
 		nsGml = Namespace.getNamespace("gml", "http://www.opengis.net/gml");
 		geometryColumn = getGeometryColumnName(cGeometry);
 		queryProperties = getPropertyColumnNames(cGeometry);
-	}
-	
-	public WfsPointQuery(UtilsIdFacade fGeo,WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<G> cGeometry, Class<I> cId)
-	{
-		this.fGeo=fGeo;
-		this.propertyProvider=propertyProvider;
-		this.layer=layer;
-		this.cGeometry=cGeometry;
-		this.cId=cId;
-
-		logger.info("Using URL:"+layer.getService().getWms()+" with layer:"+layer);
-		
-		nsGml = Namespace.getNamespace("gml", "http://www.opengis.net/gml");
-		geometryColumn = getGeometryColumnName(cGeometry);
 	}
 	
 	protected String getGeometryColumnName(Class<G> clazz)

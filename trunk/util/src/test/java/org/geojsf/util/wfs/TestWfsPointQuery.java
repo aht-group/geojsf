@@ -32,7 +32,7 @@ public class TestWfsPointQuery extends AbstractGeoJsfUtilTest
 		
 		WfsGetFeaturePropertyProvider wfsPp = new GeoJsfGetFeaturePropertyProvider();
 		wfsPq = new WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort>
-								(null,wfsPp,layer,SampleSpatialEntity.class);
+								(null,wfsPp,layer,SampleSpatialEntity.class,SampleSpatialEntity.class);
 	}
 	
 	@Ignore @Test
