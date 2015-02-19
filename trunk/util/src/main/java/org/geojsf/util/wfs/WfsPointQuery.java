@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
@@ -123,6 +124,12 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 					propertyFields.add(column.name());
 					fieldAdded = true;
 				}
+				if(field.getAnnotation(JoinColumn.class)!=null)
+				{
+					JoinColumn column = (JoinColumn)field.getAnnotation(JoinColumn.class);
+					propertyFields.add(column.name());
+					fieldAdded = true;
+				}
 				if(!fieldAdded && field.getAnnotation(ManyToOne.class)!=null)
 				{
 					propertyFields.add(field.getName()+"_id");
@@ -167,7 +174,7 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 		
 		JDomUtil.debug(doc);
 		
-		List<I> result = new ArrayList<I>();
+		results = new ArrayList<I>();
 		for (Element e : elements)
 		{	
 			JDomUtil.debug(e);
@@ -175,14 +182,14 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 			{
 				String s = e.getAttributeValue("fid");
 				Long id = new Long(s.substring(s.lastIndexOf(".")+1));
-				result.add(fGeo.find(cId, id));
+				results.add(fGeo.find(cId, id));
 			}
 			catch (UtilsNotFoundException ex)
 			{
 				logger.error(ex.getMessage());
 			}
 		}
-		return result;
+		return results;
 	}
 	
 	public List<I> executeTest(Coordinates coordinates, Distance distance,String[] queryProperties)
@@ -207,7 +214,7 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 		
 //		JDomUtil.debug(doc);
 		
-		List<I> result = new ArrayList<I>();
+		results = new ArrayList<I>();
 		for (Element e : elements)
 		{	
 //			JDomUtil.debug(e);
@@ -215,13 +222,18 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 			{
 				String s = e.getAttributeValue("fid");
 				Long id = new Long(s.substring(s.lastIndexOf(".")+1));
-				result.add(fGeo.find(cId, id));
+				results.add(fGeo.find(cId, id));
 			}
 			catch (UtilsNotFoundException ex)
 			{
 				logger.error(ex.getMessage());
 			}
 		}
-		return result;
+		return results;
 	}
+	
+	//ResultList
+	private List<I> results;
+	public List<I> getResults(){return results;}
+	
 }
