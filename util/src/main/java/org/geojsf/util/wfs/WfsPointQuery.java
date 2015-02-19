@@ -13,6 +13,7 @@ import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
@@ -40,7 +41,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("rawtypes")
-public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
+public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 {
 	final static Logger logger = LoggerFactory.getLogger(WfsPointQuery.class);
 	
@@ -50,24 +51,42 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 	
 	private Namespace nsGml;
 	
-	private Class<T> type;
+	private Class<G> cGeometry;
+	private Class<I> cId;
+	
 	private String geometryColumn;
 	private String[] queryProperties;
 		
-	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<T> clazz)
+	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<G> cGeometry)
 	{
 		this.fGeo=fGeo;
 		this.propertyProvider=propertyProvider;
 		this.layer=layer;
-		this.type=clazz;
+		this.cGeometry=cGeometry;
+		
+		
 		logger.info("Using URL:"+layer.getService().getWms()+" with layer:"+layer);
 		
 		nsGml = Namespace.getNamespace("gml", "http://www.opengis.net/gml");
-		geometryColumn = getGeometryColumnName(type);
-		queryProperties = getPropertyColumnNames(type);
+		geometryColumn = getGeometryColumnName(cGeometry);
+		queryProperties = getPropertyColumnNames(cGeometry);
 	}
 	
-	protected String getGeometryColumnName(Class<T> clazz)
+	public WfsPointQuery(UtilsIdFacade fGeo,WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<G> cGeometry, Class<I> cId)
+	{
+		this.fGeo=fGeo;
+		this.propertyProvider=propertyProvider;
+		this.layer=layer;
+		this.cGeometry=cGeometry;
+		this.cId=cId;
+
+		logger.info("Using URL:"+layer.getService().getWms()+" with layer:"+layer);
+		
+		nsGml = Namespace.getNamespace("gml", "http://www.opengis.net/gml");
+		geometryColumn = getGeometryColumnName(cGeometry);
+	}
+	
+	protected String getGeometryColumnName(Class<G> clazz)
 	{
 		Field geometryField = getGeometryfield(clazz);
 		
@@ -105,7 +124,7 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 		return geometryField;
 	}
 	
-	protected String[] getPropertyColumnNames(Class<T> clazz)
+	protected String[] getPropertyColumnNames(Class<G> clazz)
 	{
 		List<String> propertyFields = new ArrayList<String>();
 	
@@ -135,12 +154,54 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 		return result;
 	}
 	
-	public List<T> execute(Coordinate coordinate, Distance distance)
+	public List<I> execute(Coordinate coordinate, Distance distance)
 	{
 		return execute(XmlCoordinatesFactory.build(coordinate),distance);
 	}
 	
-	public List<T> execute(Coordinates coordinates, Distance distance)
+	public List<I> execute(Coordinates coordinates, Distance distance)
+	{				
+		for(String s : queryProperties){logger.info(s.toString());}
+		
+		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
+													  queryProperties, geometryColumn,
+													  coordinates,distance);
+		JaxbUtil.trace(gf);
+		WfsHttpRequest r = new WfsHttpRequest(layer.getService().getWcs());
+		
+		Document doc = r.request(gf);
+		
+		Namespace nsQuery = propertyProvider.getNameSpace();
+		StringBuffer xpath = new StringBuffer();
+		xpath.append("//gml:featureMember");
+		xpath.append("/").append(nsQuery.getPrefix()).append(":").append(layer.getCode());
+		
+		logger.info("XPATH: "+xpath.toString());
+		XPathExpression<Element> xpe = XPathFactory.instance().compile(xpath.toString(),Filters.element(), null,nsQuery,nsGml);
+		List<Element> elements = xpe.evaluate(doc);
+		logger.info("Elements: "+elements.size());
+		
+		JDomUtil.debug(doc);
+		
+		List<I> result = new ArrayList<I>();
+		for (Element e : elements)
+		{	
+			JDomUtil.debug(e);
+			try
+			{
+				String s = e.getAttributeValue("fid");
+				Long id = new Long(s.substring(s.lastIndexOf(".")+1));
+				result.add(fGeo.find(cId, id));
+			}
+			catch (UtilsNotFoundException ex)
+			{
+				logger.error(ex.getMessage());
+			}
+		}
+		return result;
+	}
+	
+	public List<I> executeTest(Coordinates coordinates, Distance distance,String[] queryProperties)
 	{				
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  queryProperties, geometryColumn,
@@ -160,17 +221,17 @@ public class WfsPointQuery<T extends EjbWithGeometry,L extends UtilsLang,D exten
 		List<Element> elements = xpe.evaluate(doc);
 		logger.info("Elements: "+elements.size());
 		
-		JDomUtil.debug(doc);
+//		JDomUtil.debug(doc);
 		
-		List<T> result = new ArrayList<T>();
+		List<I> result = new ArrayList<I>();
 		for (Element e : elements)
 		{	
-			JDomUtil.debug(e);
+//			JDomUtil.debug(e);
 			try
 			{
 				String s = e.getAttributeValue("fid");
 				Long id = new Long(s.substring(s.lastIndexOf(".")+1));
-				result.add(fGeo.find(type, id));
+				result.add(fGeo.find(cId, id));
 			}
 			catch (UtilsNotFoundException ex)
 			{
