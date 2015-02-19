@@ -1,0 +1,8 @@
+unzip geoserver-2.6.2-bin.zip -d /opt/
+chown geoserver.geoserver /opt/geoserver-2.6.2 -R
+mkdir /home/geoserver/data
+mkdir /home/geoserver/data/2.6.2
+cp /opt/geoserver-2.6.2/data_dir/* /home/geoserver/data/2.6.2 -R
+chown geoserver.geoserver /home/geoserver/data -R
+chown geoserver.dev /home/geoserver/data/2.6.2 -R
+chmod g+w /home/geoserver/data/2.6.2 -R
