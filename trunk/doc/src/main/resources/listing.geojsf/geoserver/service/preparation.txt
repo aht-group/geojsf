@@ -1,3 +1,0 @@
-sudo touch /etc/init.d/geoserver
-sudo chmod 755 /etc/init.d/geoserver
-sudo vi /etc/init.d/geoserver

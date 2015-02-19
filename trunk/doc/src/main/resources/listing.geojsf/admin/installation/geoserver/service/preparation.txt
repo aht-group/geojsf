@@ -1,0 +1,2 @@
+touch /etc/init.d/geoserver
+chmod 755 /etc/init.d/geoserver
