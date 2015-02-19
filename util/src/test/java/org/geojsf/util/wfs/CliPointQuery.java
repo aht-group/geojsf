@@ -68,7 +68,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		distance.setUnits("degree");
 		distance.setValue("1.074");
 		
-		WfsPointQuery pq = new WfsPointQuery(fGeo,new GeoJsfGetFeaturePropertyProvider(),layer,SampleSpatialEntity.class);
+		WfsPointQuery pq = new WfsPointQuery(fGeo,new GeoJsfGetFeaturePropertyProvider(),layer,SampleSpatialEntity.class,SampleSpatialEntity.class);
 		List<SampleSpatialEntity> list = pq.execute(coordinates,distance);
 //ahtutils.highlight:point
 	}
