@@ -11,6 +11,7 @@ public interface GeoJsfDocumentation
 	public static String keyRoles = "net.sf.ahtutils.doc.file.roles";
 	
 	public static String msgGeoAdmin = "msg.geojsf/admin.xml";
+	public static String msgGeoCoordinates = "msg.geojsf/coordinates.xml";
 	
 	public static final String lstInstGeoserverUser = "admin/installation/geoserver/user.txt";
 	public static final String listingInstallGeoserverExtract = "admin/installation/geoserver/extract.txt";

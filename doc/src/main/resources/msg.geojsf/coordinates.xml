@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<s:translations xmlns:s="http://ahtutils.aht-group.com/status">
+	<s:translation key="geojsfLongitude">
+		<s:langs>
+			<s:lang key="de" translation="Longitude"/>
+			<s:lang key="en" translation="Longitude"/>
+			<s:lang key="fr" translation="Longitude"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geojsfLatitude">
+		<s:langs>
+			<s:lang key="de" translation="Latitude"/>
+			<s:lang key="en" translation="Latitude"/>
+			<s:lang key="fr" translation="Latitude"/>
+		</s:langs>
+	</s:translation>
+</s:translations>
