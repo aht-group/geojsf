@@ -131,7 +131,7 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 	public void addMap()
 	{
 		logger.info(AbstractLogMessage.addEntity(cMap));
-		map = efMap.create("", 5, 0, 0,langKeys);
+		map = efMap.create("",langKeys);
 		try
 		{
 			map.setName(efLang.createEmpty(langKeys));

@@ -98,7 +98,7 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,CAT
 	
 	private void initViews() throws UtilsIntegrityException
 	{
-		map = fMap.create("defaultMap",5,0,0,langs);map.setId(1);
+		map = fMap.create("defaultMap",langs);map.setId(1);
 		map.getViews().add(fView.create(map, layerAhtRoads, 1, true,true));
 		map.getViews().add(fView.create(map, layerAhtStreams, 2, true,true));
 		map.getViews().add(fView.create(map, layerAhtRestricted, 3, true,true));
