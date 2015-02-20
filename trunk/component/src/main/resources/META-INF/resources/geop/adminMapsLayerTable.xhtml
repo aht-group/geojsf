@@ -17,16 +17,16 @@
 			selection="#{adminMapThematicBean.view}" selectionMode="single" rowKey="#{v.id}"
 			draggableRows="true">
 			<f:facet name="header">
-                <aht:pfDataTableHeader title="#{msg.mapServices}">
+                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
                     <aht:icon type="geoJsfAdd" listener="#{adminMapThematicBean.addView()}" update=":fView"/>
                 </aht:pfDataTableHeader>
             </f:facet>
             <p:ajax event="rowSelect" update=":fView" listener="#{adminMapThematicBean.selectView}"/>
             <p:ajax event="rowReorder" listener="#{adminMapThematicBean.reorderLayer}" update="@all" oncomplete="GeoJSF.refreshMap()"/>
-            <p:column headerText="x">
+            <p:column headerText="#{msg.geoJsfAdminOrderNo}">
 				<h:outputText value="#{v.orderNo} " />  
 			</p:column>
-            <p:column headerText="#{msg.mapServiceName}" sortBy="#{s.code}">
+            <p:column headerText="#{msg.geoJsfAdminLayer}" sortBy="#{s.code}">
 				<h:outputText value="#{v.layer.name[userBean.localeCode].lang} " />  
 			</p:column>
 		</p:dataTable>

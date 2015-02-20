@@ -15,7 +15,7 @@
 		<p:dataTable var="m" value="#{adminMapThematicBean.maps}"
 				selection="#{adminMapThematicBean.map}" selectionMode="single" rowKey="#{m.id}">
 			<f:facet name="header">
-				<aht:pfDataTableHeader title="#{msg.mapsThematic}">
+				<aht:pfDataTableHeader title="#{msg.geoJsfAdminThamaticMaps}">
 	                   <aht:icon type="geoJsfAdd" listener="#{adminMapThematicBean.addMap()}" update=":rowMaps"/>
 				</aht:pfDataTableHeader>
 			</f:facet>
