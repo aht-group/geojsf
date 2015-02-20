@@ -2,10 +2,11 @@ package org.geojsf.factory.xml.geojsf;
 
 import java.io.Serializable;
 
-
 import org.geojsf.xml.geojsf.Coordinate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.vividsolutions.jts.geom.Point;
 
 public class XmlCoordinateFactory implements Serializable
 {
@@ -27,6 +28,14 @@ public class XmlCoordinateFactory implements Serializable
 	public static Coordinate build()
 	{
 		Coordinate xml = new Coordinate();
+		return xml;
+	}
+	
+	public static Coordinate build(Point point)
+	{
+		Coordinate xml = build();
+		xml.setLat(point.getCoordinate().y);
+		xml.setLon(point.getCoordinate().x);
 		return xml;
 	}
 }
