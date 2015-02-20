@@ -14,8 +14,7 @@ public interface GeoJsfView<L extends UtilsLang,
 						MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
 						VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
 						VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-			extends EjbWithId,
-					EjbSaveable
+			extends EjbWithId,EjbSaveable,Comparable<VIEW>
 {
 	public static final String extractId = "geoJsfView";
 	
@@ -28,8 +27,9 @@ public interface GeoJsfView<L extends UtilsLang,
 	int getOrderNo();
 	void setOrderNo(int orderNo);
 	
-	Boolean isVisible();
-	void setVisible(Boolean visible);
+	boolean getVisible();
+	boolean isVisible();
+	void setVisible(boolean visible);
 	
 	Boolean isLegend();
 	void setLegend(Boolean legend);

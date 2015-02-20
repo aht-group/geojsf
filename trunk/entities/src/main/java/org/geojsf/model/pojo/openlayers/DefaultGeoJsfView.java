@@ -45,8 +45,9 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	@Override public int getOrderNo() {return orderNo;}
 	@Override public void setOrderNo(int orderNo) {this.orderNo = orderNo;}
 	
-	@Override public Boolean isVisible() {return visible;}
-	@Override public void setVisible(Boolean visible) {this.visible = visible;}
+	@Override public boolean getVisible() {return visible;}
+	@Override public boolean isVisible() {return visible;}
+	@Override public void setVisible(boolean visible) {this.visible = visible;}
 	
 	@Override public Boolean isLegend() {return legend;}
 	@Override public void setLegend(Boolean legend) {this.legend=legend;}
@@ -67,5 +68,9 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 		return sb.toString();
 	}
 
-	
+	@Override
+	public int compareTo(DefaultGeoJsfView other)
+	{
+		return(new Integer(this.getOrderNo())).compareTo(other.getOrderNo());
+	}
 }
