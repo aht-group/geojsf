@@ -14,6 +14,20 @@
 			<s:lang key="fr" translation="Catégorie"/>
 		</s:langs>
 	</s:translation>
+		<s:translation key="geoJsfAdminCode">
+		<s:langs>
+			<s:lang key="de" translation="Code"/>
+			<s:lang key="en" translation="Code"/>
+			<s:lang key="fr" translation="Code"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfAdminThamaticMaps">
+		<s:langs>
+			<s:lang key="de" translation="Thematischen Karten"/>
+			<s:lang key="en" translation="Thematic Maps"/>
+			<s:lang key="fr" translation="Cartes thématique"/>
+		</s:langs>
+	</s:translation>
 	<s:translation key="geoJsfDetailsThamaticMap">
 		<s:langs>
 			<s:lang key="de" translation="Details der thematischen Karte"/>
@@ -21,21 +35,28 @@
 			<s:lang key="fr" translation="Détails Carte thématique"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="geoJsfDetailsView">
+	<s:translation key="geoJsfAdminDetailsLayer">
 		<s:langs>
 			<s:lang key="de" translation="Details der Ebene"/>
 			<s:lang key="en" translation="Details Layer"/>
 			<s:lang key="fr" translation="Détails Couche"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="geoJsfLayer">
+		<s:translation key="geoJsfAdminLayers">
+		<s:langs>
+			<s:lang key="de" translation="Ebenen"/>
+			<s:lang key="en" translation="Layers"/>
+			<s:lang key="fr" translation="Couches"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfAdminLayer">
 		<s:langs>
 			<s:lang key="de" translation="Ebene"/>
 			<s:lang key="en" translation="Layer"/>
 			<s:lang key="fr" translation="Couche"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="geoJsfOrderNo">
+	<s:translation key="geoJsfAdminOrderNo">
 		<s:langs>
 			<s:lang key="de" translation="#"/>
 			<s:lang key="en" translation="#"/>
@@ -57,7 +78,7 @@
 			<s:lang key="fr" translation="WMS"/>
 		</s:langs>
 	</s:translation>
-		<s:translation key="geoJsfServiceWcs">
+	<s:translation key="geoJsfServiceWcs">
 		<s:langs>
 			<s:lang key="de" translation="WCS"/>
 			<s:lang key="en" translation="WCS"/>
