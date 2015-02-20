@@ -16,7 +16,7 @@
 				var="l" value="#{adminMapServiceBean.layers}"
 				selection="#{adminMapServiceBean.layer}" selectionMode="single" rowKey="#{l.id}">
 			<f:facet name="header">
-                <aht:pfDataTableHeader title="#{msg.mapAvailableLayers}">
+                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
                     <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addLayer()}" update=":sLayer"/>
                 </aht:pfDataTableHeader>
             </f:facet>

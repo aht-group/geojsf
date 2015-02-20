@@ -19,7 +19,7 @@
 				<aht:icon type="geoJsfDelete" listener="#{adminMapServiceBean.rm(adminMapServiceBean.category)}" update=":rowServices"/>
 			</f:facet>
 			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
-				<h:outputText value="#{msg.mapCode}"/>
+				<h:outputText value="#{msg.geoJsfAdminCode}"/>
 				<p:inputText value="#{adminMapServiceBean.category.code}" placeholder="#{msg.EnterUniqueCode}" autocomplete="false"/>
 			</h:panelGrid>
 			<aht:tabTranslationEditor value="#{adminMapServiceBean.category}"

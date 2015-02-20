@@ -27,8 +27,8 @@ public class PointFactory
     public Point build(double lat, double lon)
     {
     	com.vividsolutions.jts.geom.Coordinate coordinate = new com.vividsolutions.jts.geom.Coordinate();
-		coordinate.x = lat;
-		coordinate.y = lon;
+		coordinate.y = lat;
+		coordinate.x = lon;
 		
 		return gf.createPoint(coordinate);
     } 
