@@ -10,18 +10,23 @@ import org.slf4j.LoggerFactory;
 public class XmlCoordinateFactory implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlCoordinateFactory.class);
-	
 	public static final long serialVersionUID=1;
 	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>Fields<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 
 	public static Coordinate build(double lat, double lon)
 	{
 		Coordinate xml = new Coordinate();
 		
-		xml.setLat(lat);
-		xml.setLon(lon);
 		
+		xml.setLon(lon);
+		xml.setLat(lat);
+		
+		return xml;
+	}
+	
+	public static Coordinate build()
+	{
+		Coordinate xml = new Coordinate();
 		return xml;
 	}
 }
