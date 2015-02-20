@@ -35,18 +35,6 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public DefaultGeoJsfViewPort getViewPort(){return viewPort;}
 	@Override public void setViewPort(DefaultGeoJsfViewPort viewPort){this.viewPort = viewPort;}
 	
-	private Double lat;
-	@Override public Double getLat() {return lat;}
-	@Override public void setLat(Double lat) {this.lat = lat;}
-	
-	private Double lon;
-	@Override public Double getLon() {return lon;}
-	@Override public void setLon(Double lon) {this.lon = lon;}
-	
-	private Integer zoom;
-	@Override public Integer getZoom() {return zoom;}
-	@Override public void setZoom(Integer zoom) {this.zoom = zoom;}
-	
 	private Map<String, DefaultGeoJsfLang> name;
 	@Override public Map<String, DefaultGeoJsfLang> getName() {return name;}
 	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}

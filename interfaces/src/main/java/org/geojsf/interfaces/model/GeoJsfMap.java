@@ -28,13 +28,4 @@ public interface GeoJsfMap<L extends UtilsLang,
 	
 	VP getViewPort();
 	void setViewPort(VP viewPort);
-	
-	Double getLat();
-	void setLat(Double lat);
-	
-	Double getLon();
-	void setLon(Double lon);
-	
-	Integer getZoom();
-	void setZoom(Integer zoom);
 }

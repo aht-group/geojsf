@@ -12,7 +12,6 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.xml.geojsf.Query;
-import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.ViewPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,20 +50,6 @@ public class XmlViewPortFactory implements Serializable
 			xml.setScale(XmlScaleFactory.build(ejb));
 		}
 		
-		return xml;
-	}
-		
-	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-		ViewPort build (MAP map)
-	{
-		ViewPort xml = new ViewPort();
-		
-		xml.setLon(map.getLon());
-		xml.setLat(map.getLat());
-		
-		xml.setScale(new Scale());
-		xml.getScale().setZoom(map.getZoom());
-			
 		return xml;
 	}
 	

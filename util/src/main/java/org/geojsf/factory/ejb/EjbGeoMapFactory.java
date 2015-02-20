@@ -32,14 +32,11 @@ public class EjbGeoMapFactory<L extends UtilsLang,D extends UtilsDescription,CAT
         fLang = EjbLangFactory.createFactory(cLang);
     } 
 	
-	public MAP create(String code, int zoom, double x, double y, String[] langKeys)
+	public MAP create(String code,  String[] langKeys)
 	{
 		MAP ejb = build();
 		ejb.setName(fLang.createEmpty(langKeys));
 		ejb.setCode(code);
-		ejb.setZoom(zoom);
-		ejb.setLat(x);
-		ejb.setLon(y);
         return ejb;
     }
 	
