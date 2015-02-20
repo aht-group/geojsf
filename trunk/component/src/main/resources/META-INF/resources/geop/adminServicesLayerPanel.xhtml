@@ -20,7 +20,7 @@
 			</f:facet>
 			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
 				<p:outputLabel value="#{msg.mapCode}"/>
-				<p:inputText value="#{adminMapServiceBean.layer.code}"/>
+				<p:inputText value="#{adminMapServiceBean.layer.code}" autocomplete="false"/>
 				
 				<p:outputLabel value="#{msg.mapTemporalLayer}" />  
 				<p:selectBooleanCheckbox value="#{adminMapServiceBean.layer.temporalLayer}" />  

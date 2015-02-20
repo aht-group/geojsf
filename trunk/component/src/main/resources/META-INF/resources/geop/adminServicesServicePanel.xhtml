@@ -20,7 +20,7 @@
 			</f:facet>
 			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
 				<p:outputLabel value="#{msg.mapCode}"/>
-				<p:inputText value="#{adminMapServiceBean.service.code}" placeholder="#{msg.EnterUniqueCode}"/>
+				<p:inputText value="#{adminMapServiceBean.service.code}" placeholder="#{msg.EnterUniqueCode}" autocomplete="false"/>
 				<p:outputLabel value="#{msg.geoJsfServiceWms}"/>
 				<p:inputText value="#{adminMapServiceBean.service.wms}"/>
 				<p:outputLabel value="#{msg.geoJsfServiceWcs}"/>
