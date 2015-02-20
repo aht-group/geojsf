@@ -30,9 +30,7 @@ public class SqlViewParameter extends UIComponentBase
 	{
 		if(event instanceof PostAddToViewEvent)
 		{
-			Map<String,Object> map = this.getAttributes();
-			this.key     = (String) map.get(Attribute.key.toString());
-			this.value   = (String) map.get(Attribute.value.toString());
+			
 		}
 		super.processEvent(event);
 	}
@@ -40,7 +38,12 @@ public class SqlViewParameter extends UIComponentBase
 	@Override
 	public void encodeAll(FacesContext ctx) throws IOException
 	{
-		logger.info("SQL View Parameter already rendered in Map. This client Id is: " +this.getClientId());
+		Map<String,Object> map = this.getAttributes();
+		this.key     = (String) map.get(Attribute.key.toString());
+		this.value   = (String) map.get(Attribute.value.toString());
+		String command = "<script>GeoJSF.updateSqlViewParams('" +key +": " +value +";');</script>";
+		ctx.getResponseWriter().write(command);
+		logger.info("SQL View Parameter updated in Map. JavaScript Command: " +command);
 	}
 
 	public void setValue(String value) {this.value = value;}

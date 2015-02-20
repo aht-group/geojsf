@@ -287,7 +287,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 				sb.append(key +":" +parameters.get(key) +";");
 			}
 			sb.append("';");
-			renderer.renderTextWithLB(sb.toString());
+		//	renderer.renderTextWithLB(sb.toString());
 		}
 		
 		
@@ -345,6 +345,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		    Boolean isUpdateMapEvent   = false;
 		    Boolean isUpdateModelEvent = false;
 		    Boolean isUpdateTimeEvent  = false;
+		    Boolean isUpdateParamsEvent= false;
 		    Boolean isMapClickEvent    = false;
 		    Boolean isMapMoveEvent     = false;
 		    
@@ -354,6 +355,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 			    isUpdateMapEvent   = behaviorEvent.equals("updateMap");
 			    isUpdateModelEvent = behaviorEvent.equals("updateModel");
 			    isUpdateTimeEvent  = behaviorEvent.equals("updateTime");
+			    isUpdateParamsEvent= behaviorEvent.equals("updateParams");
 			    isMapClickEvent    = behaviorEvent.equals("mapClick");
 			    isMapMoveEvent     = behaviorEvent.equals("mapMove");
 		    }
@@ -361,6 +363,20 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		    //if (null!=services && ((null != behaviorEvent && !isLayerSwitchEvent) || null==behaviorEvent || isUpdateMapEvent))
 		    if (null!=serviceList)
 			{
+		    	// Load the (maybe updated) SqlViewParameters
+		    	logger.info("Searching for SQLVP in Decode");
+		    	Hashtable<String,String> parameters = MapUtil.searchSqlViewParameters(this);
+		    	StringBuffer sb = new StringBuffer();
+				if (parameters.size()>0)
+				{
+					sb.append("'");
+					for (String key : parameters.keySet())
+					{
+						sb.append(key +":" +parameters.get(key) +";");
+					}
+					sb.append("';");
+				}
+				
 				// Iterate through all Views (that hold the information if a Layer is visible)
 		    	for (VIEW view : dmMap.getViews())
 				{
@@ -372,6 +388,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 					Boolean now       = view.isVisible();
 					logger.trace("Checking " +dmMap.getViews().size() +"of dmMap for changes.");
 					logger.trace("Checking layer " +view.getLayer().getCode());
+					
 					if (before.equals(now))
 					{
 						// If there is no change, do nothing
@@ -595,6 +612,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		events.add("mapClick");
 		events.add("mapMove");
 		events.add("updateModel");
+		events.add("updateParams");
 		return events;
 	}
 
