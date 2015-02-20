@@ -12,7 +12,9 @@ import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.jsf.util.FacesContextMessage;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
+import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.EjbGeoMapFactory;
@@ -273,5 +275,17 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		viewPort = fGeo.save(viewPort);
 		layer.setViewPort(viewPort);
 		layer = fGeo.update(layer);
+	}
+	
+	public void mapMove(MapAjaxEvent evt)
+	{
+		logger.info("Viewport: "+evt.getViewPort().getLat() +"/" +evt.getViewPort().getLon() +" in bounds of " +evt.getViewPort().getTop() +" and " +evt.getViewPort().getBottom());	
+		efViewPort.update(viewPort,evt.getViewPort());
+	}
+	
+	public void saveViewPort() throws UtilsContraintViolationException, UtilsLockingException
+	{
+		logger.info(AbstractLogMessage.saveEntity(viewPort));
+		viewPort = fGeo.save(viewPort);
 	}
 }
