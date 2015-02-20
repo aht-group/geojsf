@@ -12,27 +12,27 @@
 	</composite:interface>
         
 	<composite:implementation>
-		<p:panel header="#{msg.mapLayer}" styleClass="auNoTop,auPanelWithGrid">
+		<p:panel header="#{msg.geoJsfAdminLayer}" styleClass="auNoTop,auPanelWithGrid">
 			<f:facet name="actions">
 				<aht:icon type="geoJsfCancel" listener="#{adminMapServiceBean.cancelLayer()}" update=":sLayers :sLayer"/>
 				<aht:icon type="geoJsfSave" listener="#{adminMapServiceBean.saveLayer()}" update=":sLayers :sLayer"/>
 				<aht:icon type="geoJsfDelete" listener="#{adminMapServiceBean.rm(adminMapServiceBean.layer)}" update=":sLayers :sLayer"/>	
 			</f:facet>
 			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
-				<p:outputLabel value="#{msg.mapCode}"/>
+				<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
 				<p:inputText value="#{adminMapServiceBean.layer.code}" autocomplete="false"/>
 				
-				<p:outputLabel value="#{msg.mapTemporalLayer}" />  
+				<p:outputLabel value="#{msg.geoJsfAdminTemporal}" />  
 				<p:selectBooleanCheckbox value="#{adminMapServiceBean.layer.temporalLayer}" />  
 				
-				<p:outputLabel value="#{msg.mapService}"/>
+				<p:outputLabel value="#{msg.geoJsfAdminService}"/>
 				<p:selectOneMenu styleClass="w100" value="#{adminMapServiceBean.layer.service}" effect="fade">  
-					<f:selectItems value="#{adminMapServiceBean.services}" var="s" itemLabel="#{s.code}" itemValue="#{s}"/>
+					<f:selectItems value="#{adminMapServiceBean.services}" var="s" itemLabel="#{s.name[userBean.localeCode].lang}" itemValue="#{s}"/>
 				</p:selectOneMenu>
 				
-				<p:outputLabel value="#{msg.geoJsfCategory}"/>
+				<p:outputLabel value="#{msg.geoJsfAdminCategory}"/>
 				<p:selectOneMenu styleClass="w100" value="#{adminMapServiceBean.layer.category}" effect="fade">  
-					<f:selectItems value="#{adminMapServiceBean.categories}" var="c" itemLabel="#{c.code}" itemValue="#{c}"/>
+					<f:selectItems value="#{adminMapServiceBean.categories}" var="c" itemLabel="#{c.name[userBean.localeCode].lang}" itemValue="#{c}"/>
 				</p:selectOneMenu>
 			</h:panelGrid>
 			<aht:tabTranslationEditor value="#{adminMapServiceBean.layer}"

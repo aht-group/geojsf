@@ -1,20 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <s:translations xmlns:s="http://ahtutils.aht-group.com/status">
-	<s:translation key="geoJsfCategories">
+	<s:translation key="geoJsfAdminCategories">
 		<s:langs>
 			<s:lang key="de" translation="Kategorien"/>
 			<s:lang key="en" translation="Categories"/>
 			<s:lang key="fr" translation="Catégories"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="geoJsfCategory">
+	<s:translation key="geoJsfAdminCategory">
 		<s:langs>
 			<s:lang key="de" translation="Kategorie"/>
 			<s:lang key="en" translation="Category"/>
 			<s:lang key="fr" translation="Catégorie"/>
 		</s:langs>
 	</s:translation>
-		<s:translation key="geoJsfAdminCode">
+	<s:translation key="geoJsfAdminServices">
+		<s:langs>
+			<s:lang key="de" translation="Services"/>
+			<s:lang key="en" translation="Services"/>
+			<s:lang key="fr" translation="Services"/>
+		</s:langs>
+	</s:translation>
+		<s:translation key="geoJsfAdminService">
+		<s:langs>
+			<s:lang key="de" translation="Service"/>
+			<s:lang key="en" translation="Service"/>
+			<s:lang key="fr" translation="Service"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfAdminName">
+		<s:langs>
+			<s:lang key="de" translation="Name"/>
+			<s:lang key="en" translation="Name"/>
+			<s:lang key="fr" translation="Name"/>
+		</s:langs>
+	</s:translation>
+	
+	
+	<s:translation key="geoJsfAdminCode">
 		<s:langs>
 			<s:lang key="de" translation="Code"/>
 			<s:lang key="en" translation="Code"/>
@@ -70,7 +93,13 @@
 			<s:lang key="fr" translation="Visible"/>
 		</s:langs>
 	</s:translation>
-	
+		<s:translation key="geoJsfAdminPreview">
+		<s:langs>
+			<s:lang key="de" translation="Vorschau"/>
+			<s:lang key="en" translation="Preview"/>
+			<s:lang key="fr" translation="Preview"/>
+		</s:langs>
+	</s:translation>
 	<s:translation key="geoJsfServiceWms">
 		<s:langs>
 			<s:lang key="de" translation="WMS"/>
@@ -83,6 +112,13 @@
 			<s:lang key="de" translation="WCS"/>
 			<s:lang key="en" translation="WCS"/>
 			<s:lang key="fr" translation="WCS"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfAdminTemporal">
+		<s:langs>
+			<s:lang key="de" translation="Temporal"/>
+			<s:lang key="en" translation="Temporal"/>
+			<s:lang key="fr" translation="Temporal"/>
 		</s:langs>
 	</s:translation>
 </s:translations>
