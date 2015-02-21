@@ -49,6 +49,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	private final static String dirMap = "section/geojsf/map";
 	
 	public static enum InstallationCode {instGeoserver}
+	public static enum ConfigurationCode {confSld}
 	public static enum InstallationType {standalone}
 	
 	public static enum GeoJsfCode {datastructure,aServices,aMaps}
@@ -89,6 +90,9 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		
 		//Installation
 		addConfig(InstallationCode.instGeoserver.toString(),"ofx.geojsf/installation/geoserver.xml","admin/installation/geoserver");
+		
+		//Configuration
+		addConfig(ConfigurationCode.confSld.toString(),"ofx.geojsf/configuration/sld/sld.xml","admin/configuration/geoserver/sld");
 		
 		//GeoJSF
 		addConfig(GeoJsfCode.datastructure.toString(),"ofx.geojsf/geojsf/datastructure.xml","geojsf/datastructure");
@@ -229,6 +233,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		}
 	}
 	
+	public void render(ConfigurationCode code) throws UtilsConfigurationException, OfxConfigurationException{render(code.toString());}
 	public void render(InstallationCode code) throws UtilsConfigurationException, OfxConfigurationException{render(code.toString());}
 	public void render(InstallationCode code, InstallationType... types) throws UtilsConfigurationException, OfxConfigurationException
 	{

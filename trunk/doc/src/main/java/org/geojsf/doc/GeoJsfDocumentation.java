@@ -16,4 +16,5 @@ public interface GeoJsfDocumentation
 	public static final String lstInstGeoserverUser = "admin/installation/geoserver/user.txt";
 	public static final String listingInstallGeoserverExtract = "admin/installation/geoserver/extract.txt";
 	public static final String lstInstGeoserverSrvPrep = "admin/installation/geoserver/service/preparation.txt";
+	public static final String lstInstGeoserverEtcInitD = "admin/installation/geoserver/service/etcInitD.txt";
 }
