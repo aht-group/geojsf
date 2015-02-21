@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ofx:section xmlns:ofx="http://www.openfuxml.org"
+			xmlns:l="http://www.openfuxml.org/list"
+			xmlns:text="http://www.openfuxml.org/text"
+			xmlns:media="http://www.openfuxml.org/media"
+			xmlns:layout="http://www.openfuxml.org/layout"
+			id="section.admin.geojsf.datastructure">
+	<ofx:title lang="en">Styled Layer Descriptors</ofx:title>
+	
+	<ofx:paragraph lang="en">
+		A Styled Layer Descriptor (SLD) is an XML schema specified by the Open Geospatial Consortium (OGC) for describing the appearance of map layers.
+		It is capable of describing the rendering of vector and raster data.
+		A typical use of SLDs is to instruct a Web Map Service (WMS) of how to render a specific layer.
+		In August 2007 the SLD specification was split up into two new OGC implementation specifications:
+	</ofx:paragraph>
+	
+	<l:list>
+	    <l:type ordering="unordered"/>
+	    
+	    <l:item>
+	    	<ofx:paragraph lang="en">
+				Symbology Encoding (SE)
+			</ofx:paragraph>
+	    </l:item>
+	    <l:item>
+	    	<ofx:paragraph lang="en">
+				Styled Layer Descriptor (SLD)
+			</ofx:paragraph>
+	    </l:item>
+	 </l:list>
+	 
+	 	<ofx:paragraph lang="en">
+			Styled Layer Descriptor specification now only contains the protocol for communicating with a WMS about how to style a layer.
+			The actual description of the styling is now exclusively described in the symbology encoding implementation specification.
+		</ofx:paragraph>
+	   
+</ofx:section>
