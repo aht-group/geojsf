@@ -35,6 +35,7 @@ import net.sf.ahtutils.xml.status.Langs;
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="label" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="temporal" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="sql" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -81,6 +82,8 @@ public class Layer
     protected String label;
     @XmlAttribute(name = "temporal")
     protected Boolean temporal;
+    @XmlAttribute(name = "sql")
+    protected Boolean sql;
 
     /**
      * Gets the value of the langs property.
@@ -424,6 +427,38 @@ public class Layer
 
     public void unsetTemporal() {
         this.temporal = null;
+    }
+
+    /**
+     * Gets the value of the sql property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isSql() {
+        return sql;
+    }
+
+    /**
+     * Sets the value of the sql property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setSql(boolean value) {
+        this.sql = value;
+    }
+
+    public boolean isSetSql() {
+        return (this.sql!= null);
+    }
+
+    public void unsetSql() {
+        this.sql = null;
     }
 
 }

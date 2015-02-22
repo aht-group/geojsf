@@ -9,8 +9,8 @@ import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.xml.geojsf.Layer;
@@ -18,7 +18,7 @@ import org.geojsf.xml.geojsf.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlLayerFactory implements Serializable
+public class XmlLayerFactory<D extends UtilsDescription> implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlLayerFactory.class);
 	
@@ -32,13 +32,18 @@ public class XmlLayerFactory implements Serializable
 		this.q=q;
 	}
 
-	public <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
+	public <L extends UtilsLang,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 	Layer build (GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> ejb)
 	{
 		Layer xml = new Layer();
 		
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
 		if(q.isSetTemporal()){xml.setTemporal(ejb.isTemporalLayer());}
+		if(q.isSetSql())
+		{
+			if(ejb.isSqlLayer()!=null){xml.setSql(ejb.isSqlLayer());}
+			else{xml.setSql(false);}
+		}	
 		
 		if(q.isSetService())
 		{
@@ -60,7 +65,7 @@ public class XmlLayerFactory implements Serializable
 		
 		if(q.isSetDescriptions())
 		{
-			XmlDescriptionsFactory f = new XmlDescriptionsFactory(q.getDescriptions());
+			XmlDescriptionsFactory<D> f = new XmlDescriptionsFactory<D>(q.getDescriptions());
 			xml.setDescriptions(f.create(ejb.getDescription()));
 		}
 		
@@ -73,7 +78,7 @@ public class XmlLayerFactory implements Serializable
 		return xml;
 	}
 	
-	public <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
+	public <L extends UtilsLang,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		Layer build (GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> ejb)
 	{
 		Layer xml = new Layer();

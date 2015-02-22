@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <geojsf:category xmlns:us="http://ahtutils.aht-group.com/status" xmlns:geojsf="http://www.geojsf.org" id="1" code="myCode">
-    <geojsf:layer id="1" code="myCode" workspace="myWorkspace" name="myName" temporal="true"/>
-    <geojsf:layer id="1" code="myCode" workspace="myWorkspace" name="myName" temporal="true"/>
+    <geojsf:layer id="1" code="myCode" workspace="myWorkspace" name="myName" temporal="true" sql="true"/>
+    <geojsf:layer id="1" code="myCode" workspace="myWorkspace" name="myName" temporal="true" sql="true"/>
     <us:langs/>
     <us:descriptions/>
 </geojsf:category>
