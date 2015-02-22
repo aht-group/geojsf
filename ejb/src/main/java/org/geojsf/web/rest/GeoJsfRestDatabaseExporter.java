@@ -99,7 +99,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 	{
 		logger.info("Export "+Layer.class.getSimpleName());
 		Layers layers = new Layers();
-		XmlLayerFactory f = new XmlLayerFactory(GeoJsfQuery.get(GeoJsfQuery.Key.layer, null));
+		XmlLayerFactory<D> f = new XmlLayerFactory<D>(GeoJsfQuery.get(GeoJsfQuery.Key.layer, null));
 		
 		for(LAYER layer : fGeo.all(cLayer))
 		{

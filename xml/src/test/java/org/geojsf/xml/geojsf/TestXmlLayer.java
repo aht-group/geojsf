@@ -39,6 +39,7 @@ public class TestXmlLayer extends AbstractXmlGeojsfTest
     	xml.setWorkspace("myWorkspace");
     	xml.setName("myName");
     	xml.setTemporal(true);
+    	xml.setSql(true);
     	
     	if(withChilds)
     	{

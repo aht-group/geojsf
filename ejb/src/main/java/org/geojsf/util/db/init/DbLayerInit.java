@@ -83,8 +83,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 				service = fUtils.fByCode(cService, layer.getService().getCode());
 				category = fUtils.fByCode(cCategory, layer.getCategory().getCode());
 			}
-			catch (UtilsNotFoundException e1) {throw new UtilsConfigurationException(e1.getMessage());}
-			
+			catch (UtilsNotFoundException e1) {throw new UtilsConfigurationException(e1.getMessage());}			
 			
 			LAYER ejb;
 			try
@@ -92,6 +91,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 				ejb = fUtils.fByCode(cLayer,layer.getCode());
 				ejbLangFactory.rmLang(fUtils,ejb);
 				ejbDescriptionFactory.rmDescription(fUtils,ejb);
+				
 			}
 			catch (UtilsNotFoundException e)
 			{
@@ -109,6 +109,11 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 			{
 				ejb.setName(ejbLangFactory.getLangMap(layer.getLangs()));
 				ejb.setDescription(ejbDescriptionFactory.create(layer.getDescriptions()));
+				
+				//TODO can be removed after applied to active projects
+				boolean layerSql = false;
+				if(layer.isSetSql()){layerSql = layer.isSql();}
+				ejb.setSqlLayer(layerSql);
 				
 				ejb.setTemporalLayer(layer.isTemporal());
 				ejb.setService(fUtils.fByCode(cService, layer.getService().getCode()));

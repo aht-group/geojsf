@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<geojsf:layer xmlns:us="http://ahtutils.aht-group.com/status" xmlns:geojsf="http://www.geojsf.org" id="1" code="myCode" workspace="myWorkspace" name="myName" temporal="true">
+<geojsf:layer xmlns:us="http://ahtutils.aht-group.com/status" xmlns:geojsf="http://www.geojsf.org" id="1" code="myCode" workspace="myWorkspace" name="myName" temporal="true" sql="true">
     <us:langs/>
     <us:descriptions/>
     <geojsf:legend id="1" url="myUrl"/>
-    <geojsf:service id="1" code="myCode" url="http://geojsf.sf.net" wms="wms" wcs="wcs"/>
+    <geojsf:service id="1" code="myCode" wms="wms" wcs="wcs"/>
     <geojsf:category id="1" code="myCode"/>
     <geojsf:viewPort id="123" lat="1.23" lon="4.56" bottom="5.55" left="3.33" right="4.44" top="2.22"/>
 </geojsf:layer>
