@@ -29,4 +29,7 @@ public interface GeoJsfLayer<L extends UtilsLang,
 	
 	boolean isTemporalLayer();
 	void setTemporalLayer(boolean temporalLayer);
+	
+	Boolean isSqlLayer();
+	void setSqlLayer(Boolean sqlLayer);
 }

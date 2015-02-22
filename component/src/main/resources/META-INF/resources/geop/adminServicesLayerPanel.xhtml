@@ -22,8 +22,11 @@
 				<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
 				<p:inputText value="#{adminMapServiceBean.layer.code}" autocomplete="false"/>
 				
-				<p:outputLabel value="#{msg.geoJsfAdminTemporal}" />  
-				<p:selectBooleanCheckbox value="#{adminMapServiceBean.layer.temporalLayer}" />  
+				<p:outputLabel value="#{msg.geoJsfAdminLayerTemporal}" />  
+				<p:selectBooleanCheckbox value="#{adminMapServiceBean.layer.temporalLayer}" />
+				
+				<p:outputLabel value="#{msg.geoJsfAdminLayerSql}" />  
+				<p:selectBooleanCheckbox value="#{adminMapServiceBean.layer.sqlLayer}" />
 				
 				<p:outputLabel value="#{msg.geoJsfAdminService}"/>
 				<p:selectOneMenu styleClass="w100" value="#{adminMapServiceBean.layer.service}" effect="fade">  
