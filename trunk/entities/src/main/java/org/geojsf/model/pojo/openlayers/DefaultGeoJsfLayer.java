@@ -55,7 +55,11 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	@Override public boolean isTemporalLayer() {return temporalLayer;}
 	@Override public void setTemporalLayer(boolean temporalLayer) {this.temporalLayer = temporalLayer;}
 	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
+	private Boolean sqlLayer;
+	@Override public Boolean isSqlLayer() {return sqlLayer;}
+	@Override public void setSqlLayer(Boolean sqlLayer) {this.sqlLayer = sqlLayer;}
+
+	
 	
 	public boolean equals(Object object)
 	{

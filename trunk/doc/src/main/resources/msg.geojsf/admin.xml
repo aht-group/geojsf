@@ -114,11 +114,18 @@
 			<s:lang key="fr" translation="WCS"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="geoJsfAdminTemporal">
+	<s:translation key="geoJsfAdminLayerTemporal">
 		<s:langs>
 			<s:lang key="de" translation="Temporal"/>
 			<s:lang key="en" translation="Temporal"/>
 			<s:lang key="fr" translation="Temporal"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfAdminLayerSql">
+		<s:langs>
+			<s:lang key="de" translation="SQL"/>
+			<s:lang key="en" translation="SQL"/>
+			<s:lang key="fr" translation="SQL"/>
 		</s:langs>
 	</s:translation>
 </s:translations>
