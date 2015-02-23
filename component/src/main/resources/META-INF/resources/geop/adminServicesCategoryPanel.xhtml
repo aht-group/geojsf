@@ -12,7 +12,7 @@
 	</composite:interface>
         
 	<composite:implementation>
-		<p:panel header="#{msg.geoJsfCategory}" rendered="#{not empty adminMapServiceBean.category}" styleClass="auNoTop,auPanelWithGrid">
+		<p:panel header="#{msg.geoJsfAdminCategory}" rendered="#{not empty adminMapServiceBean.category}" styleClass="auNoTop,auPanelWithGrid">
 			<f:facet name="actions">
 				<aht:icon type="geoJsfCancel" listener="#{adminMapServiceBean.cancelCategory()}" update=":rowServices"/>
 				<aht:icon type="geoJsfSave" listener="#{adminMapServiceBean.saveCategory()}" update=":rowServices"/>

@@ -88,6 +88,7 @@ public class GeoJsfQuery
 
 		Layer xml = new Layer();
 		xml.setTemporal(false);
+		xml.setSql(true);
 		xml.setCode("");
 		xml.setService(service);
 		xml.setCategory(category);

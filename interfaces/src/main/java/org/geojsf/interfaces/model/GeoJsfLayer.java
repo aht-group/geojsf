@@ -27,9 +27,11 @@ public interface GeoJsfLayer<L extends UtilsLang,
 	VP getViewPort();
 	void setViewPort(VP viewPort);
 	
+	boolean getTemporalLayer();
 	boolean isTemporalLayer();
 	void setTemporalLayer(boolean temporalLayer);
 	
 	Boolean isSqlLayer();
+	Boolean getSqlLayer();
 	void setSqlLayer(Boolean sqlLayer);
 }
