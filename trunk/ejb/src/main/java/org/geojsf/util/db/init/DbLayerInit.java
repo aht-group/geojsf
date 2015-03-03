@@ -34,7 +34,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
     private final Class<LAYER> cLayer;
     
     private UtilsFacade fUtils;
-    private GeoJsfFacade fGeo;
+    private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo;
     
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;

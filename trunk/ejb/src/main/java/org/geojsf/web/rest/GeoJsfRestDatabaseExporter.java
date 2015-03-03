@@ -38,7 +38,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfRestDatabaseExporter.class);
 	
-	private GeoJsfUtilsFacade fGeo;
+	private GeoJsfUtilsFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo;
 	
 	private final Class<SERVICE> cService;
 	private final Class<CATEGORY> cCategory;
@@ -46,7 +46,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 	private final Class<MAP> cMap;
 	private final Class<VP> cViewPort;
 	
-	private GeoJsfRestDatabaseExporter(GeoJsfUtilsFacade fGeo,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort)
+	private GeoJsfRestDatabaseExporter(GeoJsfUtilsFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort)
 	{
 		this.fGeo=fGeo;
 		this.cCategory=cCategory;
@@ -58,7 +58,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		GeoJsfRestDatabaseExporter<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
-		factory(GeoJsfUtilsFacade fGeo, final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort)
+		factory(GeoJsfUtilsFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo, final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort)
 	{
 		return new GeoJsfRestDatabaseExporter<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(fGeo,cCategory,cService,cLayer,cMap,cViewPort);
 	}

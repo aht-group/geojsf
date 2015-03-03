@@ -46,7 +46,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	protected EjbGeoViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efView;
 	protected EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efViewPort;
 	
-	protected GeoJsfUtilsFacade fGeo;
+	protected GeoJsfUtilsFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo;
 	
 	protected MAP map;
 	public MAP getMap() {return map;}

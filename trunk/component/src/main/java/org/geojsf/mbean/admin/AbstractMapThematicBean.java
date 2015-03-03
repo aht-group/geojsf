@@ -47,7 +47,7 @@ public class AbstractMapThematicBean<L extends UtilsLang,D extends UtilsDescript
 	protected EjbGeoViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efView;
 	protected EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> efViewPort;	
 	
-	protected GeoJsfUtilsFacade fGeo;
+	protected GeoJsfUtilsFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo;
 	
 	protected List<MAP> maps;
 	public List<MAP> getMaps(){return maps;}
