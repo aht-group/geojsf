@@ -21,7 +21,15 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 
-public class GeoJsfFacadeBean implements GeoJsfFacade
+public class GeoJsfFacadeBean <L extends UtilsLang,
+								D extends UtilsDescription,
+								CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
+								SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
+								MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
+								VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,
+								VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
+	implements GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
 {	
 	private EntityManager em;
 	
@@ -51,8 +59,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 	@Override public <T extends EjbWithId> T find(Class<T> type, T t) {return em.find(type,t.getId());}
 
 	@Override
-	public <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-		MAP load(Class<MAP> cView, MAP map)
+	public MAP load(Class<MAP> cView, MAP map)
 	{
 		map = em.find(cView, map.getId());
 		map.getViews().size();
@@ -61,8 +68,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 	}
 	
 	@Override
-	public <L extends UtilsLang, D extends UtilsDescription, CATEGORY extends GeoJsfCategory<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, SERVICE extends GeoJsfService<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, LAYER extends GeoJsfLayer<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, MAP extends GeoJsfMap<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, VIEW extends GeoJsfView<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, VP extends GeoJsfViewPort<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>>
-		CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category)
+	public CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category)
 	{
 		category = em.find(cCategory, category.getId());
 		category.getLayer().size();
@@ -70,8 +76,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 	}
 
 	@Override
-	public <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-		SERVICE load(Class<SERVICE> cService, SERVICE service)
+	public SERVICE load(Class<SERVICE> cService, SERVICE service)
 	{
 		service = em.find(cService, service.getId());
 		service.getLayer().size();
@@ -79,8 +84,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 	}
 	
 	@Override
-	public <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-		LAYER load(Class<LAYER> cLayer, LAYER layer)
+	public LAYER load(Class<LAYER> cLayer, LAYER layer)
 	{
 		layer = em.find(cLayer, layer.getId());
 		if(layer.getViewPort()!=null){layer.getViewPort().getId();}
@@ -88,8 +92,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 	}
 
 	@Override
-	public <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
-		void rm(Class<VIEW> cView, VIEW view)
+	public void rm(Class<VIEW> cView, VIEW view)
 	{
 		view = em.find(cView, view.getId());
 		view.getMap().getViews().remove(view);
@@ -97,8 +100,7 @@ public class GeoJsfFacadeBean implements GeoJsfFacade
 	}
 
 	@Override
-	public <L extends UtilsLang, D extends UtilsDescription, CATEGORY extends GeoJsfCategory<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, SERVICE extends GeoJsfService<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, LAYER extends GeoJsfLayer<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, MAP extends GeoJsfMap<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, VIEW extends GeoJsfView<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>, VP extends GeoJsfViewPort<L, D, CATEGORY, SERVICE, LAYER, MAP, VIEW, VP>>
-		void rm(Class<LAYER> cLayer, LAYER layer)
+	public void rm(Class<LAYER> cLayer, LAYER layer)
 	{
 		layer = em.find(cLayer, layer.getId());
 		layer.getCategory().getLayer().remove(layer);

@@ -37,7 +37,7 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY 
     private final Class<VIEW> cView;
     
     private UtilsFacade fUtils;
-    private GeoJsfFacade fGeo;
+    private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo;
     
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
@@ -45,7 +45,7 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY 
     
     private DbViewPortInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> dbVpInit;
     
-    public DbMapInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cMap,final Class<VIEW> cView, final Class<VP> cVp, UtilsFacade fUtils, GeoJsfFacade fGeo)
+    public DbMapInit(final Class<L> cL, final Class<D> cD,final Class<LAYER> cLayer, final Class<MAP> cMap,final Class<VIEW> cView, final Class<VP> cVp, UtilsFacade fUtils, GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo)
 	{       
         this.cLayer = cLayer;
         this.cMap = cMap;
