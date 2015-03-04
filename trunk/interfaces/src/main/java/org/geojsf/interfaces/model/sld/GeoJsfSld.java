@@ -11,6 +11,8 @@ public interface GeoJsfSld<L extends UtilsLang,
 						   T extends UtilsStatus<T,L,D>>
 			extends EjbSaveable,EjbRemoveable
 {
+	public static enum Type{symbol,interval}
+	
 	T getType();
 	void setType(T type);
 }
