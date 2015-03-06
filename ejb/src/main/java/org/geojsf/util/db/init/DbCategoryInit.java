@@ -90,8 +90,6 @@ public class DbCategoryInit <L extends UtilsLang,D extends UtilsDescription,CATE
 				ejb=(CATEGORY)fSecurity.update(ejb);
 			}
 			catch (UtilsContraintViolationException e) {logger.error("",e);}
-			catch (InstantiationException e) {logger.error("",e);}
-			catch (IllegalAccessException e) {logger.error("",e);}
 			catch (UtilsIntegrityException e) {logger.error("",e);}
 			catch (UtilsLockingException e) {logger.error("",e);}
 		}
