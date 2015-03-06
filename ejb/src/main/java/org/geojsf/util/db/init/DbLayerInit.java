@@ -42,7 +42,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
     
     private DbViewPortInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> dbVpInit;
     
-    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade fGeo)
+    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo)
 	{       
     	this.cCategory = cCategory;
     	this.cService = cService;
@@ -59,7 +59,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
 		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>
-		factory(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,UtilsFacade fUtils,GeoJsfFacade fGeo)
+		factory(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,UtilsFacade fUtils,GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> fGeo)
 	{
 		return new DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>(cL,cD,cCategory,cService,cLayer,cVp,fUtils,fGeo);
 	}
