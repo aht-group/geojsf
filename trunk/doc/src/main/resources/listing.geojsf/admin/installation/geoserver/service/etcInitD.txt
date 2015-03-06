@@ -9,21 +9,11 @@
 # Short-Description: StartStop of GeoServer
 ### END INIT INFO
 
-#!/bin/sh
-### BEGIN INIT INFO
-# Provides: geoserver
-# Required-Start: $local_fs $remote_fs $network $syslog
-# Required-Stop: $local_fs $remote_fs $network $syslog
-# Should-Start: postgresql
-# Default-Start: 2 3 4 5
-# Default-Stop: 0 1 6
-# Short-Description: StartStop of GeoServer
-### END INIT INFO
-
 export GEOSERVER_HOME=/opt/geoserver-2.6.2
 export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 export GEOSERVER_DATA_DIR=/home/geoserver/data/2.6.2
 export GEOSERVER_GEOJSON_LEGACY_CRS=true
+export JAVA_OPTS="$JAVA_OPTS -server -Xms512m -Xmx512m -XX:MaxPermSize=128m"
 
 case "$1" in
 start)
