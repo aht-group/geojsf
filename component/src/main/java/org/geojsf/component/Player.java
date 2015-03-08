@@ -20,6 +20,7 @@ import javax.faces.event.PostAddToViewEvent;
 
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
+import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
@@ -27,18 +28,19 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
+import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @FacesComponent(value="org.geojsf.component.Player")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class Player <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>>
+public class Player <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
 extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Player.class);
 	
-	private Map<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP> map;
+	private Map<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE> map;
 	
 	private String pattern;
 	private String target;
@@ -90,7 +92,7 @@ extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void encodeAll(FacesContext ctx) throws IOException
 	{
-		map = (Map<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP>) findComponent("testForm:map");
+		map = (Map<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>) findComponent("testForm:map");
 		logger.info("Map found with " +map.getServiceList().size() +" layer definitions. Current time: ");
 		/*for (SERVICE service : map.getServiceList())
 		{

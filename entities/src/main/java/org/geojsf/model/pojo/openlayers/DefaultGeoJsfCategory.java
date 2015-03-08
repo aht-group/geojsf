@@ -13,12 +13,14 @@ import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 import org.geojsf.interfaces.model.GeoJsfCategory;
+import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
+import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 @EjbErNode(name="Category",category="geojsf")
 public class DefaultGeoJsfCategory implements Serializable,EjbRemoveable,EjbPersistable,
-			GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort>
+			GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldTemplate>
 {
 	public static enum Code {welcome}
 	
