@@ -128,4 +128,11 @@
 			<s:lang key="fr" translation="SQL"/>
 		</s:langs>
 	</s:translation>
+	<s:translation key="geoJsfAdminSldTemplates">
+		<s:langs>
+			<s:lang key="de" translation="SLD Templates"/>
+			<s:lang key="en" translation="SLD Templates"/>
+			<s:lang key="fr" translation="SLD Templates"/>
+		</s:langs>
+	</s:translation>
 </s:translations>
