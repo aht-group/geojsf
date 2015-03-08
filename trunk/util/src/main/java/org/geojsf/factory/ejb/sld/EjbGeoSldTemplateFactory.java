@@ -31,13 +31,14 @@ public class EjbGeoSldTemplateFactory<L extends UtilsLang,D extends UtilsDescrip
         return new EjbGeoSldTemplateFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>(cTemplate);
     }
 	
-	public SLDTEMPLATE build(SLDTYPE type)
+	public SLDTEMPLATE build(SLDTYPE type, String code)
 	{
 		SLDTEMPLATE ejb;
 		try {ejb = cTemplate.newInstance();}
 		catch (InstantiationException e) {e.printStackTrace();throw new RuntimeException(e);}
 		catch (IllegalAccessException e) {e.printStackTrace();throw new RuntimeException(e);}
 		ejb.setType(type);
+		ejb.setCode(code);
         return ejb;
     }
 }

@@ -2,6 +2,7 @@ package org.geojsf.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
+import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
@@ -36,6 +37,7 @@ public class TestXmlSldTemplate extends AbstractXmlGeojsfTest
     	{
     		xml.setLangs(new Langs());
     		xml.setDescriptions(new Descriptions());
+    		xml.setType(XmlTypeFactory.create("myType"));
     	}
     	
     	return xml;

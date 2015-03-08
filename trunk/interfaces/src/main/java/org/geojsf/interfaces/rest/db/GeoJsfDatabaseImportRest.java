@@ -44,4 +44,9 @@ public interface GeoJsfDatabaseImportRest
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)
 	DataUpdate importGeoJsfSldTypes(Aht types);
+	
+	@POST @Path("/geojsf/sld/templates")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	DataUpdate importGeoJsfSldTemplates(Repository templates);
 }

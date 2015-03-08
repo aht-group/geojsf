@@ -3,6 +3,7 @@ package org.geojsf.util.query;
 import java.util.Hashtable;
 
 import net.sf.ahtutils.controller.util.query.StatusQuery;
+import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 
 import org.geojsf.xml.geojsf.Category;
 import org.geojsf.xml.geojsf.Layer;
@@ -156,6 +157,7 @@ public class GeoJsfQuery
 	{	
 		SldTemplate xml = new SldTemplate();
 		xml.setCode("");
+		xml.setType(XmlTypeFactory.create("myType"));
 		xml.setLangs(StatusQuery.langs());
 		xml.setDescriptions(StatusQuery.descriptions());
 		return xml;
