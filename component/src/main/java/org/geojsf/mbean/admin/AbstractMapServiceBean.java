@@ -69,10 +69,6 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	protected CATEGORY category;
 	public CATEGORY getCategory(){return category;}
 	public void setCategory(CATEGORY category){this.category = category;}
-
-	protected LAYER layer;
-	public LAYER getLayer() {return layer;}
-	public void setLayer(LAYER layer) {this.layer = layer;}
 	
 	protected VP viewPort;
 	public VP getViewPort(){return viewPort;}
@@ -215,6 +211,10 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	}
 	
 	// LAYER
+	protected LAYER layer;
+	public LAYER getLayer() {return layer;}
+	public void setLayer(LAYER layer) {this.layer = layer;}
+	
 	protected void reloadLayer()
 	{
 		category = fGeo.load(cCategory, category);
