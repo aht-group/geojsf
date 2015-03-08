@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
@@ -39,6 +40,12 @@ public class XmlSldTemplateFactory implements Serializable
 		SldTemplate xml = new SldTemplate();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
 			
+		if(q.isSetType())
+		{
+			XmlTypeFactory f = new XmlTypeFactory(q.getType());
+			xml.setType(f.build(ejb.getType()));
+		}
+		
 		if(q.isSetLangs())
 		{
 			XmlLangsFactory<L> f = new XmlLangsFactory<L>(q.getLangs());
@@ -50,7 +57,6 @@ public class XmlSldTemplateFactory implements Serializable
 			XmlDescriptionsFactory<D> f = new XmlDescriptionsFactory<D>(q.getDescriptions());
 			xml.setDescriptions(f.create(ejb.getDescription()));
 		}
-		
 		
 		return xml;
 	}

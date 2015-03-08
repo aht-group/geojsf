@@ -86,7 +86,7 @@ public class AbstractMapSldBean<L extends UtilsLang,D extends UtilsDescription,C
 	public void addTemplate()
 	{
 		logger.info(AbstractLogMessage.addEntity(cTemplate));
-		template = efTemplate.build(null);
+		template = efTemplate.build(null,null);
 		try
 		{
 			template.setName(efLang.createEmpty(langKeys));
