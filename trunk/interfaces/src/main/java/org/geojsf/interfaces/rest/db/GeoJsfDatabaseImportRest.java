@@ -6,6 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
 import org.geojsf.xml.geojsf.Layers;
@@ -38,4 +39,9 @@ public interface GeoJsfDatabaseImportRest
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)
 	DataUpdate importGeoJsfMaps(Maps maps);
+	
+	@POST @Path("/geojsf/sld/type")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	DataUpdate importGeoJsfSldTypes(Aht types);
 }

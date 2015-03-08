@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<aht:aht xmlns:us="http://ahtutils.aht-group.com/status" xmlns:aht="http://ahtutils.aht-group.com">
+    <us:status code="interval" group="sldType" visible="true" position="1">
+        <us:langs>
+            <us:lang key="de" translation="Interval"/>
+            <us:lang key="fr" translation="Interval"/>
+            <us:lang key="en" translation="Interval"/>
+        </us:langs>
+        <us:descriptions>
+            <us:description key="de">Interval</us:description>
+            <us:description key="fr">Interval</us:description>
+            <us:description key="en">Interval</us:description>
+        </us:descriptions>
+    </us:status>
+</aht:aht>

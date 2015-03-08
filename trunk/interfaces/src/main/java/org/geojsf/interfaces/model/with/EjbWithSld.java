@@ -10,7 +10,8 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 public interface EjbWithSld <L extends UtilsLang,
 							D extends UtilsDescription,
 							TYPE extends UtilsStatus<TYPE,L,D>,
-							SLD extends GeoJsfSld<L,D,TYPE>> extends EjbWithId
+							SLD extends GeoJsfSld<L,D,TYPE,SLD>>
+						extends EjbWithId
 {
 	SLD getSld();
 	void setSld(SLD sld);
