@@ -1,6 +1,8 @@
 package org.geojsf.model.pojo.sld;
 
 import java.io.Serializable;
+import java.util.Hashtable;
+import java.util.Map;
 
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
@@ -25,6 +27,17 @@ public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbP
 	public DefaultGeoJsfSldType getType() {return type;}
 	public void setType(DefaultGeoJsfSldType type) {this.type = type;}
 	
+//	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@MapKey(name = "lkey")
+	protected Map<String, DefaultGeoJsfLang> name;
+	@Override public Map<String, DefaultGeoJsfLang> getName() {if(name==null){name=new Hashtable<String,DefaultGeoJsfLang>();}return name;}
+	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
+	
+//	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@MapKey(name = "lkey")
+	protected Map<String, DefaultGeoJsfDescription> description;
+	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
+	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 
 	public boolean equals(Object object)
 	{
