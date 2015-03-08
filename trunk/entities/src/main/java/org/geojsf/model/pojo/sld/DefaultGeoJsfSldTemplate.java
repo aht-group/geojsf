@@ -23,6 +23,10 @@ public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbP
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
+	private String code;
+	@Override public String getCode() {return code;}
+	@Override public void setCode(String code) {this.code = code;}
+	
 	private DefaultGeoJsfSldType type;
 	public DefaultGeoJsfSldType getType() {return type;}
 	public void setType(DefaultGeoJsfSldType type) {this.type = type;}

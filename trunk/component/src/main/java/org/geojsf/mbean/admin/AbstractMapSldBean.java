@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
@@ -75,12 +76,11 @@ public class AbstractMapSldBean<L extends UtilsLang,D extends UtilsDescription,C
 	{
 		logger.info(AbstractLogMessage.addEntity(cTemplate));
 		template = efTemplate.build(null);
-		/*		try
+		try
 		{
-			map.setName(efLang.createEmpty(langKeys));
-			map.setDescription(efDescription.createEmpty(langKeys));
+			template.setName(efLang.createEmpty(langKeys));
+			template.setDescription(efDescription.createEmpty(langKeys));
 		}
 		catch (UtilsIntegrityException e) {e.printStackTrace();}
-		*/
 	}
 }
