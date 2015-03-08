@@ -35,6 +35,7 @@ public class TestXmlRepository extends AbstractXmlGeojsfTest
     		xml.setLayers(TestXmlLayers.create(false));
     		xml.getService().add(TestXmlService.create(false));xml.getService().add(TestXmlService.create(false));
     		xml.getCategory().add(TestXmlCategory.create(false));xml.getCategory().add(TestXmlCategory.create(false));
+    		xml.getSldTemplate().add(TestXmlSldTemplate.create(false));xml.getSldTemplate().add(TestXmlSldTemplate.create(false));
     	}
     	
     	return xml;

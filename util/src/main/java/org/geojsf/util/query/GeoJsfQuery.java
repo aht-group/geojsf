@@ -11,6 +11,7 @@ import org.geojsf.xml.geojsf.Query;
 import org.geojsf.xml.geojsf.Repository;
 import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.Service;
+import org.geojsf.xml.geojsf.SldTemplate;
 import org.geojsf.xml.geojsf.View;
 import org.geojsf.xml.geojsf.ViewPort;
 
@@ -18,7 +19,8 @@ public class GeoJsfQuery
 {
 	public static enum Key {repositoryService,
 							category,service,layer,map,view,viewPort,
-							viewLayer}
+							viewLayer,
+							sldTemplate}
 	
 	private static java.util.Map<Key,Query> mQueries;
 	
@@ -39,6 +41,7 @@ public class GeoJsfQuery
 				case viewLayer: q.setLayer(viewLayer());break;
 				case viewPort: q.setViewPort(viewPort());break;
 				case map: q.setMap(map());break;
+				case sldTemplate: q.setSldTemplate(sldTemplate());break;
 			}
 			mQueries.put(key, q);
 		}
@@ -146,6 +149,15 @@ public class GeoJsfQuery
 		xml.setLangs(StatusQuery.langs());
 		xml.setDescriptions(StatusQuery.descriptions());
 		xml.setViewPort(viewPort());
+		return xml;
+	}
+	
+	public static SldTemplate sldTemplate()
+	{	
+		SldTemplate xml = new SldTemplate();
+		xml.setCode("");
+		xml.setLangs(StatusQuery.langs());
+		xml.setDescriptions(StatusQuery.descriptions());
 		return xml;
 	}
 }

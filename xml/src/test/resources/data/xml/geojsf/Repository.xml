@@ -2,8 +2,10 @@
 <geojsf:repository xmlns:us="http://ahtutils.aht-group.com/status" xmlns:geojsf="http://www.geojsf.org">
     <geojsf:layers wms="myWms" wcs="myWcs"/>
     <geojsf:maps/>
-    <geojsf:service id="1" code="myCode" url="http://geojsf.sf.net" wms="wms" wcs="wcs"/>
-    <geojsf:service id="1" code="myCode" url="http://geojsf.sf.net" wms="wms" wcs="wcs"/>
+    <geojsf:service id="1" code="myCode" wms="wms" wcs="wcs"/>
+    <geojsf:service id="1" code="myCode" wms="wms" wcs="wcs"/>
     <geojsf:category id="1" code="myCode"/>
     <geojsf:category id="1" code="myCode"/>
+    <geojsf:sldTemplate id="1" code="myCode"/>
+    <geojsf:sldTemplate id="1" code="myCode"/>
 </geojsf:repository>

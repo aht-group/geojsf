@@ -135,4 +135,20 @@
 			<s:lang key="fr" translation="SLD Templates"/>
 		</s:langs>
 	</s:translation>
+	<s:translation key="geoJsfAdminSldTemplate">
+		<s:langs>
+			<s:lang key="de" translation="SLD Template"/>
+			<s:lang key="en" translation="SLD Template"/>
+			<s:lang key="fr" translation="SLD Template"/>
+		</s:langs>
+	</s:translation>
+		<s:translation key="geoJsfAdminType">
+		<s:langs>
+			<s:lang key="de" translation="Type"/>
+			<s:lang key="en" translation="Type"/>
+			<s:lang key="fr" translation="Type"/>
+		</s:langs>
+	</s:translation>
+	
+	
 </s:translations>

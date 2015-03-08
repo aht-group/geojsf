@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<geojsf:sldTemplate xmlns:us="http://ahtutils.aht-group.com/status" xmlns:geojsf="http://www.geojsf.org" id="1" code="myCode">
+    <us:langs/>
+    <us:descriptions/>
+</geojsf:sldTemplate>

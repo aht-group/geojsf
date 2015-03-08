@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{http://www.geojsf.org}map"/>
  *         &lt;element ref="{http://www.geojsf.org}view"/>
  *         &lt;element ref="{http://www.geojsf.org}viewPort"/>
+ *         &lt;element ref="{http://www.geojsf.org}sldTemplate"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -42,7 +43,8 @@ import javax.xml.bind.annotation.XmlType;
     "layer",
     "map",
     "view",
-    "viewPort"
+    "viewPort",
+    "sldTemplate"
 })
 @XmlRootElement(name = "query")
 public class Query
@@ -64,6 +66,8 @@ public class Query
     protected View view;
     @XmlElement(required = true)
     protected ViewPort viewPort;
+    @XmlElement(required = true)
+    protected SldTemplate sldTemplate;
 
     /**
      * Gets the value of the repository property.
@@ -259,6 +263,34 @@ public class Query
 
     public boolean isSetViewPort() {
         return (this.viewPort!= null);
+    }
+
+    /**
+     * Gets the value of the sldTemplate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SldTemplate }
+     *     
+     */
+    public SldTemplate getSldTemplate() {
+        return sldTemplate;
+    }
+
+    /**
+     * Sets the value of the sldTemplate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SldTemplate }
+     *     
+     */
+    public void setSldTemplate(SldTemplate value) {
+        this.sldTemplate = value;
+    }
+
+    public boolean isSetSldTemplate() {
+        return (this.sldTemplate!= null);
     }
 
 }

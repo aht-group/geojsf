@@ -32,6 +32,10 @@ public interface GeoJsfDatabaseExportRest
 	@Produces(MediaType.APPLICATION_XML)
 	ViewPorts exportViewPorts();
 	
+	@GET @Path("/geojsf/sld/templates")
+	@Produces(MediaType.APPLICATION_XML)
+	Repository exportSldTemplates();
+	
 //	@POST @Path("/import")
 //	@Produces(MediaType.TEXT_PLAIN)
 //	@Consumes(MediaType.APPLICATION_XML)

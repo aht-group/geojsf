@@ -15,6 +15,7 @@
 				<xsd:element ref="geojsf:map" maxOccurs="1"/>
 				<xsd:element ref="geojsf:view" maxOccurs="1"/>
 				<xsd:element ref="geojsf:viewPort" maxOccurs="1"/>
+				<xsd:element ref="geojsf:sldTemplate" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>  
@@ -58,6 +59,7 @@
                 <xsd:element ref="geojsf:maps" maxOccurs="1"/>
                 <xsd:element ref="geojsf:service" maxOccurs="unbounded"/>
                 <xsd:element ref="geojsf:category" maxOccurs="unbounded"/>
+                <xsd:element ref="geojsf:sldTemplate" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -169,5 +171,15 @@
             <xsd:attribute name="right" type="xsd:double"/>
             <xsd:attribute name="top" type="xsd:double"/>
         </xsd:complexType>
-    </xsd:element>
+	</xsd:element>
+	<xsd:element name="sldTemplate">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="us:langs" maxOccurs="1"/>
+				<xsd:element ref="us:descriptions" maxOccurs="1"/>
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:long"/>
+			<xsd:attribute name="code" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
 </xsd:schema>

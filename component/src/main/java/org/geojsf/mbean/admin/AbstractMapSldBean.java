@@ -40,11 +40,13 @@ public class AbstractMapSldBean<L extends UtilsLang,D extends UtilsDescription,C
 	
 	private String[] langKeys;
 	private Class<SLDTEMPLATE> cTemplate;
+	private Class<SLDTYPE> cType;
 	
-	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTEMPLATE> cTemplate)
+	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cType)
 	{
 		this.langKeys=langKeys;
 		this.cTemplate=cTemplate;
+		this.cType=cType;
 		
 		efLang = EjbLangFactory.createFactory(cLang);
 		efDescription = EjbDescriptionFactory.createFactory(clDescription);
@@ -58,6 +60,15 @@ public class AbstractMapSldBean<L extends UtilsLang,D extends UtilsDescription,C
 	protected void reloadTemplates()
 	{
 		templates = fGeo.all(cTemplate);
+	}
+	
+	//TYPES
+	private List<SLDTYPE> types;
+	public List<SLDTYPE> getTypes() {return types;}
+	
+	protected void reloadTypes()
+	{
+		types = fGeo.all(cType);
 	}
 	
 	//TEMPLATE
@@ -82,5 +93,18 @@ public class AbstractMapSldBean<L extends UtilsLang,D extends UtilsDescription,C
 			template.setDescription(efDescription.createEmpty(langKeys));
 		}
 		catch (UtilsIntegrityException e) {e.printStackTrace();}
+	}
+	
+	public void cancelTemplate()
+	{
+		template=null;
+	}
+	
+	public void saveTemplate() throws UtilsContraintViolationException, UtilsLockingException
+	{
+		logger.info(AbstractLogMessage.saveEntity(template));
+		template.setType(fGeo.find(cType, template.getType()));
+		template = fGeo.save(template);
+		reloadTemplates();
 	}
 }

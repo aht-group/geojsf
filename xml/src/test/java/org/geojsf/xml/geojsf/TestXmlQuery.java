@@ -41,6 +41,7 @@ public class TestXmlQuery extends AbstractXmlGeojsfTest
     		xml.setMap(TestXmlMap.create(false));
     		xml.setView(TestXmlView.create(false));
     		xml.setViewPort(TestXmlViewPort.create(false));
+    		xml.setSldTemplate(TestXmlSldTemplate.create(false));
     	}
     	
     	return xml;
