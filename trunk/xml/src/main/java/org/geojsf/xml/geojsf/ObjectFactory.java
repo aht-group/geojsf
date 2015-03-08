@@ -150,6 +150,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SldTemplate }
+     * 
+     */
+    public SldTemplate createSldTemplate() {
+        return new SldTemplate();
+    }
+
+    /**
      * Create an instance of {@link ViewPorts }
      * 
      */
