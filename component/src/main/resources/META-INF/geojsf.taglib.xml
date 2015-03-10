@@ -12,6 +12,12 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>SdlParameter</tag-name>
+		<component>
+			<component-type>org.geojsf.component.SdlParameter</component-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>IosCheckbox</tag-name>
 		<component>
 			<component-type>org.geojsf.component.IosCheckbox</component-type>

@@ -327,6 +327,20 @@ var GeoJSF = {
 			 console.log("Merging new SqlViewParameter parameter: " +params.viewparams);
 		},
 		
+		updateSqlViewParams : function(parameters)
+		{
+			 console.log("SDL Parameter Update requested.");
+			 var params = {};
+			 params.env = parameters;
+			 if (GeoJSF.map.layers)
+				{
+					for (var i = GeoJSF.map.layers.length - 1; i >= 0; i--) {
+					    GeoJSF.map.layers[i].mergeNewParams(params);
+					}
+				}
+			 console.log("Merging new SdlParameter parameter: " +params.viewparams);
+		},
+		
 		switchLayerClassic : function(layerId)
 		{
 			 // This is the pure JSF based approach, not having an 'oncomplete' method:	 
