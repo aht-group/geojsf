@@ -327,7 +327,7 @@ var GeoJSF = {
 			 console.log("Merging new SqlViewParameter parameter: " +params.viewparams);
 		},
 		
-		updateSldViewParams : function(parameters)
+		updateSldParams : function(parameters)
 		{
 			 console.log("SLD Parameter Update requested.");
 			 var params = {};
@@ -338,7 +338,7 @@ var GeoJSF = {
 					    GeoJSF.map.layers[i].mergeNewParams(params);
 					}
 				}
-			 console.log("Merging new SldParameter parameter: " +params.viewparams);
+			 console.log("Merging new SldParameter parameter: " +params.env);
 		},
 		
 		switchLayerClassic : function(layerId)
