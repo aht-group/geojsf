@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<s:translations xmlns:s="http://ahtutils.aht-group.com/status">
+	<s:translation key="geoJsfSldRules">
+		<s:langs>
+			<s:lang key="de" translation="SLD Rules"/>
+			<s:lang key="en" translation="SLD Rules"/>
+			<s:lang key="fr" translation="SLD Rules"/>
+		</s:langs>
+	</s:translation>
+		<s:translation key="geoJsfSldRulePosition">
+		<s:langs>
+			<s:lang key="de" translation="Position"/>
+			<s:lang key="en" translation="Position"/>
+			<s:lang key="fr" translation="Position"/>
+		</s:langs>
+	</s:translation>
+</s:translations>
