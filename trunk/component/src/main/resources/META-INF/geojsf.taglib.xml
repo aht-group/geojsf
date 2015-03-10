@@ -12,9 +12,9 @@
 		</component>
 	</tag>
 	<tag>
-		<tag-name>SdlParameter</tag-name>
+		<tag-name>sldParameter</tag-name>
 		<component>
-			<component-type>org.geojsf.component.SdlParameter</component-type>
+			<component-type>org.geojsf.component.SldParameter</component-type>
 		</component>
 	</tag>
 	<tag>

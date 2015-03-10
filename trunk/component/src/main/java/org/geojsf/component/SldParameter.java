@@ -14,7 +14,7 @@ import javax.faces.event.PostAddToViewEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@FacesComponent(value="org.geojsf.component.SdlParameter")
+@FacesComponent(value="org.geojsf.component.SldParameter")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class SldParameter extends UIComponentBase
 {
