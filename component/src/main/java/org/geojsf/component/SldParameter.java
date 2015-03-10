@@ -41,7 +41,7 @@ public class SldParameter extends UIComponentBase
 		this.value   = (String) map.get(Attribute.value.toString());
 		String command = "<script>GeoJSF.updateSdlParams('" +value +"');</script>";
 		ctx.getResponseWriter().write(command);
-		logger.info("Styled Layer Description (SDL) Parameter updated in Map. JavaScript Command: " +command);
+		logger.info("Styled Layer Description (SLD) Parameter updated in Map. JavaScript Command: " +command);
 	}
 
 	public void setValue(String value) {this.value = value;}
