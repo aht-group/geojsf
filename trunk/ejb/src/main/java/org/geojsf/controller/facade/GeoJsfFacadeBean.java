@@ -21,6 +21,8 @@ import org.geojsf.interfaces.model.GeoJsfMap;
 import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
+import org.geojsf.interfaces.model.sld.GeoJsfSld;
+import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 
 public class GeoJsfFacadeBean <L extends UtilsLang,
@@ -31,9 +33,11 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 								MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,
 								VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,
 								VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,
+								SLD extends GeoJsfSld<L,D,SLDTYPE,SLD,RULE>,
+								RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLD,RULE>,
 								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
-	implements GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>
+	implements GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLD,RULE,SLDTYPE,SLDTEMPLATE>
 {	
 	private EntityManager em;
 	
@@ -79,24 +83,28 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 		return category;
 	}
 
-	@Override
-	public SERVICE load(Class<SERVICE> cService, SERVICE service)
+	@Override public SERVICE load(Class<SERVICE> cService, SERVICE service)
 	{
 		service = em.find(cService, service.getId());
 		service.getLayer().size();
 		return service;
 	}
 	
-	@Override
-	public LAYER load(Class<LAYER> cLayer, LAYER layer)
+	@Override public LAYER load(Class<LAYER> cLayer, LAYER layer)
 	{
 		layer = em.find(cLayer, layer.getId());
 		if(layer.getViewPort()!=null){layer.getViewPort().getId();}
 		return layer;
 	}
+	
+	@Override public SLD load(Class<SLD> cSld, SLD sld)
+	{
+		sld = em.find(cSld, sld.getId());
+		sld.getRules().size();
+		return sld;
+	}
 
-	@Override
-	public void rm(Class<VIEW> cView, VIEW view)
+	@Override public void rm(Class<VIEW> cView, VIEW view)
 	{
 		view = em.find(cView, view.getId());
 		view.getMap().getViews().remove(view);
