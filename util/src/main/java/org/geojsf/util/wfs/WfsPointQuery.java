@@ -159,11 +159,11 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  queryProperties, geometryColumn,
 													  coordinates,distance);
-		JaxbUtil.trace(gf);
+		JaxbUtil.info(gf);
 		WfsHttpRequest r = new WfsHttpRequest(layer.getService().getWcs());
 		
 		Document doc = r.request(gf);
-		
+
 		Namespace nsQuery = propertyProvider.getNameSpace();
 		StringBuffer xpath = new StringBuffer();
 		xpath.append("//gml:featureMember");
@@ -179,7 +179,6 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 		results = new ArrayList<I>();
 		for (Element e : elements)
 		{	
-			JDomUtil.debug(e);
 			try
 			{
 				String s = e.getAttributeValue("fid");
@@ -194,32 +193,32 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 		return results;
 	}
 	
-	public List<I> executeTest(Coordinates coordinates, Distance distance,String[] queryProperties)
+	public List<I> sqlLayer(Coordinates coordinates, Distance distance,String[] queryProperties,String viewParams)
 	{				
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  queryProperties, geometryColumn,
 													  coordinates,distance);
-		JaxbUtil.info(gf);
+		gf.setViewParams(viewParams);
+		
+//		JaxbUtil.info(gf);
 		WfsHttpRequest r = new WfsHttpRequest(layer.getService().getWcs());
 		
 		Document doc = r.request(gf);
+//		JDomUtil.debug(doc);
 		
 		Namespace nsQuery = propertyProvider.getNameSpace();
 		StringBuffer xpath = new StringBuffer();
 		xpath.append("//gml:featureMember");
 		xpath.append("/").append(nsQuery.getPrefix()).append(":").append(layer.getCode());
 		
-		logger.info("XPATH: "+xpath.toString());
+		logger.trace("XPATH: "+xpath.toString());
 		XPathExpression<Element> xpe = XPathFactory.instance().compile(xpath.toString(),Filters.element(), null,nsQuery,nsGml);
 		List<Element> elements = xpe.evaluate(doc);
-		logger.info("Elements: "+elements.size());
-		
-//		JDomUtil.debug(doc);
+		logger.trace("Elements: "+elements.size());
 		
 		results = new ArrayList<I>();
 		for (Element e : elements)
 		{	
-//			JDomUtil.debug(e);
 			try
 			{
 				String s = e.getAttributeValue("fid");
