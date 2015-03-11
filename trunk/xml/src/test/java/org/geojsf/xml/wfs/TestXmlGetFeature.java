@@ -37,6 +37,7 @@ public class TestXmlGetFeature extends AbstractXmlWfsTest
     	xml.setService("myService");
     	xml.setVersion("myVersion");
     	xml.setOutputFormat("myoutputFormat");
+    	xml.setViewParams("myViewParams");
     	
     	if(withChilds)
     	{

@@ -19,12 +19,15 @@ public interface GeoJsfSldRule<L extends UtilsLang,
 	SLD getSld();
 	void setSld(SLD sld);
 	
-	double getLowerBound();
-	void setLowerBound(double lowerBound);
+	Double getLowerBound();
+	void setLowerBound(Double lowerBound);
 	
-	double getUpperBound();
-	void setUpperBound(double upperBound);
+	Double getUpperBound();
+	void setUpperBound(Double upperBound);
 	
 	String getColor();
 	void setColor(String color);
+	
+	Integer getSize();
+	void setSize(Integer size);
 }

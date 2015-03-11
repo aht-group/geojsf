@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="service" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="version" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="outputFormat" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="viewParams" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -50,6 +51,8 @@ public class GetFeature
     protected String version;
     @XmlAttribute(name = "outputFormat")
     protected String outputFormat;
+    @XmlAttribute(name = "viewParams")
+    protected String viewParams;
 
     /**
      * Gets the value of the query property.
@@ -161,6 +164,34 @@ public class GetFeature
 
     public boolean isSetOutputFormat() {
         return (this.outputFormat!= null);
+    }
+
+    /**
+     * Gets the value of the viewParams property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getViewParams() {
+        return viewParams;
+    }
+
+    /**
+     * Sets the value of the viewParams property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setViewParams(String value) {
+        this.viewParams = value;
+    }
+
+    public boolean isSetViewParams() {
+        return (this.viewParams!= null);
     }
 
 }

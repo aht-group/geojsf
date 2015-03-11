@@ -7,11 +7,53 @@
 			<s:lang key="fr" translation="SLD Rules"/>
 		</s:langs>
 	</s:translation>
-		<s:translation key="geoJsfSldRulePosition">
+	<s:translation key="geoJsfSldRule">
+		<s:langs>
+			<s:lang key="de" translation="SLD Rule"/>
+			<s:lang key="en" translation="SLD Rule"/>
+			<s:lang key="fr" translation="SLD Rule"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfSldRulePosition">
 		<s:langs>
 			<s:lang key="de" translation="Position"/>
 			<s:lang key="en" translation="Position"/>
 			<s:lang key="fr" translation="Position"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfSldRuleLower">
+		<s:langs>
+			<s:lang key="de" translation="Lower"/>
+			<s:lang key="en" translation="Lower"/>
+			<s:lang key="fr" translation="Lower"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfSldRuleUpper">
+		<s:langs>
+			<s:lang key="de" translation="Upper"/>
+			<s:lang key="en" translation="Upper"/>
+			<s:lang key="fr" translation="Upper"/>
+		</s:langs>
+	</s:translation>	
+	<s:translation key="geoJsfSldRuleLowerBound">
+		<s:langs>
+			<s:lang key="de" translation="Lower Bound"/>
+			<s:lang key="en" translation="Lower Bound"/>
+			<s:lang key="fr" translation="Lower Bound"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfSldRuleUpperBound">
+		<s:langs>
+			<s:lang key="de" translation="Upper Bound"/>
+			<s:lang key="en" translation="Upper Bound"/>
+			<s:lang key="fr" translation="Upper Bound"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfSldRuleColor">
+		<s:langs>
+			<s:lang key="de" translation="Color"/>
+			<s:lang key="en" translation="Color"/>
+			<s:lang key="fr" translation="Color"/>
 		</s:langs>
 	</s:translation>
 </s:translations>
