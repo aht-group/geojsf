@@ -23,8 +23,8 @@ public interface GeoJsfFacade <L extends UtilsLang,
 								MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,
 								VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,
 								VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,
-								SLD extends GeoJsfSld<L,D,SLDTYPE,SLD,RULE>,
-								RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLD,RULE>,
+								SLD extends GeoJsfSld<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
+								RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
 								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
 

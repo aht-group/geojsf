@@ -6,12 +6,14 @@ import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
+import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 
 public class TxtSldFactory<L extends UtilsLang,
 D extends UtilsDescription,
 T extends UtilsStatus<T,L,D>,
-SLD extends GeoJsfSld<L,D,T,SLD,RULE>,
-RULE extends GeoJsfSldRule<L,D,T,SLD,RULE>>
+SLD extends GeoJsfSld<L,D,T,SLD,RULE,SLDTEMPLATE>,
+RULE extends GeoJsfSldRule<L,D,T,SLD,RULE,SLDTEMPLATE>,
+SLDTEMPLATE extends GeoJsfSldTemplate<L,D,T,SLDTEMPLATE>>
 {	
 	public TxtSldFactory()
 	{
