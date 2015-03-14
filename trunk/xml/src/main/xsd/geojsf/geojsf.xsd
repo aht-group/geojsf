@@ -183,4 +183,21 @@
 			<xsd:attribute name="code" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
+	<xsd:element name="sld">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geojsf:sldTemplate" maxOccurs="1"/>
+				<xsd:element ref="geojsf:sldRule" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:long"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="sldRule">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="geojsf:sld" maxOccurs="1"/>
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:long"/>
+		</xsd:complexType>
+	</xsd:element>
 </xsd:schema>

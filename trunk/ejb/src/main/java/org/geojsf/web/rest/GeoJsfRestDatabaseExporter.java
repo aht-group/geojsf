@@ -171,7 +171,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,D extends UtilsDesc
 	@Override public Repository exportSldTemplates()
 	{
 		logger.info("Export GeoJsf "+SldTemplate.class.getSimpleName());
-		XmlSldTemplateFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE> f = new XmlSldTemplateFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>(GeoJsfQuery.get(GeoJsfQuery.Key.sldTemplate, null));
+		XmlSldTemplateFactory<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE> f = new XmlSldTemplateFactory<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>(GeoJsfQuery.get(GeoJsfQuery.Key.sldTemplate, null));
 		Repository repository = new Repository();
 		
 		for(SLDTEMPLATE template : fGeo.all(cSldTemplate))

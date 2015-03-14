@@ -43,7 +43,7 @@ public class XmlServiceFactory implements Serializable
 		
 		if(q.isSetLayer() && ejb.getLayer()!=null && ejb.getLayer().size()>0)
 		{
-			XmlLayerFactory f = new XmlLayerFactory(q.getLayer().get(0));
+			XmlLayerFactory<D> f = new XmlLayerFactory<D>(q.getLayer().get(0));
 			for(GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE> layer : ejb.getLayer())
 			{
 				xml.getLayer().add(f.build(layer));
@@ -58,7 +58,7 @@ public class XmlServiceFactory implements Serializable
 		
 		if(q.isSetDescriptions())
 		{
-			XmlDescriptionsFactory f = new XmlDescriptionsFactory(q.getDescriptions());
+			XmlDescriptionsFactory<D> f = new XmlDescriptionsFactory<D>(q.getDescriptions());
 			xml.setDescriptions(f.create(ejb.getDescription()));
 		}
 		

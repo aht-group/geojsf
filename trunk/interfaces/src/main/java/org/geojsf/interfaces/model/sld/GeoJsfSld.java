@@ -15,10 +15,7 @@ public interface GeoJsfSld<L extends UtilsLang,
 						   RULE extends GeoJsfSldRule<L,D,T,SLD,RULE,SLDTEMPLATE>,
 						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,T,SLDTEMPLATE>>
 			extends EjbSaveable,EjbRemoveable
-{	
-	T getType();
-	void setType(T type);
-	
+{		
 	SLDTEMPLATE getTemplate();
 	void setTemplate(SLDTEMPLATE template);
 	

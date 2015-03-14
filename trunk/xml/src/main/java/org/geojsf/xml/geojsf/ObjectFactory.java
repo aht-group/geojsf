@@ -158,6 +158,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SldRule }
+     * 
+     */
+    public SldRule createSldRule() {
+        return new SldRule();
+    }
+
+    /**
+     * Create an instance of {@link Sld }
+     * 
+     */
+    public Sld createSld() {
+        return new Sld();
+    }
+
+    /**
      * Create an instance of {@link ViewPorts }
      * 
      */
