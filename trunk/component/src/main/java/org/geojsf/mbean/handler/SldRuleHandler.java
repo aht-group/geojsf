@@ -38,6 +38,7 @@ public class SldRuleHandler <L extends UtilsLang,D extends UtilsDescription,CATE
 	
 	public SldRuleHandler(GeoJsfUtilsFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo,final Class<RULE> cRule,final Class<SLD> cSld)
 	{
+		this.fGeo=fGeo;
 		this.cRule=cRule;
 		this.cSld=cSld;
 		
@@ -55,7 +56,7 @@ public class SldRuleHandler <L extends UtilsLang,D extends UtilsDescription,CATE
 	public SLD getSld(){return sld;}
 	public void setSld(SLD sld){this.sld = sld;}
 	
-	private void reloadSld()
+	public void reloadSld()
 	{
 		sld = fGeo.load(cSld,sld);
 		logger.info("Rules: "+sld.getRules().size());
