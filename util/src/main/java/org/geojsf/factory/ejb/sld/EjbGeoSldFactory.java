@@ -27,13 +27,14 @@ public class EjbGeoSldFactory<L extends UtilsLang,D extends UtilsDescription,T e
         return new EjbGeoSldFactory<L,D,T,SLD,RULE,SLDTEMPLATE>(cSld);
     }
 	
-	public SLD build(SLDTEMPLATE template)
+	public SLD build(SLDTEMPLATE template,T type)
 	{
 		SLD ejb;
 		try {ejb = cSld.newInstance();}
 		catch (InstantiationException e) {e.printStackTrace();throw new RuntimeException(e);}
 		catch (IllegalAccessException e) {e.printStackTrace();throw new RuntimeException(e);}
 		ejb.setTemplate(template);
+		ejb.setType(type);
         return ejb;
     }
 }

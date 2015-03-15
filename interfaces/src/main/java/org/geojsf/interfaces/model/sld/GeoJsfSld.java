@@ -10,14 +10,17 @@ import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 
 public interface GeoJsfSld<L extends UtilsLang,
 						   D extends UtilsDescription,
-						   T extends UtilsStatus<T,L,D>,
-						   SLD extends GeoJsfSld<L,D,T,SLD,RULE,SLDTEMPLATE>,
-						   RULE extends GeoJsfSldRule<L,D,T,SLD,RULE,SLDTEMPLATE>,
-						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,T,SLDTEMPLATE>>
+						   SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
+						   SLD extends GeoJsfSld<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
+						   RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
+						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
 			extends EjbSaveable,EjbRemoveable
 {		
 	SLDTEMPLATE getTemplate();
 	void setTemplate(SLDTEMPLATE template);
+	
+	SLDTYPE getType();
+	void setType(SLDTYPE type);
 	
 	List<RULE> getRules();
 	void setRules(List<RULE> rules);

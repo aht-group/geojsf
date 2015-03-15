@@ -180,13 +180,10 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,CATEGO
 					eTemplate.setName(ejbLangFactory.getLangMap(xTemplate.getLangs()));
 					eTemplate.setDescription(ejbDescriptionFactory.create(xTemplate.getDescriptions()));
 					
-					SLDTYPE type = fSecurity.fByCode(cSldType, xTemplate.getType().getCode());
-					eTemplate.setType(type);
 					eTemplate = fSecurity.update(eTemplate);
 					dut.success();
 				}
 				catch (UtilsIntegrityException e) {dut.fail(e,true);}
-				catch (UtilsNotFoundException e) {dut.fail(e,true);}
 				catch (UtilsContraintViolationException e) {dut.fail(e,true);}
 				catch (UtilsLockingException e) {dut.fail(e,true);}
 			}
