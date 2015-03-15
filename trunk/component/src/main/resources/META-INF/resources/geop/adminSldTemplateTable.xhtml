@@ -20,10 +20,10 @@
 				</aht:pfDataTableHeader>
 			</f:facet>
 			<p:ajax event="rowSelect" update=":sTemplate" listener="#{adminMapSldBean.selectTemplate}"/>
-			<p:column headerText="#{msg.geoJsfAdminType}" sortBy="#{t.type.name[userBean.localeCode].lang}">
-				<h:outputText value="#{t.type.name[userBean.localeCode].lang}" /> 
+			<p:column headerText="#{msg.geoJsfAdminCode}" sortBy="#{t.code}">
+				<h:outputText value="#{t.code}" /> 
 			</p:column>
-			<p:column headerText="#{msg.Name}" sortBy="#{t.name[userBean.localeCode].lang}">
+			<p:column headerText="#{msg.geoJsfAdminName}" sortBy="#{t.name[userBean.localeCode].lang}">
 				<h:outputText value="#{t.name[userBean.localeCode].lang}" /> 
 			</p:column>
 		</p:dataTable>

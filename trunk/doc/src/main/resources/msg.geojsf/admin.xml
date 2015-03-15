@@ -142,7 +142,29 @@
 			<s:lang key="fr" translation="SLD Template"/>
 		</s:langs>
 	</s:translation>
-		<s:translation key="geoJsfAdminType">
+	<s:translation key="geoJsfAdminTemplate">
+		<s:langs>
+			<s:lang key="de" translation="Template"/>
+			<s:lang key="en" translation="Template"/>
+			<s:lang key="fr" translation="Template"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfAdminSlds">
+		<s:langs>
+			<s:lang key="de" translation="Dynamic SLDs"/>
+			<s:lang key="en" translation="Dynamic SLDs"/>
+			<s:lang key="fr" translation="SDynamic SLDs"/>
+		</s:langs>
+	</s:translation>	
+		<s:translation key="geoJsfAdminSld">
+		<s:langs>
+			<s:lang key="de" translation="Dynamic SLD"/>
+			<s:lang key="en" translation="Dynamic SLD"/>
+			<s:lang key="fr" translation="SDynamic SLD"/>
+		</s:langs>
+	</s:translation>
+	
+	<s:translation key="geoJsfAdminType">
 		<s:langs>
 			<s:lang key="de" translation="Type"/>
 			<s:lang key="en" translation="Type"/>
