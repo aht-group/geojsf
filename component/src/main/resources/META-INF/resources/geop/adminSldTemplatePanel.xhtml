@@ -21,12 +21,7 @@
 			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
 				<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
 				<p:inputText value="#{adminMapSldBean.template.code}" autocomplete="false"/>
-				
-				<p:outputLabel value="#{msg.geoJsfAdminType}"/>
-				<p:selectOneMenu styleClass="w100" value="#{adminMapSldBean.template.type}" effect="fade">  
-					<f:selectItems value="#{adminMapSldBean.types}" var="s" itemLabel="#{s.name[userBean.localeCode].lang}" itemValue="#{s}"/>
-				</p:selectOneMenu>
-				
+								
 			</h:panelGrid>
 			<aht:tabTranslationEditor value="#{adminMapSldBean.template}"
 							keys="#{translationBean.langKeys}" withDescription="true"

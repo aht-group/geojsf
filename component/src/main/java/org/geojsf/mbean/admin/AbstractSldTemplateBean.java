@@ -28,11 +28,11 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AbstractMapSldBean <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,SLD extends GeoJsfSld<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
+public class AbstractSldTemplateBean <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>,SLD extends GeoJsfSld<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = LoggerFactory.getLogger(AbstractMapSldBean.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractSldTemplateBean.class);
 	
 	protected EjbLangFactory<L> efLang;
 	protected EjbDescriptionFactory<D> efDescription;
@@ -42,13 +42,11 @@ public class AbstractMapSldBean <L extends UtilsLang,D extends UtilsDescription,
 	
 	private String[] langKeys;
 	private Class<SLDTEMPLATE> cTemplate;
-	private Class<SLDTYPE> cType;
 	
-	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cType)
+	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTEMPLATE> cTemplate)
 	{
 		this.langKeys=langKeys;
 		this.cTemplate=cTemplate;
-		this.cType=cType;
 		
 		efLang = EjbLangFactory.createFactory(cLang);
 		efDescription = EjbDescriptionFactory.createFactory(clDescription);
@@ -62,15 +60,6 @@ public class AbstractMapSldBean <L extends UtilsLang,D extends UtilsDescription,
 	protected void reloadTemplates()
 	{
 		templates = fGeo.all(cTemplate);
-	}
-	
-	//TYPES
-	private List<SLDTYPE> types;
-	public List<SLDTYPE> getTypes() {return types;}
-	
-	protected void reloadTypes()
-	{
-		types = fGeo.all(cType);
 	}
 	
 	//TEMPLATE
@@ -105,7 +94,6 @@ public class AbstractMapSldBean <L extends UtilsLang,D extends UtilsDescription,
 	public void saveTemplate() throws UtilsContraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(template));
-		template.setType(fGeo.find(cType, template.getType()));
 		template = fGeo.save(template);
 		reloadTemplates();
 	}

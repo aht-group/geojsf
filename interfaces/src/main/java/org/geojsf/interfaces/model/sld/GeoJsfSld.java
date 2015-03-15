@@ -7,6 +7,8 @@ import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
+import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
+import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
 public interface GeoJsfSld<L extends UtilsLang,
 						   D extends UtilsDescription,
@@ -14,7 +16,7 @@ public interface GeoJsfSld<L extends UtilsLang,
 						   SLD extends GeoJsfSld<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
 						   RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
 						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
-			extends EjbSaveable,EjbRemoveable
+			extends EjbSaveable,EjbRemoveable,EjbWithLang<L>,EjbWithDescription<D>
 {		
 	SLDTEMPLATE getTemplate();
 	void setTemplate(SLDTEMPLATE template);

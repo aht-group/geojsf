@@ -12,11 +12,11 @@
             <us:description key="en">Interval</us:description>
         </us:descriptions>
     </us:status>
-    <us:status code="classSld" group="sldType" visible="true" position="1">
+    <us:status code="status" group="sldType" visible="true" position="1">
         <us:langs>
-            <us:lang key="de" translation="Class Based"/>
-            <us:lang key="fr" translation="Class Based"/>
-            <us:lang key="en" translation="Class Based"/>
+            <us:lang key="de" translation="Status"/>
+            <us:lang key="fr" translation="Status"/>
+            <us:lang key="en" translation="Status"/>
         </us:langs>
         <us:descriptions>
             <us:description key="de">Class Based</us:description>
@@ -24,11 +24,11 @@
             <us:description key="en">Class Based</us:description>
         </us:descriptions>
     </us:status>
-        <us:status code="domainSld" group="sldType" visible="true" position="2">
+        <us:status code="object" group="sldType" visible="true" position="2">
         <us:langs>
-            <us:lang key="de" translation="Domain Object Based"/>
-            <us:lang key="fr" translation="Domain Object Based"/>
-            <us:lang key="en" translation="Domain Object Based"/>
+            <us:lang key="de" translation="Object"/>
+            <us:lang key="fr" translation="Object"/>
+            <us:lang key="en" translation="Object"/>
         </us:langs>
         <us:descriptions>
             <us:description key="de">Domain Object Based</us:description>
