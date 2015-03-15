@@ -3,6 +3,7 @@ package org.geojsf.mbean.handler;
 import java.io.Serializable;
 
 import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
@@ -80,8 +81,21 @@ public class SldRuleHandler <L extends UtilsLang,D extends UtilsDescription,CATE
 		reloadSld();
 	}
 	
+	public void rmRule() throws UtilsContraintViolationException, UtilsLockingException, UtilsIntegrityException
+	{
+		logger.info(AbstractLogMessage.rmEntity(rule));
+		fGeo.rm(rule);
+		rule = null;
+		reloadSld();
+	}
+	
 	public void selectRule()
 	{
 		logger.info(AbstractLogMessage.selectEntity(rule));
+	}
+	
+	public void cancelRule()
+	{
+		rule=null;
 	}
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:aht="http://ahtutils.sourceforge.net/jsf"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	<composite:interface>
+		<composite:attribute name="handler"/>
+		<composite:attribute name="update"/>
+	</composite:interface>
+        
+	<composite:implementation>
+		<p:dataTable var="rule" value="#{cc.attrs.handler.sld.rules}"
+								 selection="#{cc.attrs.handler.rule}" selectionMode="single" rowKey="#{rule.id}">
+				<p:ajax event="rowSelect" update="#{cc.attrs.update}" listener="#{cc.attrs.handler.selectRule()}"/>
+				<f:facet name="header">
+					<aht:pfDataTableHeader title="#{msg.geoJsfSldRules}">
+						<aht:icon type="geoJsfAdd" listener="#{cc.attrs.handler.addRule()}" update="#{cc.attrs.update}"/>
+					</aht:pfDataTableHeader>
+				</f:facet>
+				<p:column>
+					<f:facet name="header">#{msg.geoJsfSldRulePosition}</f:facet>
+					<h:outputText value="#{rule.position}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">#{msg.geoJsfSldRuleLower}</f:facet>
+					<h:outputText value="#{rule.lowerBound}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">#{msg.geoJsfSldRuleUpper}</f:facet>
+					<h:outputText value="#{rule.upperBound}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">#{msg.geoJsfSldRuleColor}</f:facet>
+					<h:outputText value="#{rule.color}" />
+				</p:column>
+			</p:dataTable>
+	
+   </composite:implementation>
+</html>
