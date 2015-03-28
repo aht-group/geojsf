@@ -1,6 +1,6 @@
 package org.geojsf.controller.util;
 
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
+import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
@@ -76,21 +76,21 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,CAT
 			initLayer();
 			initViews();
 		}
-		catch (UtilsIntegrityException e) {e.printStackTrace();}
+		catch (UtilsContraintViolationException e) {e.printStackTrace();}
     } 
  
-    private void initCategory() throws UtilsIntegrityException
+    private void initCategory() throws UtilsContraintViolationException
 	{
 		if(category==null){category = fCategory.build("cat");serviceOsm.setId(0);}
 	}
     
-	private void initServices() throws UtilsIntegrityException
+	private void initServices() throws UtilsContraintViolationException
 	{
 		if(serviceOsm==null){serviceOsm = fService.build("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");serviceOsm.setId(0);}
 		if(serviceAht==null){serviceAht = fService.build("aht","https://www.aht-group.com/geoserver/sf/wms");serviceAht.setId(1);}
 	}
 	
-	private void initLayer() throws UtilsIntegrityException
+	private void initLayer() throws UtilsContraintViolationException
 	{
 		layerOsmBasic = fLayer.build("basic", serviceOsm,category,langs);layerOsmBasic.setId(1);
 		layerAhtRoads = fLayer.build("roads",serviceAht,category,langs);layerAhtRoads.setId(2);
@@ -98,7 +98,7 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,CAT
 		layerAhtRestricted = fLayer.build("restricted",serviceAht,category,langs);layerAhtRestricted.setId(4);
 	}
 	
-	private void initViews() throws UtilsIntegrityException
+	private void initViews() throws UtilsContraintViolationException
 	{
 		map = fMap.create("defaultMap",langs);map.setId(1);
 		map.getViews().add(fView.create(map, layerAhtRoads, 1, true,true));

@@ -1,7 +1,5 @@
 package org.geojsf.util.wfs;
 
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfCategory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
@@ -25,7 +23,7 @@ public class TestWfsPointQuery extends AbstractGeoJsfUtilTest
 	private WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldTemplate> wfsPq;
 	
 	@Before
-	public void init() throws UtilsIntegrityException
+	public void init()
 	{
 		DefaultGeoJsfService service = new DefaultGeoJsfService();
 		

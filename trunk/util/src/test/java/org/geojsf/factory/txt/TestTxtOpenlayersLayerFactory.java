@@ -1,6 +1,6 @@
 package org.geojsf.factory.txt;
 
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
+import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
 
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfCategory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
@@ -24,7 +24,7 @@ public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 	private DefaultGeoJsfLayer layerB;
 	
 	@Before
-	public void init() throws UtilsIntegrityException
+	public void init() throws UtilsContraintViolationException
 	{
 		initGenericFactories();
 		

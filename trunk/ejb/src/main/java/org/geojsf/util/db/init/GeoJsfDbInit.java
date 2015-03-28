@@ -1,7 +1,6 @@
 package org.geojsf.util.db.init;
 
 import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
@@ -183,7 +182,6 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,CATEGO
 					eTemplate = fSecurity.update(eTemplate);
 					dut.success();
 				}
-				catch (UtilsIntegrityException e) {dut.fail(e,true);}
 				catch (UtilsContraintViolationException e) {dut.fail(e,true);}
 				catch (UtilsLockingException e) {dut.fail(e,true);}
 			}
