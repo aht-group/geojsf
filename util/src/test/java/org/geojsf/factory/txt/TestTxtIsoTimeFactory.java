@@ -5,8 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.joda.time.DateTime;
 import org.junit.Assert;
@@ -22,7 +20,7 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 	private Date d1,d2;
 	
 	@Before
-	public void init() throws UtilsIntegrityException
+	public void init()
 	{
 		//Initialize dates with fixed values
 		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));

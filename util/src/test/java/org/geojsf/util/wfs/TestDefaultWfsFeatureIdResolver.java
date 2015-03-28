@@ -1,7 +1,5 @@
 package org.geojsf.util.wfs;
 
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
-
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
@@ -17,7 +15,7 @@ public class TestDefaultWfsFeatureIdResolver extends AbstractGeoJsfUtilTest
 	private long id = 20;
 	
 	@Before
-	public void init() throws UtilsIntegrityException
+	public void init()
 	{
 		ns = Namespace.getNamespace("my.Prefix", "http://my.ns.org");
 		

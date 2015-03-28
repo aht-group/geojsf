@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
@@ -98,7 +97,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,D extends UtilsDescript
 			sld.setName(efLang.createEmpty(langKeys));
 			sld.setDescription(efDescription.createEmpty(langKeys));
 		}
-		catch (UtilsIntegrityException e) {e.printStackTrace();}
+		catch (UtilsContraintViolationException e) {e.printStackTrace();}
 	}
 	
 	public void cancelSld()

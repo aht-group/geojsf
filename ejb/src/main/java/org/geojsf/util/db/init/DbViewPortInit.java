@@ -1,7 +1,6 @@
 package org.geojsf.util.db.init;
 
 import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
@@ -48,7 +47,7 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,CATE
 		return new DbViewPortInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>(cVp,fUtils);
 	}
 	
-	public void iuViewPort(MAP ejbMap, ViewPort viewPort) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException, UtilsIntegrityException
+	public void iuViewPort(MAP ejbMap, ViewPort viewPort) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException
 	{
 		if(ejbMap.getViewPort()==null)
 		{
@@ -65,7 +64,7 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,CATE
 		}
 	}
 	
-	public void iuViewPort(LAYER ejbLayer, ViewPort viewPort) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException, UtilsIntegrityException
+	public void iuViewPort(LAYER ejbLayer, ViewPort viewPort) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException
 	{
 		if(ejbLayer.getViewPort()==null)
 		{

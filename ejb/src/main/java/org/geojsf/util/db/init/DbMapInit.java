@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.sf.ahtutils.db.ejb.AhtDbEjbUpdater;
 import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
@@ -117,7 +116,6 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY 
 				}
 			}
 			catch (UtilsContraintViolationException e) {logger.error("",e);}
-			catch (UtilsIntegrityException e) {logger.error("",e);}
 			catch (UtilsLockingException e) {logger.error("",e);}
 			catch (UtilsNotFoundException e) {logger.error("",e);}
 		}
@@ -126,7 +124,7 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,CATEGORY 
 		logger.trace("initUpdateUsecaseCategories finished");
 	}
 	
-	private void iuViews(MAP ejbMap, List<View> views) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException, UtilsIntegrityException
+	private void iuViews(MAP ejbMap, List<View> views) throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException
 	{
 		ejbMap = fGeo.load(cMap, ejbMap);
 		logger.trace("Views: "+ejbMap.getViews().size());

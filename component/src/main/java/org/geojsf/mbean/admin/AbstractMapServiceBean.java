@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsIntegrityException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
@@ -103,7 +102,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		services = fGeo.all(cService);
 	}
 	
-	public void addService() throws UtilsIntegrityException, InstantiationException, IllegalAccessException
+	public void addService() throws UtilsContraintViolationException
 	{
 		service = efService.build(null, null);
 		
@@ -134,7 +133,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 			service=null;
 			reloadServices();
 		}
-		catch (UtilsIntegrityException e)
+		catch (UtilsContraintViolationException e)
 		{
 			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
 		}
@@ -160,7 +159,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		categories = fGeo.all(cCategory);
 	}
 	
-	public void addCategory() throws UtilsIntegrityException, InstantiationException, IllegalAccessException
+	public void addCategory() throws UtilsContraintViolationException
 	{
 		logger.info("ADD CAtegory");
 		category = efCategory.build(null);
@@ -190,7 +189,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 			category=null;
 			service=null;
 		}
-		catch (UtilsIntegrityException e)
+		catch (UtilsContraintViolationException e)
 		{
 			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
 		}
@@ -224,7 +223,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		logger.info("#Layer:"+layers.size());
 	}
 	
-	public void addLayer() throws UtilsIntegrityException, UtilsNotFoundException, InstantiationException, IllegalAccessException
+	public void addLayer() throws UtilsContraintViolationException, UtilsNotFoundException
 	{
 		logger.info("addLayer ");
 		layer = efLayer.build(null, service,category,langKeys);
