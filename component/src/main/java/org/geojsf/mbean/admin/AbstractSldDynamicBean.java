@@ -3,7 +3,7 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
@@ -83,7 +83,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,D extends UtilsDescript
 	public SLD getSld() {return sld;}
 	public void setSld(SLD sld) {this.sld = sld;}
 	
-	public void selectSld() throws UtilsNotFoundException, UtilsContraintViolationException, UtilsLockingException
+	public void selectSld() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.selectEntity(sld));
 	}
@@ -97,7 +97,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,D extends UtilsDescript
 			sld.setName(efLang.createEmpty(langKeys));
 			sld.setDescription(efDescription.createEmpty(langKeys));
 		}
-		catch (UtilsContraintViolationException e) {e.printStackTrace();}
+		catch (UtilsConstraintViolationException e) {e.printStackTrace();}
 	}
 	
 	public void cancelSld()
@@ -105,7 +105,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,D extends UtilsDescript
 		sld=null;
 	}
 	
-	public void saveSld() throws UtilsContraintViolationException, UtilsLockingException
+	public void saveSld() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(sld));
 		sld.setTemplate(fGeo.find(cTemplate, sld.getTemplate()));
@@ -113,7 +113,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,D extends UtilsDescript
 		reloadSlds();
 	}
 	
-	public void rmSld() throws UtilsContraintViolationException, UtilsLockingException
+	public void rmSld() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.rmEntity(sld));
 	}

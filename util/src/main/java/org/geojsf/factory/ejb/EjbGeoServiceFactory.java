@@ -1,6 +1,6 @@
 package org.geojsf.factory.ejb;
 
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
@@ -32,12 +32,12 @@ public class EjbGeoServiceFactory<L extends UtilsLang,D extends UtilsDescription
         return new EjbGeoServiceFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE>(clService);
     }
 	
-	public SERVICE build(String code, String wms) throws UtilsContraintViolationException
+	public SERVICE build(String code, String wms) throws UtilsConstraintViolationException
 	{
 		SERVICE ejb;
 		try {ejb = clService.newInstance();}
-		catch (InstantiationException e) {throw new UtilsContraintViolationException(e.getMessage());}
-		catch (IllegalAccessException e) {throw new UtilsContraintViolationException(e.getMessage());}
+		catch (InstantiationException e) {throw new UtilsConstraintViolationException(e.getMessage());}
+		catch (IllegalAccessException e) {throw new UtilsConstraintViolationException(e.getMessage());}
 		ejb.setWms(wms);
 		ejb.setCode(code);
         return ejb;

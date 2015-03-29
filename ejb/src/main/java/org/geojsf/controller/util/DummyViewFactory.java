@@ -1,6 +1,6 @@
 package org.geojsf.controller.util;
 
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
@@ -76,21 +76,21 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,CAT
 			initLayer();
 			initViews();
 		}
-		catch (UtilsContraintViolationException e) {e.printStackTrace();}
+		catch (UtilsConstraintViolationException e) {e.printStackTrace();}
     } 
  
-    private void initCategory() throws UtilsContraintViolationException
+    private void initCategory() throws UtilsConstraintViolationException
 	{
 		if(category==null){category = fCategory.build("cat");serviceOsm.setId(0);}
 	}
     
-	private void initServices() throws UtilsContraintViolationException
+	private void initServices() throws UtilsConstraintViolationException
 	{
 		if(serviceOsm==null){serviceOsm = fService.build("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");serviceOsm.setId(0);}
 		if(serviceAht==null){serviceAht = fService.build("aht","https://www.aht-group.com/geoserver/sf/wms");serviceAht.setId(1);}
 	}
 	
-	private void initLayer() throws UtilsContraintViolationException
+	private void initLayer() throws UtilsConstraintViolationException
 	{
 		layerOsmBasic = fLayer.build("basic", serviceOsm,category,langs);layerOsmBasic.setId(1);
 		layerAhtRoads = fLayer.build("roads",serviceAht,category,langs);layerAhtRoads.setId(2);
@@ -98,7 +98,7 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,CAT
 		layerAhtRestricted = fLayer.build("restricted",serviceAht,category,langs);layerAhtRestricted.setId(4);
 	}
 	
-	private void initViews() throws UtilsContraintViolationException
+	private void initViews() throws UtilsConstraintViolationException
 	{
 		map = fMap.create("defaultMap",langs);map.setId(1);
 		map.getViews().add(fView.create(map, layerAhtRoads, 1, true,true));

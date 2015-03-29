@@ -1,6 +1,6 @@
 package org.geojsf.factory.ejb;
 
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.status.UtilsLang;
@@ -35,7 +35,7 @@ public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,C
         this.clLayer = clLayer;
     } 
 	
-	public LAYER build(String code, SERVICE service, CATEGORY category, String[] langKeys) throws UtilsContraintViolationException
+	public LAYER build(String code, SERVICE service, CATEGORY category, String[] langKeys) throws UtilsConstraintViolationException
 	{
 		LAYER ejb;
 		try
@@ -43,8 +43,8 @@ public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,C
 			ejb = clLayer.newInstance();
 			ejb.setName(fLang.createEmpty(langKeys));
 		}
-		catch (InstantiationException e) {throw new UtilsContraintViolationException(e.getMessage());}
-		catch (IllegalAccessException e) {throw new UtilsContraintViolationException(e.getMessage());}
+		catch (InstantiationException e) {throw new UtilsConstraintViolationException(e.getMessage());}
+		catch (IllegalAccessException e) {throw new UtilsConstraintViolationException(e.getMessage());}
 		ejb.setCode(code);
 		ejb.setService(service);
 		ejb.setCategory(category);

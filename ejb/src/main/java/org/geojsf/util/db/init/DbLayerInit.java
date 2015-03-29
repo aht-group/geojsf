@@ -1,7 +1,7 @@
 package org.geojsf.util.db.init;
 
 import net.sf.ahtutils.db.ejb.AhtDbEjbUpdater;
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
@@ -104,7 +104,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 					ejb = (LAYER)fUtils.persist(ejb);
 				}
 
-				catch (UtilsContraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
+				catch (UtilsConstraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 			}
 			
 			try
@@ -128,7 +128,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 					dbVpInit.iuViewPort(ejb,layer.getViewPort());
 				}
 			}
-			catch (UtilsContraintViolationException e) {logger.error("",e);}
+			catch (UtilsConstraintViolationException e) {logger.error("",e);}
 			catch (UtilsLockingException e) {logger.error("",e);}
 			catch (UtilsNotFoundException e) {logger.error("",e);}
 		}

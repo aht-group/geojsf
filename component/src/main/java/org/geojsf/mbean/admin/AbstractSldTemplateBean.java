@@ -3,7 +3,7 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
@@ -66,7 +66,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang,D extends UtilsDescrip
 	public SLDTEMPLATE getTemplate() {return template;}
 	public void setTemplate(SLDTEMPLATE template) {this.template = template;}
 	
-	public void selectTemplate() throws UtilsNotFoundException, UtilsContraintViolationException, UtilsLockingException
+	public void selectTemplate() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.selectEntity(template));
 		missingLangsMap();
@@ -82,7 +82,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang,D extends UtilsDescrip
 			template.setName(efLang.createEmpty(langKeys));
 			template.setDescription(efDescription.createEmpty(langKeys));
 		}
-		catch (UtilsContraintViolationException e) {e.printStackTrace();}
+		catch (UtilsConstraintViolationException e) {e.printStackTrace();}
 	}
 	
 	public void cancelTemplate()
@@ -90,7 +90,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang,D extends UtilsDescrip
 		template=null;
 	}
 	
-	public void saveTemplate() throws UtilsContraintViolationException, UtilsLockingException
+	public void saveTemplate() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(template));
 		template = fGeo.save(template);

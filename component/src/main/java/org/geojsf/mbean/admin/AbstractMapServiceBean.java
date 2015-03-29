@@ -3,7 +3,7 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
@@ -102,7 +102,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		services = fGeo.all(cService);
 	}
 	
-	public void addService() throws UtilsContraintViolationException
+	public void addService() throws UtilsConstraintViolationException
 	{
 		service = efService.build(null, null);
 		
@@ -133,20 +133,20 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 			service=null;
 			reloadServices();
 		}
-		catch (UtilsContraintViolationException e)
+		catch (UtilsConstraintViolationException e)
 		{
 			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
 		}
 	}
 	
-	public void saveService() throws UtilsContraintViolationException, UtilsLockingException
+	public void saveService() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info("saveService "+service);
 		service = fGeo.save(service);
 		reloadServices();
 	}
 	
-	public void cancelService() throws UtilsContraintViolationException, UtilsLockingException
+	public void cancelService() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		service=null;
 		category=null;
@@ -159,7 +159,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		categories = fGeo.all(cCategory);
 	}
 	
-	public void addCategory() throws UtilsContraintViolationException
+	public void addCategory() throws UtilsConstraintViolationException
 	{
 		logger.info("ADD CAtegory");
 		category = efCategory.build(null);
@@ -189,13 +189,13 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 			category=null;
 			service=null;
 		}
-		catch (UtilsContraintViolationException e)
+		catch (UtilsConstraintViolationException e)
 		{
 			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
 		}
 	}
 	
-	public void saveCategory() throws UtilsContraintViolationException, UtilsLockingException
+	public void saveCategory() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info("saveCategory "+category);
 		category = fGeo.save(category);
@@ -223,7 +223,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		logger.info("#Layer:"+layers.size());
 	}
 	
-	public void addLayer() throws UtilsContraintViolationException, UtilsNotFoundException
+	public void addLayer() throws UtilsConstraintViolationException, UtilsNotFoundException
 	{
 		logger.info("addLayer ");
 		layer = efLayer.build(null, service,category,langKeys);
@@ -231,7 +231,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		layer.setDescription(efDescription.createEmpty(langKeys));
 	}
 	
-	public void selectLayer() throws UtilsNotFoundException, UtilsContraintViolationException, UtilsLockingException
+	public void selectLayer() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info("selectLayer "+layer);
 		layer = fGeo.load(cLayer,layer);
@@ -246,7 +246,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		map.getViews().add(view);
 	}
 	
-	public void saveLayer() throws UtilsContraintViolationException, UtilsLockingException, UtilsNotFoundException
+	public void saveLayer() throws UtilsConstraintViolationException, UtilsLockingException, UtilsNotFoundException
 	{
 		logger.info("saveLayer "+layer);
 		layer.setService(fGeo.find(cService, layer.getService()));
@@ -272,7 +272,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	}
 	
 	// View Port
-	private void addViewPort() throws UtilsContraintViolationException, UtilsLockingException
+	private void addViewPort() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		viewPort = efViewPort.build();
 		viewPort = fGeo.save(viewPort);
@@ -286,7 +286,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		efViewPort.update(viewPort,evt.getViewPort());
 	}
 	
-	public void saveViewPort() throws UtilsContraintViolationException, UtilsLockingException
+	public void saveViewPort() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(viewPort));
 		viewPort = fGeo.save(viewPort);
