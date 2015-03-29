@@ -9,10 +9,10 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithPosition;
 
 public interface GeoJsfSldRule<L extends UtilsLang,
 						   D extends UtilsDescription,
-						   T extends UtilsStatus<T,L,D>,
-						   SLD extends GeoJsfSld<L,D,T,SLD,RULE,SLDTEMPLATE>,
-						   RULE extends GeoJsfSldRule<L,D,T,SLD,RULE,SLDTEMPLATE>,
-						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,T,SLDTEMPLATE>>
+						   TYPE extends UtilsStatus<TYPE,L,D>,
+						   SLD extends GeoJsfSld<L,D,TYPE,SLD,RULE,TEMPLATE>,
+						   RULE extends GeoJsfSldRule<L,D,TYPE,SLD,RULE,TEMPLATE>,
+						   TEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,TEMPLATE>>
 			extends EjbSaveable,EjbRemoveable,EjbWithPosition
 {
 	public static enum Type{symbol,interval}
