@@ -2,7 +2,7 @@ package org.geojsf.controller.util;
 
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
@@ -35,7 +35,7 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 	private DummyViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldTemplate> dvf;
 	
 	@Before
-	public void init() throws UtilsContraintViolationException
+	public void init() throws UtilsConstraintViolationException
 	{
 		fJsf = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
 		dvf = DummyViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfDescription.class,DefaultGeoJsfCategory.class,DefaultGeoJsfService.class,DefaultGeoJsfLayer.class,DefaultGeoJsfMap.class,DefaultGeoJsfView.class);
@@ -78,7 +78,7 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		}
 	}
 	
-	public static void main(String[] args) throws UtilsContraintViolationException
+	public static void main(String[] args) throws UtilsConstraintViolationException
 	{
 		GeoJsfEjbTestBootstrap.init();
 		

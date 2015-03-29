@@ -1,7 +1,7 @@
 package org.geojsf.util.db.init;
 
 import net.sf.ahtutils.db.ejb.AhtDbEjbUpdater;
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
@@ -82,7 +82,7 @@ public class DbServiceInit <L extends UtilsLang,D extends UtilsDescription,CATEG
 				}
 				catch (InstantiationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 				catch (IllegalAccessException e2) {throw new UtilsConfigurationException(e2.getMessage());}
-				catch (UtilsContraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}	
+				catch (UtilsConstraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}	
 			}
 			
 			try
@@ -91,7 +91,7 @@ public class DbServiceInit <L extends UtilsLang,D extends UtilsDescription,CATEG
 				ejb.setDescription(ejbDescriptionFactory.create(service.getDescriptions()));
 				ejb=(SERVICE)fSecurity.update(ejb);
 			}
-			catch (UtilsContraintViolationException e) {logger.error("",e);}
+			catch (UtilsConstraintViolationException e) {logger.error("",e);}
 			catch (UtilsLockingException e) {logger.error("",e);}
 		}
 		

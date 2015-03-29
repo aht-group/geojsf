@@ -3,7 +3,7 @@ package org.geojsf.factory.geojsf;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfCategory;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
@@ -38,7 +38,7 @@ public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldTemplate> fService;
 	
 	@Before
-	public void init() throws UtilsContraintViolationException
+	public void init() throws UtilsConstraintViolationException
 	{
 		initGenericFactories();
 		

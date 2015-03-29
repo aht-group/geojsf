@@ -3,7 +3,7 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsContraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
@@ -106,7 +106,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 		maps = fGeo.all(cMap);
 	}
 	
-	public void selectMap() throws UtilsNotFoundException, UtilsContraintViolationException, UtilsLockingException
+	public void selectMap() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.selectEntity(map));
 		missingLangsMap();
@@ -115,7 +115,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 	}
 	protected void missingLangsMap(){}
 	
-	protected void reloadMap() throws UtilsContraintViolationException, UtilsLockingException
+	protected void reloadMap() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		map = fGeo.load(cMap,map);
 		if(map.getViewPort()==null){addViewPort();}
@@ -123,7 +123,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 		logger.info(map.getViewPort().toString());
 	}
 	
-	private void addViewPort() throws UtilsContraintViolationException, UtilsLockingException
+	private void addViewPort() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		viewPort = efViewPort.build();
 		viewPort = fGeo.save(viewPort);
@@ -140,10 +140,10 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 			map.setName(efLang.createEmpty(langKeys));
 			map.setDescription(efDescription.createEmpty(langKeys));
 		}
-		catch (UtilsContraintViolationException e) {e.printStackTrace();}
+		catch (UtilsConstraintViolationException e) {e.printStackTrace();}
 	}
 	
-	public void saveMap() throws UtilsContraintViolationException, UtilsLockingException
+	public void saveMap() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(map));
 		map = fGeo.save(map);
@@ -152,7 +152,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 		reloadMap();
 	}
 	
-	protected void updateOrder() throws UtilsContraintViolationException, UtilsLockingException
+	protected void updateOrder() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info("updateOrder "+map.getViews().size());
 		int i=1;
@@ -184,7 +184,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 			map=null;
 			reloadMaps();
 		}
-		catch (UtilsContraintViolationException e)
+		catch (UtilsConstraintViolationException e)
 		{
 			FacesContextMessage.warn("fmWarn","uieServiceWithLayer");
 		}
@@ -222,7 +222,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 		view=null;
 	}
 	
-	public void saveView() throws UtilsContraintViolationException, UtilsLockingException
+	public void saveView() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(view));
 		view.setLayer(fGeo.find(cLayer,view.getLayer()));
@@ -234,7 +234,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 		logger.info("VIEW"+view.toString());
 	}
 	
-	public void rmView() throws UtilsContraintViolationException, UtilsLockingException
+	public void rmView() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.rmEntity(view));
 		fGeo.rm(cView,view);
@@ -259,7 +259,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 		logger.info(viewPort.getLon()+"/"+viewPort.getLat());
 	}
 	
-	public void saveViewPort() throws UtilsContraintViolationException, UtilsLockingException
+	public void saveViewPort() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(viewPort));
 		viewPort = fGeo.save(viewPort);
