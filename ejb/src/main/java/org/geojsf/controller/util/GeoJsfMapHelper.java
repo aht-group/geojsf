@@ -3,10 +3,10 @@ package org.geojsf.controller.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.jsf.interfaces.dm.DmSingleSelect;
-import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
-import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
 import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
 
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;

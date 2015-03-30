@@ -1,9 +1,9 @@
 package org.geojsf.controller.util;
 
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
-import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;

@@ -4,9 +4,9 @@ package org.geojsf.interfaces.model;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 
 import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
-import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
-import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 public interface GeoJsfView<L extends UtilsLang,

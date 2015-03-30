@@ -2,8 +2,8 @@ package org.geojsf.model.pojo.util;
 
 import java.io.Serializable;
 
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
 
 public class DefaultGeoJsfDescription implements UtilsDescription,Serializable,EjbPersistable
 {

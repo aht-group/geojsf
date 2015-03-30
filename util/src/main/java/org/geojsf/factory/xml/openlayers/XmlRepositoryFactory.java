@@ -3,9 +3,9 @@ package org.geojsf.factory.xml.openlayers;
 import java.io.Serializable;
 import java.util.List;
 
-import net.sf.ahtutils.model.interfaces.status.UtilsDescription;
-import net.sf.ahtutils.model.interfaces.status.UtilsLang;
-import net.sf.ahtutils.model.interfaces.status.UtilsStatus;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 import org.geojsf.factory.xml.geojsf.XmlServiceFactory;
 import org.geojsf.interfaces.model.GeoJsfCategory;
