@@ -2,9 +2,9 @@ package org.geojsf.model.pojo.util;
 
 import java.io.Serializable;
 
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
-import net.sf.ahtutils.model.interfaces.status.UtilsLang;
 
 public class DefaultGeoJsfLang implements UtilsLang,EjbRemoveable,Serializable,EjbPersistable
 {
