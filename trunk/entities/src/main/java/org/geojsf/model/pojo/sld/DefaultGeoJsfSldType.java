@@ -23,6 +23,9 @@ public class DefaultGeoJsfSldType implements Serializable,EjbRemoveable,EjbPersi
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
+	protected String symbol;
+	public String getSymbol(){return symbol;}
+	public void setSymbol(String symbol){this.symbol = symbol;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	
