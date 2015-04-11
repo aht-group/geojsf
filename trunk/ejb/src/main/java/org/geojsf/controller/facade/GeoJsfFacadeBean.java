@@ -1,11 +1,14 @@
 package org.geojsf.controller.facade;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
@@ -56,6 +59,24 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 		
 		TypedQuery<T> typedQuery = em.createQuery(select);
 		return typedQuery.getResultList();
+	}
+	
+	@Override public <T extends EjbWithId> List<T> find(Class<T> cl, Set<Long> ids)
+	{
+		return find(cl,new ArrayList<Long>(ids));
+	}
+	
+	@Override public <T extends EjbWithId> List<T> find(Class<T> cl, List<Long> ids)
+	{
+		if(ids==null || ids.size()==0){return new ArrayList<T>();}
+		CriteriaBuilder cB = em.getCriteriaBuilder();
+        CriteriaQuery<T> cQ = cB.createQuery(cl);
+        Root<T> root = cQ.from(cl);
+        Path<Long> path = root.get("id");
+        cQ.where(cB.isTrue(path.in(ids)));
+
+		TypedQuery<T> q = em.createQuery(cQ); 
+		return q.getResultList();
 	}
 	
 	@Override public <T extends Object> T find(Class<T> type, long id) throws UtilsNotFoundException
