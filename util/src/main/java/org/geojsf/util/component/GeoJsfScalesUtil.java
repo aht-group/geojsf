@@ -41,12 +41,12 @@ public class GeoJsfScalesUtil
 		return sb.toString();
 	}
 	
-	public String getMin()
+	public String getMax()
 	{
 		return df.format(list.get(0));
 	}
 	
-	public String getMax()
+	public String getMin()
 	{
 		return df.format(list.get(list.size()-1));
 	}
