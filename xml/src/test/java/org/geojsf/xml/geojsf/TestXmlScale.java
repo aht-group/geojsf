@@ -31,8 +31,8 @@ public class TestXmlScale extends AbstractXmlGeojsfTest
     public static Scale create(boolean withChilds)
     {
     	Scale xml = new Scale();
-    	xml.setUnit("meter");
-    	xml.setValue(1234.5);
+    	xml.setUnit("m");
+    	xml.setValue(10000);
     	
     	return xml;
     }

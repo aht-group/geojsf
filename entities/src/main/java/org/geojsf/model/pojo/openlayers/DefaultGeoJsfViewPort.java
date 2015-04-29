@@ -31,9 +31,9 @@ public class DefaultGeoJsfViewPort implements Serializable,EjbRemoveable,EjbPers
 	@Override public double getLon(){return lon;}
 	@Override public void setLon(double lon){this.lon = lon;}
 	
-	private double scale;
-	@Override public double getScale(){return scale;}
-	@Override public void setScale(double scale){this.scale = scale;}
+	private int scale;
+	@Override public int getScale(){return scale;}
+	@Override public void setScale(int scale){this.scale = scale;}
 	
 	private double marginLeft;
 	@Override public double getMarginLeft() {return marginLeft;}

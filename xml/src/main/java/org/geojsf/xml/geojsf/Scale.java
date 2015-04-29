@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlValue;
  * <pre>
  * &lt;complexType>
  *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>int">
  *       &lt;attribute name="unit" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/extension>
@@ -39,7 +39,7 @@ public class Scale
 
     private final static long serialVersionUID = 1L;
     @XmlValue
-    protected double value;
+    protected int value;
     @XmlAttribute(name = "unit")
     protected String unit;
     @XmlAttribute(name = "zoom")
@@ -49,7 +49,7 @@ public class Scale
      * Gets the value of the value property.
      * 
      */
-    public double getValue() {
+    public int getValue() {
         return value;
     }
 
@@ -57,7 +57,7 @@ public class Scale
      * Sets the value of the value property.
      * 
      */
-    public void setValue(double value) {
+    public void setValue(int value) {
         this.value = value;
     }
 

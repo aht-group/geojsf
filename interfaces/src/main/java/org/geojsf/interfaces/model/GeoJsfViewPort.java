@@ -28,8 +28,8 @@ public interface GeoJsfViewPort<L extends UtilsLang,
 	double getLon();
 	void setLon(double lon);
 	
-	double getScale();
-	void setScale(double scale);
+	int getScale();
+	void setScale(int scale);
 	
 	// **************************
 	
