@@ -26,8 +26,6 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
-import org.geojsf.component.JsfRenderUtil;
-import org.geojsf.component.MapUtil;
 import org.geojsf.component.entities.OlLayer;
 import org.geojsf.component.entities.OlService;
 import org.geojsf.event.MapAjaxEvent;
@@ -39,6 +37,7 @@ import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.util.GeoJsfJsLoader;
+import org.geojsf.util.component.GeoJsfScalesUtil;
 import org.geojsf.xml.geojsf.Scales;
 import org.geojsf.xml.gml.Coordinates;
 import org.primefaces.context.RequestContext;
@@ -298,6 +297,27 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		renderer.renderTextWithLB("options.isBaseLayer = " +baseLayer +";");
 		renderer.renderTextWithLB("options.singleTile  =  true;");
 	//	renderer.renderTextWithLB("options.ratio       =  1;");
+		
+		// Process scales definition
+		Scales scales = MapUtil.searchScale(this); 
+		if (scales!=null)
+		{
+			// Define all allowed levels
+			String scaleDefinitions = "options.scales = [";
+			GeoJsfScalesUtil scalesUtil = new GeoJsfScalesUtil(scales);
+			
+			scaleDefinitions += scalesUtil.getScaleList();
+			scaleDefinitions += "];" +System.getProperty("line.separator");
+			writer.writeText(scaleDefinitions, null);
+			
+			// Define minimum and maximum values
+			writer.writeText("options.maxScale = "+scalesUtil.getMax() +";" +System.getProperty("line.separator"), null);
+			writer.writeText("options.minScale = "+scalesUtil.getMin() +";" +System.getProperty("line.separator"), null);
+			
+			// Set the unit
+			writer.writeText("options.units = '" +scales.getUnit() +"';" +System.getProperty("line.separator"), null);
+		}
+		
 	//	writer.writeText("options.scales = [10, 10000, 100000];" +System.getProperty("line.separator"), null);
 	//	writer.writeText("options.maxScale = 10;" +System.getProperty("line.separator"), null);
 	//	writer.writeText("options.minScale = 100000;" +System.getProperty("line.separator"), null);

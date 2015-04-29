@@ -19,6 +19,7 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.xml.geojsf.Scales;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -187,15 +188,18 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,CATEGORY ext
 		}
 	}
 	
-	public static void searchScale(UIComponent component)
+	public static Scales searchScale(UIComponent component)
 	{
 		for (UIComponent comp : component.getChildren())
 		{
-			if (comp.getClass().getSimpleName().toString().equals("Scales"))
+			if (comp.getClass().getSimpleName().toString().equals("ScalesContainer"))
 			{
 				logger.info("found scale!");
+				ScalesContainer scales = (ScalesContainer) comp;
+				return scales.getValue();
 			}
 		}
+		return null;
 	}
 	
 	
