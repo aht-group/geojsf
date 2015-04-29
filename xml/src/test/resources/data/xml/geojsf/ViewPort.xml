@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <geojsf:viewPort xmlns:geojsf="http://www.geojsf.org" id="123" lat="1.23" lon="4.56" bottom="5.55" left="3.33" right="4.44" top="2.22">
-    <geojsf:scale unit="meter">1234.5</geojsf:scale>
+    <geojsf:scale unit="m">10000</geojsf:scale>
 </geojsf:viewPort>
