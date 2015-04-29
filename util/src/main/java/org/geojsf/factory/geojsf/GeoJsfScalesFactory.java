@@ -9,9 +9,10 @@ public class GeoJsfScalesFactory
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfScalesFactory.class);
 	
-	public static Scales build(int... scales)
+	public static Scales build(String unit, int... scales)
 	{
 		Scales xml = new Scales();
+		xml.setUnit(unit);
 		for(int scale : scales)
 		{
 			xml.getScale().add(XmlScaleFactory.build(scale));
