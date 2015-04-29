@@ -36,7 +36,7 @@
     <xsd:element name="scale">
         <xsd:complexType>
         	<xsd:simpleContent>
-                <xsd:extension base="xsd:double">
+                <xsd:extension base="xsd:int">
                     <xsd:attribute name="unit" type="xsd:string"/>
                     <xsd:attribute name="zoom" type="xsd:int"/>
                 </xsd:extension>

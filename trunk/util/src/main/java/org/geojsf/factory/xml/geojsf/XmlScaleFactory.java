@@ -27,14 +27,14 @@ public class XmlScaleFactory implements Serializable
 		Scale build(VP ejb)
 	{
 		Scale scale = new Scale();
-		scale.setValue(ejb.getScale());
+		scale.setValue((new Double(ejb.getScale()).intValue()));
 		return scale;
 	}
 	
 	public static Scale build(double scale)
 	{
 		Scale xml = new Scale();
-		xml.setValue(scale);
+		xml.setValue((new Double(scale).intValue()));
 		return xml;
 	}
 }

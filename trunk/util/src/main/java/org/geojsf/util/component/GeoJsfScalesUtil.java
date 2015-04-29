@@ -1,7 +1,5 @@
 package org.geojsf.util.component;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,17 +9,12 @@ import org.geojsf.xml.geojsf.Scales;
 
 public class GeoJsfScalesUtil
 {
-	private DecimalFormat df;
-	private List<Double> list;
+	private List<Integer> list;
 	
 	public GeoJsfScalesUtil(Scales scales)
-	{
-		// Define the standard number format
-		df = new DecimalFormat("#.0");
-		df.setRoundingMode(RoundingMode.HALF_EVEN);
-		
+	{	
 		// Prepare the list of values for retrieving min and max values
-		list = new ArrayList<Double>();
+		list = new ArrayList<Integer>();
 		for(Scale scale : scales.getScale())
 		{
 			list.add(scale.getValue());
@@ -43,11 +36,11 @@ public class GeoJsfScalesUtil
 	
 	public String getMax()
 	{
-		return df.format(list.get(0));
+		return list.get(0).toString();
 	}
 	
 	public String getMin()
 	{
-		return df.format(list.get(list.size()-1));
+		return list.get(list.size()-1).toString();
 	}
 }

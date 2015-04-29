@@ -101,7 +101,7 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 	public void addScale(String scale)
 	{
 		Scale scl = new Scale();
-		scl.setValue(new Double(scale));
+		scl.setValue(new Integer(scale));
 		addScale(scl);
 	}
 	public void addScale(Scale scale){viewPort.setScale(scale);}
