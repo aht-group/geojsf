@@ -56,6 +56,8 @@ public class ScaleBar extends UINamingContainer implements ClientBehaviorHolder
 		if (null!=map.get(Attribute.sub.toString())){sub = map.get(Attribute.sub.toString()).toString();}
 		
 		ResponseWriter writer = ctx.getResponseWriter();
-		writer.writeText("GeoJsfControl.addScale('"+orientation+"','" +system +"'," +major +"," +sub+");", null); 
+		writer.startElement("script", this);
+		writer.writeText("GeoJsfControl.addScale('"+orientation+"','" +system +"'," +major +"," +sub+");", null);
+		writer.endElement("script");
 	}
 }
