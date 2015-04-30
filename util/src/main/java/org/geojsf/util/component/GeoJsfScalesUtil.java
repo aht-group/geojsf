@@ -25,7 +25,7 @@ public class GeoJsfScalesUtil
 	public String getScaleList()
 	{
 		StringBuffer sb = new StringBuffer();
-		for(double d : list)
+		for(Integer d : list)
 		{
 			sb.append(d);
 			sb.append(", ");

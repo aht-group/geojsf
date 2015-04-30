@@ -6,12 +6,13 @@ import java.util.Map;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UINamingContainer;
 import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
-import org.geojsf.factory.geojsf.GeoJsfScalesFactory;
+import org.geojsf.util.component.GeoJsfScalesUtil;
 import org.geojsf.xml.geojsf.Scale;
 import org.geojsf.xml.geojsf.Scales;
 import org.slf4j.Logger;
@@ -45,10 +46,16 @@ public class ScalesContainer extends UINamingContainer
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
+		GeoJsfScalesUtil util = new GeoJsfScalesUtil(this.value);
 		logger.info("Adding scales in " +this.value.getUnit());
 		for (Scale scale : this.value.getScale())
 		{
 			logger.info("" +scale.getValue());
 		}
+		ResponseWriter writer = ctx.getResponseWriter();
+		writer.startElement("script", this);
+		writer.write("var array = [" +util.getScaleList() +"];" +System.getProperty("line.separator"));
+		writer.write("GeoJSF.setScaleValues(array);"  +System.getProperty("line.separator"));
+		writer.endElement("script");
 	}
 }

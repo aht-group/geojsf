@@ -36,11 +36,18 @@ var GeoJSF = {
 		lastLayer: null,
 		eventsRegistered: false,
 		baseLayer: null,
+		scaleValues: [],
 		
 		setAjaxUpdates : function(updateClicks, updateMove)
 		{
 			this.updateOnClick = updateClicks;
 			this.updateOnMove  = updateMove;
+		},
+		
+		setScaleValues : function(values)
+		{
+			GeoJSF.scaleValues = values;
+			console.log('Allowed scale values are: ' +this.scaleValues);
 		},
 		
 		// Deprecated, now done in "loadend" event of last layer
