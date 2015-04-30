@@ -15,6 +15,7 @@ import javax.faces.event.PostAddToViewEvent;
 
 import net.sf.ahtutils.jsf.util.ComponentAttribute;
 
+import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,9 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Viewport.class);
 	
-	private static enum Attribute {lat,lon,zoom}
+	private static enum Attribute {lat,lon,zoom, value}
+	
+	private GeoJsfViewPort value;
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -33,6 +36,7 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 		if(event instanceof PostAddToViewEvent)
 		{
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"viewport.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"GeoJsfUtil.js");
 		}
 		super.processEvent(event);
 	}
@@ -41,13 +45,34 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		logger.info("Rendering Viewport.");
-		double lat             = ComponentAttribute.getDouble(Attribute.lat.toString(), 0.0 ,ctx,  this);
-		double lon             = ComponentAttribute.getDouble(Attribute.lon.toString(), 0.0 ,ctx,  this);
-		int zoom               = ComponentAttribute.getInteger(Attribute.zoom.toString(), 0 ,ctx,  this);
+		
+		Double  lat             = null;
+		Double  lon             = null;
+		Integer zoom            = null;
 		
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("script", this);
-		writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +zoom +");", null); 
+		
+		Map<String,Object> map = this.getAttributes();
+		this.value = (GeoJsfViewPort) map.get(Attribute.value.toString());
+		
+		if (this.value != null)
+		{
+			lat             = this.value.getLat();
+			lon             = this.value.getLon();
+			logger.info("Trying to render zoom by scale of "+this.value.getScale());
+			writer.writeText("var zoomScale = GeoJsfUtil.closestNumber(" +this.value.getScale() +", GeoJSF.scaleValues);" +System.getProperty("line.separator"), null);
+			writer.writeText("var zoom      = GeoJSF.scaleValues.indexOf(zoomScale)+1;" +System.getProperty("line.separator"), null);
+			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +",zoom);" +System.getProperty("line.separator"), null);		
+		}
+		else
+		{
+			lat             = ComponentAttribute.getDouble(Attribute.lat.toString(), 0.0 ,ctx,  this);
+			lon             = ComponentAttribute.getDouble(Attribute.lon.toString(), 0.0 ,ctx,  this);
+			zoom            = ComponentAttribute.getInteger(Attribute.zoom.toString(), 0 ,ctx,  this);
+			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +zoom +");" +System.getProperty("line.separator"), null);
+		}
+		 
 		writer.endElement("script");
 	}
 }
