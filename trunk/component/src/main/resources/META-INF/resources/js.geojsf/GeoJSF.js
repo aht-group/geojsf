@@ -122,8 +122,9 @@ var GeoJSF = {
 			$('.olTileImage').each(function(idx){
 		        console.log( $(this) );
 		    });
-		
+			
 			try {
+				
 				PrimeFaces.ab({
 					process:  '@form', 
 		 			source:   GeoJSF.map.div, 
@@ -136,7 +137,7 @@ var GeoJSF = {
 		 			         {name: 'org.geojsf.viewport.top',     value: this.viewportBoundTop},
 		 			         {name: 'org.geojsf.viewport.left',    value: this.viewportBoundLeft},
 		 			         {name: 'org.geojsf.viewport.right',   value: this.viewportBoundRight},
-		 			         {name: 'org.geojsf.viewport.scale', value: GeoJSF.map.getScale()},
+		 			         {name: 'org.geojsf.viewport.scale', value:   Math.floor( GeoJSF.map.getScale())},
 		 			        ],
 		 			oncomplete: function(xhr, status, args) {console.log('map move AJAX request sent.')}
 				});
@@ -163,7 +164,6 @@ var GeoJSF = {
 			$(GeoJSF.map.div).css('cursor','default ');
 		    $(GeoJSF.map.div.id).children( ".olTileImage" ).each(function(i) { 
 		    });
-		    
 		    $('.olTileImage').each(function(idx){
 		        $(this).css('cursor','default ');
 		    });
@@ -182,7 +182,7 @@ var GeoJSF = {
 		 			         {name: 'org.geojsf.viewport.top',			value: GeoJSF.map.getExtent().top},
 		 			         {name: 'org.geojsf.viewport.left',			value: GeoJSF.map.getExtent().left},
 		 			         {name: 'org.geojsf.viewport.right',		value: GeoJSF.map.getExtent().right},
-		 			         {name: 'org.geojsf.viewport.scale',		value: GeoJSF.map.getScale()}
+		 			         {name: 'org.geojsf.viewport.scale',		value: Math.floor( GeoJSF.map.getScale())}
 		 			        ],
 		 			oncomplete: function(xhr, status, args) {console.log('mapClick AJAX request sent.')}
 				});
