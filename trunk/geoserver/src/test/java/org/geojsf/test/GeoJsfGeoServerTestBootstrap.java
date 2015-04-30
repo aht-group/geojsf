@@ -20,7 +20,9 @@ public class GeoJsfGeoServerTestBootstrap
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
 			loggerInit.addAltPath("config.geojsf-geoserver.test");
 			loggerInit.init();
-		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
+			
+		logger.warn("NS Prefix mapper deavtivated");
+//		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
 		
 		try
 		{
