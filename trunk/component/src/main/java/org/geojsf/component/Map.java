@@ -386,7 +386,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 		    if (null!=serviceList)
 			{
 		    	// Load the (maybe updated) SqlViewParameters
-		    	logger.info("Searching for SQLVP in Decode");
+		    	logger.debug("Searching for SQLVP in Decode");
 		    	Hashtable<String,String> parameters = MapUtil.searchSqlViewParameters(this);
 		    	StringBuffer sb = new StringBuffer();
 				if (parameters.size()>0)
@@ -433,7 +433,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,CATEGORY extend
 	        	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
 	     		if (behaviors.isEmpty())
 	     		{
-	     			logger.error("no behaviors.exiting.");
+	     			logger.debug("no behaviors.exiting.");
 	     			return;
 	     		}
 	            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
