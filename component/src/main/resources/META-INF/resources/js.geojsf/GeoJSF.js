@@ -36,7 +36,7 @@ var GeoJSF = {
 		lastLayer: null,
 		eventsRegistered: false,
 		baseLayer: null,
-		scaleValues: [],
+		scaleValues: null,
 		
 		setAjaxUpdates : function(updateClicks, updateMove)
 		{
