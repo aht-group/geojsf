@@ -49,7 +49,13 @@
 	</dependencyManagement>
 	
 	<dependencies>
-   	   	<dependency>
+	
+		<!-- GeoJSF -->
+		<dependency>
+   		<groupId>org.geojsf</groupId>
+   		<artifactId>geojsf-interfaces</artifactId>
+   	</dependency>
+		<dependency>
    	   		<groupId>org.geojsf</groupId>
    	   		<artifactId>geojsf-xml</artifactId>
    	   		<type>jar</type>
@@ -73,21 +79,34 @@
    	   				<groupId>commons-codec</groupId>
    	   			</exclusion>
    	   		</exclusions>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>org.slf4j</groupId>
-   	   		<artifactId>slf4j-api</artifactId>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>org.geojsf</groupId>
-   	   		<artifactId>geojsf-interfaces</artifactId>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>junit</groupId>
-   	   		<artifactId>junit</artifactId>
-   	   		<scope>test</scope>
-   	   	</dependency>
-   	   	<dependency>
+		</dependency>
+		
+		
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+   	   	
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		
+		<dependency>
    	   		<groupId>net.sf.ahtutils</groupId>
    	   		<artifactId>ahtutils-util</artifactId>
    	   		<exclusions>
@@ -132,9 +151,10 @@
    	   				<groupId>commons-codec</groupId>
    	   			</exclusion>
    	   		</exclusions>
-   	   	</dependency>
+		</dependency>
 
-		  <dependency>
+		<!-- REST -->
+		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
 			<exclusions>
@@ -148,16 +168,7 @@
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxb-provider</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
