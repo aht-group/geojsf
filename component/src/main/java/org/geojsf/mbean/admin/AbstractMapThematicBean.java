@@ -3,6 +3,8 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.event.AjaxBehaviorEvent;
+
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
@@ -252,9 +254,10 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 	}
 	
 	
-	public void mapMove(MapAjaxEvent evt)
+	public void mapMove(AjaxBehaviorEvent ev)
 	{
-		logger.trace("Viewport: "+evt.getViewPort().getLat() +"/" +evt.getViewPort().getLon() +" in bounds of " +evt.getViewPort().getTop() +" and " +evt.getViewPort().getBottom());	
+		MapAjaxEvent evt = (MapAjaxEvent) ev;
+		logger.trace("Viewport: "+evt.getViewPort().getLat() +"/" +evt.getViewPort().getLon() +" in bounds of " +evt.getViewPort().getTop() +" and " +evt.getViewPort().getBottom());
 		efViewPort.update(viewPort,evt.getViewPort());
 		logger.info(viewPort.getLon()+"/"+viewPort.getLat());
 	}
