@@ -15,12 +15,10 @@ public class XmlWktFactory implements Serializable
 	
 	public static final long serialVersionUID=1;
 	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>Fields<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 
 	public static Wkt build(Geometry geometry)
 	{
 		WKTWriter w = new WKTWriter();
-		
 		Wkt wkt = new Wkt();
 		
 		wkt.setType(geometry.getClass().getSimpleName());
