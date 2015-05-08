@@ -153,8 +153,11 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 	}
 	
 	public List<I> execute(Coordinates coordinates, Distance distance)
-	{				
-		for(String s : queryProperties){logger.info(s.toString());}
+	{			
+		if(logger.isTraceEnabled())
+		{
+			for(String s : queryProperties){logger.trace(s.toString());}
+		}
 		
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  queryProperties, geometryColumn,

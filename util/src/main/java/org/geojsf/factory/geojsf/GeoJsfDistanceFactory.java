@@ -10,8 +10,8 @@ public class GeoJsfDistanceFactory
 	
 	public static Distance build(int px, double scale)
 	{
-		double radius = scale * px / 3300;
-		
+//		double radius = scale * px / 3300;
+		double radius = scale * px * 25;
 		Distance distance = new Distance();
 		distance.setUnits("meter");
 		distance.setValue(radius+"");
