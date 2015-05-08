@@ -30,6 +30,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Station }
+     * 
+     */
+    public Station createStation() {
+        return new Station();
+    }
+
+    /**
+     * Create an instance of {@link Stations }
+     * 
+     */
+    public Stations createStations() {
+        return new Stations();
+    }
+
+    /**
      * Create an instance of {@link Value }
      * 
      */

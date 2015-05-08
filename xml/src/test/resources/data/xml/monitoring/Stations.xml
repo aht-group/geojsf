@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<m:stations xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns2="http://ahtutils.aht-group.com/security" xmlns:m="http://www.geojsf.org/monitoring">
+    <m:station id="123" code="myCode"/>
+    <m:station id="123" code="myCode"/>
+</m:stations>

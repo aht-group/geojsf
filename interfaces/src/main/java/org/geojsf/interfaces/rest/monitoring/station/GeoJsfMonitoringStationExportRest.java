@@ -7,9 +7,15 @@ import javax.ws.rs.core.MediaType;
 
 import net.sf.ahtutils.xml.aht.Aht;
 
+import org.geojsf.xml.monitoring.Stations;
+
 public interface GeoJsfMonitoringStationExportRest
 {	
 	@GET @Path("/geojsf/monitoring/types")
 	@Produces(MediaType.APPLICATION_XML)
-	Aht exportMonitoringTypes();
+	Aht exportGeoJsfMonitoringTypes();
+	
+	@GET @Path("/geojsf/monitoring/stations")
+	@Produces(MediaType.APPLICATION_XML)
+	Stations exportGeoJsfMonitoringStations();
 }

@@ -31,5 +31,6 @@
 			</classpath>
 		</java>
 		<delete dir="${src.dir}/net"/>
+		<delete dir="${src.dir}/com"/>
 	</target>
 </project>
