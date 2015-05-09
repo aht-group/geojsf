@@ -46,7 +46,7 @@
 		<!-- GeoJSF -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
-			<artifactId>geojsf-xml</artifactId>
+			<artifactId>geojsf-entities</artifactId>
 			<exclusions>
 				<exclusion>
 					<artifactId>ahtutils-xml</artifactId>

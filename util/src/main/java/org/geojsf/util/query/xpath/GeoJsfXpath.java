@@ -1,4 +1,4 @@
-package org.geojsf.xml.xpath;
+package org.geojsf.util.query.xpath;
 
 import java.util.List;
 
