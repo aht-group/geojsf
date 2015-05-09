@@ -49,24 +49,6 @@
 			<artifactId>geojsf-spi</artifactId>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.geojsf</groupId>
-			<artifactId>geojsf-entities</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>ahtutils-xml</artifactId>
-					<groupId>net.sf.ahtutils</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		
-		<!-- Test -->
-		<dependency>
-			<groupId>org.geojsf</groupId>
-			<artifactId>geojsf-entities</artifactId>
-			<scope>test</scope>
-		</dependency>
-	
 		<!-- Logging -->
 		<dependency>
    	   		<groupId>org.slf4j</groupId>
@@ -146,13 +128,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>org.geojsf</groupId>
-			<artifactId>geojsf-interfaces</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		
-		
+				
 		<dependency>
 		   <groupId>org.jboss.spec</groupId>
 		   <artifactId>jboss-javaee-6.0</artifactId>
@@ -169,12 +145,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 
 		<dependency>  
 			<groupId>org.primefaces</groupId>  
