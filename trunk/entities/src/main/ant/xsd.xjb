@@ -15,12 +15,6 @@
             <jxb:package name="org.geojsf.xml.geojsf"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-
-    <jxb:bindings schemaLocation="../xsd/geojsf/gov.xsd" node="/xsd:schema">
-        <jxb:schemaBindings>
-            <jxb:package name="org.geojsf.xml.government"/>
-        </jxb:schemaBindings>
-    </jxb:bindings>
     
     <jxb:bindings schemaLocation="../xsd/geojsf/monitoring.xsd" node="/xsd:schema">
         <jxb:schemaBindings>

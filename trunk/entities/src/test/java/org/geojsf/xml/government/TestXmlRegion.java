@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.geojsf.government.Region;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -58,16 +58,7 @@
 			<groupId>net.sf.ahtutils</groupId>
 			<artifactId>ahtutils-interfaces</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.geojsf</groupId>
-			<artifactId>geojsf-xml</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>exlp-util</artifactId>
-					<groupId>net.sf.exlp</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>

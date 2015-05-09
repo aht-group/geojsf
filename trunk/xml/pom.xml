@@ -26,14 +26,22 @@
 	</dependencyManagement>
 	
 	<dependencies>
-		<!-- XML -->
 		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-xml</artifactId>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-entities</artifactId>
 		</dependency>
+		
+		<!-- REST -->
 		<dependency>
-			<groupId>net.sf.exlp</groupId>
-			<artifactId>exlp-xml</artifactId>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	
 		<!-- Logging -->

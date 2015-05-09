@@ -26,11 +26,9 @@
 	</dependencyManagement>
    	
 	<dependencies>
-		<!-- GeoJSF -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-interfaces</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		
 		<!-- JPA -->
@@ -43,6 +41,58 @@
 			<groupId>org.jboss.spec.javax.ejb</groupId>
 			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
  			<scope>provided</scope>
+		</dependency>
+		
+		<!-- JAXB -->
+      	<dependency>
+   	   	<groupId>javax.xml.bind</groupId>
+   	   		<artifactId>jaxb-api</artifactId>
+   	   		<scope>provided</scope>
+   	   	</dependency>
+   	   	<dependency>
+   	   		<groupId>com.sun.xml.bind</groupId>
+   	   		<artifactId>jaxb-impl</artifactId>
+   	   		<scope>provided</scope>
+   	   	</dependency>
+   	   	<dependency>
+   	   		<groupId>com.sun.xml.bind</groupId>
+   	   		<artifactId>jaxb-xjc</artifactId>
+   	   		<scope>provided</scope>
+   	   	</dependency>
+		
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+   	   		<groupId>junit</groupId>
+   	   		<artifactId>junit</artifactId>
+   	   		<type>jar</type>
+   	   		<scope>test</scope>
+   	   	</dependency>
+   	   	<dependency>
+   	   		<groupId>net.sf.exlp</groupId>
+   	   		<artifactId>exlp-util</artifactId>
+   	   		<scope>test</scope>
+   	   	</dependency>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-util</artifactId>
+			<scope>test</scope>
 		</dependency>
 		
 	</dependencies>

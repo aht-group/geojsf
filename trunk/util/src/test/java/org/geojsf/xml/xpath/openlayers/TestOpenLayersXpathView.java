@@ -1,19 +1,19 @@
 package org.geojsf.xml.xpath.openlayers;
 
+import net.sf.ahtutils.test.AbstractAhtUtilsXmlTest;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 
-import org.geojsf.test.AbstractGeoJsfXmlTest;
+import org.geojsf.util.query.xpath.GeoJsfXpath;
 import org.geojsf.xml.geojsf.Map;
 import org.geojsf.xml.geojsf.Maps;
 import org.geojsf.xml.geojsf.Repository;
-import org.geojsf.xml.xpath.GeoJsfXpath;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestOpenLayersXpathView extends AbstractGeoJsfXmlTest
+public class TestOpenLayersXpathView extends AbstractAhtUtilsXmlTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestOpenLayersXpathView.class);
 	

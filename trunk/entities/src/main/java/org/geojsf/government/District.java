@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.government;
+package org.geojsf.government;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
