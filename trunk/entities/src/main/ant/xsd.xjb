@@ -18,7 +18,7 @@
     
     <jxb:bindings schemaLocation="../xsd/geojsf/monitoring.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="org.geojsf.xml.monitoring"/>
+            <jxb:package name="org.geojsf.model.xml.monitoring"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     

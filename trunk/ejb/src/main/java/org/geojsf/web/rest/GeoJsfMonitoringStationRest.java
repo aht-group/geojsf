@@ -3,7 +3,7 @@ package org.geojsf.web.rest;
 import net.sf.ahtutils.xml.aht.Aht;
 
 import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationExportRest;
-import org.geojsf.xml.monitoring.Stations;
+import org.geojsf.model.xml.monitoring.Stations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

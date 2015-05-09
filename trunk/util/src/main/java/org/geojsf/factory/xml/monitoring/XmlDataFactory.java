@@ -5,7 +5,7 @@ import java.util.Date;
 
 import net.sf.exlp.util.DateUtil;
 
-import org.geojsf.xml.monitoring.Data;
+import org.geojsf.model.xml.monitoring.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

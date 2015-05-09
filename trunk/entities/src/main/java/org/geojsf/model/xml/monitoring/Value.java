@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.monitoring;
+package org.geojsf.model.xml.monitoring;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
