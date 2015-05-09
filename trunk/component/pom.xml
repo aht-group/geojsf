@@ -10,7 +10,7 @@
 	</parent>
 	
     <artifactId>geojsf-component</artifactId>
-    <name>GeoJSF - Component</name>
+    <name>GeoJSF - JSF Component Library</name>
 	<packaging>jar</packaging>
 	
 	<dependencyManagement>

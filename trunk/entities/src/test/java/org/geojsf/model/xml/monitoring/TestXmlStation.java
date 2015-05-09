@@ -2,6 +2,9 @@ package org.geojsf.model.xml.monitoring;
 
 import java.io.FileNotFoundException;
 
+import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlStatusFactory;
 import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
@@ -35,6 +38,9 @@ public class TestXmlStation extends AbstractXmlMonitoringTest
     	if(withChilds)
     	{
     		xml.getType().add(XmlTypeFactory.create("myType"));xml.getType().add(XmlTypeFactory.create("myType"));
+    		xml.setStatus(XmlStatusFactory.create("myStatus"));
+    		xml.setDescriptions(XmlDescriptionsFactory.build());
+    		xml.setLangs(XmlLangsFactory.build());
     	}
     	
     	return xml;

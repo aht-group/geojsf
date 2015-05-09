@@ -11,7 +11,7 @@
 	
     <artifactId>geojsf-spi</artifactId>
     <packaging>jar</packaging>
-    <name>GeoJSF - XML</name>
+    <name>GeoJSF - Service Provider Interface</name>
    
 	<dependencyManagement>
 		<dependencies>      	         

@@ -18,7 +18,7 @@ import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import org.geojsf.xml.GeoJsfNsPrefixMapper;
+import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

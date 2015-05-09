@@ -9,7 +9,7 @@
     </parent>
     
     <artifactId>geojsf-doc</artifactId>
-    <name>GeoJSF - Doc</name>
+    <name>GeoJSF - Documentation</name>
     
     <dependencyManagement>
 		<dependencies>      	         

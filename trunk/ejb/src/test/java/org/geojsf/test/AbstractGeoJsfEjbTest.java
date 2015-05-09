@@ -3,7 +3,7 @@ package org.geojsf.test;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.xml.GeoJsfNsPrefixMapper;
+import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
