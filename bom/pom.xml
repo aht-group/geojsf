@@ -19,9 +19,14 @@
                 <artifactId>geojsf-entities</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.geojsf</groupId>
+                <artifactId>geojsf-interfaces</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         	<dependency>
 				<groupId>org.geojsf</groupId>
-				<artifactId>geojsf-xml</artifactId>
+				<artifactId>geojsf-spi</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -40,11 +45,7 @@
                 <version>${project.version}</version>
                 <classifier>test-sources</classifier>
             </dependency>
-            <dependency>
-                <groupId>org.geojsf</groupId>
-                <artifactId>geojsf-interfaces</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+            
             <dependency>
                 <groupId>org.geojsf</groupId>
                 <artifactId>geojsf-interfaces</artifactId>

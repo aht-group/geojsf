@@ -30,11 +30,6 @@
 		<!-- GeoJSF -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
-			<artifactId>geojsf-xml</artifactId>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-interfaces</artifactId>
 		</dependency>
 		<dependency>
