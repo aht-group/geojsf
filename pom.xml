@@ -18,7 +18,7 @@
 		<module>component</module>
 		<module>util</module>
 		<module>geoserver</module>
-		<module>xml</module>
+		<module>spi</module>
 	</modules>
 	     
 	<groupId>org.geojsf</groupId>
