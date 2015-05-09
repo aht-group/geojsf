@@ -39,8 +39,8 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
     private UtilsFacade fUtils;
     private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
     
-    private EjbLangFactory<L> ejbLangFactory;
-    private EjbDescriptionFactory<D> ejbDescriptionFactory;
+    private EjbLangFactory<L> efLang;
+    private EjbDescriptionFactory<D> efDescription;
     private EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE> ejbLayerFactory;
     
     private DbViewPortInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE> dbVpInit;
@@ -54,8 +54,8 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
         this.fUtils=fUtils;
         this.fGeo=fGeo;
 		
-		ejbLangFactory = EjbLangFactory.createFactory(cL);
-		ejbDescriptionFactory = EjbDescriptionFactory.createFactory(cD);
+		efLang = EjbLangFactory.createFactory(cL);
+		efDescription = EjbDescriptionFactory.createFactory(cD);
 		ejbLayerFactory = EjbGeoLayerFactory.factory(cL, cLayer);
 		dbVpInit = DbViewPortInit.factory(cVp,fUtils);
 	}
@@ -92,8 +92,8 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 			try
 			{
 				ejb = fUtils.fByCode(cLayer,layer.getCode());
-				ejbLangFactory.rmLang(fUtils,ejb);
-				ejbDescriptionFactory.rmDescription(fUtils,ejb);
+				efLang.rmLang(fUtils,ejb);
+				efDescription.rmDescription(fUtils,ejb);
 				
 			}
 			catch (UtilsNotFoundException e)
@@ -109,8 +109,8 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,CATEGOR
 			
 			try
 			{
-				ejb.setName(ejbLangFactory.getLangMap(layer.getLangs()));
-				ejb.setDescription(ejbDescriptionFactory.create(layer.getDescriptions()));
+				ejb.setName(efLang.getLangMap(layer.getLangs()));
+				ejb.setDescription(efDescription.create(layer.getDescriptions()));
 				
 				//TODO can be removed after applied to active projects
 				boolean layerSql = false;
