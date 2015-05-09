@@ -26,9 +26,21 @@
 	</dependencyManagement>
 	
 	<dependencies>
+		<!-- Entities -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-entities</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-xml</artifactId>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		
 		<!-- REST -->
@@ -55,28 +67,6 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- JAXB -->
-      	<dependency>
-   	   	<groupId>javax.xml.bind</groupId>
-   	   		<artifactId>jaxb-api</artifactId>
-   	   		<scope>provided</scope>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>com.sun.xml.bind</groupId>
-   	   		<artifactId>jaxb-impl</artifactId>
-   	   		<scope>provided</scope>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>com.sun.xml.bind</groupId>
-   	   		<artifactId>jaxb-xjc</artifactId>
-   	   		<scope>provided</scope>
-   	   	</dependency>
-   	   	<dependency>
-		    <groupId>commons-jxpath</groupId>
-		    <artifactId>commons-jxpath</artifactId>
-		    <scope>provided</scope>
-		</dependency>
    	   	
 		<!-- Testing -->
 		<dependency>
@@ -85,21 +75,6 @@
    	   		<type>jar</type>
    	   		<scope>test</scope>
    	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>net.sf.exlp</groupId>
-   	   		<artifactId>exlp-util</artifactId>
-   	   		<scope>test</scope>
-   	   	</dependency>
-		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-				<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-util</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
    
 </project>
