@@ -2,7 +2,7 @@ package org.geojsf.factory.xml.monitoring;
 
 import java.io.Serializable;
 
-import org.geojsf.xml.monitoring.Station;
+import org.geojsf.model.xml.monitoring.Station;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

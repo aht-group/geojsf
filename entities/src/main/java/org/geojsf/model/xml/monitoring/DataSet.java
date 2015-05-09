@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.monitoring;
+package org.geojsf.model.xml.monitoring;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://www.geojsf.org/monitoring}station" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.geojsf.org/monitoring}data" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,52 +32,52 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "station"
+    "data"
 })
-@XmlRootElement(name = "stations")
-public class Stations
+@XmlRootElement(name = "dataSet")
+public class DataSet
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<Station> station;
+    protected List<Data> data;
 
     /**
-     * Gets the value of the station property.
+     * Gets the value of the data property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the station property.
+     * This is why there is not a <CODE>set</CODE> method for the data property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getStation().add(newItem);
+     *    getData().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Station }
+     * {@link Data }
      * 
      * 
      */
-    public List<Station> getStation() {
-        if (station == null) {
-            station = new ArrayList<Station>();
+    public List<Data> getData() {
+        if (data == null) {
+            data = new ArrayList<Data>();
         }
-        return this.station;
+        return this.data;
     }
 
-    public boolean isSetStation() {
-        return ((this.station!= null)&&(!this.station.isEmpty()));
+    public boolean isSetData() {
+        return ((this.data!= null)&&(!this.data.isEmpty()));
     }
 
-    public void unsetStation() {
-        this.station = null;
+    public void unsetData() {
+        this.data = null;
     }
 
 }
