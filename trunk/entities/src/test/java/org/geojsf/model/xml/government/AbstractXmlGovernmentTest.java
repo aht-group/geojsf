@@ -1,4 +1,4 @@
-package org.geojsf.xml.government;
+package org.geojsf.model.xml.government;
 
 import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.slf4j.Logger;

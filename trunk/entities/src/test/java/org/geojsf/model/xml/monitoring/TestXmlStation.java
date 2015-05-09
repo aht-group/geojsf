@@ -10,6 +10,7 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.model.xml.monitoring.Station;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.xml.geojsf.TestXmlWkt;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -41,6 +42,7 @@ public class TestXmlStation extends AbstractXmlMonitoringTest
     		xml.setStatus(XmlStatusFactory.create("myStatus"));
     		xml.setDescriptions(XmlDescriptionsFactory.build());
     		xml.setLangs(XmlLangsFactory.build());
+    		xml.setWkt(TestXmlWkt.create(false));
     	}
     	
     	return xml;
