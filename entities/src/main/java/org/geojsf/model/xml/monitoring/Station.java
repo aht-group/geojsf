@@ -10,6 +10,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import net.sf.ahtutils.xml.status.Descriptions;
+import net.sf.ahtutils.xml.status.Langs;
+import net.sf.ahtutils.xml.status.Status;
 import net.sf.ahtutils.xml.status.Type;
 
 
@@ -24,6 +27,9 @@ import net.sf.ahtutils.xml.status.Type;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}type" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}status"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -36,7 +42,10 @@ import net.sf.ahtutils.xml.status.Type;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "type"
+    "type",
+    "status",
+    "langs",
+    "descriptions"
 })
 @XmlRootElement(name = "station")
 public class Station
@@ -46,6 +55,12 @@ public class Station
     private final static long serialVersionUID = 1L;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected List<Type> type;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Status status;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Langs langs;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Descriptions descriptions;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
@@ -86,6 +101,90 @@ public class Station
 
     public void unsetType() {
         this.type = null;
+    }
+
+    /**
+     * Gets the value of the status property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Status }
+     *     
+     */
+    public Status getStatus() {
+        return status;
+    }
+
+    /**
+     * Sets the value of the status property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Status }
+     *     
+     */
+    public void setStatus(Status value) {
+        this.status = value;
+    }
+
+    public boolean isSetStatus() {
+        return (this.status!= null);
+    }
+
+    /**
+     * Gets the value of the langs property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Langs }
+     *     
+     */
+    public Langs getLangs() {
+        return langs;
+    }
+
+    /**
+     * Sets the value of the langs property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Langs }
+     *     
+     */
+    public void setLangs(Langs value) {
+        this.langs = value;
+    }
+
+    public boolean isSetLangs() {
+        return (this.langs!= null);
+    }
+
+    /**
+     * Gets the value of the descriptions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Descriptions }
+     *     
+     */
+    public Descriptions getDescriptions() {
+        return descriptions;
+    }
+
+    /**
+     * Sets the value of the descriptions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Descriptions }
+     *     
+     */
+    public void setDescriptions(Descriptions value) {
+        this.descriptions = value;
+    }
+
+    public boolean isSetDescriptions() {
+        return (this.descriptions!= null);
     }
 
     /**

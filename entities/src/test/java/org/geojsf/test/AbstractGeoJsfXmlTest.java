@@ -8,7 +8,7 @@ import net.sf.ahtutils.test.AbstractAhtUtilsXmlTest;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.xml.GeoJsfNsPrefixMapper;
+import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class AbstractGeoJsfXmlTest extends AbstractAhtUtilsXmlTest
     public static void initLogger()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-		loggerInit.addAltPath("src/test/resources/config");
+		loggerInit.addAltPath("config.geojsf-entities.test");
 		loggerInit.init();
     }
 	

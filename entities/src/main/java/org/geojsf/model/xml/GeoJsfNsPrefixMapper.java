@@ -1,4 +1,4 @@
-package org.geojsf.xml;
+package org.geojsf.model.xml;
 
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
