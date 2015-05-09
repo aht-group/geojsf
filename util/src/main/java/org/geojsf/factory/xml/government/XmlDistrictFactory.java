@@ -2,7 +2,7 @@ package org.geojsf.factory.xml.government;
 
 import java.io.Serializable;
 
-import org.geojsf.government.District;
+import org.geojsf.model.xml.government.District;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

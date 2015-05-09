@@ -18,7 +18,7 @@
     jaxb:version="2.0">
     <xsd:import namespace="http://www.geojsf.org/geoserver" schemaLocation="geojsf/geoserver.xsd"/>
     <xsd:import namespace="http://www.geojsf.org/monitoring" schemaLocation="geojsf/monitoring.xsd"/>
-    <xsd:import namespace="http://www.geojsf.org/government" schemaLocation="geojsf/gov.xsd"/>
+    <xsd:import namespace="http://www.geojsf.org/government" schemaLocation="geojsf/government.xsd"/>
     <xsd:import namespace="http://www.geojsf.org" schemaLocation="geojsf/geojsf.xsd"/>
     <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="geojsf/gml.xsd"/>
     <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="geojsf/ogc.xsd"/>

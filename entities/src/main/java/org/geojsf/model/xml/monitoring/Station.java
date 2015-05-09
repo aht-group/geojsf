@@ -14,6 +14,7 @@ import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.ahtutils.xml.status.Status;
 import net.sf.ahtutils.xml.status.Type;
+import org.geojsf.xml.geojsf.Wkt;
 
 
 /**
@@ -30,6 +31,7 @@ import net.sf.ahtutils.xml.status.Type;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}status"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
+ *         &lt;element ref="{http://www.geojsf.org}wkt"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -45,7 +47,8 @@ import net.sf.ahtutils.xml.status.Type;
     "type",
     "status",
     "langs",
-    "descriptions"
+    "descriptions",
+    "wkt"
 })
 @XmlRootElement(name = "station")
 public class Station
@@ -61,6 +64,8 @@ public class Station
     protected Langs langs;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Descriptions descriptions;
+    @XmlElement(namespace = "http://www.geojsf.org", required = true)
+    protected Wkt wkt;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
@@ -185,6 +190,34 @@ public class Station
 
     public boolean isSetDescriptions() {
         return (this.descriptions!= null);
+    }
+
+    /**
+     * Gets the value of the wkt property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Wkt }
+     *     
+     */
+    public Wkt getWkt() {
+        return wkt;
+    }
+
+    /**
+     * Sets the value of the wkt property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Wkt }
+     *     
+     */
+    public void setWkt(Wkt value) {
+        this.wkt = value;
+    }
+
+    public boolean isSetWkt() {
+        return (this.wkt!= null);
     }
 
     /**
