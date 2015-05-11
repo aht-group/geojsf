@@ -9,22 +9,21 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
+import org.geojsf.factory.wkt.PointFactory;
 import org.geojsf.interfaces.model.monitoring.GeoStation;
 import org.geojsf.model.xml.monitoring.Station;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
 
 public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription,CAP extends UtilsStatus<CAP,L,D>,STATION extends GeoStation<L,D,CAP>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbStationFactory.class);
 	
 	final Class<STATION> cStation;
-	
-	private WKTReader wktReader;
+
+	private PointFactory gisPointFactory;
 	
 	private EjbLangFactory<L> efLang;
     private EjbDescriptionFactory<D> efDescription;
@@ -39,7 +38,7 @@ public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription,CA
     {
         this.cStation = cStation;
         
-        wktReader = new WKTReader();
+        gisPointFactory = new PointFactory();
         
         efLang = EjbLangFactory.createFactory(cL);
         efDescription = EjbDescriptionFactory.createFactory(cD);
@@ -58,7 +57,7 @@ public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription,CA
 			
 			if(station.isSetWkt() && station.getWkt().isSetValue())
 			{
-				ejb.setGeometry((Point)wktReader.read(station.getWkt().getValue()));
+				ejb.setGeometry(gisPointFactory.build(station.getWkt()));
 			}
 		}
 		catch (InstantiationException e) {e.printStackTrace();}
