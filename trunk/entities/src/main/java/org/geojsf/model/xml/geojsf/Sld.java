@@ -1,7 +1,9 @@
 
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -20,7 +22,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://www.geojsf.org}sld"/>
+ *         &lt;element ref="{http://www.geojsf.org}sldTemplate"/>
+ *         &lt;element ref="{http://www.geojsf.org}sldRule" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *     &lt;/restriction>
@@ -32,45 +35,85 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "sld"
+    "sldTemplate",
+    "sldRule"
 })
-@XmlRootElement(name = "sldRule")
-public class SldRule
+@XmlRootElement(name = "sld")
+public class Sld
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected Sld sld;
+    protected SldTemplate sldTemplate;
+    @XmlElement(required = true)
+    protected List<SldRule> sldRule;
     @XmlAttribute(name = "id")
     protected Long id;
 
     /**
-     * Gets the value of the sld property.
+     * Gets the value of the sldTemplate property.
      * 
      * @return
      *     possible object is
-     *     {@link Sld }
+     *     {@link SldTemplate }
      *     
      */
-    public Sld getSld() {
-        return sld;
+    public SldTemplate getSldTemplate() {
+        return sldTemplate;
     }
 
     /**
-     * Sets the value of the sld property.
+     * Sets the value of the sldTemplate property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Sld }
+     *     {@link SldTemplate }
      *     
      */
-    public void setSld(Sld value) {
-        this.sld = value;
+    public void setSldTemplate(SldTemplate value) {
+        this.sldTemplate = value;
     }
 
-    public boolean isSetSld() {
-        return (this.sld!= null);
+    public boolean isSetSldTemplate() {
+        return (this.sldTemplate!= null);
+    }
+
+    /**
+     * Gets the value of the sldRule property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the sldRule property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSldRule().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link SldRule }
+     * 
+     * 
+     */
+    public List<SldRule> getSldRule() {
+        if (sldRule == null) {
+            sldRule = new ArrayList<SldRule>();
+        }
+        return this.sldRule;
+    }
+
+    public boolean isSetSldRule() {
+        return ((this.sldRule!= null)&&(!this.sldRule.isEmpty()));
+    }
+
+    public void unsetSldRule() {
+        this.sldRule = null;
     }
 
     /**

@@ -1,6 +1,6 @@
 package org.geojsf.factory.wkt;
 
-import org.geojsf.xml.geojsf.Wkt;
+import org.geojsf.model.xml.geojsf.Wkt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ public class PointFactory
 		wktReader = new WKTReader();
 	}
 	
-	public Point build(org.geojsf.xml.geojsf.Coordinate coordinate)
+	public Point build(org.geojsf.model.xml.geojsf.Coordinate coordinate)
 	{
 		return build(coordinate.getLat(),coordinate.getLon());
 	}

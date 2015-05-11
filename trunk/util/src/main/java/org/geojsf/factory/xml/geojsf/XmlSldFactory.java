@@ -9,7 +9,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.xml.geojsf.Sld;
+import org.geojsf.model.xml.geojsf.Sld;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

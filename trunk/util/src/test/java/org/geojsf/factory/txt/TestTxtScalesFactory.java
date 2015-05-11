@@ -3,9 +3,9 @@ package org.geojsf.factory.txt;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
+import org.geojsf.model.xml.geojsf.Scales;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
-import org.geojsf.xml.geojsf.Scales;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

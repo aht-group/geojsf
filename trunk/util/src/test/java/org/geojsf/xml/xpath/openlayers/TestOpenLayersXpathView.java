@@ -4,10 +4,10 @@ import net.sf.ahtutils.test.AbstractAhtUtilsXmlTest;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 
+import org.geojsf.model.xml.geojsf.Map;
+import org.geojsf.model.xml.geojsf.Maps;
+import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.util.query.xpath.GeoJsfXpath;
-import org.geojsf.xml.geojsf.Map;
-import org.geojsf.xml.geojsf.Maps;
-import org.geojsf.xml.geojsf.Repository;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

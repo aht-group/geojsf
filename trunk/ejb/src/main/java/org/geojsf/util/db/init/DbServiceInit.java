@@ -19,8 +19,8 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.xml.geojsf.Repository;
-import org.geojsf.xml.geojsf.Service;
+import org.geojsf.model.xml.geojsf.Repository;
+import org.geojsf.model.xml.geojsf.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

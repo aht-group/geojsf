@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://www.geojsf.org}viewPort" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.geojsf.org}map" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,52 +32,52 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "viewPort"
+    "map"
 })
-@XmlRootElement(name = "viewPorts")
-public class ViewPorts
+@XmlRootElement(name = "maps")
+public class Maps
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<ViewPort> viewPort;
+    protected List<Map> map;
 
     /**
-     * Gets the value of the viewPort property.
+     * Gets the value of the map property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the viewPort property.
+     * This is why there is not a <CODE>set</CODE> method for the map property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getViewPort().add(newItem);
+     *    getMap().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ViewPort }
+     * {@link Map }
      * 
      * 
      */
-    public List<ViewPort> getViewPort() {
-        if (viewPort == null) {
-            viewPort = new ArrayList<ViewPort>();
+    public List<Map> getMap() {
+        if (map == null) {
+            map = new ArrayList<Map>();
         }
-        return this.viewPort;
+        return this.map;
     }
 
-    public boolean isSetViewPort() {
-        return ((this.viewPort!= null)&&(!this.viewPort.isEmpty()));
+    public boolean isSetMap() {
+        return ((this.map!= null)&&(!this.map.isEmpty()));
     }
 
-    public void unsetViewPort() {
-        this.viewPort = null;
+    public void unsetMap() {
+        this.map = null;
     }
 
 }

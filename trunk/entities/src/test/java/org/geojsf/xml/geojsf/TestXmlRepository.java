@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.geojsf.xml.geojsf.Repository;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

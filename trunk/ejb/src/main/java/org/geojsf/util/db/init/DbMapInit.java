@@ -25,9 +25,9 @@ import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.xml.geojsf.Map;
-import org.geojsf.xml.geojsf.Maps;
-import org.geojsf.xml.geojsf.View;
+import org.geojsf.model.xml.geojsf.Map;
+import org.geojsf.model.xml.geojsf.Maps;
+import org.geojsf.model.xml.geojsf.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

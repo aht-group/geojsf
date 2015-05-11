@@ -12,9 +12,9 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
+import org.geojsf.model.xml.geojsf.Scale;
+import org.geojsf.model.xml.geojsf.Scales;
 import org.geojsf.util.component.GeoJsfScalesUtil;
-import org.geojsf.xml.geojsf.Scale;
-import org.geojsf.xml.geojsf.Scales;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

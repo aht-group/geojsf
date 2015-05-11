@@ -3,7 +3,7 @@ package org.geojsf.factory.txt;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-import org.geojsf.xml.geojsf.Scale;
+import org.geojsf.model.xml.geojsf.Scale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

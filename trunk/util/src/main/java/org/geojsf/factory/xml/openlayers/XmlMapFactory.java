@@ -11,13 +11,13 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import org.geojsf.factory.xml.geojsf.XmlViewPortFactory;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.xml.geojsf.Map;
-import org.geojsf.xml.geojsf.Query;
+import org.geojsf.model.xml.geojsf.Map;
+import org.geojsf.model.xml.geojsf.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

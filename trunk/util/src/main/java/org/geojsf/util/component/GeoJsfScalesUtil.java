@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.geojsf.xml.geojsf.Scale;
-import org.geojsf.xml.geojsf.Scales;
+import org.geojsf.model.xml.geojsf.Scale;
+import org.geojsf.model.xml.geojsf.Scales;
 
 public class GeoJsfScalesUtil
 {

@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.geojsf.xml.geojsf.Layers;
-import org.geojsf.xml.geojsf.Maps;
-import org.geojsf.xml.geojsf.Repository;
-import org.geojsf.xml.geojsf.ViewPorts;
+import org.geojsf.model.xml.geojsf.Layers;
+import org.geojsf.model.xml.geojsf.Maps;
+import org.geojsf.model.xml.geojsf.Repository;
+import org.geojsf.model.xml.geojsf.ViewPorts;
 
 public interface GeoJsfDatabaseExportRest
 {	

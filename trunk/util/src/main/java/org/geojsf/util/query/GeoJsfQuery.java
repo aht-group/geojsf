@@ -5,16 +5,16 @@ import java.util.Hashtable;
 import net.sf.ahtutils.controller.util.query.StatusQuery;
 import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 
-import org.geojsf.xml.geojsf.Category;
-import org.geojsf.xml.geojsf.Layer;
-import org.geojsf.xml.geojsf.Map;
-import org.geojsf.xml.geojsf.Query;
-import org.geojsf.xml.geojsf.Repository;
-import org.geojsf.xml.geojsf.Scale;
-import org.geojsf.xml.geojsf.Service;
-import org.geojsf.xml.geojsf.SldTemplate;
-import org.geojsf.xml.geojsf.View;
-import org.geojsf.xml.geojsf.ViewPort;
+import org.geojsf.model.xml.geojsf.Category;
+import org.geojsf.model.xml.geojsf.Layer;
+import org.geojsf.model.xml.geojsf.Map;
+import org.geojsf.model.xml.geojsf.Query;
+import org.geojsf.model.xml.geojsf.Repository;
+import org.geojsf.model.xml.geojsf.Scale;
+import org.geojsf.model.xml.geojsf.Service;
+import org.geojsf.model.xml.geojsf.SldTemplate;
+import org.geojsf.model.xml.geojsf.View;
+import org.geojsf.model.xml.geojsf.ViewPort;
 
 public class GeoJsfQuery
 {

@@ -27,10 +27,10 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.rest.db.GeoJsfDatabaseImportRest;
-import org.geojsf.xml.geojsf.Layers;
-import org.geojsf.xml.geojsf.Maps;
-import org.geojsf.xml.geojsf.Repository;
-import org.geojsf.xml.geojsf.SldTemplate;
+import org.geojsf.model.xml.geojsf.Layers;
+import org.geojsf.model.xml.geojsf.Maps;
+import org.geojsf.model.xml.geojsf.Repository;
+import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

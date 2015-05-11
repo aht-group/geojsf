@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;simpleContent>
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
  *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="srid" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/extension>
  *   &lt;/simpleContent>
  * &lt;/complexType>
@@ -41,6 +42,8 @@ public class Wkt
     protected String value;
     @XmlAttribute(name = "type")
     protected String type;
+    @XmlAttribute(name = "srid")
+    protected Integer srid;
 
     /**
      * Gets the value of the value property.
@@ -96,6 +99,38 @@ public class Wkt
 
     public boolean isSetType() {
         return (this.type!= null);
+    }
+
+    /**
+     * Gets the value of the srid property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public int getSrid() {
+        return srid;
+    }
+
+    /**
+     * Sets the value of the srid property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setSrid(int value) {
+        this.srid = value;
+    }
+
+    public boolean isSetSrid() {
+        return (this.srid!= null);
+    }
+
+    public void unsetSrid() {
+        this.srid = null;
     }
 
 }

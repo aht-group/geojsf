@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,13 +24,14 @@ import net.sf.ahtutils.xml.status.Langs;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://www.geojsf.org}view" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.geojsf.org}layer" maxOccurs="unbounded"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
- *         &lt;element ref="{http://www.geojsf.org}viewPort"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="wms" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="wcs" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,65 +41,66 @@ import net.sf.ahtutils.xml.status.Langs;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "view",
+    "layer",
     "langs",
-    "descriptions",
-    "viewPort"
+    "descriptions"
 })
-@XmlRootElement(name = "map")
-public class Map
+@XmlRootElement(name = "service")
+public class Service
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<View> view;
+    protected List<Layer> layer;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Langs langs;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Descriptions descriptions;
-    @XmlElement(required = true)
-    protected ViewPort viewPort;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
     protected String code;
+    @XmlAttribute(name = "wms")
+    protected String wms;
+    @XmlAttribute(name = "wcs")
+    protected String wcs;
 
     /**
-     * Gets the value of the view property.
+     * Gets the value of the layer property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the view property.
+     * This is why there is not a <CODE>set</CODE> method for the layer property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getView().add(newItem);
+     *    getLayer().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link View }
+     * {@link Layer }
      * 
      * 
      */
-    public List<View> getView() {
-        if (view == null) {
-            view = new ArrayList<View>();
+    public List<Layer> getLayer() {
+        if (layer == null) {
+            layer = new ArrayList<Layer>();
         }
-        return this.view;
+        return this.layer;
     }
 
-    public boolean isSetView() {
-        return ((this.view!= null)&&(!this.view.isEmpty()));
+    public boolean isSetLayer() {
+        return ((this.layer!= null)&&(!this.layer.isEmpty()));
     }
 
-    public void unsetView() {
-        this.view = null;
+    public void unsetLayer() {
+        this.layer = null;
     }
 
     /**
@@ -155,34 +157,6 @@ public class Map
 
     public boolean isSetDescriptions() {
         return (this.descriptions!= null);
-    }
-
-    /**
-     * Gets the value of the viewPort property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ViewPort }
-     *     
-     */
-    public ViewPort getViewPort() {
-        return viewPort;
-    }
-
-    /**
-     * Sets the value of the viewPort property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ViewPort }
-     *     
-     */
-    public void setViewPort(ViewPort value) {
-        this.viewPort = value;
-    }
-
-    public boolean isSetViewPort() {
-        return (this.viewPort!= null);
     }
 
     /**
@@ -243,6 +217,62 @@ public class Map
 
     public boolean isSetCode() {
         return (this.code!= null);
+    }
+
+    /**
+     * Gets the value of the wms property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getWms() {
+        return wms;
+    }
+
+    /**
+     * Sets the value of the wms property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setWms(String value) {
+        this.wms = value;
+    }
+
+    public boolean isSetWms() {
+        return (this.wms!= null);
+    }
+
+    /**
+     * Gets the value of the wcs property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getWcs() {
+        return wcs;
+    }
+
+    /**
+     * Sets the value of the wcs property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setWcs(String value) {
+        this.wcs = value;
+    }
+
+    public boolean isSetWcs() {
+        return (this.wcs!= null);
     }
 
 }

@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;

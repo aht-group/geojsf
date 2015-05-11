@@ -6,8 +6,8 @@ import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.geojsf.xml.geojsf.Map;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

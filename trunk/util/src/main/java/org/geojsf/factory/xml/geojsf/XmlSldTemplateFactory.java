@@ -12,8 +12,8 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.xml.geojsf.Query;
-import org.geojsf.xml.geojsf.SldTemplate;
+import org.geojsf.model.xml.geojsf.Query;
+import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

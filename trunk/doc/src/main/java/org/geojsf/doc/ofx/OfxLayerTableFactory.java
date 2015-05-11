@@ -14,8 +14,8 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.doc.GeoJsfDocumentation;
-import org.geojsf.xml.geojsf.Category;
-import org.geojsf.xml.geojsf.Layer;
+import org.geojsf.model.xml.geojsf.Category;
+import org.geojsf.model.xml.geojsf.Layer;
 import org.openfuxml.content.layout.Width;
 import org.openfuxml.content.media.Image;
 import org.openfuxml.content.media.Media;
