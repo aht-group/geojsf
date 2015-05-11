@@ -1,7 +1,7 @@
 package org.geojsf.factory.geojsf;
 
 import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
-import org.geojsf.xml.geojsf.Scales;
+import org.geojsf.model.xml.geojsf.Scales;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

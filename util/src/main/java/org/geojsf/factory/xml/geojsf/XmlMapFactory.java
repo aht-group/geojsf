@@ -2,8 +2,8 @@ package org.geojsf.factory.xml.geojsf;
 
 import java.io.Serializable;
 
-import org.geojsf.xml.geojsf.Map;
-import org.geojsf.xml.geojsf.ViewPort;
+import org.geojsf.model.xml.geojsf.Map;
+import org.geojsf.model.xml.geojsf.ViewPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

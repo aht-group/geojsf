@@ -12,7 +12,7 @@
     
     <jxb:bindings schemaLocation="../xsd/geojsf/geojsf.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="org.geojsf.xml.geojsf"/>
+            <jxb:package name="org.geojsf.model.xml.geojsf"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     

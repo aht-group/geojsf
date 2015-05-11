@@ -2,7 +2,7 @@ package org.geojsf.factory.xml.gml;
 
 import java.io.Serializable;
 
-import org.geojsf.xml.geojsf.Coordinate;
+import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.xml.gml.Coordinates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

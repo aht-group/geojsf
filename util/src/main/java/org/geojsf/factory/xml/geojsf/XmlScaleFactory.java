@@ -13,7 +13,7 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.xml.geojsf.Scale;
+import org.geojsf.model.xml.geojsf.Scale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

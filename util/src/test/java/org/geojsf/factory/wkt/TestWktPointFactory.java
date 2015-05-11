@@ -5,8 +5,8 @@ import java.util.Date;
 
 import org.geojsf.factory.txt.TxtIsoTimeFactory;
 import org.geojsf.factory.xml.geojsf.XmlCoordinateFactory;
+import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
-import org.geojsf.xml.geojsf.Coordinate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

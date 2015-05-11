@@ -23,8 +23,8 @@ import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.xml.geojsf.Layer;
-import org.geojsf.xml.geojsf.Layers;
+import org.geojsf.model.xml.geojsf.Layer;
+import org.geojsf.model.xml.geojsf.Layers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

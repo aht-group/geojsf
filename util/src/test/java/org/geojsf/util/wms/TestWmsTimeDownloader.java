@@ -2,9 +2,9 @@ package org.geojsf.util.wms;
 
 import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
 import org.geojsf.factory.xml.geojsf.XmlViewPortFactory;
+import org.geojsf.model.xml.geojsf.ViewPort;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
-import org.geojsf.xml.geojsf.ViewPort;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

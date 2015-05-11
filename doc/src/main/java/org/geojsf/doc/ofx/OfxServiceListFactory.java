@@ -13,7 +13,7 @@ import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.xml.geojsf.Service;
+import org.geojsf.model.xml.geojsf.Service;
 import org.openfuxml.content.list.Item;
 import org.openfuxml.content.list.List;
 import org.openfuxml.content.list.Type;

@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,8 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="lon" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
+ *       &lt;attribute name="url" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -29,79 +29,75 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "coordinate")
-public class Coordinate
+@XmlRootElement(name = "legend")
+public class Legend
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlAttribute(name = "lat")
-    protected Double lat;
-    @XmlAttribute(name = "lon")
-    protected Double lon;
+    @XmlAttribute(name = "id")
+    protected Long id;
+    @XmlAttribute(name = "url")
+    protected String url;
 
     /**
-     * Gets the value of the lat property.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
-     *     {@link Double }
+     *     {@link Long }
      *     
      */
-    public double getLat() {
-        return lat;
+    public long getId() {
+        return id;
     }
 
     /**
-     * Sets the value of the lat property.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Double }
+     *     {@link Long }
      *     
      */
-    public void setLat(double value) {
-        this.lat = value;
+    public void setId(long value) {
+        this.id = value;
     }
 
-    public boolean isSetLat() {
-        return (this.lat!= null);
+    public boolean isSetId() {
+        return (this.id!= null);
     }
 
-    public void unsetLat() {
-        this.lat = null;
+    public void unsetId() {
+        this.id = null;
     }
 
     /**
-     * Gets the value of the lon property.
+     * Gets the value of the url property.
      * 
      * @return
      *     possible object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public double getLon() {
-        return lon;
+    public String getUrl() {
+        return url;
     }
 
     /**
-     * Sets the value of the lon property.
+     * Sets the value of the url property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public void setLon(double value) {
-        this.lon = value;
+    public void setUrl(String value) {
+        this.url = value;
     }
 
-    public boolean isSetLon() {
-        return (this.lon!= null);
-    }
-
-    public void unsetLon() {
-        this.lon = null;
+    public boolean isSetUrl() {
+        return (this.url!= null);
     }
 
 }

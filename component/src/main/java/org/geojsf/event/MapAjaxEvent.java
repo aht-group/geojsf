@@ -6,9 +6,9 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.AjaxBehaviorListener;
 import javax.faces.event.FacesListener;
 
-import org.geojsf.xml.geojsf.Coordinate;
-import org.geojsf.xml.geojsf.Scale;
-import org.geojsf.xml.geojsf.ViewPort;
+import org.geojsf.model.xml.geojsf.Coordinate;
+import org.geojsf.model.xml.geojsf.Scale;
+import org.geojsf.model.xml.geojsf.ViewPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,7 +89,7 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 	
 	public void setViewport(String lat, String lon, String top, String bottom, String left, String right)
 	{
-		viewPort = new org.geojsf.xml.geojsf.ViewPort();
+		viewPort = new org.geojsf.model.xml.geojsf.ViewPort();
 		viewPort.setLat(new Double(lat));
 		viewPort.setLon(new Double(lon));
 		viewPort.setTop(new Double(top));

@@ -30,7 +30,7 @@ import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
-import org.geojsf.xml.geojsf.Coordinate;
+import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.xml.gml.Coordinates;
 import org.geojsf.xml.ogc.Distance;
 import org.geojsf.xml.wfs.GetFeature;

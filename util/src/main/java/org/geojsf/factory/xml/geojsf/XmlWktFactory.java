@@ -2,7 +2,7 @@ package org.geojsf.factory.xml.geojsf;
 
 import java.io.Serializable;
 
-import org.geojsf.xml.geojsf.Wkt;
+import org.geojsf.model.xml.geojsf.Wkt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -12,7 +12,7 @@ import net.sf.ahtutils.xml.status.Capabilities;
 import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.ahtutils.xml.status.Status;
-import org.geojsf.xml.geojsf.Wkt;
+import org.geojsf.model.xml.geojsf.Wkt;
 
 
 /**

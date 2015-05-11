@@ -9,9 +9,9 @@ import javax.ws.rs.core.MediaType;
 import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
-import org.geojsf.xml.geojsf.Layers;
-import org.geojsf.xml.geojsf.Maps;
-import org.geojsf.xml.geojsf.Repository;
+import org.geojsf.model.xml.geojsf.Layers;
+import org.geojsf.model.xml.geojsf.Maps;
+import org.geojsf.model.xml.geojsf.Repository;
 
 public interface GeoJsfDatabaseImportRest
 {		
