@@ -11,13 +11,14 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 import org.geojsf.factory.wkt.PointFactory;
 import org.geojsf.interfaces.model.monitoring.GeoStation;
+import org.geojsf.interfaces.model.monitoring.GeoStationCapability;
 import org.geojsf.model.xml.monitoring.Station;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.io.ParseException;
 
-public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription,CAP extends UtilsStatus<CAP,L,D>,STATION extends GeoStation<L,D,CAP>>
+public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbStationFactory.class);
 	
@@ -28,10 +29,10 @@ public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription,CA
 	private EjbLangFactory<L> efLang;
     private EjbDescriptionFactory<D> efDescription;
     
-    public static <L extends UtilsLang,D extends UtilsDescription,CAP extends UtilsStatus<CAP,L,D>,STATION extends GeoStation<L,D,CAP>>
-		EjbStationFactory<L,D,CAP,STATION> factory(final Class<L> cL,final Class<D> cD,final Class<STATION> cStation)
+    public static <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
+		EjbStationFactory<L,D,STATION,CAP,CAPT,CAPS> factory(final Class<L> cL,final Class<D> cD,final Class<STATION> cStation)
     {
-        return new EjbStationFactory<L,D,CAP,STATION>(cL,cD,cStation);
+        return new EjbStationFactory<L,D,STATION,CAP,CAPT,CAPS>(cL,cD,cStation);
     }
     
     public EjbStationFactory(final Class<L> cL,final Class<D> cD, final Class<STATION> cStation)

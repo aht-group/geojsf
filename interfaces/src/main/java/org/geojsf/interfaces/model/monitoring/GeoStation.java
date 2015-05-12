@@ -16,9 +16,12 @@ import com.vividsolutions.jts.geom.Point;
 
 public interface GeoStation<L extends UtilsLang,
 							D extends UtilsDescription,
-							CAPABILITY extends UtilsStatus<CAPABILITY,L,D>>
+							STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>,
+							CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>,
+							CAPT extends UtilsStatus<CAPT,L,D>,
+							CAPS extends UtilsStatus<CAPS,L,D>>
 			extends EjbWithId,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>,EjbWithGeometry<Point>
 {
-	List<CAPABILITY> getCapabilities();
-	void setCapabilities(List<CAPABILITY> capabilities);
+	List<CAP> getCapabilities();
+	void setCapabilities(List<CAP> capabilities);
 }
