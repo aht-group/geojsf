@@ -24,6 +24,7 @@ import net.sf.ahtutils.xml.sync.DataUpdate;
 
 import org.geojsf.factory.ejb.monitoring.EjbStationFactory;
 import org.geojsf.interfaces.model.monitoring.GeoStation;
+import org.geojsf.interfaces.model.monitoring.GeoStationCapability;
 import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationExportRest;
 import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationImportRest;
 import org.geojsf.model.xml.monitoring.Station;
@@ -31,7 +32,7 @@ import org.geojsf.model.xml.monitoring.Stations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,CAP>, CAP extends UtilsStatus<CAP,L,D>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
+public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
 	implements GeoJsfMonitoringStationExportRest,GeoJsfMonitoringStationImportRest
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMonitoringStationRest.class);
@@ -48,7 +49,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	private final String[] defaultLangs;
 	private EjbLangFactory<L> efLang;
     private EjbDescriptionFactory<D> efDescription;
-	private EjbStationFactory<L,D,CAP,STATION> efStation;
+	private EjbStationFactory<L,D,STATION,CAP,CAPT,CAPS> efStation;
 	
 	private String groupCapType;public void setGroupCapType(String groupCapType){this.groupCapType = groupCapType;}
 	private String groupCapStatus;public void setGroupCapStatus(String groupCapStatus){this.groupCapStatus = groupCapStatus;}
@@ -69,7 +70,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 		efStation = EjbStationFactory.factory(cL,cD,cStation);
 	}
 	
-	public static <L extends UtilsLang,D extends UtilsDescription,CAP extends UtilsStatus<CAP,L,D>,STATION extends GeoStation<L,D,CAP>,CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
+	public static <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
 		GeoJsfMonitoringStationRest<L,D,STATION,CAP,CAPT,CAPS>
 		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{
@@ -77,6 +78,9 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	}
 	
 	//Import
+	@Override public DataUpdate importGeoJsfMonitoringCapabilityTypes(Aht types){return importStatus(cCapT,null,types);}
+	@Override public DataUpdate importGeoJsfMonitoringCapabilityStatus(Aht statuses){return importStatus(cCapS,null,statuses);}
+	
 	private <S extends UtilsStatus<S,L,D>, P extends UtilsStatus<P,L,D>> 
 		DataUpdate importStatus(Class<S> cS, Class<P> cP, Aht status)
 	{
@@ -88,8 +92,6 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
         return dataUpdate;
 	}
 	
-	@Override public DataUpdate importGeoJsfMonitoringCapabilities(Aht status){return importStatus(cCap,null,status);}
-
 	@Override
 	public DataUpdate importGeoJsfMonitoringStations(Stations stations)
 	{
@@ -112,7 +114,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 					{
 						for(Capability c : station.getCapabilities().getCapability())
 						{
-							capabilities.add(fGeoMonitoring.fByCode(cCap,c.getCode()));
+						//	capabilities.add(fGeoMonitoring.fByCode(cCapT,c.getCode()));
 						}
 					}
 					
@@ -123,7 +125,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 					dut.success();
 				}
 				catch (UtilsConstraintViolationException e1) {dut.fail(e1,true);}
-				catch (UtilsNotFoundException e1) {dut.fail(e1,true);}
+	//			catch (UtilsNotFoundException e1) {dut.fail(e1,true);}
 			}
 		}
 		return dut.toDataUpdate();

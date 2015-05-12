@@ -7,10 +7,15 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 public interface GeoStationCapability<L extends UtilsLang,
 							D extends UtilsDescription,
-							CAPS extends UtilsStatus<CAPS,L,D>,
-							CAPT extends UtilsStatus<CAPT,L,D>>
+							STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>,
+							CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>,
+							CAPT extends UtilsStatus<CAPT,L,D>,
+							CAPS extends UtilsStatus<CAPS,L,D>>
 			extends EjbWithId
 {
+	STATION getStation();
+	void setStation(STATION station);
+	
 	CAPS getStatus();
 	void setStatus(CAPS status);
 	
