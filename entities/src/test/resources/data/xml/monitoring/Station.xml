@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<m:station xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns2="http://ahtutils.aht-group.com/security" xmlns:geojsf="http://www.geojsf.org" xmlns:m="http://www.geojsf.org/monitoring" id="123" code="myCode">
-    <us:capabilities/>
-    <us:status code="myStatus"/>
+<m:station xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns2="http://ahtutils.aht-group.com/security" xmlns:m="http://www.geojsf.org/monitoring" xmlns:geojsf="http://www.geojsf.org" id="123" code="myCode">
+    <m:capability id="123"/>
+    <m:capability id="123"/>
     <us:langs/>
     <us:descriptions/>
     <geojsf:wkt type="myType">myWKT</geojsf:wkt>

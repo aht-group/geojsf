@@ -2,8 +2,11 @@ package org.geojsf.model.xml.monitoring;
 
 import java.io.FileNotFoundException;
 
+import net.sf.ahtutils.factory.xml.status.XmlCapabilitiesFctory;
 import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlStatusFactory;
+import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
@@ -13,32 +16,29 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlStation extends AbstractXmlMonitoringTest
+public class TestXmlCapability extends AbstractXmlMonitoringTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlStation.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlCapability.class);
 	
-	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, Station.class);}
+	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, Capability.class);}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Station actual = create(true);
-    	Station expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Station.class);
+    	Capability actual = create(true);
+    	Capability expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Capability.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Station create(boolean withChilds)
+    public static Capability create(boolean withChilds)
     {
-    	Station xml = new Station();
+    	Capability xml = new Capability();
     	xml.setId(123);
-    	xml.setCode("myCode");
     	
     	if(withChilds)
     	{
-    		xml.getCapability().add(TestXmlCapability.create(false));xml.getCapability().add(TestXmlCapability.create(false));
-    		xml.setDescriptions(XmlDescriptionsFactory.build());
-    		xml.setLangs(XmlLangsFactory.build());
-    		xml.setWkt(TestXmlWkt.create(false));
+    		xml.setType(XmlTypeFactory.create("myType"));
+    		xml.setStatus(XmlStatusFactory.create("myStatus"));
     	}
     	
     	return xml;
@@ -50,8 +50,8 @@ public class TestXmlStation extends AbstractXmlMonitoringTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlStation.initFiles();	
-		TestXmlStation test = new TestXmlStation();
+		TestXmlCapability.initFiles();	
+		TestXmlCapability test = new TestXmlCapability();
 		test.save();
     }
 }

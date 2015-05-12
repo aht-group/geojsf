@@ -2,16 +2,16 @@
 package org.geojsf.model.xml.monitoring;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import net.sf.ahtutils.xml.status.Capabilities;
 import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
-import net.sf.ahtutils.xml.status.Status;
 import org.geojsf.model.xml.geojsf.Wkt;
 
 
@@ -25,8 +25,7 @@ import org.geojsf.model.xml.geojsf.Wkt;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://ahtutils.aht-group.com/status}capabilities"/>
- *         &lt;element ref="{http://ahtutils.aht-group.com/status}status"/>
+ *         &lt;element ref="{http://www.geojsf.org/monitoring}capability" maxOccurs="unbounded"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
  *         &lt;element ref="{http://www.geojsf.org}wkt"/>
@@ -42,8 +41,7 @@ import org.geojsf.model.xml.geojsf.Wkt;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "capabilities",
-    "status",
+    "capability",
     "langs",
     "descriptions",
     "wkt"
@@ -54,10 +52,8 @@ public class Station
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
-    protected Capabilities capabilities;
-    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
-    protected Status status;
+    @XmlElement(required = true)
+    protected List<Capability> capability;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Langs langs;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
@@ -70,59 +66,40 @@ public class Station
     protected String code;
 
     /**
-     * Gets the value of the capabilities property.
+     * Gets the value of the capability property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Capabilities }
-     *     
-     */
-    public Capabilities getCapabilities() {
-        return capabilities;
-    }
-
-    /**
-     * Sets the value of the capabilities property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the capability property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Capabilities }
-     *     
-     */
-    public void setCapabilities(Capabilities value) {
-        this.capabilities = value;
-    }
-
-    public boolean isSetCapabilities() {
-        return (this.capabilities!= null);
-    }
-
-    /**
-     * Gets the value of the status property.
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getCapability().add(newItem);
+     * </pre>
      * 
-     * @return
-     *     possible object is
-     *     {@link Status }
-     *     
-     */
-    public Status getStatus() {
-        return status;
-    }
-
-    /**
-     * Sets the value of the status property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Status }
-     *     
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Capability }
+     * 
+     * 
      */
-    public void setStatus(Status value) {
-        this.status = value;
+    public List<Capability> getCapability() {
+        if (capability == null) {
+            capability = new ArrayList<Capability>();
+        }
+        return this.capability;
     }
 
-    public boolean isSetStatus() {
-        return (this.status!= null);
+    public boolean isSetCapability() {
+        return ((this.capability!= null)&&(!this.capability.isEmpty()));
+    }
+
+    public void unsetCapability() {
+        this.capability = null;
     }
 
     /**
