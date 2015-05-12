@@ -1,11 +1,11 @@
 package org.geojsf.util.wfs;
 
+import org.geojsf.model.xml.ogc.DWithin;
+import org.geojsf.model.xml.ogc.Distance;
+import org.geojsf.model.xml.ogc.Filter;
+import org.geojsf.model.xml.ogc.PropertyName;
 import org.geojsf.xml.gml.Coordinates;
 import org.geojsf.xml.gml.Point;
-import org.geojsf.xml.ogc.DWithin;
-import org.geojsf.xml.ogc.Distance;
-import org.geojsf.xml.ogc.Filter;
-import org.geojsf.xml.ogc.PropertyName;
 import org.geojsf.xml.wfs.GetFeature;
 import org.geojsf.xml.wfs.Query;
 import org.slf4j.Logger;

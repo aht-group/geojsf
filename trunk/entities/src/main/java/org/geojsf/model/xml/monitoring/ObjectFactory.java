@@ -38,6 +38,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Capability }
+     * 
+     */
+    public Capability createCapability() {
+        return new Capability();
+    }
+
+    /**
      * Create an instance of {@link Stations }
      * 
      */

@@ -8,12 +8,12 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
+import org.geojsf.model.xml.ogc.Distance;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
 import org.geojsf.test.model.SampleSpatialEntity;
 import org.geojsf.util.GeoServerConfigKeys;
 import org.geojsf.xml.gml.Coordinates;
-import org.geojsf.xml.ogc.Distance;
 import org.geojsf.xml.wfs.GetFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

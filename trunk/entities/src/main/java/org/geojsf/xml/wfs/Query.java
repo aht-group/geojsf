@@ -10,8 +10,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import org.geojsf.xml.ogc.Filter;
-import org.geojsf.xml.ogc.PropertyName;
+import org.geojsf.model.xml.ogc.Filter;
+import org.geojsf.model.xml.ogc.PropertyName;
 
 
 /**
