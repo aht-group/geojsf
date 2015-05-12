@@ -31,7 +31,7 @@ import org.geojsf.model.xml.monitoring.Stations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, CAP extends UtilsStatus<CAP,L,D>,STATION extends GeoStation<L,D,CAP>>
+public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,CAP>, CAP extends UtilsStatus<CAP,L,D>>
 	implements GeoJsfMonitoringStationExportRest,GeoJsfMonitoringStationImportRest
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMonitoringStationRest.class);
@@ -52,7 +52,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	private String groupCapabilities;
 	public void setGroupCapabilities(String groupCapabilities){this.groupCapabilities = groupCapabilities;}
 
-	public GeoJsfMonitoringStationRest(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<CAP> cCap,final Class<STATION> cStation)
+	public GeoJsfMonitoringStationRest(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap)
 	{
 		this.fGeoMonitoring=fGeoMonitoring;
 		this.defaultLangs=defaultLangs;
@@ -67,10 +67,10 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	}
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,CAP extends UtilsStatus<CAP,L,D>,STATION extends GeoStation<L,D,CAP>>
-		GeoJsfMonitoringStationRest<L,D,CAP,STATION>
-		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<CAP> cCap,final Class<STATION> cStation)
+		GeoJsfMonitoringStationRest<L,D,STATION,CAP>
+		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap)
 	{
-		return new GeoJsfMonitoringStationRest<L,D,CAP,STATION>(fGeoMonitoring,defaultLangs,cL,cD,cCap,cStation);
+		return new GeoJsfMonitoringStationRest<L,D,STATION,CAP>(fGeoMonitoring,defaultLangs,cL,cD,cStation,cCap);
 	}
 	
 	//Import
@@ -128,16 +128,18 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	
 	
 	//Export
-	@Override
-	public Aht exportGeoJsfMonitoringTypes()
+	@Override public Aht exportGeoJsfMonitoringCapabilityTypes(){return exportStatus(cCap,groupCapabilities);}
+	@Override public Aht exportGeoJsfMonitoringCapabilityStatus(){return exportStatus(cCap,groupCapabilities);}
+	
+	private <S extends UtilsStatus<S,L,D>> Aht exportStatus(Class<S> c, String group)
 	{
 		XmlStatusFactory f = new XmlStatusFactory(StatusQuery.get(StatusQuery.Key.StatusExport, "").getStatus());
 		
 		Aht xml = new Aht();
-		for(CAP cap : fGeoMonitoring.all(cCap))
+		for(S s : fGeoMonitoring.all(c))
 		{
-			Status status = f.build(cap);
-			status.setGroup(groupCapabilities);
+			Status status = f.build(s);
+			status.setGroup(group);
 			xml.getStatus().add(status);
 		}
 		return xml;
@@ -149,4 +151,6 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }

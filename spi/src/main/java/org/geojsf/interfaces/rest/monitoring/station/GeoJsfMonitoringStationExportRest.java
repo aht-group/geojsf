@@ -11,9 +11,13 @@ import org.geojsf.model.xml.monitoring.Stations;
 
 public interface GeoJsfMonitoringStationExportRest
 {	
-	@GET @Path("/geojsf/monitoring/types")
+	@GET @Path("/geojsf/monitoring/capability/types")
 	@Produces(MediaType.APPLICATION_XML)
-	Aht exportGeoJsfMonitoringTypes();
+	Aht exportGeoJsfMonitoringCapabilityTypes();
+	
+	@GET @Path("/geojsf/monitoring/capability/status")
+	@Produces(MediaType.APPLICATION_XML)
+	Aht exportGeoJsfMonitoringCapabilityStatus();
 	
 	@GET @Path("/geojsf/monitoring/stations")
 	@Produces(MediaType.APPLICATION_XML)
