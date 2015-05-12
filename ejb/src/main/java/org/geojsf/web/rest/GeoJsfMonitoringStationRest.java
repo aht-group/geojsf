@@ -31,7 +31,7 @@ import org.geojsf.model.xml.monitoring.Stations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,CAP>, CAP extends UtilsStatus<CAP,L,D>>
+public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,CAP>, CAP extends UtilsStatus<CAP,L,D>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
 	implements GeoJsfMonitoringStationExportRest,GeoJsfMonitoringStationImportRest
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMonitoringStationRest.class);
@@ -40,37 +40,40 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	
 	private final Class<L> cL;
 	private final Class<D> cD;
-	private final Class<CAP> cCap;
 	private final Class<STATION> cStation;
+	private final Class<CAP> cCap;
+	private final Class<CAPT> cCapT;
+	private final Class<CAPS> cCapS;
 	
 	private final String[] defaultLangs;
 	private EjbLangFactory<L> efLang;
     private EjbDescriptionFactory<D> efDescription;
 	private EjbStationFactory<L,D,CAP,STATION> efStation;
 	
-	
-	private String groupCapabilities;
-	public void setGroupCapabilities(String groupCapabilities){this.groupCapabilities = groupCapabilities;}
+	private String groupCapType;public void setGroupCapType(String groupCapType){this.groupCapType = groupCapType;}
+	private String groupCapStatus;public void setGroupCapStatus(String groupCapStatus){this.groupCapStatus = groupCapStatus;}
 
-	public GeoJsfMonitoringStationRest(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap)
+	public GeoJsfMonitoringStationRest(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{
 		this.fGeoMonitoring=fGeoMonitoring;
 		this.defaultLangs=defaultLangs;
 		this.cL=cL;
 		this.cD=cD;
-		this.cCap=cCap;
 		this.cStation=cStation;
+		this.cCap=cCap;
+		this.cCapT=cCapT;
+		this.cCapS=cCapS;
 		
         efLang = EjbLangFactory.createFactory(cL);
         efDescription = EjbDescriptionFactory.createFactory(cD);
 		efStation = EjbStationFactory.factory(cL,cD,cStation);
 	}
 	
-	public static <L extends UtilsLang,D extends UtilsDescription,CAP extends UtilsStatus<CAP,L,D>,STATION extends GeoStation<L,D,CAP>>
-		GeoJsfMonitoringStationRest<L,D,STATION,CAP>
-		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap)
+	public static <L extends UtilsLang,D extends UtilsDescription,CAP extends UtilsStatus<CAP,L,D>,STATION extends GeoStation<L,D,CAP>,CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
+		GeoJsfMonitoringStationRest<L,D,STATION,CAP,CAPT,CAPS>
+		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{
-		return new GeoJsfMonitoringStationRest<L,D,STATION,CAP>(fGeoMonitoring,defaultLangs,cL,cD,cStation,cCap);
+		return new GeoJsfMonitoringStationRest<L,D,STATION,CAP,CAPT,CAPS>(fGeoMonitoring,defaultLangs,cL,cD,cStation,cCap,cCapT,cCapS);
 	}
 	
 	//Import
@@ -128,8 +131,8 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	
 	
 	//Export
-	@Override public Aht exportGeoJsfMonitoringCapabilityTypes(){return exportStatus(cCap,groupCapabilities);}
-	@Override public Aht exportGeoJsfMonitoringCapabilityStatus(){return exportStatus(cCap,groupCapabilities);}
+	@Override public Aht exportGeoJsfMonitoringCapabilityTypes(){return exportStatus(cCapT,groupCapType);}
+	@Override public Aht exportGeoJsfMonitoringCapabilityStatus(){return exportStatus(cCapS,groupCapStatus);}
 	
 	private <S extends UtilsStatus<S,L,D>> Aht exportStatus(Class<S> c, String group)
 	{
