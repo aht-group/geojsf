@@ -7,13 +7,15 @@ import javax.ws.rs.core.MediaType;
 
 import net.sf.ahtutils.xml.aht.Aht;
 
+import org.geojsf.model.xml.water.surface.Basins;
+
 public interface GeoJsfWaterSurfaceBasinExportRest
 {	
 	@GET @Path("/geojsf/water/surface/basin/model")
 	@Produces(MediaType.APPLICATION_XML)
 	Aht exportGeoJsfWaterSurfaceBasinModel();
 	
-//	@GET @Path("/geojsf/water/surface/basin/model")
-//	@Produces(MediaType.APPLICATION_XML)
-//	Basins exportGeoJsfWaterSurfaceBasins();
+	@GET @Path("/geojsf/water/surface/basin")
+	@Produces(MediaType.APPLICATION_XML)
+	Basins exportGeoJsfWaterSurfaceBasins();
 }

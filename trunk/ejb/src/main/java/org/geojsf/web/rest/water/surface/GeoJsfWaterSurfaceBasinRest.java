@@ -7,6 +7,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.xml.aht.Aht;
 
 import org.geojsf.interfaces.rest.water.surface.GeoJsfWaterSurfaceBasinExportRest;
+import org.geojsf.model.xml.water.surface.Basins;
 import org.geojsf.web.rest.AbstractGeoJsfRest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,5 +35,12 @@ public class GeoJsfWaterSurfaceBasinRest <L extends UtilsLang,D extends UtilsDes
 
 	//Export
 	@Override public Aht exportGeoJsfWaterSurfaceBasinModel(){return exportStatus(cM,"");}
+
+	@Override
+	public Basins exportGeoJsfWaterSurfaceBasins()
+	{
+		logger.warn("NYI");
+		return null;
+	}
 
 }
