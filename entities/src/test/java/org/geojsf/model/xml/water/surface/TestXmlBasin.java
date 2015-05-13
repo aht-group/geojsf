@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlModelFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
@@ -39,6 +40,7 @@ public class TestXmlBasin extends AbstractXmWaterSurfaceTest
     		xml.setWkt(TestXmlWkt.create(false));
     		xml.setLangs(XmlLangsFactory.build());
     		xml.setDescriptions(XmlDescriptionsFactory.build());
+    		xml.setModel(XmlModelFactory.build("myCode"));
     	}
     	
     	return xml;

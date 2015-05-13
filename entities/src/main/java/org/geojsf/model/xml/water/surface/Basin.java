@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
+import net.sf.ahtutils.xml.status.Model;
 import org.geojsf.model.xml.geojsf.Wkt;
 
 
@@ -24,6 +25,7 @@ import org.geojsf.model.xml.geojsf.Wkt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.geojsf.org}wkt"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}model"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
  *       &lt;/sequence>
@@ -40,6 +42,7 @@ import org.geojsf.model.xml.geojsf.Wkt;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "wkt",
+    "model",
     "langs",
     "descriptions"
 })
@@ -51,6 +54,8 @@ public class Basin
     private final static long serialVersionUID = 1L;
     @XmlElement(namespace = "http://www.geojsf.org", required = true)
     protected Wkt wkt;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Model model;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Langs langs;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
@@ -88,6 +93,34 @@ public class Basin
 
     public boolean isSetWkt() {
         return (this.wkt!= null);
+    }
+
+    /**
+     * Gets the value of the model property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Model }
+     *     
+     */
+    public Model getModel() {
+        return model;
+    }
+
+    /**
+     * Sets the value of the model property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Model }
+     *     
+     */
+    public void setModel(Model value) {
+        this.model = value;
+    }
+
+    public boolean isSetModel() {
+        return (this.model!= null);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ws:basin xmlns:geojsf="http://www.geojsf.org" xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ws="http://www.geojsf.org/water/surface" id="123" code="abc" label="label">
+<ws:basin xmlns:geojsf="http://www.geojsf.org" xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns3="http://ahtutils.aht-group.com/security" xmlns:ws="http://www.geojsf.org/water/surface" id="123" code="abc" label="label">
     <geojsf:wkt type="myType">myWKT</geojsf:wkt>
+    <us:model code="myCode"/>
     <us:langs/>
     <us:descriptions/>
 </ws:basin>

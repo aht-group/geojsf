@@ -22,6 +22,7 @@ public class XmlWktFactory implements Serializable
 		Wkt wkt = new Wkt();
 		
 		wkt.setType(geometry.getClass().getSimpleName());
+		if(geometry.getSRID()>0){wkt.setSrid(geometry.getSRID());}
 		wkt.setValue(w.write(geometry));
 
 		return wkt;
