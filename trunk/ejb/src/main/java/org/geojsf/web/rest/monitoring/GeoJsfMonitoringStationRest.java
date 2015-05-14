@@ -3,10 +3,8 @@ package org.geojsf.web.rest.monitoring;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.ahtutils.db.xml.AhtStatusDbInit;
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.factory.ejb.status.EjbStatusFactory;
 import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
@@ -39,9 +37,6 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	private final Class<CAPS> cCapS;
 	
 	private EjbStationFactory<L,D,STATION,CAP,CAPT,CAPS> efStation;
-	
-	private String groupCapType;public void setGroupCapType(String groupCapType){this.groupCapType = groupCapType;}
-	private String groupCapStatus;public void setGroupCapStatus(String groupCapStatus){this.groupCapStatus = groupCapStatus;}
 
 	public GeoJsfMonitoringStationRest(UtilsFacade fUtils, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{
@@ -66,19 +61,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	@Override public DataUpdate importGeoJsfMonitoringCapabilityTypes(Aht types){return importStatus(cCapT,null,types);}
 	@Override public DataUpdate importGeoJsfMonitoringCapabilityStatus(Aht statuses){return importStatus(cCapS,null,statuses);}
 	
-	private <S extends UtilsStatus<S,L,D>, P extends UtilsStatus<P,L,D>> 
-		DataUpdate importStatus(Class<S> cS, Class<P> cP, Aht status)
-	{
-		AhtStatusDbInit<S,L,D> asdi = new AhtStatusDbInit<S,L,D>();
-        asdi.setStatusEjbFactory(EjbStatusFactory.createFactory(cS, cL, cD));
-        asdi.setFacade(fUtils);
-        DataUpdate dataUpdate = asdi.iuStatus(status.getStatus(), cS, cL, cP);
-        asdi.deleteUnusedStatus(cS, cL, cD);
-        return dataUpdate;
-	}
-	
-	@Override
-	public DataUpdate importGeoJsfMonitoringStations(Stations stations)
+	@Override public DataUpdate importGeoJsfMonitoringStations(Stations stations)
 	{
 		DataUpdateTracker dut = new DataUpdateTracker(true);
 		dut.setType(XmlTypeFactory.build(cStation.getName(),"DB Import"));
@@ -118,8 +101,8 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	
 	
 	//Export
-	@Override public Aht exportGeoJsfMonitoringCapabilityTypes(){return exportStatus(cCapT,groupCapType);}
-	@Override public Aht exportGeoJsfMonitoringCapabilityStatus(){return exportStatus(cCapS,groupCapStatus);}
+	@Override public Aht exportGeoJsfMonitoringCapabilityTypes(){return exportStatus(cCapT);}
+	@Override public Aht exportGeoJsfMonitoringCapabilityStatus(){return exportStatus(cCapS);}
 	
 	@Override
 	public Stations exportGeoJsfMonitoringStations()
