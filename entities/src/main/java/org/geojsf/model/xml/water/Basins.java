@@ -1,5 +1,5 @@
 
-package org.geojsf.model.xml.water.surface;
+package org.geojsf.model.xml.water;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://www.geojsf.org/water/surface}basin" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.geojsf.org/water}basin" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

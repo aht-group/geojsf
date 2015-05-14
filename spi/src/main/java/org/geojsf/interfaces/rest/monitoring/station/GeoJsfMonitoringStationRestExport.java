@@ -9,7 +9,7 @@ import net.sf.ahtutils.xml.aht.Aht;
 
 import org.geojsf.model.xml.monitoring.Stations;
 
-public interface GeoJsfMonitoringStationExportRest
+public interface GeoJsfMonitoringStationRestExport
 {	
 	@GET @Path("/geojsf/monitoring/capability/types")
 	@Produces(MediaType.APPLICATION_XML)

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ws:basins xmlns:geojsf="http://www.geojsf.org" xmlns:ws="http://www.geojsf.org/water/surface">
-    <ws:basin id="123" code="abc" name="name"/>
-    <ws:basin id="123" code="abc" name="name"/>
-</ws:basins>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://www.geojsf.org/water/surface"
-    xmlns:ws="http://www.geojsf.org/water/surface"
+<xsd:schema targetNamespace="http://www.geojsf.org/water"
+    xmlns:w="http://www.geojsf.org/water"
     xmlns:geojsf="http://www.geojsf.org"
     xmlns:us="http://ahtutils.aht-group.com/status"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -9,7 +9,7 @@
 	<xsd:element name="basins">
 		<xsd:complexType>
             <xsd:sequence>
-                <xsd:element ref="ws:basin" maxOccurs="unbounded"/>
+                <xsd:element ref="w:basin" maxOccurs="unbounded"/>
             </xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
@@ -22,7 +22,7 @@
 				<xsd:element ref="us:descriptions" maxOccurs="1"/>
 			</xsd:sequence>
 			<xsd:attribute name="id" type="xsd:long"/>
-			<xsd:attribute name="code" type="xsd:string"/>
+			<xsd:attribute name="area" type="xsd:double"/>
 			<xsd:attribute name="label" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>

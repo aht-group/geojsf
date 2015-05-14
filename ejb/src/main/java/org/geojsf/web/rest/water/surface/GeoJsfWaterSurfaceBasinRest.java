@@ -6,15 +6,15 @@ import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.xml.aht.Aht;
 
-import org.geojsf.interfaces.rest.water.surface.GeoJsfWaterSurfaceBasinExportRest;
-import org.geojsf.model.xml.water.surface.Basins;
+import org.geojsf.interfaces.rest.water.surface.GeoJsfWaterSurfaceBasinRestExport;
+import org.geojsf.model.xml.water.Basins;
 import org.geojsf.web.rest.AbstractGeoJsfRest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoJsfWaterSurfaceBasinRest <L extends UtilsLang,D extends UtilsDescription,MODEL extends UtilsStatus<MODEL,L,D>>
 	extends AbstractGeoJsfRest<L,D>
-	implements GeoJsfWaterSurfaceBasinExportRest
+	implements GeoJsfWaterSurfaceBasinRestExport
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfWaterSurfaceBasinRest.class);
 

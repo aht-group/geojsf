@@ -28,9 +28,9 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
-	<jxb:bindings schemaLocation="../xsd/geojsf/waterSurface.xsd" node="/xsd:schema">
+	<jxb:bindings schemaLocation="../xsd/geojsf/water.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="org.geojsf.model.xml.water.surface"/>
+            <jxb:package name="org.geojsf.model.xml.water"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     

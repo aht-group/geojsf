@@ -20,7 +20,7 @@
     <xsd:import namespace="http://www.geojsf.org/geoserver" schemaLocation="geojsf/geoserver.xsd"/>
     <xsd:import namespace="http://www.geojsf.org/monitoring" schemaLocation="geojsf/monitoring.xsd"/>
     <xsd:import namespace="http://www.geojsf.org/government" schemaLocation="geojsf/government.xsd"/>
-    <xsd:import namespace="http://www.geojsf.org/water/surface" schemaLocation="geojsf/waterSurface.xsd"/>
+    <xsd:import namespace="http://www.geojsf.org/water" schemaLocation="geojsf/water.xsd"/>
     <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="geojsf/gml.xsd"/>
     <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="geojsf/ogc.xsd"/>
     <xsd:import namespace="http://www.opengis.net/wfs" schemaLocation="geojsf/wfs.xsd"/>
