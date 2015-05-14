@@ -19,8 +19,8 @@ import net.sf.ahtutils.xml.sync.DataUpdate;
 import org.geojsf.factory.ejb.monitoring.EjbStationFactory;
 import org.geojsf.interfaces.model.monitoring.GeoStation;
 import org.geojsf.interfaces.model.monitoring.GeoStationCapability;
-import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationExportRest;
-import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationImportRest;
+import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRestExport;
+import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRestImport;
 import org.geojsf.model.xml.monitoring.Station;
 import org.geojsf.model.xml.monitoring.Stations;
 import org.geojsf.web.rest.AbstractGeoJsfRest;
@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
 	extends AbstractGeoJsfRest<L,D>
-	implements GeoJsfMonitoringStationExportRest,GeoJsfMonitoringStationImportRest
+	implements GeoJsfMonitoringStationRestExport,GeoJsfMonitoringStationRestImport
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMonitoringStationRest.class);
 

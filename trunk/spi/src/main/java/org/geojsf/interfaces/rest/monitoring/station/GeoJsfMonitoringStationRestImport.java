@@ -11,7 +11,7 @@ import net.sf.ahtutils.xml.sync.DataUpdate;
 
 import org.geojsf.model.xml.monitoring.Stations;
 
-public interface GeoJsfMonitoringStationImportRest
+public interface GeoJsfMonitoringStationRestImport
 {	
 	@POST @Path("/geojsf/monitoring/capability/types")
 	@Produces(MediaType.APPLICATION_XML) @Consumes(MediaType.APPLICATION_XML)

@@ -1,5 +1,5 @@
 
-package org.geojsf.model.xml.water.surface;
+package org.geojsf.model.xml.water;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -30,7 +30,7 @@ import org.geojsf.model.xml.geojsf.Wkt;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="area" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="label" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -62,8 +62,8 @@ public class Basin
     protected Descriptions descriptions;
     @XmlAttribute(name = "id")
     protected Long id;
-    @XmlAttribute(name = "code")
-    protected String code;
+    @XmlAttribute(name = "area")
+    protected Double area;
     @XmlAttribute(name = "label")
     protected String label;
 
@@ -212,31 +212,35 @@ public class Basin
     }
 
     /**
-     * Gets the value of the code property.
+     * Gets the value of the area property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Double }
      *     
      */
-    public String getCode() {
-        return code;
+    public double getArea() {
+        return area;
     }
 
     /**
-     * Sets the value of the code property.
+     * Sets the value of the area property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Double }
      *     
      */
-    public void setCode(String value) {
-        this.code = value;
+    public void setArea(double value) {
+        this.area = value;
     }
 
-    public boolean isSetCode() {
-        return (this.code!= null);
+    public boolean isSetArea() {
+        return (this.area!= null);
+    }
+
+    public void unsetArea() {
+        this.area = null;
     }
 
     /**

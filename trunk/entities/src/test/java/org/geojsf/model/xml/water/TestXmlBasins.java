@@ -1,9 +1,10 @@
-package org.geojsf.model.xml.water.surface;
+package org.geojsf.model.xml.water;
 
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.geojsf.model.xml.water.Basins;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
