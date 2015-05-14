@@ -19,4 +19,7 @@ public interface GeoBasin<L extends UtilsLang,
 {
 	MODEL getModel();
 	void setModel(MODEL model);
+	
+	double getArea();
+	void setArea(double area);
 }
