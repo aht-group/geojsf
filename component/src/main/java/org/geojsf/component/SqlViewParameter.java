@@ -41,7 +41,7 @@ public class SqlViewParameter extends UIComponentBase
 		Map<String,Object> map = this.getAttributes();
 		this.key     = (String) map.get(Attribute.key.toString());
 		this.value   = (String) map.get(Attribute.value.toString());
-		String command = "<script>GeoJSF.updateSqlViewParams('" +key +": " +value +";');</script>";
+		String command = "<script>GeoJSF.updateSqlViewParams('" +key +":"+value +";');</script>";
 		ctx.getResponseWriter().write(command);
 		logger.info("SQL View Parameter updated in Map. JavaScript Command: " +command);
 	}
