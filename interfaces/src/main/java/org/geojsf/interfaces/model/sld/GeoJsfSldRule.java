@@ -22,6 +22,9 @@ public interface GeoJsfSldRule<L extends UtilsLang,
 	SLD getSld();
 	void setSld(SLD sld);
 	
+	STYLE getStyle();
+	void setStyle(STYLE style);
+	
 	Double getLowerBound();
 	void setLowerBound(Double lowerBound);
 	
