@@ -8,8 +8,9 @@
     xmlns:composite="http://java.sun.com/jsf/composite">
     
 	<composite:interface>
-		<composite:attribute name="handler"/>
+		<composite:attribute name="handler" required="true"/>
 		<composite:attribute name="update"/>
+		<composite:attribute name="styles" required="true"/>
 	</composite:interface>
         
 	<composite:implementation>
@@ -20,7 +21,8 @@
 				<aht:icon type="geoJsfSave" listener="#{cc.attrs.handler.saveRule()}" update="#{cc.attrs.update}"/>
 				<aht:icon type="geoJsfDelete" listener="#{cc.attrs.handler.rmRule()}" update="#{cc.attrs.update}"/>
 			</f:facet>
-			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
+			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">				
+			
 				<p:outputLabel value="#{msg.geoJsfSldRulePosition}"/>
 				<p:inputText value="#{cc.attrs.handler.rule.position}"/>
 				
@@ -29,6 +31,14 @@
 					 
 				<p:outputLabel value="#{msg.geoJsfSldRuleUpperBound}"/>
 				<p:inputText value="#{cc.attrs.handler.rule.upperBound}"/>
+				
+				<p:outputLabel value="#{msg.geoJsfSldRuleStyle}"/>
+				<p:selectOneMenu styleClass="w100" value="#{cc.attrs.handler.rule.style}" effect="fade">  
+					<f:selectItems value="#{cc.attrs.styles}" var="s" itemLabel="#{s.name[userBean.localeCode].lang}" itemValue="#{s}"/>
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="#{msg.geoJsfSldRuleSize}"/>
+				<p:spinner value="#{cc.attrs.handler.rule.size}" min="0" max="100" />
 				
 				<p:outputLabel value="#{msg.geoJsfSldRuleColor}"/>
 				<p:inputText value="#{cc.attrs.handler.rule.color}"/>
