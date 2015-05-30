@@ -138,7 +138,11 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,CATEGO
 	}
 
 	@Override public DataUpdate importGeoJsfSldTypes(Aht types) {return super.importStatus(cSldType, null, types);}
-	@Override public DataUpdate importGeoJsfSldStyles(Aht styles) {return super.importStatus(cSldStyle, null, styles);}
+	@Override public DataUpdate importGeoJsfSldStyles(Aht styles)
+	{
+		logger.trace("importGeoJsfSldStyles "+cSldStyle.getName());
+		return super.importStatus(cSldStyle, null, styles);
+	}
 
 	@Override
 	public DataUpdate importGeoJsfSldTemplates(Repository templates)

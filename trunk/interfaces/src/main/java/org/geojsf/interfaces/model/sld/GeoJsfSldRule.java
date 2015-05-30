@@ -5,6 +5,8 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
+import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
+import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 import net.sf.ahtutils.model.interfaces.with.EjbWithPosition;
 
 public interface GeoJsfSldRule<L extends UtilsLang,
@@ -14,7 +16,7 @@ public interface GeoJsfSldRule<L extends UtilsLang,
 						   SLD extends GeoJsfSld<L,D,TYPE,STYLE,SLD,RULE,TEMPLATE>,
 						   RULE extends GeoJsfSldRule<L,D,TYPE,STYLE,SLD,RULE,TEMPLATE>,
 						   TEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,TEMPLATE>>
-			extends EjbSaveable,EjbRemoveable,EjbWithPosition
+			extends EjbSaveable,EjbRemoveable,EjbWithPosition,EjbWithLang<L>,EjbWithDescription<D>
 {
 	public static enum Type{symbol,interval}
 	public static enum Style{square,circle}
