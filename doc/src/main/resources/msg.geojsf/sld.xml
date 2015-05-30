@@ -14,6 +14,20 @@
 			<s:lang key="fr" translation="SLD Rule"/>
 		</s:langs>
 	</s:translation>
+	<s:translation key="geoJsfSldRuleStyle">
+		<s:langs>
+			<s:lang key="de" translation="Stil"/>
+			<s:lang key="en" translation="Style"/>
+			<s:lang key="fr" translation="Style"/>
+		</s:langs>
+	</s:translation>	
+	<s:translation key="geoJsfSldRuleSize">
+		<s:langs>
+			<s:lang key="de" translation="Größe"/>
+			<s:lang key="en" translation="Size"/>
+			<s:lang key="fr" translation="Size"/>
+		</s:langs>
+	</s:translation>	
 	<s:translation key="geoJsfSldRulePosition">
 		<s:langs>
 			<s:lang key="de" translation="Position"/>
