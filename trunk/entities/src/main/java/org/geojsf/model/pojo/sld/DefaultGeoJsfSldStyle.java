@@ -12,9 +12,9 @@ import net.sf.ahtutils.model.qualifier.EjbErNode;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-@EjbErNode(name="ViewPort",category="geojsf")
-public class DefaultGeoJsfSldType implements Serializable,EjbRemoveable,EjbPersistable,
-								UtilsStatus<DefaultGeoJsfSldType,DefaultGeoJsfLang,DefaultGeoJsfDescription>
+@EjbErNode(name="SldStyle",category="geojsf")
+public class DefaultGeoJsfSldStyle implements Serializable,EjbRemoveable,EjbPersistable,
+								UtilsStatus<DefaultGeoJsfSldStyle,DefaultGeoJsfLang,DefaultGeoJsfDescription>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
@@ -57,7 +57,7 @@ public class DefaultGeoJsfSldType implements Serializable,EjbRemoveable,EjbPersi
 	
 	public boolean equals(Object object)
 	{
-        return (object instanceof DefaultGeoJsfSldType) ? id == ((DefaultGeoJsfSldType) object).getId() : (object == this);
+        return (object instanceof DefaultGeoJsfSldStyle) ? id == ((DefaultGeoJsfSldStyle) object).getId() : (object == this);
     }
 	
 	public String toString()

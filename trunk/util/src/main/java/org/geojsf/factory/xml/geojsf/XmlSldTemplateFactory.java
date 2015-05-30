@@ -17,13 +17,8 @@ import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlSldTemplateFactory <L extends UtilsLang,
-									D extends UtilsDescription,
-									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-									SLD extends GeoJsfSld<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
-									RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
-		implements Serializable
+public class XmlSldTemplateFactory <L extends UtilsLang,D extends UtilsDescription,SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,SLD extends GeoJsfSld<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
+							implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlSldTemplateFactory.class);
 	public static final long serialVersionUID=1;

@@ -12,9 +12,10 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 public interface EjbWithSld <L extends UtilsLang,
 							D extends UtilsDescription,
 							TYPE extends UtilsStatus<TYPE,L,D>,
-							SLD extends GeoJsfSld<L,D,TYPE,SLD,RULE,SLDTEMPLATE>,
-							RULE extends GeoJsfSldRule<L,D,TYPE,SLD,RULE,SLDTEMPLATE>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,SLDTEMPLATE>>
+							STYLE extends UtilsStatus<STYLE,L,D>,
+							SLD extends GeoJsfSld<L,D,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,
+							RULE extends GeoJsfSldRule<L,D,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,
+							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,SLDTEMPLATE>>
 						extends EjbWithId
 {
 	SLD getSld();

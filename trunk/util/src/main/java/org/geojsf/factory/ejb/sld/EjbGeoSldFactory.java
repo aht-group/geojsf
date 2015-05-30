@@ -10,7 +10,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoSldFactory<L extends UtilsLang,D extends UtilsDescription,T extends UtilsStatus<T,L,D>,SLD extends GeoJsfSld<L,D,T,SLD,RULE,SLDTEMPLATE>,RULE extends GeoJsfSldRule<L,D,T,SLD,RULE,SLDTEMPLATE>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,T,SLDTEMPLATE>>
+public class EjbGeoSldFactory<L extends UtilsLang,D extends UtilsDescription,TYPE extends UtilsStatus<TYPE,L,D>,STYLE extends UtilsStatus<STYLE,L,D>,SLD extends GeoJsfSld<L,D,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,RULE extends GeoJsfSldRule<L,D,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,SLDTEMPLATE>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldFactory.class);
 	
@@ -21,13 +21,13 @@ public class EjbGeoSldFactory<L extends UtilsLang,D extends UtilsDescription,T e
         this.cSld = cSld;
     } 
     
-    public static <L extends UtilsLang,D extends UtilsDescription,T extends UtilsStatus<T,L,D>,SLD extends GeoJsfSld<L,D,T,SLD,RULE,SLDTEMPLATE>,RULE extends GeoJsfSldRule<L,D,T,SLD,RULE,SLDTEMPLATE>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,T,SLDTEMPLATE>>
-    	EjbGeoSldFactory<L,D,T,SLD,RULE,SLDTEMPLATE> factory(final Class<SLD> cSld)
+    public static <L extends UtilsLang,D extends UtilsDescription,TYPE extends UtilsStatus<TYPE,L,D>,STYLE extends UtilsStatus<STYLE,L,D>,SLD extends GeoJsfSld<L,D,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,RULE extends GeoJsfSldRule<L,D,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,SLDTEMPLATE>>
+    	EjbGeoSldFactory<L,D,TYPE,STYLE,SLD,RULE,SLDTEMPLATE> factory(final Class<SLD> cSld)
     {
-        return new EjbGeoSldFactory<L,D,T,SLD,RULE,SLDTEMPLATE>(cSld);
+        return new EjbGeoSldFactory<L,D,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>(cSld);
     }
 	
-	public SLD build(SLDTEMPLATE template,T type)
+	public SLD build(SLDTEMPLATE template,TYPE type)
 	{
 		SLD ejb;
 		try {ejb = cSld.newInstance();}
