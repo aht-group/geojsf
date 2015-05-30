@@ -45,6 +45,11 @@ public interface GeoJsfDatabaseImportRest
 	@Consumes(MediaType.APPLICATION_XML)
 	DataUpdate importGeoJsfSldTypes(Aht types);
 	
+	@POST @Path("/geojsf/sld/style")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	DataUpdate importGeoJsfSldStyles(Aht styles);
+	
 	@POST @Path("/geojsf/sld/templates")
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)
