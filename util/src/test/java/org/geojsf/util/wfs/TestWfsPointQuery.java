@@ -7,6 +7,7 @@ import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
 import org.geojsf.model.pojo.openlayers.DefaultGeoJsfViewPort;
+import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
@@ -20,7 +21,7 @@ import org.junit.Test;
 
 public class TestWfsPointQuery extends AbstractGeoJsfUtilTest
 {
-	private WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldTemplate> wfsPq;
+	private WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate> wfsPq;
 	
 	@Before
 	public void init()
@@ -31,7 +32,7 @@ public class TestWfsPointQuery extends AbstractGeoJsfUtilTest
 		layer.setService(service);
 		
 		WfsGetFeaturePropertyProvider wfsPp = new GeoJsfGetFeaturePropertyProvider();
-		wfsPq = new WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldTemplate>
+		wfsPq = new WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
 								(null,wfsPp,layer,SampleSpatialEntity.class,SampleSpatialEntity.class);
 	}
 	

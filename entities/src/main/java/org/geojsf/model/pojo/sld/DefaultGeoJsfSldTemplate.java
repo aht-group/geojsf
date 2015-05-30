@@ -14,7 +14,7 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 @EjbErNode(name="ViewPort",category="geojsf")
 public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfSldTemplate<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldType,DefaultGeoJsfSldTemplate>
+								GeoJsfSldTemplate<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
