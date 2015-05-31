@@ -35,6 +35,13 @@
 			<s:lang key="fr" translation="Position"/>
 		</s:langs>
 	</s:translation>
+	<s:translation key="geoJsfSldRuleBounds">
+		<s:langs>
+			<s:lang key="de" translation="Grenzen"/>
+			<s:lang key="en" translation="Bounds"/>
+			<s:lang key="fr" translation="Barre"/>
+		</s:langs>
+	</s:translation>
 	<s:translation key="geoJsfSldRuleLower">
 		<s:langs>
 			<s:lang key="de" translation="Lower"/>

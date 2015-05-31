@@ -92,6 +92,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 		this.cView=cView;
 		this.cCategory=cCategory;
 		this.cLayer=cLayer;
+		
 		efLang = EjbLangFactory.createFactory(cLang);
 		efDescription = EjbDescriptionFactory.createFactory(clDescription);
 		
@@ -137,12 +138,8 @@ public class AbstractMapThematicBean <L extends UtilsLang,D extends UtilsDescrip
 	{
 		logger.info(AbstractLogMessage.addEntity(cMap));
 		map = efMap.create("",langKeys);
-		try
-		{
-			map.setName(efLang.createEmpty(langKeys));
-			map.setDescription(efDescription.createEmpty(langKeys));
-		}
-		catch (UtilsConstraintViolationException e) {e.printStackTrace();}
+		map.setName(efLang.createEmpty(langKeys));
+		map.setDescription(efDescription.createEmpty(langKeys));
 	}
 	
 	public void saveMap() throws UtilsConstraintViolationException, UtilsLockingException
