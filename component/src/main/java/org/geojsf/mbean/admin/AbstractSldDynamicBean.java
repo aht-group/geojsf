@@ -92,12 +92,8 @@ public class AbstractSldDynamicBean <L extends UtilsLang,D extends UtilsDescript
 	{
 		logger.info(AbstractLogMessage.addEntity(cSld));
 		sld = efSld.build(null,type);
-		try
-		{
-			sld.setName(efLang.createEmpty(langKeys));
-			sld.setDescription(efDescription.createEmpty(langKeys));
-		}
-		catch (UtilsConstraintViolationException e) {e.printStackTrace();}
+		sld.setName(efLang.createEmpty(langKeys));
+		sld.setDescription(efDescription.createEmpty(langKeys));
 	}
 	
 	public void cancelSld()

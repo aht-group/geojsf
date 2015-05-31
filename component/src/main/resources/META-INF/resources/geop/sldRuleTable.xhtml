@@ -10,12 +10,15 @@
 	<composite:interface>
 		<composite:attribute name="handler"/>
 		<composite:attribute name="update"/>
+		<composite:attribute name="locale" default="#{userBean.localeCode}"/>
 	</composite:interface>
         
 	<composite:implementation>
 		<p:dataTable var="rule" value="#{cc.attrs.handler.sld.rules}"
-								 selection="#{cc.attrs.handler.rule}" selectionMode="single" rowKey="#{rule.id}">
+								 selection="#{cc.attrs.handler.rule}" selectionMode="single" rowKey="#{rule.id}"
+								 draggableRows="true">
 				<p:ajax event="rowSelect" update="#{cc.attrs.update}" listener="#{cc.attrs.handler.selectRule()}"/>
+				<p:ajax event="rowReorder" listener="#{cc.attrs.handler.onRowReorder}" update="@form" />
 				<f:facet name="header">
 					<aht:pfDataTableHeader title="#{msg.geoJsfSldRules}">
 						<aht:icon type="geoJsfAdd" listener="#{cc.attrs.handler.addRule()}" update="#{cc.attrs.update}"/>
@@ -26,16 +29,32 @@
 					<h:outputText value="#{rule.position}" />
 				</p:column>
 				<p:column>
+					<f:facet name="header">#{msg.geoJsfSldRuleBounds}</f:facet>
+					<h:outputText value="#{cc.attrs.handler.mapBounds[rule]}" />
+				</p:column>
+				<p:column rendered="false">
 					<f:facet name="header">#{msg.geoJsfSldRuleLower}</f:facet>
 					<h:outputText value="#{rule.lowerBound}" />
 				</p:column>
-				<p:column>
+				<p:column rendered="false">
 					<f:facet name="header">#{msg.geoJsfSldRuleUpper}</f:facet>
 					<h:outputText value="#{rule.upperBound}" />
 				</p:column>
+				<p:column rendered="true">
+					<f:facet name="header">#{msg.geoJsfSldRuleStyle}</f:facet>
+					<h:outputText value="#{rule.style.name[cc.attrs.locale].lang}" />
+				</p:column>
+				<p:column rendered="true">
+					<f:facet name="header">#{msg.geoJsfSldRuleSize}</f:facet>
+					<h:outputText value="#{rule.size}" />
+				</p:column>
 				<p:column>
 					<f:facet name="header">#{msg.geoJsfSldRuleColor}</f:facet>
-					<h:outputText value="#{rule.color}" />
+					<h:outputText value="#{rule.color}" style="background-color: \##{rule.color}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">#{msg.Name}</f:facet>
+					<h:outputText value="#{rule.name[userBean.localeCode].lang}" />
 				</p:column>
 			</p:dataTable>
 	

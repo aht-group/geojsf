@@ -77,12 +77,8 @@ public class AbstractSldTemplateBean <L extends UtilsLang,D extends UtilsDescrip
 	{
 		logger.info(AbstractLogMessage.addEntity(cTemplate));
 		template = efTemplate.build(null,null);
-		try
-		{
-			template.setName(efLang.createEmpty(langKeys));
-			template.setDescription(efDescription.createEmpty(langKeys));
-		}
-		catch (UtilsConstraintViolationException e) {e.printStackTrace();}
+		template.setName(efLang.createEmpty(langKeys));
+		template.setDescription(efDescription.createEmpty(langKeys));
 	}
 	
 	public void cancelTemplate()
