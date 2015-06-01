@@ -1,43 +1,45 @@
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.model.xml.geojsf.Layers;
+import org.geojsf.model.xml.geojsf.View;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlLayers extends AbstractXmlGeojsfTest
+public class TestXmlView extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlLayers.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlView.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, Layers.class);
+		setXmlFile(dirSuffix, View.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Layers actual = create(true);
-    	Layers expected = (Layers)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Layers.class);
+    	View actual = create(true);
+    	View expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), View.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Layers create(boolean withChilds)
+    public static View create(boolean withChilds)
     {
-    	Layers xml = new Layers();
-    	xml.setWms("myWms");
-    	xml.setWcs("myWcs");
+    	View xml = new View();
+    	xml.setId(123);
+    	xml.setNr(1);
+    	xml.setVisible(true);
+    	xml.setLegend(false);
      	
     	if(withChilds)
     	{
-    		xml.getLayer().add(TestXmlLayer.create(false));
+    		xml.setLayer(TestXmlLayer.create(false));
     	}
     	
     	return xml;
@@ -49,8 +51,8 @@ public class TestXmlLayers extends AbstractXmlGeojsfTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlLayers.initFiles();	
-		TestXmlLayers test = new TestXmlLayers();
+		TestXmlView.initFiles();	
+		TestXmlView test = new TestXmlView();
 		test.save();
     }
 }

@@ -7,9 +7,9 @@ import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlModelFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.geojsf.model.xml.geojsf.TestXmlWkt;
 import org.geojsf.model.xml.water.Basin;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.geojsf.xml.geojsf.TestXmlWkt;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

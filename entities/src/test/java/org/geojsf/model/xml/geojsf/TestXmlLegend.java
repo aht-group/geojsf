@@ -1,39 +1,39 @@
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.model.xml.geojsf.Scale;
+import org.geojsf.model.xml.geojsf.Legend;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlScale extends AbstractXmlGeojsfTest
+public class TestXmlLegend extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlScale.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlLegend.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, Scale.class);
+		setXmlFile(dirSuffix, Legend.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Scale actual = create(true);
-    	Scale expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Scale.class);
+    	Legend actual = create(true);
+    	Legend expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Legend.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Scale create(boolean withChilds)
+    public static Legend create(boolean withChilds)
     {
-    	Scale xml = new Scale();
-    	xml.setUnit("m");
-    	xml.setValue(10000);
+    	Legend xml = new Legend();
+    	xml.setId(1);
+    	xml.setUrl("myUrl");
     	
     	return xml;
     }
@@ -44,8 +44,8 @@ public class TestXmlScale extends AbstractXmlGeojsfTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlScale.initFiles();	
-		TestXmlScale test = new TestXmlScale();
+		TestXmlLegend.initFiles();	
+		TestXmlLegend test = new TestXmlLegend();
 		test.save();
     }
 }

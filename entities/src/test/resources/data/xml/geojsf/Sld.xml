@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <geojsf:sld xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns2="http://ahtutils.aht-group.com/security" xmlns:geojsf="http://www.geojsf.org" id="1">
     <geojsf:sldTemplate id="1" code="myCode"/>
-    <geojsf:sldRule id="1"/>
-    <geojsf:sldRule id="1"/>
+    <geojsf:sldRule id="123" size="1" lowerBound="123.45" upperBound="987.65"/>
+    <geojsf:sldRule id="123" size="1" lowerBound="123.45" upperBound="987.65"/>
 </geojsf:sld>

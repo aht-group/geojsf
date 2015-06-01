@@ -1,42 +1,39 @@
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.model.xml.geojsf.Maps;
+import org.geojsf.model.xml.geojsf.Scale;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlMaps extends AbstractXmlGeojsfTest
+public class TestXmlScale extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlMaps.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlScale.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, Maps.class);
+		setXmlFile(dirSuffix, Scale.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Maps actual = create(true);
-    	Maps expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Maps.class);
+    	Scale actual = create(true);
+    	Scale expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Scale.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Maps create(boolean withChilds)
+    public static Scale create(boolean withChilds)
     {
-    	Maps xml = new Maps();
-
-    	if(withChilds)
-    	{
-    		xml.getMap().add(TestXmlMap.create(false));
-    	}
+    	Scale xml = new Scale();
+    	xml.setUnit("m");
+    	xml.setValue(10000);
     	
     	return xml;
     }
@@ -47,8 +44,8 @@ public class TestXmlMaps extends AbstractXmlGeojsfTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlMaps.initFiles();	
-		TestXmlMaps test = new TestXmlMaps();
+		TestXmlScale.initFiles();	
+		TestXmlScale test = new TestXmlScale();
 		test.save();
     }
 }

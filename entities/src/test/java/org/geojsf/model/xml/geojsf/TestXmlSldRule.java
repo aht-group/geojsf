@@ -1,7 +1,10 @@
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
+import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlStyleFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.model.xml.geojsf.SldRule;
@@ -28,11 +31,18 @@ public class TestXmlSldRule extends AbstractXmlGeojsfTest
     public static SldRule create(boolean withChilds)
     {
     	SldRule xml = new SldRule();
-    	xml.setId(1);
+    	xml.setId(123);
+    	xml.setSize(1);
+    	xml.setLowerBound(123.45);
+    	xml.setUpperBound(987.65);
+    	
     	    	
     	if(withChilds)
     	{
     		xml.setSld(TestXmlSld.create(false));
+    		xml.setLangs(XmlLangsFactory.build());
+    		xml.setDescriptions(XmlDescriptionsFactory.build());
+    		xml.setStyle(XmlStyleFactory.build("myStyle"));
     	}
     	
     	return xml;

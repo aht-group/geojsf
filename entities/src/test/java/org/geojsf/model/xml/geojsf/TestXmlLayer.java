@@ -1,4 +1,4 @@
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
@@ -6,44 +6,52 @@ import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.model.xml.geojsf.Service;
+import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlService extends AbstractXmlGeojsfTest
+
+public class TestXmlLayer extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlService.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlLayer.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, Service.class);
+		setXmlFile(dirSuffix, Layer.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Service actual = create(true);
-    	Service expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Service.class);
+    	Layer actual = create(true);
+    	Layer expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Layer.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Service create(boolean withChilds)
+    public static Layer create(boolean withChilds)
     {
-    	Service xml = new Service();
+    	Layer xml = new Layer();
     	xml.setId(1);
     	xml.setCode("myCode");
-    	xml.setWms("wms");
-    	xml.setWcs("wcs");
-    	    	
+    	xml.setWorkspace("myWorkspace");
+    	xml.setName("myName");
+    	xml.setTemporal(true);
+    	xml.setSql(true);
+    	
     	if(withChilds)
     	{
-    		xml.getLayer().add(TestXmlLayer.create(false));xml.getLayer().add(TestXmlLayer.create(false));
+    		xml.setLegend(TestXmlLegend.create(false));
     		xml.setLangs(new Langs());
     		xml.setDescriptions(new Descriptions());
+    		
+    		xml.setService(TestXmlService.create(false));
+    		xml.setCategory(TestXmlCategory.create(false));
+    		
+    		xml.setViewPort(TestXmlViewPort.create(false));
     	}
     	
     	return xml;
@@ -55,8 +63,8 @@ public class TestXmlService extends AbstractXmlGeojsfTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlService.initFiles();	
-		TestXmlService test = new TestXmlService();
+		TestXmlLayer.initFiles();	
+		TestXmlLayer test = new TestXmlLayer();
 		test.save();
     }
 }
