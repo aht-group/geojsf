@@ -1,4 +1,4 @@
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
@@ -6,50 +6,42 @@ import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.model.xml.geojsf.Layer;
+import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-public class TestXmlLayer extends AbstractXmlGeojsfTest
+public class TestXmlMap extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlLayer.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlMap.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, Layer.class);
+		setXmlFile(dirSuffix, Map.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Layer actual = create(true);
-    	Layer expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Layer.class);
+    	Map actual = create(true);
+    	Map expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Map.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Layer create(boolean withChilds)
+    public static Map create(boolean withChilds)
     {
-    	Layer xml = new Layer();
-    	xml.setId(1);
+    	Map xml = new Map();
+    	xml.setId(123);
     	xml.setCode("myCode");
-    	xml.setWorkspace("myWorkspace");
-    	xml.setName("myName");
-    	xml.setTemporal(true);
-    	xml.setSql(true);
-    	
+     	
     	if(withChilds)
     	{
-    		xml.setLegend(TestXmlLegend.create(false));
+    		xml.getView().add(TestXmlView.create(false));
     		xml.setLangs(new Langs());
     		xml.setDescriptions(new Descriptions());
-    		
-    		xml.setService(TestXmlService.create(false));
-    		xml.setCategory(TestXmlCategory.create(false));
     		
     		xml.setViewPort(TestXmlViewPort.create(false));
     	}
@@ -63,8 +55,8 @@ public class TestXmlLayer extends AbstractXmlGeojsfTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlLayer.initFiles();	
-		TestXmlLayer test = new TestXmlLayer();
+		TestXmlMap.initFiles();	
+		TestXmlMap test = new TestXmlMap();
 		test.save();
     }
 }

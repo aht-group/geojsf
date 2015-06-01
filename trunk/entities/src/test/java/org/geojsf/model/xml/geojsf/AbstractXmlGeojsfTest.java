@@ -1,4 +1,4 @@
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.slf4j.Logger;

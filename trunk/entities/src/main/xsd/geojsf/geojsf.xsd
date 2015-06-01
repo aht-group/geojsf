@@ -197,8 +197,14 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref="geojsf:sld" maxOccurs="1"/>
+				<xsd:element ref="us:style" maxOccurs="1"/>
+				<xsd:element ref="us:langs" maxOccurs="1"/>
+				<xsd:element ref="us:descriptions" maxOccurs="1"/>
 			</xsd:sequence>
 			<xsd:attribute name="id" type="xsd:long"/>
+			<xsd:attribute name="size" type="xsd:int"/>
+			<xsd:attribute name="lowerBound" type="xsd:double"/>
+			<xsd:attribute name="upperBound" type="xsd:double"/>
 		</xsd:complexType>
 	</xsd:element>
 </xsd:schema>

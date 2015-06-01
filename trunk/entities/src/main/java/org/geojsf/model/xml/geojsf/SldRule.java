@@ -8,6 +8,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import net.sf.ahtutils.xml.status.Descriptions;
+import net.sf.ahtutils.xml.status.Langs;
+import net.sf.ahtutils.xml.status.Style;
 
 
 /**
@@ -21,8 +24,14 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.geojsf.org}sld"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}style"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
+ *       &lt;attribute name="size" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="lowerBound" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="upperBound" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -32,7 +41,10 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "sld"
+    "sld",
+    "style",
+    "langs",
+    "descriptions"
 })
 @XmlRootElement(name = "sldRule")
 public class SldRule
@@ -42,8 +54,20 @@ public class SldRule
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected Sld sld;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Style style;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Langs langs;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Descriptions descriptions;
     @XmlAttribute(name = "id")
     protected Long id;
+    @XmlAttribute(name = "size")
+    protected Integer size;
+    @XmlAttribute(name = "lowerBound")
+    protected Double lowerBound;
+    @XmlAttribute(name = "upperBound")
+    protected Double upperBound;
 
     /**
      * Gets the value of the sld property.
@@ -71,6 +95,90 @@ public class SldRule
 
     public boolean isSetSld() {
         return (this.sld!= null);
+    }
+
+    /**
+     * Gets the value of the style property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Style }
+     *     
+     */
+    public Style getStyle() {
+        return style;
+    }
+
+    /**
+     * Sets the value of the style property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Style }
+     *     
+     */
+    public void setStyle(Style value) {
+        this.style = value;
+    }
+
+    public boolean isSetStyle() {
+        return (this.style!= null);
+    }
+
+    /**
+     * Gets the value of the langs property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Langs }
+     *     
+     */
+    public Langs getLangs() {
+        return langs;
+    }
+
+    /**
+     * Sets the value of the langs property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Langs }
+     *     
+     */
+    public void setLangs(Langs value) {
+        this.langs = value;
+    }
+
+    public boolean isSetLangs() {
+        return (this.langs!= null);
+    }
+
+    /**
+     * Gets the value of the descriptions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Descriptions }
+     *     
+     */
+    public Descriptions getDescriptions() {
+        return descriptions;
+    }
+
+    /**
+     * Sets the value of the descriptions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Descriptions }
+     *     
+     */
+    public void setDescriptions(Descriptions value) {
+        this.descriptions = value;
+    }
+
+    public boolean isSetDescriptions() {
+        return (this.descriptions!= null);
     }
 
     /**
@@ -103,6 +211,102 @@ public class SldRule
 
     public void unsetId() {
         this.id = null;
+    }
+
+    /**
+     * Gets the value of the size property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * Sets the value of the size property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setSize(int value) {
+        this.size = value;
+    }
+
+    public boolean isSetSize() {
+        return (this.size!= null);
+    }
+
+    public void unsetSize() {
+        this.size = null;
+    }
+
+    /**
+     * Gets the value of the lowerBound property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public double getLowerBound() {
+        return lowerBound;
+    }
+
+    /**
+     * Sets the value of the lowerBound property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setLowerBound(double value) {
+        this.lowerBound = value;
+    }
+
+    public boolean isSetLowerBound() {
+        return (this.lowerBound!= null);
+    }
+
+    public void unsetLowerBound() {
+        this.lowerBound = null;
+    }
+
+    /**
+     * Gets the value of the upperBound property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public double getUpperBound() {
+        return upperBound;
+    }
+
+    /**
+     * Sets the value of the upperBound property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setUpperBound(double value) {
+        this.upperBound = value;
+    }
+
+    public boolean isSetUpperBound() {
+        return (this.upperBound!= null);
+    }
+
+    public void unsetUpperBound() {
+        this.upperBound = null;
     }
 
 }

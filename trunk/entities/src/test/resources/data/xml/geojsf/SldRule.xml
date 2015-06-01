@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<geojsf:sldRule xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns2="http://ahtutils.aht-group.com/security" xmlns:geojsf="http://www.geojsf.org" id="1">
+<geojsf:sldRule xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns2="http://ahtutils.aht-group.com/security" xmlns:geojsf="http://www.geojsf.org" id="123" size="1" lowerBound="123.45" upperBound="987.65">
     <geojsf:sld id="1"/>
+    <us:style code="myStyle"/>
+    <us:langs/>
+    <us:descriptions/>
 </geojsf:sldRule>

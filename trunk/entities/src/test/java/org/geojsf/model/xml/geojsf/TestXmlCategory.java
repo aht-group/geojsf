@@ -1,44 +1,43 @@
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
-import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.model.xml.geojsf.SldTemplate;
+import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlSldTemplate extends AbstractXmlGeojsfTest
+public class TestXmlCategory extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlSldTemplate.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlCategory.class);
 	
-	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, SldTemplate.class);}
+	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, Category.class);}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	SldTemplate actual = create(true);
-    	SldTemplate expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), SldTemplate.class);
+    	Category actual = create(true);
+    	Category expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Category.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static SldTemplate create(boolean withChilds)
+    public static Category create(boolean withChilds)
     {
-    	SldTemplate xml = new SldTemplate();
+    	Category xml = new Category();
     	xml.setId(1);
     	xml.setCode("myCode");
     	    	
     	if(withChilds)
     	{
+    		xml.getLayer().add(TestXmlLayer.create(false));xml.getLayer().add(TestXmlLayer.create(false));
     		xml.setLangs(new Langs());
     		xml.setDescriptions(new Descriptions());
-    		xml.setType(XmlTypeFactory.create("myType"));
     	}
     	
     	return xml;
@@ -50,8 +49,8 @@ public class TestXmlSldTemplate extends AbstractXmlGeojsfTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlSldTemplate.initFiles();	
-		TestXmlSldTemplate test = new TestXmlSldTemplate();
+		TestXmlCategory.initFiles();	
+		TestXmlCategory test = new TestXmlCategory();
 		test.save();
     }
 }

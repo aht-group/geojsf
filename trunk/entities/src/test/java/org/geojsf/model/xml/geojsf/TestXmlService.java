@@ -1,4 +1,4 @@
-package org.geojsf.xml.geojsf;
+package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
@@ -6,44 +6,44 @@ import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.model.xml.geojsf.Map;
+import org.geojsf.model.xml.geojsf.Service;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlMap extends AbstractXmlGeojsfTest
+public class TestXmlService extends AbstractXmlGeojsfTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlMap.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlService.class);
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		setXmlFile(dirSuffix, Map.class);
+		setXmlFile(dirSuffix, Service.class);
 	}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Map actual = create(true);
-    	Map expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Map.class);
+    	Service actual = create(true);
+    	Service expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Service.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Map create(boolean withChilds)
+    public static Service create(boolean withChilds)
     {
-    	Map xml = new Map();
-    	xml.setId(123);
+    	Service xml = new Service();
+    	xml.setId(1);
     	xml.setCode("myCode");
-     	
+    	xml.setWms("wms");
+    	xml.setWcs("wcs");
+    	    	
     	if(withChilds)
     	{
-    		xml.getView().add(TestXmlView.create(false));
+    		xml.getLayer().add(TestXmlLayer.create(false));xml.getLayer().add(TestXmlLayer.create(false));
     		xml.setLangs(new Langs());
     		xml.setDescriptions(new Descriptions());
-    		
-    		xml.setViewPort(TestXmlViewPort.create(false));
     	}
     	
     	return xml;
@@ -55,8 +55,8 @@ public class TestXmlMap extends AbstractXmlGeojsfTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlMap.initFiles();	
-		TestXmlMap test = new TestXmlMap();
+		TestXmlService.initFiles();	
+		TestXmlService test = new TestXmlService();
 		test.save();
     }
 }
