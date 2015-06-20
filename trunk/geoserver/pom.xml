@@ -152,6 +152,7 @@
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
+			<scope>provided</scope>
 			<exclusions>
             	<exclusion>
             		<artifactId>commons-logging</artifactId>
@@ -162,6 +163,7 @@
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxb-provider</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
