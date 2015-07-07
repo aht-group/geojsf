@@ -11,12 +11,12 @@ import net.sf.ahtutils.monitor.DataUpdateTracker;
 import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
-import org.geojsf.factory.ejb.water.EjbBasinFactory;
+import org.geojsf.factory.ejb.area.EjbBasinFactory;
 import org.geojsf.interfaces.model.water.GeoBasin;
 import org.geojsf.interfaces.rest.water.surface.GeoJsfWaterSurfaceBasinRestExport;
 import org.geojsf.interfaces.rest.water.surface.GeoJsfWaterSurfaceBasinRestImport;
-import org.geojsf.model.xml.water.Basin;
-import org.geojsf.model.xml.water.Basins;
+import org.geojsf.model.xml.area.Basin;
+import org.geojsf.model.xml.area.Areas;
 import org.geojsf.web.rest.AbstractGeoJsfRest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +51,7 @@ public class GeoJsfWaterSurfaceBasinRest <L extends UtilsLang,D extends UtilsDes
 	@Override public Aht exportGeoJsfWaterSurfaceBasinModel(){return exportStatus(cM);}
 
 	@Override
-	public Basins exportGeoJsfWaterSurfaceBasins()
+	public Areas exportGeoJsfWaterSurfaceBasins()
 	{
 		logger.warn("NYI");
 		return null;
@@ -61,7 +61,7 @@ public class GeoJsfWaterSurfaceBasinRest <L extends UtilsLang,D extends UtilsDes
 	//Import
 	@Override public DataUpdate importGeoJsfWaterSurfaceBasinModel(Aht models) {return importStatus(cM,null,models);}
 
-	@Override public DataUpdate importGeoJsfWaterSurfaceBasins(Basins basins)
+	@Override public DataUpdate importGeoJsfWaterSurfaceBasins(Areas basins)
 	{
 		DataUpdateTracker dut = new DataUpdateTracker(true);
 		dut.setType(XmlTypeFactory.build(cB.getName(),"DB Import"));

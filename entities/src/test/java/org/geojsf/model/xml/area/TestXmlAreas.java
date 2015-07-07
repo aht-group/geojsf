@@ -1,33 +1,33 @@
-package org.geojsf.model.xml.water;
+package org.geojsf.model.xml.area;
 
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.model.xml.water.Basins;
+import org.geojsf.model.xml.area.Areas;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlBasins extends AbstractXmWaterSurfaceTest
+public class TestXmlAreas extends AbstractXmAreaTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlBasins.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlAreas.class);
 	
-	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, Basins.class);}
+	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, Areas.class);}
     
     @Test
     public void test() throws FileNotFoundException
     {
-    	Basins actual = create(true);
-    	Basins expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Basins.class);
+    	Areas actual = create(true);
+    	Areas expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Areas.class);
     	assertJaxbEquals(expected, actual);
     }
     
-    public static Basins create(boolean withChilds)
+    public static Areas create(boolean withChilds)
     {
-    	Basins xml = new Basins();
+    	Areas xml = new Areas();
     	
     	if(withChilds)
     	{
@@ -44,8 +44,8 @@ public class TestXmlBasins extends AbstractXmWaterSurfaceTest
     {
 		GeoJsfXmlTstBootstrap.init();
 			
-		TestXmlBasins.initFiles();	
-		TestXmlBasins test = new TestXmlBasins();
+		TestXmlAreas.initFiles();	
+		TestXmlAreas test = new TestXmlAreas();
 		test.save();
     }
 }

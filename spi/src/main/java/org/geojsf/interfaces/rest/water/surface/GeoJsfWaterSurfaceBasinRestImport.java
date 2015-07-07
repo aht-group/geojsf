@@ -6,10 +6,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.geojsf.model.xml.area.Areas;
+
 import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
-
-import org.geojsf.model.xml.water.Basins;
 
 public interface GeoJsfWaterSurfaceBasinRestImport
 {	
@@ -19,5 +19,5 @@ public interface GeoJsfWaterSurfaceBasinRestImport
 	
 	@POST @Path("/geojsf/water/surface/basin")
 	@Produces(MediaType.APPLICATION_XML) @Consumes(MediaType.APPLICATION_XML)
-	DataUpdate importGeoJsfWaterSurfaceBasins(Basins basins);
+	DataUpdate importGeoJsfWaterSurfaceBasins(Areas basins);
 }

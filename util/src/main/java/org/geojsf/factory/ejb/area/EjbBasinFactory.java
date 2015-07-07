@@ -1,4 +1,4 @@
-package org.geojsf.factory.ejb.water;
+package org.geojsf.factory.ejb.area;
 
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
@@ -9,7 +9,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 import org.geojsf.factory.wkt.MultiPolygonFactory;
 import org.geojsf.interfaces.model.water.GeoBasin;
-import org.geojsf.model.xml.water.Basin;
+import org.geojsf.model.xml.area.Basin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,7 +48,7 @@ public class EjbBasinFactory<L extends UtilsLang,D extends UtilsDescription,BASI
 		try
 		{
 			ejb = cB.newInstance();
-			ejb.setArea(basin.getArea());
+			ejb.setSize(basin.getSize());
 			ejb.setName(efLang.getLangMap(basin.getLangs()));
 			ejb.setDescription(efDescription.create(basin.getDescriptions()));
 			ejb.setModel(model);
