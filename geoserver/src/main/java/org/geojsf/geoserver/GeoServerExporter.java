@@ -134,6 +134,7 @@ public class GeoServerExporter
 		Layers layers = JaxbUtil.loadJAXB(f.getAbsoluteFile(), Layers.class);
 		for(Layer layer : layers.getLayer())
 		{
+			logger.trace(layer.getName());
 			exportStyle(layer.getStyle());
 		}
 	}

@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
     <name>GeoJSF - Interfaces</name>
 
-<dependencyManagement>
+	<dependencyManagement>
         <dependencies>
         	<dependency>
         		<groupId>org.geojsf</groupId>
@@ -61,6 +61,11 @@
 	         		<artifactId>jboss-logging</artifactId>
 	         	</exclusion>
 	         </exclusions>
+        </dependency>
+        
+        <dependency>
+	        <groupId>javax.inject</groupId>
+	  		<artifactId>javax.inject</artifactId>
         </dependency>
 	</dependencies>
 
