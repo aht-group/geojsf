@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.rest.water.surface;
+package org.geojsf.interfaces.rest.area.basin.surface;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -9,13 +9,13 @@ import org.geojsf.model.xml.area.Areas;
 
 import net.sf.ahtutils.xml.aht.Aht;
 
-public interface GeoJsfWaterSurfaceBasinRestExport
+public interface GeoJsfAreaBasinSurfaceRestExport
 {	
-	@GET @Path("/geojsf/water/surface/basin/model")
+	@GET @Path("/geojsf/area/basin/surface/model")
 	@Produces(MediaType.APPLICATION_XML)
 	Aht exportGeoJsfWaterSurfaceBasinModel();
 	
-	@GET @Path("/geojsf/water/surface/basin")
+	@GET @Path("/geojsf/area/basin/surface")
 	@Produces(MediaType.APPLICATION_XML)
 	Areas exportGeoJsfWaterSurfaceBasins();
 }
