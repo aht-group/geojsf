@@ -5,9 +5,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import net.sf.ahtutils.xml.aht.Aht;
+import org.geojsf.model.xml.area.Areas;
 
-import org.geojsf.model.xml.water.Basins;
+import net.sf.ahtutils.xml.aht.Aht;
 
 public interface GeoJsfWaterSurfaceBasinRestExport
 {	
@@ -17,5 +17,5 @@ public interface GeoJsfWaterSurfaceBasinRestExport
 	
 	@GET @Path("/geojsf/water/surface/basin")
 	@Produces(MediaType.APPLICATION_XML)
-	Basins exportGeoJsfWaterSurfaceBasins();
+	Areas exportGeoJsfWaterSurfaceBasins();
 }

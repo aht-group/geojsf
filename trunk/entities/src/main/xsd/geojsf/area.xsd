@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://www.geojsf.org/water"
-    xmlns:w="http://www.geojsf.org/water"
+<xsd:schema targetNamespace="http://www.geojsf.org/area"
+    xmlns:area="http://www.geojsf.org/area"
     xmlns:geojsf="http://www.geojsf.org"
     xmlns:us="http://ahtutils.aht-group.com/status"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:import namespace="http://www.geojsf.org" schemaLocation="geojsf.xsd"/>
 	<xsd:import namespace="http://ahtutils.aht-group.com/status" schemaLocation="../../../../../../ahtutils/xml/src/main/xsd/aht/status.xsd"/>
-	<xsd:element name="basins">
+	<xsd:element name="areas">
 		<xsd:complexType>
             <xsd:sequence>
-                <xsd:element ref="w:basin" maxOccurs="unbounded"/>
+                <xsd:element ref="area:basin" maxOccurs="unbounded"/>
             </xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
@@ -22,7 +22,7 @@
 				<xsd:element ref="us:descriptions" maxOccurs="1"/>
 			</xsd:sequence>
 			<xsd:attribute name="id" type="xsd:long"/>
-			<xsd:attribute name="area" type="xsd:double"/>
+			<xsd:attribute name="size" type="xsd:double"/>
 			<xsd:attribute name="label" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>

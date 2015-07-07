@@ -1,5 +1,5 @@
 
-package org.geojsf.model.xml.water;
+package org.geojsf.model.xml.area;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -30,7 +30,7 @@ import org.geojsf.model.xml.geojsf.Wkt;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="area" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="size" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="label" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -62,8 +62,8 @@ public class Basin
     protected Descriptions descriptions;
     @XmlAttribute(name = "id")
     protected Long id;
-    @XmlAttribute(name = "area")
-    protected Double area;
+    @XmlAttribute(name = "size")
+    protected Double size;
     @XmlAttribute(name = "label")
     protected String label;
 
@@ -212,35 +212,35 @@ public class Basin
     }
 
     /**
-     * Gets the value of the area property.
+     * Gets the value of the size property.
      * 
      * @return
      *     possible object is
      *     {@link Double }
      *     
      */
-    public double getArea() {
-        return area;
+    public double getSize() {
+        return size;
     }
 
     /**
-     * Sets the value of the area property.
+     * Sets the value of the size property.
      * 
      * @param value
      *     allowed object is
      *     {@link Double }
      *     
      */
-    public void setArea(double value) {
-        this.area = value;
+    public void setSize(double value) {
+        this.size = value;
     }
 
-    public boolean isSetArea() {
-        return (this.area!= null);
+    public boolean isSetSize() {
+        return (this.size!= null);
     }
 
-    public void unsetArea() {
-        this.area = null;
+    public void unsetSize() {
+        this.size = null;
     }
 
     /**

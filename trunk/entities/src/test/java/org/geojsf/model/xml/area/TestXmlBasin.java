@@ -1,4 +1,4 @@
-package org.geojsf.model.xml.water;
+package org.geojsf.model.xml.area;
 
 import java.io.FileNotFoundException;
 
@@ -7,15 +7,15 @@ import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlModelFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.geojsf.model.xml.area.Basin;
 import org.geojsf.model.xml.geojsf.TestXmlWkt;
-import org.geojsf.model.xml.water.Basin;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlBasin extends AbstractXmWaterSurfaceTest
+public class TestXmlBasin extends AbstractXmAreaTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlBasin.class);
 	
@@ -33,7 +33,7 @@ public class TestXmlBasin extends AbstractXmWaterSurfaceTest
     {
     	Basin xml = new Basin();
     	xml.setId(123);
-    	xml.setArea(345.67);
+    	xml.setSize(345.67);
     	xml.setLabel("label");
     	
     	if(withChilds)
