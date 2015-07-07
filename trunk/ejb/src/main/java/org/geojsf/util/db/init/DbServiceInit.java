@@ -89,6 +89,8 @@ public class DbServiceInit <L extends UtilsLang,D extends UtilsDescription,CATEG
 			{
 				ejb.setName(ejbLangFactory.getLangMap(service.getLangs()));
 				ejb.setDescription(ejbDescriptionFactory.create(service.getDescriptions()));
+				ejb.setWms(service.getWms());
+				ejb.setWcs(service.getWcs());
 				ejb=(SERVICE)fSecurity.update(ejb);
 			}
 			catch (UtilsConstraintViolationException e) {logger.error("",e);}

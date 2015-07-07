@@ -96,10 +96,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,CATEGO
 	{
 		DbServiceInit<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDSTYLE,SLDTEMPLATE> serviceInit;
 		serviceInit = DbServiceInit.factory(cL,cD,cService,fSecurity);
-		try
-		{
-			serviceInit.iuServices(repository);
-		}
+		try{serviceInit.iuServices(repository);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}
 		return new DataUpdate();
 	}

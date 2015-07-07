@@ -4,20 +4,13 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.model.interfaces.with.EjbWithId;
-import net.sf.exlp.util.xml.JDomUtil;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.exception.GeoJsfDeveloperException;
 import org.geojsf.factory.xml.gml.XmlCoordinatesFactory;
@@ -29,6 +22,7 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.qualifier.IgnoreGeoJsfWfsProperty;
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
 import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.model.xml.ogc.Distance;
@@ -42,6 +36,15 @@ import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
+import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.model.interfaces.with.EjbWithId;
+import net.sf.exlp.util.xml.JDomUtil;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 @SuppressWarnings("rawtypes")
 public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDSTYLE,SLDTEMPLATE>, LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDSTYLE,SLDTEMPLATE>, VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDSTYLE,SLDTEMPLATE>, VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
@@ -119,26 +122,30 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 		{
 			if(!field.getName().equals("geometry") && !field.getName().equals("id") && !Modifier.isStatic(field.getModifiers()))
 			{
-				boolean fieldAdded = false;
-				if(field.getAnnotation(Column.class)!=null)
+				if(field.getAnnotation(IgnoreGeoJsfWfsProperty.class)==null)
 				{
-					Column column = (Column)field.getAnnotation(Column.class);
-					propertyFields.add(column.name());
-					fieldAdded = true;
-				}
-				if(field.getAnnotation(JoinColumn.class)!=null)
-				{
-					JoinColumn column = (JoinColumn)field.getAnnotation(JoinColumn.class);
-					propertyFields.add(column.name());
-					fieldAdded = true;
-				}
-				if(!fieldAdded && field.getAnnotation(ManyToOne.class)!=null)
-				{
-					propertyFields.add(field.getName()+"_id");
-					fieldAdded = true;
+					boolean fieldAdded = false;
+					if(field.getAnnotation(Column.class)!=null)
+					{
+						Column column = (Column)field.getAnnotation(Column.class);
+						propertyFields.add(column.name());
+						fieldAdded = true;
+					}
+					if(field.getAnnotation(JoinColumn.class)!=null)
+					{
+						JoinColumn column = (JoinColumn)field.getAnnotation(JoinColumn.class);
+						propertyFields.add(column.name());
+						fieldAdded = true;
+					}
+					if(!fieldAdded && field.getAnnotation(ManyToOne.class)!=null)
+					{
+						propertyFields.add(field.getName()+"_id");
+						fieldAdded = true;
+					}
+					if(!fieldAdded){propertyFields.add(field.getName());}
 				}
 				
-				if(!fieldAdded){propertyFields.add(field.getName());}
+				
 			}
 		}
 		String[] result = new String[propertyFields.size()];
@@ -180,13 +187,15 @@ public class WfsPointQuery<G extends EjbWithGeometry, I extends EjbWithId, L ext
 		JDomUtil.debug(doc);
 		
 		results = new ArrayList<I>();
+		Set<Long> ids = new HashSet<Long>();
 		for (Element e : elements)
 		{	
 			try
 			{
 				String s = e.getAttributeValue("fid");
 				Long id = new Long(s.substring(s.lastIndexOf(".")+1));
-				results.add(fGeo.find(cId, id));
+				if(!ids.contains(id)){results.add(fGeo.find(cId, id));}
+				ids.add(id);
 			}
 			catch (UtilsNotFoundException ex)
 			{
