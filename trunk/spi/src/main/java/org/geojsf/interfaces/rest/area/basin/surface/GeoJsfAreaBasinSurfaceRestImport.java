@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.rest.water.surface;
+package org.geojsf.interfaces.rest.area.basin.surface;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -11,13 +11,13 @@ import org.geojsf.model.xml.area.Areas;
 import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
-public interface GeoJsfWaterSurfaceBasinRestImport
+public interface GeoJsfAreaBasinSurfaceRestImport
 {	
-	@POST @Path("/geojsf/water/surface/basin/model")
+	@POST @Path("/geojsf/area/basin/surface")
 	@Produces(MediaType.APPLICATION_XML) @Consumes(MediaType.APPLICATION_XML)
-	DataUpdate importGeoJsfWaterSurfaceBasinModel(Aht models);
+	DataUpdate importGeoJsfAreaBasinSurfaceModel(Aht models);
 	
-	@POST @Path("/geojsf/water/surface/basin")
+	@POST @Path("/geojsf/area/basin/surface")
 	@Produces(MediaType.APPLICATION_XML) @Consumes(MediaType.APPLICATION_XML)
-	DataUpdate importGeoJsfWaterSurfaceBasins(Areas basins);
+	DataUpdate importGeoJsfAreaBasinSurface(Areas basins);
 }
