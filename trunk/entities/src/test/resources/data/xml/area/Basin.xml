@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:basin xmlns:geojsf="http://www.geojsf.org" xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns3="http://ahtutils.aht-group.com/security" xmlns:a="http://www.geojsf.org/area" id="123" size="345.67" label="label">
+    <geojsf:wkt type="myType">myWKT</geojsf:wkt>
+    <us:model code="myCode"/>
+    <us:langs/>
+    <us:descriptions/>
+</a:basin>
