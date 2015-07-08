@@ -68,18 +68,13 @@ public class AbstractMapServiceBean <L extends UtilsLang,
 	protected MAP map;
 	public MAP getMap() {return map;}
 	
-	protected List<SERVICE> services;
-	public List<SERVICE> getServices() {return services;}
-	
 	protected List<CATEGORY> categories;
 	public List<CATEGORY> getCategories() {return categories;}
 	
 	protected List<LAYER> layers;
 	public List<LAYER> getLayers() {return layers;}
 	
-	protected SERVICE service;
-	public SERVICE getService() {return service;}
-	public void setService(SERVICE service) {this.service = service;}
+
 	
 	protected CATEGORY category;
 	public CATEGORY getCategory(){return category;}
@@ -111,10 +106,18 @@ public class AbstractMapServiceBean <L extends UtilsLang,
 	}
 	
 	//SERVICES
+	protected List<SERVICE> services;
+	public List<SERVICE> getServices() {return services;}
+	
 	protected void reloadServices()
 	{
 		services = fGeo.all(cService);
 	}
+	
+	//Service
+	protected SERVICE service;
+	public SERVICE getService() {return service;}
+	public void setService(SERVICE service) {this.service = service;}
 	
 	public void addService() throws UtilsConstraintViolationException
 	{
