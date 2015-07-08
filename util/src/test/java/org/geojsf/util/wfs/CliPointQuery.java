@@ -7,7 +7,7 @@ import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
 import org.geojsf.model.xml.ogc.Distance;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
