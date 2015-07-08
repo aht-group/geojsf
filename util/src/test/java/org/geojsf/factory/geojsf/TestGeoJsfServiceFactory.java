@@ -3,13 +3,12 @@ package org.geojsf.factory.geojsf;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-
 import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
 import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.core.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.core.DefaultGeoJsfService;
 import org.geojsf.model.pojo.core.DefaultGeoJsfView;
+import org.geojsf.model.pojo.meta.DefaultGeoJsfDataSource;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
@@ -22,6 +21,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 
 public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 {
@@ -36,7 +37,7 @@ public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 	private DefaultGeoJsfLayer layerA;
 	private DefaultGeoJsfLayer layerB;
 	
-	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate> fService;
+	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate> fService;
 	
 	@Before
 	public void init() throws UtilsConstraintViolationException

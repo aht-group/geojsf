@@ -8,11 +8,8 @@ import java.util.Map;
 
 import javax.persistence.OneToMany;
 
-import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
-import net.sf.ahtutils.model.qualifier.EjbErNode;
-
 import org.geojsf.interfaces.model.GeoJsfCategory;
+import org.geojsf.model.pojo.meta.DefaultGeoJsfDataSource;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
@@ -20,9 +17,13 @@ import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
+import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
+import net.sf.ahtutils.model.qualifier.EjbErNode;
+
 @EjbErNode(name="Category",category="geojsf",subset="core")
 public class DefaultGeoJsfCategory implements Serializable,EjbRemoveable,EjbPersistable,
-			GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
+			GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
 {
 	public static enum Code {welcome}
 	
