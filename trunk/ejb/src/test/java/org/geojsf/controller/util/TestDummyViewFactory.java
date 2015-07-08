@@ -2,9 +2,6 @@ package org.geojsf.controller.util;
 
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.geojsf.factory.geojsf.GeoJsfServiceFactory;
 import org.geojsf.factory.xml.openlayers.XmlRepositoryFactory;
 import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
@@ -12,6 +9,7 @@ import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.core.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.core.DefaultGeoJsfService;
 import org.geojsf.model.pojo.core.DefaultGeoJsfView;
+import org.geojsf.model.pojo.meta.DefaultGeoJsfDataSource;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
@@ -28,12 +26,15 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
+import net.sf.exlp.util.xml.JaxbUtil;
+
 public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestDummyViewFactory.class);
 	
-	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate> fJsf;
-	private DummyViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate> dvf;
+	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate> fJsf;
+	private DummyViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate> dvf;
 	
 	@Before
 	public void init() throws UtilsConstraintViolationException
@@ -91,7 +92,7 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		logger.info("This is the MAP");
 		GeojsfDatastructureDebugger.debug(map);
 		
-		GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate> fService;
+		GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate> fService;
 		fService = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
 		
 		logger.info("***********************");
