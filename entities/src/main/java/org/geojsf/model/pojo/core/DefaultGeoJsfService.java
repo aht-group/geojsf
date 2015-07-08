@@ -8,7 +8,7 @@ import java.util.Map;
 
 import javax.persistence.OneToMany;
 
-import org.geojsf.interfaces.model.GeoJsfService;
+import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfDataSource;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;

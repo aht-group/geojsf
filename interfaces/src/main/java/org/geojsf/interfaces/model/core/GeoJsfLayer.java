@@ -1,7 +1,10 @@
-package org.geojsf.interfaces.model;
+package org.geojsf.interfaces.model.core;
 
+
+import java.util.List;
 
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
+import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 
 import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
@@ -45,4 +48,7 @@ public interface GeoJsfLayer<L extends UtilsLang,
 	
 	SLDTEMPLATE getSldTemplate();
 	void setSldTemplate(SLDTEMPLATE sldTemplate);
+	
+	List<DS> getSources();
+	void setSources(List<DS> sources);
 }

@@ -15,7 +15,7 @@ import javax.faces.event.PostAddToViewEvent;
 
 import net.sf.ahtutils.jsf.util.ComponentAttribute;
 
-import org.geojsf.interfaces.model.GeoJsfViewPort;
+import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

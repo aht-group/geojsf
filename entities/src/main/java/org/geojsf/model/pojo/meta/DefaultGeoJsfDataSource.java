@@ -1,7 +1,12 @@
 package org.geojsf.model.pojo.meta;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
@@ -38,6 +43,10 @@ public class DefaultGeoJsfDataSource implements Serializable,EjbRemoveable,EjbPe
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 
+	@ManyToMany(fetch=FetchType.LAZY)
+	private List<DefaultGeoJsfLayer> layers;
+	@Override public List<DefaultGeoJsfLayer> getLayers() {if(layers==null){layers = new ArrayList<DefaultGeoJsfLayer>();};return layers;}
+	@Override public void setLayers(List<DefaultGeoJsfLayer> layers) {this.layers = layers;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	

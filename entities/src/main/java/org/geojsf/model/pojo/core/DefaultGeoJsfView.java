@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.ManyToOne;
 
-import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfDataSource;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;

@@ -1,11 +1,12 @@
 package org.geojsf.interfaces.model.meta;
 
-import org.geojsf.interfaces.model.GeoJsfCategory;
-import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfMap;
-import org.geojsf.interfaces.model.GeoJsfService;
-import org.geojsf.interfaces.model.GeoJsfView;
-import org.geojsf.interfaces.model.GeoJsfViewPort;
+import java.util.List;
+
+import org.geojsf.interfaces.model.core.GeoJsfCategory;
+import org.geojsf.interfaces.model.core.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfMap;
+import org.geojsf.interfaces.model.core.GeoJsfService;
+import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 
 import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
@@ -32,5 +33,6 @@ public interface GeoJsfDataSource<L extends UtilsLang,
 			extends EjbWithId,EjbSaveable,EjbRemoveable,
 						EjbWithLang<L>,EjbWithDescription<D>
 {
-	
+	List<LAYER> getLayers();
+	void setLayers(List<LAYER> layers);
 }

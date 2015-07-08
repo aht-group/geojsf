@@ -1,8 +1,9 @@
-package org.geojsf.interfaces.model;
+package org.geojsf.interfaces.model.core;
 
 import java.util.List;
 
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
+import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 
 import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
@@ -14,7 +15,7 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithCode;
 import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
-public interface GeoJsfService<L extends UtilsLang,
+public interface GeoJsfCategory<L extends UtilsLang,
 								D extends UtilsDescription,
 								CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
 								SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
@@ -26,15 +27,10 @@ public interface GeoJsfService<L extends UtilsLang,
 								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 								SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
-			extends EjbSaveable,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>,EjbRemoveable
-{	
-	String getWms();
-	void setWms(String wms);
-	
-	String getWcs();
-	void setWcs(String wcs);
-	
+			extends EjbSaveable,EjbRemoveable,
+					EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
+{
 	List<LAYER> getLayer();
 	void setLayer(List<LAYER> layer);
-	
+
 }
