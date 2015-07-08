@@ -12,7 +12,7 @@ import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
 import org.geojsf.factory.ejb.area.EjbBasinFactory;
-import org.geojsf.interfaces.model.water.GeoBasin;
+import org.geojsf.interfaces.model.area.GeoBasin;
 import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestExport;
 import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestImport;
 import org.geojsf.model.xml.area.Basin;
