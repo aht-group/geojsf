@@ -1,4 +1,4 @@
-package org.geojsf.model.pojo.geojsf;
+package org.geojsf.model.pojo.meta;
 
 import java.io.Serializable;
 
@@ -7,6 +7,11 @@ import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 import org.geojsf.interfaces.model.GeoJsfViewPort;
+import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
+import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.core.DefaultGeoJsfMap;
+import org.geojsf.model.pojo.core.DefaultGeoJsfService;
+import org.geojsf.model.pojo.core.DefaultGeoJsfView;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;

@@ -1,12 +1,12 @@
 package org.geojsf.util.wfs;
 
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfCategory;
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfMap;
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfService;
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfView;
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfViewPort;
+import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
+import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.core.DefaultGeoJsfMap;
+import org.geojsf.model.pojo.core.DefaultGeoJsfService;
+import org.geojsf.model.pojo.core.DefaultGeoJsfView;
+import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;

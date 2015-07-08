@@ -2,9 +2,9 @@ package org.geojsf.factory.txt;
 
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfCategory;
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.geojsf.DefaultGeoJsfService;
+import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
+import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.core.DefaultGeoJsfService;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.junit.Assert;
 import org.junit.Before;

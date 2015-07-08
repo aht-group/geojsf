@@ -1,27 +1,28 @@
-package org.geojsf.model.pojo.geojsf;
+package org.geojsf.model.pojo.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
-import org.geojsf.interfaces.model.GeoJsfMap;
+import org.geojsf.interfaces.model.GeoJsfCategory;
+import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-@EjbErNode(name="Map",category="geojsf",subset="core,viewport")
-public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
+@EjbErNode(name="Category",category="geojsf",subset="core")
+public class DefaultGeoJsfCategory implements Serializable,EjbRemoveable,EjbPersistable,
+			GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
 {
 	public static enum Code {welcome}
 	
@@ -34,31 +35,31 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	private String code;
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
-	
-	@OneToOne
-	private DefaultGeoJsfViewPort viewPort;
-	@Override public DefaultGeoJsfViewPort getViewPort(){return viewPort;}
-	@Override public void setViewPort(DefaultGeoJsfViewPort viewPort){this.viewPort = viewPort;}
-	
-	private Map<String, DefaultGeoJsfLang> name;
-	@Override public Map<String, DefaultGeoJsfLang> getName() {return name;}
+		
+	@OneToMany
+	private List<DefaultGeoJsfLayer> layer;
+	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
+	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
+
+
+//	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@MapKey(name = "lkey")
+	protected Map<String, DefaultGeoJsfLang> name;
+	@Override public Map<String, DefaultGeoJsfLang> getName() {if(name==null){name=new Hashtable<String,DefaultGeoJsfLang>();}return name;}
 	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
 	
-	private Map<String, DefaultGeoJsfDescription> description;
+//	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@MapKey(name = "lkey")
+	protected Map<String, DefaultGeoJsfDescription> description;
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
-	
-	@OneToMany
-	private List<DefaultGeoJsfView> layer;
-	@Override public List<DefaultGeoJsfView> getViews() {if(layer==null){layer=new ArrayList<DefaultGeoJsfView>();}return layer;}
-	@Override public void setViews(List<DefaultGeoJsfView> layer) {this.layer=layer;}
 	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	
 	public boolean equals(Object object)
 	{
-        return (object instanceof DefaultGeoJsfMap)
-             ? id == ((DefaultGeoJsfMap) object).getId()
+        return (object instanceof DefaultGeoJsfCategory)
+             ? id == ((DefaultGeoJsfCategory) object).getId()
              : (object == this);
     }
 	
