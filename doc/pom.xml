@@ -38,9 +38,28 @@
 			<artifactId>geojsf-util</artifactId>
 		</dependency>
 		
+		<!-- ExLP -->
 		<dependency>
 			<groupId>net.sf.exlp</groupId>
 			<artifactId>exlp-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+		
+		<!-- AhtUtils -->
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-xml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-interfaces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-doc</artifactId>
 		</dependency>
 				
 		<!-- Documentation -->
@@ -62,20 +81,34 @@
 			<version>0.0.2-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-transcoder</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		
-		<!-- AhtUtils -->
-		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-xml</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-interfaces</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-doc</artifactId>
-		</dependency>	
+		<!-- JAXB -->
+      	<dependency>
+   	   		<groupId>javax.xml.bind</groupId>
+   	   		<artifactId>jaxb-api</artifactId>
+   	   		<scope>test</scope>
+   	   	</dependency>
+   	   	<dependency>
+   	   		<groupId>com.sun.xml.bind</groupId>
+   	   		<artifactId>jaxb-impl</artifactId>
+   	   		<scope>test</scope>
+   	   	</dependency>
+   	   	<dependency>
+   	   		<groupId>com.sun.xml.bind</groupId>
+   	   		<artifactId>jaxb-xjc</artifactId>
+   	   		<scope>test</scope>
+   	   	</dependency>
 
 		<!-- Logging -->
 		<dependency>

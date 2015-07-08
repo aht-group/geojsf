@@ -1,4 +1,4 @@
-package org.geojsf.model.pojo.openlayers;
+package org.geojsf.model.pojo.geojsf;
 
 import java.io.Serializable;
 
@@ -13,7 +13,7 @@ import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-@EjbErNode(name="ViewPort",category="geojsf")
+@EjbErNode(name="ViewPort",category="geojsf",subset="viewport")
 public class DefaultGeoJsfViewPort implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfViewPort<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
 {

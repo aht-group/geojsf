@@ -1,13 +1,10 @@
-package org.geojsf.model.pojo.openlayers;
+package org.geojsf.model.pojo.geojsf;
 
 import java.io.Serializable;
 import java.util.Map;
 
 import javax.persistence.ManyToOne;
-
-import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import javax.persistence.OneToOne;
 
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
@@ -16,7 +13,11 @@ import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-@EjbErNode(name="Layer",category="geojsf")
+import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
+import net.sf.ahtutils.model.qualifier.EjbErNode;
+
+@EjbErNode(name="Layer",category="geojsf",subset="core,viewport")
 public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
 {
@@ -50,6 +51,7 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 
+	@OneToOne
 	private DefaultGeoJsfViewPort viewPort;
 	@Override public DefaultGeoJsfViewPort getViewPort(){return viewPort;}
 	@Override public void setViewPort(DefaultGeoJsfViewPort viewPort){this.viewPort = viewPort;}
