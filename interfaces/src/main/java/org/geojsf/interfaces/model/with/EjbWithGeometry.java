@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.model;
+package org.geojsf.interfaces.model.with;
 
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 

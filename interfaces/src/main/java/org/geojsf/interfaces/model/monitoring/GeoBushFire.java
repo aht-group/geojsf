@@ -4,7 +4,7 @@ package org.geojsf.interfaces.model.monitoring;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.ahtutils.model.interfaces.with.EjbWithRecord;
 
-import org.geojsf.interfaces.model.EjbWithGeometry;
+import org.geojsf.interfaces.model.with.EjbWithGeometry;
 
 import com.vividsolutions.jts.geom.Point;
 
