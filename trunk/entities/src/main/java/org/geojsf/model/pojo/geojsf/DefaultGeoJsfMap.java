@@ -1,4 +1,4 @@
-package org.geojsf.model.pojo.openlayers;
+package org.geojsf.model.pojo.geojsf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
@@ -18,7 +19,7 @@ import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-@EjbErNode(name="Map",category="geojsf")
+@EjbErNode(name="Map",category="geojsf",subset="core,viewport")
 public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
 {
@@ -34,6 +35,7 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
 	
+	@OneToOne
 	private DefaultGeoJsfViewPort viewPort;
 	@Override public DefaultGeoJsfViewPort getViewPort(){return viewPort;}
 	@Override public void setViewPort(DefaultGeoJsfViewPort viewPort){this.viewPort = viewPort;}

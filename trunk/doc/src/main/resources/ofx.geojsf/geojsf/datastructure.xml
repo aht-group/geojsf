@@ -15,7 +15,7 @@
 	    <ofx:title>Data structure</ofx:title>
 	    <layout:alignment horizontal="center"/>
 	    <layout:width unit="cm">6</layout:width>
-	    <media:media src="svg.geojsf/er.svg" dst="admin/gis/geojsf-er"/>
+	    <media:media src="svg.geojsf/er/core.svg" dst="admin/gis/geojsf/er/core"/>
 	</media:image>
 	   
 </ofx:section>

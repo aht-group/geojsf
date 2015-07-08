@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<doc>
+    	<ofx>
+    		<mediaSourceTracker>src/test/resources/config.geojsf-doc.test/ofx-tracker.xml</mediaSourceTracker>
+    		<imagePathPrefix>svg.geojsf</imagePathPrefix>
+    	</ofx>
+    </doc>
+</config>

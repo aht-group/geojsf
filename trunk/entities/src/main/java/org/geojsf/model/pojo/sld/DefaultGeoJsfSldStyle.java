@@ -12,7 +12,7 @@ import net.sf.ahtutils.model.qualifier.EjbErNode;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-@EjbErNode(name="SldStyle",category="geojsf")
+@EjbErNode(name="SLD Style",category="sld",subset="sld")
 public class DefaultGeoJsfSldStyle implements Serializable,EjbRemoveable,EjbPersistable,
 								UtilsStatus<DefaultGeoJsfSldStyle,DefaultGeoJsfLang,DefaultGeoJsfDescription>
 {

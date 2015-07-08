@@ -5,12 +5,12 @@ import java.util.List;
 
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfCategory;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfMap;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfService;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfView;
-import org.geojsf.model.pojo.openlayers.DefaultGeoJsfViewPort;
+import org.geojsf.model.pojo.geojsf.DefaultGeoJsfCategory;
+import org.geojsf.model.pojo.geojsf.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.geojsf.DefaultGeoJsfMap;
+import org.geojsf.model.pojo.geojsf.DefaultGeoJsfService;
+import org.geojsf.model.pojo.geojsf.DefaultGeoJsfView;
+import org.geojsf.model.pojo.geojsf.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;

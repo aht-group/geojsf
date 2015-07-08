@@ -4,15 +4,17 @@ import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.Map;
 
-import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import javax.persistence.ManyToOne;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
-@EjbErNode(name="ViewPort",category="geojsf")
+import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
+import net.sf.ahtutils.model.qualifier.EjbErNode;
+
+@EjbErNode(name="SLD Template",category="sld",subset="sld")
 public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbPersistable,
 								GeoJsfSldTemplate<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
 {
@@ -27,6 +29,7 @@ public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbP
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
 	
+	@ManyToOne
 	private DefaultGeoJsfSldType type;
 	public DefaultGeoJsfSldType getType() {return type;}
 	public void setType(DefaultGeoJsfSldType type) {this.type = type;}
