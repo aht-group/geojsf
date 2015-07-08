@@ -7,7 +7,7 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
-import org.geojsf.interfaces.model.EjbWithGeometry;
+import org.geojsf.interfaces.model.with.EjbWithGeometry;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
 

@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 
 import org.geojsf.exception.GeoJsfDeveloperException;
 import org.geojsf.factory.xml.gml.XmlCoordinatesFactory;
-import org.geojsf.interfaces.model.EjbWithGeometry;
 import org.geojsf.interfaces.model.GeoJsfCategory;
 import org.geojsf.interfaces.model.GeoJsfLayer;
 import org.geojsf.interfaces.model.GeoJsfMap;
@@ -22,6 +21,7 @@ import org.geojsf.interfaces.model.GeoJsfService;
 import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.with.EjbWithGeometry;
 import org.geojsf.interfaces.qualifier.IgnoreGeoJsfWfsProperty;
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
 import org.geojsf.model.xml.geojsf.Coordinate;
