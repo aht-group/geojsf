@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:aht="http://ahtutils.sourceforge.net/jsf"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	<composite:interface>
+
+	</composite:interface>
+        
+	<composite:implementation>
+		<p:dataTable var="layer" value="#{adminGisDataSourceBean.layers}"
+					rendered="#{not empty adminGisDataSourceBean.source}"
+					selection="#{adminGisDataSourceBean.layer}" selectionMode="single" rowKey="#{layer.id}">
+			<f:facet name="header">
+                <aht:pfDataTableHeader title="#{msg.geoJsfAdminDataSources}">
+                    <aht:icon type="geoJsfAdd" listener="#{adminGisDataSourceBean.openLayers()}" update=":fLayers" oncomplete="PF('wvLayer').show();"/>
+                    <aht:icon type="geoJsfgeoJsfRm" listener="#{adminGisDataSourceBean.rmLayer()}" update=":fLayers" rendered="#{not empty adminGisDataSourceBean.layer}"/>
+                </aht:pfDataTableHeader>
+            </f:facet>
+            <p:ajax event="rowSelect" update=":fLayers" listener="#{adminGisDataSourceBean.selectLayer}"/>
+            <p:column headerText="#{msg.geoJsfAdminCategory}">
+				<h:outputText value="#{layer.name[userBean.localeCode].lang}" />  
+			</p:column>
+            <p:column headerText="#{msg.Name}">
+				<h:outputText value="#{layer.name[userBean.localeCode].lang}" />  
+			</p:column>
+		</p:dataTable>
+		<p:dialog id="dMember" header="#{msg.geoJsfAdminDataSourceLayer}" widgetVar="wvLayer" modal="true">
+			<aht:slot width="8">
+				<p:dataTable rendered="#{(not empty adminGisDataSourceBean.source) and (adminGisDataSourceBean.source.id gt 0)}"
+					var="layer" value="#{adminGisDataSourceBean.availableLayers}"
+					selection="#{adminGisDataSourceBean.availableLayer}" selectionMode="single" rowKey="#{layer.id}"
+					rows="15" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+					<f:facet name="header">
+		                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
+		                    
+		                </aht:pfDataTableHeader>
+		            </f:facet>
+		            <p:ajax event="rowSelect" update=":fLayers" listener="#{adminGisDataSourceBean.addLayer}" oncomplete="PF('wvLayer').hide();"/>
+		            <p:column headerText="#{msg.geoJsfAdminCategory}">
+						<h:outputText value="#{layer.name[userBean.localeCode].lang}" />  
+					</p:column>
+		            <p:column headerText="#{msg.geoJsfAdminLayer}">
+						<h:outputText value="#{layer.name[userBean.localeCode].lang}" />  
+					</p:column>
+				</p:dataTable>
+			</aht:slot>
+		</p:dialog>
+   </composite:implementation>
+</html>

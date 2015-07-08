@@ -163,12 +163,25 @@
 			<s:lang key="fr" translation="SDynamic SLD"/>
 		</s:langs>
 	</s:translation>
-	
 	<s:translation key="geoJsfAdminType">
 		<s:langs>
 			<s:lang key="de" translation="Type"/>
 			<s:lang key="en" translation="Type"/>
 			<s:lang key="fr" translation="Type"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfAdminDataSources">
+		<s:langs>
+			<s:lang key="de" translation="Data Sources"/>
+			<s:lang key="en" translation="Data Sources"/>
+			<s:lang key="fr" translation="Data Sources"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfAdminDataSource">
+		<s:langs>
+			<s:lang key="de" translation="Data Source"/>
+			<s:lang key="en" translation="Data Source"/>
+			<s:lang key="fr" translation="Data Source"/>
 		</s:langs>
 	</s:translation>
 	

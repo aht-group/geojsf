@@ -8,9 +8,11 @@ import org.geojsf.interfaces.model.GeoJsfView;
 import org.geojsf.interfaces.model.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 
+import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
@@ -27,7 +29,8 @@ public interface GeoJsfDataSource<L extends UtilsLang,
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
-			extends EjbWithId,EjbWithLang<L>,EjbWithDescription<D>
+			extends EjbWithId,EjbSaveable,EjbRemoveable,
+						EjbWithLang<L>,EjbWithDescription<D>
 {
 	
 }
