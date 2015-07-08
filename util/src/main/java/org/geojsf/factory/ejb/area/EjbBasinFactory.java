@@ -8,7 +8,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 import org.geojsf.factory.wkt.MultiPolygonFactory;
-import org.geojsf.interfaces.model.water.GeoBasin;
+import org.geojsf.interfaces.model.area.GeoBasin;
 import org.geojsf.model.xml.area.Basin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

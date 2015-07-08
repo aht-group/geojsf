@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.model.water;
+package org.geojsf.interfaces.model.area;
 
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
