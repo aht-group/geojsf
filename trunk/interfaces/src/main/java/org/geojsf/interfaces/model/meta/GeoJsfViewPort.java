@@ -1,7 +1,11 @@
-package org.geojsf.interfaces.model;
+package org.geojsf.interfaces.model.meta;
 
 
-import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
+import org.geojsf.interfaces.model.core.GeoJsfCategory;
+import org.geojsf.interfaces.model.core.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfMap;
+import org.geojsf.interfaces.model.core.GeoJsfService;
+import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 
 import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;

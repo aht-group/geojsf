@@ -2,7 +2,7 @@ package org.geojsf.model.pojo.meta;
 
 import java.io.Serializable;
 
-import org.geojsf.interfaces.model.GeoJsfViewPort;
+import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
 import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.core.DefaultGeoJsfMap;

@@ -13,8 +13,8 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
-import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfView;
+import org.geojsf.interfaces.model.core.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

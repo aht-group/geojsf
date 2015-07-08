@@ -1,13 +1,13 @@
 package org.geojsf.util.db.init;
 
 import org.geojsf.interfaces.facade.GeoJsfFacade;
-import org.geojsf.interfaces.model.GeoJsfCategory;
-import org.geojsf.interfaces.model.GeoJsfLayer;
-import org.geojsf.interfaces.model.GeoJsfMap;
-import org.geojsf.interfaces.model.GeoJsfService;
-import org.geojsf.interfaces.model.GeoJsfView;
-import org.geojsf.interfaces.model.GeoJsfViewPort;
+import org.geojsf.interfaces.model.core.GeoJsfCategory;
+import org.geojsf.interfaces.model.core.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfMap;
+import org.geojsf.interfaces.model.core.GeoJsfService;
+import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
+import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;

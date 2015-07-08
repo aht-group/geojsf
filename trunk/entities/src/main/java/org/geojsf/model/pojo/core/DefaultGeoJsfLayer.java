@@ -1,12 +1,15 @@
 package org.geojsf.model.pojo.core;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import org.geojsf.interfaces.model.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfDataSource;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
@@ -69,8 +72,13 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	@Override public void setSqlLayer(Boolean sqlLayer) {this.sqlLayer = sqlLayer;}
 
 	private DefaultGeoJsfSldTemplate sldTemplate;
-	public DefaultGeoJsfSldTemplate getSldTemplate() {return sldTemplate;}
-	public void setSldTemplate(DefaultGeoJsfSldTemplate sldTemplate) {this.sldTemplate = sldTemplate;}
+	@Override public DefaultGeoJsfSldTemplate getSldTemplate() {return sldTemplate;}
+	@Override public void setSldTemplate(DefaultGeoJsfSldTemplate sldTemplate) {this.sldTemplate = sldTemplate;}
+	
+	@ManyToMany
+	private List<DefaultGeoJsfDataSource> sources;
+	@Override public List<DefaultGeoJsfDataSource> getSources() {if(sources==null){sources = new ArrayList<DefaultGeoJsfDataSource>();};return sources;}
+	@Override public void setSources(List<DefaultGeoJsfDataSource> sources) {this.sources = sources;}
 	
 	public boolean equals(Object object)
 	{
