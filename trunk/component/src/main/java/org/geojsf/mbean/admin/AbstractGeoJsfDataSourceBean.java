@@ -56,7 +56,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang,
 	private String[] langKeys;
 	private Class<DS> cDs;
 	
-	public void initSuper(String[] langKeys, final Class<L> cL, final Class<D> cD, final Class<DS> cDs, final Class<LAYER> cLayer)
+	public void initSuper(String[] langKeys, final Class<L> cL, final Class<D> cD, final Class<DS> cDs, final Class<LAYER> cLayer, final Class<CATEGORY> cCategory)
 	{
 		this.langKeys=langKeys;
 		this.cDs=cDs;
@@ -64,13 +64,19 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang,
     	efDescription = EjbDescriptionFactory.createFactory(cD);
     	efDs = EjbGeoDataSourceFactory.factory(cL, cD, cDs);
     	availableLayers = fGeo.all(cLayer);
+    	categories = fGeo.all(cCategory);
+		reloadSources();
 	}
 	
+	//Categories
+	private List<CATEGORY> categories;
+	public List<CATEGORY> getCategories() {return categories;}
+
 	//Datasources
-	protected List<DS> sources;
+	private List<DS> sources;
 	public List<DS> getSources() {return sources;}
 	
-	protected void reloadSources()
+	private void reloadSources()
 	{
 		sources = fGeo.all(cDs);
 	}
@@ -83,12 +89,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang,
 	public void addSource() throws UtilsConstraintViolationException
 	{
 		logger.info(AbstractLogMessage.addEntity(cDs));
-		source = efDs.build(langKeys);
-//		service = efService.build(null, null);
-		
-//		service.setName(efLang.createEmpty(langKeys));
-//		service.setDescription(efDescription.createEmpty(langKeys));
-		
+		source = efDs.build(langKeys);		
 	}
 
 	public void selectSource() throws UtilsNotFoundException
@@ -96,6 +97,13 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang,
 		logger.info(AbstractLogMessage.selectEntity(source));
 //		service = fGeo.load(cService,service);
 //		logger.info("selectService "+service);
+		reloadSource();
+	}
+	
+	private void reloadSource()
+	{
+		source = fGeo.load(cDs, source);
+		layers = source.getLayers();
 	}
 	
 	public void rmSource() throws UtilsConstraintViolationException
@@ -111,6 +119,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang,
 		logger.info("saveService "+source);
 		source = fGeo.save(source);
 		reloadSources();
+		reloadSource();
 	}
 	
 	public void cancelSource() throws UtilsConstraintViolationException, UtilsLockingException
@@ -136,21 +145,35 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang,
 
 	public void selectLayer()
 	{
-		logger.info("selectLayer");
+		logger.info("selectLayer "+layer.toString());
 	}
 	
-	public void openLayers()
+	public void showAvailable()
 	{
-		logger.info("openLayers");
+		logger.info("showAvailable");
 	}
 	
-	public void addLayer()
+	public void addLayer() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info("addLayer");
+		if(!source.getLayers().contains(availableLayer))
+		{
+			source.getLayers().add(availableLayer);
+			source = fGeo.update(source);
+			reloadSource();
+		}
+		layer=null;
 	}
 	
-	public void rmLayer()
+	public void rmLayer() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info("rmLayer");
+		if(source.getLayers().contains(layer))
+		{
+			source.getLayers().remove(layer);
+			source = fGeo.update(source);
+			reloadSource();
+		}
+		layer=null;
 	}
 }

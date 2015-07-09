@@ -12,7 +12,7 @@
 	</composite:interface>
         
 	<composite:implementation>
-		<p:panel header="#{msg.geoJsfAdminDataSources}" rendered="#{not empty adminGisDataSourceBean.source}" styleClass="auPanelWithGrid">
+		<p:panel header="#{msg.geoJsfAdminDataSource}" rendered="#{not empty adminGisDataSourceBean.source}" styleClass="auPanelWithGrid">
 			<f:facet name="actions">
 				<aht:icon type="geoJsfCancel" listener="#{adminGisDataSourceBean.cancelSource()}" update=":rowSources"/>
 				<aht:icon type="geoJsfSave" listener="#{adminGisDataSourceBean.saveSource()}" update=":rowSources"/>

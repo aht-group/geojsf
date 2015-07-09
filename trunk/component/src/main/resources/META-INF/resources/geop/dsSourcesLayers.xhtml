@@ -16,12 +16,12 @@
 					rendered="#{not empty adminGisDataSourceBean.source}"
 					selection="#{adminGisDataSourceBean.layer}" selectionMode="single" rowKey="#{layer.id}">
 			<f:facet name="header">
-                <aht:pfDataTableHeader title="#{msg.geoJsfAdminDataSources}">
-                    <aht:icon type="geoJsfAdd" listener="#{adminGisDataSourceBean.openLayers()}" update=":fLayers" oncomplete="PF('wvLayer').show();"/>
-                    <aht:icon type="geoJsfgeoJsfRm" listener="#{adminGisDataSourceBean.rmLayer()}" update=":fLayers" rendered="#{not empty adminGisDataSourceBean.layer}"/>
+                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
+                    <aht:icon type="geoJsfAdd" listener="#{adminGisDataSourceBean.showAvailable()}" update=":fLayers" oncomplete="PF('wvLayer').show();"/>
+                    <aht:icon rendered="#{not empty adminGisDataSourceBean.layer}" type="geoJsfRm" listener="#{adminGisDataSourceBean.rmLayer()}" update=":fLayers" />
                 </aht:pfDataTableHeader>
             </f:facet>
-            <p:ajax event="rowSelect" update=":fLayers" listener="#{adminGisDataSourceBean.selectLayer}"/>
+            <p:ajax event="rowSelect" update=":fLayers" listener="#{adminGisDataSourceBean.selectLayer()}"/>
             <p:column headerText="#{msg.geoJsfAdminCategory}">
 				<h:outputText value="#{layer.name[userBean.localeCode].lang}" />  
 			</p:column>
@@ -31,21 +31,25 @@
 		</p:dataTable>
 		<p:dialog id="dMember" header="#{msg.geoJsfAdminDataSourceLayer}" widgetVar="wvLayer" modal="true">
 			<aht:slot width="8">
-				<p:dataTable rendered="#{(not empty adminGisDataSourceBean.source) and (adminGisDataSourceBean.source.id gt 0)}"
-					var="layer" value="#{adminGisDataSourceBean.availableLayers}"
-					selection="#{adminGisDataSourceBean.availableLayer}" selectionMode="single" rowKey="#{layer.id}"
+				<p:dataTable widgetVar="wvLayers" rendered="#{(not empty adminGisDataSourceBean.source) and (adminGisDataSourceBean.source.id gt 0)}"
+					var="la" value="#{adminGisDataSourceBean.availableLayers}"
+					selection="#{adminGisDataSourceBean.availableLayer}" selectionMode="single" rowKey="#{la.id}"
 					rows="15" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
 					<f:facet name="header">
-		                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
-		                    
-		                </aht:pfDataTableHeader>
+		                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}"/>
 		            </f:facet>
 		            <p:ajax event="rowSelect" update=":fLayers" listener="#{adminGisDataSourceBean.addLayer}" oncomplete="PF('wvLayer').hide();"/>
-		            <p:column headerText="#{msg.geoJsfAdminCategory}">
-						<h:outputText value="#{layer.name[userBean.localeCode].lang}" />  
+		            <p:column headerText="#{msg.geoJsfAdminCategory}" filterBy="#{la.category}" filterMatchMode="exact">
+						<f:facet name="filter">
+			                <p:selectOneMenu onchange="PF('wvLayers').filter()" >
+			                    <f:selectItem itemLabel="#{msg.geoJsfFilterSelection}" itemValue="#{null}" noSelectionOption="true" />
+			                    <f:selectItems value="#{adminGisDataSourceBean.categories}" var="c" itemLabel="#{c.name[userBean.localeCode].lang}" itemValue="#{c}"/>
+			                </p:selectOneMenu>
+			            </f:facet>
+						<h:outputText value="#{la.category.name[userBean.localeCode].lang}" />  
 					</p:column>
-		            <p:column headerText="#{msg.geoJsfAdminLayer}">
-						<h:outputText value="#{layer.name[userBean.localeCode].lang}" />  
+		            <p:column headerText="#{msg.geoJsfAdminLayer}" filterBy="#{la.name[userBean.localeCode].lang}">
+						<h:outputText value="#{la.name[userBean.localeCode].lang}" />  
 					</p:column>
 				</p:dataTable>
 			</aht:slot>
