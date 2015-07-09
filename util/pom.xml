@@ -225,6 +225,19 @@
 			<artifactId>joda-time</artifactId>
 		</dependency>
 		
+		<!-- Batik -->
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-transcoder</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>net.sf.ahtutils</groupId>
