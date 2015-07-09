@@ -38,6 +38,7 @@ public interface GeoJsfFacade <L extends UtilsLang,
 	MAP load(Class<MAP> cMap, MAP map);
 	LAYER load(Class<LAYER> cLayer, LAYER layer);
 	SLD load(Class<SLD> cSld,SLD sld);
+	DS load(Class<DS> cDs, DS ds);
 	
 	void rm(Class<LAYER> cLayer, LAYER layer);	
 	void rm(Class<VIEW> cView, VIEW view);

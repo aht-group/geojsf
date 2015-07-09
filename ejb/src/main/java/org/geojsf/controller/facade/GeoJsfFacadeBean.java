@@ -99,8 +99,7 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 		return map;
 	}
 	
-	@Override
-	public CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category)
+	@Override public CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category)
 	{
 		category = em.find(cCategory, category.getId());
 		category.getLayer().size();
@@ -126,6 +125,13 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 		sld = em.find(cSld, sld.getId());
 		sld.getRules().size();
 		return sld;
+	}
+	
+	@Override public DS load(Class<DS> cDs, DS ds)
+	{
+		ds = em.find(cDs, ds.getId());
+		ds.getLayers().size();
+		return ds;
 	}
 
 	@Override public void rm(Class<VIEW> cView, VIEW view)
