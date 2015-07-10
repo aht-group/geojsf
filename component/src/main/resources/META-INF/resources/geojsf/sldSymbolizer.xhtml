@@ -8,9 +8,10 @@
     
 	<composite:interface>
 		<composite:attribute name="value" required="true"/>
+		<composite:attribute name="height" required="false" default="12"/>
 	</composite:interface>
 	        
 	<composite:implementation>
-		<p:graphicImage value="/image/symbolizer/sld/rule/#{cc.attrs.value.id}"/>
+		<p:graphicImage value="/image/symbolizer/sld/rule/#{cc.attrs.height}/#{cc.attrs.value.id}"/>
 	</composite:implementation>
 </html>
