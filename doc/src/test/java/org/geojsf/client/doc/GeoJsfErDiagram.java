@@ -1,4 +1,4 @@
-package org.geojsf.doc.er;
+package org.geojsf.client.doc;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<db:db xmlns:db="http://ahtutils.aht-group.com/dbseed"
+	pathIde="src/main/resources/db.geojsf/">
+   
+	<db:seed code="org.geojsf.interfaces.model.core.GeoJsfCategory" content="geojsf/categories.xml"/>
+	<db:seed code="org.geojsf.interfaces.model.core.GeoJsfLayer" content="geojsf/layers.xml"/>
+	<db:seed code="org.geojsf.interfaces.model.core.GeoJsfMap" content="geojsf/maps.xml"/>
+	<db:seed code="org.geojsf.interfaces.model.core.GeoJsfService" content="geojsf/services.xml"/>
+	<db:seed code="org.geojsf.interfaces.model.meta.GeoJsfViewPort" content="geojsf/viewPorts.xml"/>
+	<db:seed code="org.geojsf.interfaces.model.sld.GeoJsfSldType" content="db.geojsf/sldType.xml"/>
+	<db:seed code="org.geojsf.interfaces.model.sld.GeoJsfSldStyle" content="db.geojsf/sldStyle.xml"/>
+	<db:seed code="org.geojsf.interfaces.model.sld.GeoJsfSldTemplate" content="geojsf/sld/templates.xml"/>
+	
+	<db:seed code="DefaultGeoJsfSldStyle" content="sldStyle.xml"/>
+	
+</db:db>

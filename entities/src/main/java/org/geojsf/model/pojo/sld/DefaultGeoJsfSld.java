@@ -21,7 +21,7 @@ import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
-@EjbErNode(name="SLD Rule",category="sld",subset="sld")
+@EjbErNode(name="SLD",category="sld",subset="sld")
 public class DefaultGeoJsfSld implements Serializable,EjbRemoveable,EjbPersistable,
 GeoJsfSld<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSld,DefaultGeoJsfSldRule,DefaultGeoJsfSldTemplate>
 {
