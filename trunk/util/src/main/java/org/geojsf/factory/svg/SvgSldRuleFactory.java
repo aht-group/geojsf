@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 import org.apache.batik.dom.svg.SVGDOMImplementation;
 import org.apache.batik.svggen.SVGGraphics2D;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
+import org.geojsf.interfaces.model.sld.GeoJsfSldStyle;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,8 +76,14 @@ public class SvgSldRuleFactory<L extends UtilsLang,
 	
 	public SVGGraphics2D build(int canvasSize, RULE rule)
 	{
-		int size = 5;
-		if(rule.getSize()!=null){size = rule.getSize();}
+		int size = 5; if(rule.getSize()!=null){size = rule.getSize();}
+		String color = "000000";if(rule.getColor()!=null){color = rule.getColor();}
+		GeoJsfSldStyle.Code style = GeoJsfSldStyle.Code.circle;
+		
+		if(rule.getStyle()!=null && rule.getStyle().getCode()!=null)
+		{
+			style = GeoJsfSldStyle.Code.valueOf(rule.getStyle().getCode());
+		}
 		
 	    SVGDocument doc = (SVGDocument) impl.createDocument(SVGDOMImplementation.SVG_NAMESPACE_URI, "svg", null);
 	    SVGGraphics2D g = new SVGGraphics2D(doc);
@@ -85,12 +93,16 @@ public class SvgSldRuleFactory<L extends UtilsLang,
 	    
 	    logger.info("Canvas: "+canvasSize+" low:"+low+" size:"+size);
 	    
-	    // Do some drawing.
-	    Shape circle = new Ellipse2D.Double(low, low, size, size);
-//	    g.setPaint(Color.decode(rule.getColor()));
-	    g.setPaint(Color.red);
-	    g.fill(circle);
+	    Shape shape = null;
+	    switch(style)
+	    {
+	    	case circle:  shape = new Ellipse2D.Double(low, low, size, size);break;
+	    	case square:  shape = new Rectangle2D.Double(low, low, size, size);break;
+	    }
 	    
+	    g.setPaint(Color.decode("#"+color));
+	    g.fill(shape);
+	      
 	    g.setSVGCanvasSize(new Dimension(canvasSize, canvasSize));
 	    
 	    return g;
