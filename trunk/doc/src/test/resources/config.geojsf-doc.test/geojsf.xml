@@ -6,4 +6,7 @@
     		<imagePathPrefix>svg.geojsf</imagePathPrefix>
     	</ofx>
     </doc>
+    <db>
+		<seed>config.geojsf-doc.test/dbseed.xml</seed>
+	</db>
 </config>
