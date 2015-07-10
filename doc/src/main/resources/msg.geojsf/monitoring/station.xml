@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<s:translations xmlns:s="http://ahtutils.aht-group.com/status">
+	<s:translation key="geojsfMonitoringStationCapabilities">
+	    <s:langs>
+	        <s:lang key="de" translation="Capabilities"/>
+	        <s:lang key="en" translation="Capabilities"/>
+	        <s:lang key="fr" translation="Capabilities"/>
+	    </s:langs>
+	</s:translation>
+	<s:translation key="geojsfMonitoringStationCapability">
+	    <s:langs>
+	        <s:lang key="de" translation="Capability"/>
+	        <s:lang key="en" translation="Capability"/>
+	        <s:lang key="fr" translation="Capability"/>
+	    </s:langs>
+	</s:translation>
+	<s:translation key="geojsfMonitoringStations">
+	    <s:langs>
+	        <s:lang key="de" translation="Stations"/>
+	        <s:lang key="en" translation="Stations"/>
+	        <s:lang key="fr" translation="Stations"/>
+	    </s:langs>
+	</s:translation>
+	<s:translation key="geojsfMonitoringStation">
+	    <s:langs>
+	        <s:lang key="de" translation="Station"/>
+	        <s:lang key="en" translation="Station"/>
+	        <s:lang key="fr" translation="Station"/>
+	    </s:langs>
+	</s:translation>
+</s:translations>
