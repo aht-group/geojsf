@@ -13,6 +13,7 @@ public interface GeoJsfDocumentation
 	public static String msgGeoAdmin = "msg.geojsf/admin.xml";
 	public static String msgGeoCoordinates = "msg.geojsf/coordinates.xml";
 	public static String msgSld = "msg.geojsf/sld.xml";
+	public static String msgMonitoringStation = "msg.geojsf/monitoring/station.xml";
 	
 	public static final String lstInstGeoserverUser = "admin/installation/geoserver/user.txt";
 	public static final String listingInstallGeoserverExtract = "admin/installation/geoserver/extract.txt";
