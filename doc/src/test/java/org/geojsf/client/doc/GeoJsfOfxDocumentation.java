@@ -33,7 +33,7 @@ public class GeoJsfOfxDocumentation
 	
 	private Configuration config;
 	
-	private final String[] langs = {"en","fr"};
+	private final String[] langs = {"de","en","fr"};
 	private String appCode = "dss";
 	
 	private UtilsDbXmlSeedUtil seedUtil;
@@ -72,17 +72,14 @@ public class GeoJsfOfxDocumentation
 		try
 		{
 			logger.info(texName);
-			for(String lang : langs)
-			{
-				OfxStatusTableFactory fOfx = new OfxStatusTableFactory(config,lang,translations);
-				fOfx.setColWidths(colWidths);
-				
-				if(ahtParents!=null){fOfx.activateParents(ahtParents);}
-//				fOfx.renderColumn(Code.icon, withIcon);
-				
-				Table table = fOfx.buildLatexTable(texName.replaceAll("/", "."),athStatus);
-				JaxbUtil.info(table);
-			}
+			OfxStatusTableFactory fOfx = new OfxStatusTableFactory(config,langs,translations);
+			fOfx.setColWidths(colWidths);
+			
+			if(ahtParents!=null){fOfx.activateParents(ahtParents);}
+//			fOfx.renderColumn(Code.icon, withIcon);
+			
+			Table table = fOfx.buildLatexTable(texName.replaceAll("/", "."),athStatus);
+			JaxbUtil.info(table);
 		}
 		catch (OfxAuthoringException e) {throw new UtilsConfigurationException(e.getMessage());}
 	}

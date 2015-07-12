@@ -2,16 +2,6 @@ package org.geojsf.doc.ofx;
 
 import java.util.List;
 
-import net.sf.ahtutils.doc.DocumentationCommentBuilder;
-import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
-import net.sf.ahtutils.xml.status.Description;
-import net.sf.ahtutils.xml.status.Lang;
-import net.sf.ahtutils.xml.status.Translations;
-import net.sf.ahtutils.xml.xpath.StatusXpath;
-import net.sf.exlp.exception.ExlpXpathNotFoundException;
-import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.doc.GeoJsfDocumentation;
 import org.geojsf.model.xml.geojsf.Category;
@@ -35,8 +25,18 @@ import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
 import org.openfuxml.factory.xml.ofx.content.text.XmlTitleFactory;
 import org.openfuxml.factory.xml.table.OfxCellFactory;
 import org.openfuxml.factory.xml.table.OfxColumnFactory;
+import org.openfuxml.util.OfxCommentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.doc.DocumentationCommentBuilder;
+import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
+import net.sf.ahtutils.xml.status.Description;
+import net.sf.ahtutils.xml.status.Lang;
+import net.sf.ahtutils.xml.status.Translations;
+import net.sf.ahtutils.xml.xpath.StatusXpath;
+import net.sf.exlp.exception.ExlpXpathNotFoundException;
+import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 
 public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 {
@@ -44,19 +44,23 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 	
 	private static String keyCaption = "geojsfTableLayerCaptionPrefix";
 		
-	public OfxLayerTableFactory(Configuration config,String lang,Translations translations)
+	public OfxLayerTableFactory(Configuration config, String lang, Translations translations)
 	{
-		super(config,lang,translations);
+		this(config,new String[] {lang},translations);
+	}
+	public OfxLayerTableFactory(Configuration config,String[] langs,Translations translations)
+	{
+		super(config,langs,translations);
 	}
 	
 	public Table build(String id, Category category, List<String> headerKeys) throws OfxAuthoringException
 	{	
 		Comment comment = XmlCommentFactory.build();
-		DocumentationCommentBuilder.fixedId(comment, id);
+		OfxCommentBuilder.fixedId(comment, id);
 		DocumentationCommentBuilder.translationKeys(comment,config,GeoJsfDocumentation.keyTranslationFile);
 		DocumentationCommentBuilder.tableHeaders(comment,headerKeys);
 		DocumentationCommentBuilder.tableKey(comment,keyCaption,"Table Caption");
-		DocumentationCommentBuilder.doNotModify(comment);
+		OfxCommentBuilder.doNotModify(comment);
 		
 		Table table = toOfx(headerKeys,category.getLayer());
 		table.setId(id);
@@ -64,8 +68,9 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		try
 		{
-			Lang lCaption = StatusXpath.getLang(translations, keyCaption, lang);
-			Lang lService = StatusXpath.getLang(category.getLangs(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Lang lCaption = StatusXpath.getLang(translations, keyCaption, langs[0]);
+			Lang lService = StatusXpath.getLang(category.getLangs(), langs[0]);
 			
 			table.setTitle(XmlTitleFactory.build(lCaption.getTranslation()+": "+lService.getTranslation()));
 		}
@@ -157,7 +162,8 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		try
 		{
-			Lang l = StatusXpath.getLang(layer.getLangs(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Lang l = StatusXpath.getLang(layer.getLangs(), langs[0]);
 			text = l.getTranslation();
 		}
 		catch (ExlpXpathNotFoundException e){text = e.getMessage();}
@@ -165,7 +171,8 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		try
 		{
-			Description d = StatusXpath.getDescription(layer.getDescriptions(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Description d = StatusXpath.getDescription(layer.getDescriptions(), langs[0]);
 			description = d.getValue();
 		}
 		catch (ExlpXpathNotFoundException e){description = e.getMessage();}

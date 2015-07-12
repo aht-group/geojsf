@@ -27,6 +27,7 @@ import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
 import org.openfuxml.factory.xml.ofx.content.structure.XmlParagraphFactory;
 import org.openfuxml.factory.xml.ofx.content.structure.XmlSectionFactory;
 import org.openfuxml.factory.xml.ofx.content.text.XmlTitleFactory;
+import org.openfuxml.util.OfxCommentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,21 +38,26 @@ public class OfxCategoryLayerSectionFactory extends AbstractUtilsOfxDocumentatio
 	private int[] colWidths = {5,100};
 	private String keyTableTitle = "geoJsfTableMapTableTitlePrefix";
 	
-	public OfxCategoryLayerSectionFactory(Configuration config,String lang, Translations translations)
+	public OfxCategoryLayerSectionFactory(Configuration config, String lang, Translations translations)
 	{
-		super(config,lang,translations);
+		this(config,new String[] {lang},translations);
+	}
+	public OfxCategoryLayerSectionFactory(Configuration config,String[] langs, Translations translations)
+	{
+		super(config,langs,translations);
 	}
 	
 	public Section create(Category category,List<String> headerKeys) throws OfxAuthoringException
 	{
 		Comment comment = XmlCommentFactory.build();
-		DocumentationCommentBuilder.doNotModify(comment);
+		OfxCommentBuilder.doNotModify(comment);
 		
 		Section section = XmlSectionFactory.build();
 		
 		try
 		{
-			Lang l = StatusXpath.getLang(category.getLangs(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Lang l = StatusXpath.getLang(category.getLangs(), langs[0]);
 			section.getContent().add(XmlTitleFactory.build(l.getTranslation()));
 		}
 		catch (ExlpXpathNotFoundException e){throw new OfxAuthoringException(e.getMessage());}
@@ -79,7 +85,8 @@ public class OfxCategoryLayerSectionFactory extends AbstractUtilsOfxDocumentatio
 		Paragraph p = XmlParagraphFactory.build();
 		try
 		{
-			Description d = StatusXpath.getDescription(category.getDescriptions(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Description d = StatusXpath.getDescription(category.getDescriptions(), langs[0]);
 			p.getContent().add(d.getValue());
 			
 		}
@@ -97,7 +104,8 @@ public class OfxCategoryLayerSectionFactory extends AbstractUtilsOfxDocumentatio
 		
 		try
 		{
-			Lang l = StatusXpath.getLang(layer.getLangs(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Lang l = StatusXpath.getLang(layer.getLangs(), langs[0]);
 			text = l.getTranslation();
 		}
 		catch (ExlpXpathNotFoundException e){text = e.getMessage();}
@@ -105,7 +113,8 @@ public class OfxCategoryLayerSectionFactory extends AbstractUtilsOfxDocumentatio
 		
 		try
 		{
-			Description d = StatusXpath.getDescription(layer.getDescriptions(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Description d = StatusXpath.getDescription(layer.getDescriptions(), langs[0]);
 			description = d.getValue();
 		}
 		catch (ExlpXpathNotFoundException e){description = e.getMessage();}

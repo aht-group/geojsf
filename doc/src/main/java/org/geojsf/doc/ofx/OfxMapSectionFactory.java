@@ -46,9 +46,13 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 	private int[] colWidths = {5,100};
 	private String keyTableTitle = "geoJsfTableMapTableTitlePrefix";
 	
-	public OfxMapSectionFactory(Configuration config,String lang, Translations translations)
+	public OfxMapSectionFactory(Configuration config, String lang, Translations translations)
 	{
-		super(config,lang,translations);
+		this(config,new String[] {lang},translations);
+	}
+	public OfxMapSectionFactory(Configuration config,String[] langs, Translations translations)
+	{
+		super(config,langs,translations);
 	}
 	
 	public Section create(Map map,List<String> headerKeys) throws OfxAuthoringException
@@ -60,7 +64,8 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		try
 		{
-			Lang l = StatusXpath.getLang(map.getLangs(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Lang l = StatusXpath.getLang(map.getLangs(), langs[0]);
 			section.getContent().add(XmlTitleFactory.build(l.getTranslation()));
 		}
 		catch (ExlpXpathNotFoundException e){throw new OfxAuthoringException(e.getMessage());}
@@ -79,9 +84,9 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 		Paragraph p = XmlParagraphFactory.build();
 		try
 		{
-			Description d = StatusXpath.getDescription(map.getDescriptions(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Description d = StatusXpath.getDescription(map.getDescriptions(), langs[0]);
 			p.getContent().add(d.getValue());
-			
 		}
 		catch (ExlpXpathNotFoundException e){throw new OfxAuthoringException(e.getMessage());}
 		catch (ExlpXpathNotUniqueException e){throw new OfxAuthoringException(e.getMessage());}
@@ -99,8 +104,9 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		try
 		{
-			Lang lPrefix = StatusXpath.getLang(translations, keyTableTitle, lang);
-			Lang lSuffix = StatusXpath.getLang(map.getLangs(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Lang lPrefix = StatusXpath.getLang(translations, keyTableTitle, langs[0]);
+			Lang lSuffix = StatusXpath.getLang(map.getLangs(), langs[0]);
 
 			table.setTitle(XmlTitleFactory.build(lPrefix.getTranslation()+": "+lSuffix.getTranslation()));
 		}
@@ -132,7 +138,8 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		try
 		{
-			Lang l = StatusXpath.getLang(map.getLangs(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Lang l = StatusXpath.getLang(map.getLangs(), langs[0]);
 			image.setTitle(XmlTitleFactory.build(l.getTranslation()));
 		}
 		catch (ExlpXpathNotFoundException e) {throw new OfxAuthoringException(e.getMessage());}
@@ -174,7 +181,8 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 		
 		try
 		{
-			Lang l = StatusXpath.getLang(view.getLayer().getLangs(), lang);
+			if(langs.length>1){logger.warn("Incorrect Assignment");}
+			Lang l = StatusXpath.getLang(view.getLayer().getLangs(), langs[0]);
 			layerName = l.getTranslation();
 		}
 		catch (ExlpXpathNotFoundException e){throw new OfxAuthoringException(e.getMessage());}
