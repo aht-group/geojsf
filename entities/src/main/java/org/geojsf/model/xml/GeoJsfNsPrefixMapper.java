@@ -24,6 +24,8 @@ public class GeoJsfNsPrefixMapper extends NamespacePrefixMapper implements NsPre
     	
     	if("http://www.openfuxml.org".equals(namespaceUri) ){return "ofx";}
     	if("http://www.openfuxml.org/table".equals(namespaceUri) ){return "ofxt";}
+    	if("http://www.openfuxml.org/text".equals(namespaceUri) ){return "ofxtx";}
+    	
         return suggestion;
     }
 
