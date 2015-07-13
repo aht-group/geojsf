@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ofxt:table xmlns:ofxtx="http://www.openfuxml.org/text" xmlns:ofx="http://www.openfuxml.org" xmlns:ns3="http://www.openfuxml.org/layout" xmlns:ofxt="http://www.openfuxml.org/table" xmlns:ns5="http://www.openfuxml.org/list" xmlns:ns6="http://www.openfuxml.org/media" xmlns:ns7="http://www.openfuxml.org/wiki" id="table.status.sld.style">
+    <ofx:title>
+        <ofxtx:text lang="de">SLD Stil</ofxtx:text>
+        <ofxtx:text lang="en">SLD Style</ofxtx:text>
+        <ofxtx:text lang="fr">SLD Style</ofxtx:text>
+    </ofx:title>
+    <ofxt:specification>
+        <ofxt:columns>
+            <ofxt:column>
+                <ns3:width flex="true" narrow="true">30.0</ns3:width>
+            </ofxt:column>
+            <ofxt:column>
+                <ns3:width flex="true" narrow="false">70.0</ns3:width>
+            </ofxt:column>
+        </ofxt:columns>
+    </ofxt:specification>
+    <ofxt:content>
+        <ofxt:head>
+            <ofxt:row>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Name</ofx:paragraph>
+                    <ofx:paragraph lang="en">Name</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Name</ofx:paragraph>
+                </ofxt:cell>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Beschreibung</ofx:paragraph>
+                    <ofx:paragraph lang="en">Description</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Description</ofx:paragraph>
+                </ofxt:cell>
+            </ofxt:row>
+        </ofxt:head>
+        <ofxt:body>
+            <ofxt:row>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Kreis</ofx:paragraph>
+                    <ofx:paragraph lang="en">Circle</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Circle</ofx:paragraph>
+                </ofxt:cell>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Circle</ofx:paragraph>
+                    <ofx:paragraph lang="en">Circle</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Circle</ofx:paragraph>
+                </ofxt:cell>
+            </ofxt:row>
+            <ofxt:row>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Quadrat</ofx:paragraph>
+                    <ofx:paragraph lang="en">Square</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Square</ofx:paragraph>
+                </ofxt:cell>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Square</ofx:paragraph>
+                    <ofx:paragraph lang="en">Square</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Square</ofx:paragraph>
+                </ofxt:cell>
+            </ofxt:row>
+        </ofxt:body>
+    </ofxt:content>
+    <ofx:comment>
+        <ofx:raw>The ID (label) for this element is fixed: table.status.sld.style</ofx:raw>
+        <ofx:raw>Translation Keys are defined in: msg.geojsf/doc/ofx.xml</ofx:raw>
+        <ofx:raw> - auStatusTableParent (Table Header (1))</ofx:raw>
+        <ofx:raw> - null (Table Header (2))</ofx:raw>
+        <ofx:raw> - auStatusTableCode (Table Header (3))</ofx:raw>
+        <ofx:raw> - auStatusTableName (Table Header (4))</ofx:raw>
+        <ofx:raw> - auStatusTableDescription (Table Header (5))</ofx:raw>
+        <ofx:raw> - auTableStatusCaptionSldStyle (Table Caption)</ofx:raw>
+        <ofx:raw></ofx:raw>
+        <ofx:raw>Do not modify this auto-generated file, it will be overwritten without warning!</ofx:raw>
+    </ofx:comment>
+</ofxt:table>

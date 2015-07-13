@@ -64,22 +64,22 @@ public class GeoJsfOfxDocumentation
 	{
 		Aht athStatus = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldStyle.class.getSimpleName()), Aht.class);
 		JaxbUtil.info(athStatus);
-		table(athStatus,null,"sld/style",15,20,30);
+		table(athStatus,null,"sld/style","src/main/resources/ofx.geojsf/configuration/sld/table/style.xml",15,20,30);
 	}
 		
-	private void table(Aht athStatus, Aht ahtParents, String texName, int... colWidths) throws UtilsConfigurationException
+	private void table(Aht athStatus, Aht ahtParents, String srcXml, String dstXml, int... colWidths) throws UtilsConfigurationException
 	{	
 		try
 		{
-			logger.info(texName);
+			logger.info(srcXml);
 			OfxStatusTableFactory fOfx = new OfxStatusTableFactory(config,langs,translations);
 			fOfx.setColWidths(colWidths);
 			
 			if(ahtParents!=null){fOfx.activateParents(ahtParents);}
 //			fOfx.renderColumn(Code.icon, withIcon);
 			
-			Table table = fOfx.buildLatexTable(texName.replaceAll("/", "."),athStatus);
-			JaxbUtil.info(table);
+			Table table = fOfx.buildLatexTable(srcXml.replaceAll("/", "."),athStatus);
+			JaxbUtil.save(new File(dstXml), table, true);
 		}
 		catch (OfxAuthoringException e) {throw new UtilsConfigurationException(e.getMessage());}
 	}
