@@ -64,7 +64,7 @@ public class GeoJsfOfxDocumentation
 	{
 		Aht athStatus = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldStyle.class.getSimpleName()), Aht.class);
 		JaxbUtil.info(athStatus);
-		table(athStatus,null,"sld/style","src/main/resources/ofx.geojsf/configuration/sld/table/style.xml",15,20,30);
+		table(athStatus,null,"sld/style","src/main/resources/ofx.geojsf/geojsf/sld/table/style.xml",15,20,30);
 	}
 		
 	private void table(Aht athStatus, Aht ahtParents, String srcXml, String dstXml, int... colWidths) throws UtilsConfigurationException

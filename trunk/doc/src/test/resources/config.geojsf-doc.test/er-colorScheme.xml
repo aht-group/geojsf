@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <node xmlns="http://www.metachart.org/graph">
 	
-	<node category="government" code="purples7" id="5"/>
-	<node category="project" code="blues7" id="5"/>
+	<node category="core" code="reds7" id="5"/>
+	<node category="meta" code="greens7" id="5"/>
 	<node category="monitoring" code="greens7" id="6"/>
-	<node category="indicator" code="greens7" id="3"/>
+	<node category="indicator" code="blues7" id="3"/>
 	<node category="program" code="reds7" id="5"/>
 	<node category="finance" code="oranges7" id="5"/>
 	

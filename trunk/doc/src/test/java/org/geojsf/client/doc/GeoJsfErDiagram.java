@@ -32,6 +32,7 @@ public class GeoJsfErDiagram extends AbstractErDiagram
 	{
 		buildSvg("neato",new ArrayList<String>(),new File(fSvg,"all.svg"),null);
 		create("core");
+		create("datasource");
 		create("viewport");
 	}
 	

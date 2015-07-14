@@ -49,7 +49,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	private final static String dirMap = "section/geojsf/map";
 	
 	public static enum InstallationCode {instGeoserver}
-	public static enum ConfigurationCode {confSld}
+	public static enum ConfigurationCode {confSld,confDs}
 	public static enum InstallationType {standalone}
 	
 	public static enum GeoJsfCode {datastructure,aServices,aMaps}
@@ -91,13 +91,14 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		//Installation
 		addConfig(InstallationCode.instGeoserver.toString(),"ofx.geojsf/installation/geoserver.xml","admin/installation/geoserver");
 		
-		//Configuration
-		addConfig(ConfigurationCode.confSld.toString(),"ofx.geojsf/configuration/sld/sld.xml","admin/configuration/geoserver/sld");
-		
 		//GeoJSF
 		addConfig(GeoJsfCode.datastructure.toString(),"ofx.geojsf/geojsf/datastructure.xml","geojsf/datastructure");
 		addConfig(GeoJsfCode.aServices.toString(),"ofx.geojsf/prototype/admin/services.xml","geojsf/admin/services");
 		addConfig(GeoJsfCode.aMaps.toString(),"ofx.geojsf/prototype/admin/maps.xml","geojsf/admin/maps");
+		
+		//Configuration
+		addConfig(ConfigurationCode.confSld.toString(),"ofx.geojsf/geojsf/sld/sld.xml","admin/configuration/geoserver/sld");
+		addConfig(ConfigurationCode.confDs.toString(),"ofx.geojsf/geojsf/datasource.xml","geojsf/admin/datasource");
 	}
 	
 	public void loadRepository(String fileName) throws FileNotFoundException {repository = JaxbUtil.loadJAXB(fileName,Repository.class);JaxbUtil.trace(repository);}
