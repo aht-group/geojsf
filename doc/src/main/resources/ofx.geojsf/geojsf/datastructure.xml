@@ -3,19 +3,59 @@
 			xmlns:l="http://www.openfuxml.org/list"
 			xmlns:text="http://www.openfuxml.org/text"
 			xmlns:media="http://www.openfuxml.org/media"
-			 xmlns:layout="http://www.openfuxml.org/layout"
+			xmlns:layout="http://www.openfuxml.org/layout"
 			id="section.admin.geojsf.datastructure">
 	<ofx:title lang="en">Data Structure</ofx:title>
 	
 	<ofx:paragraph lang="en">
-		There are four entities used for the datastructrue.
+		The data structure to of the core elements to manage maps and layers is shown in
+		Figure <ofx:reference target="figure.admin.geojsf.datastructure.er"/>.
 	</ofx:paragraph>
 	
-	<media:image id="section.admin.geojsf.datastructure.er">
-	    <ofx:title>Data structure</ofx:title>
+	
+	<media:image id="figure.admin.geojsf.datastructure.er">
+	    <ofx:title>Data Structure for Managing Maps and Layers</ofx:title>
 	    <layout:alignment horizontal="center"/>
 	    <layout:width unit="cm">6</layout:width>
 	    <media:media src="svg.geojsf/er/core.svg" dst="admin/gis/geojsf/er/core"/>
 	</media:image>
+	
+	<ofx:paragraph lang="en">
+		There are four entities used for the data structure.
+	</ofx:paragraph>
+	
+	<l:list id="section.admin.geojsf.datastructure.list">
+	    <l:type description="true"/>
+	
+		<l:item name="Service" lang="en" version="1" id="section.admin.geojsf.datastructure.list.service">
+	    	<ofx:paragraph>
+				A service
+			</ofx:paragraph>
+	    </l:item>
+	    
+	    <l:item name="Layer" lang="en" version="1" id="section.admin.geojsf.datastructure.list.layer">
+	    	<ofx:paragraph>
+				A service
+			</ofx:paragraph>
+	    </l:item>
+	    
+	    <l:item name="Map" lang="en" version="1" id="section.admin.geojsf.datastructure.list.map">
+	    	<ofx:paragraph>
+				A service
+			</ofx:paragraph>
+	    </l:item>
+		<l:item name="Carte" lang="fr" version="1" id="section.admin.geojsf.datastructure.list.map">
+	    	<ofx:paragraph>
+				A service
+			</ofx:paragraph>
+	    </l:item>
+	    
+	    <l:item name="View" lang="en" version="1" id="section.admin.geojsf.datastructure.list.view">
+	    	<ofx:paragraph>
+				A service
+			</ofx:paragraph>
+	    </l:item>
+	    
+	</l:list>
 	   
 </ofx:section>

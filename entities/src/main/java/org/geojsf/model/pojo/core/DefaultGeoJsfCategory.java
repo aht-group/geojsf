@@ -21,7 +21,7 @@ import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
-@EjbErNode(name="Category",category="geojsf",subset="core")
+@EjbErNode(name="Category",category="core",level=3,subset="core")
 public class DefaultGeoJsfCategory implements Serializable,EjbRemoveable,EjbPersistable,
 			GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSldTemplate>
 {
