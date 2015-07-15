@@ -203,6 +203,7 @@
 			</xsd:sequence>
 			<xsd:attribute name="id" type="xsd:long"/>
 			<xsd:attribute name="size" type="xsd:int"/>
+			<xsd:attribute name="color" type="xsd:string"/>
 			<xsd:attribute name="lowerBound" type="xsd:double"/>
 			<xsd:attribute name="upperBound" type="xsd:double"/>
 		</xsd:complexType>

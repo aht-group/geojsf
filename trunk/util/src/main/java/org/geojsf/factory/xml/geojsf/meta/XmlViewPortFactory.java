@@ -1,4 +1,4 @@
-package org.geojsf.factory.xml.geojsf;
+package org.geojsf.factory.xml.geojsf.meta;
 
 import java.io.Serializable;
 
@@ -6,6 +6,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
+import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
