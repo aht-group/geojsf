@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:aht="http://ahtutils.sourceforge.net/jsf"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	<composite:interface>
+		<composite:attribute name="value" required="true"/>
+	</composite:interface>
+        
+	<composite:implementation>
+		<p:dataTable var="ds" value="#{cc.attrs.value}"
+					selection="#{adminGisDataSourceBean.source}" selectionMode="single" rowKey="#{ds.id}">
+			<f:facet name="header">
+                <aht:pfDataTableHeader title="#{msg.geoJsfAdminDataSources}">
+                   
+                </aht:pfDataTableHeader>
+            </f:facet>
+            <p:column headerText="#{msg.Name}">
+				<h:outputText value="#{ds.name[userBean.localeCode].lang}" />  
+			</p:column>
+			<p:column headerText="#{msg.geoJsfAdminLayers}">
+				<ui:repeat var="layer" value="#{ds.layers}">
+					<h:outputText value="#{layer.name[userBean.localeCode].lang}" />  <br/>
+				</ui:repeat>
+			</p:column>
+			<p:column headerText="#{msg.Description}">
+				<h:outputText value="#{ds.description[userBean.localeCode].lang}" />  
+			</p:column>
+		</p:dataTable>
+   </composite:implementation>
+</html>
