@@ -34,6 +34,7 @@ public class GeoJsfErDiagram extends AbstractErDiagram
 		create("core");
 		create("datasource");
 		create("viewport");
+		create("sld");
 	}
 	
 	public static void main(String args[]) throws Exception

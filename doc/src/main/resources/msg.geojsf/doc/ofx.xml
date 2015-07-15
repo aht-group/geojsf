@@ -14,11 +14,18 @@
 			<s:lang key="fr" translation="Description"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="auTableStatusCaptionSldStyle">
+	<s:translation key="auTableStatusCaptionGeojsfSldStyle">
 		<s:langs>
-			<s:lang key="de" translation="SLD Stil"/>
-			<s:lang key="en" translation="SLD Style"/>
-			<s:lang key="fr" translation="SLD Style"/>
+			<s:lang key="de" translation="SLD Stile"/>
+			<s:lang key="en" translation="SLD Styles"/>
+			<s:lang key="fr" translation="SLD Styles"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="auTableStatusCaptionGeojsfSldType">
+		<s:langs>
+			<s:lang key="de" translation="SLD Typen"/>
+			<s:lang key="en" translation="SLD Types"/>
+			<s:lang key="fr" translation="SLD Types"/>
 		</s:langs>
 	</s:translation>
 </s:translations>

@@ -49,7 +49,8 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 	private final static String dirMap = "section/geojsf/map";
 	
 	public static enum InstallationCode {instGeoserver}
-	public static enum ConfigurationCode {confSld,confDs}
+	public static enum ConfigurationCode {confDs}
+	public static enum SldCode {sldIntroduction,sldModel,sldRule}
 	public static enum InstallationType {standalone}
 	
 	public static enum GeoJsfCode {datastructure,aServices,aMaps}
@@ -97,8 +98,12 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		addConfig(GeoJsfCode.aMaps.toString(),"ofx.geojsf/prototype/admin/maps.xml","geojsf/admin/maps");
 		
 		//Configuration
-		addConfig(ConfigurationCode.confSld.toString(),"ofx.geojsf/geojsf/sld/sld.xml","admin/configuration/geoserver/sld");
 		addConfig(ConfigurationCode.confDs.toString(),"ofx.geojsf/geojsf/datasource.xml","geojsf/admin/datasource");
+		
+		//SLD
+		addConfig(SldCode.sldIntroduction.toString(),"ofx.geojsf/geojsf/sld/introduction.xml","geojsf/sld/introduction");
+		addConfig(SldCode.sldModel.toString(),"ofx.geojsf/geojsf/sld/model.xml","geojsf/sld/model");
+		addConfig(SldCode.sldRule.toString(),"ofx.geojsf/geojsf/sld/rule.xml","geojsf/sld/rule");
 	}
 	
 	public void loadRepository(String fileName) throws FileNotFoundException {repository = JaxbUtil.loadJAXB(fileName,Repository.class);JaxbUtil.trace(repository);}
@@ -234,6 +239,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		}
 	}
 	
+	public void render(int lvl,SldCode code) throws UtilsConfigurationException, OfxConfigurationException{render(lvl,code.toString());}
 	public void render(ConfigurationCode code) throws UtilsConfigurationException, OfxConfigurationException{render(code.toString());}
 	public void render(InstallationCode code) throws UtilsConfigurationException, OfxConfigurationException{render(code.toString());}
 	public void render(InstallationCode code, InstallationType... types) throws UtilsConfigurationException, OfxConfigurationException

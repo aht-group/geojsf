@@ -21,7 +21,8 @@
 	</media:image>
 	
 	<ofx:paragraph lang="en">
-		There are four entities used for the data structure.
+		There are four entities used for the data structure. The Category is only used to categorize
+		different layer into thematic areas.
 	</ofx:paragraph>
 	
 	<l:list id="section.admin.geojsf.datastructure.list">
@@ -29,19 +30,27 @@
 	
 		<l:item name="Service" lang="en" version="1" id="section.admin.geojsf.datastructure.list.service">
 	    	<ofx:paragraph>
-				A service
+				A Service characterizes a 
+				Web Mapping Service (WMS) or Web Feature Service (WFS)
+				service by it’s URL. Each service can contain multiple layers.
 			</ofx:paragraph>
 	    </l:item>
 	    
 	    <l:item name="Layer" lang="en" version="1" id="section.admin.geojsf.datastructure.list.layer">
 	    	<ofx:paragraph>
-				A service
+				Each service can provide different unique Layers identified by their code and and optional information if this layer has temporal values stored (WMS-T).
+				A layer is published by WMS/WFS from a vector or raster data source
+                    with optional temporal information (WMS-T).
+                    Each layer is characterized by the specific code and contains individual
+                    information like cities, rivers or a terrain model.
 			</ofx:paragraph>
 	    </l:item>
 	    
 	    <l:item name="Map" lang="en" version="1" id="section.admin.geojsf.datastructure.list.map">
 	    	<ofx:paragraph>
-				A service
+				A thematic map is is a composition of several layers in a defined order.
+				Each map has information on the default viewport including the center position and the default
+				zoom level.
 			</ofx:paragraph>
 	    </l:item>
 		<l:item name="Carte" lang="fr" version="1" id="section.admin.geojsf.datastructure.list.map">
@@ -52,7 +61,9 @@
 	    
 	    <l:item name="View" lang="en" version="1" id="section.admin.geojsf.datastructure.list.view">
 	    	<ofx:paragraph>
-				A service
+				The View is the binding between the Map and the Layer
+				 this entity stores additional default properties like the order number,
+				 the default visibility or default legend information.
 			</ofx:paragraph>
 	    </l:item>
 	    

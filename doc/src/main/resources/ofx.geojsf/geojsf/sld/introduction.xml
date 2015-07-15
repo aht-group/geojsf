@@ -33,7 +33,5 @@
 		Styled Layer Descriptor specification now only contains the protocol for communicating with a WMS about how to style a layer.
 		The actual description of the styling is now exclusively described in the symbology encoding implementation specification.
 	</ofx:paragraph>
-	
-	<ofx:section include="rule.xml"/>
 	   
 </ofx:section>
