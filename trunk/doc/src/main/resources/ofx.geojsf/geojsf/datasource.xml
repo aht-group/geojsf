@@ -7,11 +7,24 @@
 			id="section.admin.geojsf.datassource">
 	<ofx:title lang="en">Data Source</ofx:title>
 	
-	<media:image id="figure.admin.geojsf.datastructure.er">
+	<ofx:paragraph lang="en">
+		Data Sources describe the origin for individual data shown in a map.
+		A data source is specific to a layer, but it's possible that one layer is based on
+		multiple data sources and the same data source can be used in different layers.
+	</ofx:paragraph>
+	
+	<ofx:paragraph lang="en">
+		The Entity Relationship model for data sources is shown in
+		Figure <ofx:reference target="figure.admin.geojsf.datastructure.er"/>.
+	</ofx:paragraph>
+	
+	<media:image id="figure.admin.geojsf.datassource.er">
 	    <ofx:title>Entity Relationship Diagram for Data Source Meta Information</ofx:title>
 	    <layout:alignment horizontal="center"/>
 	    <layout:width unit="cm">6</layout:width>
 	    <media:media src="svg.geojsf/er/datasource.svg" dst="admin/gis/geojsf/er/datasource"/>
 	</media:image>
+	
+	
 	   
 </ofx:section>

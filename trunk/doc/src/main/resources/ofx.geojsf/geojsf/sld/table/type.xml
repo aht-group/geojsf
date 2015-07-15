@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ofxt:table xmlns:ofxtx="http://www.openfuxml.org/text" xmlns:ofx="http://www.openfuxml.org" xmlns:ns3="http://www.openfuxml.org/layout" xmlns:ofxt="http://www.openfuxml.org/table" xmlns:ns5="http://www.openfuxml.org/list" xmlns:ns6="http://www.openfuxml.org/media" xmlns:ns7="http://www.openfuxml.org/wiki" id="table.status.geojsf.sld.type">
+    <ofx:title>
+        <ofxtx:text lang="de">SLD Typen</ofxtx:text>
+        <ofxtx:text lang="en">SLD Types</ofxtx:text>
+        <ofxtx:text lang="fr">SLD Types</ofxtx:text>
+    </ofx:title>
+    <ofxt:specification>
+        <ofxt:columns>
+            <ofxt:column>
+                <ns3:width flex="true" narrow="true">30.0</ns3:width>
+            </ofxt:column>
+            <ofxt:column>
+                <ns3:width flex="true" narrow="false">70.0</ns3:width>
+            </ofxt:column>
+        </ofxt:columns>
+    </ofxt:specification>
+    <ofxt:content>
+        <ofxt:head>
+            <ofxt:row>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Name</ofx:paragraph>
+                    <ofx:paragraph lang="en">Name</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Name</ofx:paragraph>
+                </ofxt:cell>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Beschreibung</ofx:paragraph>
+                    <ofx:paragraph lang="en">Description</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Description</ofx:paragraph>
+                </ofxt:cell>
+            </ofxt:row>
+        </ofxt:head>
+        <ofxt:body>
+            <ofxt:row>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Interval</ofx:paragraph>
+                    <ofx:paragraph lang="en">Interval</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Interval</ofx:paragraph>
+                </ofxt:cell>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Interval</ofx:paragraph>
+                    <ofx:paragraph lang="en">Interval</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Interval</ofx:paragraph>
+                </ofxt:cell>
+            </ofxt:row>
+            <ofxt:row>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Status</ofx:paragraph>
+                    <ofx:paragraph lang="en">Status</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Status</ofx:paragraph>
+                </ofxt:cell>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Class Based</ofx:paragraph>
+                    <ofx:paragraph lang="en">Class Based</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Class Based</ofx:paragraph>
+                </ofxt:cell>
+            </ofxt:row>
+            <ofxt:row>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Object</ofx:paragraph>
+                    <ofx:paragraph lang="en">Object</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Object</ofx:paragraph>
+                </ofxt:cell>
+                <ofxt:cell>
+                    <ofx:paragraph lang="de">Domain Object Based</ofx:paragraph>
+                    <ofx:paragraph lang="en">Domain Object Based</ofx:paragraph>
+                    <ofx:paragraph lang="fr">Domain Object Based</ofx:paragraph>
+                </ofxt:cell>
+            </ofxt:row>
+        </ofxt:body>
+    </ofxt:content>
+    <ofx:comment>
+        <ofx:raw>The ID (label) for this element is fixed: table.status.geojsf.sld.type</ofx:raw>
+        <ofx:raw>Translation Keys are defined in: msg.geojsf/doc/ofx.xml</ofx:raw>
+        <ofx:raw> - auStatusTableParent (Table Header (1))</ofx:raw>
+        <ofx:raw> - null (Table Header (2))</ofx:raw>
+        <ofx:raw> - auStatusTableCode (Table Header (3))</ofx:raw>
+        <ofx:raw> - auStatusTableName (Table Header (4))</ofx:raw>
+        <ofx:raw> - auStatusTableDescription (Table Header (5))</ofx:raw>
+        <ofx:raw> - auTableStatusCaptionGeojsfSldType (Table Caption)</ofx:raw>
+        <ofx:raw></ofx:raw>
+        <ofx:raw>Do not modify this auto-generated file, it will be overwritten without warning!</ofx:raw>
+    </ofx:comment>
+</ofxt:table>

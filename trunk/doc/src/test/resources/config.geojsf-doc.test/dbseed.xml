@@ -12,5 +12,6 @@
 	<db:seed code="org.geojsf.interfaces.model.sld.GeoJsfSldTemplate" content="geojsf/sld/templates.xml"/>
 	
 	<db:seed code="DefaultGeoJsfSldStyle" content="sldStyle.xml"/>
+	<db:seed code="DefaultGeoJsfSldType" content="sldType.xml"/>
 	
 </db:db>

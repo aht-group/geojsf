@@ -5,7 +5,8 @@
 			xmlns:media="http://www.openfuxml.org/media"
 			xmlns:layout="http://www.openfuxml.org/layout"
 			id="section.admin.config.geoserver.sld">
-	<ofx:title lang="en">SLD Rules</ofx:title>
+	<ofx:title lang="en">Rules</ofx:title>
+	<ofx:title lang="fr">Rules</ofx:title>
 	
 	<ofx:paragraph lang="en">
 		The configurations of SLD in the scope of Geoserver is quite static.

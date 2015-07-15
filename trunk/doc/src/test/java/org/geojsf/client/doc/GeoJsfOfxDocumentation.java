@@ -2,10 +2,10 @@ package org.geojsf.client.doc;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
+import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.test.GeoJsfDocTestBootstrap;
 import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
@@ -20,7 +20,6 @@ import net.sf.ahtutils.db.xml.UtilsDbXmlSeedUtil;
 import net.sf.ahtutils.db.xml.UtilsDbXmlSeedUtil.DataSource;
 import net.sf.ahtutils.doc.UtilsDocumentation;
 import net.sf.ahtutils.doc.ofx.status.OfxStatusTableFactory;
-import net.sf.ahtutils.doc.ofx.status.OfxStatusTableFactory.Code;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.dbseed.Db;
@@ -62,9 +61,11 @@ public class GeoJsfOfxDocumentation
 	
 	public void optionTablesOfx() throws FileNotFoundException, UtilsConfigurationException
 	{
-		Aht athStatus = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldStyle.class.getSimpleName()), Aht.class);
-		JaxbUtil.info(athStatus);
-		table(athStatus,null,"sld/style","src/main/resources/ofx.geojsf/geojsf/sld/table/style.xml",15,20,30);
+		Aht sldStyles = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldStyle.class.getSimpleName()), Aht.class);
+		Aht sldTypes = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldType.class.getSimpleName()), Aht.class);
+		
+		table(sldStyles,null,"geojsf/sld/style","src/main/resources/ofx.geojsf/geojsf/sld/table/style.xml",15,20,30);
+		table(sldTypes,null,"geojsf/sld/type","src/main/resources/ofx.geojsf/geojsf/sld/table/type.xml",15,20,30);
 	}
 		
 	private void table(Aht athStatus, Aht ahtParents, String srcXml, String dstXml, int... colWidths) throws UtilsConfigurationException
