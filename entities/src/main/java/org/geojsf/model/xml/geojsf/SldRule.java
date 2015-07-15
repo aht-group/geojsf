@@ -30,6 +30,7 @@ import net.sf.ahtutils.xml.status.Style;
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="size" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="color" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="lowerBound" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="upperBound" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
@@ -64,6 +65,8 @@ public class SldRule
     protected Long id;
     @XmlAttribute(name = "size")
     protected Integer size;
+    @XmlAttribute(name = "color")
+    protected String color;
     @XmlAttribute(name = "lowerBound")
     protected Double lowerBound;
     @XmlAttribute(name = "upperBound")
@@ -243,6 +246,34 @@ public class SldRule
 
     public void unsetSize() {
         this.size = null;
+    }
+
+    /**
+     * Gets the value of the color property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * Sets the value of the color property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setColor(String value) {
+        this.color = value;
+    }
+
+    public boolean isSetColor() {
+        return (this.color!= null);
     }
 
     /**

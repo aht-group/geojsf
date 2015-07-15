@@ -2,9 +2,6 @@ package org.geojsf.util.query;
 
 import java.util.Hashtable;
 
-import net.sf.ahtutils.controller.util.query.StatusQuery;
-import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
-
 import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.model.xml.geojsf.Map;
@@ -12,9 +9,15 @@ import org.geojsf.model.xml.geojsf.Query;
 import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.Scale;
 import org.geojsf.model.xml.geojsf.Service;
+import org.geojsf.model.xml.geojsf.Sld;
+import org.geojsf.model.xml.geojsf.SldRule;
 import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.geojsf.model.xml.geojsf.View;
 import org.geojsf.model.xml.geojsf.ViewPort;
+
+import net.sf.ahtutils.controller.util.query.StatusQuery;
+import net.sf.ahtutils.factory.xml.status.XmlStyleFactory;
+import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 
 public class GeoJsfQuery
 {
@@ -160,6 +163,23 @@ public class GeoJsfQuery
 		xml.setType(XmlTypeFactory.create("myType"));
 		xml.setLangs(StatusQuery.langs());
 		xml.setDescriptions(StatusQuery.descriptions());
+		return xml;
+	}
+	
+	public static Sld sldRules()
+	{	
+		SldRule rule = new SldRule();
+		rule.setId(0);
+		rule.setLowerBound(0);
+		rule.setUpperBound(0);
+		rule.setSize(0);
+		rule.setColor("");
+		rule.setStyle(XmlStyleFactory.build(""));
+		rule.setLangs(StatusQuery.langs());
+		rule.setDescriptions(StatusQuery.descriptions());
+		
+		Sld xml = new Sld();
+		xml.getSldRule().add(rule);
 		return xml;
 	}
 }

@@ -35,7 +35,7 @@ public class TestXmlSldRule extends AbstractXmlGeojsfTest
     	xml.setSize(1);
     	xml.setLowerBound(123.45);
     	xml.setUpperBound(987.65);
-    	
+    	xml.setColor("CCAABB");
     	    	
     	if(withChilds)
     	{
