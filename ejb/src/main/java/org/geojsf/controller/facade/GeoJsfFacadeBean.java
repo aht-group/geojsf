@@ -1,6 +1,7 @@
 package org.geojsf.controller.facade;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,12 +11,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
-
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -28,6 +23,14 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 public class GeoJsfFacadeBean <L extends UtilsLang,
 								D extends UtilsDescription,
@@ -45,6 +48,8 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
 	implements GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE>
 {	
+	final static Logger logger = LoggerFactory.getLogger(GeoJsfFacadeBean.class);
+	
 	private EntityManager em;
 	
 	public GeoJsfFacadeBean(EntityManager em)
@@ -148,5 +153,51 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 		layer.getCategory().getLayer().remove(layer);
 		layer.getService().getLayer().remove(layer);
 		em.remove(layer);
+	}
+	
+	public List<DS> fDataSources(Class<MAP> cMap, Class<DS> cDs, MAP map)
+	{
+		map = this.find(cMap,map);
+		List<DS> tmp = new ArrayList<DS>();
+		Set<LAYER> layers = new HashSet<LAYER>();
+		
+		for(VIEW view : map.getViews())
+		{
+			layers.add(view.getLayer());
+			for(DS ds : view.getLayer().getSources())
+			{
+				if(!tmp.contains(ds))
+				{
+					tmp.add(ds);
+				}
+			}
+		}
+		
+		List<DS> result = new ArrayList<DS>();
+		for(DS ds : tmp)
+		{
+			logger.info("Adding ds "+ds.toString());
+			try
+			{
+				ds = this.find(cDs,ds);
+				DS dsAdd = cDs.newInstance();
+				dsAdd.setId(ds.getId());
+				dsAdd.setDescription(ds.getDescription());
+				dsAdd.setName(ds.getName());
+				for(LAYER l : ds.getLayers())
+				{
+					logger.info("Testing layer "+l.toString());
+					if(layers.contains(l))
+					{
+						logger.info("\tAdding layer "+l.toString());
+						dsAdd.getLayers().add(l);
+					}
+				}
+				result.add(dsAdd);
+			}
+			catch (InstantiationException e) {e.printStackTrace();}
+			catch (IllegalAccessException e) {e.printStackTrace();}
+		}
+		return result;
 	}
 }

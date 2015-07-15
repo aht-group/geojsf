@@ -5,6 +5,8 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
+import java.util.List;
+
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -43,5 +45,5 @@ public interface GeoJsfFacade <L extends UtilsLang,
 	void rm(Class<LAYER> cLayer, LAYER layer);	
 	void rm(Class<VIEW> cView, VIEW view);
 	
-	
+	List<DS> fDataSources(Class<MAP> cMap, Class<DS> cDs, MAP map);
 }
