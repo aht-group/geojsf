@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ofx:section xmlns:ofx="http://www.openfuxml.org"
+			xmlns:l="http://www.openfuxml.org/list"
+			xmlns:text="http://www.openfuxml.org/text"
+			xmlns:media="http://www.openfuxml.org/media"
+			xmlns:layout="http://www.openfuxml.org/layout"
+			id="section.admin.geojsf.datassource">
+	<ofx:title lang="en">Web Feature Service</ofx:title>
+	<!-- https://en.wikipedia.org/wiki/Web_Map_Service -->
+	
+	<ofx:paragraph lang="en">
+		The Open Geospatial Consortium Web Feature Service Interface Standard (WFS)
+		provides an interface allowing requests for geographical features across the web
+		using platform-independent calls. One can think of geographical features as the "source code" behind a map,
+		whereas the WMS interface or online tiled mapping portals like Google Maps return only an image,
+		which end-users cannot edit or spatially analyze.
+		The XML-based GML furnishes the default payload-encoding for transporting the geographic features,
+		but other formats like shapefiles can also serve for transport. In early 2006,
+		the OGC members approved the OpenGIS GML Simple Features Profile.
+		This profile is designed to both increase interoperability between WFS servers and to improve
+		the ease of implementation of the WFS standard.
+	</ofx:paragraph>
+	
+	<ofx:paragraph lang="en">
+		The OGC membership defined and maintains the WFS specification.
+		There are numerous commercial and open source implementations of the WFS interface standard,
+		including open source reference implementations GeoServer and deegree.
+		A comprehensive list of WFS implementations can be found at the OGC Implementing Products page.
+	</ofx:paragraph>
+	
+</ofx:section>

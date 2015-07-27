@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ofx:section xmlns:ofx="http://www.openfuxml.org"
+			xmlns:l="http://www.openfuxml.org/list"
+			xmlns:text="http://www.openfuxml.org/text"
+			xmlns:media="http://www.openfuxml.org/media"
+			xmlns:layout="http://www.openfuxml.org/layout"
+			id="section.admin.geojsf.datassource">
+	<ofx:title lang="en">Web Coverage Service</ofx:title>
+	<!-- https://en.wikipedia.org/wiki/Web_Map_Service -->
+	
+	<ofx:paragraph lang="en">
+		The Open Geospatial Consortium Web Coverage Service Interface Standard (WCS)
+		defines Web-based retrieval of coverages – that is, digital geospatial information representing
+		space/time-varying phenomena.
+	</ofx:paragraph>
+	
+	<ofx:paragraph lang="en">
+		A WCS provides access to coverage data in forms that are useful for client-side rendering, as input into scientific models, and for other clients. The WCS may be compared to the OGC Web Feature Service (WFS) and the Web Map Service (WMS). As with WMS and WFS service instances, a WCS allows clients to choose portions of a server's information holdings based on spatial constraints and other query criteria.
+	</ofx:paragraph>
+
+
+	<ofx:paragraph lang="en">
+		Unlike OGC Web Map Service (WMS), which portrays spatial data to return static maps
+		(rendered as pictures by the server), the Web Coverage Service provides available data together with
+		their detailed descriptions; defines a rich syntax for requests against these data;
+		and returns data with its original semantics (instead of pictures) which may be interpreted,
+		extrapolated, etc., and not just portrayed.
+	</ofx:paragraph>
+
+	<ofx:paragraph lang="en">
+		Unlike OGC Web Feature Service (WFS), which returns discrete geospatial features,
+		the Web Coverage Service returns coverages representing space/time-varying phenomena that relate a
+		spatio-temporal domain to a (possibly multidimensional) range of properties.
+		As such, WCS focuses on coverages as a specialized class of features and, correspondingly,
+		defines streamlined functionality.
+	</ofx:paragraph>
+	
+	<ofx:paragraph lang="en">
+		WCS uses the coverage model of the OGC GML Application Schema for Coverages.
+		Thus, WCS supports all coverage types supported by said Application Schema;
+		it is not constrained to quadrilateral grid coverages like previous WCS versions.
+	</ofx:paragraph>
+	
+</ofx:section>
