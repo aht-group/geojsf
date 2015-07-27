@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ofx:section xmlns:ofx="http://www.openfuxml.org"
+			xmlns:l="http://www.openfuxml.org/list"
+			xmlns:text="http://www.openfuxml.org/text"
+			xmlns:media="http://www.openfuxml.org/media"
+			xmlns:layout="http://www.openfuxml.org/layout"
+			id="section.admin.geojsf.sld.templates">
+	<ofx:title lang="en">Templates</ofx:title>
+	<ofx:title lang="fr">Templates</ofx:title>
+	
+	<ofx:paragraph lang="en">
+		Templates
+	</ofx:paragraph>
+	   
+	<ofx:include lang="en">en/table/geojsf/sld/templates</ofx:include>
+	<ofx:include lang="fr">en/table/geojsf/sld/templates</ofx:include>
+</ofx:section>
