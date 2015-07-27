@@ -12,10 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
+import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphic;
+import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicStyle;
+import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicType;
 
 import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
@@ -23,7 +27,7 @@ import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 @EjbErNode(name="SLD Rule",category="sld",subset="sld")
 public class DefaultGeoJsfSldRule implements Serializable,EjbRemoveable,EjbPersistable,
-				GeoJsfSldRule<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSld,DefaultGeoJsfSldRule,DefaultGeoJsfSldTemplate>
+				GeoJsfSldRule<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicStyle,DefaultGeoJsfSldType,DefaultGeoJsfSldStyle,DefaultGeoJsfSld,DefaultGeoJsfSldRule,DefaultGeoJsfSldTemplate>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
@@ -38,11 +42,6 @@ public class DefaultGeoJsfSldRule implements Serializable,EjbRemoveable,EjbPersi
 	public DefaultGeoJsfSld getSld(){return sld;}
 	public void setSld(DefaultGeoJsfSld sld){this.sld = sld;}
 	
-	@ManyToOne
-	private DefaultGeoJsfSldStyle style;
-	public DefaultGeoJsfSldStyle getStyle() {return style;}
-	public void setStyle(DefaultGeoJsfSldStyle style) {this.style = style;}
-
 	private int position;
 	@Override public int getPosition() {return position;}
 	@Override public void setPosition(int position) {this.position = position;}
@@ -58,11 +57,7 @@ public class DefaultGeoJsfSldRule implements Serializable,EjbRemoveable,EjbPersi
 	private Map<String, DefaultGeoJsfDescription> description;
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
-	
-	private String color;
-	@Override public String getColor(){return color;}
-	@Override public void setColor(String color){this.color = color;}
-	
+		
 	private Double lowerBound;
 	@Override public Double getLowerBound(){return lowerBound;}
 	@Override public void setLowerBound(Double lowerBound){this.lowerBound = lowerBound;}
@@ -70,6 +65,20 @@ public class DefaultGeoJsfSldRule implements Serializable,EjbRemoveable,EjbPersi
 	private Double upperBound;
 	@Override public Double getUpperBound(){return upperBound;}
 	@Override public void setUpperBound(Double upperBound){this.upperBound = upperBound;}
+	
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private DefaultGeoJsfGraphic graphic;
+	public DefaultGeoJsfGraphic getGraphic() {return graphic;}
+	public void setGraphic(DefaultGeoJsfGraphic graphic) {this.graphic = graphic;}
+
+	@ManyToOne
+	private DefaultGeoJsfSldStyle style;
+	public DefaultGeoJsfSldStyle getStyle() {return style;}
+	public void setStyle(DefaultGeoJsfSldStyle style) {this.style = style;}
+	
+	private String color;
+	@Override public String getColor(){return color;}
+	@Override public void setColor(String color){this.color = color;}
 	
 	private Integer size;
 	@Override public Integer getSize(){return size;}

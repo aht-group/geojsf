@@ -19,6 +19,7 @@ public class GeoJsfNsPrefixMapper extends NamespacePrefixMapper implements NsPre
     	if("http://www.opengis.net/ogc".equals(namespaceUri) ){return "ogc";}
     	
     	if("http://ahtutils.aht-group.com/status".equals(namespaceUri) ){return "us";}
+    	if("http://ahtutils.aht-group.com/symbol".equals(namespaceUri) ){return "usym";}
     	if("http://exlp.sf.net/net".equals(namespaceUri) ){return "net";}
     	if("http://exlp.sf.net/identity".equals(namespaceUri) ){return "id";}
     	

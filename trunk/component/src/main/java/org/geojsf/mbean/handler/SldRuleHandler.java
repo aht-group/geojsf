@@ -11,6 +11,7 @@ import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 import org.geojsf.factory.ejb.sld.EjbGeoSldRuleFactory;
@@ -32,6 +33,9 @@ import org.slf4j.LoggerFactory;
 
 public class SldRuleHandler <L extends UtilsLang,
 							D extends UtilsDescription,
+							G extends UtilsGraphic<L,D,GT,GS>,
+							GT extends UtilsStatus<GT,L,D>,
+							GS extends UtilsStatus<GS,L,D>,
 							CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
 							SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
 							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
@@ -39,8 +43,8 @@ public class SldRuleHandler <L extends UtilsLang,
 							VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
 							VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
 							DS extends GeoJsfDataSource<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
-							SLD extends GeoJsfSld<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
-							RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
+							SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
+							RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
 							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
 	implements Serializable
@@ -48,26 +52,40 @@ public class SldRuleHandler <L extends UtilsLang,
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(SldRuleHandler.class);
 	
-	private GeoJsfUtilsFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE> fGeo;
+	private GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE> fGeo;
 	
 	final String[] defaultLangs;
 	
 	final Class<SLD> cSld;
 	final Class<RULE> cRule;
+	final Class<G> cGraphic;
+	final Class<GT> cGraphicType;
+	final Class<GS> cGraphicStyle;
 	
 	protected EjbLangFactory<L> efLang;
 	protected EjbDescriptionFactory<D> efDescription;
 	
-	private EjbGeoSldRuleFactory<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE> efRule;
-	private TxtSldRuleFactory<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE> tfRule;
+	private EjbGeoSldRuleFactory<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE> efRule;
+	private TxtSldRuleFactory<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE> tfRule;
 	
-	public SldRuleHandler(GeoJsfUtilsFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE> fGeo,final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<RULE> cRule,final Class<SLD> cSld)
+	public SldRuleHandler(GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE> fGeo,
+			final String[] defaultLangs,
+			final Class<L> cL,
+			final Class<D> cD,
+			final Class<RULE> cRule,
+			final Class<SLD> cSld,
+			final Class<G> cGraphic,
+			final Class<GT> cGraphicType,
+			final Class<GS> cGraphicStyle)
 	{
 		this.fGeo=fGeo;
 		this.defaultLangs=defaultLangs;
 		
 		this.cRule=cRule;
 		this.cSld=cSld;
+		this.cGraphic=cGraphic;
+		this.cGraphicType=cGraphicType;
+		this.cGraphicStyle=cGraphicStyle;
 		
 		mapBounds = new Hashtable<RULE,String>();
 		
@@ -80,6 +98,9 @@ public class SldRuleHandler <L extends UtilsLang,
 	
 	public static <L extends UtilsLang,
 					D extends UtilsDescription,
+					G extends UtilsGraphic<L,D,GT,GS>,
+					GT extends UtilsStatus<GT,L,D>,
+					GS extends UtilsStatus<GS,L,D>,
 					CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
 					SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
@@ -87,13 +108,13 @@ public class SldRuleHandler <L extends UtilsLang,
 					VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
 					VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
 					DS extends GeoJsfDataSource<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
-					SLD extends GeoJsfSld<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
-					RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
+					SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
+					RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
 					SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>> 
-		SldRuleHandler<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE> factory(GeoJsfUtilsFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE> fGeo,final String[] defaultLangs,final Class<L> cL, final Class<D> cD,final Class<RULE> cRule,final Class<SLD> cSld)
+		SldRuleHandler<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE> factory(GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE> fGeo,final String[] defaultLangs,final Class<L> cL, final Class<D> cD,final Class<RULE> cRule,final Class<SLD> cSld,final Class<G> cGraphic,final Class<GT> cGraphicType,final Class<GS> cGraphicStyle)
 	{
-		return new SldRuleHandler<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE>(fGeo,defaultLangs,cL,cD,cRule,cSld);
+		return new SldRuleHandler<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE>(fGeo,defaultLangs,cL,cD,cRule,cSld,cGraphic,cGraphicType,cGraphicStyle);
 	}
 	
 	//SLD
@@ -141,6 +162,15 @@ public class SldRuleHandler <L extends UtilsLang,
 	public void saveRule() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(rule));
+		if(rule.getGraphic()!=null)
+		{
+			rule.getGraphic().setType(fGeo.find(cGraphicType, rule.getGraphic().getType()));
+			if(rule.getGraphic().getStyle()!=null)
+			{
+				rule.getGraphic().setStyle(fGeo.find(cGraphicStyle, rule.getGraphic().getStyle()));
+			}
+			
+		}
 		string2Rule();
 		rule = fGeo.save(rule);
 		reloadSld();
@@ -157,10 +187,10 @@ public class SldRuleHandler <L extends UtilsLang,
 	
 	public void selectRule()
 	{
-		logger.info(AbstractLogMessage.selectEntity(rule));
+		rule = fGeo.load(cRule, rule);
+		logger.info(AbstractLogMessage.selectEntity(rule,rule.getGraphic()));
 		rule = efLang.persistMissingLangs(fGeo, defaultLangs, rule);
 		rule = efDescription.persistMissingLangs(fGeo, defaultLangs, rule);
-		logger.info(rule.getName().size()+" "+rule.getDescription().size());
 		rule2String();
 	}
 	

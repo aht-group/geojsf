@@ -4,6 +4,7 @@ import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
 import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
 import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
@@ -11,10 +12,13 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithPosition;
 
 public interface GeoJsfSldRule<L extends UtilsLang,
 						   D extends UtilsDescription,
+						   G extends UtilsGraphic<L,D,GT,GS>,
+						   GT extends UtilsStatus<GT,L,D>,
+						   GS extends UtilsStatus<GS,L,D>,
 						   TYPE extends UtilsStatus<TYPE,L,D>,
 						   STYLE extends UtilsStatus<STYLE,L,D>,
-						   SLD extends GeoJsfSld<L,D,TYPE,STYLE,SLD,RULE,TEMPLATE>,
-						   RULE extends GeoJsfSldRule<L,D,TYPE,STYLE,SLD,RULE,TEMPLATE>,
+						   SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,TEMPLATE>,
+						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,TEMPLATE>,
 						   TEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,TEMPLATE>>
 			extends EjbSaveable,EjbRemoveable,EjbWithPosition,EjbWithLang<L>,EjbWithDescription<D>
 {
@@ -23,15 +27,19 @@ public interface GeoJsfSldRule<L extends UtilsLang,
 	
 	SLD getSld();
 	void setSld(SLD sld);
-	
-	STYLE getStyle();
-	void setStyle(STYLE style);
-	
+		
 	Double getLowerBound();
 	void setLowerBound(Double lowerBound);
 	
 	Double getUpperBound();
 	void setUpperBound(Double upperBound);
+	
+	G getGraphic();
+	void setGraphic(G graphic);
+	
+	//DEprecated
+	STYLE getStyle();
+	void setStyle(STYLE style);
 	
 	String getColor();
 	void setColor(String color);

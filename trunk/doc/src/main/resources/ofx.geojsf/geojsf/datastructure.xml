@@ -23,6 +23,11 @@
 	<ofx:paragraph lang="en">
 		There are four entities used for the data structure. The Category is only used to categorize
 		different layer into thematic areas.
+                The concept of specifying what should be shown on the map is based on layers.
+                A layer is the smallest unit that can be set to be shown or not shown.
+                The GIS component is working with maps and further geospatial information coming from 
+                servers offering their services via Web Mapping Service (WMS) and Web Feature Service (WFS), this is also
+                reflected in the data model.
 	</ofx:paragraph>
 	
 	<l:list id="section.admin.geojsf.datastructure.list">
@@ -32,38 +37,39 @@
 	    	<ofx:paragraph>
 				A Service characterizes a 
 				Web Mapping Service (WMS) or Web Feature Service (WFS)
-				service by it’s URL. Each service can contain multiple layers.
+				service by it’s URL. A service can offer multiple layers.
 			</ofx:paragraph>
 	    </l:item>
 	    
 	    <l:item name="Layer" lang="en" version="1" id="section.admin.geojsf.datastructure.list.layer">
 	    	<ofx:paragraph>
-				Each service can provide different unique Layers identified by their code and and optional information if this layer has temporal values stored (WMS-T).
-				A layer is published by WMS/WFS from a vector or raster data source
-                    with optional temporal information (WMS-T).
-                    Each layer is characterized by the specific code and contains individual
-                    information like cities, rivers or a terrain model.
+				Each service can provide different unique Layers identified by their code (e.g. roads, infrastructures).
+				It can optionally be marked as a "temporal" layer. A temporal layer includes information for different moments in time,
+				e.g. the clouds over europe for every five minutes.
+			</ofx:paragraph>
+	    </l:item>
+            
+            <l:item name="View" lang="en" version="1" id="section.admin.geojsf.datastructure.list.view">
+	    	<ofx:paragraph>
+				The View is the binding between the map and the layer.
+				 This entity stores additional default properties like the order number,
+				 the default visibility or default legend information.
 			</ofx:paragraph>
 	    </l:item>
 	    
 	    <l:item name="Map" lang="en" version="1" id="section.admin.geojsf.datastructure.list.map">
 	    	<ofx:paragraph>
-				A thematic map is is a composition of several layers in a defined order.
-				Each map has information on the default viewport including the center position and the default
-				zoom level.
+				A map, or better a thematic map, is a composition of layers in a defined order.
+				As stated above, layers are data-wise encapsulated in View entities, that hold
+				information about their visibility, their ordering number (e.g. roads are shown on top of terrain)
+				and the legend for this layer.
+				The Views, along with a ViewPort (including information about the center of the map, its boundaries and the resolution),
+				are all the information needed to display a map.
 			</ofx:paragraph>
 	    </l:item>
 		<l:item name="Carte" lang="fr" version="1" id="section.admin.geojsf.datastructure.list.map">
 	    	<ofx:paragraph>
 				A service
-			</ofx:paragraph>
-	    </l:item>
-	    
-	    <l:item name="View" lang="en" version="1" id="section.admin.geojsf.datastructure.list.view">
-	    	<ofx:paragraph>
-				The View is the binding between the Map and the Layer
-				 this entity stores additional default properties like the order number,
-				 the default visibility or default legend information.
 			</ofx:paragraph>
 	    </l:item>
 	    

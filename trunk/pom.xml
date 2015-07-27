@@ -118,10 +118,12 @@
 		</repository>-->
 		
 		<repository>
-			<id>hibernate-spatial</id>
+			<id>hibernatespatial.org</id>
 			<name>Hibernate Spatial repo</name>
 			<url>http://www.hibernatespatial.org/repository</url>
 			<layout>default</layout>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
 		</repository>
 		
 		<!-- Only temporarily required until developer has fixed the bug for maven central -->

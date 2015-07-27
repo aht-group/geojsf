@@ -10,28 +10,21 @@ public class DefaultGeoJsfLang implements UtilsLang,EjbRemoveable,Serializable,E
 {
 	public static final long serialVersionUID=1;
 	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>Fields<<<<<<<<<<<<<<<<<<<<<<<<<<<	
-	
+
 	public static String[] defaultLangs = {"fr","en","de"};
 	
 	private long id;
-	
-	private String lkey;
-	
-	private String lang;
-	
-	// >>>>>>>>>>>>>>>>>>>>>Getters and Setters<<<<<<<<<<<<<<<<<<<
-	
 	public long getId() {return id;}
 	public void setId(long id) {this.id = id;}
 	
+	private String lkey;
 	public String getLkey() {return lkey;}
 	public void setLkey(String lkey) {this.lkey = lkey;}
 	
+	private String lang;
 	public String getLang() {return lang;}
 	public void setLang(String name) {this.lang = name;}
-	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<
+
 	
 	public String toString()
 	{

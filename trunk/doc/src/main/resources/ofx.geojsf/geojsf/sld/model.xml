@@ -24,7 +24,7 @@
 			</ofx:paragraph>
 	    </l:item>
 	    
-		<l:item name="Type" lang="en" version="1" id="section.admin.config.geoserver.sld.model.list.type">
+		<l:item name="Type (SLD)" lang="en" version="1" id="section.admin.config.geoserver.sld.model.list.sld.type">
 	    	<ofx:paragraph>
 				categorizes the type of a SLD, the possible types are summarized in Table
 				<ofx:reference target="table.status.geojsf.sld.type"/>.
@@ -43,7 +43,7 @@
 			</ofx:paragraph>
 	    </l:item>
 	
-		<l:item name="Style" lang="en" version="1" id="section.admin.config.geoserver.sld.model.list.style">
+		<l:item name="Style -- DEPRECATED" lang="en" version="1" id="section.admin.config.geoserver.sld.model.list.style">
 	    	<ofx:paragraph>
 				will be interpreted as the geometry of the symbol. The available styles are summarized in Table
 				<ofx:reference target="table.status.geojsf.sld.style"/>.
@@ -55,6 +55,19 @@
 			</ofx:paragraph>
 	    </l:item>
 	    
+	    <l:item name="Graphic" lang="en" version="1" id="section.admin.config.geoserver.sld.model.list.graphic">
+	    	<ofx:paragraph>
+				The graphical representation is defined with the graphic. It's possible to directly use SVG
+				as well as simple symbolizers (when defining the style, color and size).
+			</ofx:paragraph>
+	    </l:item>
+	    
+	    <l:item name="Type (Graphic)" lang="en" version="1" id="section.admin.config.geoserver.sld.model.list.graphic.type">
+	    	<ofx:paragraph>
+				categorizes the type of a SLD, the possible types are summarized in Table
+				<ofx:reference target="table.status.geojsf.sld.type"/>.
+			</ofx:paragraph>
+	    </l:item>
 	    
 	</l:list>
 	

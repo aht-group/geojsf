@@ -2,17 +2,17 @@ package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
-import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
-import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
-import net.sf.ahtutils.factory.xml.status.XmlStyleFactory;
-import net.sf.exlp.util.xml.JaxbUtil;
-
-import org.geojsf.model.xml.geojsf.SldRule;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlStyleFactory;
+import net.sf.ahtutils.factory.xml.symbol.XmlGraphicFactory;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestXmlSldRule extends AbstractXmlGeojsfTest
 {
@@ -43,6 +43,7 @@ public class TestXmlSldRule extends AbstractXmlGeojsfTest
     		xml.setLangs(XmlLangsFactory.build());
     		xml.setDescriptions(XmlDescriptionsFactory.build());
     		xml.setStyle(XmlStyleFactory.build("myStyle"));
+    		xml.setGraphic(XmlGraphicFactory.build());
     	}
     	
     	return xml;
