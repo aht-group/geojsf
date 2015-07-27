@@ -11,6 +11,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.monitor.DataUpdateTracker;
+import net.sf.ahtutils.web.rest.AbstractUtilsRest;
 import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
@@ -21,12 +22,11 @@ import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRest
 import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRestImport;
 import org.geojsf.model.xml.monitoring.Station;
 import org.geojsf.model.xml.monitoring.Stations;
-import org.geojsf.web.rest.AbstractGeoJsfRest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
-	extends AbstractGeoJsfRest<L,D>
+	extends AbstractUtilsRest<L,D>
 	implements GeoJsfMonitoringStationRestExport,GeoJsfMonitoringStationRestImport
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMonitoringStationRest.class);

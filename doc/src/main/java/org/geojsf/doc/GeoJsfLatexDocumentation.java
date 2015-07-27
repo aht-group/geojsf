@@ -6,19 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.ahtutils.doc.latex.builder.AbstractLatexDocumentationBuilder;
-import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
-import net.sf.ahtutils.xml.status.Descriptions;
-import net.sf.ahtutils.xml.status.Translations;
-import net.sf.exlp.exception.ExlpXpathNotFoundException;
-import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.util.io.StringIO;
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.doc.ofx.OfxCategoryLayerSectionFactory;
 import org.geojsf.doc.ofx.OfxMapSectionFactory;
 import org.geojsf.doc.ofx.OfxServiceListFactory;
+import org.geojsf.doc.ofx.sld.OfxSldTemplateTableFactory;
 import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
 import org.geojsf.factory.xml.geojsf.XmlMapFactory;
 import org.geojsf.factory.xml.geojsf.XmlViewFactory;
@@ -33,32 +25,44 @@ import org.geojsf.model.xml.geojsf.View;
 import org.geojsf.util.query.xpath.GeoJsfXpath;
 import org.geojsf.util.wms.WmsTileDownloader;
 import org.openfuxml.content.ofx.Section;
+import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.exception.OfxConfigurationException;
 import org.openfuxml.interfaces.DefaultSettingsManager;
 import org.openfuxml.interfaces.media.CrossMediaManager;
+import org.openfuxml.util.filter.OfxLangFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.doc.latex.builder.AbstractLatexDocumentationBuilder;
+import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
+import net.sf.ahtutils.xml.status.Descriptions;
+import net.sf.ahtutils.xml.status.Translations;
+import net.sf.exlp.exception.ExlpXpathNotFoundException;
+import net.sf.exlp.exception.ExlpXpathNotUniqueException;
+import net.sf.exlp.util.io.StringIO;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 {	
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfLatexDocumentation.class);
 	
 	private final static String dirDescriptions = "description/geojsf";
+	private final static String dirTable = "table/geojsf";
 	private final static String dirLayer = "section/geojsf/layer";
 	private final static String dirMap = "section/geojsf/map";
 	
 	public static enum InstallationCode {instGeoserver}
 	public static enum ConfigurationCode {confDs}
-	public static enum SldCode {sldIntroduction,sldModel,sldRule}
+	public static enum SldCode {sldIntroduction,sldModel,sldRule,sldTemplates}
 	public static enum InstallationType {standalone}
 	
+	public static enum GisCode {ogcStandards}
 	public static enum GeoJsfCode {datastructure,aServices,aMaps}
 
 	private Translations translations;
 	
-	private Repository repository;
-	private Repository categories;
+	private Repository repository,categories,sldTemplates;
 	private Layers layers;
 	private Maps maps;
 	
@@ -92,6 +96,9 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		//Installation
 		addConfig(InstallationCode.instGeoserver.toString(),"ofx.geojsf/installation/geoserver.xml","admin/installation/geoserver");
 		
+		//GIS
+		addConfig(GisCode.ogcStandards.toString(),"ofx.geojsf/geojsf/gis/ogc/introduction.xml","geojsf/gis/ogc");
+		
 		//GeoJSF
 		addConfig(GeoJsfCode.datastructure.toString(),"ofx.geojsf/geojsf/datastructure.xml","geojsf/datastructure");
 		addConfig(GeoJsfCode.aServices.toString(),"ofx.geojsf/prototype/admin/services.xml","geojsf/admin/services");
@@ -104,12 +111,28 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		addConfig(SldCode.sldIntroduction.toString(),"ofx.geojsf/geojsf/sld/introduction.xml","geojsf/sld/introduction");
 		addConfig(SldCode.sldModel.toString(),"ofx.geojsf/geojsf/sld/model.xml","geojsf/sld/model");
 		addConfig(SldCode.sldRule.toString(),"ofx.geojsf/geojsf/sld/rule.xml","geojsf/sld/rule");
+		addConfig(SldCode.sldTemplates.toString(),"ofx.geojsf/geojsf/sld/templates.xml","geojsf/sld/templates");
+		
 	}
-	
+		
 	public void loadRepository(String fileName) throws FileNotFoundException {repository = JaxbUtil.loadJAXB(fileName,Repository.class);JaxbUtil.trace(repository);}
 	public void loadCategories(String fileName) throws FileNotFoundException {categories = JaxbUtil.loadJAXB(fileName,Repository.class);JaxbUtil.trace(repository);}
 	public void loadLayers(String fileName) throws FileNotFoundException{layers = JaxbUtil.loadJAXB(fileName,Layers.class);JaxbUtil.trace(layers);}
 	public void loadMaps(String fileName) throws FileNotFoundException{maps = JaxbUtil.loadJAXB(fileName,Maps.class);JaxbUtil.trace(maps);}
+	public void loadSldTemplates(String fileName) throws FileNotFoundException{sldTemplates = JaxbUtil.loadJAXB(fileName,Repository.class);JaxbUtil.trace(sldTemplates);}
+	
+	public void writesldTemplates() throws OfxAuthoringException, IOException
+	{
+		OfxSldTemplateTableFactory ofx = new OfxSldTemplateTableFactory(config, langs, translations);
+		Table table = ofx.build("table.admin.geojsf.sld.templates", sldTemplates);
+		for(String lang : langs)
+		{
+			OfxLangFilter mlf = new OfxLangFilter(lang);
+			File f = new File(baseLatexDir,lang+"/"+dirTable+"/sld/templates.tex");
+			this.writeTable(mlf.filterLang(table), f);
+		}
+		
+	}
 	
 	public void saveServiceDescription() throws UtilsConfigurationException
 	{
@@ -239,6 +262,7 @@ public class GeoJsfLatexDocumentation extends AbstractLatexDocumentationBuilder
 		}
 	}
 	
+	public void render(int lvl,GisCode code) throws UtilsConfigurationException, OfxConfigurationException{render(lvl,code.toString());}
 	public void render(int lvl,SldCode code) throws UtilsConfigurationException, OfxConfigurationException{render(lvl,code.toString());}
 	public void render(ConfigurationCode code) throws UtilsConfigurationException, OfxConfigurationException{render(code.toString());}
 	public void render(InstallationCode code) throws UtilsConfigurationException, OfxConfigurationException{render(code.toString());}

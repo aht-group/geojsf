@@ -8,6 +8,7 @@ import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
@@ -17,7 +18,16 @@ import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlSldTemplateFactory <L extends UtilsLang,D extends UtilsDescription,SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,SLD extends GeoJsfSld<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,RULE extends GeoJsfSldRule<L,D,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
+public class XmlSldTemplateFactory <L extends UtilsLang,
+									D extends UtilsDescription,
+									G extends UtilsGraphic<L,D,GT,GS>,
+									GT extends UtilsStatus<GT,L,D>,
+									GS extends UtilsStatus<GS,L,D>,
+									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
+									SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
+									SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
+									RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
+									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
 							implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlSldTemplateFactory.class);

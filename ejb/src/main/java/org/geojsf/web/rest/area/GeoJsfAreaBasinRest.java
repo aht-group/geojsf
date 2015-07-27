@@ -8,6 +8,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.monitor.DataUpdateTracker;
+import net.sf.ahtutils.web.rest.AbstractUtilsRest;
 import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
@@ -17,12 +18,11 @@ import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestE
 import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestImport;
 import org.geojsf.model.xml.area.Basin;
 import org.geojsf.model.xml.area.Areas;
-import org.geojsf.web.rest.AbstractGeoJsfRest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoJsfAreaBasinRest <L extends UtilsLang,D extends UtilsDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends UtilsStatus<MODEL,L,D>>
-	extends AbstractGeoJsfRest<L,D>
+	extends AbstractUtilsRest<L,D>
 	implements GeoJsfAreaBasinSurfaceRestExport,GeoJsfAreaBasinSurfaceRestImport
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfAreaBasinRest.class);

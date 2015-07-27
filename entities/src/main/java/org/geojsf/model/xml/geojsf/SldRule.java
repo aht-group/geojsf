@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
 import net.sf.ahtutils.xml.status.Style;
+import net.sf.ahtutils.xml.symbol.Graphic;
 
 
 /**
@@ -27,6 +28,7 @@ import net.sf.ahtutils.xml.status.Style;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}style"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/>
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/>
+ *         &lt;element ref="{http://ahtutils.aht-group.com/symbol}graphic"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="size" type="{http://www.w3.org/2001/XMLSchema}int" />
@@ -45,7 +47,8 @@ import net.sf.ahtutils.xml.status.Style;
     "sld",
     "style",
     "langs",
-    "descriptions"
+    "descriptions",
+    "graphic"
 })
 @XmlRootElement(name = "sldRule")
 public class SldRule
@@ -61,6 +64,8 @@ public class SldRule
     protected Langs langs;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Descriptions descriptions;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/symbol", required = true)
+    protected Graphic graphic;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "size")
@@ -182,6 +187,34 @@ public class SldRule
 
     public boolean isSetDescriptions() {
         return (this.descriptions!= null);
+    }
+
+    /**
+     * Gets the value of the graphic property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Graphic }
+     *     
+     */
+    public Graphic getGraphic() {
+        return graphic;
+    }
+
+    /**
+     * Sets the value of the graphic property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Graphic }
+     *     
+     */
+    public void setGraphic(Graphic value) {
+        this.graphic = value;
+    }
+
+    public boolean isSetGraphic() {
+        return (this.graphic!= null);
     }
 
     /**

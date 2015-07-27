@@ -3,8 +3,10 @@
     xmlns:geojsf="http://www.geojsf.org"
     xmlns:ol="http://geojsf.sf.net/openlayers"
     xmlns:us="http://ahtutils.aht-group.com/status"
+    xmlns:usym="http://ahtutils.aht-group.com/symbol"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:import namespace="http://ahtutils.aht-group.com/status" schemaLocation="../../../../../../ahtutils/xml/src/main/xsd/aht/status.xsd"/>
+	<xsd:import namespace="http://ahtutils.aht-group.com/symbol" schemaLocation="../../../../../../ahtutils/xml/src/main/xsd/aht/symbol.xsd"/>
 	<xsd:element name="query">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -200,6 +202,7 @@
 				<xsd:element ref="us:style" maxOccurs="1"/>
 				<xsd:element ref="us:langs" maxOccurs="1"/>
 				<xsd:element ref="us:descriptions" maxOccurs="1"/>
+				<xsd:element ref="usym:graphic" maxOccurs="1"/>
 			</xsd:sequence>
 			<xsd:attribute name="id" type="xsd:long"/>
 			<xsd:attribute name="size" type="xsd:int"/>

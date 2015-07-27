@@ -3,8 +3,8 @@
 	
 	<node category="core" code="reds7" id="5"/>
 	<node category="meta" code="greens7" id="5"/>
-	<node category="sld" code="greens7" id="6"/>
-	<node category="indicator" code="blues7" id="3"/>
+	<node category="sld" code="blues7" id="6"/>
+	<node category="symbol" code="greens7" id="3"/>
 	<node category="program" code="reds7" id="5"/>
 	<node category="finance" code="oranges7" id="5"/>
 	

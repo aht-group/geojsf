@@ -14,20 +14,6 @@
 			<s:lang key="fr" translation="SLD Rule"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="geoJsfSldRuleStyle">
-		<s:langs>
-			<s:lang key="de" translation="Stil"/>
-			<s:lang key="en" translation="Style"/>
-			<s:lang key="fr" translation="Style"/>
-		</s:langs>
-	</s:translation>	
-	<s:translation key="geoJsfSldRuleSize">
-		<s:langs>
-			<s:lang key="de" translation="Größe"/>
-			<s:lang key="en" translation="Size"/>
-			<s:lang key="fr" translation="Size"/>
-		</s:langs>
-	</s:translation>	
 	<s:translation key="geoJsfSldRulePosition">
 		<s:langs>
 			<s:lang key="de" translation="Position"/>
@@ -70,14 +56,7 @@
 			<s:lang key="fr" translation="Upper Bound"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="geoJsfSldRuleColor">
-		<s:langs>
-			<s:lang key="de" translation="Color"/>
-			<s:lang key="en" translation="Color"/>
-			<s:lang key="fr" translation="Color"/>
-		</s:langs>
-	</s:translation>
-		<s:translation key="geoJsfSldSymbol">
+	<s:translation key="geoJsfSldSymbol">
 		<s:langs>
 			<s:lang key="de" translation="Symbol"/>
 			<s:lang key="en" translation="Symbol"/>

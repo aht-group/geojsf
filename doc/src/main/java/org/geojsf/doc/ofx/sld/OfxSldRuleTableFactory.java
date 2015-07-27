@@ -10,7 +10,6 @@ import org.apache.batik.transcoder.TranscoderException;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.FileUtils;
 import org.geojsf.doc.GeoJsfDocumentation;
-import org.geojsf.factory.svg.SvgSldRuleFactory;
 import org.geojsf.factory.txt.TxtSldRuleFactory;
 import org.geojsf.model.xml.geojsf.Sld;
 import org.geojsf.model.xml.geojsf.SldRule;
@@ -39,9 +38,8 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
 import net.sf.ahtutils.doc.ofx.util.OfxMultiLangFactory;
+import net.sf.ahtutils.factory.svg.SvgSymbolFactory;
 import net.sf.ahtutils.xml.status.Translations;
-import net.sf.exlp.exception.ExlpXpathNotFoundException;
-import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.io.HashUtil;
 
 public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
@@ -110,8 +108,8 @@ public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
 		Columns cols = new Columns();
 //		cols.getColumn().add(OfxColumnFactory.percentage(30));
 //		cols.getColumn().add(OfxColumnFactory.flex(100));
-		cols.getColumn().add(OfxColumnFactory.flex(5));
-		cols.getColumn().add(OfxColumnFactory.flex(20));
+		cols.getColumn().add(OfxColumnFactory.flex(3,true));
+		cols.getColumn().add(OfxColumnFactory.flex(22,true));
 		cols.getColumn().add(OfxColumnFactory.flex(75));
 		specification.setColumns(cols);
 		
@@ -160,7 +158,7 @@ public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
 		sbSrc.append(imagePathPrefix).append("/").append(sbImage.toString()).append(".svg");
 		File fSvg = new File(fResources,sbSrc.toString());
 		
-		SVGGraphics2D g = SvgSldRuleFactory.build(12, rule);
+		SVGGraphics2D g = SvgSymbolFactory.build(12, rule.getGraphic().getSymbol());
 		byte[] bytes = Svg2SvgTranscoder.transcode(g);
 		
 		boolean writeFile = true;
@@ -176,7 +174,6 @@ public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
 			logger.info("Writing to :"+fSvg);
 			FileUtils.writeByteArrayToFile(fSvg, bytes);
 		}
-		
 		
 		Media media = new Media();
 		media.setSrc(sbSrc.toString());
