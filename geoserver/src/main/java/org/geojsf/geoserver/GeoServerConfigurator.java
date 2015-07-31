@@ -4,9 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
-
-import net.sf.exlp.util.xml.JDomUtil;
-import net.sf.exlp.util.xml.JaxbUtil;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.exception.GeoServerConfigurationException;
@@ -33,6 +32,9 @@ import org.geojsf.xml.geoserver.Workspace;
 import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.util.xml.JDomUtil;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 public class GeoServerConfigurator
 {
@@ -94,11 +96,18 @@ public class GeoServerConfigurator
 	private void configureStyles() throws IOException
 	{
 		Layers layers = JaxbUtil.loadJAXB(configBaseDir+File.separator+GeoServerLayerManager.xml, Layers.class);
+		Set<String> set = new HashSet<String>();
 		for(Layer layer : layers.getLayer())
 		{
 			if(!styleManager.isAvailable(workspace, layer.getStyle().getName()))
 			{
-				configureStyle(layer.getStyle());
+				if(!set.contains(layer.getStyle().getName()))
+				{
+					logger.info("Does not contain ... "+layer.getStyle().getName());
+					configureStyle(layer.getStyle());
+					set.add(layer.getStyle().getName());
+				}
+				
 			}
 		}
 	}
@@ -114,7 +123,9 @@ public class GeoServerConfigurator
 	
 	private void configureStyle(Style style) throws IOException
 	{
+		logger.info("Creating Style: "+style.getName());
 		Document doc = JDomUtil.load(configBaseDir+File.separator+"styles"+File.separator+style.getName()+".xml");
+//		if(style.getName().equals("cblt.water.quality.spot")){JDomUtil.debug(doc);}
 		styleManager.createStyle(workspace.getName(),doc);
 	}
 	

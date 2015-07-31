@@ -63,6 +63,7 @@ public class XmlLayerFactory implements Serializable
 		eDefaultStyle.addContent(eStyleName);
 		
 		Element eEnabled =  new Element("enabled");
+		if(!layer.isSetEnabled()){layer.setEnabled(true);}
 		eEnabled.setText(""+layer.isEnabled());
 
 		Element eLayer = new Element("layer");
