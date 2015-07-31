@@ -71,6 +71,7 @@ public class GeoServerLayerManager
 	
 	public void updateLayer(Workspace workspace, Layer layer)
 	{
+		logger.info("update Layer "+layer.getName());
 		layer.getStyle().setWorkspace(workspace);
 		if(layer.isSetStyles()){for(Style style : layer.getStyles().getStyle()){style.setWorkspace(workspace);}}
 		layer.setCoverageStore(null);
