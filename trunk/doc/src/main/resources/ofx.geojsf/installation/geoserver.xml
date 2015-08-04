@@ -35,6 +35,14 @@
 		
 		<ofx:listing external="listing/admin/installation/geoserver/user.txt"/>
 		
+		<ofx:paragraph>
+			After finishing your installation, you should do a test run with the current geoserver installation. 
+			First, change from the user <text:emphasis style="typewriter">"root" to "geoserver"</text:emphasis>, it's necessary to deploy the server with this user,
+			otherwise the rights are changed back to root. Now go to the <text:emphasis style="typewriter">geoserverx.x.x/bin</text:emphasis>
+			folder of the current geoserver installation and run the <text:emphasis style="typewriter">./start.sh</text:emphasis>. 
+			The current geoserver installation should now start.
+		</ofx:paragraph>
+		
 		<ofx:paragraph lang="en">
 			The software product <text:emphasis italic="true">GeoServer</text:emphasis> is available at
 			<text:emphasis style="typewriter">http://geoserver.org</text:emphasis> as a platform independent binary.
