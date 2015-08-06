@@ -19,8 +19,6 @@ import org.geojsf.util.GeoJsfJsLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ResourceDependencies({
-	@ResourceDependency(library = "geojsf", name = "scalebar-thin.css", target = "head")})
 @FacesComponent(value="org.geojsf.component.ScaleBar")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class ScaleBar extends UINamingContainer implements ClientBehaviorHolder
@@ -34,7 +32,6 @@ public class ScaleBar extends UINamingContainer implements ClientBehaviorHolder
 	{
 		if(event instanceof PostAddToViewEvent)
 		{
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"scalebar.js");
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"control.js");
 		}
 		super.processEvent(event);
@@ -57,7 +54,7 @@ public class ScaleBar extends UINamingContainer implements ClientBehaviorHolder
 		
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("script", this);
-		writer.writeText("GeoJsfControl.addScale('"+orientation+"','" +system +"'," +major +"," +sub+");", null);
+		writer.writeText("GeoJsfControl.addScaleBar('"+orientation+"','" +system +"'," +major +"," +sub+");", null);
 		writer.endElement("script");
 	}
 }

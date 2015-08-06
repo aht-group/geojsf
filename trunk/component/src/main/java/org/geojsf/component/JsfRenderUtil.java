@@ -10,6 +10,7 @@ import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import org.geojsf.component.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,17 +131,9 @@ public class JsfRenderUtil {
 		renderLinebreaks(1);
 		Map map = (Map) component;
 		writer.startElement("script", map);
-	//	renderTextWithLB("GeoJSF.addLoadEvent();");
 		renderTextWithLB("// GeoJSF: Initializing OpenLayers map");
 		renderTextWithLB("GeoJSF.setAjaxUpdates('" +encodeAjax(map, "mapClick") +"', '" +encodeAjax(map, "mapMove") +"');");
-		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"'," +map.getHeight() +", " +map.getWidth() +",'');");
-	//	renderTextWithLB("GeoJSF.map.tileSize = new OpenLayers.Size(256,256);");
-		if (context.getExternalContext().getInitParameter("geojsf.THEME")!=null)
-		{
-			renderTextWithLB("OpenLayers.ImgPath='" +context.getExternalContext().getRequestContextPath() +"/" +context.getExternalContext().getInitParameter("geojsf.THEME") +"/';");
-		}
-	    
-		writer.writeText("GeoJSF.resetLayers();", null);
+		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"','" +map.getBaseMap() +"');");
 		renderLinebreaks(2);
 		renderTextWithLB("// GeoJSF: Adding layers");
 		renderTextWithLB("// GeoJSF: The last given layer will be taken as base layer:");

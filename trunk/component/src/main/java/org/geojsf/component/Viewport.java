@@ -60,11 +60,13 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 		{
 			lat             = this.value.getLat();
 			lon             = this.value.getLon();
-			logger.info("Trying to render zoom by scale of "+this.value.getScale());
-			writer.writeText("var zoomScale = " +this.value.getScale() +";" +System.getProperty("line.separator"), null);
-			writer.writeText("if (GeoJSF.scaleValues) {zoomScale = GeoJsfUtil.closestNumber(" +this.value.getScale() +", GeoJSF.scaleValues);}" +System.getProperty("line.separator"), null);
-		//	writer.writeText("var zoom      = GeoJSF.scaleValues.indexOf(zoomScale)+1;" +System.getProperty("line.separator"), null);
-			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +",zoomScale, true);" +System.getProperty("line.separator"), null);		
+                        
+                        // If there is no scale given, set it to 100 km
+                        if (this.value.getScale() == 0) 
+                            {this.value.setScale(100000);}
+                        else 
+                            {this.value.setScale(this.value.getScale()*1000);}
+			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +this.value.getScale()/50 +", true);" +System.getProperty("line.separator"), null);		
 		}
 		else
 		{
