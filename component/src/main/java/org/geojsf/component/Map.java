@@ -49,6 +49,7 @@ import com.google.gson.Gson;
 
 @ResourceDependencies({
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+        @ResourceDependency(library = "geoJsfCss"  , name = "ol.css", target = "head"),
 	@ResourceDependency(library = "geojsf", name = "geojsf.css", target = "head")})
 @FacesComponent(value="org.geojsf.component.Map")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
@@ -73,6 +74,9 @@ public class Map <L extends UtilsLang,
 	// This is taken directly from the value attribute or is constructed from given LAYER components
 	private MAP          dmMap;
 	private List<String> temporalLayerNames;
+        private String       baseMap;
+        public String getBaseMap() {return baseMap;}
+        public void setBaseMap(String baseMap) {this.baseMap = baseMap;}
 	
 	// Internal fields
 	private Coordinates coords            = new Coordinates();
@@ -96,9 +100,8 @@ public class Map <L extends UtilsLang,
 	{
 		if(event instanceof PostAddToViewEvent)
 		{
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"OpenLayers.js");
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"scalebar.js");
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"GeoJSF.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"ol-debug.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"GeoJSF3.js");
 		}
 		else
 		{
@@ -218,7 +221,8 @@ public class Map <L extends UtilsLang,
 						//First, render the JavaScript code to initialize the map
 						renderer.renderMapInitialization(this.getFacesContext());
 						
-						//Next, render the layers
+                                                
+                                                //Next, render the layers
 						renderLayers(writer, renderer, false);
 				 		
 				 		//Set flag that map initiation is completed and not to be repeated
@@ -244,7 +248,8 @@ public class Map <L extends UtilsLang,
 		{
 			encodeOlService(serviceList.get(baseLayerId), true, false, writer, renderer);
 		}
-		renderer.renderTextWithLB("GeoJSF.eventsRegistered = false;");
+		renderer.renderTextWithLB("GeoJSF.registerEventHandlers();");
+                
 		
 		//Finally, render the overlay layers
 		//for (int i=0;i<serviceList.size()-1;i++)
@@ -282,13 +287,7 @@ public class Map <L extends UtilsLang,
 			temporalLayerNames.add(service.getId() +"");
 			renderer.renderTextWithLB("params.time      = '"+timeInfo +"';");
 		}
-	*/	if (!baseLayer)
-		{
-			renderer.renderTextWithLB("params.transparent = true;");
-			renderer.renderTextWithLB("params.tiled       = true;");
-	        renderer.renderTextWithLB("params.tilesorigin = GeoJSF.map.maxExtent.left + ',' + GeoJSF.map.maxExtent.bottom;");
-		}
-		renderer.renderTextWithLB("params.format      = 'image/png';");
+	*/	
 		Hashtable<String,String> parameters = MapUtil.searchSqlViewParameters(this);
 		if (parameters.size()>0)
 		{
@@ -303,11 +302,7 @@ public class Map <L extends UtilsLang,
 		}
 		
 		
-	//	renderer.renderTextWithLB("params.makeTheUrlLong      = 'longText';");
 		renderer.renderTextWithLB("var options = {};");
-		renderer.renderTextWithLB("options.isBaseLayer = " +baseLayer +";");
-		renderer.renderTextWithLB("options.singleTile  =  true;");
-	//	renderer.renderTextWithLB("options.ratio       =  1;");
 		
 		// Process scales definition
 		Scales scales = MapUtil.searchScale(this); 
@@ -320,25 +315,17 @@ public class Map <L extends UtilsLang,
 			scaleDefinitions += scalesUtil.getScaleList();
 			scaleDefinitions += "];" +System.getProperty("line.separator");
 			writer.writeText(scaleDefinitions, null);
-			
+			    
 			// Define minimum and maximum values
 			writer.writeText("options.maxScale = "+scalesUtil.getMax() +";" +System.getProperty("line.separator"), null);
 			writer.writeText("options.minScale = "+scalesUtil.getMin() +";" +System.getProperty("line.separator"), null);
-			
+			      
 			// Set the unit
 			writer.writeText("options.units = '" +scales.getUnit() +"';" +System.getProperty("line.separator"), null);
 		}
 		
-	//	writer.writeText("options.scales = [10, 10000, 100000];" +System.getProperty("line.separator"), null);
-	//	writer.writeText("options.maxScale = 10;" +System.getProperty("line.separator"), null);
-	//	writer.writeText("options.minScale = 100000;" +System.getProperty("line.separator"), null);
-	//	writer.writeText("options.units = 'm';" +System.getProperty("line.separator"), null);
 		renderer.renderTextWithLB("GeoJSF.addLayer(name, url, params, options);");
 		renderer.renderLinebreaks(1);
-		if (lastLayer)
-		{
-			renderer.renderTextWithLB("GeoJSF.register(" +service.getId() +");");
-		}
 	}
 	
 	
@@ -475,7 +462,7 @@ public class Map <L extends UtilsLang,
 	        	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
 	     		if (behaviors.isEmpty())
 	     		{
-	     			logger.error("no behaviors.exiting.");
+	     			logger.debug("no behaviors.exiting.");
 	     			return;
 	     		}
 	            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);

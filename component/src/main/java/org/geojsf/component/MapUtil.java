@@ -10,6 +10,10 @@ import javax.faces.context.FacesContext;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import org.geojsf.component.Layer;
+import org.geojsf.component.ScalesContainer;
+import org.geojsf.component.SqlViewParameter;
+import org.geojsf.component.Time;
 
 import org.geojsf.factory.txt.TxtIsoTimeFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
