@@ -58,13 +58,13 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
-	<jxb:bindings schemaLocation="../xsd/../../../../../ahtutils/xml/src/main/xsd/aht/status.xsd" node="/xsd:schema">
+	<jxb:bindings schemaLocation="../xsd/../../../../../utils/xml/src/main/xsd/aht/status.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="net.sf.ahtutils.xml.status"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
-	<jxb:bindings schemaLocation="../xsd/../../../../../ahtutils/xml/src/main/xsd/aht/symbol.xsd" node="/xsd:schema">
+	<jxb:bindings schemaLocation="../xsd/../../../../../utils/xml/src/main/xsd/aht/symbol.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="net.sf.ahtutils.xml.symbol"/>
         </jxb:schemaBindings>
