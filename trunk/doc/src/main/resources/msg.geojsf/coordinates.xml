@@ -21,4 +21,11 @@
 			<s:lang key="fr" translation="Latitude"/>
 		</s:langs>
 	</s:translation>
+		<s:translation key="geojsfLocation">
+		<s:langs>
+			<s:lang key="de" translation="Location"/>
+			<s:lang key="en" translation="Location"/>
+			<s:lang key="fr" translation="Location"/>
+		</s:langs>
+	</s:translation>
 </s:translations>
