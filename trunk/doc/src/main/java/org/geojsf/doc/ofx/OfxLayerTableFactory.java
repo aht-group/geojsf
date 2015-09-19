@@ -138,6 +138,7 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		return row;
 	}
 	
+	@SuppressWarnings("unused")
 	private Cell cellImage(Layer layer)
 	{
 		Media media = new Media();

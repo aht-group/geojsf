@@ -26,13 +26,15 @@ import net.sf.ahtutils.xml.dbseed.Db;
 import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.util.xml.JaxbUtil;
 
+@SuppressWarnings("unused")
 public class GeoJsfOfxDocumentation
 {	
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfOfxDocumentation.class);
 	
 	private Configuration config;
 	
-	private final String[] langs = {"de","en","fr"};
+	private final String[] langs = {"en"};
+	
 	private String appCode = "dss";
 	
 	private UtilsDbXmlSeedUtil seedUtil;

@@ -2,16 +2,6 @@ package org.geojsf.doc.ofx;
 
 import java.util.List;
 
-import net.sf.ahtutils.doc.DocumentationCommentBuilder;
-import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
-import net.sf.ahtutils.xml.status.Description;
-import net.sf.ahtutils.xml.status.Lang;
-import net.sf.ahtutils.xml.status.Translations;
-import net.sf.ahtutils.xml.xpath.StatusXpath;
-import net.sf.exlp.exception.ExlpXpathNotFoundException;
-import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Layer;
@@ -31,13 +21,19 @@ import org.openfuxml.util.OfxCommentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
+import net.sf.ahtutils.xml.status.Description;
+import net.sf.ahtutils.xml.status.Lang;
+import net.sf.ahtutils.xml.status.Translations;
+import net.sf.ahtutils.xml.xpath.StatusXpath;
+import net.sf.exlp.exception.ExlpXpathNotFoundException;
+import net.sf.exlp.exception.ExlpXpathNotUniqueException;
+import net.sf.exlp.util.xml.JaxbUtil;
+
 public class OfxCategoryLayerSectionFactory extends AbstractUtilsOfxDocumentationFactory
 {
 	final static Logger logger = LoggerFactory.getLogger(OfxCategoryLayerSectionFactory.class);
-	
-	private int[] colWidths = {5,100};
-	private String keyTableTitle = "geoJsfTableMapTableTitlePrefix";
-	
+		
 	public OfxCategoryLayerSectionFactory(Configuration config, String lang, Translations translations)
 	{
 		this(config,new String[] {lang},translations);
@@ -110,6 +106,8 @@ public class OfxCategoryLayerSectionFactory extends AbstractUtilsOfxDocumentatio
 		}
 		catch (ExlpXpathNotFoundException e){text = e.getMessage();}
 		catch (ExlpXpathNotUniqueException e){text = e.getMessage();}
+		
+		logger.warn("Dev. 'text' not used ..."+ text);
 		
 		try
 		{
