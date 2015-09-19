@@ -2,16 +2,6 @@ package org.geojsf.doc.ofx;
 
 import java.util.List;
 
-import net.sf.ahtutils.doc.DocumentationCommentBuilder;
-import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
-import net.sf.ahtutils.xml.status.Description;
-import net.sf.ahtutils.xml.status.Lang;
-import net.sf.ahtutils.xml.status.Translations;
-import net.sf.ahtutils.xml.xpath.StatusXpath;
-import net.sf.exlp.exception.ExlpXpathNotFoundException;
-import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.View;
@@ -36,8 +26,18 @@ import org.openfuxml.factory.xml.ofx.content.structure.XmlSectionFactory;
 import org.openfuxml.factory.xml.ofx.content.text.XmlTitleFactory;
 import org.openfuxml.factory.xml.table.OfxCellFactory;
 import org.openfuxml.factory.xml.table.OfxColumnFactory;
+import org.openfuxml.util.OfxCommentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
+import net.sf.ahtutils.xml.status.Description;
+import net.sf.ahtutils.xml.status.Lang;
+import net.sf.ahtutils.xml.status.Translations;
+import net.sf.ahtutils.xml.xpath.StatusXpath;
+import net.sf.exlp.exception.ExlpXpathNotFoundException;
+import net.sf.exlp.exception.ExlpXpathNotUniqueException;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 {
@@ -58,7 +58,7 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 	public Section create(Map map,List<String> headerKeys) throws OfxAuthoringException
 	{
 		Comment comment = XmlCommentFactory.build();
-		DocumentationCommentBuilder.doNotModify(comment);
+		OfxCommentBuilder.doNotModify(comment);
 		
 		Section section = XmlSectionFactory.build();
 		
