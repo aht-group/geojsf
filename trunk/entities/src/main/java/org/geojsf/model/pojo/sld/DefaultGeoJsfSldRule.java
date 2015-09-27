@@ -21,8 +21,8 @@ import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphic;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicStyle;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicType;
 
-import net.sf.ahtutils.model.interfaces.crud.EjbPersistable;
-import net.sf.ahtutils.model.interfaces.crud.EjbRemoveable;
+import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
+import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 @EjbErNode(name="SLD Rule",category="sld",subset="sld")
