@@ -99,7 +99,7 @@ public class OfxSldTemplateTableFactory extends AbstractUtilsOfxDocumentationFac
 		return specification;
 	}
 	
-	private Content createContent(List<SldTemplate> templates)
+	private Content createContent(List<SldTemplate> templates) throws OfxAuthoringException
 	{	
 		Head head = new Head();
 		head.getRow().add(this.createHeaderRow(headerKeys));
@@ -118,7 +118,7 @@ public class OfxSldTemplateTableFactory extends AbstractUtilsOfxDocumentationFac
 		return content;
 	}
 	
-	private Row createRow(SldTemplate template)
+	private Row createRow(SldTemplate template) throws OfxAuthoringException
 	{		
 		Row row = new Row();
 		
