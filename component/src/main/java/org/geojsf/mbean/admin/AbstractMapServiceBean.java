@@ -13,6 +13,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
 import net.sf.ahtutils.jsf.util.FacesContextMessage;
+import net.sf.ahtutils.jsf.util.PositionListReorderer;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 import org.geojsf.event.MapAjaxEvent;
@@ -177,7 +178,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,
 	// CATEGORY
 	protected void reloadCategories()
 	{
-		categories = fGeo.all(cCategory);
+		categories = fGeo.allOrderedPositionVisible(cCategory);
 	}
 	
 	public void addCategory() throws UtilsConstraintViolationException
@@ -232,6 +233,11 @@ public class AbstractMapServiceBean <L extends UtilsLang,
 		viewPort=null;
 	}
 	
+	protected void reorderCategories() throws UtilsConstraintViolationException, UtilsLockingException
+	{
+		PositionListReorderer.reorder(fGeo, categories);
+	}
+	
 	// LAYER
 	protected LAYER layer;
 	public LAYER getLayer() {return layer;}
@@ -240,7 +246,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,
 	protected void reloadLayer()
 	{
 		category = fGeo.load(cCategory, category);
-		layers = category.getLayer();
+		layers = fGeo.allOrderedPositionVisibleParent2(cLayer, category);;
 		logger.info("#Layer:"+layers.size());
 	}
 	
@@ -290,6 +296,11 @@ public class AbstractMapServiceBean <L extends UtilsLang,
 	{
 		layer=null;
 		viewPort=null;
+	}
+	
+	protected void reorderLayer() throws UtilsConstraintViolationException, UtilsLockingException
+	{
+		PositionListReorderer.reorder(fGeo, layers);
 	}
 	
 	// View Port

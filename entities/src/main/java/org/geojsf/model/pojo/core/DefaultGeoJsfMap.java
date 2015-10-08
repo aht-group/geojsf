@@ -37,6 +37,14 @@ public class DefaultGeoJsfMap implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
 	
+	private boolean visible;
+	@Override public boolean isVisible() {return visible;}
+	@Override public void setVisible(boolean visible) {this.visible = visible;}
+
+	private int position;
+	@Override public int getPosition() {return position;}
+	@Override public void setPosition(int position) {this.position = position;}
+	
 	@OneToOne
 	private DefaultGeoJsfViewPort viewPort;
 	@Override public DefaultGeoJsfViewPort getViewPort(){return viewPort;}

@@ -12,6 +12,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.interfaces.model.with.code.EjbWithCode;
+import net.sf.ahtutils.interfaces.model.with.position.EjbWithPositionVisible;
 import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
@@ -28,7 +29,7 @@ public interface GeoJsfMap<L extends UtilsLang,
 						SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 						SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
 						SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
-			extends EjbWithId,EjbWithCode,
+			extends EjbWithId,EjbWithCode,EjbWithPositionVisible,
 					EjbSaveable,EjbRemoveable,
 					EjbWithLang<L>,EjbWithDescription<D>
 {	

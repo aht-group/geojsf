@@ -56,6 +56,8 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	@Override public int getPosition() {return position;}
 	@Override public void setPosition(int position) {this.position = position;}
 	
+	@Override public String resolveParentAttribute() {return "category";}
+	
 	private Map<String, DefaultGeoJsfLang> name;
 	@Override public Map<String, DefaultGeoJsfLang> getName() {return name;}
 	@Override public void setName(Map<String, DefaultGeoJsfLang> name) {this.name = name;}
