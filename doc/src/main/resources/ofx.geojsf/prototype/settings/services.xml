@@ -6,8 +6,9 @@
 	<ofx:title lang="en">Services</ofx:title>
 	
 	<ofx:paragraph lang="en">
-		GeoServer is an open-source server written in Java an allows users to
-		share, process and edit geospatial data.
+		services
+		<ofx:reference target="image.geojsf.admin.include.services"/>.
 	</ofx:paragraph>
 		   
+	<ofx:include lang="en">en/section/geojsf/admin/include/services</ofx:include>
 </ofx:section>
