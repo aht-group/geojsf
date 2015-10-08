@@ -12,6 +12,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.interfaces.model.with.code.EjbWithCode;
+import net.sf.ahtutils.interfaces.model.with.position.EjbWithPositionVisible;
 import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
@@ -27,8 +28,8 @@ public interface GeoJsfCategory<L extends UtilsLang,
 								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 								SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
-			extends EjbSaveable,EjbRemoveable,
-					EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
+			extends EjbSaveable,EjbRemoveable,EjbWithCode,EjbWithPositionVisible,
+					EjbWithLang<L>,EjbWithDescription<D>
 {
 	List<LAYER> getLayer();
 	void setLayer(List<LAYER> layer);

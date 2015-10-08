@@ -37,11 +37,18 @@ public class DefaultGeoJsfCategory implements Serializable,EjbRemoveable,EjbPers
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
 		
+	private boolean visible;
+	@Override public boolean isVisible() {return visible;}
+	@Override public void setVisible(boolean visible) {this.visible = visible;}
+
+	private int position;
+	@Override public int getPosition() {return position;}
+	@Override public void setPosition(int position) {this.position = position;}
+	
 	@OneToMany
 	private List<DefaultGeoJsfLayer> layer;
 	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
 	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
-
 
 //	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 //	@MapKey(name = "lkey")

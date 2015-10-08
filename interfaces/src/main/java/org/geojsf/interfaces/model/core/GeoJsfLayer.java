@@ -1,6 +1,5 @@
 package org.geojsf.interfaces.model.core;
 
-
 import java.util.List;
 
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
@@ -12,6 +11,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.interfaces.model.with.code.EjbWithCode;
+import net.sf.ahtutils.interfaces.model.with.position.EjbWithPositionVisible;
 import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
@@ -27,7 +27,8 @@ public interface GeoJsfLayer<L extends UtilsLang,
 							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 							SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
-			extends EjbSaveable,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
+			extends EjbSaveable,EjbWithCode,EjbWithPositionVisible,
+					EjbWithLang<L>,EjbWithDescription<D>
 {
 	SERVICE getService();
 	void setService(SERVICE service);
