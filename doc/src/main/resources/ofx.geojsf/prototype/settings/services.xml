@@ -6,7 +6,7 @@
 	<ofx:title lang="en">Services</ofx:title>
 	
 	<ofx:paragraph lang="en">
-		services
+		You can define WMS services and layers in the services page.
 		<ofx:reference target="image.geojsf.admin.include.services"/>.
 	</ofx:paragraph>
 		   
