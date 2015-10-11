@@ -68,14 +68,18 @@ var GeoJSF = {
 		processEventMove : function(event)
 		{
 			console.log("mapMove");
-                        console.log(event);
-			this.centerLat             = event.map.getView().getCenter()[0];
-			this.centerLon             = event.map.getView().getCenter()[1];
-                        var extent = event.map.getView().calculateExtent(event.map.getSize());
+			console.log(event);
+				
+						
+			this.centerLat             = ol.proj.transform(event.map.getView().getCenter(), 'EPSG:3857', 'EPSG:4326')[0];
+			this.centerLon             = ol.proj.transform(event.map.getView().getCenter(), 'EPSG:3857', 'EPSG:4326')[1];
+            
+			// var extent = event.map.getView().calculateExtent(event.map.getSize());
+			var extent = ol.extent.applyTransform(event.map.getView().calculateExtent(event.map.getSize()), ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
 			this.viewportBoundTop      = extent[0];
 			this.viewportBoundBottom   = extent[1];
 			this.viewportBoundLeft     = extent[2];
-                	this.viewportBoundRight    = extent[3];
+            this.viewportBoundRight    = extent[3];
 			console.log(event.type +" has triggered change to center " +this.centerLat +"/"  +this.centerLon);
 			
 			
@@ -89,10 +93,10 @@ var GeoJSF = {
 		 			         {name: 'org.geojsf.viewport.center.lon',     value: this.centerLon},
 		 			         {name: 'org.geojsf.viewport.center.lat',     value: this.centerLat},
 		 			         {name: 'org.geojsf.viewport.bottom',         value: this.viewportBoundBottom},
-		 			         {name: 'org.geojsf.viewport.top',            value: this.viewportBoundTop},
+		 			         {name: 'org.geojsf.viewport.top',            value: ol.extent.applyTransform(event.map.getView().calculateExtent(event.map.getSize()), ol.proj.getTransform("EPSG:3857", "EPSG:4326"))[0]},
 		 			         {name: 'org.geojsf.viewport.left',           value: this.viewportBoundLeft},
 		 			         {name: 'org.geojsf.viewport.right',          value: this.viewportBoundRight},
-		 			         {name: 'org.geojsf.viewport.scale',          value:   Math.floor( GeoJSF.map.getView().getResolution())*50},
+		 			         {name: 'org.geojsf.viewport.scale',          value:   Math.floor( GeoJSF.map.getView().getResolution())},
 		 			        ],
 		 			oncomplete: function(xhr, status, args) {console.log('map move AJAX request sent.')}
 				});

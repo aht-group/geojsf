@@ -65,15 +65,15 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
                         if (this.value.getScale() == 0) 
                             {this.value.setScale(100000);}
                         else 
-                            {this.value.setScale(this.value.getScale()*1000);}
-			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +this.value.getScale()/50 +", true);" +System.getProperty("line.separator"), null);		
+                            {this.value.setScale(this.value.getScale());}
+			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +this.value.getScale() +");" +System.getProperty("line.separator"), null);		
 		}
 		else
 		{
 			lat             = ComponentAttribute.getDouble(Attribute.lat.toString(), 0.0 ,ctx,  this);
 			lon             = ComponentAttribute.getDouble(Attribute.lon.toString(), 0.0 ,ctx,  this);
 			zoom            = ComponentAttribute.getInteger(Attribute.zoom.toString(), 0 ,ctx,  this);
-			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +zoom +", false);" +System.getProperty("line.separator"), null);
+			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +zoom +");" +System.getProperty("line.separator"), null);
 		}
 		 
 		writer.endElement("script");
