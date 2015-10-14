@@ -6,7 +6,13 @@
 	<ofx:title lang="en">Thematic Maps</ofx:title>
 	
 	<ofx:paragraph lang="en">
-		maps ...
+		This system page contains all created thematic maps with additional information in several languages like English and French. 
+                A thematic map consists of different layers (which are managed in the GIS Layer Page) and combine them into one thematic map. 
+                The first step to create a new thematic map is to add a new item to the list by clicking on the green plus. 
+                After you assign a name to the new map and edit additional information, add new layers to the thematic map. 
+                A preview will show your current composition of layers on the right side.
+                Please note that you are able to change the order of every layer by drag and drop to the right position.
+
 		<ofx:reference target="image.geojsf.admin.include.maps"/>.
 	</ofx:paragraph>
 		   

@@ -7,6 +7,12 @@
 	
 	<ofx:paragraph lang="en">
 		You can define WMS services and layers in the services page.
+                These defined services are divided into several sub sections called categories. 
+                Therefore it is possible to edit these categories by rename, remove or adding new items to the category list.
+                All categories in this list consists of a layers list which contains linked layers. It is also possible to edit items like in the case of the category list.
+                Every layer has several attributes, for example the attributes category and service, which assign a layer to the edited attributes. 
+                After creating a new item, the system is able to show a preview of the new layer. 
+
 		<ofx:reference target="image.geojsf.admin.include.services"/>.
 	</ofx:paragraph>
 		   
