@@ -26,6 +26,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
@@ -55,23 +56,16 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfFacadeBean.class);
 	
 	private EntityManager em;
+	private UtilsFacadeBean ufb;
 	
 	public GeoJsfFacadeBean(EntityManager em)
 	{
 		this.em=em;
+		ufb = new UtilsFacadeBean(em);
 	}
 	
-	@Override public <T extends Object> List<T> all(Class<T> type)
-	{
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(type);
-		Root<T> from = criteriaQuery.from(type);
-		
-		CriteriaQuery<T> select = criteriaQuery.select(from);
-		
-		TypedQuery<T> typedQuery = em.createQuery(select);
-		return typedQuery.getResultList();
-	}
+	@Override public <T extends Object> List<T> all(Class<T> type){return ufb.all(type);}
+	@Override public <T extends Object> List<T> all(Class<T> type, int maxResults){return ufb.all(type,maxResults);}
 	
 	@Override public <T extends EjbWithId> List<T> find(Class<T> cl, Set<Long> ids)
 	{
