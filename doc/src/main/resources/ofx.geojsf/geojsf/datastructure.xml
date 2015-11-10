@@ -21,11 +21,11 @@
 	</media:image>
 	
 	<ofx:paragraph lang="en">
-		There are four entities used for the data structure. The Category is only used to categorize
+		There are four entities used for the data structure. The Category is only used to categorise
 		different layer into thematic areas.
                 The concept of specifying what should be shown on the map is based on layers.
                 A layer is the smallest unit that can be set to be shown or not shown.
-                The GIS component is working with maps and further geospatial information coming from 
+                The GIS component works with maps and further geospatial information coming from
                 servers offering their services via Web Mapping Service (WMS) and Web Feature Service (WFS), this is also
                 reflected in the data model.
 	</ofx:paragraph>
@@ -35,7 +35,7 @@
 	
 		<l:item name="Service" lang="en" version="1" id="section.admin.geojsf.datastructure.list.service">
 	    	<ofx:paragraph>
-				A Service characterizes a 
+				A Service characterises a
 				Web Mapping Service (WMS) or Web Feature Service (WFS)
 				service by it’s URL. A service can offer multiple layers.
 			</ofx:paragraph>
@@ -44,8 +44,8 @@
 	    <l:item name="Layer" lang="en" version="1" id="section.admin.geojsf.datastructure.list.layer">
 	    	<ofx:paragraph>
 				Each service can provide different unique Layers identified by their code (e.g. roads, infrastructures).
-				It can optionally be marked as a "temporal" layer. A temporal layer includes information for different moments in time,
-				e.g. the clouds over europe for every five minutes.
+				It can be marked as a "temporal" layer. A temporal layer includes information for different moments in time,
+				e.g. the clouds over Europe every five minutes.
 			</ofx:paragraph>
 	    </l:item>
             
@@ -63,7 +63,7 @@
 				As stated above, layers are data-wise encapsulated in View entities, that hold
 				information about their visibility, their ordering number (e.g. roads are shown on top of terrain)
 				and the legend for this layer.
-				The Views, along with a ViewPort (including information about the center of the map, its boundaries and the resolution),
+				The Views, along with a ViewPort (including information about the centre of the map, its boundaries and the resolution),
 				are all the information needed to display a map.
 			</ofx:paragraph>
 	    </l:item>
