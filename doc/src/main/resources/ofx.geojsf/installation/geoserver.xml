@@ -6,13 +6,13 @@
 	<ofx:title lang="en">GeoServer</ofx:title>
 	
 	<ofx:paragraph lang="en">
-		GeoServer is an open-source server written in Java an allows users to
+		GeoServer is an open-source server written in Java and allows users to
 		share, process and edit geospatial data.
 	</ofx:paragraph>
 	
 	<ofx:paragraph lang="en">
 		Designed for interoperability, it publishes data from any major spatial data
-		source using open standards. GeoServer has evolved to become an easy method of
+		source using open standards. GeoServer has evolved to become an easy method for
 		connecting existing information to Virtual Globes such as Google Earth and NAS
 		 World Wind as well as to web-based maps such as OpenLayers, Google Maps and Bing Maps.
 	</ofx:paragraph>
@@ -37,7 +37,7 @@
 		
 		<ofx:paragraph>
 			After finishing your installation, you should do a test run with the current geoserver installation. 
-			First, change from the user <text:emphasis style="typewriter">"root" to "geoserver"</text:emphasis>, it's necessary to deploy the server with this user,
+			First, change from the user <text:emphasis style="typewriter">"root" to "geoserver"</text:emphasis>, it is necessary to deploy the server with this user,
 			otherwise the rights are changed back to root. Now go to the <text:emphasis style="typewriter">geoserverx.x.x/bin</text:emphasis>
 			folder of the current geoserver installation and run the <text:emphasis style="typewriter">./start.sh</text:emphasis>. 
 			The current geoserver installation should now start.
@@ -82,13 +82,13 @@
 		    
 		    <l:item>
 		    	<ofx:paragraph lang="en">
-					A new <text:emphasis bold="true">workspace</text:emphasis> has to be created where all settings are done.
+					A new <text:emphasis bold="true">workspace</text:emphasis> has to be created where all settings are set.
 				</ofx:paragraph>
 		    </l:item>
 		    
 		    <l:item>
 		    	<ofx:paragraph lang="en">
-					The <text:emphasis bold="true">data stores</text:emphasis> have to be configured. The most important one the is connection the
+					The <text:emphasis bold="true">data stores</text:emphasis> have to be configured. The most important one is the connection to the
 					PostGIS database.
 				</ofx:paragraph>
 		    </l:item>
