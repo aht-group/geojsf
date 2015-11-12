@@ -8,7 +8,7 @@
 	<ofx:title lang="en">Data Structure</ofx:title>
 	
 	<ofx:paragraph lang="en">
-		The data structure to of the core elements to manage maps and layers is shown in
+		The data structure of the core items to manage maps and layers is shown in
 		Figure <ofx:reference target="figure.admin.geojsf.datastructure.er"/>.
 	</ofx:paragraph>
 	
