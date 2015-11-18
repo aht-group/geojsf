@@ -14,9 +14,9 @@
 	<composite:implementation>
 		<p:panel header="#{msg.geoJsfAdminDetailsLayer}" rendered="#{not empty adminMapThematicBean.view}">
 			<f:facet name="actions">
-				<aht:icon type="geoJsfCancel" listener="#{adminMapThematicBean.cancelView()}" update=":fLayers :fView"/>
-				<aht:icon type="geoJsfSave" listener="#{adminMapThematicBean.saveView()}" update=":fLayers :sView"/>
-				<aht:icon type="geoJsfDelete" listener="#{adminMapThematicBean.rmView()}" update=":fLayers :sView"/>
+				<aht:icon type="geoJsfCancel" listener="#{adminMapThematicBean.cancelView()}" update=":fLayers :fView" tooltip="#{msg.ttCancel}"/>
+				<aht:icon type="geoJsfSave" listener="#{adminMapThematicBean.saveView()}" update=":fLayers :sView" tooltip="#{msg.ttSave}"/>
+				<aht:icon type="geoJsfDelete" listener="#{adminMapThematicBean.rmView()}" update=":fLayers :sView" tooltip="#{msg.ttDelete}"/>
 			</f:facet>
 			<h:panelGrid columns="2" columnClasses=",w100">
 				<p:outputLabel value="#{msg.geoJsfAdminOrderNo}"/>

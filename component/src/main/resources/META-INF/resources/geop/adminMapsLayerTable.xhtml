@@ -18,7 +18,7 @@
 			draggableRows="true">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
-                    <aht:icon type="geoJsfAdd" listener="#{adminMapThematicBean.addView()}" update=":fView"/>
+                    <aht:icon type="geoJsfAdd" listener="#{adminMapThematicBean.addView()}" update=":fView" tooltip="#{msg.ttNew}"/>
                 </aht:pfDataTableHeader>
             </f:facet>
             <p:ajax event="rowSelect" update=":fView" listener="#{adminMapThematicBean.selectView}"/>

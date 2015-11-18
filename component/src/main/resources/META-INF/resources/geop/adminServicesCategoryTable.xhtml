@@ -16,7 +16,7 @@
 						selection="#{adminMapServiceBean.category}" selectionMode="single" rowKey="#{c.id}">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.geoJsfAdminCategories}">
-                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addCategory()}" update=":rowServices"/>
+                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addCategory()}" update=":rowServices" tooltip="#{msg.ttNew}"/>
                 </aht:pfDataTableHeader>
             </f:facet>
             <p:ajax event="rowReorder" listener="#{adminMapServiceBean.reorderCategories()}" update="@form"/>

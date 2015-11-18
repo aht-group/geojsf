@@ -14,9 +14,9 @@
 	<composite:implementation>
 		<p:panel header="#{msg.geoJsfAdminService}" rendered="#{not empty adminMapServiceBean.service}" styleClass="auNoTop,auPanelWithGrid">
 			<f:facet name="actions">
-				<aht:icon type="geoJsfCancel" listener="#{adminMapServiceBean.cancelService()}" update=":rowServices"/>
-				<aht:icon type="geoJsfSave" listener="#{adminMapServiceBean.saveService()}" update=":rowServices"/>
-				<aht:icon type="geoJsfDelete" listener="#{adminMapServiceBean.rm(adminMapServiceBean.service)}" update=":rowServices"/>
+				<aht:icon type="geoJsfCancel" listener="#{adminMapServiceBean.cancelService()}" update=":rowServices" tooltip="#{msg.ttCancel}"/>
+				<aht:icon type="geoJsfSave" listener="#{adminMapServiceBean.saveService()}" update=":rowServices" tooltip="#{msg.ttSave}"/>
+				<aht:icon type="geoJsfDelete" listener="#{adminMapServiceBean.rm(adminMapServiceBean.service)}" update=":rowServices" tooltip="#{msg.ttDelete}"/>
 			</f:facet>
 			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
 				<p:outputLabel value="#{msg.geoJsfAdminCode}"/>

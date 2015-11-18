@@ -17,7 +17,7 @@
 				selection="#{adminMapServiceBean.layer}" selectionMode="single" rowKey="#{l.id}" draggableRows="true">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
-                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addLayer()}" update=":sLayer"/>
+                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addLayer()}" update=":sLayer" tooltip="#{msg.ttNew}"/>
                 </aht:pfDataTableHeader>
             </f:facet>
             <p:ajax event="rowReorder" listener="#{adminMapServiceBean.reorderLayer()}" update="@form"/>

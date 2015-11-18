@@ -16,7 +16,7 @@
 						selection="#{adminMapServiceBean.service}" selectionMode="single" rowKey="#{s.id}">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.geoJsfAdminServices}">
-                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addService()}" update=":rowServices"/>
+                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addService()}" update=":rowServices" tooltip="#{msg.ttNew}"/>
                 </aht:pfDataTableHeader>
             </f:facet>
             <p:ajax event="rowSelect" update=":rowServices" listener="#{adminMapServiceBean.selectService}"/>

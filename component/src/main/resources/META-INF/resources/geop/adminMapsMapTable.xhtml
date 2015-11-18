@@ -16,7 +16,7 @@
 				selection="#{adminMapThematicBean.map}" selectionMode="single" rowKey="#{m.id}">
 			<f:facet name="header">
 				<aht:pfDataTableHeader title="#{msg.geoJsfAdminThamaticMaps}">
-	                   <aht:icon type="geoJsfAdd" listener="#{adminMapThematicBean.addMap()}" update=":rowMaps"/>
+	                   <aht:icon type="geoJsfAdd" listener="#{adminMapThematicBean.addMap()}" update=":rowMaps" tooltip="#{msg.ttNew}"/>
 				</aht:pfDataTableHeader>
 			</f:facet>
 			<p:ajax event="rowSelect" update=":sMap :sView" listener="#{adminMapThematicBean.selectMap}"/>
