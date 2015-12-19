@@ -49,7 +49,7 @@
 		</dependency>
 		<dependency>
   			<groupId>javax.el</groupId>
-			<artifactId>el-api</artifactId>
+			<artifactId>javax.el-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		

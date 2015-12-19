@@ -11,14 +11,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.doc.er.AbstractErDiagram;
-import net.sf.exlp.interfaces.util.ConfigKey;
 
 public class GeoJsfErDiagram extends AbstractErDiagram
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfErDiagram.class);
 	
-	public GeoJsfErDiagram(File fTmp)
+	public GeoJsfErDiagram(Configuration config)
 	{
+		super(config,null);
 		fDot = new File(fTmp,"er.dot");
 		fSrc = new File("../entities/src/main/java");
 		fSvg = new File("src/main/resources/svg.geojsf/er");
@@ -41,10 +41,7 @@ public class GeoJsfErDiagram extends AbstractErDiagram
 	{
 		Configuration config = GeoJsfDocTestBootstrap.init();
 		
-		File fTmp = new File(config.getString(ConfigKey.dirTmp));
-		logger.info("Using Tmp: "+fTmp);
-		
-		GeoJsfErDiagram er = new GeoJsfErDiagram(fTmp);
+		GeoJsfErDiagram er = new GeoJsfErDiagram(config);
 		er.create();
 	}
 }
