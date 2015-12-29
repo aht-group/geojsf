@@ -246,7 +246,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,
 	protected void reloadLayer()
 	{
 		category = fGeo.load(cCategory, category);
-		layers = fGeo.allOrderedPositionVisibleParent2(cLayer, category);;
+		layers = fGeo.allOrderedPositionVisibleParent(cLayer, category);;
 		logger.info("#Layer:"+layers.size());
 	}
 	
