@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
 import net.sf.ahtutils.doc.ofx.util.OfxMultiLangFactory;
+import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.status.Translation;
 import net.sf.ahtutils.xml.status.Translations;
 import net.sf.ahtutils.xml.xpath.StatusXpath;
@@ -51,7 +52,7 @@ public class OfxSldTemplateTableFactory extends AbstractUtilsOfxDocumentationFac
 		headerKeys.add("auTableStatusDescription");
 	}
 	
-	public Table build(String id, Repository repository) throws OfxAuthoringException
+	public Table build(String id, Repository repository) throws OfxAuthoringException, UtilsConfigurationException
 	{	
 		Table table = toOfx(repository.getSldTemplate());
 		table.setId(id);

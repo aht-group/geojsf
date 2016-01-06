@@ -38,6 +38,7 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
 import net.sf.ahtutils.doc.ofx.util.OfxMultiLangFactory;
+import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.factory.svg.SvgSymbolFactory;
 import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.util.io.HashUtil;
@@ -68,7 +69,7 @@ public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
 		headerKeys.add("geojsfSldRuleTableHeaderLabel");
 	}
 	
-	public Table build(String id, Sld sld, boolean withComment) throws OfxAuthoringException
+	public Table build(String id, Sld sld, boolean withComment) throws OfxAuthoringException, UtilsConfigurationException
 	{	
 		Table table = toOfx(sld.getSldRule());
 		table.setId(id);

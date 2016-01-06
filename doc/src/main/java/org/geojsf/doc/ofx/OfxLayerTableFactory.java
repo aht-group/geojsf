@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
+import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.status.Description;
 import net.sf.ahtutils.xml.status.Lang;
 import net.sf.ahtutils.xml.status.Translations;
@@ -53,7 +54,7 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		super(config,langs,translations);
 	}
 	
-	public Table build(String id, Category category, List<String> headerKeys) throws OfxAuthoringException
+	public Table build(String id, Category category, List<String> headerKeys) throws OfxAuthoringException, UtilsConfigurationException
 	{	
 		Comment comment = XmlCommentFactory.build();
 		OfxCommentBuilder.fixedId(comment, id);

@@ -53,6 +53,8 @@ public class GeoJsfLatexDocumentationBuilder extends AbstractLatexDocumentationB
 	private final static String dirLayer = "section/geojsf/layer";
 	private final static String dirMap = "section/geojsf/map";
 	
+	public static String glossary = "ofx.geojsf/editorial/glossary/geo.xml";
+	
 	public static enum InstallationCode {instGeoserver}
 	public static enum ConfigurationCode {confDs}
 	public static enum SldCode {sldIntroduction,sldModel,sldRule,sldTemplates}
@@ -122,7 +124,7 @@ public class GeoJsfLatexDocumentationBuilder extends AbstractLatexDocumentationB
 	public void loadMaps(String fileName) throws FileNotFoundException{maps = JaxbUtil.loadJAXB(fileName,Maps.class);JaxbUtil.trace(maps);}
 	public void loadSldTemplates(String fileName) throws FileNotFoundException{sldTemplates = JaxbUtil.loadJAXB(fileName,Repository.class);JaxbUtil.trace(sldTemplates);}
 	
-	public void writesldTemplates() throws OfxAuthoringException, IOException
+	public void writesldTemplates() throws OfxAuthoringException, IOException, UtilsConfigurationException
 	{
 		OfxSldTemplateTableFactory ofx = new OfxSldTemplateTableFactory(config, langs, translations);
 		Table table = ofx.build("table.admin.geojsf.sld.templates", sldTemplates);
