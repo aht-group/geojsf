@@ -54,6 +54,7 @@ public class GeoJsfLatexDocumentationBuilder extends AbstractLatexDocumentationB
 	private final static String dirMap = "section/geojsf/map";
 	
 	public static String glossary = "ofx.geojsf/editorial/glossary/geo.xml";
+	public static String acronym = "ofx.geojsf/editorial/acronym/geo.xml";
 	
 	public static enum InstallationCode {instGeoserver}
 	public static enum ConfigurationCode {confDs}

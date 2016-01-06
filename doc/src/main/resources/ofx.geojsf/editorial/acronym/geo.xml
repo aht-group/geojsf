@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ed:acronyms xmlns:text="http://www.openfuxml.org/text" xmlns:ofx="http://www.openfuxml.org" xmlns:layout="http://www.openfuxml.org/layout" xmlns:media="http://www.openfuxml.org/media" xmlns:ed="http://www.openfuxml.org/editorial" xmlns:wiki="http://www.openfuxml.org/wiki" xmlns:l="http://www.openfuxml.org/list" xmlns:table="http://www.openfuxml.org/table">
+    <ed:term code="wms">
+        <text:text>WMS</text:text>
+        <ofx:paragraph>
+            Web Map Service
+        </ofx:paragraph>
+    </ed:term>
+    <ed:term code="wfs">
+        <text:text>WFS</text:text>
+        <ofx:paragraph>
+            Web Feature Service
+        </ofx:paragraph>
+    </ed:term>
+    <ed:term code="wcs">
+        <text:text>WCS</text:text>
+        <ofx:paragraph>
+            Web Coverage Service
+        </ofx:paragraph>
+    </ed:term>
+    <ed:term code="wps">
+        <text:text>WPS</text:text>
+        <ofx:paragraph>
+            Web Processing Service
+        </ofx:paragraph>
+    </ed:term>
+	<ed:term code="wgs">
+        <text:text>WGS</text:text>
+        <ofx:paragraph>
+            World Geodetic System
+        </ofx:paragraph>
+    </ed:term>
+</ed:acronyms>
