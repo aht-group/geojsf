@@ -5,6 +5,8 @@
 			id="section.admin.geojsf.services">
 	<ofx:title lang="en">Services</ofx:title>
 	
+	<ofx:include lang="en">en/section/geojsf/admin/include/services-1</ofx:include>
+	
 	<ofx:paragraph lang="en">
         In this section, the WMS services can be configured, as well as the layers that are offered by
         these services. The layers are categorised so that they can be managed more easily. Categories can
@@ -12,5 +14,5 @@
         See Figure <ofx:reference target="image.geojsf.admin.include.services"/> for details.
 	</ofx:paragraph>
 		   
-	<ofx:include lang="en">en/section/geojsf/admin/include/services</ofx:include>
+	<ofx:include lang="en">en/section/geojsf/admin/include/services-2</ofx:include>
 </ofx:section>

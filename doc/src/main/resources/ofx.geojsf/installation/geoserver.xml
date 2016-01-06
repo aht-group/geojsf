@@ -148,21 +148,23 @@
 			<ofx:title lang="en">Start GeoServer as a service</ofx:title>
 			
 			<ofx:paragraph lang="en" version="1">
-					xxx
+				The next step is to configure the service with the shown script below. 
+				Copy this script to your clipboard and past it into the VI terminal and save your configuration.
+				Verify your installation with of the GeoServer by starting and stopping it
+				(monitor this events with the log terminal).
+				Use the commands "/etc/init.d/geoserver {start|stop|log}" to perform this test.
 			</ofx:paragraph>
 			
 			<ofx:listing external="listing/admin/installation/geoserver/service/preparation.txt"/>
 			
 			<ofx:paragraph lang="en" version="1">
-					xxx
+				To activate the service, the shell command
+				<text:emphasis style="typewriter">update-rc.d geoserver defaults</text:emphasis>
+				has to be executed.
 			</ofx:paragraph>
 			
 			<ofx:listing external="listing/admin/installation/geoserver/service/etcInitD.txt"/>
-			
-		<ofx:paragraph lang="en" version="1">
-			Then the command <text:emphasis style="typewriter">update-rc.d geoserver defaults</text:emphasis> has to be executed
-			to automatically start <text:emphasis bold="true">GeoServer</text:emphasis> on system boot.
-		</ofx:paragraph>
+
 			
 		</ofx:section>
 	   
