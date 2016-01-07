@@ -9,26 +9,23 @@ public class DefaultGeoJsfDescription implements UtilsDescription,Serializable,E
 {
 	public static final long serialVersionUID=1;
 	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>Fields<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	
 	private long id;
+	@Override public long getId() {return id;}
+	@Override public void setId(long id) {this.id = id;}
 	
 	private String lkey;
+	@Override public String getLkey() {return lkey;}
+	@Override public void setLkey(String lkey) {this.lkey = lkey;}
 	
 	private String lang;
+	@Override public String getLang() {return lang;}
+	@Override public void setLang(String name) {this.lang = name;}
 	
-	// >>>>>>>>>>>>>>>>>>>>>Getters and Setters<<<<<<<<<<<<<<<<<<<
-	
-	public long getId() {return id;}
-	public void setId(long id) {this.id = id;}
-	
-	public String getLkey() {return lkey;}
-	public void setLkey(String lkey) {this.lkey = lkey;}
-	
-	public String getLang() {return lang;}
-	public void setLang(String name) {this.lang = name;}
-	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<
+	private Boolean styled;
+	@Override public Boolean getStyled() {return styled;}
+	@Override public void setStyled(Boolean styled) {this.styled = styled;}
+
 	
 	public String toString()
 	{
