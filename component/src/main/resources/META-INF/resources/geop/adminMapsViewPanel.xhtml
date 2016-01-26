@@ -25,8 +25,11 @@
 				<p:outputLabel value="#{msg.geoJsfViewLayerDefaultVisible}"/>
 				<p:selectBooleanCheckbox value="#{adminMapThematicBean.view.visible}" />
 				
-				<p:outputLabel value="#{msg.geoJsfViewLayerLegend}"/>
+				<p:outputLabel value="#{msg.geoJsfAdminViewLegend}"/>
 				<p:selectBooleanCheckbox value="#{adminMapThematicBean.view.legend}" />
+				
+				<p:outputLabel value="#{msg.geoJsfAdminLegendOrderNo}"/>
+				<h:inputText value="#{adminMapThematicBean.view.legendNo}"/>
 				
 				<p:outputLabel value="#{msg.geoJsfAdminCategory}"/>
 				<p:selectOneMenu styleClass="w100" value="#{adminMapThematicBean.category}" effect="fade">  

@@ -33,10 +33,17 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	
 	@ManyToOne
 	private DefaultGeoJsfLayer layer;
+	@Override public DefaultGeoJsfLayer getLayer() {return layer;}
+	@Override public void setLayer(DefaultGeoJsfLayer layer) {this.layer = layer;}
 	
 	
 	private int orderNo;
+	@Override public int getOrderNo() {return orderNo;}
+	@Override public void setOrderNo(int orderNo) {this.orderNo = orderNo;}
 	
+	private Integer legendNo;
+	@Override public Integer getLegendNo() {return legendNo;}
+	@Override public void setLegendNo(Integer legendNo) {this.legendNo = legendNo;}
 	
 	private Boolean visible;
 	
@@ -51,11 +58,9 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	@Override public DefaultGeoJsfMap getMap() {return view;}
 	@Override public void setMap(DefaultGeoJsfMap view) {this.view = view;}
 	
-	@Override public DefaultGeoJsfLayer getLayer() {return layer;}
-	@Override public void setLayer(DefaultGeoJsfLayer layer) {this.layer = layer;}
+
 	
-	@Override public int getOrderNo() {return orderNo;}
-	@Override public void setOrderNo(int orderNo) {this.orderNo = orderNo;}
+
 	
 	@Override public boolean getVisible() {return visible;}
 	@Override public boolean isVisible() {return visible;}
