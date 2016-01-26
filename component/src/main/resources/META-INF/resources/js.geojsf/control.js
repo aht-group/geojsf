@@ -3,9 +3,9 @@ var GeoJsfControl = {
 		addZoom : function(type, position)
 		{
                     // Please use CSS to configure appearance
+					console.log('ZOOOOOOM.');
                     var zoomslider = new ol.control.ZoomSlider();
                     GeoJSF.map.addControl(zoomslider);
-                //    GeoJsfControl.addGraticule();
 		},
 		
 		addScale : function(position, system, major, sub)
@@ -21,6 +21,7 @@ var GeoJsfControl = {
 		addScaleBar : function(position, system, major, sub)
 		{
                     // Please use CSS to configure appearance
+					console.log('Adding scale line.');
                     GeoJSF.map.addControl(new ol.control.ScaleLine());
 		},
 		
@@ -42,17 +43,18 @@ var GeoJsfControl = {
                     */
 		},
                 
-                addGraticule : function()
-                {
-                    // Create the graticule component
-                    var graticule = new ol.Graticule({
-                      // the style to use for the lines, optional.
-                      strokeStyle: new ol.style.Stroke({
-                        color: 'rgba(255,120,0,0.9)',
-                        width: 2,
-                        lineDash: [0.5, 4]
-                      })
-                    });
-                 //   graticule.setMap(GeoJSF.map);
-                }
+		addGraticule : function()
+		{
+			// Create the graticule component
+			var graticule = new ol.Graticule({
+			  // the style to use for the lines, optional.
+			  // (taken from openlayers.org standard example)
+				strokeStyle: new ol.style.Stroke({
+				color: 'rgba(255,120,0,0.9)',
+				width: 2,
+				lineDash: [0.5, 4]
+			  })
+			});
+		    graticule.setMap(GeoJSF.map);
+		}
 };
