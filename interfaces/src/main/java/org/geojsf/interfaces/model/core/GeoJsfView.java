@@ -40,7 +40,7 @@ public interface GeoJsfView<L extends UtilsLang,
 	boolean isVisible();
 	void setVisible(boolean visible);
 	
-	Boolean isLegend();
+	Boolean getLegend();
 	void setLegend(Boolean legend);
 	
 }

@@ -25,6 +25,9 @@
 				<p:outputLabel value="#{msg.geoJsfViewLayerDefaultVisible}"/>
 				<p:selectBooleanCheckbox value="#{adminMapThematicBean.view.visible}" />
 				
+				<p:outputLabel value="#{msg.geoJsfViewLayerLegend}"/>
+				<p:selectBooleanCheckbox value="#{adminMapThematicBean.view.legend}" />
+				
 				<p:outputLabel value="#{msg.geoJsfAdminCategory}"/>
 				<p:selectOneMenu styleClass="w100" value="#{adminMapThematicBean.category}" effect="fade">  
 					<f:selectItems value="#{adminMapThematicBean.categories}" var="c" itemLabel="#{c.name[userBean.localeCode].lang}" itemValue="#{c}"/>
