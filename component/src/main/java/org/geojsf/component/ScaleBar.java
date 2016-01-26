@@ -40,8 +40,11 @@ public class ScaleBar extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
+		logger.info("Adding scale bar.");
 		Map<String,Object> map = this.getAttributes();
-		String orientation = map.get(Attribute.orientation.toString()).toString();
+		
+		String orientation = "north";
+		if (null!=map.get(Attribute.orientation.toString())){orientation = map.get(Attribute.orientation.toString()).toString();}
 		
 		String system = "metric";
 		if (null!=map.get(Attribute.system.toString())){system = map.get(Attribute.system.toString()).toString();}
