@@ -56,7 +56,13 @@ public class Legend extends UIPanel implements ClientBehaviorHolder
 		}
 		
 		String imageUrl        = serviceUrl +"?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&TRANSPARENT=true&STRICT=false&layer=" +layerName +"";
-		
+
+		if(layerName.contains("stations"))
+		{
+			imageUrl +="&SCALE=4999999.9";
+
+		}
+
 		// Show the image by rendering an IMG tag directly
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("img", this);
