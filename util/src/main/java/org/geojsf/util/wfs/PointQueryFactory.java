@@ -96,20 +96,23 @@ public class PointQueryFactory
 	
 	private Distance checkDistanceUnit(Distance distance)
 	{
-		if(distance.getUnits().equals("degree")){return distance;}
-		if(distance.getUnits().equals("meter"))
+		// Since request only works with kilometers or degree, check that
+		if(distance.getUnits().equals("degree")
+		|| distance.getUnits().equals("kilometers")
+		|| distance.getUnits().equals("kilometer"))
 		{
-			logger.debug("Converting to degree");
-			Double m = new Double(distance.getValue());
-			Double latTraveledDeg = (1 / 110.54) * (m/1000);
-			Distance result = new Distance();
-			result.setUnits("degree");
-			result.setValue(latTraveledDeg.toString());
-			return result;
+			return distance;
+		}
+		else if (distance.getUnits().equals("meters"))
+		{
+			String value = distance.getValue();
+			Double d     = Double.parseDouble(value);
+			distance.setValue(d/1000 +"");
+			return distance;
 		}
 		else
 		{
-			logger.warn("Unkniwn unit: "+distance.getUnits());
+			logger.warn("Unknown unit: "+distance.getUnits());
 			return null;
 		}
 	}
