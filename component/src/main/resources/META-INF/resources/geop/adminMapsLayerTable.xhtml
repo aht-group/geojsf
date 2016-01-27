@@ -26,8 +26,11 @@
             <p:column headerText="#{msg.geoJsfAdminOrderNo}">
 				<h:outputText value="#{v.orderNo} " />  
 			</p:column>
-            <p:column headerText="#{msg.geoJsfAdminLayer}" sortBy="#{s.code}">
+            <p:column headerText="#{msg.geoJsfAdminLayer}">
 				<h:outputText value="#{v.layer.name[userBean.localeCode].lang} " />  
+			</p:column>
+			<p:column>
+				<h:outputText rendered="#{v.legend}" value="#{v.legendNo}" />  
 			</p:column>
 		</p:dataTable>
 	</composite:implementation>

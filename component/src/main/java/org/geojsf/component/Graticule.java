@@ -19,13 +19,13 @@ import org.geojsf.util.GeoJsfJsLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@FacesComponent(value="org.geojsf.component.ScaleBar")
+@FacesComponent(value="org.geojsf.component.Graticule")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
-public class ScaleBar extends UINamingContainer implements ClientBehaviorHolder
+public class Graticule extends UINamingContainer implements ClientBehaviorHolder
 {
-	final static Logger logger = LoggerFactory.getLogger(ScaleBar.class);
+	final static Logger logger = LoggerFactory.getLogger(Graticule.class);
 	
-	private static enum Attribute {orientation, system, major, sub}
+	private static enum Attribute {}
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -40,24 +40,12 @@ public class ScaleBar extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		logger.info("Adding scale bar.");
+		logger.info("Adding Graticule.");
 		Map<String,Object> map = this.getAttributes();
-		
-		String orientation = "north";
-		if (null!=map.get(Attribute.orientation.toString())){orientation = map.get(Attribute.orientation.toString()).toString();}
-		
-		String system = "metric";
-		if (null!=map.get(Attribute.system.toString())){system = map.get(Attribute.system.toString()).toString();}
-		
-		String major  = "2";
-		if (null!=map.get(Attribute.major.toString())){major = map.get(Attribute.major.toString()).toString();}
-		
-		String sub    = "2";
-		if (null!=map.get(Attribute.sub.toString())){sub = map.get(Attribute.sub.toString()).toString();}
 		
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("script", this);
-		writer.writeText("GeoJsfControl.addScaleBar('"+orientation+"','" +system +"'," +major +"," +sub+");", null);
+		writer.writeText("GeoJsfControl.addGraticule();", null);
 		writer.endElement("script");
 	}
 }

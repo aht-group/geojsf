@@ -68,4 +68,19 @@ public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription, S
 		
         return ejb;
 	}
+	
+	public STATION build(String[] langs)
+	{
+		STATION ejb = null;
+		try
+		{
+			ejb = cStation.newInstance();
+			ejb.setName(efLang.createEmpty(langs));
+			ejb.setDescription(efDescription.createEmpty(langs));
+			
+		}
+		catch (InstantiationException e) {e.printStackTrace();}
+		catch (IllegalAccessException e) {e.printStackTrace();}		
+        return ejb;
+	}
 }

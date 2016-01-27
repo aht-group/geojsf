@@ -101,6 +101,12 @@
 			<component-type>org.geojsf.component.SqlViewParameter</component-type>
 		</component>
 	</tag>
+	<tag>
+		<tag-name>graticule</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Graticule</component-type>
+		</component>
+	</tag>
 <!-- <tag>
 		<tag-name>switchLayer</tag-name>
 		<behavior>
