@@ -56,5 +56,11 @@ var GeoJsfControl = {
 			  })
 			});
 		    graticule.setMap(GeoJSF.map);
+		},
+		
+		addRotation : function()
+		{
+			var rotation = new ol.control.Rotate();
+			GeoJSF.map.addControl(rotation);
 		}
 };
