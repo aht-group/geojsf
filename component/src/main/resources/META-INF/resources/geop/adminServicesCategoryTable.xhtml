@@ -21,6 +21,9 @@
             </f:facet>
             <p:ajax event="rowReorder" listener="#{adminMapServiceBean.reorderCategories()}" update="@form"/>
             <p:ajax event="rowSelect" update=":rowServices" listener="#{adminMapServiceBean.selectCategory}"/>
+            <p:column headerText="#" sortBy="#{c.position}">
+				<h:outputText value="#{c.position}" />  
+			</p:column>
             <p:column headerText="#{msg.geoJsfAdminCategory}" sortBy="#{c.code}">
 				<h:outputText value="#{c.name[userBean.localeCode].lang}" />  
 			</p:column>

@@ -22,6 +22,9 @@
             </f:facet>
             <p:ajax event="rowReorder" listener="#{adminMapServiceBean.reorderLayer()}" update="@form"/>
 			<p:ajax event="rowSelect" listener="#{adminMapServiceBean.selectLayer}" update=":sLayer"/>
+			<p:column headerText="#" sortBy="#{l.position}">
+				<h:outputText value="#{l.position}" />  
+			</p:column>
 			<p:column headerText="#{msg.Name}" sortBy="#{l.name[userBean.localeCode].lang}">
 				<h:outputText value="#{l.name[userBean.localeCode].lang}" />  
 			</p:column>
