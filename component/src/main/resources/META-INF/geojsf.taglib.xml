@@ -107,6 +107,12 @@
 			<component-type>org.geojsf.component.Graticule</component-type>
 		</component>
 	</tag>
+	<tag>
+		<tag-name>rotation</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Rotation</component-type>
+		</component>
+	</tag>
 <!-- <tag>
 		<tag-name>switchLayer</tag-name>
 		<behavior>
