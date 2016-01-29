@@ -10,10 +10,10 @@ import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
 import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
 
 import org.geojsf.factory.ejb.EjbGeoViewFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;

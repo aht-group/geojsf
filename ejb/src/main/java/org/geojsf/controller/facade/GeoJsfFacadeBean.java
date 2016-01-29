@@ -28,10 +28,10 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 public class GeoJsfFacadeBean <L extends UtilsLang,

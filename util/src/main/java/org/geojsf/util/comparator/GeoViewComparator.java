@@ -16,10 +16,10 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
 import net.sf.ahtutils.util.comparator.ejb.security.SecurityActionComparator;
 
 public class GeoViewComparator <L extends UtilsLang,

@@ -9,7 +9,7 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 
 import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
 import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
-import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 @EjbErNode(name="Graphic",category="symbol",subset="sld")

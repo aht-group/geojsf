@@ -1,10 +1,10 @@
 package org.geojsf.interfaces.facade;
 
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
 
 import java.util.List;
 

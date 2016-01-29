@@ -15,11 +15,11 @@ import net.sf.ahtutils.factory.xml.status.XmlStyleFactory;
 import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.factory.xml.symbol.XmlGraphicFactory;
 import net.sf.ahtutils.factory.xml.symbol.XmlSymbolFactory;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphicType;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
-import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphicType;
 import net.sf.ahtutils.xml.symbol.Graphic;
 import net.sf.ahtutils.xml.symbol.Symbol;
 

@@ -3,10 +3,10 @@ package org.geojsf.web.rest;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.interfaces.model.symbol.UtilsGraphic;
 
 import org.geojsf.factory.xml.geojsf.XmlCategoryFactory;
 import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
