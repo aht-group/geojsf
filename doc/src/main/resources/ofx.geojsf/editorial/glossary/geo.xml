@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ed:glossary xmlns:text="http://www.openfuxml.org/text" xmlns:ofx="http://www.openfuxml.org" xmlns:layout="http://www.openfuxml.org/layout" xmlns:media="http://www.openfuxml.org/media" xmlns:ed="http://www.openfuxml.org/editorial" xmlns:wiki="http://www.openfuxml.org/wiki" xmlns:l="http://www.openfuxml.org/list" xmlns:table="http://www.openfuxml.org/table">
-    <ed:term code="c20">
+    <ed:term code="Latitude">
     	<text:text classifier="name">Latitude and Longitude</text:text>
         <text:text classifier="text">latitude and longitude</text:text>
         <ofx:paragraph lang="en">
@@ -11,7 +11,7 @@
             latitude and longitude FR
         </ofx:paragraph>
     </ed:term>
-    <ed:term code="c23">
+    <ed:term code="geospatial">
         <text:text classifier="name">Geospatial</text:text>
         <text:text classifier="text">geospatial</text:text>
         <ofx:paragraph lang="en">
