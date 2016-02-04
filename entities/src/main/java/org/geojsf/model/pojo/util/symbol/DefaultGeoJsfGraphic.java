@@ -14,7 +14,7 @@ import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 @EjbErNode(name="Graphic",category="symbol",subset="sld")
 public class DefaultGeoJsfGraphic implements EjbRemoveable,Serializable,EjbPersistable,
-								UtilsGraphic<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicStyle>
+								UtilsGraphic<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicStyle>
 {
 	public static final long serialVersionUID=1;
 

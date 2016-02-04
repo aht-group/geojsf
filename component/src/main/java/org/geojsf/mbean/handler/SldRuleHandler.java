@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 public class SldRuleHandler <L extends UtilsLang,
 							D extends UtilsDescription,
-							G extends UtilsGraphic<L,D,GT,GS>,
+							G extends UtilsGraphic<L,D,G,GT,GS>,
 							GT extends UtilsStatus<GT,L,D>,
 							GS extends UtilsStatus<GS,L,D>,
 							CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
@@ -98,7 +98,7 @@ public class SldRuleHandler <L extends UtilsLang,
 	
 	public static <L extends UtilsLang,
 					D extends UtilsDescription,
-					G extends UtilsGraphic<L,D,GT,GS>,
+					G extends UtilsGraphic<L,D,G,GT,GS>,
 					GT extends UtilsStatus<GT,L,D>,
 					GS extends UtilsStatus<GS,L,D>,
 					CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDSTYLE,SLDTEMPLATE>,
