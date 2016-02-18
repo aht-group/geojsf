@@ -21,7 +21,7 @@
 				<aht:icon type="geoJsfSave" listener="#{cc.attrs.handler.saveRule()}" update="#{cc.attrs.update}"/>
 				<aht:icon type="geoJsfDelete" listener="#{cc.attrs.handler.rmRule()}" update="#{cc.attrs.update}"/>
 			</f:facet>
-			<h:panelGrid columns="2" columnClasses="auPwg30,auPwg70" styleClass="auCleanPanelGrid">
+			<p:panelGrid columns="2" columnClasses="auPwg30,auPwg70" styleClass="auCleanPanelGrid">
 				<p:outputLabel rendered="false" value="#{msg.geoJsfSldRulePosition}"/>
 				<p:inputText rendered="false" value="#{cc.attrs.handler.rule.position}"/>
 				
@@ -30,7 +30,7 @@
 					 
 				<p:outputLabel value="#{msg.geoJsfSldRuleUpperBound}"/>
 				<p:inputText value="#{cc.attrs.handler.upperBound}"/>
-			</h:panelGrid>
+			</p:panelGrid>
 			<aht:graphicSymbol value="#{cc.attrs.handler.rule.graphic}" graphicStyles="#{cc.attrs.styles}"/>
 			<aht:tabTranslationEditor value="#{cc.attrs.handler.rule}"
 				keys="#{translationBean.langKeys}" withDescription="true"
