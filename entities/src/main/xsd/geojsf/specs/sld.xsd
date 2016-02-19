@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.opengis.net/sld"
+	xmlns:sld="http://www.opengis.net/sld"
+    xmlns:ogc="http://www.opengis.net/ogc"
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="StyledLayerDescriptor">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:NamedLayer" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+    <xsd:element name="NamedLayer">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

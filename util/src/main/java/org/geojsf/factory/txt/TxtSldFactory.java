@@ -33,8 +33,8 @@ public class TxtSldFactory<L extends UtilsLang,
 		{
 			if(rule.getLowerBound()!=null){sb.append("lb").append(i).append(":").append(rule.getLowerBound()).append(";");}
 			if(rule.getUpperBound()!=null){sb.append("ub").append(i).append(":").append(rule.getUpperBound()).append(";");}
-			if(rule.getColor()!=null && rule.getColor().length()>0){sb.append("c").append(i).append(":").append(rule.getColor()).append(";");}
-			if(rule.getSize()!=null){sb.append("s").append(i).append(":").append(rule.getSize()).append(";");}
+			if(rule.getGraphic().getColor()!=null && rule.getGraphic().getColor().length()>0){sb.append("c").append(i).append(":").append(rule.getGraphic().getColor()).append(";");}
+			if(rule.getGraphic().getSize()!=null){sb.append("s").append(i).append(":").append(rule.getGraphic().getSize()).append(";");}
 			i++;
 		}
 		

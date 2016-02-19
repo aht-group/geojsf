@@ -22,7 +22,7 @@ public interface GeoJsfSld<L extends UtilsLang,
 						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,STYLE,SLD,RULE,SLDTEMPLATE>,
 						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,STYLE,SLDTEMPLATE>>
 			extends EjbSaveable,EjbRemoveable,EjbWithLang<L>,EjbWithDescription<D>
-{		
+{	
 	SLDTEMPLATE getTemplate();
 	void setTemplate(SLDTEMPLATE template);
 	

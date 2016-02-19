@@ -36,12 +36,4 @@ public interface GeoJsfSldRule<L extends UtilsLang,
 	
 	G getGraphic();
 	void setGraphic(G graphic);
-	
-	//DEprecated
-//	STYLE getStyle();
-//	void setStyle(STYLE style);
-	String getColor();
-	void setColor(String color);
-	Integer getSize();
-	void setSize(Integer size);
 }

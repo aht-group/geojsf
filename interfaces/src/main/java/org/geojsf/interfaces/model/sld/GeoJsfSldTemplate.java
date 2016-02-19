@@ -15,7 +15,7 @@ public interface GeoJsfSldTemplate<L extends UtilsLang,
 						   STYLE extends UtilsStatus<STYLE,L,D>,
 						   TEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,TEMPLATE>>
 			extends EjbSaveable,EjbRemoveable,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
-{	
+{		
 	TYPE getType();
 	void setType(TYPE type);
 }

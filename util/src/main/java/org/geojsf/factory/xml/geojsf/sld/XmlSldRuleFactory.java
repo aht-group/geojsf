@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
-import net.sf.ahtutils.factory.xml.status.XmlStyleFactory;
 import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.factory.xml.symbol.XmlGraphicFactory;
 import net.sf.ahtutils.factory.xml.symbol.XmlSymbolFactory;
@@ -38,6 +37,7 @@ public class XmlSldRuleFactory <L extends UtilsLang,
 	final static Logger logger = LoggerFactory.getLogger(XmlSldRuleFactory.class);
 	public static final long serialVersionUID=1;
 	
+	@SuppressWarnings("unused")
 	private String lang;
 	private SldRule q;
 	
@@ -58,8 +58,6 @@ public class XmlSldRuleFactory <L extends UtilsLang,
 		if(q.isSetId()){xml.setId(ejb.getId());}
 		if(q.isSetLowerBound() && ejb.getLowerBound()!=null){xml.setLowerBound(ejb.getLowerBound());}
 		if(q.isSetUpperBound() && ejb.getUpperBound()!=null){xml.setUpperBound(ejb.getUpperBound());}
-		if(q.isSetSize()){xml.setSize(ejb.getSize());}
-		if(q.isSetColor()){xml.setColor(ejb.getColor());}
 				
 		if(q.isSetLangs())
 		{
@@ -74,8 +72,6 @@ public class XmlSldRuleFactory <L extends UtilsLang,
 		}
 		
 		Symbol s = XmlSymbolFactory.build();
-		s.setColor(ejb.getColor());
-		s.setSize(ejb.getSize());
 		
 		Graphic g = XmlGraphicFactory.build();
 		g.setSymbol(s);

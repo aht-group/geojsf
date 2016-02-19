@@ -70,19 +70,6 @@ public class DefaultGeoJsfSldRule implements Serializable,EjbRemoveable,EjbPersi
 	private DefaultGeoJsfGraphic graphic;
 	public DefaultGeoJsfGraphic getGraphic() {return graphic;}
 	public void setGraphic(DefaultGeoJsfGraphic graphic) {this.graphic = graphic;}
-
-	@ManyToOne
-	private DefaultGeoJsfSldStyle style;
-	public DefaultGeoJsfSldStyle getStyle() {return style;}
-	public void setStyle(DefaultGeoJsfSldStyle style) {this.style = style;}
-	
-	private String color;
-	@Override public String getColor(){return color;}
-	@Override public void setColor(String color){this.color = color;}
-	
-	private Integer size;
-	@Override public Integer getSize(){return size;}
-	@Override public void setSize(Integer size){this.size = size;}
 	
 	
 	public boolean equals(Object object)

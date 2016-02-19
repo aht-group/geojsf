@@ -77,7 +77,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 		efDescription = EjbDescriptionFactory.createFactory(clDescription);
 		efSld = EjbGeoSldFactory.factory(cSld);
 		
-		try {type = fGeo.fByCode(cType, GeoJsfSldType.Code.status.toString());}
+		try {type = fGeo.fByCode(cType, GeoJsfSldType.Type.status.toString());}
 		catch (UtilsNotFoundException e) {e.printStackTrace();}
 		
 		templates = fGeo.all(cTemplate);

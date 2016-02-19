@@ -2,5 +2,5 @@ package org.geojsf.interfaces.model.sld;
 
 public interface GeoJsfSldType
 {
-	public static enum Code{status,object}
+	public static enum Type{interval,status,clazz}
 }
