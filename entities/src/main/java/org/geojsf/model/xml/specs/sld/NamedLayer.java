@@ -4,9 +4,9 @@ package org.geojsf.model.xml.specs.sld;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 
 
 /**
@@ -16,10 +16,13 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  * <pre>
  * &lt;complexType>
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
- *     &lt;/extension>
- *   &lt;/simpleContent>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element ref="{http://www.opengis.net/sld}UserStyle"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
  * 
@@ -27,7 +30,7 @@ import javax.xml.bind.annotation.XmlValue;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "value"
+    "userStyle"
 })
 @XmlRootElement(name = "NamedLayer")
 public class NamedLayer
@@ -35,35 +38,35 @@ public class NamedLayer
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlValue
-    protected String value;
+    @XmlElement(name = "UserStyle", required = true)
+    protected UserStyle userStyle;
 
     /**
-     * Gets the value of the value property.
+     * Gets the value of the userStyle property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link UserStyle }
      *     
      */
-    public String getValue() {
-        return value;
+    public UserStyle getUserStyle() {
+        return userStyle;
     }
 
     /**
-     * Sets the value of the value property.
+     * Sets the value of the userStyle property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link UserStyle }
      *     
      */
-    public void setValue(String value) {
-        this.value = value;
+    public void setUserStyle(UserStyle value) {
+        this.userStyle = value;
     }
 
-    public boolean isSetValue() {
-        return (this.value!= null);
+    public boolean isSetUserStyle() {
+        return (this.userStyle!= null);
     }
 
 }

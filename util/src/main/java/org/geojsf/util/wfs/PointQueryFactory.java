@@ -4,10 +4,10 @@ import org.geojsf.model.xml.ogc.DWithin;
 import org.geojsf.model.xml.ogc.Distance;
 import org.geojsf.model.xml.ogc.Filter;
 import org.geojsf.model.xml.ogc.PropertyName;
-import org.geojsf.xml.gml.Coordinates;
-import org.geojsf.xml.gml.Point;
-import org.geojsf.xml.wfs.GetFeature;
-import org.geojsf.xml.wfs.Query;
+import org.geojsf.model.xml.specs.gml.Coordinates;
+import org.geojsf.model.xml.specs.gml.Point;
+import org.geojsf.model.xml.specs.wfs.GetFeature;
+import org.geojsf.model.xml.specs.wfs.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

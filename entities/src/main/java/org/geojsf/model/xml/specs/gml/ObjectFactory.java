@@ -1,5 +1,5 @@
 
-package org.geojsf.model.xml.specs.sld;
+package org.geojsf.model.xml.specs.gml;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the org.geojsf.model.xml.specs.sld package. 
+ * generated in the org.geojsf.xml.gml package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -23,34 +23,26 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.geojsf.model.xml.specs.sld
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.geojsf.xml.gml
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link UserStyle }
+     * Create an instance of {@link Coordinates }
      * 
      */
-    public UserStyle createUserStyle() {
-        return new UserStyle();
+    public Coordinates createCoordinates() {
+        return new Coordinates();
     }
 
     /**
-     * Create an instance of {@link StyledLayerDescriptor }
+     * Create an instance of {@link Point }
      * 
      */
-    public StyledLayerDescriptor createStyledLayerDescriptor() {
-        return new StyledLayerDescriptor();
-    }
-
-    /**
-     * Create an instance of {@link NamedLayer }
-     * 
-     */
-    public NamedLayer createNamedLayer() {
-        return new NamedLayer();
+    public Point createPoint() {
+        return new Point();
     }
 
 }

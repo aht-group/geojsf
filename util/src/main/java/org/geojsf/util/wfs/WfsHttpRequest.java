@@ -16,7 +16,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.geojsf.xml.wfs.GetFeature;
+import org.geojsf.model.xml.specs.wfs.GetFeature;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;

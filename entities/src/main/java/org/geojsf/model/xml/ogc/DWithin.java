@@ -7,7 +7,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import org.geojsf.xml.gml.Point;
+
+import org.geojsf.model.xml.specs.gml.Point;
 
 
 /**

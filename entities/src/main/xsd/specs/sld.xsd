@@ -13,9 +13,17 @@
     </xsd:element>
     <xsd:element name="NamedLayer">
         <xsd:complexType>
-            <xsd:simpleContent>
-                <xsd:extension base="xsd:string"/>
-            </xsd:simpleContent>
-        </xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:UserStyle" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
     </xsd:element>
+	<xsd:element name="UserStyle">
+        <xsd:complexType>
+			<xsd:sequence>
+				
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+    
 </xsd:schema>
