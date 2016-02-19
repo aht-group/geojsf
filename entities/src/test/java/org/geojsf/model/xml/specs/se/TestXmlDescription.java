@@ -4,12 +4,12 @@ import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DescriptionXmlTest extends AbstractXmlSeTest<Description>
+public class TestXmlDescription extends AbstractXmlSeTest<Description>
 {
-	final static Logger logger = LoggerFactory.getLogger(DescriptionXmlTest.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlDescription.class);
 	
-	public DescriptionXmlTest(){super(Description.class);}
-	public static Description create(boolean withChildren){return (new DescriptionXmlTest()).build(withChildren);}
+	public TestXmlDescription(){super(Description.class);}
+	public static Description create(boolean withChildren){return (new TestXmlDescription()).build(withChildren);}
     
     public Description build(boolean withChilds)
     {
@@ -17,7 +17,7 @@ public class DescriptionXmlTest extends AbstractXmlSeTest<Description>
     	
     	if(withChilds)
     	{
-    		xml.setTitle(TitleXmlTest.create(false));
+    		xml.setTitle(TestXmlTitle.create(false));
     	}
     	
     	return xml;
@@ -26,7 +26,7 @@ public class DescriptionXmlTest extends AbstractXmlSeTest<Description>
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-		DescriptionXmlTest test = new DescriptionXmlTest();
+		TestXmlDescription test = new TestXmlDescription();
 		test.saveReferenceXml();
     }
 }

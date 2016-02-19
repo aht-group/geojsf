@@ -5,12 +5,12 @@ import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DWithinXmlTest extends AbstractXmlOgcTest<DWithin>
+public class TestXmlDWithin extends AbstractXmlOgcTest<DWithin>
 {
-	final static Logger logger = LoggerFactory.getLogger(DWithinXmlTest.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlDWithin.class);
 	
-	public DWithinXmlTest(){super(DWithin.class);}
-	public static DWithin create(boolean withChildren){return (new DWithinXmlTest()).build(withChildren);}
+	public TestXmlDWithin(){super(DWithin.class);}
+	public static DWithin create(boolean withChildren){return (new TestXmlDWithin()).build(withChildren);}
     
     public DWithin build(boolean withChilds)
     {
@@ -29,7 +29,7 @@ public class DWithinXmlTest extends AbstractXmlOgcTest<DWithin>
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-		DWithinXmlTest test = new DWithinXmlTest();
+		TestXmlDWithin test = new TestXmlDWithin();
 		test.saveReferenceXml();
     }
 }

@@ -32,6 +32,22 @@
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element ref="ogc:PropertyName" maxOccurs="1"/>
+                <xsd:element ref="ogc:LowerBoundary" maxOccurs="1"/>
+                <xsd:element ref="ogc:UpperBoundary" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="LowerBoundary">
+        <xsd:complexType>
+            <xsd:sequence>
+                
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="UpperBoundary">
+        <xsd:complexType>
+            <xsd:sequence>
+                
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

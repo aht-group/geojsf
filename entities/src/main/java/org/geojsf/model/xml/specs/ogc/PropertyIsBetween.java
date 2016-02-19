@@ -20,6 +20,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.opengis.net/ogc}PropertyName"/>
+ *         &lt;element ref="{http://www.opengis.net/ogc}LowerBoundary"/>
+ *         &lt;element ref="{http://www.opengis.net/ogc}UpperBoundary"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,7 +32,9 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "propertyName"
+    "propertyName",
+    "lowerBoundary",
+    "upperBoundary"
 })
 @XmlRootElement(name = "PropertyIsBetween")
 public class PropertyIsBetween
@@ -40,6 +44,10 @@ public class PropertyIsBetween
     private final static long serialVersionUID = 1L;
     @XmlElement(name = "PropertyName", required = true)
     protected PropertyName propertyName;
+    @XmlElement(name = "LowerBoundary", required = true)
+    protected LowerBoundary lowerBoundary;
+    @XmlElement(name = "UpperBoundary", required = true)
+    protected UpperBoundary upperBoundary;
 
     /**
      * Gets the value of the propertyName property.
@@ -67,6 +75,62 @@ public class PropertyIsBetween
 
     public boolean isSetPropertyName() {
         return (this.propertyName!= null);
+    }
+
+    /**
+     * Gets the value of the lowerBoundary property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link LowerBoundary }
+     *     
+     */
+    public LowerBoundary getLowerBoundary() {
+        return lowerBoundary;
+    }
+
+    /**
+     * Sets the value of the lowerBoundary property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link LowerBoundary }
+     *     
+     */
+    public void setLowerBoundary(LowerBoundary value) {
+        this.lowerBoundary = value;
+    }
+
+    public boolean isSetLowerBoundary() {
+        return (this.lowerBoundary!= null);
+    }
+
+    /**
+     * Gets the value of the upperBoundary property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link UpperBoundary }
+     *     
+     */
+    public UpperBoundary getUpperBoundary() {
+        return upperBoundary;
+    }
+
+    /**
+     * Sets the value of the upperBoundary property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link UpperBoundary }
+     *     
+     */
+    public void setUpperBoundary(UpperBoundary value) {
+        this.upperBoundary = value;
+    }
+
+    public boolean isSetUpperBoundary() {
+        return (this.upperBoundary!= null);
     }
 
 }

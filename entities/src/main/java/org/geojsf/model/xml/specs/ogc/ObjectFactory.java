@@ -69,4 +69,20 @@ public class ObjectFactory {
         return new PropertyIsBetween();
     }
 
+    /**
+     * Create an instance of {@link LowerBoundary }
+     * 
+     */
+    public LowerBoundary createLowerBoundary() {
+        return new LowerBoundary();
+    }
+
+    /**
+     * Create an instance of {@link UpperBoundary }
+     * 
+     */
+    public UpperBoundary createUpperBoundary() {
+        return new UpperBoundary();
+    }
+
 }

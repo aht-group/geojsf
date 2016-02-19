@@ -4,12 +4,12 @@ import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class NameXmlTest extends AbstractXmlSeTest<Name>
+public class TestXmlName extends AbstractXmlSeTest<Name>
 {
-	final static Logger logger = LoggerFactory.getLogger(NameXmlTest.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlName.class);
 	
-	public NameXmlTest(){super(Name.class);}
-	public static Name create(boolean withChildren){return (new NameXmlTest()).build(withChildren);}
+	public TestXmlName(){super(Name.class);}
+	public static Name create(boolean withChildren){return (new TestXmlName()).build(withChildren);}
     
     public Name build(boolean withChilds)
     {
@@ -21,7 +21,7 @@ public class NameXmlTest extends AbstractXmlSeTest<Name>
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-		NameXmlTest test = new NameXmlTest();
+		TestXmlName test = new TestXmlName();
 		test.saveReferenceXml();
     }
 }

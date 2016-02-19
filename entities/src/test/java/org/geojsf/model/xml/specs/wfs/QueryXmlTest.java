@@ -1,6 +1,6 @@
 package org.geojsf.model.xml.specs.wfs;
 
-import org.geojsf.model.xml.specs.ogc.FilterXmlTest;
+import org.geojsf.model.xml.specs.ogc.TestXmlFilter;
 import org.geojsf.model.xml.specs.ogc.TestXmlPropertyName;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ public class QueryXmlTest extends AbstractXmlWfsTest<Query>
     	
     	if(withChilds)
     	{
-    		xml.setFilter(FilterXmlTest.create(false));
+    		xml.setFilter(TestXmlFilter.create(false));
     		xml.getPropertyName().add(TestXmlPropertyName.create(false));
     	}
     	
