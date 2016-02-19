@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.opengis.net/se"
+	xmlns:se="http://www.opengis.net/se"
+	xmlns:sld="http://www.opengis.net/sld"
+    xmlns:ogc="http://www.opengis.net/ogc"
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="Name">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="FeatureTypeStyle">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="se:Rule" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Rule">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="se:Name" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+</xsd:schema>

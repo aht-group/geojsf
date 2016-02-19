@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<se:Rule xmlns:se="http://www.opengis.net/se">
+    <se:Name>myName</se:Name>
+</se:Rule>

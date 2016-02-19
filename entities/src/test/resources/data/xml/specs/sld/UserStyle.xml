@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sld:UserStyle xmlns:se="http://www.opengis.net/se" xmlns:sld="http://www.opengis.net/sld">
+    <se:Name>myName</se:Name>
+    <se:FeatureTypeStyle/>
+</sld:UserStyle>

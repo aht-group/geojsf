@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema targetNamespace="http://www.opengis.net/sld"
 	xmlns:sld="http://www.opengis.net/sld"
+	xmlns:se="http://www.opengis.net/se"
     xmlns:ogc="http://www.opengis.net/ogc"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:import namespace="http://www.opengis.net/se" schemaLocation="se.xsd"/>
     <xsd:element name="StyledLayerDescriptor">
         <xsd:complexType>
 			<xsd:sequence>
@@ -14,6 +16,7 @@
     <xsd:element name="NamedLayer">
         <xsd:complexType>
 			<xsd:sequence>
+				<xsd:element ref="se:Name" maxOccurs="1"/>
 				<xsd:element ref="sld:UserStyle" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
@@ -21,9 +24,9 @@
 	<xsd:element name="UserStyle">
         <xsd:complexType>
 			<xsd:sequence>
-				
+				<xsd:element ref="se:Name" maxOccurs="1"/>
+				<xsd:element ref="se:FeatureTypeStyle" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
-    
 </xsd:schema>

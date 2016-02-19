@@ -1,5 +1,5 @@
 
-package org.geojsf.model.xml.specs.sld;
+package org.geojsf.model.xml.specs.se;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import org.geojsf.model.xml.specs.se.Name;
 
 
 /**
@@ -21,7 +20,6 @@ import org.geojsf.model.xml.specs.se.Name;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.opengis.net/se}Name"/>
- *         &lt;element ref="{http://www.opengis.net/sld}UserStyle"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,19 +30,16 @@ import org.geojsf.model.xml.specs.se.Name;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "name",
-    "userStyle"
+    "name"
 })
-@XmlRootElement(name = "NamedLayer")
-public class NamedLayer
+@XmlRootElement(name = "Rule")
+public class Rule
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(name = "Name", namespace = "http://www.opengis.net/se", required = true)
+    @XmlElement(name = "Name", required = true)
     protected Name name;
-    @XmlElement(name = "UserStyle", required = true)
-    protected UserStyle userStyle;
 
     /**
      * Gets the value of the name property.
@@ -72,34 +67,6 @@ public class NamedLayer
 
     public boolean isSetName() {
         return (this.name!= null);
-    }
-
-    /**
-     * Gets the value of the userStyle property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link UserStyle }
-     *     
-     */
-    public UserStyle getUserStyle() {
-        return userStyle;
-    }
-
-    /**
-     * Sets the value of the userStyle property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UserStyle }
-     *     
-     */
-    public void setUserStyle(UserStyle value) {
-        this.userStyle = value;
-    }
-
-    public boolean isSetUserStyle() {
-        return (this.userStyle!= null);
     }
 
 }

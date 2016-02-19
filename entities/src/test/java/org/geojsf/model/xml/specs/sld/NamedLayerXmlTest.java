@@ -1,5 +1,6 @@
 package org.geojsf.model.xml.specs.sld;
 
+import org.geojsf.model.xml.specs.se.NameXmlTest;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ public class NamedLayerXmlTest extends AbstractXmlSldTest<NamedLayer>
     	
     	if(withChilds)
     	{
+    		xml.setName(NameXmlTest.create(false));
     		xml.setUserStyle(UserStyleXmlTest.create(false));
     	}
     	
