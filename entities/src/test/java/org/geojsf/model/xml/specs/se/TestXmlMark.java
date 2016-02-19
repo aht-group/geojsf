@@ -18,6 +18,8 @@ public class TestXmlMark extends AbstractXmlSeTest<Mark>
     	if(withChilds)
     	{
     		xml.setWellKnownName(TestXmlWellKnownName.create(false));
+    		xml.setFill(TestXmlFill.create(false));
+    		xml.setStroke(TestXmlStroke.create(false));
     	}
     	
     	return xml;

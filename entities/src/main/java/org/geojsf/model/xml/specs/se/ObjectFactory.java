@@ -70,6 +70,38 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Fill }
+     * 
+     */
+    public Fill createFill() {
+        return new Fill();
+    }
+
+    /**
+     * Create an instance of {@link SvgParameter }
+     * 
+     */
+    public SvgParameter createSvgParameter() {
+        return new SvgParameter();
+    }
+
+    /**
+     * Create an instance of {@link Stroke }
+     * 
+     */
+    public Stroke createStroke() {
+        return new Stroke();
+    }
+
+    /**
+     * Create an instance of {@link Size }
+     * 
+     */
+    public Size createSize() {
+        return new Size();
+    }
+
+    /**
      * Create an instance of {@link Description }
      * 
      */

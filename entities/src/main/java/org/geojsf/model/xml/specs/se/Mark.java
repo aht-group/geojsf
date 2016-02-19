@@ -20,6 +20,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.opengis.net/se}WellKnownName"/>
+ *         &lt;element ref="{http://www.opengis.net/se}Fill"/>
+ *         &lt;element ref="{http://www.opengis.net/se}Stroke"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,7 +32,9 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "wellKnownName"
+    "wellKnownName",
+    "fill",
+    "stroke"
 })
 @XmlRootElement(name = "Mark")
 public class Mark
@@ -40,6 +44,10 @@ public class Mark
     private final static long serialVersionUID = 1L;
     @XmlElement(name = "WellKnownName", required = true)
     protected WellKnownName wellKnownName;
+    @XmlElement(name = "Fill", required = true)
+    protected Fill fill;
+    @XmlElement(name = "Stroke", required = true)
+    protected Stroke stroke;
 
     /**
      * Gets the value of the wellKnownName property.
@@ -67,6 +75,62 @@ public class Mark
 
     public boolean isSetWellKnownName() {
         return (this.wellKnownName!= null);
+    }
+
+    /**
+     * Gets the value of the fill property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Fill }
+     *     
+     */
+    public Fill getFill() {
+        return fill;
+    }
+
+    /**
+     * Sets the value of the fill property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Fill }
+     *     
+     */
+    public void setFill(Fill value) {
+        this.fill = value;
+    }
+
+    public boolean isSetFill() {
+        return (this.fill!= null);
+    }
+
+    /**
+     * Gets the value of the stroke property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Stroke }
+     *     
+     */
+    public Stroke getStroke() {
+        return stroke;
+    }
+
+    /**
+     * Sets the value of the stroke property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Stroke }
+     *     
+     */
+    public void setStroke(Stroke value) {
+        this.stroke = value;
+    }
+
+    public boolean isSetStroke() {
+        return (this.stroke!= null);
     }
 
 }

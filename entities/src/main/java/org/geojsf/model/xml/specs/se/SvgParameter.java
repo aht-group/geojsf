@@ -1,5 +1,5 @@
 
-package org.geojsf.model.xml.specs.ogc;
+package org.geojsf.model.xml.specs.se;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,9 +7,13 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementRefs;
+import javax.xml.bind.annotation.XmlMixed;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import org.geojsf.model.xml.specs.ogc.Function;
+import org.geojsf.model.xml.specs.ogc.Literal;
 
 
 /**
@@ -22,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element ref="{http://www.opengis.net/ogc}Function"/>
  *         &lt;element ref="{http://www.opengis.net/ogc}Literal" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -34,53 +39,60 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "literal"
+    "content"
 })
-@XmlRootElement(name = "Function")
-public class Function implements Serializable
+@XmlRootElement(name = "SvgParameter")
+public class SvgParameter
+    implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(name = "Literal", required = true)
-    protected List<Literal> literal;
+    @XmlElementRefs({
+        @XmlElementRef(name = "Function", namespace = "http://www.opengis.net/ogc", type = Function.class),
+        @XmlElementRef(name = "Literal", namespace = "http://www.opengis.net/ogc", type = Literal.class)
+    })
+    @XmlMixed
+    protected List<Serializable> content;
     @XmlAttribute(name = "name")
     protected String name;
 
     /**
-     * Gets the value of the literal property.
+     * Gets the value of the content property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the literal property.
+     * This is why there is not a <CODE>set</CODE> method for the content property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getLiteral().add(newItem);
+     *    getContent().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * {@link Function }
      * {@link Literal }
      * 
      * 
      */
-    public List<Literal> getLiteral() {
-        if (literal == null) {
-            literal = new ArrayList<Literal>();
+    public List<Serializable> getContent() {
+        if (content == null) {
+            content = new ArrayList<Serializable>();
         }
-        return this.literal;
+        return this.content;
     }
 
-    public boolean isSetLiteral() {
-        return ((this.literal!= null)&&(!this.literal.isEmpty()));
+    public boolean isSetContent() {
+        return ((this.content!= null)&&(!this.content.isEmpty()));
     }
 
-    public void unsetLiteral() {
-        this.literal = null;
+    public void unsetContent() {
+        this.content = null;
     }
 
     /**

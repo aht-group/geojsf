@@ -30,8 +30,7 @@ import javax.xml.bind.annotation.XmlValue;
     "value"
 })
 @XmlRootElement(name = "Literal")
-public class Literal
-    implements Serializable
+public class Literal implements Serializable
 {
 
     private final static long serialVersionUID = 1L;

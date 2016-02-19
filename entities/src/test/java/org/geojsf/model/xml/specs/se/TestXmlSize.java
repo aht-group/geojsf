@@ -1,0 +1,36 @@
+package org.geojsf.model.xml.specs.se;
+
+import org.geojsf.model.xml.specs.ogc.TestXmlFunction;
+import org.geojsf.model.xml.specs.ogc.TestXmlLiteral;
+import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class TestXmlSize extends AbstractXmlSeTest<Size>
+{
+	final static Logger logger = LoggerFactory.getLogger(TestXmlSize.class);
+	
+	public TestXmlSize(){super(Size.class);}
+	public static Size create(boolean withChildren){return (new TestXmlSize()).build(withChildren);}
+    
+    public Size build(boolean withChilds)
+    {
+    	Size xml = new Size();
+    	
+    	if(withChilds)
+    	{
+    		xml.getContent().add(TestXmlFunction.create(false));
+    		xml.getContent().add(TestXmlLiteral.create(false));
+    		xml.getContent().add(TestXmlLiteral.create(false));
+    	}
+    	
+    	return xml;
+    }
+	
+	public static void main(String[] args)
+    {
+		GeoJsfXmlTstBootstrap.init();
+		TestXmlSize test = new TestXmlSize();
+		test.saveReferenceXml();
+    }
+}

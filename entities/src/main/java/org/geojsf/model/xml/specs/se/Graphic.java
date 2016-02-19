@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.opengis.net/se}Mark"/>
+ *         &lt;element ref="{http://www.opengis.net/se}Size"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,7 +31,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "mark"
+    "mark",
+    "size"
 })
 @XmlRootElement(name = "Graphic")
 public class Graphic
@@ -40,6 +42,8 @@ public class Graphic
     private final static long serialVersionUID = 1L;
     @XmlElement(name = "Mark", required = true)
     protected Mark mark;
+    @XmlElement(name = "Size", required = true)
+    protected Size size;
 
     /**
      * Gets the value of the mark property.
@@ -67,6 +71,34 @@ public class Graphic
 
     public boolean isSetMark() {
         return (this.mark!= null);
+    }
+
+    /**
+     * Gets the value of the size property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Size }
+     *     
+     */
+    public Size getSize() {
+        return size;
+    }
+
+    /**
+     * Sets the value of the size property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Size }
+     *     
+     */
+    public void setSize(Size value) {
+        this.size = value;
+    }
+
+    public boolean isSetSize() {
+        return (this.size!= null);
     }
 
 }
