@@ -118,9 +118,7 @@ public class SldRuleHandler <L extends UtilsLang,
 	}
 	
 	//SLD
-	private SLD sld;
-	public SLD getSld(){return sld;}
-	public void setSld(SLD sld){this.sld = sld;}
+	private SLD sld; public SLD getSld(){return sld;} public void setSld(SLD sld){this.sld = sld;}
 	
 	public void reloadSld()
 	{

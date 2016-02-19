@@ -60,13 +60,7 @@ public class XmlSldRuleFactory <L extends UtilsLang,
 		if(q.isSetUpperBound() && ejb.getUpperBound()!=null){xml.setUpperBound(ejb.getUpperBound());}
 		if(q.isSetSize()){xml.setSize(ejb.getSize());}
 		if(q.isSetColor()){xml.setColor(ejb.getColor());}
-		
-		if(q.isSetStyle())
-		{
-			XmlStyleFactory<SLDSTYLE,L,D> f = new XmlStyleFactory<SLDSTYLE,L,D>(lang,q.getStyle());
-			xml.setStyle(f.build(ejb.getStyle()));
-		}
-		
+				
 		if(q.isSetLangs())
 		{
 			XmlLangsFactory<L> f = new XmlLangsFactory<L>(q.getLangs());
@@ -79,11 +73,9 @@ public class XmlSldRuleFactory <L extends UtilsLang,
 			xml.setDescriptions(f.create(ejb.getDescription()));
 		}
 		
-		
 		Symbol s = XmlSymbolFactory.build();
 		s.setColor(ejb.getColor());
 		s.setSize(ejb.getSize());
-		s.setStyle(XmlStyleFactory.build(ejb.getStyle().getCode()));
 		
 		Graphic g = XmlGraphicFactory.build();
 		g.setSymbol(s);

@@ -62,6 +62,11 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 	private Class<SLD> cSld;
 	private Class<SLDTEMPLATE> cTemplate;
 	
+	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
+	protected List<SLD> slds; public List<SLD> getSlds() {return slds;} public void setSlds(List<SLD> slds) {this.slds = slds;}
+	
+	private SLDTYPE type; public SLDTYPE getType() {return type;}
+	
 	public void initSuper(String[] langKeys,final Class<L> cLang, final Class<D> clDescription,final Class<SLD> cSld, final Class<SLDTYPE> cType,final Class<SLDTEMPLATE> cTemplate)
 	{
 		this.langKeys=langKeys;
@@ -77,29 +82,14 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 		
 		templates = fGeo.all(cTemplate);
 	}
-	
-	//Type
-	private SLDTYPE type;
-	public SLDTYPE getType() {return type;}
-	
-	//TEMPLATES
-	protected List<SLDTEMPLATE> templates;
-	public List<SLDTEMPLATE> getTemplates(){return templates;}
 
-	//SLDs
-	protected List<SLD> slds;
-	public List<SLD> getSlds() {return slds;}
-	public void setSlds(List<SLD> slds) {this.slds = slds;}
-	
 	protected void reloadSlds()
 	{
 		slds = fGeo.allForParent(cSld,"type",type);
 	}
 	
 	//TEMPLATE
-	protected SLD sld;
-	public SLD getSld() {return sld;}
-	public void setSld(SLD sld) {this.sld = sld;}
+	protected SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
 	
 	public void selectSld() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
 	{
