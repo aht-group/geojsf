@@ -10,8 +10,8 @@ public class GeoJsfDistanceFactory
 	
 	public static Distance build(int px, double scale)
 	{
-		// Scale is correlated with the average size of the scale line (50 pixels)
-		double radius = scale / 50 * px;
+		// Scale is correlated with the average size of the scale line
+		double radius = scale * px;
 		Distance distance = new Distance();
 		distance.setUnits("meters");
 		distance.setValue(radius+"");

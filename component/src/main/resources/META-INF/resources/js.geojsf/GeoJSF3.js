@@ -132,9 +132,11 @@ var GeoJSF = {
 		 			         {name: 'org.geojsf.viewport.top',                      value: this.viewportBoundTop},
 		 			         {name: 'org.geojsf.viewport.left',                     value: this.viewportBoundLeft},
 		 			         {name: 'org.geojsf.viewport.right',                    value: this.viewportBoundRight},
-		 			         {name: 'org.geojsf.viewport.scale',                    value:   Math.floor( GeoJSF.map.getView().getResolution())*50},
+							 {name: 'org.geojsf.viewport.resolution',               value: GeoJSF.map.getView().getResolution()},
+							 {name: 'org.geojsf.viewport.unit',                     value: GeoJSF.map.getView().getProjection().getUnits()},
+		 			         {name: 'org.geojsf.viewport.scale',                    value:   Math.floor( GeoJSF.map.getView().getResolution())},
 		 			        ],
-		 			oncomplete: function(xhr, status, args) {console.log('mapClick AJAX request sent.')}
+		 			oncomplete: function(xhr, status, args) {console.log('mapClick AJAX request sent. Resolution : ' +GeoJSF.map.getView().getResolution()+ ' ' +GeoJSF.map.getView().getProjection().getUnits())}
 				});
 			} catch(e) {
 				 console.log("MapClick failed." +e);
