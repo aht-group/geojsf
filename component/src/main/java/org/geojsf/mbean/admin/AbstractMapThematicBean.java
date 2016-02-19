@@ -5,18 +5,6 @@ import java.util.List;
 
 import javax.faces.event.AjaxBehaviorEvent;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.jsf.util.FacesContextMessage;
-import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
-
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
@@ -38,6 +26,19 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.primefaces.event.ReorderEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsLockingException;
+import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
+import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
+import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.jsf.util.FacesContextMessage;
+import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
+import net.sf.exlp.util.io.StringUtil;
 
 public class AbstractMapThematicBean <L extends UtilsLang,
 										D extends UtilsDescription,
@@ -102,9 +103,10 @@ public class AbstractMapThematicBean <L extends UtilsLang,
 	private Class<CATEGORY> cCategory;
 	private Class<LAYER> cLayer;
 	
-	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView,final Class<VP> cViewPort)
+	public void initSuper(String[] langKeys, GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView,final Class<VP> cViewPort)
 	{
 		this.langKeys=langKeys;
+		this.fGeo=fGeo;
 		this.cMap=cMap;
 		this.cView=cView;
 		this.cCategory=cCategory;
@@ -209,7 +211,8 @@ public class AbstractMapThematicBean <L extends UtilsLang,
 	// LAYER
 	public void reorderLayer(ReorderEvent event)
 	{
-		logger.info(event.getFromIndex()+" "+event.getToIndex());
+		logger.info(StringUtil.stars());
+		logger.info("Reordering Layer, moving old postion "+(event.getFromIndex()+1)+" to new position "+(event.getToIndex()+1));
 		int i=1;
 		for(VIEW v : map.getViews())
 		{

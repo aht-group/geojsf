@@ -35,7 +35,6 @@ public interface GeoJsfFacade <L extends UtilsLang,
 								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
 								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
-
 					extends UtilsIdFacade
 {		
 	SERVICE load(Class<SERVICE> cService, SERVICE service);

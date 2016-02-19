@@ -22,7 +22,7 @@
                 </aht:pfDataTableHeader>
             </f:facet>
             <p:ajax event="rowSelect" update=":fView" listener="#{adminMapThematicBean.selectView}"/>
-            <p:ajax event="rowReorder" listener="#{adminMapThematicBean.reorderLayer}" update="@all" oncomplete="GeoJSF.refreshMap()"/>
+            <p:ajax event="rowReorder" listener="#{adminMapThematicBean.reorderLayer}" update=":fGeoJsfMap" oncomplete="GeoJSF.refreshMap()"/>
             <p:column headerText="#{msg.geoJsfAdminOrderNo}">
 				<h:outputText value="#{v.orderNo} " />  
 			</p:column>

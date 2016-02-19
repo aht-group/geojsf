@@ -2,10 +2,6 @@ package org.geojsf.util.wfs;
 
 import java.util.List;
 
-import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
-import net.sf.exlp.util.xml.JDomUtil;
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
 import org.geojsf.model.xml.specs.gml.Coordinates;
@@ -14,9 +10,12 @@ import org.geojsf.model.xml.specs.wfs.GetFeature;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
 import org.geojsf.test.model.SampleSpatialEntity;
-import org.geojsf.util.GeoServerConfigKeys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
+import net.sf.exlp.util.xml.JDomUtil;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 public class CliPointQuery extends AbstractGeoJsfUtilTest
 {

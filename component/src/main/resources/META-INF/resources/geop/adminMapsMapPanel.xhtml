@@ -18,10 +18,10 @@
 				<aht:icon type="geoJsfSave" listener="#{adminMapThematicBean.saveMap()}" update=":rowMaps" tooltip="#{msg.ttSave}"/>
 				<aht:icon type="geoJsfDelete" listener="#{adminMapThematicBean.rmMap()}" update=":rowMaps" tooltip="#{msg.ttDelete}"/>
 			</f:facet>
-			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
-				<h:outputText value="#{msg.geoJsfAdminCode}"/>
+			<p:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
+				<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
 				<p:inputText value="#{adminMapThematicBean.map.code}" autocomplete="false"/>
-			</h:panelGrid>
+			</p:panelGrid>
 			<aht:tabTranslationEditor value="#{adminMapThematicBean.map}"
 				keys="#{translationBean.langKeys}" withDescription="true"
 				labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"/>
