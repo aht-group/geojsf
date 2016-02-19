@@ -177,7 +177,7 @@
 			<s:lang key="fr" translation="SDynamic SLD"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="geoJsfAdminType">
+	<s:translation key="geoJsfType">
 		<s:langs>
 			<s:lang key="de" translation="Type"/>
 			<s:lang key="en" translation="Type"/>

@@ -16,7 +16,7 @@
 	<composite:implementation>
 		<aup:grid id="grid">
 			<aht:row>
-				<aht:slot id="sTemplates" width="4">
+				<aht:slot id="sTemplates" width="5">
 					<h:form id="fTemplates">
 						<p:dataTable var="t" value="#{cc.attrs.bean.templates}"
 							selection="#{cc.attrs.bean.template}" selectionMode="single" rowKey="#{t.id}">
@@ -26,6 +26,9 @@
 							</aht:pfDataTableHeader>
 						</f:facet>
 						<p:ajax event="rowSelect" update=":#{cc.id}:sTemplate" listener="#{cc.attrs.bean.selectTemplate}"/>
+						<p:column headerText="#{msg.geoJsfType}" sortBy="#{t.name[userBean.localeCode].lang}">
+							<h:outputText value="#{t.type.name[userBean.localeCode].lang}" /> 
+						</p:column>
 						<p:column headerText="#{msg.geoJsfAdminCode}" sortBy="#{t.code}">
 							<h:outputText value="#{t.code}" /> 
 						</p:column>
@@ -35,7 +38,7 @@
 					</p:dataTable>
 					</h:form>
 				</aht:slot>
-				<aht:slot id="sTemplate" width="8">
+				<aht:slot id="sTemplate" width="7">
 					<h:form id="fTemplate">
 						<p:panel header="#{msg.geoJsfAdminSldTemplate}" styleClass="auPanelWithGrid"  rendered="#{not empty cc.attrs.bean.template}">
 							<f:facet name="actions">
@@ -46,7 +49,10 @@
 							<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
 								<p:inputText value="#{cc.attrs.bean.template.code}" autocomplete="false"/>
-												
+								<p:outputLabel value="#{msg.geoJsfType}"/>
+								<p:selectOneMenu styleClass="w100" value="#{cc.attrs.bean.template.type}" effect="fade">  
+									<f:selectItems value="#{cc.attrs.bean.types}" var="t" itemLabel="#{t.name[userBean.localeCode].lang}" itemValue="#{t}"/>
+								</p:selectOneMenu>				
 							</p:panelGrid>
 							<aht:tabTranslationEditor value="#{cc.attrs.bean.template}"
 											keys="#{translationBean.langKeys}" withDescription="true"

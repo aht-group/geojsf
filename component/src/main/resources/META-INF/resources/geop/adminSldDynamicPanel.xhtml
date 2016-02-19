@@ -19,7 +19,7 @@
 				<aht:icon type="geoJsfDelete" listener="#{adminSldDynamicBean.rmSld()}" update=":sSlds :sSld"/>	
 			</f:facet>
 			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">						
-				<p:outputLabel value="#{msg.geoJsfAdminType}"/>
+				<p:outputLabel value="#{msg.geoJsfType}"/>
 				<h:outputText value="#{adminSldDynamicBean.sld.type.name[userBean.localeCode].lang}"/>
 				
 				<p:outputLabel value="#{msg.geoJsfAdminTemplate}"/>

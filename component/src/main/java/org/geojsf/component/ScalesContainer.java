@@ -49,7 +49,7 @@ public class ScalesContainer extends UINamingContainer
 		GeoJsfScalesUtil util = new GeoJsfScalesUtil(this.value);
 		StringBuffer sb = new StringBuffer();
 		sb.append("Adding scales in " +this.value.getUnit());
-		for (Scale scale : this.value.getScale()){sb.append("" +scale.getValue());}
+		for (Scale scale : this.value.getScale()){sb.append(" "+scale.getValue());}
 		logger.info(sb.toString());
 		
 		ResponseWriter writer = ctx.getResponseWriter();

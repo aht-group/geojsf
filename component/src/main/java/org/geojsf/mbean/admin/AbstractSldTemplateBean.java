@@ -60,7 +60,11 @@ public class AbstractSldTemplateBean <L extends UtilsLang,
 	private String[] langKeys;
 	private Class<SLDTEMPLATE> cTemplate;
 	
-	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTEMPLATE> cTemplate)
+	private List<SLDTYPE> types; public List<SLDTYPE> getTypes() {return types;}
+	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
+	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
+	
+	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTYPE> cType, final Class<SLDTEMPLATE> cTemplate)
 	{
 		this.langKeys=langKeys;
 		this.cTemplate=cTemplate;
@@ -68,21 +72,15 @@ public class AbstractSldTemplateBean <L extends UtilsLang,
 		efLang = EjbLangFactory.createFactory(cLang);
 		efDescription = EjbDescriptionFactory.createFactory(clDescription);
 		efTemplate = EjbGeoSldTemplateFactory.factory(cTemplate);
+		
+		types = fGeo.all(cType);
+		logger.info("Types: "+types.size());
 	}
-	
-	//TEMPLATES
-	protected List<SLDTEMPLATE> templates;
-	public List<SLDTEMPLATE> getTemplates(){return templates;}
 	
 	protected void reloadTemplates()
 	{
 		templates = fGeo.all(cTemplate);
 	}
-	
-	//TEMPLATE
-	protected SLDTEMPLATE template;
-	public SLDTEMPLATE getTemplate() {return template;}
-	public void setTemplate(SLDTEMPLATE template) {this.template = template;}
 	
 	public void selectTemplate() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
 	{
