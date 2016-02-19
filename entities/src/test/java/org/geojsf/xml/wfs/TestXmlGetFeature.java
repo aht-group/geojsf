@@ -1,37 +1,17 @@
 package org.geojsf.xml.wfs;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.geojsf.xml.wfs.GetFeature;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlGetFeature extends AbstractXmlWfsTest
+public class TestXmlGetFeature extends AbstractXmlWfsTest<GetFeature>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlGetFeature.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new File(rootDir,"getFeature.xml");
-	}
+	public TestXmlGetFeature(){super(GetFeature.class);}
+	public static GetFeature create(boolean withChildren){return (new TestXmlGetFeature()).build(withChildren);}
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	GetFeature actual = create();
-    	GetFeature expected = (GetFeature)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), GetFeature.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    private static GetFeature create() {return create(true);}
-    public static GetFeature create(boolean withChilds)
+    public GetFeature build(boolean withChilds)
     {
     	GetFeature xml = new GetFeature();
     	xml.setService("myService");
@@ -46,15 +26,11 @@ public class TestXmlGetFeature extends AbstractXmlWfsTest
     	
     	return xml;
     }
-    
-    public void save() {save(create(), fXml);}
 	
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-			
-		TestXmlGetFeature.initFiles();	
 		TestXmlGetFeature test = new TestXmlGetFeature();
-		test.save();
+		test.saveReferenceXml();
     }
 }

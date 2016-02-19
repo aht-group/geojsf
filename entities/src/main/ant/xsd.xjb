@@ -40,21 +40,27 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
-    <jxb:bindings schemaLocation="../xsd/geojsf/gml.xsd" node="/xsd:schema">
+    <jxb:bindings schemaLocation="../xsd/specs/gml.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.xml.gml"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
-    <jxb:bindings schemaLocation="../xsd/geojsf/ogc.xsd" node="/xsd:schema">
+    <jxb:bindings schemaLocation="../xsd/specs/ogc.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.ogc"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
-    <jxb:bindings schemaLocation="../xsd/geojsf/wfs.xsd" node="/xsd:schema">
+    <jxb:bindings schemaLocation="../xsd/specs/wfs.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.xml.wfs"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+	<jxb:bindings schemaLocation="../xsd/specs/sld.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.specs.sld"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     

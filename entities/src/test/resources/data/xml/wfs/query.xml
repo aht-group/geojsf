@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<wfs:Query xmlns="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" xmlns:wfs="http://www.opengis.net/wfs" typeName="myTypeName">
-    <PropertyName>myValue</PropertyName>
-    <Filter/>
-</wfs:Query>

@@ -21,9 +21,10 @@
     <xsd:import namespace="http://www.geojsf.org/monitoring" schemaLocation="geojsf/monitoring.xsd"/>
     <xsd:import namespace="http://www.geojsf.org/government" schemaLocation="geojsf/government.xsd"/>
     <xsd:import namespace="http://www.geojsf.org/area" schemaLocation="geojsf/area.xsd"/>
-    <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="geojsf/gml.xsd"/>
-    <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="geojsf/ogc.xsd"/>
-    <xsd:import namespace="http://www.opengis.net/wfs" schemaLocation="geojsf/wfs.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="specs/gml.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="specs/ogc.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/sld" schemaLocation="specs/sld.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/wfs" schemaLocation="specs/wfs.xsd"/>
     <xsd:import namespace="http://ahtutils.aht-group.com/status" schemaLocation="../../../../../utils/xml/src/main/xsd/aht/status.xsd"/>
     <xsd:import namespace="http://exlp.sf.net/net" schemaLocation="../../../../../exlp/xml/src/main/xsd/util/net.xsd"/>
     <xsd:import namespace="http://exlp.sf.net/identity" schemaLocation="../../../../../exlp/xml/src/main/xsd/util/identity.xsd"/>

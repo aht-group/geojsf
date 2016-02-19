@@ -1,39 +1,19 @@
 package org.geojsf.xml.wfs;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.geojsf.xml.ogc.TestXmlFilter;
 import org.geojsf.xml.ogc.TestXmlPropertyName;
-import org.geojsf.xml.wfs.Query;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlQuery extends AbstractXmlWfsTest
+public class TestXmlQuery extends AbstractXmlWfsTest<Query>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlQuery.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new File(rootDir,"query.xml");
-	}
+	public TestXmlQuery(){super(Query.class);}
+	public static Query create(boolean withChildren){return (new TestXmlQuery()).build(withChildren);}
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Query actual = create();
-    	Query expected = (Query)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Query.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    private static Query create() {return create(true);}
-    public static Query create(boolean withChilds)
+    public Query build(boolean withChilds)
     {
     	Query xml = new Query();
     	xml.setTypeName("myTypeName");
@@ -46,15 +26,11 @@ public class TestXmlQuery extends AbstractXmlWfsTest
     	
     	return xml;
     }
-    
-    public void save() {save(create(), fXml);}
 	
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-			
-		TestXmlQuery.initFiles();	
 		TestXmlQuery test = new TestXmlQuery();
-		test.save();
+		test.saveReferenceXml();
     }
 }

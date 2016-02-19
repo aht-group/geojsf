@@ -1,16 +1,15 @@
 package org.geojsf.xml.wfs;
 
-import java.io.File;
-
-
 import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractXmlWfsTest extends AbstractGeoJsfXmlTest
+public abstract class AbstractXmlWfsTest <T extends Object> extends AbstractGeoJsfXmlTest<T>
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractXmlWfsTest.class);	
 	
-	protected static final String rootDir = "src/test/resources/data/xml/wfs";
-	protected static File fXml;
+	public AbstractXmlWfsTest(Class<T> cXml)
+	{
+		super(cXml,"specs/wfs");
+	}
 }
