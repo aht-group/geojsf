@@ -16,10 +16,9 @@ public interface GeoJsfSldRule<L extends UtilsLang,
 						   GT extends UtilsStatus<GT,L,D>,
 						   GS extends UtilsStatus<GS,L,D>,
 						   TYPE extends UtilsStatus<TYPE,L,D>,
-						   STYLE extends UtilsStatus<STYLE,L,D>,
-						   SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,TEMPLATE>,
-						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,TEMPLATE>,
-						   TEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,TEMPLATE>>
+						   SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,SLD,RULE,TEMPLATE>,
+						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,SLD,RULE,TEMPLATE>,
+						   TEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,TEMPLATE>>
 			extends EjbSaveable,EjbRemoveable,EjbWithPosition,EjbWithLang<L>,EjbWithDescription<D>
 {
 	public static enum Type{symbol,interval}

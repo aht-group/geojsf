@@ -24,10 +24,9 @@ public class XmlSldTemplateFactory <L extends UtilsLang,
 									GT extends UtilsStatus<GT,L,D>,
 									GS extends UtilsStatus<GS,L,D>,
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-									SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
-									SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
-									RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLDSTYLE,SLD,RULE,SLDTEMPLATE>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDSTYLE,SLDTEMPLATE>>
+									SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
+									RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
+									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
 							implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlSldTemplateFactory.class);

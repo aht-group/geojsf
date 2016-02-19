@@ -16,10 +16,9 @@ public interface EjbWithSld <L extends UtilsLang,
 							GT extends UtilsStatus<GT,L,D>,
 							GS extends UtilsStatus<GS,L,D>,
 							TYPE extends UtilsStatus<TYPE,L,D>,
-							STYLE extends UtilsStatus<STYLE,L,D>,
-							SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,
-							RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,SLDTEMPLATE>>
+							SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
+							RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
+							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,SLDTEMPLATE>>
 						extends EjbWithId
 {
 	SLD getSld();

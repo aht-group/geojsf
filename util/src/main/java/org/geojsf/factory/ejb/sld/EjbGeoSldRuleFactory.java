@@ -17,10 +17,9 @@ public class EjbGeoSldRuleFactory<L extends UtilsLang,
 									GT extends UtilsStatus<GT,L,D>,
 									GS extends UtilsStatus<GS,L,D>,
 									TYPE extends UtilsStatus<TYPE,L,D>,
-									STYLE extends UtilsStatus<STYLE,L,D>,
-									SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,
-									RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,SLDTEMPLATE>>
+									SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
+									RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
+									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,SLDTEMPLATE>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldRuleFactory.class);
 	
@@ -38,12 +37,12 @@ public class EjbGeoSldRuleFactory<L extends UtilsLang,
 					GS extends UtilsStatus<GS,L,D>,
 					TYPE extends UtilsStatus<TYPE,L,D>,
 					STYLE extends UtilsStatus<STYLE,L,D>,
-					SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,
-					RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,STYLE,SLDTEMPLATE>>
-    	EjbGeoSldRuleFactory<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,SLDTEMPLATE> factory(final Class<RULE> cRule)
+					SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
+					RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
+					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,SLDTEMPLATE>>
+    	EjbGeoSldRuleFactory<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE> factory(final Class<RULE> cRule)
     {
-        return new EjbGeoSldRuleFactory<L,D,G,GT,GS,TYPE,STYLE,SLD,RULE,SLDTEMPLATE>(cRule);
+        return new EjbGeoSldRuleFactory<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>(cRule);
     }
 	
 	public RULE build(SLD sld)
