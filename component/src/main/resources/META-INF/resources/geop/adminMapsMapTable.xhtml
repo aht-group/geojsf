@@ -8,19 +8,23 @@
     xmlns:composite="http://java.sun.com/jsf/composite">
     
 	<composite:interface>
-
+		<composite:attribute name="bean" required="false" default="#{adminMapThematicBean}"/>
+		<composite:attribute name="update" required="false" default=":rowMaps"/>
 	</composite:interface>
         
 	<composite:implementation>
-		<p:dataTable var="m" value="#{adminMapThematicBean.maps}"
-				selection="#{adminMapThematicBean.map}" selectionMode="single" rowKey="#{m.id}">
+		<p:dataTable var="m" value="#{cc.attrs.bean.maps}"
+				selection="#{cc.attrs.bean.map}" selectionMode="single" rowKey="#{m.id}"
+				sortBy="#{m.name[userBean.localeCode].lang}" sortOrder="ascending">
 			<f:facet name="header">
 				<aht:pfDataTableHeader title="#{msg.geoJsfAdminThamaticMaps}">
-	                   <aht:icon type="geoJsfAdd" listener="#{adminMapThematicBean.addMap()}" update=":rowMaps" tooltip="#{msg.ttNew}"/>
+					<aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addMap()}" update="#{cc.attrs.update}" tooltip="#{msg.ttNew}"/>
 				</aht:pfDataTableHeader>
 			</f:facet>
-			<p:ajax event="rowSelect" update=":sMap :sView" listener="#{adminMapThematicBean.selectMap}"/>
-			<p:column headerText="#{msg.Name}" sortBy="#{m.name[userBean.localeCode].lang}">
+			<p:ajax event="rowSelect" update="#{cc.attrs.update}" listener="#{cc.attrs.bean.selectMap}"/>
+			<p:column headerText="#{msg.Name}"
+						sortBy="#{m.name[userBean.localeCode].lang}"
+						filterBy="#{m.name[userBean.localeCode].lang}" filterMatchMode="contains">
 				<h:outputText value="#{m.name[userBean.localeCode].lang}" /> 
 			</p:column>
 		</p:dataTable>

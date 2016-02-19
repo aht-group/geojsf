@@ -12,14 +12,14 @@
 	</composite:interface>
         
 	<composite:implementation>
-		<p:panel header="#{msg.mapViewPort}" styleClass="auNoTop,auPanelWithGrid">
+		<p:panel header="#{msg.mapViewPort}" styleClass="auPanelWithGrid">
 			<f:facet name="actions">
 				<aht:icon type="save" listener="#{adminMapViewPortBean.saveViewPort()}" update=":sCenter :sEast"/>
 			</f:facet>
-			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">
+			<p:panelGrid columns="2" columnClasses="auPwg30,auPwg70">
 				<h:outputText value="#{msg.mapCode}"/>
 				<p:inputText value="#{adminMapViewPortBean.viewPort.id}"/>
-			</h:panelGrid>
+			</p:panelGrid>
 		</p:panel>
    </composite:implementation>
 </html>
