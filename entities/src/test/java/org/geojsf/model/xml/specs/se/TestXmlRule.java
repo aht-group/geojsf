@@ -21,6 +21,7 @@ public class TestXmlRule extends AbstractXmlSeTest<Rule>
     		xml.setName(TestXmlName.create(false));
     		xml.setDescription(TestXmlDescription.create(false));
     		xml.setFilter(TestXmlFilter.create(false));
+    		xml.setPointSymbolizer(TestXmlPointSymbolizer.create(false));
     	}
     	
     	return xml;

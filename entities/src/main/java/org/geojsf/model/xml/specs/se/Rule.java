@@ -23,6 +23,7 @@ import org.geojsf.model.xml.specs.ogc.Filter;
  *         &lt;element ref="{http://www.opengis.net/se}Name"/>
  *         &lt;element ref="{http://www.opengis.net/se}Description"/>
  *         &lt;element ref="{http://www.opengis.net/ogc}Filter"/>
+ *         &lt;element ref="{http://www.opengis.net/se}PointSymbolizer"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,7 +36,8 @@ import org.geojsf.model.xml.specs.ogc.Filter;
 @XmlType(name = "", propOrder = {
     "name",
     "description",
-    "filter"
+    "filter",
+    "pointSymbolizer"
 })
 @XmlRootElement(name = "Rule")
 public class Rule
@@ -49,6 +51,8 @@ public class Rule
     protected Description description;
     @XmlElement(name = "Filter", namespace = "http://www.opengis.net/ogc", required = true)
     protected Filter filter;
+    @XmlElement(name = "PointSymbolizer", required = true)
+    protected PointSymbolizer pointSymbolizer;
 
     /**
      * Gets the value of the name property.
@@ -132,6 +136,34 @@ public class Rule
 
     public boolean isSetFilter() {
         return (this.filter!= null);
+    }
+
+    /**
+     * Gets the value of the pointSymbolizer property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PointSymbolizer }
+     *     
+     */
+    public PointSymbolizer getPointSymbolizer() {
+        return pointSymbolizer;
+    }
+
+    /**
+     * Sets the value of the pointSymbolizer property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PointSymbolizer }
+     *     
+     */
+    public void setPointSymbolizer(PointSymbolizer value) {
+        this.pointSymbolizer = value;
+    }
+
+    public boolean isSetPointSymbolizer() {
+        return (this.pointSymbolizer!= null);
     }
 
 }

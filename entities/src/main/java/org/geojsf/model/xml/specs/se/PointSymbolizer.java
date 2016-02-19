@@ -1,5 +1,5 @@
 
-package org.geojsf.model.xml.specs.ogc;
+package org.geojsf.model.xml.specs.se;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://www.opengis.net/ogc}Function"/>
+ *         &lt;element ref="{http://www.opengis.net/se}Graphic"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,43 +30,43 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "function"
+    "graphic"
 })
-@XmlRootElement(name = "LowerBoundary")
-public class LowerBoundary
+@XmlRootElement(name = "PointSymbolizer")
+public class PointSymbolizer
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(name = "Function", required = true)
-    protected Function function;
+    @XmlElement(name = "Graphic", required = true)
+    protected Graphic graphic;
 
     /**
-     * Gets the value of the function property.
+     * Gets the value of the graphic property.
      * 
      * @return
      *     possible object is
-     *     {@link Function }
+     *     {@link Graphic }
      *     
      */
-    public Function getFunction() {
-        return function;
+    public Graphic getGraphic() {
+        return graphic;
     }
 
     /**
-     * Sets the value of the function property.
+     * Sets the value of the graphic property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Function }
+     *     {@link Graphic }
      *     
      */
-    public void setFunction(Function value) {
-        this.function = value;
+    public void setGraphic(Graphic value) {
+        this.graphic = value;
     }
 
-    public boolean isSetFunction() {
-        return (this.function!= null);
+    public boolean isSetGraphic() {
+        return (this.graphic!= null);
     }
 
 }

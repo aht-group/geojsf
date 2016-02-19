@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<se:Mark xmlns:se="http://www.opengis.net/se">
+    <se:WellKnownName>myWellKnownName</se:WellKnownName>
+</se:Mark>

@@ -11,12 +11,27 @@
             </xsd:simpleContent>
         </xsd:complexType>
     </xsd:element>
+	<xsd:element name="Literal">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
     <xsd:element name="Filter">
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element ref="ogc:DWithin" maxOccurs="1"/>
                 <xsd:element ref="ogc:PropertyIsBetween" maxOccurs="1"/>
             </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Function">
+       <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ogc:Literal" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="DWithin">
@@ -40,14 +55,14 @@
 	<xsd:element name="LowerBoundary">
         <xsd:complexType>
             <xsd:sequence>
-                
+                <xsd:element ref="ogc:Function" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
 	<xsd:element name="UpperBoundary">
         <xsd:complexType>
             <xsd:sequence>
-                
+                <xsd:element ref="ogc:Function" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

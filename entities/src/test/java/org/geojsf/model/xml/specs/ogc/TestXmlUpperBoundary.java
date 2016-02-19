@@ -16,7 +16,7 @@ public class TestXmlUpperBoundary extends AbstractXmlOgcTest<UpperBoundary>
     	UpperBoundary xml = new UpperBoundary();
     	if(withChilds)
     	{
-    		
+    		xml.setFunction(TestXmlFunction.create(false));
     	}
     	
     	return xml;

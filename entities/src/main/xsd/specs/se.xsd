@@ -13,6 +13,13 @@
             </xsd:simpleContent>
         </xsd:complexType>
     </xsd:element>
+	<xsd:element name="WellKnownName">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
     <xsd:element name="Title">
         <xsd:complexType>
             <xsd:simpleContent>
@@ -40,6 +47,28 @@
 				<xsd:element ref="se:Name" maxOccurs="1"/>
 				<xsd:element ref="se:Description" maxOccurs="1"/>
 				<xsd:element ref="ogc:Filter" maxOccurs="1"/>
+				<xsd:element ref="se:PointSymbolizer" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="PointSymbolizer">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="se:Graphic" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Graphic">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="se:Mark" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Mark">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="se:WellKnownName" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
     </xsd:element>

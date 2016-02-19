@@ -38,6 +38,38 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link PointSymbolizer }
+     * 
+     */
+    public PointSymbolizer createPointSymbolizer() {
+        return new PointSymbolizer();
+    }
+
+    /**
+     * Create an instance of {@link Graphic }
+     * 
+     */
+    public Graphic createGraphic() {
+        return new Graphic();
+    }
+
+    /**
+     * Create an instance of {@link Mark }
+     * 
+     */
+    public Mark createMark() {
+        return new Mark();
+    }
+
+    /**
+     * Create an instance of {@link WellKnownName }
+     * 
+     */
+    public WellKnownName createWellKnownName() {
+        return new WellKnownName();
+    }
+
+    /**
      * Create an instance of {@link Description }
      * 
      */

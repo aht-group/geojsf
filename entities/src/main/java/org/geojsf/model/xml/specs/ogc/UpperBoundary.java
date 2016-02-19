@@ -4,6 +4,7 @@ package org.geojsf.model.xml.specs.ogc;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -18,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element ref="{http://www.opengis.net/ogc}Function"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,12 +29,44 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
+@XmlType(name = "", propOrder = {
+    "function"
+})
 @XmlRootElement(name = "UpperBoundary")
 public class UpperBoundary
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
+    @XmlElement(name = "Function", required = true)
+    protected Function function;
+
+    /**
+     * Gets the value of the function property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Function }
+     *     
+     */
+    public Function getFunction() {
+        return function;
+    }
+
+    /**
+     * Sets the value of the function property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Function }
+     *     
+     */
+    public void setFunction(Function value) {
+        this.function = value;
+    }
+
+    public boolean isSetFunction() {
+        return (this.function!= null);
+    }
 
 }

@@ -16,7 +16,7 @@ public class TestXmlLowerBoundary extends AbstractXmlOgcTest<LowerBoundary>
     	LowerBoundary xml = new LowerBoundary();
     	if(withChilds)
     	{
-    		
+    		xml.setFunction(TestXmlFunction.create(false));
     	}
     	
     	return xml;

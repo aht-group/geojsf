@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ogc:LowerBoundary xmlns:ogc="http://www.opengis.net/ogc"/>
+<ogc:LowerBoundary xmlns:ogc="http://www.opengis.net/ogc">
+    <ogc:Function name="env"/>
+</ogc:LowerBoundary>

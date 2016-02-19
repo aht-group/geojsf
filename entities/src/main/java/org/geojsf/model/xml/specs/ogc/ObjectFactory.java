@@ -78,6 +78,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Function }
+     * 
+     */
+    public Function createFunction() {
+        return new Function();
+    }
+
+    /**
+     * Create an instance of {@link Literal }
+     * 
+     */
+    public Literal createLiteral() {
+        return new Literal();
+    }
+
+    /**
      * Create an instance of {@link UpperBoundary }
      * 
      */

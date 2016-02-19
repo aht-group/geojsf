@@ -1,5 +1,5 @@
 
-package org.geojsf.model.xml.specs.ogc;
+package org.geojsf.model.xml.specs.se;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://www.opengis.net/ogc}Function"/>
+ *         &lt;element ref="{http://www.opengis.net/se}WellKnownName"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,43 +30,43 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "function"
+    "wellKnownName"
 })
-@XmlRootElement(name = "LowerBoundary")
-public class LowerBoundary
+@XmlRootElement(name = "Mark")
+public class Mark
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(name = "Function", required = true)
-    protected Function function;
+    @XmlElement(name = "WellKnownName", required = true)
+    protected WellKnownName wellKnownName;
 
     /**
-     * Gets the value of the function property.
+     * Gets the value of the wellKnownName property.
      * 
      * @return
      *     possible object is
-     *     {@link Function }
+     *     {@link WellKnownName }
      *     
      */
-    public Function getFunction() {
-        return function;
+    public WellKnownName getWellKnownName() {
+        return wellKnownName;
     }
 
     /**
-     * Sets the value of the function property.
+     * Sets the value of the wellKnownName property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Function }
+     *     {@link WellKnownName }
      *     
      */
-    public void setFunction(Function value) {
-        this.function = value;
+    public void setWellKnownName(WellKnownName value) {
+        this.wellKnownName = value;
     }
 
-    public boolean isSetFunction() {
-        return (this.function!= null);
+    public boolean isSetWellKnownName() {
+        return (this.wellKnownName!= null);
     }
 
 }

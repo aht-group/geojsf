@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ogc:Function xmlns:ogc="http://www.opengis.net/ogc" name="env">
+    <ogc:Literal>myLiteral</ogc:Literal>
+    <ogc:Literal>myLiteral</ogc:Literal>
+</ogc:Function>
