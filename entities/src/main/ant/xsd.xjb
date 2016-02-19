@@ -48,7 +48,7 @@
     
     <jxb:bindings schemaLocation="../xsd/specs/ogc.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="org.geojsf.model.xml.ogc"/>
+            <jxb:package name="org.geojsf.model.xml.specs.ogc"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     

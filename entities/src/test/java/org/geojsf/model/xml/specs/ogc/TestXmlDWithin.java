@@ -1,6 +1,5 @@
 package org.geojsf.model.xml.specs.ogc;
 
-import org.geojsf.model.xml.ogc.DWithin;
 import org.geojsf.model.xml.specs.gml.TestXmlPoint;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;

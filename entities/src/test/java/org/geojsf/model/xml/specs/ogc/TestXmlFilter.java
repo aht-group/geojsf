@@ -1,6 +1,5 @@
 package org.geojsf.model.xml.specs.ogc;
 
-import org.geojsf.model.xml.ogc.Filter;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

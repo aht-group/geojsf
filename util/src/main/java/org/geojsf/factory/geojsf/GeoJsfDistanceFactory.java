@@ -1,6 +1,6 @@
 package org.geojsf.factory.geojsf;
 
-import org.geojsf.model.xml.ogc.Distance;
+import org.geojsf.model.xml.specs.ogc.Distance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
