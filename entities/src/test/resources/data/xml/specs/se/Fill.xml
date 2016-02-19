@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<se:Fill xmlns:se="http://www.opengis.net/se">
+    <se:SvgParameter name="myName"/>
+    <se:SvgParameter name="myName"/>
+</se:Fill>

@@ -102,7 +102,6 @@
 		<xsd:complexType mixed="true">
             <xsd:sequence>
                 <xsd:element ref="ogc:Function" maxOccurs="1"/>
-                <xsd:element ref="ogc:Literal" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

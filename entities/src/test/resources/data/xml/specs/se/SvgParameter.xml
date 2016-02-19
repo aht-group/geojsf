@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<se:SvgParameter xmlns:ogc="http://www.opengis.net/ogc" xmlns:se="http://www.opengis.net/se" xmlns:gml="http://www.opengis.net/gml" name="myName">#<ogc:Function name="env"/>
+    <ogc:Literal>myLiteral</ogc:Literal>
+    <ogc:Literal>myLiteral</ogc:Literal>
+</se:SvgParameter>

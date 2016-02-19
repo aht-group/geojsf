@@ -47,11 +47,11 @@ public class ScalesContainer extends UINamingContainer
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		GeoJsfScalesUtil util = new GeoJsfScalesUtil(this.value);
-		logger.info("Adding scales in " +this.value.getUnit());
-		for (Scale scale : this.value.getScale())
-		{
-			logger.info("" +scale.getValue());
-		}
+		StringBuffer sb = new StringBuffer();
+		sb.append("Adding scales in " +this.value.getUnit());
+		for (Scale scale : this.value.getScale()){sb.append("" +scale.getValue());}
+		logger.info(sb.toString());
+		
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("script", this);
 		writer.write("var array = [" +util.getScaleList() +"];" +System.getProperty("line.separator"));

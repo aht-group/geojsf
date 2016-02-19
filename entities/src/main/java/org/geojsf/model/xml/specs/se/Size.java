@@ -7,12 +7,10 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlMixed;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import org.geojsf.model.xml.specs.ogc.Function;
-import org.geojsf.model.xml.specs.ogc.Literal;
 
 
 /**
@@ -26,7 +24,6 @@ import org.geojsf.model.xml.specs.ogc.Literal;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.opengis.net/ogc}Function"/>
- *         &lt;element ref="{http://www.opengis.net/ogc}Literal" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -45,10 +42,7 @@ public class Size
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElementRefs({
-        @XmlElementRef(name = "Function", namespace = "http://www.opengis.net/ogc", type = Function.class),
-        @XmlElementRef(name = "Literal", namespace = "http://www.opengis.net/ogc", type = Literal.class)
-    })
+    @XmlElementRef(name = "Function", namespace = "http://www.opengis.net/ogc", type = Function.class)
     @XmlMixed
     protected List<Serializable> content;
 
@@ -72,7 +66,6 @@ public class Size
      * Objects of the following type(s) are allowed in the list
      * {@link String }
      * {@link Function }
-     * {@link Literal }
      * 
      * 
      */

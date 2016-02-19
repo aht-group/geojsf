@@ -126,6 +126,10 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 	@Override public SLD load(Class<SLD> cSld, SLD sld)
 	{
 		sld = em.find(cSld, sld.getId());
+		for(RULE r : sld.getRules())
+		{
+			if(r.getGraphic()!=null){r.getGraphic().getId();}
+		}
 		sld.getRules().size();
 		return sld;
 	}

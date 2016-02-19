@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<se:Size xmlns:ogc="http://www.opengis.net/ogc" xmlns:se="http://www.opengis.net/se" xmlns:gml="http://www.opengis.net/gml">
+    <ogc:Function name="env"/>
+</se:Size>

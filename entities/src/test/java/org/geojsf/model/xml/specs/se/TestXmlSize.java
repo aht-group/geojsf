@@ -1,7 +1,6 @@
 package org.geojsf.model.xml.specs.se;
 
 import org.geojsf.model.xml.specs.ogc.TestXmlFunction;
-import org.geojsf.model.xml.specs.ogc.TestXmlLiteral;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +19,6 @@ public class TestXmlSize extends AbstractXmlSeTest<Size>
     	if(withChilds)
     	{
     		xml.getContent().add(TestXmlFunction.create(false));
-    		xml.getContent().add(TestXmlLiteral.create(false));
-    		xml.getContent().add(TestXmlLiteral.create(false));
     	}
     	
     	return xml;
