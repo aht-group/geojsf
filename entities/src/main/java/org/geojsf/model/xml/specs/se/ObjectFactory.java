@@ -38,6 +38,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Description }
+     * 
+     */
+    public Description createDescription() {
+        return new Description();
+    }
+
+    /**
+     * Create an instance of {@link Title }
+     * 
+     */
+    public Title createTitle() {
+        return new Title();
+    }
+
+    /**
      * Create an instance of {@link FeatureTypeStyle }
      * 
      */

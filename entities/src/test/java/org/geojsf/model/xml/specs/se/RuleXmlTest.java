@@ -18,6 +18,7 @@ public class RuleXmlTest extends AbstractXmlSeTest<Rule>
     	if(withChilds)
     	{
     		xml.setName(NameXmlTest.create(false));
+    		xml.setDescription(DescriptionXmlTest.create(false));
     	}
     	
     	return xml;

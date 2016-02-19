@@ -12,6 +12,20 @@
             </xsd:simpleContent>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="Title">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Description">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="se:Title" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
     <xsd:element name="FeatureTypeStyle">
         <xsd:complexType>
 			<xsd:sequence>
@@ -23,6 +37,7 @@
         <xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref="se:Name" maxOccurs="1"/>
+				<xsd:element ref="se:Description" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
