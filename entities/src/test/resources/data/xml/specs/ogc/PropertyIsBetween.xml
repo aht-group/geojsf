@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ogc:PropertyIsBetween xmlns:ogc="http://www.opengis.net/ogc">
+    <ogc:PropertyName>myValue</ogc:PropertyName>
+</ogc:PropertyIsBetween>

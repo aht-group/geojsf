@@ -1,5 +1,6 @@
 package org.geojsf.model.xml.specs.se;
 
+import org.geojsf.model.xml.specs.ogc.FilterXmlTest;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ public class RuleXmlTest extends AbstractXmlSeTest<Rule>
     	{
     		xml.setName(NameXmlTest.create(false));
     		xml.setDescription(DescriptionXmlTest.create(false));
+    		xml.setFilter(FilterXmlTest.create(false));
     	}
     	
     	return xml;

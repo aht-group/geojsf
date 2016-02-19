@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import org.geojsf.model.xml.specs.ogc.Filter;
 
 
 /**
@@ -21,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element ref="{http://www.opengis.net/se}Name"/>
  *         &lt;element ref="{http://www.opengis.net/se}Description"/>
+ *         &lt;element ref="{http://www.opengis.net/ogc}Filter"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,7 +34,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "name",
-    "description"
+    "description",
+    "filter"
 })
 @XmlRootElement(name = "Rule")
 public class Rule
@@ -44,6 +47,8 @@ public class Rule
     protected Name name;
     @XmlElement(name = "Description", required = true)
     protected Description description;
+    @XmlElement(name = "Filter", namespace = "http://www.opengis.net/ogc", required = true)
+    protected Filter filter;
 
     /**
      * Gets the value of the name property.
@@ -99,6 +104,34 @@ public class Rule
 
     public boolean isSetDescription() {
         return (this.description!= null);
+    }
+
+    /**
+     * Gets the value of the filter property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Filter }
+     *     
+     */
+    public Filter getFilter() {
+        return filter;
+    }
+
+    /**
+     * Sets the value of the filter property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Filter }
+     *     
+     */
+    public void setFilter(Filter value) {
+        this.filter = value;
+    }
+
+    public boolean isSetFilter() {
+        return (this.filter!= null);
     }
 
 }

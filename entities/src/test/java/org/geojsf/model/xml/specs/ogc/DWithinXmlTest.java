@@ -5,12 +5,12 @@ import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlDWithin extends AbstractXmlOgcTest<DWithin>
+public class DWithinXmlTest extends AbstractXmlOgcTest<DWithin>
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlDWithin.class);
+	final static Logger logger = LoggerFactory.getLogger(DWithinXmlTest.class);
 	
-	public TestXmlDWithin(){super(DWithin.class);}
-	public static DWithin create(boolean withChildren){return (new TestXmlDWithin()).build(withChildren);}
+	public DWithinXmlTest(){super(DWithin.class);}
+	public static DWithin create(boolean withChildren){return (new DWithinXmlTest()).build(withChildren);}
     
     public DWithin build(boolean withChilds)
     {
@@ -18,9 +18,9 @@ public class TestXmlDWithin extends AbstractXmlOgcTest<DWithin>
 
     	if(withChilds)
     	{
+    		xml.setPropertyName(TestXmlPropertyName.create(false));
     		xml.setPoint(TestXmlPoint.create(false));
     		xml.setDistance(TestXmlDistance.create(false));
-    		xml.setPropertyName(TestXmlPropertyName.create(false));
     	}
     	
     	return xml;
@@ -29,7 +29,7 @@ public class TestXmlDWithin extends AbstractXmlOgcTest<DWithin>
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-		TestXmlDWithin test = new TestXmlDWithin();
+		DWithinXmlTest test = new DWithinXmlTest();
 		test.saveReferenceXml();
     }
 }

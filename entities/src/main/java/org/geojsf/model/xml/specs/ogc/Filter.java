@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.opengis.net/ogc}DWithin"/>
+ *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsBetween"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,7 +31,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "dWithin"
+    "dWithin",
+    "propertyIsBetween"
 })
 @XmlRootElement(name = "Filter")
 public class Filter
@@ -40,6 +42,8 @@ public class Filter
     private final static long serialVersionUID = 1L;
     @XmlElement(name = "DWithin", required = true)
     protected DWithin dWithin;
+    @XmlElement(name = "PropertyIsBetween", required = true)
+    protected PropertyIsBetween propertyIsBetween;
 
     /**
      * Gets the value of the dWithin property.
@@ -67,6 +71,34 @@ public class Filter
 
     public boolean isSetDWithin() {
         return (this.dWithin!= null);
+    }
+
+    /**
+     * Gets the value of the propertyIsBetween property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PropertyIsBetween }
+     *     
+     */
+    public PropertyIsBetween getPropertyIsBetween() {
+        return propertyIsBetween;
+    }
+
+    /**
+     * Sets the value of the propertyIsBetween property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PropertyIsBetween }
+     *     
+     */
+    public void setPropertyIsBetween(PropertyIsBetween value) {
+        this.propertyIsBetween = value;
+    }
+
+    public boolean isSetPropertyIsBetween() {
+        return (this.propertyIsBetween!= null);
     }
 
 }

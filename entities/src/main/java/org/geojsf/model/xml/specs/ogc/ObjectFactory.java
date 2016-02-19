@@ -61,4 +61,12 @@ public class ObjectFactory {
         return new Distance();
     }
 
+    /**
+     * Create an instance of {@link PropertyIsBetween }
+     * 
+     */
+    public PropertyIsBetween createPropertyIsBetween() {
+        return new PropertyIsBetween();
+    }
+
 }
