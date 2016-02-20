@@ -17,4 +17,11 @@ public class XmlGraphicFactory implements Serializable
 		xml.setMark(XmlMarkFactory.build(wkn));
 		return xml;
 	}
+	
+	public static Graphic external(String href)
+	{
+		Graphic xml = new Graphic();
+		xml.setExternalGraphic(XmlExternalGraphicFactory.svg(href));
+		return xml;
+	}
 }

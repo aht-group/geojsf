@@ -19,7 +19,7 @@ public class CliXmlRuleFactory extends AbstractGeoJsfUtilTest
 {
 	final static Logger logger = LoggerFactory.getLogger(CliXmlRuleFactory.class);
 	
-	private void interval()
+	public void interval()
 	{
 		Rule rule = XmlRuleFactory.build("myName","myTitle");
 		rule.setFilter(XmlFilterFactory.interval("value", "lb1", 1, "ub1", 2));
@@ -33,10 +33,25 @@ public class CliXmlRuleFactory extends AbstractGeoJsfUtilTest
 		JaxbUtil.info(rule);
 	}
 	
+	private void external()
+	{
+		Rule rule = XmlRuleFactory.build("myName","myTitle");
+		rule.setFilter(XmlFilterFactory.interval("value", "lb1", 1, "ub1", 2));
+		
+		Graphic g = XmlGraphicFactory.external("burg02.svg");
+		g.setSize(XmlSizeFactory.build("size", 6));
+		
+		PointSymbolizer ps = XmlPointSymbolizerFactory.build();
+		ps.setGraphic(g);
+		rule.setPointSymbolizer(ps);
+		JaxbUtil.info(rule);
+	}
+	
 	public static void main(String[] args)
 	{
 		GeoJsfUtilsTestBootstrap.init();
 		CliXmlRuleFactory cli = new CliXmlRuleFactory();
-		cli.interval();
+//		cli.interval();
+		cli.external();
 	}
 }
