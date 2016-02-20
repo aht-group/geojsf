@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<se:Graphic xmlns:se="http://www.opengis.net/se">
+<se:Graphic xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml">
     <se:Mark/>
+    <se:ExternalGraphic/>
+    <se:Size/>
 </se:Graphic>

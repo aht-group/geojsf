@@ -18,6 +18,8 @@ public class TestXmlGraphic extends AbstractXmlSeTest<Graphic>
     	if(withChilds)
     	{
     		xml.setMark(TestXmlMark.create(false));
+    		xml.setExternalGraphic(TestXmlExternalGraphic.create(false));
+    		xml.setSize(TestXmlSize.create(false));
     	}
     	
     	return xml;

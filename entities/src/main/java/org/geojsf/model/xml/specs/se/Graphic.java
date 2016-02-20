@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.opengis.net/se}Mark"/>
+ *         &lt;element ref="{http://www.opengis.net/se}ExternalGraphic"/>
  *         &lt;element ref="{http://www.opengis.net/se}Size"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -32,6 +33,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "mark",
+    "externalGraphic",
     "size"
 })
 @XmlRootElement(name = "Graphic")
@@ -42,6 +44,8 @@ public class Graphic
     private final static long serialVersionUID = 1L;
     @XmlElement(name = "Mark", required = true)
     protected Mark mark;
+    @XmlElement(name = "ExternalGraphic", required = true)
+    protected ExternalGraphic externalGraphic;
     @XmlElement(name = "Size", required = true)
     protected Size size;
 
@@ -71,6 +75,34 @@ public class Graphic
 
     public boolean isSetMark() {
         return (this.mark!= null);
+    }
+
+    /**
+     * Gets the value of the externalGraphic property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExternalGraphic }
+     *     
+     */
+    public ExternalGraphic getExternalGraphic() {
+        return externalGraphic;
+    }
+
+    /**
+     * Sets the value of the externalGraphic property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExternalGraphic }
+     *     
+     */
+    public void setExternalGraphic(ExternalGraphic value) {
+        this.externalGraphic = value;
+    }
+
+    public boolean isSetExternalGraphic() {
+        return (this.externalGraphic!= null);
     }
 
     /**

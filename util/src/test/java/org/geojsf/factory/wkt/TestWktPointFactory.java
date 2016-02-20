@@ -1,9 +1,5 @@
 package org.geojsf.factory.wkt;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-import org.geojsf.factory.txt.TxtIsoTimeFactory;
 import org.geojsf.factory.xml.geojsf.XmlCoordinateFactory;
 import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.test.AbstractGeoJsfUtilTest;

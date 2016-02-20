@@ -30,19 +30,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Name }
+     * Create an instance of {@link Format }
      * 
      */
-    public Name createName() {
-        return new Name();
+    public Format createFormat() {
+        return new Format();
     }
 
     /**
-     * Create an instance of {@link PointSymbolizer }
+     * Create an instance of {@link Description }
      * 
      */
-    public PointSymbolizer createPointSymbolizer() {
-        return new PointSymbolizer();
+    public Description createDescription() {
+        return new Description();
+    }
+
+    /**
+     * Create an instance of {@link Title }
+     * 
+     */
+    public Title createTitle() {
+        return new Title();
     }
 
     /**
@@ -94,6 +102,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ExternalGraphic }
+     * 
+     */
+    public ExternalGraphic createExternalGraphic() {
+        return new ExternalGraphic();
+    }
+
+    /**
+     * Create an instance of {@link OnlineResource }
+     * 
+     */
+    public OnlineResource createOnlineResource() {
+        return new OnlineResource();
+    }
+
+    /**
      * Create an instance of {@link Size }
      * 
      */
@@ -102,19 +126,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Description }
+     * Create an instance of {@link Rule }
      * 
      */
-    public Description createDescription() {
-        return new Description();
+    public Rule createRule() {
+        return new Rule();
     }
 
     /**
-     * Create an instance of {@link Title }
+     * Create an instance of {@link Name }
      * 
      */
-    public Title createTitle() {
-        return new Title();
+    public Name createName() {
+        return new Name();
+    }
+
+    /**
+     * Create an instance of {@link PointSymbolizer }
+     * 
+     */
+    public PointSymbolizer createPointSymbolizer() {
+        return new PointSymbolizer();
     }
 
     /**
@@ -123,14 +155,6 @@ public class ObjectFactory {
      */
     public FeatureTypeStyle createFeatureTypeStyle() {
         return new FeatureTypeStyle();
-    }
-
-    /**
-     * Create an instance of {@link Rule }
-     * 
-     */
-    public Rule createRule() {
-        return new Rule();
     }
 
 }

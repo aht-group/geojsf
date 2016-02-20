@@ -27,6 +27,13 @@
             </xsd:simpleContent>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="Format">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
 	<xsd:element name="Description">
         <xsd:complexType>
 			<xsd:sequence>
@@ -38,6 +45,14 @@
         <xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref="se:Rule" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="ExternalGraphic">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="se:OnlineResource" maxOccurs="1"/>
+				<xsd:element ref="se:Format" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
@@ -58,10 +73,18 @@
 			</xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
+	<xsd:element name="OnlineResource">
+        <xsd:complexType>
+			<xsd:sequence>
+
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
 	<xsd:element name="Graphic">
         <xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref="se:Mark" maxOccurs="1"/>
+				<xsd:element ref="se:ExternalGraphic" maxOccurs="1"/>
 				<xsd:element ref="se:Size" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
