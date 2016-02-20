@@ -25,7 +25,4 @@ public interface GeoJsfSld<L extends UtilsLang,
 {	
 	SLDTEMPLATE getTemplate();
 	void setTemplate(SLDTEMPLATE template);
-	
-	SLDTYPE getType();
-	void setType(SLDTYPE type);
 }

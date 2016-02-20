@@ -38,11 +38,6 @@ public class DefaultGeoJsfSld implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public void setId(long id) {this.id = id;}
 	
 	@ManyToOne
-	private DefaultGeoJsfSldType type;
-	public DefaultGeoJsfSldType getType() {return type;}
-	public void setType(DefaultGeoJsfSldType type) {this.type = type;}
-	
-	@ManyToOne
 	private DefaultGeoJsfSldTemplate template;
 	@Override public DefaultGeoJsfSldTemplate getTemplate() {return template;}
 	@Override public void setTemplate(DefaultGeoJsfSldTemplate template) {this.template = template;}

@@ -99,7 +99,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 	public void addSld()
 	{
 		logger.info(AbstractLogMessage.addEntity(cSld));
-		sld = efSld.build(null,type);
+		sld = efSld.build(null);
 		sld.setName(efLang.createEmpty(langKeys));
 		sld.setDescription(efDescription.createEmpty(langKeys));
 	}

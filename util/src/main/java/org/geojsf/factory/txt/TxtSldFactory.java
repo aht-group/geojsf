@@ -1,13 +1,14 @@
 package org.geojsf.factory.txt;
 
+import org.geojsf.interfaces.model.sld.GeoJsfSld;
+import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
+import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
+
 import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-
-import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 
 public class TxtSldFactory<L extends UtilsLang,
 							D extends UtilsDescription,
@@ -25,6 +26,16 @@ public class TxtSldFactory<L extends UtilsLang,
 	}
 	
 	public String build(SLD sld)
+	{
+		GeoJsfSldType.Type type  = GeoJsfSldType.Type.valueOf(sld.getTemplate().getType().getCode());
+		switch(type)
+		{
+			case interval: return interval(sld);
+			default: return "";
+		}
+	}
+	
+	private String interval(SLD sld)
 	{
 		StringBuffer sb = new StringBuffer();
 		int i=1;
