@@ -12,6 +12,7 @@
     xmlns:net="http://exlp.sf.net/net"
     xmlns:id="http://exlp.sf.net/identity"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
     xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
     jaxb:extensionBindingPrefixes="xjc"
@@ -25,6 +26,7 @@
     <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="specs/ogc.xsd"/>
     <xsd:import namespace="http://www.opengis.net/se" schemaLocation="specs/se.xsd"/>
     <xsd:import namespace="http://www.opengis.net/sld" schemaLocation="specs/sld.xsd"/>
+    <xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="specs/xlink.xsd"/>
     <xsd:import namespace="http://www.opengis.net/wfs" schemaLocation="specs/wfs.xsd"/>
     <xsd:import namespace="http://ahtutils.aht-group.com/status" schemaLocation="../../../../../utils/xml/src/main/xsd/aht/status.xsd"/>
     <xsd:import namespace="http://exlp.sf.net/net" schemaLocation="../../../../../exlp/xml/src/main/xsd/util/net.xsd"/>

@@ -14,7 +14,7 @@ public class XmlOnlineResourceFactory implements Serializable
 	public static OnlineResource build(String href)
 	{
 		OnlineResource xml = new OnlineResource();
-
+		xml.setType("simple");
 		return xml;
 	}
 }

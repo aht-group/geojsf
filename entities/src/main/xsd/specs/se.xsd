@@ -3,8 +3,10 @@
 	xmlns:se="http://www.opengis.net/se"
 	xmlns:sld="http://www.opengis.net/sld"
     xmlns:ogc="http://www.opengis.net/ogc"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
     <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="ogc.xsd"/>
 	<xsd:element name="Name">
         <xsd:complexType>
@@ -78,6 +80,7 @@
 			<xsd:sequence>
 
 			</xsd:sequence>
+			<xsd:attribute ref="xlink:type"/>
 		</xsd:complexType>
     </xsd:element>
 	<xsd:element name="Graphic">

@@ -4,7 +4,9 @@ package org.geojsf.model.xml.specs.se;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -19,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *       &lt;/sequence>
+ *       &lt;attribute ref="{http://www.w3.org/1999/xlink}type"/>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -34,5 +37,36 @@ public class OnlineResource
 {
 
     private final static long serialVersionUID = 1L;
+    @XmlAttribute(name = "type", namespace = "http://www.w3.org/1999/xlink")
+    @XmlSchemaType(name = "anySimpleType")
+    protected String type;
+
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
+
+    public boolean isSetType() {
+        return (this.type!= null);
+    }
 
 }

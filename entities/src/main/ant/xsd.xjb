@@ -70,6 +70,12 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
+	<jxb:bindings schemaLocation="../xsd/specs/xlink.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.specs.xlink"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
 	<jxb:bindings schemaLocation="../xsd/../../../../../utils/xml/src/main/xsd/aht/status.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="net.sf.ahtutils.xml.status"/>

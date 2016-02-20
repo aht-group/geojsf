@@ -14,7 +14,7 @@ public class TestXmlOnlineResource extends AbstractXmlSeTest<OnlineResource>
     public OnlineResource build(boolean withChilds)
     {
     	OnlineResource xml = new OnlineResource();
-
+    	xml.setType("simple");
     	return xml;
     }
 	
