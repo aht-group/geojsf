@@ -12,7 +12,6 @@ import javax.persistence.OneToOne;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfDataSource;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
-import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;

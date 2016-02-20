@@ -3,19 +3,6 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.jsf.util.FacesContextMessage;
-import net.sf.ahtutils.jsf.util.PositionListReorderer;
-import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
-
 import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
@@ -23,7 +10,7 @@ import org.geojsf.factory.ejb.EjbGeoMapFactory;
 import org.geojsf.factory.ejb.EjbGeoServiceFactory;
 import org.geojsf.factory.ejb.EjbGeoViewFactory;
 import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
-import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
+import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -36,6 +23,19 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsLockingException;
+import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
+import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
+import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.jsf.util.FacesContextMessage;
+import net.sf.ahtutils.jsf.util.PositionListReorderer;
+import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class AbstractMapServiceBean <L extends UtilsLang,
 									D extends UtilsDescription,
@@ -67,7 +67,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,
 	protected EjbGeoViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE> efView;
 	protected EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE> efViewPort;
 	
-	protected GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
+	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
 	
 	protected MAP map;
 	public MAP getMap() {return map;}
@@ -93,9 +93,10 @@ public class AbstractMapServiceBean <L extends UtilsLang,
 	private Class<SERVICE> cService;
 	private Class<LAYER> cLayer;
 	
-	public void initSuper(String[] langKeys, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort)
+	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort)
 	{
 		this.langKeys=langKeys;
+		this.fGeo=fGeo;
 		this.cCategory=cCategory;
 		this.cService=cService;
 		this.cLayer=cLayer;

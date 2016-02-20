@@ -3,19 +3,8 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
-
 import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
-import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
+import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -29,6 +18,17 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsLockingException;
+import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
+import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
+import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class AbstractSldDynamicBean <L extends UtilsLang,
 									D extends UtilsDescription,
@@ -55,7 +55,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 	protected EjbDescriptionFactory<D> efDescription;
 	protected EjbGeoSldFactory<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE> efSld;
 	
-	protected GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
+	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
 	
 	private String[] langKeys;
 	private Class<SLD> cSld;
@@ -66,9 +66,10 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 	
 	private SLDTYPE type; public SLDTYPE getType() {return type;}
 	
-	public void initSuper(String[] langKeys,final Class<L> cLang, final Class<D> clDescription,final Class<SLD> cSld, final Class<SLDTYPE> cType,final Class<SLDTEMPLATE> cTemplate)
+	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLD> cSld, final Class<SLDTYPE> cType,final Class<SLDTEMPLATE> cTemplate)
 	{
 		this.langKeys=langKeys;
+		this.fGeo=fGeo;
 		this.cSld=cSld;
 		this.cTemplate=cTemplate;
 		

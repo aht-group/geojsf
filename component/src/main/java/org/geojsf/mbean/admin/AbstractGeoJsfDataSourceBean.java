@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.geojsf.factory.ejb.meta.EjbGeoDataSourceFactory;
-import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
+import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -54,14 +54,15 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang,
 	protected EjbDescriptionFactory<D> efDescription;
 	private EjbGeoDataSourceFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE> efDs;
 	
-	protected GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
+	protected GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
 		
 	private String[] langKeys;
 	private Class<DS> cDs;
 	
-	public void initSuper(String[] langKeys, final Class<L> cL, final Class<D> cD, final Class<DS> cDs, final Class<LAYER> cLayer, final Class<CATEGORY> cCategory)
+	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo, final Class<L> cL, final Class<D> cD, final Class<DS> cDs, final Class<LAYER> cLayer, final Class<CATEGORY> cCategory)
 	{
 		this.langKeys=langKeys;
+		this.fGeo=fGeo;
 		this.cDs=cDs;
 		efLang = EjbLangFactory.createFactory(cL);
     	efDescription = EjbDescriptionFactory.createFactory(cD);

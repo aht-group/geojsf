@@ -12,7 +12,7 @@ import org.geojsf.factory.ejb.EjbGeoMapFactory;
 import org.geojsf.factory.ejb.EjbGeoServiceFactory;
 import org.geojsf.factory.ejb.EjbGeoViewFactory;
 import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
-import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
+import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -70,7 +70,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,
 	protected EjbGeoViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE> efView;
 	protected EjbGeoViewPortFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE> efViewPort;	
 	
-	protected GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
+	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
 	
 	protected List<MAP> maps;
 	public List<MAP> getMaps(){return maps;}
@@ -103,7 +103,7 @@ public class AbstractMapThematicBean <L extends UtilsLang,
 	private Class<CATEGORY> cCategory;
 	private Class<LAYER> cLayer;
 	
-	public void initSuper(String[] langKeys, GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView,final Class<VP> cViewPort)
+	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView,final Class<VP> cViewPort)
 	{
 		this.langKeys=langKeys;
 		this.fGeo=fGeo;

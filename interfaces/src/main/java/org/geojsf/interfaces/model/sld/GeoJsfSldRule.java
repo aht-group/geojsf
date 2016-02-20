@@ -22,10 +22,9 @@ public interface GeoJsfSldRule<L extends UtilsLang,
 			extends EjbSaveable,EjbRemoveable,EjbWithPosition,EjbWithLang<L>,EjbWithDescription<D>
 {
 	public static enum Type{symbol,interval}
-	public static enum Style{square,circle}
 	
-	SLD getSld();
-	void setSld(SLD sld);
+//	SLD getSld();
+//	void setSld(SLD sld);
 		
 	Double getLowerBound();
 	void setLowerBound(Double lowerBound);

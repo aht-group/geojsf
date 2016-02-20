@@ -4,19 +4,9 @@ import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.Map;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
-
 import org.geojsf.factory.ejb.sld.EjbGeoSldRuleFactory;
 import org.geojsf.factory.txt.TxtSldRuleFactory;
-import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
+import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -30,6 +20,16 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.primefaces.event.ReorderEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsLockingException;
+import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
+import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class SldRuleHandler <L extends UtilsLang,
 							D extends UtilsDescription,
@@ -52,7 +52,7 @@ public class SldRuleHandler <L extends UtilsLang,
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(SldRuleHandler.class);
 	
-	private GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
+	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
 	
 	final String[] defaultLangs;
 	
@@ -68,7 +68,7 @@ public class SldRuleHandler <L extends UtilsLang,
 	private EjbGeoSldRuleFactory<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE> efRule;
 	private TxtSldRuleFactory<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE> tfRule;
 	
-	public SldRuleHandler(GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo,
+	public SldRuleHandler(GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo,
 			final String[] defaultLangs,
 			final Class<L> cL,
 			final Class<D> cD,
@@ -112,7 +112,7 @@ public class SldRuleHandler <L extends UtilsLang,
 					RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
 					SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>> 
-		SldRuleHandler<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> factory(GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo,final String[] defaultLangs,final Class<L> cL, final Class<D> cD,final Class<RULE> cRule,final Class<SLD> cSld,final Class<G> cGraphic,final Class<GT> cGraphicType,final Class<GS> cGraphicStyle)
+		SldRuleHandler<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> factory(GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo,final String[] defaultLangs,final Class<L> cL, final Class<D> cD,final Class<RULE> cRule,final Class<SLD> cSld,final Class<G> cGraphic,final Class<GT> cGraphicType,final Class<GS> cGraphicStyle)
 	{
 		return new SldRuleHandler<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE>(fGeo,defaultLangs,cL,cD,cRule,cSld,cGraphic,cGraphicType,cGraphicStyle);
 	}

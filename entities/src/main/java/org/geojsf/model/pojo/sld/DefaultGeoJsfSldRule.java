@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -37,10 +36,10 @@ public class DefaultGeoJsfSldRule implements Serializable,EjbRemoveable,EjbPersi
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
-	@ManyToOne
-	private DefaultGeoJsfSld sld;
-	public DefaultGeoJsfSld getSld(){return sld;}
-	public void setSld(DefaultGeoJsfSld sld){this.sld = sld;}
+//	@ManyToOne
+//	private DefaultGeoJsfSld sld;
+//	public DefaultGeoJsfSld getSld(){return sld;}
+//	public void setSld(DefaultGeoJsfSld sld){this.sld = sld;}
 	
 	private int position;
 	@Override public int getPosition() {return position;}
@@ -68,19 +67,16 @@ public class DefaultGeoJsfSldRule implements Serializable,EjbRemoveable,EjbPersi
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private DefaultGeoJsfGraphic graphic;
-	public DefaultGeoJsfGraphic getGraphic() {return graphic;}
-	public void setGraphic(DefaultGeoJsfGraphic graphic) {this.graphic = graphic;}
+	@Override public DefaultGeoJsfGraphic getGraphic() {return graphic;}
+	@Override public void setGraphic(DefaultGeoJsfGraphic graphic) {this.graphic = graphic;}
 	
 	
-	public boolean equals(Object object)
-	{
-        return (object instanceof DefaultGeoJsfSldRule) ? id == ((DefaultGeoJsfSldRule) object).getId() : (object == this);
-    }
-	
-	public String toString()
+	@Override public String toString()
 	{
 		StringBuffer sb = new StringBuffer();
 			sb.append(id);
 		return sb.toString();
 	}
+	
+	@Override public boolean equals(Object object) {return (object instanceof DefaultGeoJsfSldRule) ? id == ((DefaultGeoJsfSldRule) object).getId() : (object == this);}
 }

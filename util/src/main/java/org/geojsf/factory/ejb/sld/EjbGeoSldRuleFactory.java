@@ -48,10 +48,14 @@ public class EjbGeoSldRuleFactory<L extends UtilsLang,
 	public RULE build(SLD sld)
 	{
 		RULE ejb;
-		try {ejb = cRule.newInstance();}
+		try
+		{
+			ejb = cRule.newInstance();
+//			ejb.setSld(sld);
+		}
 		catch (InstantiationException e) {e.printStackTrace();throw new RuntimeException(e);}
 		catch (IllegalAccessException e) {e.printStackTrace();throw new RuntimeException(e);}
-		ejb.setSld(sld);
+
         return ejb;
     }
 }

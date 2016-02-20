@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
@@ -58,6 +60,7 @@ public class DefaultGeoJsfSld implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sld")
+	@JoinTable(name="GeoSld_Rule",joinColumns={@JoinColumn(name="sld")},inverseJoinColumns={@JoinColumn(name="rule")})
 	@OrderBy("position ASC")
 	private List<DefaultGeoJsfSldRule> rules;
 	@Override public List<DefaultGeoJsfSldRule> getRules(){if(rules==null){rules = new ArrayList<DefaultGeoJsfSldRule>();}return rules;}

@@ -1,11 +1,5 @@
 package org.geojsf.interfaces.facade;
 
-import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-
 import java.util.List;
 
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -18,6 +12,15 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.with.EjbWithSldRules;
+
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsLockingException;
+import net.sf.ahtutils.interfaces.facade.UtilsFacade;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 public interface GeoJsfFacade <L extends UtilsLang,
 								D extends UtilsDescription,
@@ -35,7 +38,7 @@ public interface GeoJsfFacade <L extends UtilsLang,
 								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
 								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
-					extends UtilsIdFacade
+					extends UtilsFacade
 {		
 	SERVICE load(Class<SERVICE> cService, SERVICE service);
 	CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category);
@@ -49,4 +52,8 @@ public interface GeoJsfFacade <L extends UtilsLang,
 	void rm(Class<VIEW> cView, VIEW view);
 	
 	List<DS> fDataSources(Class<MAP> cMap, Class<DS> cDs, MAP map);
+	
+	<W extends EjbWithSldRules<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>> RULE save(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;
+	<W extends EjbWithSldRules<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>> void rm(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;
+
 }

@@ -1,6 +1,6 @@
 package org.geojsf.interfaces.model.sld;
 
-import java.util.List;
+import org.geojsf.interfaces.model.with.EjbWithSldRules;
 
 import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
 import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
@@ -20,14 +20,12 @@ public interface GeoJsfSld<L extends UtilsLang,
 						   SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
 						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
 						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
-			extends EjbSaveable,EjbRemoveable,EjbWithLang<L>,EjbWithDescription<D>
+			extends EjbSaveable,EjbRemoveable,
+					EjbWithLang<L>,EjbWithDescription<D>,EjbWithSldRules<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>
 {	
 	SLDTEMPLATE getTemplate();
 	void setTemplate(SLDTEMPLATE template);
 	
 	SLDTYPE getType();
 	void setType(SLDTYPE type);
-	
-	List<RULE> getRules();
-	void setRules(List<RULE> rules);
 }

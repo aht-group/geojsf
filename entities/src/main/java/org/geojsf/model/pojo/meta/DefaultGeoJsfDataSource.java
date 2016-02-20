@@ -14,7 +14,6 @@ import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.core.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.core.DefaultGeoJsfService;
 import org.geojsf.model.pojo.core.DefaultGeoJsfView;
-import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
@@ -47,20 +46,14 @@ public class DefaultGeoJsfDataSource implements Serializable,EjbRemoveable,EjbPe
 	private List<DefaultGeoJsfLayer> layers;
 	@Override public List<DefaultGeoJsfLayer> getLayers() {if(layers==null){layers = new ArrayList<DefaultGeoJsfLayer>();};return layers;}
 	@Override public void setLayers(List<DefaultGeoJsfLayer> layers) {this.layers = layers;}
+
 	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
-	
-	public boolean equals(Object object)
-	{
-        return (object instanceof DefaultGeoJsfDataSource) ? id == ((DefaultGeoJsfDataSource) object).getId() : (object == this);
-    }
-	
-	public String toString()
+	@Override public String toString()
 	{
 		StringBuffer sb = new StringBuffer();
 			sb.append(id);
 		return sb.toString();
 	}
 
-	
+	@Override public boolean equals(Object object){return (object instanceof DefaultGeoJsfDataSource) ? id == ((DefaultGeoJsfDataSource) object).getId() : (object == this);}
 }

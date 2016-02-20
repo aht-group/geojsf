@@ -3,16 +3,6 @@ package org.geojsf.web.rest;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.sf.ahtutils.controller.util.query.StatusQuery;
-import net.sf.ahtutils.factory.xml.aht.XmlContainerFactory;
-import net.sf.ahtutils.factory.xml.status.XmlStatusFactory;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.xml.aht.Aht;
-import net.sf.ahtutils.xml.aht.Container;
-
 import org.geojsf.factory.xml.geojsf.XmlCategoryFactory;
 import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
 import org.geojsf.factory.xml.geojsf.XmlServiceFactory;
@@ -20,7 +10,7 @@ import org.geojsf.factory.xml.geojsf.XmlViewFactory;
 import org.geojsf.factory.xml.geojsf.meta.XmlViewPortFactory;
 import org.geojsf.factory.xml.geojsf.sld.XmlSldTemplateFactory;
 import org.geojsf.factory.xml.openlayers.XmlMapFactory;
-import org.geojsf.interfaces.facade.GeoJsfUtilsFacade;
+import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -46,6 +36,15 @@ import org.geojsf.util.query.GeoJsfQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.ahtutils.controller.util.query.StatusQuery;
+import net.sf.ahtutils.factory.xml.aht.XmlContainerFactory;
+import net.sf.ahtutils.factory.xml.status.XmlStatusFactory;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.xml.aht.Container;
+
 public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 										D extends UtilsDescription,
 										G extends UtilsGraphic<L,D,G,GT,GS>,
@@ -66,7 +65,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfRestDatabaseExporter.class);
 	
-	private GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
+	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo;
 	
 	private final Class<SERVICE> cService;
 	private final Class<CATEGORY> cCategory;
@@ -78,7 +77,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	
 	private XmlStatusFactory fStatus;
 	
-	private GeoJsfRestDatabaseExporter(GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort, final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
+	private GeoJsfRestDatabaseExporter(GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort, final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
 	{
 		this.fGeo=fGeo;
 		this.cCategory=cCategory;
@@ -109,7 +108,7 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 					SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
 		GeoJsfRestDatabaseExporter<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE>
-		factory(GeoJsfUtilsFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo, final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
+		factory(GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo, final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
 	{
 		return new GeoJsfRestDatabaseExporter<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE>(fGeo,cCategory,cService,cLayer,cMap,cViewPort,cSldType,cSldTemplate);
 	}

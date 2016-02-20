@@ -6,11 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Root;
 
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -23,16 +18,17 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.with.EjbWithSldRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 public class GeoJsfFacadeBean <L extends UtilsLang,
 								D extends UtilsDescription,
@@ -50,50 +46,18 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
 								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
-	implements GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE>
+				extends UtilsFacadeBean
+				implements GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE>
+		
 {	
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfFacadeBean.class);
-	
-	private EntityManager em;
-	private UtilsFacadeBean ufb;
-	
+		
 	public GeoJsfFacadeBean(EntityManager em)
 	{
-		this.em=em;
-		ufb = new UtilsFacadeBean(em);
+		super(em);
 	}
-	
-	@Override public <T extends Object> List<T> all(Class<T> type){return ufb.all(type);}
-	@Override public <T extends Object> List<T> all(Class<T> type, int maxResults){return ufb.all(type,maxResults);}
-	
-	@Override public <T extends EjbWithId> List<T> find(Class<T> cl, Set<Long> ids)
-	{
-		return find(cl,new ArrayList<Long>(ids));
-	}
-	
-	@Override public <T extends EjbWithId> List<T> find(Class<T> cl, List<Long> ids)
-	{
-		if(ids==null || ids.size()==0){return new ArrayList<T>();}
-		CriteriaBuilder cB = em.getCriteriaBuilder();
-        CriteriaQuery<T> cQ = cB.createQuery(cl);
-        Root<T> root = cQ.from(cl);
-        Path<Long> path = root.get("id");
-        cQ.where(cB.isTrue(path.in(ids)));
 
-		TypedQuery<T> q = em.createQuery(cQ); 
-		return q.getResultList();
-	}
-	
-	@Override public <T extends Object> T find(Class<T> type, long id) throws UtilsNotFoundException
-	{
-		T o = em.find(type,id);
-		if(o==null){throw new UtilsNotFoundException("No entity "+type+" with id="+id);}
-		return o;
-	}
-	@Override public <T extends EjbWithId> T find(Class<T> type, T t) {return em.find(type,t.getId());}
-
-	@Override
-	public MAP load(Class<MAP> cView, MAP map)
+	@Override public MAP load(Class<MAP> cView, MAP map)
 	{
 		map = em.find(cView, map.getId());
 		map.getViews().size();
@@ -207,5 +171,30 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 			catch (IllegalAccessException e) {e.printStackTrace();}
 		}
 		return result;
+	}
+	
+	@Override public <W extends EjbWithSldRules<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>>
+	RULE save(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException
+	{
+		entity = this.find(cW, entity);
+		rule = this.saveProtected(rule);
+		if(!entity.getRules().contains(rule))
+		{
+			entity.getRules().add(rule);
+			this.saveProtected(entity);
+		}
+		return rule;
+	}
+	
+	@Override public <W extends EjbWithSldRules<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>>
+		void rm(Class<W> cW, W entity, RULE rule) throws UtilsConstraintViolationException, UtilsLockingException
+	{
+		entity = this.find(cW, entity);
+		if(entity.getRules().contains(rule))
+		{
+			entity.getRules().remove(rule);
+			this.saveProtected(entity);
+		}
+		this.rmProtected(rule);		
 	}
 }
