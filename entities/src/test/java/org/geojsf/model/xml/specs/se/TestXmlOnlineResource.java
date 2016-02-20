@@ -15,6 +15,7 @@ public class TestXmlOnlineResource extends AbstractXmlSeTest<OnlineResource>
     {
     	OnlineResource xml = new OnlineResource();
     	xml.setType("simple");
+    	xml.setHref("myHref");
     	return xml;
     }
 	

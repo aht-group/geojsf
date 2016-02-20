@@ -81,6 +81,7 @@
 
 			</xsd:sequence>
 			<xsd:attribute ref="xlink:type"/>
+			<xsd:attribute ref="xlink:href"/>
 		</xsd:complexType>
     </xsd:element>
 	<xsd:element name="Graphic">

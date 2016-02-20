@@ -15,6 +15,7 @@ public class XmlOnlineResourceFactory implements Serializable
 	{
 		OnlineResource xml = new OnlineResource();
 		xml.setType("simple");
+		xml.setHref(href);
 		return xml;
 	}
 }

@@ -19,7 +19,6 @@ public class TestXmlExternalGraphic extends AbstractXmlSeTest<ExternalGraphic>
     		xml.setOnlineResource(TestXmlOnlineResource.create(false));
     		xml.setFormat(TestXmlFormat.create(false));	
     	}
-    	
     	return xml;
     }
 	

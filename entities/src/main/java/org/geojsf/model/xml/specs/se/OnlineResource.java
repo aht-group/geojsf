@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *       &lt;/sequence>
  *       &lt;attribute ref="{http://www.w3.org/1999/xlink}type"/>
+ *       &lt;attribute ref="{http://www.w3.org/1999/xlink}href"/>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,6 +41,9 @@ public class OnlineResource
     @XmlAttribute(name = "type", namespace = "http://www.w3.org/1999/xlink")
     @XmlSchemaType(name = "anySimpleType")
     protected String type;
+    @XmlAttribute(name = "href", namespace = "http://www.w3.org/1999/xlink")
+    @XmlSchemaType(name = "anySimpleType")
+    protected String href;
 
     /**
      * Gets the value of the type property.
@@ -67,6 +71,34 @@ public class OnlineResource
 
     public boolean isSetType() {
         return (this.type!= null);
+    }
+
+    /**
+     * Gets the value of the href property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getHref() {
+        return href;
+    }
+
+    /**
+     * Sets the value of the href property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setHref(String value) {
+        this.href = value;
+    }
+
+    public boolean isSetHref() {
+        return (this.href!= null);
     }
 
 }
