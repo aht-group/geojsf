@@ -1,13 +1,12 @@
 package org.geojsf.interfaces.model.sld;
 
-import net.sf.ahtutils.interfaces.model.behaviour.EjbSaveable;
-import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
 import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.interfaces.model.with.position.EjbWithPosition;
 import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
+import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
 public interface GeoJsfSldRule<L extends UtilsLang,
@@ -19,12 +18,9 @@ public interface GeoJsfSldRule<L extends UtilsLang,
 						   SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,SLD,RULE,TEMPLATE>,
 						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,SLD,RULE,TEMPLATE>,
 						   TEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,TEMPLATE>>
-			extends EjbSaveable,EjbRemoveable,EjbWithPosition,EjbWithLang<L>,EjbWithDescription<D>
+			extends EjbWithId,EjbWithPosition,EjbWithLang<L>,EjbWithDescription<D>
 {
 	public static enum Type{symbol,interval}
-	
-//	SLD getSld();
-//	void setSld(SLD sld);
 		
 	Double getLowerBound();
 	void setLowerBound(Double lowerBound);

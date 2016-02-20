@@ -25,6 +25,8 @@ public class DefaultGeoJsfGraphic implements EjbRemoveable,Serializable,EjbPersi
 	@Override public long getId() {return id;}
 	@Override  public void setId(long id) {this.id = id;}
 	
+	@Override public Long getVersionLock() {return new Long(0);}
+	
 	@ManyToOne
 	private DefaultGeoJsfGraphicType type;
 	public DefaultGeoJsfGraphicType getType() {return type;}

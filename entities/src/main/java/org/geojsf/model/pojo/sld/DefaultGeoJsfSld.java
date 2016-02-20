@@ -66,16 +66,13 @@ public class DefaultGeoJsfSld implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public List<DefaultGeoJsfSldRule> getRules(){if(rules==null){rules = new ArrayList<DefaultGeoJsfSldRule>();}return rules;}
 	@Override public void setRules(List<DefaultGeoJsfSldRule> rules){this.rules = rules;}
 	
-	
-	public boolean equals(Object object)
-	{
-        return (object instanceof DefaultGeoJsfSld) ? id == ((DefaultGeoJsfSld) object).getId() : (object == this);
-    }
-	
-	public String toString()
+
+	@Override public String toString()
 	{
 		StringBuffer sb = new StringBuffer();
 			sb.append(id);
 		return sb.toString();
 	}
+	
+	@Override public boolean equals(Object object) {return (object instanceof DefaultGeoJsfSld) ? id == ((DefaultGeoJsfSld) object).getId() : (object == this);}
 }

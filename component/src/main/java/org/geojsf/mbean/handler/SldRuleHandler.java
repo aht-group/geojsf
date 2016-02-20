@@ -23,12 +23,17 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
+import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
 import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
+import net.sf.ahtutils.factory.ejb.symbol.EjbGraphicFactory;
 import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphicStyle;
+import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphicType;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.jsf.util.PositionListReorderer;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class SldRuleHandler <L extends UtilsLang,
@@ -62,11 +67,19 @@ public class SldRuleHandler <L extends UtilsLang,
 	final Class<GT> cGraphicType;
 	final Class<GS> cGraphicStyle;
 	
-	protected EjbLangFactory<L> efLang;
-	protected EjbDescriptionFactory<D> efDescription;
+	private EjbLangFactory<L> efLang;
+	private EjbDescriptionFactory<D> efDescription;
+	private EjbGraphicFactory<L,D,G,GT,GS> efGraphic;
 	
 	private EjbGeoSldRuleFactory<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE> efRule;
 	private TxtSldRuleFactory<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE> tfRule;
+	
+	private Map<RULE,String> mapBounds; public Map<RULE,String> getMapBounds() {return mapBounds;}
+	
+	private SLD sld; public SLD getSld(){return sld;} public void setSld(SLD sld){this.sld = sld;}
+	private RULE rule; public RULE getRule(){return rule;} public void setRule(RULE rule){this.rule = rule;}
+	private String lowerBound; public String getLowerBound() {return lowerBound;} public void setLowerBound(String lowerBound) {this.lowerBound = lowerBound;}
+	private String upperBound; public String getUpperBound() {return upperBound;} public void setUpperBound(String upperBound) {this.upperBound = upperBound;}
 	
 	public SldRuleHandler(GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE> fGeo,
 			final String[] defaultLangs,
@@ -91,7 +104,7 @@ public class SldRuleHandler <L extends UtilsLang,
 		
 		efLang = EjbLangFactory.createFactory(cL);
 		efDescription = EjbDescriptionFactory.createFactory(cD);
-		
+		efGraphic = EjbGraphicFactory.factory(cGraphic);
 		efRule = EjbGeoSldRuleFactory.factory(cRule);
 		tfRule = TxtSldRuleFactory.factory();
 	}
@@ -117,9 +130,6 @@ public class SldRuleHandler <L extends UtilsLang,
 		return new SldRuleHandler<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDTEMPLATE>(fGeo,defaultLangs,cL,cD,cRule,cSld,cGraphic,cGraphicType,cGraphicStyle);
 	}
 	
-	//SLD
-	private SLD sld; public SLD getSld(){return sld;} public void setSld(SLD sld){this.sld = sld;}
-	
 	public void reloadSld()
 	{
 		sld = fGeo.load(cSld,sld);
@@ -135,26 +145,41 @@ public class SldRuleHandler <L extends UtilsLang,
 	public void onRowReorder(ReorderEvent event) throws UtilsConstraintViolationException, UtilsLockingException
 	{
         logger.trace( "Row Moved", "From: " + event.getFromIndex() + ", To:" + event.getToIndex());
-        int i=1;
-        for(RULE rule : sld.getRules())
-        {
-        	rule.setPosition(i);i++;
-        }
-        sld = fGeo.save(sld);
+        PositionListReorderer.reorder(fGeo, sld.getRules());
         reloadSld();
     }
 	
-	//Rule
-	private RULE rule;
-	public RULE getRule(){return rule;}
-	public void setRule(RULE rule){this.rule = rule;}
 	
-	public void addRule()
+	public void addRule() throws UtilsNotFoundException
 	{
 		logger.info(AbstractLogMessage.addEntity(cRule));
 		rule = efRule.build(sld);
 		rule.setName(efLang.createEmpty(defaultLangs));
 		rule.setDescription(efDescription.createEmpty(defaultLangs));
+		
+		GT type = fGeo.fByCode(cGraphicType, UtilsGraphicType.Code.symbol.toString());
+		GS style = fGeo.fByCode(cGraphicStyle, UtilsGraphicStyle.Code.circle.toString());
+		G g = efGraphic.buildSymbol(type, style);
+		rule.setGraphic(g);
+	}
+	
+	private void reloadRule()
+	{
+		rule = fGeo.load(cRule, rule);
+	}
+	
+	public void selectRule()
+	{
+		reloadRule();
+		logger.info(AbstractLogMessage.selectEntity(rule,rule.getGraphic()));
+		rule = efLang.persistMissingLangs(fGeo, defaultLangs, rule);
+		rule = efDescription.persistMissingLangs(fGeo, defaultLangs, rule);
+		rule2String();
+	}
+	
+	public void cancelRule()
+	{
+		rule=null;
 	}
 	
 	public void saveRule() throws UtilsConstraintViolationException, UtilsLockingException
@@ -170,7 +195,8 @@ public class SldRuleHandler <L extends UtilsLang,
 			
 		}
 		string2Rule();
-		rule = fGeo.save(rule);
+		rule = fGeo.save(cSld,sld,rule);
+		reloadRule();
 		reloadSld();
 		rule2String();
 	}
@@ -178,29 +204,11 @@ public class SldRuleHandler <L extends UtilsLang,
 	public void rmRule() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.rmEntity(rule));
-		fGeo.rm(rule);
+		fGeo.rm(cSld,sld,rule);
 		rule = null;
 		reloadSld();
 	}
-	
-	public void selectRule()
-	{
-		rule = fGeo.load(cRule, rule);
-		logger.info(AbstractLogMessage.selectEntity(rule,rule.getGraphic()));
-		rule = efLang.persistMissingLangs(fGeo, defaultLangs, rule);
-		rule = efDescription.persistMissingLangs(fGeo, defaultLangs, rule);
-		rule2String();
-	}
-	
-	public void cancelRule()
-	{
-		rule=null;
-	}
-	
-	//Bounds
-	private Map<RULE,String> mapBounds;
-	public Map<RULE, String> getMapBounds() {return mapBounds;}
-	
+
 	private void rule2String()
 	{
 		lowerBound = null; if(rule.getLowerBound()!=null){lowerBound = ""+rule.getLowerBound();}
@@ -219,12 +227,4 @@ public class SldRuleHandler <L extends UtilsLang,
 		}
 		catch (NumberFormatException e){}
 	}
-	
-	private String lowerBound;
-	public String getLowerBound() {return lowerBound;}
-	public void setLowerBound(String lowerBound) {this.lowerBound = lowerBound;}
-
-	private String upperBound;
-	public String getUpperBound() {return upperBound;}
-	public void setUpperBound(String upperBound) {this.upperBound = upperBound;}
 }

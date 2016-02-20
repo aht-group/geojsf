@@ -174,7 +174,7 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 	}
 	
 	@Override public <W extends EjbWithSldRules<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>>
-	RULE save(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException
+		RULE save(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException
 	{
 		entity = this.find(cW, entity);
 		rule = this.saveProtected(rule);

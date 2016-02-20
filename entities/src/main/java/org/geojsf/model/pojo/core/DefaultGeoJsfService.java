@@ -64,19 +64,13 @@ public class DefaultGeoJsfService implements Serializable,EjbRemoveable,EjbPersi
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
-	
-	public boolean equals(Object object)
-	{
-        return (object instanceof DefaultGeoJsfService)
-             ? id == ((DefaultGeoJsfService) object).getId()
-             : (object == this);
-    }
-	
-	public String toString()
+
+	@Override public String toString()
 	{
 		StringBuffer sb = new StringBuffer();
 			sb.append(id);
 		return sb.toString();
 	}
+	
+	@Override public boolean equals(Object object) {return (object instanceof DefaultGeoJsfService) ? id == ((DefaultGeoJsfService) object).getId() : (object == this);}
 }
