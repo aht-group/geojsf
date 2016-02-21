@@ -18,11 +18,13 @@ public interface GeoJsfSld<L extends UtilsLang, D extends UtilsDescription,
 						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 						   SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 						   SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-						   >
+						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
 			extends EjbSaveable,EjbRemoveable,
 					EjbWithLang<L>,EjbWithDescription<D>,EjbWithSldRules<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 {	
 	SLDTEMPLATE getTemplate();
 	void setTemplate(SLDTEMPLATE template);
+	
+	Boolean getGlobalManaged();
+	void setGlobalManaged(Boolean globalManaged);
 }

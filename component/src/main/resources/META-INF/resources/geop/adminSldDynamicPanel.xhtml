@@ -18,10 +18,7 @@
 				<aht:icon type="geoJsfSave" listener="#{adminSldDynamicBean.saveSld()}" update=":sSlds :sSld"/>
 				<aht:icon type="geoJsfDelete" listener="#{adminSldDynamicBean.rmSld()}" update=":sSlds :sSld"/>	
 			</f:facet>
-			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">						
-				<p:outputLabel value="#{msg.geoJsfType}"/>
-				<h:outputText value="#{adminSldDynamicBean.sld.type.name[userBean.localeCode].lang}"/>
-				
+			<h:panelGrid columns="2" columnClasses="col1,col2" styleClass="auCleanPanelGrid">										
 				<p:outputLabel value="#{msg.geoJsfAdminTemplate}"/>
 				<p:selectOneMenu styleClass="w100" value="#{adminSldDynamicBean.sld.template}" effect="fade">  
 					<f:selectItems value="#{adminSldDynamicBean.templates}" var="t" itemLabel="#{t.name[userBean.localeCode].lang}" itemValue="#{t}"/>

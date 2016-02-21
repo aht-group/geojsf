@@ -53,8 +53,8 @@ public interface GeoJsfLayer<L extends UtilsLang, D extends UtilsDescription,
 	Boolean getSqlLayer();
 	void setSqlLayer(Boolean sqlLayer);
 	
-	SLDTEMPLATE getSldTemplate();
-	void setSldTemplate(SLDTEMPLATE sldTemplate);
+	SLD getSld();
+	void setSld(SLD sld);
 	
 	List<DS> getSources();
 	void setSources(List<DS> sources);

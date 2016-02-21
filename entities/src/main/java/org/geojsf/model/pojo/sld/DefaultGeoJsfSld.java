@@ -42,6 +42,10 @@ public class DefaultGeoJsfSld implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public DefaultGeoJsfSldTemplate getTemplate() {return template;}
 	@Override public void setTemplate(DefaultGeoJsfSldTemplate template) {this.template = template;}
 	
+	private Boolean globalManaged;
+	@Override public Boolean getGlobalManaged() {return globalManaged;}
+	@Override public void setGlobalManaged(Boolean globalManaged) {this.globalManaged = globalManaged;}
+
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@MapKey(name = "lkey")
 	private Map<String, DefaultGeoJsfLang> name;

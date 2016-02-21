@@ -11,16 +11,12 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoSldFactory<L extends UtilsLang,
-								D extends UtilsDescription,
-								G extends UtilsGraphic<L,D,G,GT,GS>,
-								GT extends UtilsStatus<GT,L,D>,
-								GS extends UtilsStatus<GS,L,D>,
+public class EjbGeoSldFactory<L extends UtilsLang,D extends UtilsDescription,
+								G extends UtilsGraphic<L,D,G,GT,GS>,GT extends UtilsStatus<GT,L,D>,GS extends UtilsStatus<GS,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
 								TYPE extends UtilsStatus<TYPE,L,D>,
 								SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>
-								>
+								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldFactory.class);
 	

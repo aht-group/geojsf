@@ -86,7 +86,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 
 	protected void reloadSlds()
 	{
-		slds = fGeo.allForParent(cSld,"type",type);
+		slds = fGeo.all(cSld);
 	}
 	
 	//TEMPLATE

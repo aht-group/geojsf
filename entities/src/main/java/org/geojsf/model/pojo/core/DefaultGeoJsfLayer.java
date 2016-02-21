@@ -85,9 +85,9 @@ public class DefaultGeoJsfLayer implements Serializable,EjbRemoveable,EjbPersist
 	@Override public Boolean isSqlLayer() {return sqlLayer;}
 	@Override public void setSqlLayer(Boolean sqlLayer) {this.sqlLayer = sqlLayer;}
 
-	private DefaultGeoJsfSldTemplate sldTemplate;
-	@Override public DefaultGeoJsfSldTemplate getSldTemplate() {return sldTemplate;}
-	@Override public void setSldTemplate(DefaultGeoJsfSldTemplate sldTemplate) {this.sldTemplate = sldTemplate;}
+	private DefaultGeoJsfSld sld;
+	@Override public DefaultGeoJsfSld getSld() {return sld;}
+	@Override public void setSld(DefaultGeoJsfSld sld) {this.sld = sld;}
 	
 	@ManyToMany
 	private List<DefaultGeoJsfDataSource> sources;
