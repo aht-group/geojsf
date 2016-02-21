@@ -1,11 +1,18 @@
 package org.geojsf.controller.facade;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Root;
 
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -197,5 +204,20 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 			this.saveProtected(entity);
 		}
 		this.rmProtected(rule);		
+	}
+
+	@Override public List<SLD> fGlobalSlds(Class<SLD> cSld)
+	{
+		CriteriaBuilder cB = em.getCriteriaBuilder();
+	    CriteriaQuery<SLD> criteriaQuery = cB.createQuery(cSld);
+	    
+	    Root<SLD> fromType = criteriaQuery.from(cSld);
+	    
+	    Path<Boolean> pGlobal = fromType.get("globalManaged");
+	    
+	    CriteriaQuery<SLD> select = criteriaQuery.select(fromType);
+	    select.where( cB.equal(pGlobal, true));
+	    
+		return em.createQuery(select).getResultList();
 	}
 }

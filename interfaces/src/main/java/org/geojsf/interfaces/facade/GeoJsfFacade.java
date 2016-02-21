@@ -52,6 +52,7 @@ public interface GeoJsfFacade <L extends UtilsLang,
 	void rm(Class<VIEW> cView, VIEW view);
 	
 	List<DS> fDataSources(Class<MAP> cMap, Class<DS> cDs, MAP map);
+	List<SLD> fGlobalSlds(Class<SLD> cSld);
 	
 	<W extends EjbWithSldRules<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>> RULE save(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;
 	<W extends EjbWithSldRules<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>> void rm(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;

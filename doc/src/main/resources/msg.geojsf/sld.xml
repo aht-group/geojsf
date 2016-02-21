@@ -7,6 +7,13 @@
 			<s:lang key="fr" translation="SLD Rules"/>
 		</s:langs>
 	</s:translation>
+	<s:translation key="geoJsfSld">
+		<s:langs>
+			<s:lang key="de" translation="SLD"/>
+			<s:lang key="en" translation="SLD"/>
+			<s:lang key="fr" translation="SLD"/>
+		</s:langs>
+	</s:translation>
 	<s:translation key="geoJsfSldRule">
 		<s:langs>
 			<s:lang key="de" translation="SLD Rule"/>

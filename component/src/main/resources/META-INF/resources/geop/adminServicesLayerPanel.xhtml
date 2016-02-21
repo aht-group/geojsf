@@ -37,6 +37,12 @@
 				<p:selectOneMenu styleClass="w100" value="#{adminMapServiceBean.layer.category}" effect="fade">  
 					<f:selectItems value="#{adminMapServiceBean.categories}" var="c" itemLabel="#{c.name[userBean.localeCode].lang}" itemValue="#{c}"/>
 				</p:selectOneMenu>
+				
+				<p:outputLabel value="#{msg.geoJsfSld}"/>
+				<p:selectOneMenu styleClass="w100" value="#{adminMapServiceBean.layer.sld}" effect="fade">
+					<f:selectItem itemLabel="---"/>  
+					<f:selectItems value="#{adminMapServiceBean.slds}" var="t" itemLabel="#{t.name[userBean.localeCode].lang}" itemValue="#{t}"/>
+				</p:selectOneMenu>
 			</h:panelGrid>
 			<aht:tabTranslationEditor value="#{adminMapServiceBean.layer}"
 							keys="#{translationBean.langKeys}" withDescription="true"

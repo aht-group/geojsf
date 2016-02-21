@@ -15,7 +15,6 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,8 +64,6 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
 	protected List<SLD> slds; public List<SLD> getSlds() {return slds;} public void setSlds(List<SLD> slds) {this.slds = slds;}
 	
-	private SLDTYPE type; public SLDTYPE getType() {return type;}
-	
 	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLD> cSld, final Class<SLDTYPE> cType,final Class<SLDTEMPLATE> cTemplate)
 	{
 		this.langKeys=langKeys;
@@ -77,16 +74,13 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 		efLang = EjbLangFactory.createFactory(cLang);
 		efDescription = EjbDescriptionFactory.createFactory(clDescription);
 		efSld = EjbGeoSldFactory.factory(cSld);
-		
-		try {type = fGeo.fByCode(cType, GeoJsfSldType.Type.status.toString());}
-		catch (UtilsNotFoundException e) {e.printStackTrace();}
-		
+				
 		templates = fGeo.all(cTemplate);
 	}
 
 	protected void reloadSlds()
 	{
-		slds = fGeo.all(cSld);
+		slds = fGeo.fGlobalSlds(cSld);
 	}
 	
 	//TEMPLATE
@@ -100,7 +94,7 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 	public void addSld()
 	{
 		logger.info(AbstractLogMessage.addEntity(cSld));
-		sld = efSld.build(null);
+		sld = efSld.build(null,true);
 		sld.setName(efLang.createEmpty(langKeys));
 		sld.setDescription(efDescription.createEmpty(langKeys));
 	}
