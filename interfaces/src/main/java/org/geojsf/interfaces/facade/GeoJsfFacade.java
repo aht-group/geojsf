@@ -27,17 +27,17 @@ public interface GeoJsfFacade <L extends UtilsLang,
 								G extends UtilsGraphic<L,D,G,GT,GS>,
 								GT extends UtilsStatus<GT,L,D>,
 								GS extends UtilsStatus<GS,L,D>,
-								CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE>,
-								SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE>,
-								MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE>,
-								VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE>,
-								VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE>,
-								DS extends GeoJsfDataSource<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTYPE,SLDTEMPLATE>,
-								SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
-								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
-								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
+								CATEGORY extends GeoJsfCategory<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE>,
+								SERVICE extends GeoJsfService<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE>,
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE>,
+								MAP extends GeoJsfMap<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE>,
+								VIEW extends GeoJsfView<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE>,
+								VP extends GeoJsfViewPort<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE>,
+								DS extends GeoJsfDataSource<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE>,
+								SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
+								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
+								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>>
 					extends UtilsFacade
 {		
 	SERVICE load(Class<SERVICE> cService, SERVICE service);
@@ -53,6 +53,6 @@ public interface GeoJsfFacade <L extends UtilsLang,
 	
 	List<DS> fDataSources(Class<MAP> cMap, Class<DS> cDs, MAP map);
 	
-	<W extends EjbWithSldRules<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>> RULE save(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;
-	<W extends EjbWithSldRules<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>> void rm(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;
+	<W extends EjbWithSldRules<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>> RULE save(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;
+	<W extends EjbWithSldRules<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>> void rm(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;
 }

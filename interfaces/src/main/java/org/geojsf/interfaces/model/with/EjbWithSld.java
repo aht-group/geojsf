@@ -15,10 +15,10 @@ public interface EjbWithSld <L extends UtilsLang,
 							G extends UtilsGraphic<L,D,G,GT,GS>,
 							GT extends UtilsStatus<GT,L,D>,
 							GS extends UtilsStatus<GS,L,D>,
+							TEMPLATE extends GeoJsfSldTemplate<L,D,TEMPLATE,TYPE>,
 							TYPE extends UtilsStatus<TYPE,L,D>,
-							SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
-							RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,SLDTEMPLATE>>
+							SLD extends GeoJsfSld<L,D,G,GT,GS,TEMPLATE,TYPE,SLD,RULE>,
+							RULE extends GeoJsfSldRule<L,D,G,GT,GS,TEMPLATE,TYPE,SLD,RULE>>
 						extends EjbWithId
 {
 	SLD getSld();

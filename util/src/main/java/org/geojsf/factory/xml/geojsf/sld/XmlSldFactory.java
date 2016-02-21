@@ -19,10 +19,11 @@ public class XmlSldFactory <L extends UtilsLang,
 							G extends UtilsGraphic<L,D,G,GT,GS>,
 							GT extends UtilsStatus<GT,L,D>,
 							GS extends UtilsStatus<GS,L,D>,
+							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-							SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
-							RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTYPE,SLDTEMPLATE>>
+							SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
+							RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+							>
 				implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlSldFactory.class);
@@ -43,13 +44,13 @@ public class XmlSldFactory <L extends UtilsLang,
 			
 		if(q.isSetSldTemplate() && ejb.getTemplate()!=null)
 		{
-			XmlSldTemplateFactory<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE> f = new XmlSldTemplateFactory<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>(q.getSldTemplate());
+			XmlSldTemplateFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE> f = new XmlSldTemplateFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(q.getSldTemplate());
 			xml.setSldTemplate(f.build(ejb.getTemplate()));
 		}
 		
 		if(q.isSetSldRule())
 		{
-			XmlSldRuleFactory<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE> f = new XmlSldRuleFactory<L,D,G,GT,GS,SLDTYPE,SLD,RULE,SLDTEMPLATE>(q.getSldRule().get(0));
+			XmlSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE> f = new XmlSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(q.getSldRule().get(0));
 			for(RULE rule : ejb.getRules())
 			{
 				xml.getSldRule().add(f.build(rule));

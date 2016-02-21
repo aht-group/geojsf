@@ -15,10 +15,11 @@ public class TxtSldRuleFactory<L extends UtilsLang,
 								G extends UtilsGraphic<L,D,G,GT,GS>,
 								GT extends UtilsStatus<GT,L,D>,
 								GS extends UtilsStatus<GS,L,D>,
+								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
 								TYPE extends UtilsStatus<TYPE,L,D>,
-								SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
-								RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
-								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,SLDTEMPLATE>>
+								SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
+								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>
+								>
 {	
 	private TxtSldRuleFactory()
 	{
@@ -31,12 +32,12 @@ public class TxtSldRuleFactory<L extends UtilsLang,
 					GT extends UtilsStatus<GT,L,D>,
 					GS extends UtilsStatus<GS,L,D>,
 					TYPE extends UtilsStatus<TYPE,L,D>,
-					SLD extends GeoJsfSld<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
-					RULE extends GeoJsfSldRule<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,TYPE,SLDTEMPLATE>>
-		TxtSldRuleFactory<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE> factory()
+					SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
+					RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
+					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>>
+		TxtSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE> factory()
 	{
-		return new TxtSldRuleFactory<L,D,G,GT,GS,TYPE,SLD,RULE,SLDTEMPLATE>();
+		return new TxtSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>();
 	}
 	
 	public String build(RULE rule)
