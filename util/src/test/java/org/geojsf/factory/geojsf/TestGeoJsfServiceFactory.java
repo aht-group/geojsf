@@ -10,10 +10,15 @@ import org.geojsf.model.pojo.core.DefaultGeoJsfService;
 import org.geojsf.model.pojo.core.DefaultGeoJsfView;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfDataSource;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
+import org.geojsf.model.pojo.sld.DefaultGeoJsfSld;
+import org.geojsf.model.pojo.sld.DefaultGeoJsfSldRule;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
+import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphic;
+import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicStyle;
+import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicType;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,7 +41,7 @@ public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 	private DefaultGeoJsfLayer layerA;
 	private DefaultGeoJsfLayer layerB;
 	
-	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType> fService;
+	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicStyle,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSld,DefaultGeoJsfSldRule> fService;
 	
 	@Before
 	public void init() throws UtilsConstraintViolationException

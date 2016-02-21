@@ -11,8 +11,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
-public interface GeoJsfSld<L extends UtilsLang,
-						   D extends UtilsDescription,
+public interface GeoJsfSld<L extends UtilsLang, D extends UtilsDescription,
 						   G extends UtilsGraphic<L,D,G,GT,GS>,
 						   GT extends UtilsStatus<GT,L,D>,
 						   GS extends UtilsStatus<GS,L,D>,
