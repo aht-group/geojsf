@@ -46,10 +46,11 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 							VIEW extends GeoJsfView<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 							VP extends GeoJsfViewPort<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 							DS extends GeoJsfDataSource<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-							SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>>
+							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
+							SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
+							RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+							>
 	extends AbstractUtilsRest<L,D>
 	implements GeoJsfDatabaseImportRest
 {
@@ -66,7 +67,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
     private final Class<SLDTEMPLATE> cSldTemplate;
     
     private UtilsFacade fSecurity;
-    private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> fGeo;
+    private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
     
     private String[] langKeys;
     
@@ -74,7 +75,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     private EjbGeoSldTemplateFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSldTemplate;
     
-    public GeoJsfDbInit(UtilsFacade fUtils, String[] langKeys,GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> fGeo,final Class<L> cLang, final Class<D> cDescription, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,final Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
+    public GeoJsfDbInit(UtilsFacade fUtils, String[] langKeys,GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,final Class<L> cLang, final Class<D> cDescription, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,final Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
 	{   
     	super(fUtils,langKeys,cLang,cDescription);
         this.cService = cService;
@@ -110,10 +111,10 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 				RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 				SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 				SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>> 
-		GeoJsfDbInit<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE>
-		factory(UtilsFacade fUtils,GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> fGeo,String[] langKeys,final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType,final Class<SLDTEMPLATE> cSldTemplate)
+		GeoJsfDbInit<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+		factory(UtilsFacade fUtils,GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,String[] langKeys,final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType,final Class<SLDTEMPLATE> cSldTemplate)
 	{
-		return new GeoJsfDbInit<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE>(fUtils,langKeys,fGeo,cL,cD,cService,cCategory,cLayer,cMap,cView,cVp,cSldType,cSldTemplate);
+		return new GeoJsfDbInit<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fUtils,langKeys,fGeo,cL,cD,cService,cCategory,cLayer,cMap,cView,cVp,cSldType,cSldTemplate);
 	}
 		
 	public DataUpdate importGeoJsfServices(Repository repository)
@@ -138,7 +139,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 	@Override
 	public DataUpdate importGeoJsfLayers(Layers layers)
 	{
-		DbLayerInit<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> layerInit;
+		DbLayerInit<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit;
 		layerInit = DbLayerInit.factory(cL,cD,cCategory,cService,cLayer,cVp,fSecurity,fGeo);
 		try {layerInit.iuLayers(layers, langKeys);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}
@@ -148,7 +149,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 	@Override
 	public DataUpdate importGeoJsfMaps(Maps maps)
 	{
-		DbMapInit<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> viewInit;
+		DbMapInit<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> viewInit;
 		viewInit  = DbMapInit.factory(cL,cD,cLayer,cMap,cView,cVp,fSecurity,fGeo);
 		try
 		{

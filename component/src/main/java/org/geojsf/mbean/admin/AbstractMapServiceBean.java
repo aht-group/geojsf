@@ -49,8 +49,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-									>
+									RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -58,7 +57,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	
 	private String[] langKeys;
 	
-	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> fGeo;
+	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
 	
 	protected EjbLangFactory<L> efLang;
 	protected EjbDescriptionFactory<D> efDescription;
@@ -82,8 +81,9 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	protected CATEGORY category; public CATEGORY getCategory(){return category;} public void setCategory(CATEGORY category){this.category = category;}
 	protected VP viewPort; public VP getViewPort(){return viewPort;} public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 	protected SERVICE service; public SERVICE getService() {return service;} public void setService(SERVICE service) {this.service = service;}
+	protected LAYER layer; public LAYER getLayer() {return layer;} public void setLayer(LAYER layer) {this.layer = layer;}
 	
-	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort, final Class<SLD> cSld)
+	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort, final Class<SLD> cSld)
 	{
 		this.langKeys=langKeys;
 		this.fGeo=fGeo;
@@ -178,7 +178,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	{
 		category = fGeo.load(cCategory,category);
 		logger.info("selectCategory "+category);
-		reloadLayer();
+		reloadLayers();
 		layer=null;
 		service=null;
 		viewPort=null;
@@ -221,12 +221,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		PositionListReorderer.reorder(fGeo, categories);
 	}
 	
-	// LAYER
-	protected LAYER layer;
-	public LAYER getLayer() {return layer;}
-	public void setLayer(LAYER layer) {this.layer = layer;}
-	
-	protected void reloadLayer()
+	protected void reloadLayers()
 	{
 		category = fGeo.load(cCategory, category);
 		layers = fGeo.allOrderedPositionVisibleParent(cLayer, category);;
@@ -262,15 +257,15 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		layer.setService(fGeo.find(cService, layer.getService()));
 		layer.setCategory(fGeo.find(cCategory, layer.getCategory()));
 		layer = fGeo.save(layer);
-		reloadLayer();
+		reloadLayers();
 		selectLayer();
 	}
 	
-	public void rm(LAYER item)
+	public void rmLayer()
 	{
-		logger.info("rm "+item);
-		fGeo.rm(cLayer,item);
-		reloadLayer();
+		logger.info("rm "+layer);
+		fGeo.rm(cLayer,layer);
+		reloadLayers();
 		layer=null;
 		viewPort=null;
 	}

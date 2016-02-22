@@ -56,7 +56,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang,
 	protected EjbDescriptionFactory<D> efDescription;
 	protected EjbGeoSldTemplateFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efTemplate;
 	
-	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> fGeo;
+	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
 	
 	private String[] langKeys;
 	private Class<SLDTEMPLATE> cTemplate;
@@ -65,7 +65,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang,
 	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
 	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
 	
-	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLD,RULE,SLDTEMPLATE,SLDTYPE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTYPE> cType, final Class<SLDTEMPLATE> cTemplate)
+	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTYPE> cType, final Class<SLDTEMPLATE> cTemplate)
 	{
 		this.langKeys=langKeys;
 		this.fGeo=fGeo;
