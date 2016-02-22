@@ -30,27 +30,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Format }
+     * Create an instance of {@link PointSymbolizer }
      * 
      */
-    public Format createFormat() {
-        return new Format();
-    }
-
-    /**
-     * Create an instance of {@link Description }
-     * 
-     */
-    public Description createDescription() {
-        return new Description();
-    }
-
-    /**
-     * Create an instance of {@link Title }
-     * 
-     */
-    public Title createTitle() {
-        return new Title();
+    public PointSymbolizer createPointSymbolizer() {
+        return new PointSymbolizer();
     }
 
     /**
@@ -118,6 +102,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Format }
+     * 
+     */
+    public Format createFormat() {
+        return new Format();
+    }
+
+    /**
      * Create an instance of {@link Size }
      * 
      */
@@ -126,11 +118,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Rule }
+     * Create an instance of {@link Description }
      * 
      */
-    public Rule createRule() {
-        return new Rule();
+    public Description createDescription() {
+        return new Description();
+    }
+
+    /**
+     * Create an instance of {@link Title }
+     * 
+     */
+    public Title createTitle() {
+        return new Title();
     }
 
     /**
@@ -142,19 +142,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PointSymbolizer }
-     * 
-     */
-    public PointSymbolizer createPointSymbolizer() {
-        return new PointSymbolizer();
-    }
-
-    /**
      * Create an instance of {@link FeatureTypeStyle }
      * 
      */
     public FeatureTypeStyle createFeatureTypeStyle() {
         return new FeatureTypeStyle();
+    }
+
+    /**
+     * Create an instance of {@link Rule }
+     * 
+     */
+    public Rule createRule() {
+        return new Rule();
     }
 
 }

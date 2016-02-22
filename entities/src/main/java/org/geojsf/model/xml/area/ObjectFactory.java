@@ -30,19 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Basin }
-     * 
-     */
-    public Basin createBasin() {
-        return new Basin();
-    }
-
-    /**
      * Create an instance of {@link Areas }
      * 
      */
     public Areas createAreas() {
         return new Areas();
+    }
+
+    /**
+     * Create an instance of {@link Basin }
+     * 
+     */
+    public Basin createBasin() {
+        return new Basin();
     }
 
 }

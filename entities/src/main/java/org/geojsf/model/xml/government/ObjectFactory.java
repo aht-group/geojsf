@@ -30,19 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Region }
-     * 
-     */
-    public Region createRegion() {
-        return new Region();
-    }
-
-    /**
      * Create an instance of {@link District }
      * 
      */
     public District createDistrict() {
         return new District();
+    }
+
+    /**
+     * Create an instance of {@link Region }
+     * 
+     */
+    public Region createRegion() {
+        return new Region();
     }
 
 }

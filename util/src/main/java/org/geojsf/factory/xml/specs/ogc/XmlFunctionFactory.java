@@ -15,8 +15,8 @@ public class XmlFunctionFactory implements Serializable
 	{
 		Function xml = new Function();
 		xml.setName("env");
-		xml.getLiteral().add(XmlLiteralFactory.env(property));
-		xml.getLiteral().add(XmlLiteralFactory.env(""+value));
+		xml.getLiteral().add(XmlLiteralFactory.build(property));
+		xml.getLiteral().add(XmlLiteralFactory.build(""+value));
 		return xml;
 	}
 }

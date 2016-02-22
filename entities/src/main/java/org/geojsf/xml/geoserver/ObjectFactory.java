@@ -30,6 +30,38 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataStores }
+     * 
+     */
+    public DataStores createDataStores() {
+        return new DataStores();
+    }
+
+    /**
+     * Create an instance of {@link DataStore }
+     * 
+     */
+    public DataStore createDataStore() {
+        return new DataStore();
+    }
+
+    /**
+     * Create an instance of {@link Workspace }
+     * 
+     */
+    public Workspace createWorkspace() {
+        return new Workspace();
+    }
+
+    /**
+     * Create an instance of {@link Postgis }
+     * 
+     */
+    public Postgis createPostgis() {
+        return new Postgis();
+    }
+
+    /**
      * Create an instance of {@link Connection }
      * 
      */
@@ -54,22 +86,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Workspace }
-     * 
-     */
-    public Workspace createWorkspace() {
-        return new Workspace();
-    }
-
-    /**
-     * Create an instance of {@link Coverages }
-     * 
-     */
-    public Coverages createCoverages() {
-        return new Coverages();
-    }
-
-    /**
      * Create an instance of {@link Coverage }
      * 
      */
@@ -78,19 +94,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Layers }
+     * Create an instance of {@link CoverageStores }
      * 
      */
-    public Layers createLayers() {
-        return new Layers();
-    }
-
-    /**
-     * Create an instance of {@link Layer }
-     * 
-     */
-    public Layer createLayer() {
-        return new Layer();
+    public CoverageStores createCoverageStores() {
+        return new CoverageStores();
     }
 
     /**
@@ -102,27 +110,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Coverages }
+     * 
+     */
+    public Coverages createCoverages() {
+        return new Coverages();
+    }
+
+    /**
+     * Create an instance of {@link Layer }
+     * 
+     */
+    public Layer createLayer() {
+        return new Layer();
+    }
+
+    /**
      * Create an instance of {@link FeatureType }
      * 
      */
     public FeatureType createFeatureType() {
         return new FeatureType();
-    }
-
-    /**
-     * Create an instance of {@link DataStore }
-     * 
-     */
-    public DataStore createDataStore() {
-        return new DataStore();
-    }
-
-    /**
-     * Create an instance of {@link Postgis }
-     * 
-     */
-    public Postgis createPostgis() {
-        return new Postgis();
     }
 
     /**
@@ -142,11 +150,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataStores }
+     * Create an instance of {@link Layers }
      * 
      */
-    public DataStores createDataStores() {
-        return new DataStores();
+    public Layers createLayers() {
+        return new Layers();
     }
 
     /**
@@ -155,14 +163,6 @@ public class ObjectFactory {
      */
     public FeatureTypes createFeatureTypes() {
         return new FeatureTypes();
-    }
-
-    /**
-     * Create an instance of {@link CoverageStores }
-     * 
-     */
-    public CoverageStores createCoverageStores() {
-        return new CoverageStores();
     }
 
     /**

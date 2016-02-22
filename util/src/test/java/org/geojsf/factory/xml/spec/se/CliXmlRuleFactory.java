@@ -36,10 +36,10 @@ public class CliXmlRuleFactory extends AbstractGeoJsfUtilTest
 	private void external()
 	{
 		Rule rule = XmlRuleFactory.build("myName","myTitle");
-		rule.setFilter(XmlFilterFactory.interval("value", "lb1", 1, "ub1", 2));
+		rule.setFilter(XmlFilterFactory.equal("type_id", "1"));
 		
 		Graphic g = XmlGraphicFactory.external("burg02.svg");
-		g.setSize(XmlSizeFactory.build("size", 6));
+		g.setSize(XmlSizeFactory.build("size", 12));
 		
 		PointSymbolizer ps = XmlPointSymbolizerFactory.build();
 		ps.setGraphic(g);

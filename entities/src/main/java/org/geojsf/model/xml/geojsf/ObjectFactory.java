@@ -30,11 +30,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Scale }
+     * Create an instance of {@link Wkt }
      * 
      */
-    public Scale createScale() {
-        return new Scale();
+    public Wkt createWkt() {
+        return new Wkt();
     }
 
     /**
@@ -46,35 +46,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Scales }
+     * Create an instance of {@link ViewPort }
      * 
      */
-    public Scales createScales() {
-        return new Scales();
+    public ViewPort createViewPort() {
+        return new ViewPort();
     }
 
     /**
-     * Create an instance of {@link Query }
+     * Create an instance of {@link Scale }
      * 
      */
-    public Query createQuery() {
-        return new Query();
+    public Scale createScale() {
+        return new Scale();
     }
 
     /**
-     * Create an instance of {@link Repository }
+     * Create an instance of {@link Maps }
      * 
      */
-    public Repository createRepository() {
-        return new Repository();
+    public Maps createMaps() {
+        return new Maps();
     }
 
     /**
-     * Create an instance of {@link Layers }
+     * Create an instance of {@link Map }
      * 
      */
-    public Layers createLayers() {
-        return new Layers();
+    public Map createMap() {
+        return new Map();
+    }
+
+    /**
+     * Create an instance of {@link View }
+     * 
+     */
+    public View createView() {
+        return new View();
     }
 
     /**
@@ -110,35 +118,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ViewPort }
+     * Create an instance of {@link ViewPorts }
      * 
      */
-    public ViewPort createViewPort() {
-        return new ViewPort();
+    public ViewPorts createViewPorts() {
+        return new ViewPorts();
     }
 
     /**
-     * Create an instance of {@link Maps }
+     * Create an instance of {@link Query }
      * 
      */
-    public Maps createMaps() {
-        return new Maps();
+    public Query createQuery() {
+        return new Query();
     }
 
     /**
-     * Create an instance of {@link Map }
+     * Create an instance of {@link Repository }
      * 
      */
-    public Map createMap() {
-        return new Map();
+    public Repository createRepository() {
+        return new Repository();
     }
 
     /**
-     * Create an instance of {@link View }
+     * Create an instance of {@link Layers }
      * 
      */
-    public View createView() {
-        return new View();
+    public Layers createLayers() {
+        return new Layers();
     }
 
     /**
@@ -147,14 +155,6 @@ public class ObjectFactory {
      */
     public SldTemplate createSldTemplate() {
         return new SldTemplate();
-    }
-
-    /**
-     * Create an instance of {@link Wkt }
-     * 
-     */
-    public Wkt createWkt() {
-        return new Wkt();
     }
 
     /**
@@ -174,11 +174,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ViewPorts }
+     * Create an instance of {@link Scales }
      * 
      */
-    public ViewPorts createViewPorts() {
-        return new ViewPorts();
+    public Scales createScales() {
+        return new Scales();
     }
 
 }

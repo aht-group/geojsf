@@ -11,7 +11,7 @@ public class XmlLiteralFactory implements Serializable
 	final static Logger logger = LoggerFactory.getLogger(XmlLiteralFactory.class);
 	public static final long serialVersionUID=1;
 	
-	public static Literal env(String value)
+	public static Literal build(String value)
 	{
 		Literal xml = new Literal();
 		xml.setValue(value);

@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element ref="{http://www.opengis.net/ogc}DWithin"/>
  *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsBetween"/>
+ *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsEqualTo"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,7 +33,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "dWithin",
-    "propertyIsBetween"
+    "propertyIsBetween",
+    "propertyIsEqualTo"
 })
 @XmlRootElement(name = "Filter")
 public class Filter
@@ -44,6 +46,8 @@ public class Filter
     protected DWithin dWithin;
     @XmlElement(name = "PropertyIsBetween", required = true)
     protected PropertyIsBetween propertyIsBetween;
+    @XmlElement(name = "PropertyIsEqualTo", required = true)
+    protected PropertyIsEqualTo propertyIsEqualTo;
 
     /**
      * Gets the value of the dWithin property.
@@ -99,6 +103,34 @@ public class Filter
 
     public boolean isSetPropertyIsBetween() {
         return (this.propertyIsBetween!= null);
+    }
+
+    /**
+     * Gets the value of the propertyIsEqualTo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PropertyIsEqualTo }
+     *     
+     */
+    public PropertyIsEqualTo getPropertyIsEqualTo() {
+        return propertyIsEqualTo;
+    }
+
+    /**
+     * Sets the value of the propertyIsEqualTo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PropertyIsEqualTo }
+     *     
+     */
+    public void setPropertyIsEqualTo(PropertyIsEqualTo value) {
+        this.propertyIsEqualTo = value;
+    }
+
+    public boolean isSetPropertyIsEqualTo() {
+        return (this.propertyIsEqualTo!= null);
     }
 
 }

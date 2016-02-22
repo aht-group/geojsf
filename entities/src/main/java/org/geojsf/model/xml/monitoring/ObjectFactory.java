@@ -30,14 +30,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Station }
-     * 
-     */
-    public Station createStation() {
-        return new Station();
-    }
-
-    /**
      * Create an instance of {@link Capability }
      * 
      */
@@ -46,11 +38,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Stations }
+     * Create an instance of {@link Data }
      * 
      */
-    public Stations createStations() {
-        return new Stations();
+    public Data createData() {
+        return new Data();
     }
 
     /**
@@ -62,11 +54,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Data }
+     * Create an instance of {@link Station }
      * 
      */
-    public Data createData() {
-        return new Data();
+    public Station createStation() {
+        return new Station();
+    }
+
+    /**
+     * Create an instance of {@link Stations }
+     * 
+     */
+    public Stations createStations() {
+        return new Stations();
     }
 
     /**

@@ -19,6 +19,7 @@ public class TestXmlFilter extends AbstractXmlOgcTest<Filter>
     	{
     		xml.setDWithin(TestXmlDWithin.create(false));
     		xml.setPropertyIsBetween(TestXmlPropertyIsBetween.create(false));
+    		xml.setPropertyIsEqualTo(TestXmlPropertyIsEqualTo.create(false));
     	}
     	
     	return xml;

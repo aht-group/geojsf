@@ -18,6 +18,13 @@ public class XmlFilterFactory implements Serializable
 		return xml;
 	}
 	
+	public static Filter equal(String property, String attribute)
+	{
+		Filter xml = build();
+		xml.setPropertyIsEqualTo(XmlPropertyIsEqualToFactory.build(property, attribute));
+		return xml;
+	}
+	
 	public static Filter build()
 	{
 		Filter xml = new Filter();

@@ -74,9 +74,9 @@ public class SvgParameter
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * {@link Literal }
      * {@link Function }
+     * {@link Literal }
+     * {@link String }
      * 
      * 
      */

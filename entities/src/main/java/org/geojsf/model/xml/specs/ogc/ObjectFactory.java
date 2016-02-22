@@ -30,51 +30,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Filter }
-     * 
-     */
-    public Filter createFilter() {
-        return new Filter();
-    }
-
-    /**
-     * Create an instance of {@link DWithin }
-     * 
-     */
-    public DWithin createDWithin() {
-        return new DWithin();
-    }
-
-    /**
      * Create an instance of {@link PropertyName }
      * 
      */
     public PropertyName createPropertyName() {
         return new PropertyName();
-    }
-
-    /**
-     * Create an instance of {@link Distance }
-     * 
-     */
-    public Distance createDistance() {
-        return new Distance();
-    }
-
-    /**
-     * Create an instance of {@link PropertyIsBetween }
-     * 
-     */
-    public PropertyIsBetween createPropertyIsBetween() {
-        return new PropertyIsBetween();
-    }
-
-    /**
-     * Create an instance of {@link LowerBoundary }
-     * 
-     */
-    public LowerBoundary createLowerBoundary() {
-        return new LowerBoundary();
     }
 
     /**
@@ -91,6 +51,54 @@ public class ObjectFactory {
      */
     public Literal createLiteral() {
         return new Literal();
+    }
+
+    /**
+     * Create an instance of {@link DWithin }
+     * 
+     */
+    public DWithin createDWithin() {
+        return new DWithin();
+    }
+
+    /**
+     * Create an instance of {@link Distance }
+     * 
+     */
+    public Distance createDistance() {
+        return new Distance();
+    }
+
+    /**
+     * Create an instance of {@link PropertyIsEqualTo }
+     * 
+     */
+    public PropertyIsEqualTo createPropertyIsEqualTo() {
+        return new PropertyIsEqualTo();
+    }
+
+    /**
+     * Create an instance of {@link Filter }
+     * 
+     */
+    public Filter createFilter() {
+        return new Filter();
+    }
+
+    /**
+     * Create an instance of {@link PropertyIsBetween }
+     * 
+     */
+    public PropertyIsBetween createPropertyIsBetween() {
+        return new PropertyIsBetween();
+    }
+
+    /**
+     * Create an instance of {@link LowerBoundary }
+     * 
+     */
+    public LowerBoundary createLowerBoundary() {
+        return new LowerBoundary();
     }
 
     /**
