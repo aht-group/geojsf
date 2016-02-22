@@ -78,6 +78,8 @@ public class WfsPointQuery<W extends EjbWithGeometry,I extends EjbWithId,
 	
 	private String geometryColumn;
 	private String[] queryProperties;
+	
+	private List<I> results; public List<I> getResults(){return results;}
 		
 	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<W> cGeometry,Class<I> cId)
 	{
@@ -186,7 +188,9 @@ public class WfsPointQuery<W extends EjbWithGeometry,I extends EjbWithId,
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  queryProperties, geometryColumn,
 													  coordinates,distance);
-		JaxbUtil.info(gf);
+		
+		JaxbUtil.trace(gf);
+		
 		WfsHttpRequest r = new WfsHttpRequest(layer.getService().getWcs());
 		
 		Document doc = r.request(gf);
@@ -200,8 +204,6 @@ public class WfsPointQuery<W extends EjbWithGeometry,I extends EjbWithId,
 		XPathExpression<Element> xpe = XPathFactory.instance().compile(xpath.toString(),Filters.element(), null,nsQuery,nsGml);
 		List<Element> elements = xpe.evaluate(doc);
 		logger.info("Elements: "+elements.size());
-		
-		JDomUtil.debug(doc);
 		
 		results = new ArrayList<I>();
 		Set<Long> ids = new HashSet<Long>();
@@ -263,7 +265,6 @@ public class WfsPointQuery<W extends EjbWithGeometry,I extends EjbWithId,
 	}
 	
 	//ResultList
-	private List<I> results;
-	public List<I> getResults(){return results;}
+	
 	
 }
