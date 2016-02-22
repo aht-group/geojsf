@@ -115,8 +115,8 @@ var GeoJSF = {
 			this.viewportBoundTop      = extent[0];
 			this.viewportBoundBottom   = extent[1];
 			this.viewportBoundLeft     = extent[2];
-                	this.viewportBoundRight    = extent[3];
-                        var latlon                 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+            this.viewportBoundRight    = extent[3];
+            var lonlat                 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
 			try {
 				PrimeFaces.ab({
 					process:  '@form', 
@@ -124,8 +124,8 @@ var GeoJSF = {
 		 			event:    'mapClick', 
 		 			update:   GeoJSF.updateOnClick,
 					params: [
-		 			         {name: 'org.geojsf.click.lat',				value: latlon[0]},
-                                                 {name: 'org.geojsf.click.lon',				value: latlon[1]},
+		 			         {name: 'org.geojsf.click.lat',				value: lonlat[1]},
+						     {name: 'org.geojsf.click.lon',				value: lonlat[0]},
 		 			         {name: 'org.geojsf.viewport.center.lon',               value: this.centerLon},
 		 			         {name: 'org.geojsf.viewport.center.lat',               value: this.centerLat},
 		 			         {name: 'org.geojsf.viewport.bottom',                   value: this.viewportBoundBottom},
