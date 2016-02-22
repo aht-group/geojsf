@@ -18,6 +18,7 @@ public class XmlFilterFactory implements Serializable
 		return xml;
 	}
 	
+	public static Filter equal(String property, long attribute){return equal(property, ""+attribute);}
 	public static Filter equal(String property, String attribute)
 	{
 		Filter xml = build();

@@ -51,9 +51,7 @@ public class SldRuleHandler <L extends UtilsLang,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 							SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-							
-							>
+							RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;

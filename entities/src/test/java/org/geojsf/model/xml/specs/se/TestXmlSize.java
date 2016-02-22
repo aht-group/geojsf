@@ -2,9 +2,11 @@ package org.geojsf.model.xml.specs.se;
 
 import org.geojsf.model.xml.specs.ogc.TestXmlFunction;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Ignore
 public class TestXmlSize extends AbstractXmlSeTest<Size>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlSize.class);
