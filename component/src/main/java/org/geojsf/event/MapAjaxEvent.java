@@ -41,8 +41,6 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 	
 	public void setClickCoordinates(java.util.Map<String,String> params)
 	{
-		logger.info("lat "+params.containsKey(keyClickLat));
-		logger.info("lon "+params.containsKey(keyClickLon));
 		if(params.containsKey(keyClickLat) && params.containsKey(keyClickLon))
 		{
 			String lat = params.get(keyClickLat);
@@ -56,7 +54,7 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 		click = new Coordinate();
 		click.setLat(new Double(lat));
 		click.setLon(new Double(lon));
-		logger.info("CLick: lat:"+lat+" lon:"+lon);
+		logger.trace("Setting click coordinates: lat:"+lat+" lon:"+lon);
 	}
 	
 	public void setViewport(java.util.Map<String,String> params)
