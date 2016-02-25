@@ -34,35 +34,41 @@
 		</ofx:paragraph>
 		
 		<ofx:listing external="listing/admin/installation/geoserver/user.txt"/>
-		
+        <ofx:paragraph lang="en">
+            The software product <text:emphasis italic="true">GeoServer</text:emphasis> is available at
+            <text:emphasis style="typewriter">http://geoserver.org</text:emphasis> as a platform independent binary.
+            The ZIP file needs to be downloaded and extracted
+            in the directory <text:emphasis style="typewriter">/opt</text:emphasis>.
+            The following command has to be executed by the user <text:emphasis italic="true">root</text:emphasis>
+            in the directory where the ZIP file was downloaded.
+        </ofx:paragraph>
+        <ofx:listing external="listing/admin/installation/geoserver/extract.txt"/>
 		<ofx:paragraph>
-			After finishing your installation, you should do a test run with the current geoserver installation. 
-			First, change from the user <text:emphasis style="typewriter">"root" to "geoserver"</text:emphasis>, it is necessary to deploy the server with this user,
+			After finishing your installation, you should do a test run with the current geoserver installation.
+            First, be sure JBoss server is not running yet to avoid interferences. How to fix this permanently will be covered in the configuration section.
+			Then change from the user <text:emphasis style="typewriter">"root" to "geoserver"</text:emphasis>, it is necessary to deploy the server with this user,
 			otherwise the rights are changed back to root. Now go to the <text:emphasis style="typewriter">geoserverx.x.x/bin</text:emphasis>
 			folder of the current geoserver installation and run the <text:emphasis style="typewriter">./start.sh</text:emphasis>. 
 			The current geoserver installation should now start.
-		</ofx:paragraph>
-		
-		<ofx:paragraph lang="en">
-			The software product <text:emphasis italic="true">GeoServer</text:emphasis> is available at
-			<text:emphasis style="typewriter">http://geoserver.org</text:emphasis> as a platform independent binary.
-			The ZIP file needs to be downloaded and extracted
-			in the directory <text:emphasis style="typewriter">/opt</text:emphasis>.
-			The following command has to be executed by the user <text:emphasis italic="true">root</text:emphasis>
-			in the directory where the ZIP file was downloaded.
-		</ofx:paragraph>
-		
-		<ofx:listing external="listing/admin/installation/geoserver/extract.txt"/>
-		
-		
-		
+
+            It may be possible that geoserver gives you an error like this:
+            <text:emphasis style="typewriter">JAVA_HOME is not defined correctly.</text:emphasis>
+            In this case use the following command to set the JAVA_HOME system-variable
+
+            <ofx:listing>
+                <ofx:raw>
+				export JAVA_HOME=/opt/jdk1.x.x_x
+				</ofx:raw>
+            </ofx:listing>
+        </ofx:paragraph>
+
 	</ofx:section>
 	
 	<ofx:section id="section.admin.installation.geoserver.configuration">
 		<ofx:title lang="en">Configuration</ofx:title>
 		
 		<ofx:paragraph lang="en">
-			To avoid porblems with the JBoss server, the port of the GeoServers web interface needs to be changed to 8088. This can be done by editing the following line in the 
+			To avoid problems with the JBoss server, the port of the GeoServers web interface needs to be changed to 8088. This can be done by editing the following line in the
 			<text:emphasis italic="true">etc/jetty.xml</text:emphasis> file of your GeoServer installation:
 		</ofx:paragraph>
 		
