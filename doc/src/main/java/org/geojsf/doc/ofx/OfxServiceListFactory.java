@@ -15,10 +15,10 @@ import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
 import org.openfuxml.interfaces.DefaultSettingsManager;
 import org.openfuxml.interfaces.media.CrossMediaManager;
 import org.openfuxml.media.cross.NoOpCrossMediaManager;
-import org.openfuxml.processor.settings.OfxDefaultSettingsManager;
 import org.openfuxml.renderer.latex.content.list.LatexListRenderer;
 import org.openfuxml.renderer.latex.content.structure.LatexSectionRenderer;
 import org.openfuxml.util.OfxCommentBuilder;
+import org.openfuxml.util.configuration.settings.OfxDefaultSettingsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
