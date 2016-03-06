@@ -1,8 +1,8 @@
 package org.geojsf.client.doc;
 
-import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxSettingsManager;
+import org.openfuxml.interfaces.configuration.DefaultSettingsManager;
 
-import org.openfuxml.interfaces.DefaultSettingsManager;
+import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxSettingsManager;
 
 public class GeoJsfOfxSettingsManager extends AbstractUtilsOfxSettingsManager implements DefaultSettingsManager
 {
