@@ -101,6 +101,13 @@
 			<releases><enabled>false</enabled></releases>
 			<snapshots><enabled>true</enabled></snapshots>
 		</repository>
+		<repository>
+			<id>aht.3rd</id>
+			<name>AHT 3rd party Repository</name>
+			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty/</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
 		
 		<!-- JBoss Repository used for hibernate-validator 4.0.0.GA and Java-ee spec-->
 		<repository>
