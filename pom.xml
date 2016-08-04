@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 <modelVersion>4.0.0</modelVersion>
+	     	     
+	<groupId>org.geojsf</groupId>
+	<artifactId>geojsf</artifactId>
+	<version>0.1.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>GeoJSF</name>
+	<url>http://sourceforge.net/projects/geojsf</url>
+	<description>JSF Mapping Tool</description>
 
-	<parent>
-    	<groupId>org.sonatype.oss</groupId>
-    	<artifactId>oss-parent</artifactId>
-    	<version>7</version>
-	</parent>
-	     
 	<modules>
 		<module>bom</module>
 		<module>doc</module>
@@ -20,22 +22,15 @@
 		<module>geoserver</module>
 		<module>spi</module>
 	</modules>
-	     
-	<groupId>org.geojsf</groupId>
-	<artifactId>geojsf</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>GeoJSF</name>
-	<url>http://sourceforge.net/projects/geojsf</url>
 
 	<properties>
 		<my.build.directory>target</my.build.directory>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
-
-    	<maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
-    	<maven-javadoc-plugin.version>2.8</maven-javadoc-plugin.version>
-    	<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
 	</properties>
+	
+	<prerequisites>
+		<maven>3.1</maven>
+	</prerequisites>
 
 	<licenses>
 		<license>
@@ -46,9 +41,9 @@
 	</licenses>
 
 	<scm>
-    	<connection>scm:svn:https://svn.code.sf.net/p/geojsf/svn/trunk/</connection>
-    	<developerConnection>scm:svn:https://svn.code.sf.net/p/geojsf/svn/trunk/</developerConnection>
-    	<url>https://svn.code.sf.net/p/geojsf/svn/trunk/</url>
+		<url>https://github.com/aht-group/geojsf.git</url>
+		<connection>scm:git:git://github.com/aht-group/geojsf.git</connection>
+		<developerConnection>scm:git:git@github.com/aht-group/geojsf.git</developerConnection>
 	</scm>
 	
 	<developers>
@@ -64,99 +59,27 @@
 		</developer>
 	</developers>
 	
+	<issueManagement>
+	</issueManagement>
+	
 	<dependencyManagement>
 		<dependencies>
-
-         <!-- JSR-303 (Bean Validation) Implementation -->
-         <!-- Provides portable constraints such as @Email Hibernate Validator is shipped in JBoss AS 7 -->
-         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>4.1.0.Final</version>
-            <scope>provided</scope>
-            <exclusions>
-               <exclusion>
-                  <groupId>org.slf4j</groupId>
-                  <artifactId>slf4j-api</artifactId>
-               </exclusion>
-            </exclusions>
-         </dependency>
-
+	         <dependency>
+	            <groupId>org.hibernate</groupId>
+	            <artifactId>hibernate-validator</artifactId>
+	            <version>4.1.0.Final</version>
+	            <scope>provided</scope>
+	            <exclusions>
+	               <exclusion>
+	                  <groupId>org.slf4j</groupId>
+	                  <artifactId>slf4j-api</artifactId>
+	               </exclusion>
+	            </exclusions>
+	         </dependency>
 		</dependencies>
 	</dependencyManagement>
 
-	<prerequisites>
-		<maven>2.0.9</maven>
-	</prerequisites>
-
 	
-	<issueManagement>
-	</issueManagement>
-
-	<repositories>
-        <repository>
-			<id>sonatype.snapshot</id>
-			<name>Sonatype Snapshot Repository</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-			<releases><enabled>false</enabled></releases>
-			<snapshots><enabled>true</enabled></snapshots>
-		</repository>
-		<repository>
-			<id>aht.3rd</id>
-			<name>AHT 3rd party Repository</name>
-			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty/</url>
-			<releases><enabled>true</enabled></releases>
-			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-		
-		<!-- JBoss Repository used for hibernate-validator 4.0.0.GA and Java-ee spec-->
-		<repository>
-			<id>jboss.public</id>
-			<name>JBoss Repository</name>
-			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-		</repository>
-		
-		<!--
-		<repository>
-			<id>geo-solutions.it</id>
-			<name>GeoSolutions</name>
-			<url>http://maven.geo-solutions.it/</url>
-			<layout>default</layout>
-		</repository>-->
-		
-		<repository>
-			<id>hibernatespatial.org</id>
-			<name>Hibernate Spatial repo</name>
-			<url>http://www.hibernatespatial.org/repository</url>
-			<layout>default</layout>
-			<releases><enabled>true</enabled></releases>
-			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-		
-		<!-- Only temporarily required until developer has fixed the bug for maven central -->
-		<repository>
-			<id>bintray</id>
-			<name>bintray</name>
-			<snapshots><enabled>false</enabled></snapshots>
-			<url>http://dl.bintray.com/filosganga/maven</url>
-			<layout>default</layout>
-		</repository>
-		
-		<repository>  
-		    <id>primefaces.org</id>  
-		    <name>PrimeFaces Maven Repository</name>  
-		    <url>http://repository.primefaces.org</url>  
-		    <layout>default</layout>  
-		</repository>
-		
-<!--		<repository>
-			<id>aht.3rd</id>
-			<name>AHT Nexus Third Party</name>
-			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty</url>
-			<releases><enabled>true</enabled></releases>
-			<snapshots><enabled>true</enabled></snapshots>
-		</repository>
--->    </repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
@@ -234,65 +157,121 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			
 			<plugin>
-				<groupId>org.jboss.as.plugins</groupId>
-				<artifactId>jboss-as-maven-plugin</artifactId>
-				<version>7.1.0.Final</version>
-				<inherited>true</inherited>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals><goal>jar</goal></goals>
+					</execution>
+				</executions>
 			</plugin>
+
         </plugins>
 	</build>
+	
+	<repositories>
+        <repository>
+			<id>sonatype.snapshot</id>
+			<name>Sonatype Snapshot Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+			<releases><enabled>false</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+		</repository>
+		<repository>
+			<id>aht.3rd</id>
+			<name>AHT 3rd party Repository</name>
+			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty/</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+		
+		<!-- JBoss Repository used for hibernate-validator 4.0.0.GA and Java-ee spec-->
+		<repository>
+			<id>jboss.public</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
+		
+		<repository>
+			<id>hibernatespatial.org</id>
+			<name>Hibernate Spatial repo</name>
+			<url>http://www.hibernatespatial.org/repository</url>
+			<layout>default</layout>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+		
+		<!-- Only temporarily required until developer has fixed the bug for maven central -->
+		<repository>
+			<id>bintray</id>
+			<name>bintray</name>
+			<snapshots><enabled>false</enabled></snapshots>
+			<url>http://dl.bintray.com/filosganga/maven</url>
+			<layout>default</layout>
+		</repository>
+		
+		<repository>  
+		    <id>primefaces.org</id>  
+		    <name>PrimeFaces Maven Repository</name>  
+		    <url>http://repository.primefaces.org</url>  
+		    <layout>default</layout>  
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 
 	<profiles>
 		<profile>
-			<id>remote-deploy</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.jboss.as.plugins</groupId>
-						<artifactId>jboss-as-maven-plugin</artifactId>
-						<version>7.1.0.Final</version>
-						<inherited>true</inherited>
-						<configuration>
-							<skip>true</skip>
-							<hostname>${deploy.host}</hostname>
-							<port>9999</port>
-							<username>${deploy.username}</username>
-							<password>${deploy.password}</password>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
+       		<id>ram</id>
+       		<build>
+       			<directory>${my.build.directory}</directory>
+       		</build>
+   		</profile>
+   		<profile>
+       		<id>release</id>
+       		<build>
+       			<directory>${my.build.directory}</directory>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>${maven-gpg-plugin.version}</version>
+						<version>1.5</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
 								<phase>verify</phase>
-									<goals><goal>sign</goal></goals>
+								<goals><goal>sign</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.2.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals><goal>jar-no-fork</goal></goals>
 							</execution>
 						</executions>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>${maven-javadoc-plugin.version}</version>
+						<version>2.9.1</version>
 						<executions>
 							<execution>
 								<id>attach-javadocs</id>
@@ -301,25 +280,18 @@
 						</executions>
 					</plugin>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>${maven-source-plugin.version}</version>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals><goal>jar</goal></goals>
-							</execution>
-						</executions>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.7</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>false</autoReleaseAfterClose>
+						</configuration>
 					</plugin>
 				</plugins>
-    		</build>
-  		</profile>
-		<profile>
-       		<id>ram</id>
-       		<build>
-       			<directory>${my.build.directory}</directory>
-       		</build>
-   		</profile> 
+			</build>
+   		</profile>
 	</profiles>
-
 </project>

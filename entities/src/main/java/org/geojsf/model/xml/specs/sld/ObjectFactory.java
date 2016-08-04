@@ -30,14 +30,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UserStyle }
-     * 
-     */
-    public UserStyle createUserStyle() {
-        return new UserStyle();
-    }
-
-    /**
      * Create an instance of {@link StyledLayerDescriptor }
      * 
      */
@@ -51,6 +43,14 @@ public class ObjectFactory {
      */
     public NamedLayer createNamedLayer() {
         return new NamedLayer();
+    }
+
+    /**
+     * Create an instance of {@link UserStyle }
+     * 
+     */
+    public UserStyle createUserStyle() {
+        return new UserStyle();
     }
 
 }

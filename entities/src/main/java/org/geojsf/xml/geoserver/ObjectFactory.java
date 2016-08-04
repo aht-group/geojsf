@@ -30,11 +30,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataStores }
+     * Create an instance of {@link Layers }
      * 
      */
-    public DataStores createDataStores() {
-        return new DataStores();
+    public Layers createLayers() {
+        return new Layers();
+    }
+
+    /**
+     * Create an instance of {@link Layer }
+     * 
+     */
+    public Layer createLayer() {
+        return new Layer();
+    }
+
+    /**
+     * Create an instance of {@link CoverageStore }
+     * 
+     */
+    public CoverageStore createCoverageStore() {
+        return new CoverageStore();
+    }
+
+    /**
+     * Create an instance of {@link Coverages }
+     * 
+     */
+    public Coverages createCoverages() {
+        return new Coverages();
+    }
+
+    /**
+     * Create an instance of {@link Coverage }
+     * 
+     */
+    public Coverage createCoverage() {
+        return new Coverage();
+    }
+
+    /**
+     * Create an instance of {@link FeatureType }
+     * 
+     */
+    public FeatureType createFeatureType() {
+        return new FeatureType();
     }
 
     /**
@@ -86,54 +126,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Coverage }
-     * 
-     */
-    public Coverage createCoverage() {
-        return new Coverage();
-    }
-
-    /**
-     * Create an instance of {@link CoverageStores }
-     * 
-     */
-    public CoverageStores createCoverageStores() {
-        return new CoverageStores();
-    }
-
-    /**
-     * Create an instance of {@link CoverageStore }
-     * 
-     */
-    public CoverageStore createCoverageStore() {
-        return new CoverageStore();
-    }
-
-    /**
-     * Create an instance of {@link Coverages }
-     * 
-     */
-    public Coverages createCoverages() {
-        return new Coverages();
-    }
-
-    /**
-     * Create an instance of {@link Layer }
-     * 
-     */
-    public Layer createLayer() {
-        return new Layer();
-    }
-
-    /**
-     * Create an instance of {@link FeatureType }
-     * 
-     */
-    public FeatureType createFeatureType() {
-        return new FeatureType();
-    }
-
-    /**
      * Create an instance of {@link Styles }
      * 
      */
@@ -150,14 +142,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Layers }
-     * 
-     */
-    public Layers createLayers() {
-        return new Layers();
-    }
-
-    /**
      * Create an instance of {@link FeatureTypes }
      * 
      */
@@ -171,6 +155,22 @@ public class ObjectFactory {
      */
     public Workspaces createWorkspaces() {
         return new Workspaces();
+    }
+
+    /**
+     * Create an instance of {@link DataStores }
+     * 
+     */
+    public DataStores createDataStores() {
+        return new DataStores();
+    }
+
+    /**
+     * Create an instance of {@link CoverageStores }
+     * 
+     */
+    public CoverageStores createCoverageStores() {
+        return new CoverageStores();
     }
 
 }

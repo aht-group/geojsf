@@ -16,22 +16,22 @@ import javax.xml.bind.annotation.XmlType;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element ref="{http://www.geojsf.org}scale"/>
- *       &lt;/sequence>
- *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="lon" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="bottom" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="left" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="right" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="top" type="{http://www.w3.org/2001/XMLSchema}double" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element ref="{http://www.geojsf.org}scale"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" /&gt;
+ *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
+ *       &lt;attribute name="lon" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
+ *       &lt;attribute name="bottom" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
+ *       &lt;attribute name="left" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
+ *       &lt;attribute name="right" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
+ *       &lt;attribute name="top" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 

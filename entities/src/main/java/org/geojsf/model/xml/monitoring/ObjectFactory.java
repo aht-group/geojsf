@@ -30,11 +30,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Stations }
+     * 
+     */
+    public Stations createStations() {
+        return new Stations();
+    }
+
+    /**
+     * Create an instance of {@link Station }
+     * 
+     */
+    public Station createStation() {
+        return new Station();
+    }
+
+    /**
      * Create an instance of {@link Capability }
      * 
      */
     public Capability createCapability() {
         return new Capability();
+    }
+
+    /**
+     * Create an instance of {@link DataSet }
+     * 
+     */
+    public DataSet createDataSet() {
+        return new DataSet();
     }
 
     /**
@@ -51,30 +75,6 @@ public class ObjectFactory {
      */
     public Value createValue() {
         return new Value();
-    }
-
-    /**
-     * Create an instance of {@link Station }
-     * 
-     */
-    public Station createStation() {
-        return new Station();
-    }
-
-    /**
-     * Create an instance of {@link Stations }
-     * 
-     */
-    public Stations createStations() {
-        return new Stations();
-    }
-
-    /**
-     * Create an instance of {@link DataSet }
-     * 
-     */
-    public DataSet createDataSet() {
-        return new DataSet();
     }
 
 }

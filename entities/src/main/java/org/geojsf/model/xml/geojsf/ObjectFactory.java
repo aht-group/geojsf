@@ -30,19 +30,59 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Wkt }
+     * Create an instance of {@link Query }
      * 
      */
-    public Wkt createWkt() {
-        return new Wkt();
+    public Query createQuery() {
+        return new Query();
     }
 
     /**
-     * Create an instance of {@link Coordinate }
+     * Create an instance of {@link Repository }
      * 
      */
-    public Coordinate createCoordinate() {
-        return new Coordinate();
+    public Repository createRepository() {
+        return new Repository();
+    }
+
+    /**
+     * Create an instance of {@link Layers }
+     * 
+     */
+    public Layers createLayers() {
+        return new Layers();
+    }
+
+    /**
+     * Create an instance of {@link Layer }
+     * 
+     */
+    public Layer createLayer() {
+        return new Layer();
+    }
+
+    /**
+     * Create an instance of {@link Legend }
+     * 
+     */
+    public Legend createLegend() {
+        return new Legend();
+    }
+
+    /**
+     * Create an instance of {@link Service }
+     * 
+     */
+    public Service createService() {
+        return new Service();
+    }
+
+    /**
+     * Create an instance of {@link Category }
+     * 
+     */
+    public Category createCategory() {
+        return new Category();
     }
 
     /**
@@ -86,35 +126,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Layer }
+     * Create an instance of {@link SldTemplate }
      * 
      */
-    public Layer createLayer() {
-        return new Layer();
+    public SldTemplate createSldTemplate() {
+        return new SldTemplate();
     }
 
     /**
-     * Create an instance of {@link Legend }
+     * Create an instance of {@link Coordinate }
      * 
      */
-    public Legend createLegend() {
-        return new Legend();
+    public Coordinate createCoordinate() {
+        return new Coordinate();
     }
 
     /**
-     * Create an instance of {@link Service }
+     * Create an instance of {@link Scales }
      * 
      */
-    public Service createService() {
-        return new Service();
+    public Scales createScales() {
+        return new Scales();
     }
 
     /**
-     * Create an instance of {@link Category }
+     * Create an instance of {@link Wkt }
      * 
      */
-    public Category createCategory() {
-        return new Category();
+    public Wkt createWkt() {
+        return new Wkt();
     }
 
     /**
@@ -126,46 +166,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Query }
-     * 
-     */
-    public Query createQuery() {
-        return new Query();
-    }
-
-    /**
-     * Create an instance of {@link Repository }
-     * 
-     */
-    public Repository createRepository() {
-        return new Repository();
-    }
-
-    /**
-     * Create an instance of {@link Layers }
-     * 
-     */
-    public Layers createLayers() {
-        return new Layers();
-    }
-
-    /**
-     * Create an instance of {@link SldTemplate }
-     * 
-     */
-    public SldTemplate createSldTemplate() {
-        return new SldTemplate();
-    }
-
-    /**
-     * Create an instance of {@link SldRule }
-     * 
-     */
-    public SldRule createSldRule() {
-        return new SldRule();
-    }
-
-    /**
      * Create an instance of {@link Sld }
      * 
      */
@@ -174,11 +174,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Scales }
+     * Create an instance of {@link SldRule }
      * 
      */
-    public Scales createScales() {
-        return new Scales();
+    public SldRule createSldRule() {
+        return new SldRule();
     }
 
 }

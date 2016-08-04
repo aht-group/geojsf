@@ -18,27 +18,27 @@ import net.sf.exlp.xml.net.Host;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element ref="{http://exlp.sf.net/net}host"/>
- *         &lt;element ref="{http://exlp.sf.net/net}database"/>
- *       &lt;/sequence>
- *       &lt;attribute name="timeout" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="min" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="max" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="fetchSize" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="preparedStatements" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="maxPreparedStatements" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="validate" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="looseBbox" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="encodeFunctions" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="exposePrimaryKeys" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="estimatedExtends" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element ref="{http://exlp.sf.net/net}host"/&gt;
+ *         &lt;element ref="{http://exlp.sf.net/net}database"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="timeout" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *       &lt;attribute name="min" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *       &lt;attribute name="max" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *       &lt;attribute name="fetchSize" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *       &lt;attribute name="preparedStatements" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+ *       &lt;attribute name="maxPreparedStatements" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *       &lt;attribute name="validate" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+ *       &lt;attribute name="looseBbox" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+ *       &lt;attribute name="encodeFunctions" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+ *       &lt;attribute name="exposePrimaryKeys" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+ *       &lt;attribute name="estimatedExtends" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 

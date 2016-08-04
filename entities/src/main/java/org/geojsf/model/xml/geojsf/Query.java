@@ -15,22 +15,22 @@ import javax.xml.bind.annotation.XmlType;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element ref="{http://www.geojsf.org}repository"/>
- *         &lt;element ref="{http://www.geojsf.org}service"/>
- *         &lt;element ref="{http://www.geojsf.org}category"/>
- *         &lt;element ref="{http://www.geojsf.org}layer"/>
- *         &lt;element ref="{http://www.geojsf.org}map"/>
- *         &lt;element ref="{http://www.geojsf.org}view"/>
- *         &lt;element ref="{http://www.geojsf.org}viewPort"/>
- *         &lt;element ref="{http://www.geojsf.org}sldTemplate"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element ref="{http://www.geojsf.org}repository"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org}service"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org}category"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org}layer"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org}map"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org}view"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org}viewPort"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org}sldTemplate"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 

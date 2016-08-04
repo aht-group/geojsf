@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This type of event is used in combination with the <f:ajax> tag.
+ * This type of event is used in combination with the &lt;f:ajax&gt; tag.
  * Because the listener attribute of a JSF 2 - AJAX tag requires an
  * instance of an AjaxBehaviorEvent, further class casting is needed
  * to work with the custom features (right now the Coordinates object
@@ -107,5 +107,4 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 
 	@Override public boolean isAppropriateListener(FacesListener faceslistener) {return (faceslistener instanceof AjaxBehaviorListener);}
     @Override public void processListener(FacesListener faceslistener) {((AjaxBehaviorListener) faceslistener).processAjaxBehavior(this);}
-
 }

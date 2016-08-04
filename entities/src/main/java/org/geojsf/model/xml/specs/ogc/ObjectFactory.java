@@ -38,19 +38,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Function }
-     * 
-     */
-    public Function createFunction() {
-        return new Function();
-    }
-
-    /**
      * Create an instance of {@link Literal }
      * 
      */
     public Literal createLiteral() {
         return new Literal();
+    }
+
+    /**
+     * Create an instance of {@link Filter }
+     * 
+     */
+    public Filter createFilter() {
+        return new Filter();
     }
 
     /**
@@ -70,22 +70,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PropertyIsEqualTo }
-     * 
-     */
-    public PropertyIsEqualTo createPropertyIsEqualTo() {
-        return new PropertyIsEqualTo();
-    }
-
-    /**
-     * Create an instance of {@link Filter }
-     * 
-     */
-    public Filter createFilter() {
-        return new Filter();
-    }
-
-    /**
      * Create an instance of {@link PropertyIsBetween }
      * 
      */
@@ -102,11 +86,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Function }
+     * 
+     */
+    public Function createFunction() {
+        return new Function();
+    }
+
+    /**
      * Create an instance of {@link UpperBoundary }
      * 
      */
     public UpperBoundary createUpperBoundary() {
         return new UpperBoundary();
+    }
+
+    /**
+     * Create an instance of {@link PropertyIsEqualTo }
+     * 
+     */
+    public PropertyIsEqualTo createPropertyIsEqualTo() {
+        return new PropertyIsEqualTo();
     }
 
 }

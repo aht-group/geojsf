@@ -30,19 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Coordinates }
-     * 
-     */
-    public Coordinates createCoordinates() {
-        return new Coordinates();
-    }
-
-    /**
      * Create an instance of {@link Point }
      * 
      */
     public Point createPoint() {
         return new Point();
+    }
+
+    /**
+     * Create an instance of {@link Coordinates }
+     * 
+     */
+    public Coordinates createCoordinates() {
+        return new Coordinates();
     }
 
 }

@@ -30,6 +30,62 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Name }
+     * 
+     */
+    public Name createName() {
+        return new Name();
+    }
+
+    /**
+     * Create an instance of {@link WellKnownName }
+     * 
+     */
+    public WellKnownName createWellKnownName() {
+        return new WellKnownName();
+    }
+
+    /**
+     * Create an instance of {@link Title }
+     * 
+     */
+    public Title createTitle() {
+        return new Title();
+    }
+
+    /**
+     * Create an instance of {@link Format }
+     * 
+     */
+    public Format createFormat() {
+        return new Format();
+    }
+
+    /**
+     * Create an instance of {@link Description }
+     * 
+     */
+    public Description createDescription() {
+        return new Description();
+    }
+
+    /**
+     * Create an instance of {@link FeatureTypeStyle }
+     * 
+     */
+    public FeatureTypeStyle createFeatureTypeStyle() {
+        return new FeatureTypeStyle();
+    }
+
+    /**
+     * Create an instance of {@link Rule }
+     * 
+     */
+    public Rule createRule() {
+        return new Rule();
+    }
+
+    /**
      * Create an instance of {@link PointSymbolizer }
      * 
      */
@@ -51,14 +107,6 @@ public class ObjectFactory {
      */
     public Mark createMark() {
         return new Mark();
-    }
-
-    /**
-     * Create an instance of {@link WellKnownName }
-     * 
-     */
-    public WellKnownName createWellKnownName() {
-        return new WellKnownName();
     }
 
     /**
@@ -102,59 +150,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Format }
-     * 
-     */
-    public Format createFormat() {
-        return new Format();
-    }
-
-    /**
      * Create an instance of {@link Size }
      * 
      */
     public Size createSize() {
         return new Size();
-    }
-
-    /**
-     * Create an instance of {@link Description }
-     * 
-     */
-    public Description createDescription() {
-        return new Description();
-    }
-
-    /**
-     * Create an instance of {@link Title }
-     * 
-     */
-    public Title createTitle() {
-        return new Title();
-    }
-
-    /**
-     * Create an instance of {@link Name }
-     * 
-     */
-    public Name createName() {
-        return new Name();
-    }
-
-    /**
-     * Create an instance of {@link FeatureTypeStyle }
-     * 
-     */
-    public FeatureTypeStyle createFeatureTypeStyle() {
-        return new FeatureTypeStyle();
-    }
-
-    /**
-     * Create an instance of {@link Rule }
-     * 
-     */
-    public Rule createRule() {
-        return new Rule();
     }
 
 }

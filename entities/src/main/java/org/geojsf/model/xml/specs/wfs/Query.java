@@ -20,17 +20,17 @@ import org.geojsf.model.xml.specs.ogc.PropertyName;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element ref="{http://www.opengis.net/ogc}PropertyName" maxOccurs="unbounded"/>
- *         &lt;element ref="{http://www.opengis.net/ogc}Filter"/>
- *       &lt;/sequence>
- *       &lt;attribute name="typeName" type="{http://www.w3.org/2001/XMLSchema}string" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element ref="{http://www.opengis.net/ogc}PropertyName" maxOccurs="unbounded"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/ogc}Filter"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="typeName" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 
