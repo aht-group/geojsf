@@ -4,7 +4,7 @@
 	     	     
 	<groupId>org.geojsf</groupId>
 	<artifactId>geojsf</artifactId>
-	<version>0.1.1</version>
+	<version>0.1.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>GeoJSF</name>
 	<url>http://sourceforge.net/projects/geojsf</url>
