@@ -107,10 +107,6 @@
 					<groupId>joda-time</groupId>
 				</exclusion>
 				<exclusion>
-					<artifactId>ofx-chart</artifactId>
-					<groupId>org.openfuxml</groupId>
-				</exclusion>
-				<exclusion>
 					<artifactId>json</artifactId>
 					<groupId>org.json</groupId>
 				</exclusion>
