@@ -111,4 +111,26 @@
 		</dependency>
 		
 	</dependencies>
+	
+	<build>
+		<plugins>
+				<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-pmd-plugin</artifactId>
+		        <configuration>
+			        <excludes>
+			            <exclude>org/geojsf/model/xml/area/*.java</exclude>
+			            <exclude>org/geojsf/model/xml/geojsf/*.java</exclude>
+			            <exclude>org/geojsf/model/xml/government/*.java</exclude>
+			            <exclude>org/geojsf/model/xml/monitoring/*.java</exclude>
+			            <exclude>org/geojsf/model/xml/specs/gml/*.java</exclude>
+			            <exclude>org/geojsf/model/xml/specs/ogc/*.java</exclude>
+			            <exclude>org/geojsf/model/xml/specs/se/*.java</exclude>
+			            <exclude>org/geojsf/model/xml/specs/sld/*.java</exclude>
+			            <exclude>org/geojsf/model/xml/specs/wfs/*.java</exclude>
+					</excludes>
+	        </configuration>
+	      </plugin>
+        </plugins>
+	</build>
 </project>
