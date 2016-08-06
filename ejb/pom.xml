@@ -74,13 +74,13 @@
    	   	
    	   	<!-- AHT Utils -->
 		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-jsf</artifactId>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-jsf</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-util</artifactId>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-util</artifactId>
 			<exclusions>
 				<exclusion>
 					<artifactId>guava</artifactId>

@@ -83,8 +83,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-util</artifactId>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-util</artifactId>
 			<exclusions>
 				<exclusion>
 					<artifactId>ofx-core</artifactId>
@@ -223,8 +223,8 @@
 				
 		<!-- Test -->
 		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-test</artifactId>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

@@ -28,12 +28,12 @@
 	<dependencies>
 		<!-- Interfaces -->
 		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-interfaces</artifactId>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-interfaces</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.ahtutils</groupId>
-			<artifactId>ahtutils-xml</artifactId>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-xml</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		

@@ -93,8 +93,8 @@
 		    
 		    <!-- Manages BOMs -->
     	   	<dependency>
-				<groupId>net.sf.ahtutils</groupId>
-				<artifactId>ahtutils-bom</artifactId>
+				<groupId>org.jeesl</groupId>
+				<artifactId>jeesl-bom</artifactId>
 				<version>0.2.6-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
