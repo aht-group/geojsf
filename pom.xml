@@ -207,15 +207,15 @@
 
 	<profiles>
 		<profile>
-       		<id>ram</id>
-       		<build>
-       			<directory>${my.build.directory}</directory>
-       		</build>
-   		</profile>
-   		<profile>
-       		<id>release</id>
-       		<build>
-       			<directory>${my.build.directory}</directory>
+			<id>ram</id>
+			<build>
+     			<directory>${my.build.directory}</directory>
+     		</build>
+  		</profile>
+  		<profile>
+			<id>release</id>
+			<build>
+				<directory>${my.build.directory}</directory>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -278,15 +278,24 @@
 							<configuration>
 								<lifecycleMappingMetadata>
 									<pluginExecutions>
-			      						<pluginExecution>
-		                					<pluginExecutionFilter>
-		                  						<groupId>org.apache.maven.plugins</groupId>
-		                  						<artifactId>maven-enforcer-plugin</artifactId>
-		                  						<versionRange>[1.0.0,)</versionRange>
-		                  						<goals><goal>enforce</goal></goals>
-		                					</pluginExecutionFilter>
-		                					<action><ignore /></action>
-		              					</pluginExecution>
+		      						<pluginExecution>
+	                					<pluginExecutionFilter>
+	                  						<groupId>org.apache.maven.plugins</groupId>
+	                  						<artifactId>maven-enforcer-plugin</artifactId>
+	                  						<versionRange>[1.0.0,)</versionRange>
+	                  						<goals><goal>enforce</goal></goals>
+	                					</pluginExecutionFilter>
+	                					<action><ignore /></action>
+	              					</pluginExecution>
+		              				<pluginExecution>
+												<pluginExecutionFilter>
+													<groupId>org.jeesl</groupId>
+													<artifactId>jeesl-maven</artifactId>
+													<versionRange>[0.2.6-SNAPSHOT,)</versionRange>
+													<goals><goal>createSeamSecurity</goal><goal>msgBundle</goal><goal>createJs</goal></goals>
+												</pluginExecutionFilter>
+												<action><ignore/></action>
+											</pluginExecution>
 									</pluginExecutions>
 								</lifecycleMappingMetadata>
 							</configuration>
