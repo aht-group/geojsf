@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
     <name>GeoJSF - Entities</name>
    
-   	<dependencyManagement>
+	<dependencyManagement>
 		<dependencies>      	         
 			<dependency>
 				<groupId>org.geojsf</groupId>
@@ -32,19 +32,19 @@
 			<artifactId>geojsf-interfaces</artifactId>
 		</dependency>
 		<dependency>
-   	   		<groupId>net.sf.ahtutils</groupId>
-   	   		<artifactId>ahtutils-interfaces</artifactId>
-   	   	</dependency>
+			<groupId>net.sf.ahtutils</groupId>
+  			<artifactId>ahtutils-interfaces</artifactId>
+		</dependency>
 		
 		<!-- Entites -->
 		<dependency>
    	   		<groupId>net.sf.exlp</groupId>
    	   		<artifactId>exlp-xml</artifactId>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>net.sf.ahtutils</groupId>
-   	   		<artifactId>ahtutils-xml</artifactId>
-   	   	</dependency>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ahtutils</groupId>
+			<artifactId>ahtutils-xml</artifactId>
+		</dependency>
 		
 		<!-- JPA -->
 		<dependency>
@@ -59,21 +59,21 @@
 		</dependency>
 		
 		<!-- JAXB -->
-      	<dependency>
-   	   		<groupId>javax.xml.bind</groupId>
-   	   		<artifactId>jaxb-api</artifactId>
-   	   		<scope>provided</scope>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>com.sun.xml.bind</groupId>
-   	   		<artifactId>jaxb-impl</artifactId>
-   	   		<scope>provided</scope>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>com.sun.xml.bind</groupId>
-   	   		<artifactId>jaxb-xjc</artifactId>
-   	   		<scope>provided</scope>
-   	   	</dependency>
+     	<dependency>
+  	   		<groupId>javax.xml.bind</groupId>
+  	   		<artifactId>jaxb-api</artifactId>
+  	   		<scope>provided</scope>
+  	   	</dependency>
+  	   	<dependency>
+  	   		<groupId>com.sun.xml.bind</groupId>
+  	   		<artifactId>jaxb-impl</artifactId>
+  	   		<scope>provided</scope>
+  	   	</dependency>
+  	   	<dependency>
+  	   		<groupId>com.sun.xml.bind</groupId>
+  	   		<artifactId>jaxb-xjc</artifactId>
+  	   		<scope>provided</scope>
+  	   	</dependency>
 		
 		<!-- Logging -->
 		<dependency>
@@ -89,16 +89,16 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-   	   		<groupId>junit</groupId>
-   	   		<artifactId>junit</artifactId>
-   	   		<type>jar</type>
-   	   		<scope>test</scope>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>net.sf.exlp</groupId>
-   	   		<artifactId>exlp-util</artifactId>
-   	   		<scope>test</scope>
-   	   	</dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.exlp</groupId>
+			<artifactId>exlp-util</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>net.sf.ahtutils</groupId>
 			<artifactId>ahtutils-test</artifactId>
@@ -109,7 +109,6 @@
 			<artifactId>ahtutils-util</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 	</dependencies>
 	
 	<build>

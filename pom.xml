@@ -24,10 +24,11 @@
 	</modules>
 
 	<properties>
+		<my.build.directory>target</my.build.directory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<my.build.directory>target</my.build.directory>
 		<maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
+		<maven.ignore>file://${basedir}/../maven/src/main/resources/geojsf/maven/ignore-versions.xml</maven.ignore>
 	</properties>
 	
 	<prerequisites>
@@ -80,16 +81,6 @@
 	         </dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>sonatype.snapshot</id>
-			<name>Sonatype Snapshot Repository</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-			<releases><enabled>false</enabled></releases>
-			<snapshots><enabled>true</enabled></snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 		
 	<build>
 		<pluginManagement>
@@ -121,9 +112,9 @@
             			<configuration>
               				<rules>
                 				<bannedDependencies>
-                  					<excludes>
+										<excludes>
                     					<exclude>commons-logging:commons-logging</exclude>
-                  					</excludes>
+										</excludes>
                 				</bannedDependencies>
               				</rules>
               				<fail>true</fail>
@@ -143,6 +134,16 @@
 			</plugin>
         </plugins>
 	</build>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype.snapshot</id>
+			<name>Sonatype Snapshot Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+			<releases><enabled>false</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 	
 	<repositories>
         <repository>
