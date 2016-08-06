@@ -32,6 +32,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMonitoringStationRest.class);
 
 	private final Class<STATION> cStation;
+	@SuppressWarnings("unused")
 	private final Class<CAP> cCap;
 	private final Class<CAPT> cCapT;
 	private final Class<CAPS> cCapS;
@@ -78,14 +79,14 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 				try
 				{
 					List<CAP> capabilities = new ArrayList<CAP>();
-//					if(station.isSetCapabilities() && station.getCapabilities().isSetCapability())
+/*					if(station.isSetCapabilities() && station.getCapabilities().isSetCapability())
 					{
-//						for(Capability c : station.getCapabilities().getCapability())
+						for(Capability c : station.getCapabilities().getCapability())
 						{
 						//	capabilities.add(fGeoMonitoring.fByCode(cCapT,c.getCode()));
 						}
 					}
-					
+*/					
 					ejb = efStation.build(station,capabilities);
 					ejb = fUtils.persist(ejb);
 					efLang.persistMissingLangs(fUtils,defaultLangs,ejb);

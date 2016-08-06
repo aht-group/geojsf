@@ -3,8 +3,6 @@ package org.geojsf.component;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UINamingContainer;
 import javax.faces.component.behavior.ClientBehaviorHolder;
@@ -24,8 +22,6 @@ import org.slf4j.LoggerFactory;
 public class Rotation extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Rotation.class);
-	
-	private static enum Attribute {}
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException

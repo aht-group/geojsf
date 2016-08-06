@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class TestDefaultWfsFeatureIdResolver extends AbstractGeoJsfUtilTest
 {
-	private Element e1,e2;
+	private Element e1;
 	private String layerCode = "dams";
 	private Namespace ns;
 	private long id = 20;
