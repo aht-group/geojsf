@@ -27,7 +27,6 @@
 		<my.build.directory>target</my.build.directory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
 		<maven.ignore>file://${basedir}/../maven/src/main/resources/geojsf/maven/ignore-versions.xml</maven.ignore>
 	</properties>
 	
@@ -91,12 +90,12 @@
 					<version>0.2.6-SNAPSHOT</version>
 				</plugin>
 				<plugin>
-			         <groupId>org.apache.maven.plugins</groupId>
-			        	<artifactId>maven-pmd-plugin</artifactId>
-			        	<version>3.6</version>
-			        	<configuration>
-				        	<linkXRef>false</linkXRef>
-				      </configuration>
+		         <groupId>org.apache.maven.plugins</groupId>
+		        	<artifactId>maven-pmd-plugin</artifactId>
+		        	<version>3.6</version>
+		        	<configuration>
+			        	<linkXRef>false</linkXRef>
+			      </configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
