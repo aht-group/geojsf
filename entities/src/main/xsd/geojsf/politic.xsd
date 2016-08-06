@@ -2,7 +2,7 @@
 <xsd:schema targetNamespace="http://www.geojsf.org/politic"
     xmlns:gp="http://www.geojsf.org/politic"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<xsd:import namespace="http://geojsf.sf.net/openlayers" schemaLocation="openlayers.xsd"/>
+	<xsd:import namespace="http://www.geojsf.org"	schemaLocation="geojsf.xsd"/>
 	<xsd:element name="region">
         <xsd:complexType>
             <xsd:sequence>

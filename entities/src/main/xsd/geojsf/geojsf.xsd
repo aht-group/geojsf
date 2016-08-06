@@ -5,8 +5,8 @@
     xmlns:us="http://ahtutils.aht-group.com/status"
     xmlns:usym="http://ahtutils.aht-group.com/symbol"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<xsd:import namespace="http://ahtutils.aht-group.com/status" schemaLocation="../../../../../../utils/xml/src/main/xsd/aht/status.xsd"/>
-	<xsd:import namespace="http://ahtutils.aht-group.com/symbol" schemaLocation="../../../../../../utils/xml/src/main/xsd/aht/symbol.xsd"/>
+	<xsd:import namespace="http://ahtutils.aht-group.com/status"	schemaLocation="../../../../../../jeesl/xml/src/main/xsd/aht/status.xsd"/>
+	<xsd:import namespace="http://ahtutils.aht-group.com/symbol"	schemaLocation="../../../../../../jeesl/xml/src/main/xsd/aht/symbol.xsd"/>
 	<xsd:element name="query">
 		<xsd:complexType>
 			<xsd:sequence>

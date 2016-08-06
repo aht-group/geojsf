@@ -4,8 +4,8 @@
 	xmlns:net="http://exlp.sf.net/net"
 	xmlns:id="http://exlp.sf.net/identity"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<xsd:import namespace="http://exlp.sf.net/net" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/net.xsd"/>
-	<xsd:import namespace="http://exlp.sf.net/identity" schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/identity.xsd"/>
+	<xsd:import namespace="http://exlp.sf.net/net"			schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/net.xsd"/>
+	<xsd:import namespace="http://exlp.sf.net/identity"	schemaLocation="../../../../../../exlp/xml/src/main/xsd/util/identity.xsd"/>
 	<xsd:element name="layers">
 		<xsd:complexType>
 			<xsd:sequence>
