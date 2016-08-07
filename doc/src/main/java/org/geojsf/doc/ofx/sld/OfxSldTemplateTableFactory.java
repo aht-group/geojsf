@@ -7,6 +7,7 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.doc.GeoJsfDocumentation;
 import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.SldTemplate;
+import org.jeesl.doc.ofx.OfxMultiLangFactory;
 import org.openfuxml.content.ofx.Comment;
 import org.openfuxml.content.table.Body;
 import org.openfuxml.content.table.Cell;
@@ -27,7 +28,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
-import net.sf.ahtutils.doc.ofx.util.OfxMultiLangFactory;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.status.Translation;
 import net.sf.ahtutils.xml.status.Translations;
