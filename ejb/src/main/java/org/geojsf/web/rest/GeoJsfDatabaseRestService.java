@@ -46,12 +46,11 @@ import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.aht.Container;
 import net.sf.ahtutils.xml.status.Status;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
-public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
+public class GeoJsfDatabaseRestService <L extends UtilsLang,
 										D extends UtilsDescription,
 										G extends UtilsGraphic<L,D,G,GT,GS>,
 										GT extends UtilsStatus<GT,L,D>,
@@ -71,9 +70,12 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 										>
 	implements GeoJsfDatabaseExportRest,GeoJsfDatabaseImportRest2
 {
-	final static Logger logger = LoggerFactory.getLogger(GeoJsfRestDatabaseExporter.class);
+	final static Logger logger = LoggerFactory.getLogger(GeoJsfDatabaseRestService.class);
 	
 	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
+	
+	private final Class<L> cLang;
+	private final Class<D> cDescription;
 	
 	private final Class<SERVICE> cService;
 	private final Class<CATEGORY> cCategory;
@@ -87,9 +89,13 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	
 	private XmlStatusFactory xfStatus;
 	
-	private GeoJsfRestDatabaseExporter(GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort, final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate, final Class<TMP> cTypeMultiPolygon)
+	private GeoJsfDatabaseRestService(GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort, final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate, final Class<TMP> cTypeMultiPolygon)
 	{
 		this.fGeo=fGeo;
+		
+		this.cLang=cLang;
+		this.cDescription=cDescription;
+		
 		this.cCategory=cCategory;
 		this.cService=cService;
 		this.cLayer=cLayer;
@@ -120,10 +126,10 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 					SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 					TMP extends UtilsStatus<TMP,L,D>>
-		GeoJsfRestDatabaseExporter<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,TMP>
-		factory(GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate, final Class<TMP> cTypeMultiPolygon)
+		GeoJsfDatabaseRestService<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,TMP>
+		factory(GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate, final Class<TMP> cTypeMultiPolygon)
 	{
-		return new GeoJsfRestDatabaseExporter<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,TMP>(fGeo,cCategory,cService,cLayer,cMap,cViewPort,cSldType,cSldTemplate,cTypeMultiPolygon);
+		return new GeoJsfDatabaseRestService<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,TMP>(fGeo,cLang,cDescription,cCategory,cService,cLayer,cMap,cViewPort,cSldType,cSldTemplate,cTypeMultiPolygon);
 	}
 
 	@Override
@@ -254,15 +260,14 @@ public class GeoJsfRestDatabaseExporter <L extends UtilsLang,
 	@Override public DataUpdate importGeoJsfSldTypes(Container types){return importStatus(cTypeMultiPolygon,types,null);}
 	
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public <S extends UtilsStatus<S,L,D>, P extends UtilsStatus<P,L,D>> DataUpdate importStatus(Class<S> clStatus, Container container, Class<P> clParent)
+    public <S extends UtilsStatus<S,L,D>, P extends UtilsStatus<P,L,D>> DataUpdate importStatus(Class<S> clStatus, Container container, Class<P> cParent)
     {
     	for(Status xml : container.getStatus()){xml.setGroup(clStatus.getSimpleName());}
 		AhtStatusDbInit asdi = new AhtStatusDbInit();
- //       asdi.setStatusEjbFactory(EjbStatusFactory.createFactory(clStatus, clLang, clDescription));
+        asdi.setStatusEjbFactory(EjbStatusFactory.createFactory(clStatus, cLang, cDescription));
         asdi.setFacade(fGeo);
- //       DataUpdate dataUpdate = asdi.iuStatus(container.getStatus(), clStatus, clLang, clParent);
- //       asdi.deleteUnusedStatus(clStatus, clLang, clDescription);
-//        return dataUpdate;
-        return null;
+        DataUpdate dataUpdate = asdi.iuStatus(container.getStatus(),clStatus,cLang,cParent);
+        asdi.deleteUnusedStatus(clStatus,cLang,cDescription);
+        return dataUpdate;
     }
 }
