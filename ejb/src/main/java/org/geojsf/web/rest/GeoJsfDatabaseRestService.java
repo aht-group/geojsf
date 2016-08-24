@@ -233,14 +233,15 @@ public class GeoJsfDatabaseRestService <L extends UtilsLang,
 	{
 		Container aht = XmlContainerFactory.build();
 		for(SLDTYPE ejb : fGeo.allOrderedPosition(cSldType)){aht.getStatus().add(xfStatus.build(ejb));}
+		
 		return aht;
 	}
 	
 	@Override public Container exportTypesMultiPolygon()
 	{
-		Container aht = XmlContainerFactory.build();
-		for(TMP ejb : fGeo.allOrderedPosition(cTypeMultiPolygon)){aht.getStatus().add(xfStatus.build(ejb));}
-		return aht;
+		Container jeesl = XmlContainerFactory.build();
+		for(TMP ejb : fGeo.allOrderedPosition(cTypeMultiPolygon)){jeesl.getStatus().add(xfStatus.build(ejb));}		
+		return jeesl;
 	}
 
 	@Override public Repository exportSldTemplates()
