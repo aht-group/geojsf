@@ -258,7 +258,7 @@ public class GeoJsfDatabaseRestService <L extends UtilsLang,
 	}
 	
 	
-	@Override public DataUpdate importGeoJsfSldTypes(Container types){return importStatus(cTypeMultiPolygon,types,null);}
+	@Override public DataUpdate importGeoJsfTypesMultipolygon(Container types){return importStatus(cTypeMultiPolygon,types,null);}
 	
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public <S extends UtilsStatus<S,L,D>, P extends UtilsStatus<P,L,D>> DataUpdate importStatus(Class<S> clStatus, Container container, Class<P> cParent)

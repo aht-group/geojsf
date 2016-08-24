@@ -13,6 +13,6 @@ public interface GeoJsfDatabaseImportRest2
 {		
 	//Will be merged to GeoJsfDbImportRest
 	
-	@POST @Path("/geojsf/sld/type") @Produces(MediaType.APPLICATION_XML) @Consumes(MediaType.APPLICATION_XML)
-	DataUpdate importGeoJsfSldTypes(Container types);
+	@POST @Path("/geojsf/type/multipolygon") @Produces(MediaType.APPLICATION_XML) @Consumes(MediaType.APPLICATION_XML)
+	DataUpdate importGeoJsfTypesMultipolygon(Container types);
 }
