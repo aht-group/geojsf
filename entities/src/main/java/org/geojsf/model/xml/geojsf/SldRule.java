@@ -28,7 +28,7 @@ import net.sf.ahtutils.xml.symbol.Graphic;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}style"/&gt;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/&gt;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/&gt;
- *         &lt;element ref="{http://ahtutils.aht-group.com/symbol}graphic"/&gt;
+ *         &lt;element ref="{http://www.jeesl.org/symbol}graphic"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" /&gt;
  *       &lt;attribute name="size" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
@@ -64,7 +64,7 @@ public class SldRule
     protected Langs langs;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
     protected Descriptions descriptions;
-    @XmlElement(namespace = "http://ahtutils.aht-group.com/symbol", required = true)
+    @XmlElement(namespace = "http://www.jeesl.org/symbol", required = true)
     protected Graphic graphic;
     @XmlAttribute(name = "id")
     protected Long id;

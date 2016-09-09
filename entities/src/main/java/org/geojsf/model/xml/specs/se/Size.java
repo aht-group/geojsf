@@ -64,8 +64,8 @@ public class Size
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Function }
      * {@link String }
+     * {@link Function }
      * 
      * 
      */
