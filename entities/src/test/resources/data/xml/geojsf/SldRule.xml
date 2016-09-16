@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<geojsf:sldRule xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns2="http://ahtutils.aht-group.com/security" xmlns:geojsf="http://www.geojsf.org" xmlns:ns4="http://exlp.sf.net/io" xmlns:usym="http://ahtutils.aht-group.com/symbol" id="123" size="1" color="CCAABB" lowerBound="123.45" upperBound="987.65">
+<geojsf:sldRule xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns2="http://ahtutils.aht-group.com/security" xmlns:geojsf="http://www.geojsf.org" xmlns:ns4="http://exlp.sf.net/io" xmlns:jsym="http://www.jeesl.org/symbol" id="123" size="1" color="CCAABB" lowerBound="123.45" upperBound="987.65">
     <geojsf:sld id="1"/>
     <us:style code="myStyle"/>
     <us:langs/>
     <us:descriptions/>
-    <usym:graphic/>
+    <jsym:graphic/>
 </geojsf:sldRule>
