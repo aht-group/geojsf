@@ -1,6 +1,5 @@
 package org.geojsf.util.db.init;
 
-import net.sf.ahtutils.db.ejb.AhtDbEjbUpdater;
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
@@ -25,6 +24,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.Service;
+import org.jeesl.util.ejb.JeeslDbCodeEjbUpdater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,7 +84,7 @@ public class DbServiceInit <L extends UtilsLang,D extends UtilsDescription,
 	{
 		logger.debug("i/u "+Repository.class.getSimpleName()+" with "+repository.getService().size()+" "+Service.class.getSimpleName());
 		
-		AhtDbEjbUpdater<SERVICE> ejbUpdater = AhtDbEjbUpdater.createFactory(cService);
+		JeeslDbCodeEjbUpdater<SERVICE> ejbUpdater = JeeslDbCodeEjbUpdater.createFactory(cService);
 		ejbUpdater.dbEjbs(fSecurity.all(cService));
 
 		for(Service service : repository.getService())

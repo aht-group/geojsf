@@ -2,7 +2,6 @@ package org.geojsf.util.db.init;
 
 import java.util.List;
 
-import net.sf.ahtutils.db.ejb.AhtDbEjbUpdater;
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
@@ -30,6 +29,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.View;
+import org.jeesl.util.ejb.JeeslDbCodeEjbUpdater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -102,7 +102,7 @@ public class DbMapInit <L extends UtilsLang,D extends UtilsDescription,
 	{
 		logger.debug("i/u "+Maps.class.getSimpleName()+" with "+maps.getMap()+" "+Map.class.getSimpleName());
 		
-		AhtDbEjbUpdater<MAP> ejbUpdater = AhtDbEjbUpdater.createFactory(cMap);
+		JeeslDbCodeEjbUpdater<MAP> ejbUpdater = JeeslDbCodeEjbUpdater.createFactory(cMap);
 		ejbUpdater.dbEjbs(fUtils.all(cMap));
 
 		for(Map map : maps.getMap())
