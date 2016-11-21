@@ -8,7 +8,6 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.geojsf.controller.util.DummyViewFactory;
 import org.geojsf.model.json.MapConfiguration;
 import org.geojsf.model.json.MapData;
@@ -32,6 +31,7 @@ import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicStyle;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicType;
 import org.junit.Test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 /**
@@ -42,7 +42,8 @@ public class TestJavaScript {
     
     String javaScriptLibraryPath = "src/main/resources/META-INF/resources/js.geojsf/";
     
-    public TestJavaScript() {
+    public TestJavaScript()
+    {
     }
     
     @Test
