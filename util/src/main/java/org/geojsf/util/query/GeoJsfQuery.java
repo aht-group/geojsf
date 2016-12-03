@@ -14,8 +14,8 @@ import org.geojsf.model.xml.geojsf.SldRule;
 import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.geojsf.model.xml.geojsf.View;
 import org.geojsf.model.xml.geojsf.ViewPort;
+import org.jeesl.util.query.xml.StatusQuery;
 
-import net.sf.ahtutils.controller.util.query.StatusQuery;
 import net.sf.ahtutils.factory.xml.status.XmlStyleFactory;
 import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 

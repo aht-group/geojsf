@@ -6,14 +6,14 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.SldRule;
+import org.jeesl.factory.xml.system.symbol.XmlGraphicFactory;
+import org.jeesl.factory.xml.system.symbol.XmlSymbolFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
 import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
-import net.sf.ahtutils.factory.xml.symbol.XmlGraphicFactory;
-import net.sf.ahtutils.factory.xml.symbol.XmlSymbolFactory;
 import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphicType;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
