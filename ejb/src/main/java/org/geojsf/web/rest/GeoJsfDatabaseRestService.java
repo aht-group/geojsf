@@ -35,6 +35,7 @@ import org.geojsf.model.xml.geojsf.ViewPort;
 import org.geojsf.model.xml.geojsf.ViewPorts;
 import org.geojsf.util.query.GeoJsfQuery;
 import org.jeesl.factory.xml.system.status.XmlStatusFactory;
+import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.jeesl.util.query.xml.StatusQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,6 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.db.xml.AhtStatusDbInit;
 import net.sf.ahtutils.factory.ejb.status.EjbStatusFactory;
 import net.sf.ahtutils.factory.xml.aht.XmlContainerFactory;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -52,7 +52,7 @@ import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public class GeoJsfDatabaseRestService <L extends UtilsLang,
 										D extends UtilsDescription,
-										G extends UtilsGraphic<L,D,G,GT,GS>,
+										G extends JeeslGraphic<L,D,G,GT,GS>,
 										GT extends UtilsStatus<GT,L,D>,
 										GS extends UtilsStatus<GS,L,D>,
 										CATEGORY extends GeoJsfCategory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
@@ -111,7 +111,7 @@ public class GeoJsfDatabaseRestService <L extends UtilsLang,
 	
 	public static <L extends UtilsLang,
 					D extends UtilsDescription,
-					G extends UtilsGraphic<L,D,G,GT,GS>,
+					G extends JeeslGraphic<L,D,G,GT,GS>,
 					GT extends UtilsStatus<GT,L,D>,
 					GS extends UtilsStatus<GS,L,D>,
 					CATEGORY extends GeoJsfCategory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,

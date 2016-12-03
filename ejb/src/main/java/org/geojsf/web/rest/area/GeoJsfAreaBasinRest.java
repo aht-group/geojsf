@@ -2,7 +2,6 @@ package org.geojsf.web.rest.area;
 
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
@@ -17,6 +16,7 @@ import org.geojsf.interfaces.model.area.GeoBasin;
 import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestExport;
 import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestImport;
 import org.geojsf.model.xml.area.Basin;
+import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.geojsf.model.xml.area.Areas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

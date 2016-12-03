@@ -17,6 +17,9 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
+import org.jeesl.interfaces.model.system.symbol.JeeslGraphicStyle;
+import org.jeesl.interfaces.model.system.symbol.JeeslGraphicType;
 import org.primefaces.event.ReorderEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +30,6 @@ import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
 import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.factory.ejb.symbol.EjbGraphicFactory;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphic;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphicStyle;
-import net.sf.ahtutils.interfaces.model.graphic.UtilsGraphicType;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -38,7 +38,7 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class SldRuleHandler <L extends UtilsLang,
 							D extends UtilsDescription,
-							G extends UtilsGraphic<L,D,G,GT,GS>,
+							G extends JeeslGraphic<L,D,G,GT,GS>,
 							GT extends UtilsStatus<GT,L,D>,
 							GS extends UtilsStatus<GS,L,D>,
 							CATEGORY extends GeoJsfCategory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
@@ -111,7 +111,7 @@ public class SldRuleHandler <L extends UtilsLang,
 	
 	public static <L extends UtilsLang,
 					D extends UtilsDescription,
-					G extends UtilsGraphic<L,D,G,GT,GS>,
+					G extends JeeslGraphic<L,D,G,GT,GS>,
 					GT extends UtilsStatus<GT,L,D>,
 					GS extends UtilsStatus<GS,L,D>,
 					CATEGORY extends GeoJsfCategory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
@@ -157,8 +157,8 @@ public class SldRuleHandler <L extends UtilsLang,
 		rule.setName(efLang.createEmpty(defaultLangs));
 		rule.setDescription(efDescription.createEmpty(defaultLangs));
 		
-		GT type = fGeo.fByCode(cGraphicType, UtilsGraphicType.Code.symbol.toString());
-		GS style = fGeo.fByCode(cGraphicStyle, UtilsGraphicStyle.Code.circle.toString());
+		GT type = fGeo.fByCode(cGraphicType, JeeslGraphicType.Code.symbol.toString());
+		GS style = fGeo.fByCode(cGraphicStyle, JeeslGraphicStyle.Code.circle.toString());
 		G g = efGraphic.buildSymbol(type, style);
 		rule.setGraphic(g);
 	}

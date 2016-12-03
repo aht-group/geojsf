@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
@@ -22,6 +21,7 @@ import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRest
 import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRestImport;
 import org.geojsf.model.xml.monitoring.Station;
 import org.geojsf.model.xml.monitoring.Stations;
+import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

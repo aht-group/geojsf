@@ -2,12 +2,12 @@ package org.geojsf.factory.xml.monitoring;
 
 import java.io.Serializable;
 
-import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.ahtutils.xml.status.Status;
 import net.sf.ahtutils.xml.status.Type;
 
 import org.geojsf.model.xml.monitoring.Capability;
 import org.jeesl.factory.xml.system.status.XmlStatusFactory;
+import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

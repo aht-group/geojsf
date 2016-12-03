@@ -14,10 +14,9 @@ import org.geojsf.model.xml.geojsf.SldRule;
 import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.geojsf.model.xml.geojsf.View;
 import org.geojsf.model.xml.geojsf.ViewPort;
+import org.jeesl.factory.xml.system.status.XmlStyleFactory;
+import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.jeesl.util.query.xml.StatusQuery;
-
-import net.sf.ahtutils.factory.xml.status.XmlStyleFactory;
-import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 
 public class GeoJsfQuery
 {

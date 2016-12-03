@@ -2,11 +2,11 @@ package org.geojsf.model.xml.monitoring;
 
 import java.io.FileNotFoundException;
 
-import net.sf.ahtutils.factory.xml.status.XmlTypeFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.jeesl.factory.xml.system.status.XmlStatusFactory;
+import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
