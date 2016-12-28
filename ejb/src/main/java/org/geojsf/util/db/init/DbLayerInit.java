@@ -26,7 +26,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.model.xml.geojsf.Layers;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
-import org.jeesl.util.ejb.JeeslDbCodeEjbUpdater;
+import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

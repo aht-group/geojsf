@@ -29,7 +29,7 @@ import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.View;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
-import org.jeesl.util.ejb.JeeslDbCodeEjbUpdater;
+import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
