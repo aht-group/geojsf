@@ -143,7 +143,7 @@ public class GeoServerExporter
 	{
 		logger.info("Loading style: "+style.getName());
 		Document doc = styleManager.getStyle(workspace.getName(),style.getName());
-		File f = new File(fBase,"styles"+File.separator+style.getName()+".xml");
+		File f = new File(fBase,"styles"+File.separator+style.getName()+".sld");
 		JDomUtil.save(doc, f, Format.getPrettyFormat());
 	}
 	

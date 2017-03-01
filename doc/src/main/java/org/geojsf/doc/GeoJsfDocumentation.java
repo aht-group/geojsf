@@ -10,10 +10,10 @@ public interface GeoJsfDocumentation
 	public static String keyViews = "net.sf.ahtutils.doc.file.views";
 	public static String keyRoles = "net.sf.ahtutils.doc.file.roles";
 	
-	public static String msgGeoAdmin = "msg.geojsf/admin.xml";
-	public static String msgGeoCoordinates = "msg.geojsf/coordinates.xml";
-	public static String msgSld = "msg.geojsf/sld.xml";
-	public static String msgMonitoringStation = "msg.geojsf/monitoring/station.xml";
+	public static String msgGeoAdmin = "geojsf/msg/admin.xml";
+	public static String msgGeoCoordinates = "geojsf/msg/coordinates.xml";
+	public static String msgSld = "geojsf/msg/sld.xml";
+	public static String msgMonitoringStation = "geojsf/msg/monitoring/station.xml";
 	
 	public static final String lstInstGeoserverUser = "admin/installation/geoserver/user.txt";
 	public static final String listingInstallGeoserverExtract = "admin/installation/geoserver/extract.txt";

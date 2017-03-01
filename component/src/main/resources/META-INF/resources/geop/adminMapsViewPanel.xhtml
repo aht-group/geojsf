@@ -22,13 +22,19 @@
 			<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">
 				<p:outputLabel value="#{msg.geoJsfAdminOrderNo}"/>
 				<h:outputText value="#{cc.attrs.bean.view.orderNo}"/>
-				
-				<p:outputLabel value="#{msg.geoJsfViewLayerDefaultVisible}"/>
+			</p:panelGrid>
+			<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">
 				<p:selectBooleanCheckbox value="#{cc.attrs.bean.view.visible}" />
-				
-				<p:outputLabel value="#{msg.geoJsfAdminViewLegend}"/>
+				<p:outputLabel value="#{msg.geoJsfViewLayerDefaultVisible}"/>
+
 				<p:selectBooleanCheckbox value="#{cc.attrs.bean.view.legend}" />
+				<p:outputLabel value="#{msg.geoJsfAdminShowInLegend}"/>
 				
+				<p:selectBooleanCheckbox value="#{cc.attrs.bean.view.legendSymbol}" />
+				<p:outputLabel value="#{msg.geoJsfAdminViewLegendSymbol}"/>
+			</p:panelGrid>
+			<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">		
+		
 				<p:outputLabel value="#{msg.geoJsfAdminLegendOrderNo}"/>
 				<h:inputText value="#{cc.attrs.bean.view.legendNo}" styleClass="w100"/>
 				

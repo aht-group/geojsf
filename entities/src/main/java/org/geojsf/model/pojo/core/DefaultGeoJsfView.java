@@ -55,9 +55,9 @@ public class DefaultGeoJsfView implements Serializable,EjbRemoveable,EjbPersista
 	@Override public Boolean getLegend() {return legend;}
 	@Override public void setLegend(Boolean legend) {this.legend=legend;}
 	
-	//******************************************************************************
-	
-
+	private Boolean legendSymbol;
+	@Override public Boolean getLegendSymbol() {return legendSymbol;}
+	@Override public void setLegendSymbol(Boolean legendSymbol) {this.legendSymbol = legendSymbol;}
 	
 	@Override public DefaultGeoJsfMap getMap() {return view;}
 	@Override public void setMap(DefaultGeoJsfMap view) {this.view = view;}

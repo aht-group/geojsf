@@ -86,11 +86,18 @@
 			<s:lang key="fr" translation="#"/>
 		</s:langs>
 	</s:translation>
-	<s:translation key="geoJsfAdminViewLegend">
+	<s:translation key="geoJsfAdminShowInLegend">
 		<s:langs>
-			<s:lang key="de" translation="Legend"/>
-			<s:lang key="en" translation="Legend"/>
-			<s:lang key="fr" translation="Legend"/>
+			<s:lang key="de" translation="Zeige in Legende"/>
+			<s:lang key="en" translation="Show in Legend"/>
+			<s:lang key="fr" translation="Show in Legend"/>
+		</s:langs>
+	</s:translation>
+		<s:translation key="geoJsfAdminViewLegendSymbol">
+		<s:langs>
+			<s:lang key="de" translation="Zeige Symbol in Legende"/>
+			<s:lang key="en" translation="Show Legend Symbol"/>
+			<s:lang key="fr" translation="Show Legend Symbol"/>
 		</s:langs>
 	</s:translation>
 	<s:translation key="geoJsfAdminLegendOrderNo">
@@ -102,9 +109,9 @@
 	</s:translation>
 	<s:translation key="geoJsfViewLayerDefaultVisible">
 		<s:langs>
-			<s:lang key="de" translation="Sichtbar"/>
-			<s:lang key="en" translation="Visible"/>
-			<s:lang key="fr" translation="Visible"/>
+			<s:lang key="de" translation="Sichtbar (Voreinstellung)"/>
+			<s:lang key="en" translation="Visible (Default)"/>
+			<s:lang key="fr" translation="Visible (Default)"/>
 		</s:langs>
 	</s:translation>
 		<s:translation key="geoJsfAdminPreview">

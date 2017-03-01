@@ -124,7 +124,7 @@ public class GeoServerConfigurator
 	private void configureStyle(Style style) throws IOException
 	{
 		logger.info("Creating Style: "+style.getName());
-		Document doc = JDomUtil.load(configBaseDir+File.separator+"styles"+File.separator+style.getName()+".xml");
+		Document doc = JDomUtil.load(configBaseDir+File.separator+"styles"+File.separator+style.getName()+".sld");
 //		if(style.getName().equals("cblt.water.quality.spot")){JDomUtil.debug(doc);}
 		styleManager.createStyle(workspace.getName(),doc);
 	}

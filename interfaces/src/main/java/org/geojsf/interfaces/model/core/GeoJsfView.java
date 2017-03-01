@@ -52,4 +52,6 @@ public interface GeoJsfView<L extends UtilsLang,D extends UtilsDescription,
 	Boolean getLegend();
 	void setLegend(Boolean legend);
 	
+	Boolean getLegendSymbol();
+	void setLegendSymbol(Boolean legendSymbol);
 }
