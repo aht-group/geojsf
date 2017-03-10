@@ -165,7 +165,12 @@ public class GeoServerConfigurator
 			FeatureTypes fts = JaxbUtil.loadJAXB(configBaseDir+File.separator+GeoServerFeatureTypeManager.xml, FeatureTypes.class);
 			for(FeatureType ft : fts.getFeatureType())
 			{
-				Document doc = JDomUtil.load(configBaseDir+File.separator+"featureTypes"+File.separator+ft.getName()+".xml");
+				StringBuilder sb = new StringBuilder();
+				sb.append(configBaseDir);
+				sb.append(File.separator).append("featureTypes");
+				sb.append(File.separator).append(ft.getName()).append(".xml");
+				logger.info("Feature Type: "+sb.toString());
+				Document doc = JDomUtil.load(sb.toString());
 				featureTypeManager.createFeatureType(workspace.getName(), ft.getDataStore().getName(), doc);
 			}
 		}
