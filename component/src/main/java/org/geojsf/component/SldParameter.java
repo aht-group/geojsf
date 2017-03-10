@@ -22,7 +22,9 @@ public class SldParameter extends UIComponentBase
 	
 	private static enum Attribute {value}
 	
-	private String value;
+	private String value; public void setValue(String value) {this.value = value;} public String getValue() {return value;}
+
+	@Override public String getFamily() {return null;}
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -44,11 +46,6 @@ public class SldParameter extends UIComponentBase
 		logger.info("Styled Layer Description (SLD) Parameter updated in Map. JavaScript Command: " +command);
 	}
 
-	public void setValue(String value) {this.value = value;}
-	public String getValue() {return value;}
 
-	@Override
-	public String getFamily() {
-		return null;
-	}
+	
 }

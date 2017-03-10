@@ -22,8 +22,11 @@ public class SqlViewParameter extends UIComponentBase
 	
 	private static enum Attribute {key, value}
 	
-	private String key;
-	private String value;
+	private String key; public String getKey() {return key;} public void setKey(String key) {this.key = key;}
+
+	private String value; public void setValue(String value) {this.value = value;} public String getValue() {return value;}
+
+	@Override public String getFamily() {return null;}
 	
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -44,16 +47,5 @@ public class SqlViewParameter extends UIComponentBase
 		String command = "<script>GeoJSF.updateSqlViewParams('" +key +":"+value +";');</script>";
 		ctx.getResponseWriter().write(command);
 		logger.info("SQL View Parameter updated in Map. JavaScript Command: " +command);
-	}
-
-	public void setValue(String value) {this.value = value;}
-	public String getValue() {return value;}
-
-	public String getKey() {return key;}
-	public void setKey(String key) {this.key = key;}
-
-	@Override
-	public String getFamily() {
-		return null;
-	}
+	}	
 }

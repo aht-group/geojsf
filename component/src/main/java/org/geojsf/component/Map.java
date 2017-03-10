@@ -52,7 +52,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 @ResourceDependencies({
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-        @ResourceDependency(library = "geoJsfCss"  , name = "ol.css", target = "head"),
+	@ResourceDependency(library = "geoJsfCss"  , name = "ol.css", target = "head"),
 	@ResourceDependency(library = "geojsf", name = "geojsf.css", target = "head")})
 @FacesComponent(value="org.geojsf.component.Map")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
@@ -79,9 +79,9 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 	// This is taken directly from the value attribute or is constructed from given LAYER components
 	private MAP          dmMap;
 	private List<String> temporalLayerNames;
-        private String       baseMap;
-        public String getBaseMap() {return baseMap;}
-        public void setBaseMap(String baseMap) {this.baseMap = baseMap;}
+	private String       baseMap;
+	public String getBaseMap() {return baseMap;}
+	public void setBaseMap(String baseMap) {this.baseMap = baseMap;}
 	
 	// Internal fields
 	private Coordinates coords            = new Coordinates();
@@ -595,17 +595,18 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 	@Override
 	public void restoreState(FacesContext context, Object state)
 	{
-		if (this.isRendered())
+		if(this.isRendered())
 		{
 			Object[] storedState = (Object[]) state;
 		    logger.debug("Restoring state.");
-			try {
-			initStage        = (Boolean) storedState[0];
-			serviceList      = (Hashtable<Long, OlService>) storedState[1];
-			layerNames       = (Hashtable<Long, String>) storedState[3];
-		    dmMap            = (MAP) storedState[4];
-			layerThatChanged = (Long) storedState[5];
-			changedState     = (Boolean) storedState[6];
+			try
+			{
+				initStage        = (Boolean) storedState[0];
+				serviceList      = (Hashtable<Long, OlService>) storedState[1];
+				layerNames       = (Hashtable<Long, String>) storedState[3];
+			    dmMap            = (MAP) storedState[4];
+				layerThatChanged = (Long) storedState[5];
+				changedState     = (Boolean) storedState[6];
 			}
 			catch (Exception e)
 			{
@@ -690,8 +691,8 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 	public Coordinates getCoords() {return coords;}
 	public void setCoords(Coordinates coords) {this.coords = coords;}
 
-	public Hashtable<Long, OlService> getServiceList() {return serviceList;}
-	public void setServiceList(Hashtable<Long, OlService> serviceList) {this.serviceList = serviceList;}
+	public Hashtable<Long,OlService> getServiceList() {return serviceList;}
+	public void setServiceList(Hashtable<Long,OlService> serviceList) {this.serviceList = serviceList;}
 
 	public List<String> getTemporalLayerNames() {return temporalLayerNames;}
 	public void setTemporalLayerNames(List<String> temporalLayerNames) {this.temporalLayerNames = temporalLayerNames;}
