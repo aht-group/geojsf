@@ -269,6 +269,28 @@ var GeoJSF = {
                          }
 		},
 		
+		updateViewParams : function(key, value)
+		{
+			 console.log("View Parameter Update requested. Trying to add " +key +" with a value of " +value);
+			 var params = {};
+			 params[key] = value;
+			 if (GeoJSF.map.getLayers())
+                         {
+                            GeoJSF.map.getLayers().forEach(function (layer) {
+                                if (layer.getSource() instanceof ol.source.OSM)
+                                {
+                                   console.log("Ignoring OSM base layer"); 
+                                }
+                                else
+                                {
+                                    layer.getSource().updateParams(params);
+                                    console.log("Merging new parameter: " +key +" with a value of " +value);
+                                }
+                            });
+                         }
+		},
+		
+		
 		updateSldParams : function(parameters)
 		{
 			 console.log("SLD Parameter Update requested.");
