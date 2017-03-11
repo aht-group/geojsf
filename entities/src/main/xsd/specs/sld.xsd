@@ -11,15 +11,23 @@
 			<xsd:sequence>
 				<xsd:element ref="sld:NamedLayer" maxOccurs="1"/>
 			</xsd:sequence>
+			<xsd:attribute name="version" type="xsd:string"/>
 		</xsd:complexType>
     </xsd:element>
     <xsd:element name="NamedLayer">
         <xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref="se:Name" maxOccurs="1"/>
+				<xsd:element ref="sld:Name" maxOccurs="1"/>
 				<xsd:element ref="sld:UserStyle" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Name">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
     </xsd:element>
 	<xsd:element name="UserStyle">
         <xsd:complexType>

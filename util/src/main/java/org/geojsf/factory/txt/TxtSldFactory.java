@@ -3,7 +3,6 @@ package org.geojsf.factory.txt;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
@@ -28,12 +27,7 @@ public class TxtSldFactory<L extends UtilsLang,
 	
 	public String build(SLD sld)
 	{
-		GeoJsfSldType.Type type =null;// = GeoJsfSldType.Type.valueOf(sld.getTemplate().getType().getCode());
-		switch(type)
-		{
-			case interval: return interval(sld);
-			default: return "";
-		}
+		return interval(sld);
 	}
 	
 	private String interval(SLD sld)

@@ -37,6 +37,10 @@ public class DefaultGeoJsfSld implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
+	private Boolean library;
+	public Boolean getLibrary() {return library;}
+	public void setLibrary(Boolean library) {this.library = library;}
+
 	@ManyToOne
 	private DefaultGeoJsfSldType type;
 	@Override public DefaultGeoJsfSldType getType() {return type;}
@@ -59,6 +63,10 @@ public class DefaultGeoJsfSld implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 	
+	private String statusClass;
+	public String getStatusClass() {return statusClass;}
+	public void setStatusClass(String statusClass) {this.statusClass = statusClass;}
+
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sld")
 	@JoinTable(name="GeoSld_Rule",joinColumns={@JoinColumn(name="sld")},inverseJoinColumns={@JoinColumn(name="rule")})
 	@OrderBy("position ASC")

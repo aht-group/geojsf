@@ -1,6 +1,7 @@
 package org.geojsf.mbean.admin;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
@@ -12,9 +13,11 @@ import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
+import org.geojsf.interfaces.model.sld.GeoJsfProvideSldStatus;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +32,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
-public class AbstractSldDynamicBean <L extends UtilsLang,
+public class AbstractSldLibraryBean <L extends UtilsLang,
 									D extends UtilsDescription,
 									G extends JeeslGraphic<L,D,G,GT,GS>,
 									GT extends UtilsStatus<GT,L,D>,
@@ -44,12 +47,11 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-									>
+									RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = LoggerFactory.getLogger(AbstractSldDynamicBean.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractSldLibraryBean.class);
 	
 	protected EjbLangFactory<L> efLang;
 	protected EjbDescriptionFactory<D> efDescription;
@@ -58,34 +60,51 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 	private GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
 	
 	private String[] langKeys;
-	private Class<SLD> cSld;
+	
 	private Class<SLDTEMPLATE> cTemplate;
+	private Class<SLDTYPE> cType;
+	private Class<SLD> cSld;
+
+	private List<SLDTYPE> types; public List<SLDTYPE> getTypes() {return types;}
+	private List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
+	private List<SLD> slds; public List<SLD> getSlds() {return slds;} public void setSlds(List<SLD> slds) {this.slds = slds;}
+	private List<String> sldStatusClasses; public List<String> getSldStatusClasses() {return sldStatusClasses;}
 	
-	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
-	protected List<SLD> slds; public List<SLD> getSlds() {return slds;} public void setSlds(List<SLD> slds) {this.slds = slds;}
+	private SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
+
+	public AbstractSldLibraryBean()
+	{
+		sldStatusClasses = new ArrayList<String>();
+	}
 	
-	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLD> cSld, final Class<SLDTYPE> cType,final Class<SLDTEMPLATE> cTemplate)
+	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLD> cSld, final Class<SLDTYPE> cType,final Class<SLDTEMPLATE> cTemplate)
 	{
 		this.langKeys=langKeys;
 		this.fGeo=fGeo;
 		this.cSld=cSld;
 		this.cTemplate=cTemplate;
+		this.cType=cType;
 		
 		efLang = EjbLangFactory.createFactory(cLang);
 		efDescription = EjbDescriptionFactory.createFactory(clDescription);
 		efSld = EjbGeoSldFactory.factory(cSld);
 				
 		templates = fGeo.all(cTemplate);
+		types = fGeo.allOrderedPositionVisible(cType);
+	}
+	
+	public void cancelSld(){reset(true);}
+	private void reset(boolean rSld)
+	{
+		if(rSld){sld=null;}
 	}
 
 	protected void reloadSlds()
 	{
-		slds = fGeo.fGlobalSlds(cSld);
+		slds = fGeo.fLibrarySlds();
 	}
 	
-	//TEMPLATE
-	protected SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
-	
+
 	public void selectSld() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.selectEntity(sld));
@@ -94,20 +113,20 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 	public void addSld()
 	{
 		logger.info(AbstractLogMessage.addEntity(cSld));
-		sld = efSld.build(null);
+		sld = efSld.build(null,true);
 		sld.setName(efLang.createEmpty(langKeys));
 		sld.setDescription(efDescription.createEmpty(langKeys));
-	}
-	
-	public void cancelSld()
-	{
-		sld=null;
 	}
 	
 	public void saveSld() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(sld));
-		sld.setTemplate(fGeo.find(cTemplate, sld.getTemplate()));
+		sld.setType(fGeo.find(cType, sld.getType()));
+		if(!sld.getType().getCode().equals(GeoJsfSldType.Type.template.toString())){sld.setTemplate(null);}
+		if(!sld.getType().getCode().equals(GeoJsfSldType.Type.status.toString())){sld.setStatusClass(null);}
+		
+		if(sld.getTemplate()!=null){sld.setTemplate(fGeo.find(cTemplate, sld.getTemplate()));}
+		
 		sld = fGeo.save(sld);
 		reloadSlds();
 	}
@@ -115,5 +134,19 @@ public class AbstractSldDynamicBean <L extends UtilsLang,
 	public void rmSld() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.rmEntity(sld));
+		fGeo.rm(sld);
+		reloadSlds();
+		reset(true);
+	}
+	
+	public void changeSldType()
+	{
+		sld.setType(fGeo.find(cType, sld.getType()));
+		logger.info(AbstractLogMessage.selectOneMenuChange(sld.getType()));
+	}
+	
+	protected <C extends GeoJsfProvideSldStatus> void activateSldType(Class<C> c)
+	{
+		sldStatusClasses.add(c.getName());
 	}
 }

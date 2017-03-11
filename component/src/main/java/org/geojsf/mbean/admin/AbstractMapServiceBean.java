@@ -99,7 +99,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
     	efView = EjbGeoViewFactory.factory(cView);
     	efViewPort = EjbGeoViewPortFactory.factory(cViewPort);
     	
-    	slds = fGeo.fGlobalSlds(cSld);
+    	slds = fGeo.fLibrarySlds();
 	}
 	
 	protected void reloadServices()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<sld:NamedLayer xmlns:se="http://www.opengis.net/se" xmlns:sld="http://www.opengis.net/sld">
-    <se:Name>myName</se:Name>
+<sld:NamedLayer xmlns:sld="http://www.opengis.net/sld" xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <sld:Name>myName</sld:Name>
     <sld:UserStyle/>
 </sld:NamedLayer>

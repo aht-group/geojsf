@@ -1,0 +1,33 @@
+package org.geojsf.model.xml.specs.sld;
+
+import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class TestXmlStyledLayerDescriptor extends AbstractXmlSldTest<StyledLayerDescriptor>
+{
+	final static Logger logger = LoggerFactory.getLogger(TestXmlStyledLayerDescriptor.class);
+	
+	public TestXmlStyledLayerDescriptor(){super(StyledLayerDescriptor.class);}
+	public static StyledLayerDescriptor create(boolean withChildren){return (new TestXmlStyledLayerDescriptor()).build(withChildren);}
+    
+    public StyledLayerDescriptor build(boolean withChilds)
+    {
+    	StyledLayerDescriptor xml = new StyledLayerDescriptor();
+    	xml.setVersion("1.0.0");
+    	
+    	if(withChilds)
+    	{
+    		xml.setNamedLayer(TestXmlNamedLayer.create(false));
+    	}
+    	
+    	return xml;
+    }
+	
+	public static void main(String[] args)
+    {
+		GeoJsfXmlTstBootstrap.init();
+		TestXmlStyledLayerDescriptor test = new TestXmlStyledLayerDescriptor();
+		test.saveReferenceXml();
+    }
+}

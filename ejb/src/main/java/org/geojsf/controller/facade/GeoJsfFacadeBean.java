@@ -56,10 +56,13 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 		
 {	
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfFacadeBean.class);
-		
-	public GeoJsfFacadeBean(EntityManager em)
+	
+	private final Class<SLD> cSld;
+	
+	public GeoJsfFacadeBean(EntityManager em, final Class<SLD> cSld)
 	{
 		super(em);
+		this.cSld=cSld;
 	}
 
 	@Override public MAP load(Class<MAP> cView, MAP map)
@@ -203,18 +206,16 @@ public class GeoJsfFacadeBean <L extends UtilsLang,
 		this.rmProtected(rule);		
 	}
 
-	@Override public List<SLD> fGlobalSlds(Class<SLD> cSld)
+	@Override public List<SLD> fLibrarySlds()
 	{
 		CriteriaBuilder cB = em.getCriteriaBuilder();
 	    CriteriaQuery<SLD> criteriaQuery = cB.createQuery(cSld);
-	    
 	    Root<SLD> fromType = criteriaQuery.from(cSld);
 	    
-	    Path<Boolean> pGlobal = fromType.get("globalManaged");
+	    Path<Boolean> pLibrary = fromType.get(GeoJsfSld.Attributes.library.toString());
 	    
 	    CriteriaQuery<SLD> select = criteriaQuery.select(fromType);
-	    select.where( cB.equal(pGlobal, true));
-	    
+	    select.where(cB.equal(pLibrary,true));
 		return em.createQuery(select).getResultList();
 	}
 }

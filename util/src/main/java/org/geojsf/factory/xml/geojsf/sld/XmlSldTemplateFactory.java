@@ -2,21 +2,20 @@ package org.geojsf.factory.xml.geojsf.sld;
 
 import java.io.Serializable;
 
-import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
-import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Query;
 import org.geojsf.model.xml.geojsf.SldTemplate;
-import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
+import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 public class XmlSldTemplateFactory <L extends UtilsLang,
 									D extends UtilsDescription,

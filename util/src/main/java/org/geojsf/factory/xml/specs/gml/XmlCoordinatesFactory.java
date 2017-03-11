@@ -1,4 +1,4 @@
-package org.geojsf.factory.xml.gml;
+package org.geojsf.factory.xml.specs.gml;
 
 import java.io.Serializable;
 

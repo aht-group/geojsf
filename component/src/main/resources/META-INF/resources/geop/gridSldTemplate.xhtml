@@ -11,13 +11,13 @@
     xmlns:composite="http://java.sun.com/jsf/composite">
     
 	<composite:interface>
-		<composite:attribute name="bean" required="false" default="#{adminMapSldBean}"/>
+		<composite:attribute name="bean" required="false" default="#{gisSldTemplateBean}"/>
 	</composite:interface>
         
 	<composite:implementation>
 		<aup:grid id="grid">
 			<aht:row>
-				<aht:slot id="sTemplates" width="5">
+				<aht:slot id="sTemplates" width="4">
 					<h:form id="fTemplates">
 						<p:dataTable var="t" value="#{cc.attrs.bean.templates}"
 							selection="#{cc.attrs.bean.template}" selectionMode="single" rowKey="#{t.id}">
@@ -37,7 +37,7 @@
 					</p:dataTable>
 					</h:form>
 				</aht:slot>
-				<aht:slot id="sTemplate" width="7">
+				<aht:slot id="sTemplate" width="8">
 					<h:form id="fTemplate">
 						<p:panel header="#{msg.geoJsfAdminSldTemplate}" styleClass="auPanelWithGrid"  rendered="#{not empty cc.attrs.bean.template}">
 							<f:facet name="actions">
@@ -49,10 +49,10 @@
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
 								<p:inputText value="#{cc.attrs.bean.template.code}" autocomplete="false"/>
 							</p:panelGrid>
-							<aht:tabTranslationEditor value="#{cc.attrs.bean.template}"
+							<p:panelGrid columns="1" columnClasses="auPwg100">
+								<aht:tabTranslationEditor value="#{cc.attrs.bean.template}"
 											keys="#{translationBean.langKeys}" withDescription="true"
 											labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"/>
-							<p:panelGrid columns="1" columnClasses="auPwg100">
 								<jtp:inputRemark value="#{cc.attrs.bean.template.xml}" rows="20"/>
 							</p:panelGrid>
 						</p:panel>

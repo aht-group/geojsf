@@ -22,10 +22,19 @@ public interface GeoJsfSld<L extends UtilsLang, D extends UtilsDescription,
 			extends EjbSaveable,EjbRemoveable,
 					EjbWithLang<L>,EjbWithDescription<D>,
 					EjbWithSldRules<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>
-{	
+{
+	public enum Attributes{type,template,library}
+	
 	TYPE getType();
 	void setType(TYPE type);
 	
 	SLDTEMPLATE getTemplate();
 	void setTemplate(SLDTEMPLATE template);
+	
+	Boolean getLibrary();
+	void setLibrary(Boolean library);
+	
+	String getStatusClass();
+	void setStatusClass(String statusClass);
+	
 }

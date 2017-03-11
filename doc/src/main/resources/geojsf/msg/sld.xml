@@ -70,4 +70,11 @@
 			<s:lang key="fr" translation="Symbol"/>
 		</s:langs>
 	</s:translation>
+		<s:translation key="geoJsfSldStatusClass">
+		<s:langs>
+			<s:lang key="de" translation="Status Class"/>
+			<s:lang key="en" translation="Status Class"/>
+			<s:lang key="fr" translation="Status Class"/>
+		</s:langs>
+	</s:translation>
 </s:translations>

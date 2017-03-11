@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import org.geojsf.model.xml.specs.se.Name;
 
 
 /**
@@ -20,7 +19,7 @@ import org.geojsf.model.xml.specs.se.Name;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.opengis.net/se}Name"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/sld}Name"/&gt;
  *         &lt;element ref="{http://www.opengis.net/sld}UserStyle"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -41,7 +40,7 @@ public class NamedLayer
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(name = "Name", namespace = "http://www.opengis.net/se", required = true)
+    @XmlElement(name = "Name", required = true)
     protected Name name;
     @XmlElement(name = "UserStyle", required = true)
     protected UserStyle userStyle;

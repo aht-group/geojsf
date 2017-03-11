@@ -46,6 +46,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Name }
+     * 
+     */
+    public Name createName() {
+        return new Name();
+    }
+
+    /**
      * Create an instance of {@link UserStyle }
      * 
      */

@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.geojsf.exception.GeoJsfDeveloperException;
-import org.geojsf.factory.xml.gml.XmlCoordinatesFactory;
+import org.geojsf.factory.xml.specs.gml.XmlCoordinatesFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;

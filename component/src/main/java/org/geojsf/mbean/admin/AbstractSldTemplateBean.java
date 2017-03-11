@@ -61,7 +61,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang,
 	private String[] langKeys;
 	private Class<SLDTEMPLATE> cTemplate;
 	
-	private List<SLDTYPE> types; public List<SLDTYPE> getTypes() {return types;}
+
 	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
 	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
 	
@@ -75,8 +75,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang,
 		efDescription = EjbDescriptionFactory.createFactory(clDescription);
 		efTemplate = EjbGeoSldTemplateFactory.factory(cTemplate);
 		
-		types = fGeo.all(cType);
-		logger.info("Types: "+types.size());
+
 	}
 	
 	protected void reloadTemplates()

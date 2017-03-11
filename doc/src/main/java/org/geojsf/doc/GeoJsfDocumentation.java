@@ -1,7 +1,10 @@
 package org.geojsf.doc;
 
+import java.io.File;
+
 public interface GeoJsfDocumentation
 {
+	public static final String geojsfPath = "utils"+File.separator+"geojsf"+File.separator;
 	public static final String prefixListingDir = "listing.geojsf";
 	
 	public static String keyBaseDocDir = "org.geojsf.doc.dir.base";
@@ -11,8 +14,8 @@ public interface GeoJsfDocumentation
 	public static String keyRoles = "net.sf.ahtutils.doc.file.roles";
 	
 	public static String msgGeoAdmin = "geojsf/msg/admin.xml";
-	public static String msgGeoCoordinates = "geojsf/msg/coordinates.xml";
-	public static String msgSld = "geojsf/msg/sld.xml";
+	public static String coordinates = "geojsf/msg/coordinates.xml";
+	public static String sld = "geojsf/msg/sld.xml";
 	public static String msgMonitoringStation = "geojsf/msg/monitoring/station.xml";
 	
 	public static final String lstInstGeoserverUser = "admin/installation/geoserver/user.txt";
