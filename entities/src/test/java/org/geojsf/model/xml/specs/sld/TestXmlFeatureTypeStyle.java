@@ -1,11 +1,10 @@
 package org.geojsf.model.xml.specs.sld;
 
-import org.geojsf.model.xml.specs.se.AbstractXmlSeTest;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlFeatureTypeStyle extends AbstractXmlSeTest<FeatureTypeStyle>
+public class TestXmlFeatureTypeStyle extends AbstractXmlSldTest<FeatureTypeStyle>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlFeatureTypeStyle.class);
 	
@@ -18,6 +17,7 @@ public class TestXmlFeatureTypeStyle extends AbstractXmlSeTest<FeatureTypeStyle>
     	
     	if(withChilds)
     	{
+    		xml.setName(TestXmlName.create(false));
     		xml.getRule().add(TestXmlRule.create(false));
     		xml.getRule().add(TestXmlRule.create(false));
     	}

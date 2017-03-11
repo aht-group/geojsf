@@ -45,7 +45,7 @@ public interface GeoJsfFacade <L extends UtilsLang,
 	CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category);
 	MAP load(Class<MAP> cMap, MAP map);
 	LAYER load(Class<LAYER> cLayer, LAYER layer);
-	SLD load(Class<SLD> cSld,SLD sld);
+	SLD load(SLD sld);
 	DS load(Class<DS> cDs, DS ds);
 	RULE load(Class<RULE> cRule, RULE rule);
 	

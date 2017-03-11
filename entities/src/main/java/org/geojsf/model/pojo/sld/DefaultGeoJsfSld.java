@@ -62,10 +62,6 @@ public class DefaultGeoJsfSld implements Serializable,EjbRemoveable,EjbPersistab
 	private Map<String, DefaultGeoJsfDescription> description;
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
-	
-	private String statusClass;
-	public String getStatusClass() {return statusClass;}
-	public void setStatusClass(String statusClass) {this.statusClass = statusClass;}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sld")
 	@JoinTable(name="GeoSld_Rule",joinColumns={@JoinColumn(name="sld")},inverseJoinColumns={@JoinColumn(name="rule")})
@@ -74,11 +70,20 @@ public class DefaultGeoJsfSld implements Serializable,EjbRemoveable,EjbPersistab
 	@Override public List<DefaultGeoJsfSldRule> getRules(){if(rules==null){rules = new ArrayList<DefaultGeoJsfSldRule>();}return rules;}
 	@Override public void setRules(List<DefaultGeoJsfSldRule> rules){this.rules = rules;}
 	
+	
+	private String statusClass;
+	@Override public String getStatusClass() {return statusClass;}
+	@Override public void setStatusClass(String statusClass) {this.statusClass = statusClass;}
+	
+	private String statusAttribute;
+	@Override public String getStatusAttribute() {return statusAttribute;}
+	@Override public void setStatusAttribute(String statusAttribute) {this.statusAttribute = statusAttribute;}
 
+	
 	@Override public String toString()
 	{
 		StringBuffer sb = new StringBuffer();
-			sb.append(id);
+		sb.append(id);
 		return sb.toString();
 	}
 	

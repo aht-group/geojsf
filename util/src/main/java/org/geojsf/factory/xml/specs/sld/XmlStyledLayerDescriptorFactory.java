@@ -14,6 +14,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.geojsf.model.xml.specs.sld.StyledLayerDescriptor;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.slf4j.Logger;
@@ -44,9 +45,9 @@ public class XmlStyledLayerDescriptorFactory <L extends UtilsLang,D extends Util
 	
 	private final XmlNamedLayerFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE> xfNamedLayer;
 	
-	public XmlStyledLayerDescriptorFactory(final String localeCode)
+	public XmlStyledLayerDescriptorFactory(final SldConfigurationProvider<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE> sldCp)
 	{
-		xfNamedLayer = new XmlNamedLayerFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>(localeCode);
+		xfNamedLayer = new XmlNamedLayerFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>(sldCp);
 	}
 	
 	public StyledLayerDescriptor build(LAYER layer) throws UtilsConfigurationException

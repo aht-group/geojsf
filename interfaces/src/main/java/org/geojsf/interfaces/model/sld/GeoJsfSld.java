@@ -34,7 +34,10 @@ public interface GeoJsfSld<L extends UtilsLang, D extends UtilsDescription,
 	Boolean getLibrary();
 	void setLibrary(Boolean library);
 	
+		
 	String getStatusClass();
 	void setStatusClass(String statusClass);
 	
+	String getStatusAttribute();
+	void setStatusAttribute(String statusAttribute);
 }

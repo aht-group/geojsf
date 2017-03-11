@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
+ *         &lt;element ref="{http://www.opengis.net/sld}Name"/&gt;
  *         &lt;element ref="{http://www.opengis.net/sld}Rule" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -32,6 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "name",
     "rule"
 })
 @XmlRootElement(name = "FeatureTypeStyle")
@@ -40,8 +42,38 @@ public class FeatureTypeStyle
 {
 
     private final static long serialVersionUID = 1L;
+    @XmlElement(name = "Name", required = true)
+    protected Name name;
     @XmlElement(name = "Rule", required = true)
     protected List<Rule> rule;
+
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Name }
+     *     
+     */
+    public Name getName() {
+        return name;
+    }
+
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Name }
+     *     
+     */
+    public void setName(Name value) {
+        this.name = value;
+    }
+
+    public boolean isSetName() {
+        return (this.name!= null);
+    }
 
     /**
      * Gets the value of the rule property.

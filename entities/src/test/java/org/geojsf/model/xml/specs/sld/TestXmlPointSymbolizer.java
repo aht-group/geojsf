@@ -1,11 +1,10 @@
 package org.geojsf.model.xml.specs.sld;
 
-import org.geojsf.model.xml.specs.se.AbstractXmlSeTest;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlPointSymbolizer extends AbstractXmlSeTest<PointSymbolizer>
+public class TestXmlPointSymbolizer extends AbstractXmlSldTest<PointSymbolizer>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlPointSymbolizer.class);
 	

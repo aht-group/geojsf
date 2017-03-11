@@ -1,11 +1,10 @@
 package org.geojsf.model.xml.specs.sld;
 
-import org.geojsf.model.xml.specs.se.AbstractXmlSeTest;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlExternalGraphic extends AbstractXmlSeTest<ExternalGraphic>
+public class TestXmlExternalGraphic extends AbstractXmlSldTest<ExternalGraphic>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlExternalGraphic.class);
 	

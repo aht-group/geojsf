@@ -1,11 +1,10 @@
 package org.geojsf.model.xml.specs.sld;
 
-import org.geojsf.model.xml.specs.se.AbstractXmlSeTest;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlWellKnownName extends AbstractXmlSeTest<WellKnownName>
+public class TestXmlWellKnownName extends AbstractXmlSldTest<WellKnownName>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlWellKnownName.class);
 	

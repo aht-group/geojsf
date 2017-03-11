@@ -12,6 +12,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.geojsf.model.xml.specs.sld.UserStyle;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.slf4j.Logger;
@@ -39,19 +40,19 @@ public class XmlUserStyleFactory <L extends UtilsLang,D extends UtilsDescription
 	final static Logger logger = LoggerFactory.getLogger(XmlUserStyleFactory.class);
 	public static final long serialVersionUID=1;
 	
-	private final String localeCode;
+	private final SldConfigurationProvider<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE> sldCp;
 	private XmlFeatureTypeStyleFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE> xfFeatureTypeStyle;
 	
-	public XmlUserStyleFactory(final String localeCode)
+	public XmlUserStyleFactory(final SldConfigurationProvider<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE> sldCp)
 	{
-		this.localeCode=localeCode;
-		xfFeatureTypeStyle = new XmlFeatureTypeStyleFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>(localeCode);
+		this.sldCp=sldCp;
+		xfFeatureTypeStyle = new XmlFeatureTypeStyleFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>(sldCp);
 	}
 	
 	public UserStyle build(SLD sld)
 	{
 		UserStyle xml = build();
-		xml.setName(XmlNameFactory.build(sld.getName().get(localeCode).getLang()));
+		xml.setName(XmlNameFactory.build(sld.getName().get(sldCp.getLocaleCode()).getLang()));
 		xml.setFeatureTypeStyle(xfFeatureTypeStyle.build(sld));
 		return xml;
 	}
