@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<se:ExternalGraphic xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:se="http://www.opengis.net/se">
-    <se:OnlineResource xlink:type="simple" xlink:href="myHref"/>
-    <se:Format>myFormat</se:Format>
-</se:ExternalGraphic>
