@@ -59,13 +59,12 @@ public class EjbGeoSldTemplateFactory<L extends UtilsLang,D extends UtilsDescrip
         return new EjbGeoSldTemplateFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cTemplate);
     }
 	
-	public SLDTEMPLATE build(SLDTYPE type, String code)
+	public SLDTEMPLATE build(String code)
 	{
 		SLDTEMPLATE ejb;
 		try
 		{
 			ejb = cTemplate.newInstance();
-			ejb.setType(type);
 			ejb.setCode(code);
 		}
 		catch (InstantiationException e) {e.printStackTrace();throw new RuntimeException(e);}

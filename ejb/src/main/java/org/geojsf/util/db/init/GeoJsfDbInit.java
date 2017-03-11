@@ -180,7 +180,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 				try
 				{
 					SLDTYPE type = fSecurity.fByCode(cSldType, xTemplate.getType().getCode());
-					eTemplate = efSldTemplate.build(type,xTemplate.getCode());
+					eTemplate = efSldTemplate.build(xTemplate.getCode());
 					eTemplate = fSecurity.persist(eTemplate);
 				}
 

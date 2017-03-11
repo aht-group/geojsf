@@ -28,7 +28,7 @@ public class TxtSldFactory<L extends UtilsLang,
 	
 	public String build(SLD sld)
 	{
-		GeoJsfSldType.Type type  = GeoJsfSldType.Type.valueOf(sld.getTemplate().getType().getCode());
+		GeoJsfSldType.Type type =null;// = GeoJsfSldType.Type.valueOf(sld.getTemplate().getType().getCode());
 		switch(type)
 		{
 			case interval: return interval(sld);

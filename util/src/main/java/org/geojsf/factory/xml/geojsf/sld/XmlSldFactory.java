@@ -10,6 +10,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Sld;
+import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,12 @@ public class XmlSldFactory <L extends UtilsLang,
 		Sld xml = new Sld();
 		if(q.isSetId()){xml.setId(ejb.getId());}
 			
+/*		if(q.isSetType())
+		{
+			XmlTypeFactory f = new XmlTypeFactory(q.getType());
+			xml.setType(f.build(ejb.getType()));
+		}
+*/		
 		if(q.isSetSldTemplate() && ejb.getTemplate()!=null)
 		{
 			XmlSldTemplateFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE> f = new XmlSldTemplateFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(q.getSldTemplate());

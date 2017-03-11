@@ -94,7 +94,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang,
 	public void addTemplate()
 	{
 		logger.info(AbstractLogMessage.addEntity(cTemplate));
-		template = efTemplate.build(null,null);
+		template = efTemplate.build(null);
 		template.setName(efLang.createEmpty(langKeys));
 		template.setDescription(efDescription.createEmpty(langKeys));
 	}

@@ -15,6 +15,6 @@ public interface GeoJsfSldTemplate<L extends UtilsLang,
 						   TYPE extends UtilsStatus<TYPE,L,D>>
 			extends EjbSaveable,EjbRemoveable,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
 {		
-	TYPE getType();
-	void setType(TYPE type);
+	String getXml();
+	void setXml(String xml);
 }

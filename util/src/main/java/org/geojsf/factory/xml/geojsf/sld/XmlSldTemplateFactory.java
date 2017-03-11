@@ -46,11 +46,7 @@ public class XmlSldTemplateFactory <L extends UtilsLang,
 		SldTemplate xml = new SldTemplate();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
 			
-		if(q.isSetType())
-		{
-			XmlTypeFactory f = new XmlTypeFactory(q.getType());
-			xml.setType(f.build(ejb.getType()));
-		}
+
 		
 		if(q.isSetLangs())
 		{

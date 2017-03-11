@@ -46,10 +46,9 @@ public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbP
 	@Override public Map<String, DefaultGeoJsfDescription> getDescription() {return description;}
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 
-	public boolean equals(Object object)
-	{
-        return (object instanceof DefaultGeoJsfSldTemplate) ? id == ((DefaultGeoJsfSldTemplate) object).getId() : (object == this);
-    }
+	private String xml;
+	public String getXml() {return xml;}
+	public void setXml(String xml) {this.xml = xml;}
 	
 	public String toString()
 	{
@@ -57,6 +56,8 @@ public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbP
 			sb.append(id);
 		return sb.toString();
 	}
+
+	public boolean equals(Object object){return (object instanceof DefaultGeoJsfSldTemplate) ? id == ((DefaultGeoJsfSldTemplate) object).getId() : (object == this);}
 
 	
 }
