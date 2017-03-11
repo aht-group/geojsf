@@ -61,4 +61,124 @@ public class ObjectFactory {
         return new UserStyle();
     }
 
+    /**
+     * Create an instance of {@link FeatureTypeStyle }
+     * 
+     */
+    public FeatureTypeStyle createFeatureTypeStyle() {
+        return new FeatureTypeStyle();
+    }
+
+    /**
+     * Create an instance of {@link Rule }
+     * 
+     */
+    public Rule createRule() {
+        return new Rule();
+    }
+
+    /**
+     * Create an instance of {@link Description }
+     * 
+     */
+    public Description createDescription() {
+        return new Description();
+    }
+
+    /**
+     * Create an instance of {@link Title }
+     * 
+     */
+    public Title createTitle() {
+        return new Title();
+    }
+
+    /**
+     * Create an instance of {@link PointSymbolizer }
+     * 
+     */
+    public PointSymbolizer createPointSymbolizer() {
+        return new PointSymbolizer();
+    }
+
+    /**
+     * Create an instance of {@link Graphic }
+     * 
+     */
+    public Graphic createGraphic() {
+        return new Graphic();
+    }
+
+    /**
+     * Create an instance of {@link Mark }
+     * 
+     */
+    public Mark createMark() {
+        return new Mark();
+    }
+
+    /**
+     * Create an instance of {@link WellKnownName }
+     * 
+     */
+    public WellKnownName createWellKnownName() {
+        return new WellKnownName();
+    }
+
+    /**
+     * Create an instance of {@link Fill }
+     * 
+     */
+    public Fill createFill() {
+        return new Fill();
+    }
+
+    /**
+     * Create an instance of {@link SvgParameter }
+     * 
+     */
+    public SvgParameter createSvgParameter() {
+        return new SvgParameter();
+    }
+
+    /**
+     * Create an instance of {@link Stroke }
+     * 
+     */
+    public Stroke createStroke() {
+        return new Stroke();
+    }
+
+    /**
+     * Create an instance of {@link ExternalGraphic }
+     * 
+     */
+    public ExternalGraphic createExternalGraphic() {
+        return new ExternalGraphic();
+    }
+
+    /**
+     * Create an instance of {@link OnlineResource }
+     * 
+     */
+    public OnlineResource createOnlineResource() {
+        return new OnlineResource();
+    }
+
+    /**
+     * Create an instance of {@link Format }
+     * 
+     */
+    public Format createFormat() {
+        return new Format();
+    }
+
+    /**
+     * Create an instance of {@link Size }
+     * 
+     */
+    public Size createSize() {
+        return new Size();
+    }
+
 }

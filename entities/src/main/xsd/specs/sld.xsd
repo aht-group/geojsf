@@ -3,13 +3,15 @@
 	xmlns:sld="http://www.opengis.net/sld"
 	xmlns:se="http://www.opengis.net/se"
     xmlns:ogc="http://www.opengis.net/ogc"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <xsd:import namespace="http://www.opengis.net/se" schemaLocation="se.xsd"/>
+     <xsd:import namespace="http://www.opengis.net/ogc" schemaLocation="ogc.xsd"/>
+     <xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
     <xsd:element name="StyledLayerDescriptor">
         <xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref="sld:NamedLayer" maxOccurs="1"/>
+				<xsd:element ref="sld:NamedLayer" maxOccurs="unbounded"/>
 			</xsd:sequence>
 			<xsd:attribute name="version" type="xsd:string"/>
 		</xsd:complexType>
@@ -22,6 +24,99 @@
 			</xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
+
+	<xsd:element name="UserStyle">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:Name" maxOccurs="1"/>
+				<xsd:element ref="sld:FeatureTypeStyle" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="FeatureTypeStyle">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:Rule" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Rule">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:Name" maxOccurs="1"/>
+				<xsd:element ref="sld:Description" maxOccurs="1"/>
+				<xsd:element ref="ogc:Filter" maxOccurs="1"/>
+				<xsd:element ref="sld:PointSymbolizer" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PointSymbolizer">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:Graphic" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Graphic">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:Mark" maxOccurs="1"/>
+				<xsd:element ref="sld:ExternalGraphic" maxOccurs="1"/>
+				<xsd:element ref="sld:Size" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Mark">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:WellKnownName" maxOccurs="1"/>
+				<xsd:element ref="sld:Fill" maxOccurs="1"/>
+				<xsd:element ref="sld:Stroke" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="ExternalGraphic">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:OnlineResource" maxOccurs="1"/>
+				<xsd:element ref="sld:Format" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="OnlineResource">
+        <xsd:complexType>
+			<xsd:sequence>
+
+			</xsd:sequence>
+			<xsd:attribute ref="xlink:type"/>
+			<xsd:attribute ref="xlink:href"/>
+		</xsd:complexType>
+    </xsd:element>
+    
+	<xsd:element name="Fill">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:SvgParameter" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Stroke">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:SvgParameter" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="SvgParameter">
+		<xsd:complexType mixed="true">
+            <xsd:sequence>
+                <xsd:element ref="ogc:Function" maxOccurs="1"/>
+                <xsd:element ref="ogc:Literal" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    
 	<xsd:element name="Name">
         <xsd:complexType>
             <xsd:simpleContent>
@@ -29,12 +124,39 @@
             </xsd:simpleContent>
         </xsd:complexType>
     </xsd:element>
-	<xsd:element name="UserStyle">
+	<xsd:element name="Description">
         <xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref="se:Name" maxOccurs="1"/>
-				<xsd:element ref="se:FeatureTypeStyle" maxOccurs="1"/>
+				<xsd:element ref="sld:Title" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Title">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Format">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="Size">
+		<xsd:complexType mixed="true">
+            <xsd:sequence>
+                <xsd:element ref="ogc:Function" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="WellKnownName">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string"/>
+            </xsd:simpleContent>
+        </xsd:complexType>
     </xsd:element>
 </xsd:schema>

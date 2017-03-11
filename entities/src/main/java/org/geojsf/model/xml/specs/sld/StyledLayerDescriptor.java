@@ -2,6 +2,8 @@
 package org.geojsf.model.xml.specs.sld;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -20,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.opengis.net/sld}NamedLayer"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/sld}NamedLayer" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="version" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
@@ -41,36 +43,45 @@ public class StyledLayerDescriptor
 
     private final static long serialVersionUID = 1L;
     @XmlElement(name = "NamedLayer", required = true)
-    protected NamedLayer namedLayer;
+    protected List<NamedLayer> namedLayer;
     @XmlAttribute(name = "version")
     protected String version;
 
     /**
      * Gets the value of the namedLayer property.
      * 
-     * @return
-     *     possible object is
-     *     {@link NamedLayer }
-     *     
-     */
-    public NamedLayer getNamedLayer() {
-        return namedLayer;
-    }
-
-    /**
-     * Sets the value of the namedLayer property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the namedLayer property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link NamedLayer }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getNamedLayer().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link NamedLayer }
+     * 
+     * 
      */
-    public void setNamedLayer(NamedLayer value) {
-        this.namedLayer = value;
+    public List<NamedLayer> getNamedLayer() {
+        if (namedLayer == null) {
+            namedLayer = new ArrayList<NamedLayer>();
+        }
+        return this.namedLayer;
     }
 
     public boolean isSetNamedLayer() {
-        return (this.namedLayer!= null);
+        return ((this.namedLayer!= null)&&(!this.namedLayer.isEmpty()));
+    }
+
+    public void unsetNamedLayer() {
+        this.namedLayer = null;
     }
 
     /**

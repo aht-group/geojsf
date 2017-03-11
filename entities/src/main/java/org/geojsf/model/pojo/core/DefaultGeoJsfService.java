@@ -40,8 +40,8 @@ public class DefaultGeoJsfService implements Serializable,EjbRemoveable,EjbPersi
 	private String code;
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
-	
-//	@NotNull
+
+	//	@NotNull
 	private String wms;
 	@Override public String getWms(){return wms;}
 	@Override public void setWms(String wms){this.wms = wms;}

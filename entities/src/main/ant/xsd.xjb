@@ -51,13 +51,13 @@
             <jxb:package name="org.geojsf.model.xml.specs.ogc"/>
         </jxb:schemaBindings>
     </jxb:bindings>
- 
+<!--  
  	<jxb:bindings schemaLocation="../xsd/specs/se.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.specs.se"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-    
+--> 
 	<jxb:bindings schemaLocation="../xsd/specs/sld.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.specs.sld"/>

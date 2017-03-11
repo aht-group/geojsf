@@ -19,8 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.opengis.net/sld}Name"/&gt;
- *         &lt;element ref="{http://www.opengis.net/sld}FeatureTypeStyle"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/sld}OnlineResource"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/sld}Format"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -31,74 +31,74 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "name",
-    "featureTypeStyle"
+    "onlineResource",
+    "format"
 })
-@XmlRootElement(name = "UserStyle")
-public class UserStyle
+@XmlRootElement(name = "ExternalGraphic")
+public class ExternalGraphic
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(name = "Name", required = true)
-    protected Name name;
-    @XmlElement(name = "FeatureTypeStyle", required = true)
-    protected FeatureTypeStyle featureTypeStyle;
+    @XmlElement(name = "OnlineResource", required = true)
+    protected OnlineResource onlineResource;
+    @XmlElement(name = "Format", required = true)
+    protected Format format;
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the onlineResource property.
      * 
      * @return
      *     possible object is
-     *     {@link Name }
+     *     {@link OnlineResource }
      *     
      */
-    public Name getName() {
-        return name;
+    public OnlineResource getOnlineResource() {
+        return onlineResource;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the onlineResource property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Name }
+     *     {@link OnlineResource }
      *     
      */
-    public void setName(Name value) {
-        this.name = value;
+    public void setOnlineResource(OnlineResource value) {
+        this.onlineResource = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
+    public boolean isSetOnlineResource() {
+        return (this.onlineResource!= null);
     }
 
     /**
-     * Gets the value of the featureTypeStyle property.
+     * Gets the value of the format property.
      * 
      * @return
      *     possible object is
-     *     {@link FeatureTypeStyle }
+     *     {@link Format }
      *     
      */
-    public FeatureTypeStyle getFeatureTypeStyle() {
-        return featureTypeStyle;
+    public Format getFormat() {
+        return format;
     }
 
     /**
-     * Sets the value of the featureTypeStyle property.
+     * Sets the value of the format property.
      * 
      * @param value
      *     allowed object is
-     *     {@link FeatureTypeStyle }
+     *     {@link Format }
      *     
      */
-    public void setFeatureTypeStyle(FeatureTypeStyle value) {
-        this.featureTypeStyle = value;
+    public void setFormat(Format value) {
+        this.format = value;
     }
 
-    public boolean isSetFeatureTypeStyle() {
-        return (this.featureTypeStyle!= null);
+    public boolean isSetFormat() {
+        return (this.format!= null);
     }
 
 }

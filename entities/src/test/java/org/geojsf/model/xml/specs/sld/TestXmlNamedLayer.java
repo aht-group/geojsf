@@ -18,7 +18,7 @@ public class TestXmlNamedLayer extends AbstractXmlSldTest<NamedLayer>
     	if(withChilds)
     	{
     		xml.setName(TestXmlName.create(false));
-    		xml.setUserStyle(UserStyleXmlTest.create(false));
+    		xml.setUserStyle(TestXmlUserStyle.create(false));
     	}
     	
     	return xml;

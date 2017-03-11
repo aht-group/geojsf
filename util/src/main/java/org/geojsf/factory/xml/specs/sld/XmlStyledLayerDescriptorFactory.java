@@ -42,11 +42,11 @@ public class XmlStyledLayerDescriptorFactory <L extends UtilsLang,D extends Util
 	final static Logger logger = LoggerFactory.getLogger(XmlStyledLayerDescriptorFactory.class);
 	public static final long serialVersionUID=1;
 	
-	private XmlNamedLayerFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE> xfNl;
+	private final XmlNamedLayerFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE> xfNamedLayer;
 	
-	public XmlStyledLayerDescriptorFactory()
+	public XmlStyledLayerDescriptorFactory(final String localeCode)
 	{
-		xfNl = new XmlNamedLayerFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>();
+		xfNamedLayer = new XmlNamedLayerFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>(localeCode);
 	}
 	
 	public StyledLayerDescriptor build(LAYER layer) throws UtilsConfigurationException
@@ -62,7 +62,7 @@ public class XmlStyledLayerDescriptorFactory <L extends UtilsLang,D extends Util
 		for(LAYER layer : layers)
 		{
 			if(layer.getSld()==null){throw new UtilsConfigurationException("Layer "+layer.getCode()+" has now SLD");}
-//			sld.getNamedLayer().g
+			sld.getNamedLayer().add(xfNamedLayer.build(layer));
 		}
 		return sld;
 	}

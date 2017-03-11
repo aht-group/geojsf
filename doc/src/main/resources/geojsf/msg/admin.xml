@@ -21,7 +21,7 @@
 			<s:lang key="fr" translation="Services"/>
 		</s:langs>
 	</s:translation>
-		<s:translation key="geoJsfAdminService">
+	<s:translation key="geoJsfAdminService">
 		<s:langs>
 			<s:lang key="de" translation="Service"/>
 			<s:lang key="en" translation="Service"/>
@@ -35,7 +35,13 @@
 			<s:lang key="fr" translation="Name"/>
 		</s:langs>
 	</s:translation>
-	
+	<s:translation key="geoJsfServiceWorkspace">
+		<s:langs>
+			<s:lang key="de" translation="Arbeitsbereich"/>
+			<s:lang key="en" translation="Workspace"/>
+			<s:lang key="fr" translation="Workspace"/>
+		</s:langs>
+	</s:translation>
 	
 	<s:translation key="geoJsfAdminCode">
 		<s:langs>

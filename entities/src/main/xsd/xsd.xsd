@@ -24,7 +24,6 @@
     <xsd:import namespace="http://www.geojsf.org/area"				schemaLocation="geojsf/area.xsd"/>
     <xsd:import namespace="http://www.opengis.net/gml"				schemaLocation="specs/gml.xsd"/>
     <xsd:import namespace="http://www.opengis.net/ogc"				schemaLocation="specs/ogc.xsd"/>
-    <xsd:import namespace="http://www.opengis.net/se"					schemaLocation="specs/se.xsd"/>
     <xsd:import namespace="http://www.opengis.net/sld"				schemaLocation="specs/sld.xsd"/>
     <xsd:import namespace="http://www.w3.org/1999/xlink"				schemaLocation="specs/xlink.xsd"/>
     <xsd:import namespace="http://www.opengis.net/wfs"				schemaLocation="specs/wfs.xsd"/>

@@ -18,7 +18,8 @@ public class TestXmlStyledLayerDescriptor extends AbstractXmlSldTest<StyledLayer
     	
     	if(withChilds)
     	{
-    		xml.setNamedLayer(TestXmlNamedLayer.create(false));
+    		xml.getNamedLayer().add(TestXmlNamedLayer.create(false));
+    		xml.getNamedLayer().add(TestXmlNamedLayer.create(false));
     	}
     	
     	return xml;

@@ -12,7 +12,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.model.xml.specs.sld.NamedLayer;
+import org.geojsf.model.xml.specs.sld.UserStyle;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
-public class XmlNamedLayerFactory <L extends UtilsLang,D extends UtilsDescription,
+public class XmlUserStyleFactory <L extends UtilsLang,D extends UtilsDescription,
 									G extends JeeslGraphic<L,D,G,GT,GS>,GT extends UtilsStatus<GT,L,D>,GS extends UtilsStatus<GS,L,D>,
 									CATEGORY extends GeoJsfCategory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>,
 									SERVICE extends GeoJsfService<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>,
@@ -36,27 +36,29 @@ public class XmlNamedLayerFactory <L extends UtilsLang,D extends UtilsDescriptio
 									RULE extends GeoJsfSldRule<L,D,G,GT,GS,TEMPLATE,TYPE,SLD,RULE>>
 				implements Serializable
 {
-	final static Logger logger = LoggerFactory.getLogger(XmlNamedLayerFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(XmlUserStyleFactory.class);
 	public static final long serialVersionUID=1;
 	
-	private XmlUserStyleFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE> xfUserStyle;
+	private final String localeCode;
+	private XmlFeatureTypeStyleFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE> xfFeatureTypeStyle;
 	
-	public XmlNamedLayerFactory(final String localeCode)
+	public XmlUserStyleFactory(final String localeCode)
 	{
-		xfUserStyle = new XmlUserStyleFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>(localeCode);
+		this.localeCode=localeCode;
+		xfFeatureTypeStyle = new XmlFeatureTypeStyleFactory<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS,TEMPLATE,TYPE,SLD,RULE>(localeCode);
 	}
 	
-	public NamedLayer build(LAYER layer)
+	public UserStyle build(SLD sld)
 	{
-		NamedLayer xml = build();
-		xml.setName(XmlNameFactory.build(layer.getService().getCode()+":"+layer.getCode()));
-		xml.setUserStyle(xfUserStyle.build(layer.getSld()));
+		UserStyle xml = build();
+		xml.setName(XmlNameFactory.build(sld.getName().get(localeCode).getLang()));
+		xml.setFeatureTypeStyle(xfFeatureTypeStyle.build(sld));
 		return xml;
 	}
 	
-	public static NamedLayer build()
+	public static UserStyle build()
 	{
-		NamedLayer xml = new NamedLayer();
+		UserStyle xml = new UserStyle();
 		return xml;
 	}
 }

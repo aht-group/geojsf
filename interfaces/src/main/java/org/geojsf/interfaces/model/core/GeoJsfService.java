@@ -34,7 +34,7 @@ public interface GeoJsfService<L extends UtilsLang,D extends UtilsDescription,
 								SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
 			extends EjbSaveable,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>,EjbRemoveable
-{	
+{		
 	String getWms();
 	void setWms(String wms);
 	
