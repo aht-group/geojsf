@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.geojsf.factory.xml.specs.ogc.XmlFilterFactory;
+import org.geojsf.factory.xml.specs.sld.XmlGraphicFactory;
+import org.geojsf.factory.xml.specs.sld.XmlPointSymbolizerFactory;
+import org.geojsf.factory.xml.specs.sld.XmlSizeFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -73,8 +77,11 @@ public class XmlRuleStatusFactory <L extends UtilsLang,D extends UtilsDescriptio
 	
 	private <X extends UtilsStatus<X,L,D>> Rule build(SLD sld, X x)
 	{
-		Rule xml = XmlRuleFactory.build(x.getName().get(sldCp.getLocaleCode()).getLang(),x.getDescription().get(sldCp.getLocaleCode()).getLang());
-		
+		Rule xml = XmlRuleFactory.build(x.getName().get(sldCp.getLocaleCode()).getLang());
+		xml.setFilter(XmlFilterFactory.equal(sld.getStatusAttribute(), x.getId()));
+		xml.setPointSymbolizer(XmlPointSymbolizerFactory.build());
+		xml.getPointSymbolizer().setGraphic(XmlGraphicFactory.external("http://lis.aht-group.net/lis/image/symbolizer/status/12/"+x.getId()));
+		xml.getPointSymbolizer().getGraphic().setSize(XmlSizeFactory.build(12));
 		return xml;
 	}
 

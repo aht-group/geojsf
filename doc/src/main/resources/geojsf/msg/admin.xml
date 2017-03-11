@@ -218,7 +218,6 @@
 			<s:lang key="fr" translation="Select Layer for Data Source"/>
 		</s:langs>
 	</s:translation>
-	
 	<s:translation key="geoJsfFilterSelection">
 		<s:langs>
 			<s:lang key="de" translation="Auswahl"/>
@@ -226,7 +225,4 @@
 			<s:lang key="fr" translation="Selection"/>
 		</s:langs>
 	</s:translation>
-	
-	
-	
 </s:translations>

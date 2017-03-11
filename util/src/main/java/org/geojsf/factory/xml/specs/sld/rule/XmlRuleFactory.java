@@ -47,9 +47,11 @@ public class XmlRuleFactory <L extends UtilsLang,D extends UtilsDescription,
 		
 	}
 	
-	public Rule buildStatus(SLD sld)
+	public static Rule build(String name)
 	{
-		return build("","");
+		Rule xml = new Rule();
+		xml.setName(XmlNameFactory.build(name));
+		return xml;
 	}
 	
 	public static Rule build(String name, String title)

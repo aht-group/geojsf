@@ -12,6 +12,13 @@ public class XmlSizeFactory implements Serializable
 	final static Logger logger = LoggerFactory.getLogger(XmlSizeFactory.class);
 	public static final long serialVersionUID=1;
 	
+	public static Size build(int value)
+	{
+		Size xml = new Size();
+		xml.getContent().add(""+value);
+		return xml;
+	}
+	
 	public static Size build(String property, int value)
 	{
 		Size xml = new Size();
