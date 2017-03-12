@@ -132,7 +132,7 @@ public class SldRuleHandler <L extends UtilsLang,
 	
 	public void reloadSld()
 	{
-		sld = fGeo.load(cSld,sld);
+		sld = fGeo.load(sld);
 		logger.trace("Rules: "+sld.getRules().size());
 		
 		mapBounds.clear();
