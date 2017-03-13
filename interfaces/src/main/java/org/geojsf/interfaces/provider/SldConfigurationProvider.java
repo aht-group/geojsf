@@ -33,4 +33,5 @@ public interface SldConfigurationProvider<L extends UtilsLang,D extends UtilsDes
 {
 	String getLocaleCode();
 	UtilsFacade getJeeslFacade();
+	String getSymbolizerUrlPrefix();
 }

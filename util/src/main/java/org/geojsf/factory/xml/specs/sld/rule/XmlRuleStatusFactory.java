@@ -80,7 +80,7 @@ public class XmlRuleStatusFactory <L extends UtilsLang,D extends UtilsDescriptio
 		Rule xml = XmlRuleFactory.build(x.getName().get(sldCp.getLocaleCode()).getLang());
 		xml.setFilter(XmlFilterFactory.equal(sld.getStatusAttribute(), x.getId()));
 		xml.setPointSymbolizer(XmlPointSymbolizerFactory.build());
-		xml.getPointSymbolizer().setGraphic(XmlGraphicFactory.external("http://lis.aht-group.net/lis/image/symbolizer/status/12/"+x.getId()));
+		xml.getPointSymbolizer().setGraphic(XmlGraphicFactory.external(sldCp.getSymbolizerUrlPrefix()+"12/"+x.getId()));
 		xml.getPointSymbolizer().getGraphic().setSize(XmlSizeFactory.build(12));
 		return xml;
 	}
