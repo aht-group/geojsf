@@ -31,7 +31,7 @@
             <p:column headerText="#{msg.geoJsfAdminLayer}">
 				<h:outputText value="#{v.layer.name[userBean.localeCode].lang} " />  
 			</p:column>
-			<p:column>
+			<p:column headerText="#{msg.geoJsfAdminLegendOrderNo}">
 				<h:outputText rendered="#{v.legend}" value="#{v.legendNo}" />  
 			</p:column>
 		</p:dataTable>
