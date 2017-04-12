@@ -1,7 +1,5 @@
 package org.geojsf.factory.txt;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-
 import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
 import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.core.DefaultGeoJsfService;
@@ -11,6 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 
 public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 {

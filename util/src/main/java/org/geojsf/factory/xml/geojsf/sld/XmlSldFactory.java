@@ -19,10 +19,10 @@ public class XmlSldFactory <L extends UtilsLang,
 							G extends JeeslGraphic<L,D,G,GT,GS>,
 							GT extends UtilsStatus<GT,L,D>,
 							GS extends UtilsStatus<GS,L,D>,
-							TEMPLATE extends GeoJsfSldTemplate<L,D,TEMPLATE,TYPE>,
-							TYPE extends UtilsStatus<TYPE,L,D>,
-							SLD extends GeoJsfSld<L,D,G,GT,GS,TEMPLATE,TYPE,SLD,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G,GT,GS,TEMPLATE,TYPE,SLD,RULE>
+							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
+							SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
+							RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 							>
 				implements Serializable
 {
@@ -31,13 +31,13 @@ public class XmlSldFactory <L extends UtilsLang,
 	
 	private Sld q;
 	
-	private XmlSldTemplateFactory<L,D,G,GT,GS,TEMPLATE,TYPE,SLD,RULE> xfTemplate;
+	private XmlSldTemplateFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE> xfTemplate;
 	
 //	public XmlSldFactory(Query query) {this(query.getSldTemplate());}
 	public XmlSldFactory(Sld q)
 	{
 		this.q=q;
-		if(q.isSetSldTemplate()){xfTemplate = new XmlSldTemplateFactory<L,D,G,GT,GS,TEMPLATE,TYPE,SLD,RULE>(q.getSldTemplate());}
+		if(q.isSetSldTemplate()){xfTemplate = new XmlSldTemplateFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(q.getSldTemplate());}
 	}
 
 	public Sld build (SLD ejb)
@@ -58,7 +58,7 @@ public class XmlSldFactory <L extends UtilsLang,
 		
 		if(q.isSetSldRule())
 		{
-			XmlSldRuleFactory<L,D,G,GT,GS,TEMPLATE,TYPE,SLD,RULE> f = new XmlSldRuleFactory<L,D,G,GT,GS,TEMPLATE,TYPE,SLD,RULE>(q.getSldRule().get(0));
+			XmlSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE> f = new XmlSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(q.getSldRule().get(0));
 			for(RULE rule : ejb.getRules())
 			{
 				xml.getSldRule().add(f.build(rule));

@@ -15,18 +15,18 @@ public interface GeoJsfSld<L extends UtilsLang, D extends UtilsDescription,
 						   G extends JeeslGraphic<L,D,G,GT,GS>,
 						   GT extends UtilsStatus<GT,L,D>,
 						   GS extends UtilsStatus<GS,L,D>,
-						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
-						   TYPE extends UtilsStatus<TYPE,L,D>,
-						   SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
-						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>>
+						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+						   SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
+						   SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
+						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
 			extends EjbSaveable,EjbRemoveable,
 					EjbWithLang<L>,EjbWithDescription<D>,
-					EjbWithSldRules<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>
+					EjbWithSldRules<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 {
 	public enum Attributes{type,template,library}
 	
-	TYPE getType();
-	void setType(TYPE type);
+	SLDTYPE getType();
+	void setType(SLDTYPE type);
 	
 	SLDTEMPLATE getTemplate();
 	void setTemplate(SLDTEMPLATE template);

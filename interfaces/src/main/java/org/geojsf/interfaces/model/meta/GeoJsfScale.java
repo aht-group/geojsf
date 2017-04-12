@@ -18,7 +18,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
-public interface GeoJsfViewPort<L extends UtilsLang,D extends UtilsDescription,
+public interface GeoJsfScale<L extends UtilsLang,D extends UtilsDescription,
 						G extends JeeslGraphic<L,D,G,GT,GS>,
 						GT extends UtilsStatus<GT,L,D>,
 						GS extends UtilsStatus<GS,L,D>,
@@ -36,26 +36,5 @@ public interface GeoJsfViewPort<L extends UtilsLang,D extends UtilsDescription,
 						RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
 			extends EjbWithId,EjbRemoveable,EjbSaveable
 {	
-	double getLat();
-	void setLat(double lat);
 	
-	double getLon();
-	void setLon(double lon);
-	
-	int getScale();
-	void setScale(int scale);
-	
-	// **************************
-	
-	double getMarginLeft();
-	void setMarginLeft(double marginLeft);
-	
-	double getMarginRight();
-	void setMarginRight(double marginRight);
-	
-	double getMarginTop();
-	void setMarginTop(double marginTop);
-	
-	double getMarginBottom();
-	void setMarginBottom(double marginBottom);
 }
