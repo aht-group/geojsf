@@ -2,8 +2,8 @@ package org.geojsf.interfaces.facade;
 
 import java.util.List;
 
-import org.geojsf.interfaces.model.monitoring.GeoStation;
-import org.geojsf.interfaces.model.monitoring.GeoStationCapability;
+import org.geojsf.interfaces.model.obervation.station.GeoStation;
+import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
 
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
@@ -12,8 +12,8 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 public interface GeoJsfStationFacade <L extends UtilsLang,
 										D extends UtilsDescription,
-										STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>,
-										CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>,
+										STATION extends GeoStation<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, SCHEME extends UtilsStatus<SCHEME,L,D>,
+										CAP extends GeoStationCapability<L,D,STATION,SCHEME,CAP,CAPT,CAPS>,
 										CAPT extends UtilsStatus<CAPT,L,D>,
 										CAPS extends UtilsStatus<CAPS,L,D>>
 					extends UtilsFacade

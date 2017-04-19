@@ -11,8 +11,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.geojsf.interfaces.facade.GeoJsfStationFacade;
-import org.geojsf.interfaces.model.monitoring.GeoStation;
-import org.geojsf.interfaces.model.monitoring.GeoStationCapability;
+import org.geojsf.interfaces.model.obervation.station.GeoStation;
+import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,12 +23,12 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 public class GeoJsfStationFacadeBean <L extends UtilsLang,
 										D extends UtilsDescription,
-										STATION extends GeoStation<L,D,STATION,CAP,CAPT,CAPS>,
-										CAP extends GeoStationCapability<L,D,STATION,CAP,CAPT,CAPS>,
+										STATION extends GeoStation<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, SCHEME extends UtilsStatus<SCHEME,L,D>,
+										CAP extends GeoStationCapability<L,D,STATION,SCHEME,CAP,CAPT,CAPS>,
 										CAPT extends UtilsStatus<CAPT,L,D>,
 										CAPS extends UtilsStatus<CAPS,L,D>>
 				extends UtilsFacadeBean
-				implements GeoJsfStationFacade<L,D,STATION,CAP,CAPT,CAPS>
+				implements GeoJsfStationFacade<L,D,STATION,SCHEME,CAP,CAPT,CAPS>
 {	
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfStationFacadeBean.class);
 	
