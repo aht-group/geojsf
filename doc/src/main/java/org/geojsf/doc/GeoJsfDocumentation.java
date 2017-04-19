@@ -7,6 +7,7 @@ public interface GeoJsfDocumentation
 	public static final String geojsfPath = "utils"+File.separator+"geojsf"+File.separator;
 	public static final String prefixListingDir = "listing.geojsf";
 	
+	public static final String entitiesPrefix = "geojsf/msg/admin/entitiesPrefix.xml";
 	public static String keyBaseDocDir = "org.geojsf.doc.dir.base";
 	
 	public static String keyTranslationFile = "net.sf.ahtutils.doc.file.translation";

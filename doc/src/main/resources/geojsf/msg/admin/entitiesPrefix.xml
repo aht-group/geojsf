@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<s:translations xmlns:s="http://ahtutils.aht-group.com/status">
+	<s:translation key="StationCodeScheme">
+		<s:langs>
+			<s:lang key="de" translation="Schema Stationscode"/>
+			<s:lang key="en" translation="Station Code Scheme"/>
+			<s:lang key="fr" translation="Station Code Scheme"/>
+		</s:langs>
+	</s:translation>
+</s:translations>
