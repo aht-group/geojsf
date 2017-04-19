@@ -38,6 +38,31 @@
 		
 		
 		<dependency>
+			<groupId>org.hibernate</groupId>
+            <artifactId>hibernate-spatial</artifactId>
+            <scope>provided</scope>
+            <exclusions>
+	         	<exclusion>
+	         		<groupId>org.hibernate</groupId>
+	         		<artifactId>hibernate-core</artifactId>
+	         	</exclusion>
+	         	<exclusion>
+	         		<groupId>dom4j</groupId>
+	         		<artifactId>dom4j</artifactId>
+	         	</exclusion>
+	         	<exclusion>
+	         		<groupId>xerces</groupId>
+	         		<artifactId>xercesImpl</artifactId>
+	         	</exclusion>
+	         	<exclusion>
+	         		<groupId>org.jboss.logging</groupId>
+	         		<artifactId>jboss-logging</artifactId>
+	         	</exclusion>
+	         </exclusions>
+        </dependency>
+		
+		<!-- XML -->
+		<dependency>
 			<groupId>org.jdom</groupId>
 			<artifactId>jdom</artifactId>
 			<scope>provided</scope>
