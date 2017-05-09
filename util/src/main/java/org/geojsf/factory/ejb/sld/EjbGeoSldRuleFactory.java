@@ -11,15 +11,12 @@ import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoSldRuleFactory<L extends UtilsLang,
-									D extends UtilsDescription,
-									G extends JeeslGraphic<L,D,G,GT,GS>,
-									GT extends UtilsStatus<GT,L,D>,
-									GS extends UtilsStatus<GS,L,D>,
+public class EjbGeoSldRuleFactory<L extends UtilsLang, D extends UtilsDescription,
+									G extends JeeslGraphic<L,D,G,GT,FS>, GT extends UtilsStatus<GT,L,D>, FS extends UtilsStatus<FS,L,D>,
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
 									TYPE extends UtilsStatus<TYPE,L,D>,
-									SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>
+									SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
+									RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>
 									>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldRuleFactory.class);
@@ -31,20 +28,17 @@ public class EjbGeoSldRuleFactory<L extends UtilsLang,
         this.cRule = cRule;
     } 
     
-    public static <L extends UtilsLang,
-					D extends UtilsDescription,
-					G extends JeeslGraphic<L,D,G,GT,GS>,
-					GT extends UtilsStatus<GT,L,D>,
-					GS extends UtilsStatus<GS,L,D>,
+    public static <L extends UtilsLang, D extends UtilsDescription,
+					G extends JeeslGraphic<L,D,G,GT,FS>, GT extends UtilsStatus<GT,L,D>, FS extends UtilsStatus<FS,L,D>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
 					TYPE extends UtilsStatus<TYPE,L,D>,
 					STYLE extends UtilsStatus<STYLE,L,D>,
-					SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>
+					SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
+					RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>
 					>
-    	EjbGeoSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE> factory(final Class<RULE> cRule)
+    	EjbGeoSldRuleFactory<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE> factory(final Class<RULE> cRule)
     {
-        return new EjbGeoSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>(cRule);
+        return new EjbGeoSldRuleFactory<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>(cRule);
     }
 	
 	public RULE build(SLD sld)

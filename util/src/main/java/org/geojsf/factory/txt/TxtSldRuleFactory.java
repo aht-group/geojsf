@@ -10,15 +10,12 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
-public class TxtSldRuleFactory<L extends UtilsLang,
-								D extends UtilsDescription,
-								G extends JeeslGraphic<L,D,G,GT,GS>,
-								GT extends UtilsStatus<GT,L,D>,
-								GS extends UtilsStatus<GS,L,D>,
+public class TxtSldRuleFactory<L extends UtilsLang, D extends UtilsDescription,
+								G extends JeeslGraphic<L,D,G,GT,FS>, GT extends UtilsStatus<GT,L,D>, FS extends UtilsStatus<FS,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
 								TYPE extends UtilsStatus<TYPE,L,D>,
-								SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>
+								SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
+								RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>
 								>
 {	
 	private TxtSldRuleFactory()
@@ -26,18 +23,15 @@ public class TxtSldRuleFactory<L extends UtilsLang,
 
 	}
 	
-	public static <L extends UtilsLang,
-					D extends UtilsDescription,
-					G extends JeeslGraphic<L,D,G,GT,GS>,
-					GT extends UtilsStatus<GT,L,D>,
-					GS extends UtilsStatus<GS,L,D>,
+	public static <L extends UtilsLang, D extends UtilsDescription,
+					G extends JeeslGraphic<L,D,G,GT,FS>, GT extends UtilsStatus<GT,L,D>, FS extends UtilsStatus<FS,L,D>,
 					TYPE extends UtilsStatus<TYPE,L,D>,
-					SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>,
+					SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
+					RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>>
-		TxtSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE> factory()
+		TxtSldRuleFactory<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE> factory()
 	{
-		return new TxtSldRuleFactory<L,D,G,GT,GS,SLDTEMPLATE,TYPE,SLD,RULE>();
+		return new TxtSldRuleFactory<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>();
 	}
 	
 	public String build(RULE rule)

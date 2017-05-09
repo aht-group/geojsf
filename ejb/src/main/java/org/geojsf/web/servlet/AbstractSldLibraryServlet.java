@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.batik.svggen.SVGGraphics2D;
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.commons.io.IOUtils;
+import org.jeesl.factory.svg.SvgSymbolFactory;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphicType;
 import org.openfuxml.content.media.Image;
@@ -22,19 +23,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.exception.processing.UtilsProcessingException;
-import net.sf.ahtutils.factory.svg.SvgSymbolFactory;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
-public class AbstractSldLibraryServlet<L extends UtilsLang,D extends UtilsDescription, G extends JeeslGraphic<L,D,G,GT,GS>, GT extends UtilsStatus<GT,L,D>,GS extends UtilsStatus<GS,L,D>>
+public class AbstractSldLibraryServlet<L extends UtilsLang, D extends UtilsDescription,
+										G extends JeeslGraphic<L,D,G,GT,FS>,
+										GT extends UtilsStatus<GT,L,D>,
+										FS extends UtilsStatus<FS,L,D>>
 				extends HttpServlet
 				implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractSldLibraryServlet.class);
 	
-	private SvgSymbolFactory<L,D,G,GT,GS> svgF;
+	private SvgSymbolFactory<L,D,G,GT,FS> svgF;
 	
 	public AbstractSldLibraryServlet()
 	{

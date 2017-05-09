@@ -12,16 +12,16 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
 public interface GeoJsfSld<L extends UtilsLang, D extends UtilsDescription,
-						   G extends JeeslGraphic<L,D,G,GT,GS>,
+						   G extends JeeslGraphic<L,D,G,GT,FS>,
 						   GT extends UtilsStatus<GT,L,D>,
-						   GS extends UtilsStatus<GS,L,D>,
+						   FS extends UtilsStatus<FS,L,D>,
 						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 						   SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-						   SLD extends GeoJsfSld<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-						   RULE extends GeoJsfSldRule<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
+						   SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
+						   RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
 			extends EjbSaveable,EjbRemoveable,
 					EjbWithLang<L>,EjbWithDescription<D>,
-					EjbWithSldRules<L,D,G,GT,GS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+					EjbWithSldRules<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 {
 	public enum Attributes{type,template,library}
 	
