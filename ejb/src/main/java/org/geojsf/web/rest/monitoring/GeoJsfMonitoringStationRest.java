@@ -25,7 +25,7 @@ import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, SCHEME extends UtilsStatus<SCHEME,L,D>, CAP extends GeoStationCapability<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
+public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>, TYPE extends UtilsStatus<TYPE,L,D>, SUBTYPE extends UtilsStatus<SUBTYPE,L,D>, SCHEME extends UtilsStatus<SCHEME,L,D>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
 	extends AbstractUtilsRest<L,D>
 	implements GeoJsfMonitoringStationRestExport,GeoJsfMonitoringStationRestImport
 {
@@ -37,7 +37,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	private final Class<CAPT> cCapT;
 	private final Class<CAPS> cCapS;
 	
-	private EjbStationFactory<L,D,STATION,SCHEME,CAP,CAPT,CAPS> efStation;
+	private EjbStationFactory<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS> efStation;
 
 	public GeoJsfMonitoringStationRest(UtilsFacade fUtils, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{
@@ -51,11 +51,11 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 		efStation = EjbStationFactory.factory(cL,cD,cStation);
 	}
 	
-	public static <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, SCHEME extends UtilsStatus<SCHEME,L,D>, CAP extends GeoStationCapability<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
-		GeoJsfMonitoringStationRest<L,D,STATION,SCHEME,CAP,CAPT,CAPS>
+	public static <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>, TYPE extends UtilsStatus<TYPE,L,D>, SUBTYPE extends UtilsStatus<SUBTYPE,L,D>, SCHEME extends UtilsStatus<SCHEME,L,D>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
+		GeoJsfMonitoringStationRest<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>
 		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{
-		return new GeoJsfMonitoringStationRest<L,D,STATION,SCHEME,CAP,CAPT,CAPS>(fGeoMonitoring,defaultLangs,cL,cD,cStation,cCap,cCapT,cCapS);
+		return new GeoJsfMonitoringStationRest<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>(fGeoMonitoring,defaultLangs,cL,cD,cStation,cCap,cCapT,cCapS);
 	}
 	
 	//Import

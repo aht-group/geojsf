@@ -23,12 +23,12 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 public class GeoJsfStationFacadeBean <L extends UtilsLang,
 										D extends UtilsDescription,
-										STATION extends GeoStation<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, SCHEME extends UtilsStatus<SCHEME,L,D>,
-										CAP extends GeoStationCapability<L,D,STATION,SCHEME,CAP,CAPT,CAPS>,
+										STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>, TYPE extends UtilsStatus<TYPE,L,D>, SUBTYPE extends UtilsStatus<SUBTYPE,L,D>, SCHEME extends UtilsStatus<SCHEME,L,D>,
+										CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>,
 										CAPT extends UtilsStatus<CAPT,L,D>,
 										CAPS extends UtilsStatus<CAPS,L,D>>
 				extends UtilsFacadeBean
-				implements GeoJsfStationFacade<L,D,STATION,SCHEME,CAP,CAPT,CAPS>
+				implements GeoJsfStationFacade<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>
 {	
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfStationFacadeBean.class);
 	

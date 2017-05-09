@@ -7,4 +7,18 @@
 			<s:lang key="fr" translation="Station Code Scheme"/>
 		</s:langs>
 	</s:translation>
+	<s:translation key="StationType">
+		<s:langs>
+			<s:lang key="de" translation="Stationstyp"/>
+			<s:lang key="en" translation="Station Type"/>
+			<s:lang key="fr" translation="Station Type"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="StationSubType">
+		<s:langs>
+			<s:lang key="de" translation="Schema Subtype"/>
+			<s:lang key="en" translation="Station Sub Type"/>
+			<s:lang key="fr" translation="Station Sub Type"/>
+		</s:langs>
+	</s:translation>
 </s:translations>

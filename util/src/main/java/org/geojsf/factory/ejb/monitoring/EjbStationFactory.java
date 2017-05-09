@@ -2,13 +2,6 @@ package org.geojsf.factory.ejb.monitoring;
 
 import java.util.List;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-
 import org.geojsf.factory.wkt.PointFactory;
 import org.geojsf.interfaces.model.obervation.station.GeoStation;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
@@ -18,7 +11,14 @@ import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.io.ParseException;
 
-public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, SCHEME extends UtilsStatus<SCHEME,L,D>, CAP extends GeoStationCapability<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
+import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
+import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
+import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+
+public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>, TYPE extends UtilsStatus<TYPE,L,D>, SUBTYPE extends UtilsStatus<SUBTYPE,L,D>, SCHEME extends UtilsStatus<SCHEME,L,D>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbStationFactory.class);
 	
@@ -29,10 +29,16 @@ public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription, S
 	private EjbLangFactory<L> efLang;
     private EjbDescriptionFactory<D> efDescription;
     
-    public static <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, SCHEME extends UtilsStatus<SCHEME,L,D>, CAP extends GeoStationCapability<L,D,STATION,SCHEME,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
-		EjbStationFactory<L,D,STATION,SCHEME,CAP,CAPT,CAPS> factory(final Class<L> cL,final Class<D> cD,final Class<STATION> cStation)
+    public static <L extends UtilsLang,D extends UtilsDescription,
+    				STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>,
+    				TYPE extends UtilsStatus<TYPE,L,D>,
+    				SUBTYPE extends UtilsStatus<SUBTYPE,L,D>,
+    				SCHEME extends UtilsStatus<SCHEME,L,D>,
+    				CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>,
+    				CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
+		EjbStationFactory<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS> factory(final Class<L> cL,final Class<D> cD,final Class<STATION> cStation)
     {
-        return new EjbStationFactory<L,D,STATION,SCHEME,CAP,CAPT,CAPS>(cL,cD,cStation);
+        return new EjbStationFactory<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>(cL,cD,cStation);
     }
     
     public EjbStationFactory(final Class<L> cL,final Class<D> cD, final Class<STATION> cStation)
