@@ -45,7 +45,8 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 									RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
-	implements Serializable
+		extends AbstractGeoJsfBean<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractSldLibraryBean.class);
@@ -60,7 +61,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	
 	private final Class<SLDTEMPLATE> cTemplate;
 	private Class<SLDTYPE> cType;
-	private Class<SLD> cSld;
+	
 
 	private List<SLDTYPE> types; public List<SLDTYPE> getTypes() {return types;}
 	private List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
@@ -69,23 +70,23 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	
 	private SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
 
-	public AbstractSldLibraryBean(final Class<SLDTEMPLATE> cTemplate)
+	public AbstractSldLibraryBean(final Class<SLDTEMPLATE> cTemplate, final Class<SLD> cSld)
 	{
+		super(cSld);
 		this.cTemplate=cTemplate;
 		
 		sldStatusClasses = new ArrayList<String>();
 	}
 	
-	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLD> cSld, final Class<SLDTYPE> cType)
+	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<SLDTYPE> cType)
 	{
 		this.langKeys=langKeys;
 		this.fGeo=fGeo;
-		this.cSld=cSld;
 		this.cType=cType;
 		
 		efLang = EjbLangFactory.createFactory(cLang);
 		efDescription = EjbDescriptionFactory.createFactory(clDescription);
-		efSld = EjbGeoSldFactory.factory(cSld);
+		efSld = ffSld.sld();
 				
 		templates = fGeo.all(cTemplate);
 		types = fGeo.allOrderedPositionVisible(cType);

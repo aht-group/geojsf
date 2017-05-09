@@ -26,18 +26,6 @@ public class EjbGeoSldFactory<L extends UtilsLang,D extends UtilsDescription,
     {
         this.cSld = cSld;
     } 
-    
-    public static <L extends UtilsLang, D extends UtilsDescription,
-				G extends JeeslGraphic<L,D,G,GT,FS>, GT extends UtilsStatus<GT,L,D>, FS extends UtilsStatus<FS,L,D>,
-				SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
-				TYPE extends UtilsStatus<TYPE,L,D>,
-				SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
-				RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>
-				>
-    	EjbGeoSldFactory<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE> factory(final Class<SLD> cSld)
-    {
-        return new EjbGeoSldFactory<L,D,G,GT,FS,SLDTEMPLATE,TYPE,SLD,RULE>(cSld);
-    }
 	
 	public SLD build(TYPE type, boolean library)
 	{

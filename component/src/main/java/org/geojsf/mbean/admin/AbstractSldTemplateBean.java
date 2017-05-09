@@ -1,6 +1,7 @@
 package org.geojsf.mbean.admin;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
@@ -44,9 +45,9 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 									RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-									
 									>
-	implements Serializable
+		extends AbstractGeoJsfBean<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractSldTemplateBean.class);
@@ -63,6 +64,11 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 
 	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
 	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
+	
+	public AbstractSldTemplateBean(final Class<SLDTEMPLATE> cTemplate, final Class<SLD> cSld)
+	{
+		super(cSld);
+	}
 	
 	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTYPE> cType, final Class<SLDTEMPLATE> cTemplate)
 	{
