@@ -61,7 +61,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang,
 	
 	private String[] langKeys;
 	
-	private Class<SLDTEMPLATE> cTemplate;
+	private final Class<SLDTEMPLATE> cTemplate;
 	private Class<SLDTYPE> cType;
 	private Class<SLD> cSld;
 
@@ -72,17 +72,18 @@ public class AbstractSldLibraryBean <L extends UtilsLang,
 	
 	private SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
 
-	public AbstractSldLibraryBean()
+	public AbstractSldLibraryBean(final Class<SLDTEMPLATE> cTemplate)
 	{
+		this.cTemplate=cTemplate;
+		
 		sldStatusClasses = new ArrayList<String>();
 	}
 	
-	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLD> cSld, final Class<SLDTYPE> cType,final Class<SLDTEMPLATE> cTemplate)
+	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,GS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLD> cSld, final Class<SLDTYPE> cType)
 	{
 		this.langKeys=langKeys;
 		this.fGeo=fGeo;
 		this.cSld=cSld;
-		this.cTemplate=cTemplate;
 		this.cType=cType;
 		
 		efLang = EjbLangFactory.createFactory(cLang);
@@ -125,7 +126,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang,
 //		if(!sld.getType().getCode().equals(GeoJsfTYPE.Type.template.toString())){sld.setTemplate(null);}
 //		if(!sld.getType().getCode().equals(GeoJsfTYPE.Type.status.toString())){sld.setStatusClass(null);}
 //		
-//		if(sld.getTemplate()!=null){sld.setTemplate(fGeo.find(cTemplate,sld.getTemplate()));}
+		if(sld.getTemplate()!=null){sld.setTemplate(fGeo.find(cTemplate,sld.getTemplate()));}
 		
 		logger.info(AbstractLogMessage.saveEntity(sld));
 		sld = fGeo.save(sld);

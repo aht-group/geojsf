@@ -28,4 +28,25 @@
 	        <s:lang key="fr" translation="Station"/>
 	    </s:langs>
 	</s:translation>
+	<s:translation key="geojsfStationCodeScheme">
+	    <s:langs>
+	        <s:lang key="de" translation="Codeschema"/>
+	        <s:lang key="en" translation="Code Scheme"/>
+	        <s:lang key="fr" translation="Station"/>
+	    </s:langs>
+	</s:translation>
+	<s:translation key="geojsfStationType">
+	    <s:langs>
+	        <s:lang key="de" translation="Typ"/>
+	        <s:lang key="en" translation="Type"/>
+	        <s:lang key="fr" translation="Type"/>
+	    </s:langs>
+	</s:translation>
+	<s:translation key="geojsfStationSubType">
+	    <s:langs>
+	        <s:lang key="de" translation="Subtyp"/>
+	        <s:lang key="en" translation="Sub Type"/>
+	        <s:lang key="fr" translation="Sub Type"/>
+	    </s:langs>
+	</s:translation>
 </s:translations>

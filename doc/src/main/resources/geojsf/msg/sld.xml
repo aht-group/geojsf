@@ -83,5 +83,12 @@
 			<s:lang key="en" translation="Status Attribute"/>
 			<s:lang key="fr" translation="Status Attribute"/>
 		</s:langs>
-	</s:translation>	
+	</s:translation>
+		<s:translation key="geojsfSldTemplate">
+		<s:langs>
+			<s:lang key="de" translation="Vorlage"/>
+			<s:lang key="en" translation="Template"/>
+			<s:lang key="fr" translation="Template"/>
+		</s:langs>
+	</s:translation>
 </s:translations>

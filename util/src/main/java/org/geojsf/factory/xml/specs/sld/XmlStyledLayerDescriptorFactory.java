@@ -64,7 +64,7 @@ public class XmlStyledLayerDescriptorFactory <L extends UtilsLang,D extends Util
 		StyledLayerDescriptor sld = build();
 		for(LAYER layer : layers)
 		{
-			if(layer.getSld()==null){throw new UtilsConfigurationException("Layer "+layer.getCode()+" has now SLD");}
+			if(layer.getSld()==null){throw new UtilsConfigurationException("Layer "+layer.getCode()+" has no SLD");}
 			sld.getNamedLayer().add(xfNamedLayer.build(layer));
 		}
 		return sld;
