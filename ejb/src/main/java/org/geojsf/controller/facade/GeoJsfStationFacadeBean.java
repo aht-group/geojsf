@@ -21,9 +21,10 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
-public class GeoJsfStationFacadeBean <L extends UtilsLang,
-										D extends UtilsDescription,
-										STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>, TYPE extends UtilsStatus<TYPE,L,D>, SUBTYPE extends UtilsStatus<SUBTYPE,L,D>, SCHEME extends UtilsStatus<SCHEME,L,D>,
+public class GeoJsfStationFacadeBean <L extends UtilsLang, D extends UtilsDescription,
+										STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>,
+										TYPE extends UtilsStatus<TYPE,L,D>, SUBTYPE extends UtilsStatus<SUBTYPE,L,D>,
+										SCHEME extends UtilsStatus<SCHEME,L,D>,
 										CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CAP,CAPT,CAPS>,
 										CAPT extends UtilsStatus<CAPT,L,D>,
 										CAPS extends UtilsStatus<CAPS,L,D>>
@@ -39,9 +40,15 @@ public class GeoJsfStationFacadeBean <L extends UtilsLang,
 		super(em);
 		this.cStation=cStation;
 	}
+	
+	@Override public STATION load(STATION station)
+	{
+		station = em.find(cStation, station.getId());
+		station.getCapabilities().size();
+		return station;
+	}
 
-	@Override
-	public List<STATION> fStations(CAP capability)
+	@Override public List<STATION> fStations(CAP capability)
 	{
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		CriteriaBuilder cB = em.getCriteriaBuilder();
