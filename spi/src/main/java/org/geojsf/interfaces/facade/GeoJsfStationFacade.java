@@ -21,5 +21,6 @@ public interface GeoJsfStationFacade <L extends UtilsLang, D extends UtilsDescri
 {
 	STATION load(STATION station);
 	
-	List<STATION> fStations(CAP capability);
+	List<STATION> fStations(CAPT capabilityType);
+	List<STATION> fStations(List<CAPT> capabilityTypes);
 }

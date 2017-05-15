@@ -17,6 +17,8 @@ public interface GeoStationCapability<L extends UtilsLang,
 							CAPS extends UtilsStatus<CAPS,L,D>>
 			extends EjbWithId,EjbWithCode
 {
+	public enum Attributes{type}
+	
 	STATION getStation();
 	void setStation(STATION station);
 	
