@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -24,8 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -51,18 +48,6 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractSldLibraryBean.class);
 	
-	protected EjbLangFactory<L> efLang;
-	protected EjbDescriptionFactory<D> efDescription;
-	protected EjbGeoSldFactory<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSld;
-	
-	private GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
-	
-	private String[] langKeys;
-	
-	private final Class<SLDTEMPLATE> cTemplate;
-	private Class<SLDTYPE> cType;
-	
-
 	private List<SLDTYPE> types; public List<SLDTYPE> getTypes() {return types;}
 	private List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
 	private List<SLD> slds; public List<SLD> getSlds() {return slds;} public void setSlds(List<SLD> slds) {this.slds = slds;}
@@ -70,26 +55,19 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	
 	private SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
 
-	public AbstractSldLibraryBean(final Class<SLDTEMPLATE> cTemplate, final Class<SLD> cSld)
+	public AbstractSldLibraryBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort,final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		super(cSld);
-		this.cTemplate=cTemplate;
+		super(cL,cD,cCategory,cService,cLayer,cMap,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
 		
 		sldStatusClasses = new ArrayList<String>();
 	}
 	
-	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<SLDTYPE> cType)
+	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		this.langKeys=langKeys;
-		this.fGeo=fGeo;
-		this.cType=cType;
-		
-		efLang = EjbLangFactory.createFactory(cLang);
-		efDescription = EjbDescriptionFactory.createFactory(clDescription);
-		efSld = ffSld.sld();
-				
+		super.initSuper(langKeys,fGeo);
+	
 		templates = fGeo.all(cTemplate);
-		types = fGeo.allOrderedPositionVisible(cType);
+		types = fGeo.allOrderedPositionVisible(cSldType);
 	}
 	
 	public void cancelSld(){reset(true);}
@@ -120,7 +98,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	public void saveSld() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info("1: "+sld.getStatusAttribute());
-		sld.setType(fGeo.find(cType,sld.getType()));
+		sld.setType(fGeo.find(cSldType,sld.getType()));
 //		if(!sld.getType().getCode().equals(GeoJsfTYPE.Type.template.toString())){sld.setTemplate(null);}
 //		if(!sld.getType().getCode().equals(GeoJsfTYPE.Type.status.toString())){sld.setStatusClass(null);}
 //		
@@ -142,7 +120,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	
 	public void changeTYPE()
 	{
-		sld.setType(fGeo.find(cType, sld.getType()));
+		sld.setType(fGeo.find(cSldType, sld.getType()));
 		logger.info(AbstractLogMessage.selectOneMenuChange(sld.getType()));
 	}
 	

@@ -3,8 +3,6 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
-import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
-import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -23,8 +21,6 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -50,36 +46,13 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractSldTemplateBean.class);
-	
-	protected EjbLangFactory<L> efLang;
-	protected EjbDescriptionFactory<D> efDescription;
-	protected EjbGeoSldTemplateFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efTemplate;
-	
-	private GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
-	
-	private String[] langKeys;
-	private Class<SLDTEMPLATE> cTemplate;
-	
 
 	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
 	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
 	
-	public AbstractSldTemplateBean(final Class<SLDTEMPLATE> cTemplate, final Class<SLD> cSld)
+	public AbstractSldTemplateBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		super(cSld);
-	}
-	
-	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription,final Class<SLDTYPE> cType, final Class<SLDTEMPLATE> cTemplate)
-	{
-		this.langKeys=langKeys;
-		this.fGeo=fGeo;
-		this.cTemplate=cTemplate;
-		
-		efLang = EjbLangFactory.createFactory(cLang);
-		efDescription = EjbDescriptionFactory.createFactory(clDescription);
-		efTemplate = EjbGeoSldTemplateFactory.factory(cTemplate);
-		
-
+		super(cL,cD,cCategory,cService,cLayer,cMap,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
 	}
 	
 	protected void reloadTemplates()

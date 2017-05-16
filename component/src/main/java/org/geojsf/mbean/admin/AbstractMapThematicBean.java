@@ -32,8 +32,6 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -55,13 +53,13 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 										SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 										SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 										RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
+	extends AbstractGeoJsfBean<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractMapThematicBean.class);
 	
-	protected EjbLangFactory<L> efLang;
-	protected EjbDescriptionFactory<D> efDescription;
+
 	protected EjbGeoCategoryFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efCategory;
 	protected EjbGeoServiceFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efService;
 	protected EjbGeoLayerFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efLayer;
@@ -71,14 +69,9 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	
 	private GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
 	
-	protected List<MAP> maps;
-	public List<MAP> getMaps(){return maps;}
-	
-	protected List<CATEGORY> categories;
-	public List<CATEGORY> getCategories(){return categories;}
-	
-	protected List<LAYER> layers;
-	public List<LAYER> getLayers(){return layers;}
+	protected List<MAP> maps; public List<MAP> getMaps(){return maps;}
+	protected List<CATEGORY> categories; public List<CATEGORY> getCategories(){return categories;}
+	protected List<LAYER> layers; public List<LAYER> getLayers(){return layers;}
 	
 	protected MAP map;
 	public MAP getMap() {return map;}
@@ -96,30 +89,9 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	public VP getViewPort(){return viewPort;}
 	public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 	
-	private String[] langKeys;
-	private Class<MAP> cMap;
-	private Class<VIEW> cView;
-	private Class<CATEGORY> cCategory;
-	private Class<LAYER> cLayer;
-	
-	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView,final Class<VP> cViewPort)
+	public AbstractMapThematicBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		this.langKeys=langKeys;
-		this.fGeo=fGeo;
-		this.cMap=cMap;
-		this.cView=cView;
-		this.cCategory=cCategory;
-		this.cLayer=cLayer;
-		
-		efLang = EjbLangFactory.createFactory(cLang);
-		efDescription = EjbDescriptionFactory.createFactory(clDescription);
-		
-		efCategory = EjbGeoCategoryFactory.factory(cCategory);
-    	efService = EjbGeoServiceFactory.factory(cService);
-    	efLayer = EjbGeoLayerFactory.factory(cLang,cLayer);
-    	efMap = EjbGeoMapFactory.factory(cLang, cMap);
-    	efView = EjbGeoViewFactory.factory(cView);
-    	efViewPort = EjbGeoViewPortFactory.factory(cViewPort);
+		super(cL,cD,cCategory,cService,cLayer,cMap,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
 	}
 	
 	protected void reloadMaps()

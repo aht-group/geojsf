@@ -1,6 +1,5 @@
 package org.geojsf.interfaces.model.meta;
 
-
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -16,12 +15,11 @@ import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.ahtutils.interfaces.model.with.EjbWithLangDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 public interface GeoJsfScale<L extends UtilsLang,D extends UtilsDescription,
-						G extends JeeslGraphic<L,D,G,GT,FS>,
-						GT extends UtilsStatus<GT,L,D>,
-						FS extends UtilsStatus<FS,L,D>,
+						G extends JeeslGraphic<L,D,G,GT,FS>, GT extends UtilsStatus<GT,L,D>, FS extends UtilsStatus<FS,L,D>,
 						CATEGORY extends GeoJsfCategory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 						SERVICE extends GeoJsfService<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 						LAYER extends GeoJsfLayer<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
@@ -34,7 +32,8 @@ public interface GeoJsfScale<L extends UtilsLang,D extends UtilsDescription,
 						SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 						SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 						RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
-			extends EjbWithId,EjbRemoveable,EjbSaveable
+			extends EjbWithId,EjbRemoveable,EjbSaveable,EjbWithLangDescription<L,D>
 {	
-	
+	int getValue();
+	void setValue(int value);
 }

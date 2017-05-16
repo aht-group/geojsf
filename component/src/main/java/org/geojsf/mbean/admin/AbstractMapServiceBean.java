@@ -52,27 +52,11 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 									RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
+	extends AbstractGeoJsfBean<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractMapServiceBean.class);
-	
-	private String[] langKeys;
-	
-	private GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
-	
-	protected EjbLangFactory<L> efLang;
-	protected EjbDescriptionFactory<D> efDescription;
-	protected EjbGeoCategoryFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efCategory;
-	protected EjbGeoServiceFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efService;
-	protected EjbGeoLayerFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efLayer;
-	protected EjbGeoMapFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efMap;
-	protected EjbGeoViewFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efView;
-	protected EjbGeoViewPortFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efViewPort;
-	
-	private Class<CATEGORY> cCategory;
-	private Class<SERVICE> cService;
-	private Class<LAYER> cLayer;
 	
 	protected List<SERVICE> services; public List<SERVICE> getServices() {return services;}
 	protected List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
@@ -84,23 +68,15 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	protected VP viewPort; public VP getViewPort(){return viewPort;} public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 	protected SERVICE service; public SERVICE getService() {return service;} public void setService(SERVICE service) {this.service = service;}
 	protected LAYER layer; public LAYER getLayer() {return layer;} public void setLayer(LAYER layer) {this.layer = layer;}
-	
-	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> clDescription, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort, final Class<SLD> cSld)
+		
+	public AbstractMapServiceBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		this.langKeys=langKeys;
-		this.fGeo=fGeo;
-		this.cCategory=cCategory;
-		this.cService=cService;
-		this.cLayer=cLayer;
-		efLang = EjbLangFactory.createFactory(cLang);
-    	efDescription = EjbDescriptionFactory.createFactory(clDescription);
-    	efCategory = EjbGeoCategoryFactory.factory(cCategory);
-    	efService = EjbGeoServiceFactory.factory(cService);
-    	efLayer = EjbGeoLayerFactory.factory(cLang,cLayer);
-    	efMap = EjbGeoMapFactory.factory(cLang, cMap);
-    	efView = EjbGeoViewFactory.factory(cView);
-    	efViewPort = EjbGeoViewPortFactory.factory(cViewPort);
-    	
+		super(cL,cD,cCategory,cService,cLayer,cMap,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
+	}
+	
+	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	{
+		super.initSuper(langKeys,fGeo);  	
     	slds = fGeo.fLibrarySlds();
 	}
 	
