@@ -30,7 +30,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
-public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescription,
+public class AbstractMapScaleBean <L extends UtilsLang, D extends UtilsDescription,
 									G extends JeeslGraphic<L,D,G,GT,FS>, GT extends UtilsStatus<GT,L,D>, FS extends UtilsStatus<FS,L,D>,
 									CATEGORY extends GeoJsfCategory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 									SERVICE extends GeoJsfService<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
@@ -49,7 +49,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = LoggerFactory.getLogger(AbstractSldTemplateBean.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractMapScaleBean.class);
 	
 	protected EjbLangFactory<L> efLang;
 	protected EjbDescriptionFactory<D> efDescription;
@@ -60,11 +60,10 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 	private String[] langKeys;
 	private Class<SLDTEMPLATE> cTemplate;
 	
-
 	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
 	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
 	
-	public AbstractSldTemplateBean(final Class<SLDTEMPLATE> cTemplate, final Class<SLD> cSld)
+	public AbstractMapScaleBean(final Class<SLDTEMPLATE> cTemplate, final Class<SLD> cSld)
 	{
 		super(cSld);
 	}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:geop="http://geojsf.org/prototype"
+	xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
+    xmlns:aht="http://ahtutils.sourceforge.net/jsf"
+    xmlns:aup="http://ahtutils.sourceforge.net/prototype"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	<composite:interface>
+		<composite:attribute name="bean" required="true"/>
+	</composite:interface>
+        
+	<composite:implementation>
+		<aup:grid id="grid">
+			<aht:row>
+				<aht:slot id="sTemplates" width="4">
+					<h:form id="fTemplates">
+						<p:dataTable var="t" value="#{cc.attrs.bean.templates}"
+							selection="#{cc.attrs.bean.template}" selectionMode="single" rowKey="#{t.id}">
+						<f:facet name="header">
+							<aht:pfDataTableHeader title="#{msg.geoJsfAdminSldTemplates}">
+								<aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addTemplate()}" update=":#{cc.id}:sTemplates :#{cc.id}:sTemplate"/>
+							</aht:pfDataTableHeader>
+						</f:facet>
+						<p:ajax event="rowSelect" update=":#{cc.id}:sTemplate" listener="#{cc.attrs.bean.selectTemplate}"/>
+
+						<p:column headerText="#{msg.geoJsfAdminCode}" sortBy="#{t.code}">
+							<h:outputText value="#{t.code}" /> 
+						</p:column>
+						<p:column headerText="#{msg.geoJsfAdminName}" sortBy="#{t.name[userBean.localeCode].lang}">
+							<h:outputText value="#{t.name[userBean.localeCode].lang}" /> 
+						</p:column>
+					</p:dataTable>
+					</h:form>
+				</aht:slot>
+				<aht:slot id="sTemplate" width="8">
+					<h:form id="fTemplate">
+						<p:panel header="#{msg.geoJsfAdminSldTemplate}" styleClass="auPanelWithGrid"  rendered="#{not empty cc.attrs.bean.template}">
+							<f:facet name="actions">
+								<aht:icon type="geoJsfCancel" mayDisappear="true" listener="#{cc.attrs.bean.cancelTemplate()}" update=":#{cc.id}:grid"/>
+								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveTemplate()}" update=":#{cc.id}:grid"/>
+								<aht:icon type="geoJsfDelete" mayDisappear="true" listener="#{cc.attrs.bean.rmTemplate()}" update=":#{cc.id}:grid"/>
+							</f:facet>
+							<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">
+								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
+								<p:inputText value="#{cc.attrs.bean.template.code}" autocomplete="false"/>
+							</p:panelGrid>
+							<p:panelGrid columns="1" columnClasses="auPwg100">
+								<aht:tabTranslationEditor value="#{cc.attrs.bean.template}"
+											keys="#{translationBean.langKeys}" withDescription="true"
+											labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"/>
+								<jtp:inputRemark value="#{cc.attrs.bean.template.xml}" rows="20"/>
+							</p:panelGrid>
+						</p:panel>
+					</h:form>
+				</aht:slot>
+			</aht:row>
+		</aup:grid>
+	</composite:implementation>
+</html>
