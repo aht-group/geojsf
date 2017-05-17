@@ -1,8 +1,5 @@
-package org.geojsf.util.comparator;
+package org.geojsf.factory.ejb.meta;
 
-import java.util.Comparator;
-
-import org.apache.commons.lang.builder.CompareToBuilder;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -18,12 +15,13 @@ import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
+import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.util.comparator.ejb.security.SecurityActionComparator;
 
-public class GeoViewComparator <L extends UtilsLang, D extends UtilsDescription,
+public class EjbGeoScaleFactory<L extends UtilsLang,D extends UtilsDescription,
 								G extends JeeslGraphic<L,D,G,GT,FS>, GT extends UtilsStatus<GT,L,D>, FS extends UtilsStatus<FS,L,D>,
 								CATEGORY extends GeoJsfCategory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 								SERVICE extends GeoJsfService<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
@@ -33,39 +31,35 @@ public class GeoViewComparator <L extends UtilsLang, D extends UtilsDescription,
 								VIEW extends GeoJsfView<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 								VP extends GeoJsfViewPort<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
 								DS extends GeoJsfDataSource<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
+								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 								SLD extends GeoJsfSld<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
-								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>>
+								RULE extends GeoJsfSldRule<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
 {
-	final static Logger logger = LoggerFactory.getLogger(SecurityActionComparator.class);
-
-    public static enum Type {legend};
-
-    public GeoViewComparator()
+	final static Logger logger = LoggerFactory.getLogger(EjbGeoScaleFactory.class);
+	
+	private final Class<SCALE> cScale;
+	private EjbLangFactory<L> fLang;
+	private EjbDescriptionFactory<D> efDescription;
+        
+    public EjbGeoScaleFactory(final Class<L> cL, final Class<D> cD, final Class<SCALE> cScale)
     {
-    	
+    	fLang = EjbLangFactory.createFactory(cL);
+    	efDescription = EjbDescriptionFactory.createFactory(cD);
+        this.cScale = cScale;
     }
-    
-    public Comparator<VIEW> factory(Type type)
-    {
-        Comparator<VIEW> c = null;
-        GeoViewComparator<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE> factory = new GeoViewComparator<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLD,RULE,SLDTYPE,SLDSTYLE,SLDTEMPLATE>();
-        switch (type)
-        {
-            case legend: c = factory.new LegendPositionComparator();break;
-        }
-
-        return c;
-    }
-
-    private class LegendPositionComparator implements Comparator<VIEW>
-    {
-        public int compare(VIEW a, VIEW b)
-        {
-			  CompareToBuilder ctb = new CompareToBuilder();
-			  ctb.append(a.getLegendNo(), b.getLegendNo());
-			  return ctb.toComparison();
-        }
+	
+	public SCALE build(String[] langKeys)
+	{
+		SCALE ejb = null;
+		try
+		{
+			ejb = cScale.newInstance();
+			ejb.setName(fLang.createEmpty(langKeys));
+			ejb.setDescription(efDescription.createEmpty(langKeys));
+		}
+		catch (InstantiationException e) {e.printStackTrace();}
+		catch (IllegalAccessException e) {e.printStackTrace();}
+        return ejb;
     }
 }

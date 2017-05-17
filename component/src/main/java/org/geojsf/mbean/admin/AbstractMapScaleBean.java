@@ -1,9 +1,10 @@
 package org.geojsf.mbean.admin;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -15,6 +16,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.util.comparator.ejb.GeoScaleComparator;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,43 +50,48 @@ public class AbstractMapScaleBean <L extends UtilsLang, D extends UtilsDescripti
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractMapScaleBean.class);
 	
-	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
-	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
+	protected List<SCALE> scales; public List<SCALE> getScales(){return scales;}
+	protected SCALE scale; public SCALE getScale() {return scale;} public void setScale(SCALE scale) {this.scale = scale;}
 	
-	public AbstractMapScaleBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort,final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+	private final Comparator<SCALE> cmpScale;
+	
+	public AbstractMapScaleBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<SCALE> cScale, final Class<VIEW> cView, final Class<VP> cViewPort,final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		super(cL,cD,cCategory,cService,cLayer,cMap,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
+		super(cL,cD,cCategory,cService,cLayer,cMap,cScale,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
+		cmpScale = ffGeo.cmpScale(GeoScaleComparator.Type.value);
 	}
 	
-	protected void reloadTemplates()
+	protected void postInit(){reloadScales();}
+	
+	protected void reloadScales()
 	{
-		templates = fGeo.all(cTemplate);
+		scales = fGeo.all(cScale);
+		Collections.sort(scales,cmpScale);
 	}
 	
 	public void selectTemplate() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
 	{
-		logger.info(AbstractLogMessage.selectEntity(template));
+		logger.info(AbstractLogMessage.selectEntity(scale));
 		missingLangsMap();
 	}
 	protected void missingLangsMap(){}
 	
-	public void addTemplate()
+	public void addScale()
 	{
 		logger.info(AbstractLogMessage.addEntity(cTemplate));
-		template = efTemplate.build(null);
-		template.setName(efLang.createEmpty(langKeys));
-		template.setDescription(efDescription.createEmpty(langKeys));
+		scale = efScale.build(langKeys);
 	}
 	
-	public void cancelTemplate()
+	public void cancelScale(){reset(true);}
+	private void reset(boolean rScale)
 	{
-		template=null;
+		if(rScale){scale=null;}
 	}
 	
-	public void saveTemplate() throws UtilsConstraintViolationException, UtilsLockingException
+	public void saveScale() throws UtilsConstraintViolationException, UtilsLockingException
 	{
-		logger.info(AbstractLogMessage.saveEntity(template));
-		template = fGeo.save(template);
-		reloadTemplates();
+		logger.info(AbstractLogMessage.saveEntity(scale));
+		scale = fGeo.save(scale);
+		reloadScales();
 	}
 }

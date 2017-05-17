@@ -225,4 +225,19 @@
 			<s:lang key="fr" translation="Selection"/>
 		</s:langs>
 	</s:translation>
+	
+	<s:translation key="geoJsfScales">
+		<s:langs>
+			<s:lang key="de" translation="Auflösungen"/>
+			<s:lang key="en" translation="Scales"/>
+			<s:lang key="fr" translation="Scales"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfScale">
+		<s:langs>
+			<s:lang key="de" translation="Auflösung"/>
+			<s:lang key="en" translation="Scale"/>
+			<s:lang key="fr" translation="Scale"/>
+		</s:langs>
+	</s:translation>
 </s:translations>

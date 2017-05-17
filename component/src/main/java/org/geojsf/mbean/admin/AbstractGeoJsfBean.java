@@ -9,8 +9,10 @@ import org.geojsf.factory.ejb.EjbGeoServiceFactory;
 import org.geojsf.factory.ejb.EjbGeoViewFactory;
 import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
 import org.geojsf.factory.ejb.meta.EjbGeoDataSourceFactory;
+import org.geojsf.factory.ejb.meta.EjbGeoScaleFactory;
 import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
 import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
+import org.geojsf.factory.factory.GeoJsfFactoryFactory;
 import org.geojsf.factory.factory.GeoSldFactoryFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -62,6 +64,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final Class<SERVICE> cService;
 	protected final Class<LAYER> cLayer;
 	protected final Class<MAP> cMap;
+	protected final Class<SCALE> cScale;
 	protected final Class<VIEW> cView;
 	protected final Class<VP> cViewPort;
 	protected final Class<DS> cDs;
@@ -70,6 +73,8 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final Class<SLD> cSld;
 	
 	protected final GeoSldFactoryFactory<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffSld;
+	protected final GeoJsfFactoryFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffGeo;
+	
 	protected final EjbLangFactory<L> efLang;
 	protected final EjbDescriptionFactory<D> efDescription;
 	
@@ -77,6 +82,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final EjbGeoServiceFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efService;
 	protected final EjbGeoLayerFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efLayer;
 	protected final EjbGeoMapFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efMap;
+	protected final EjbGeoScaleFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efScale;
 	protected final EjbGeoViewFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efView;
 	protected final EjbGeoViewPortFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efViewPort;
 	
@@ -84,7 +90,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final EjbGeoSldTemplateFactory<L,D,G,GT,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efTemplate;
 	protected final EjbGeoSldFactory<L,D,G,GT,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSld;
 	
-	public AbstractGeoJsfBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+	public AbstractGeoJsfBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<SCALE> cScale, final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
 		this.cL = cL;
 		this.cD = cD;
@@ -92,6 +98,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 		this.cService = cService;
 		this.cLayer = cLayer;
 		this.cMap = cMap;
+		this.cScale = cScale;
 		this.cView = cView;
 		this.cViewPort = cViewPort;
 		this.cDs = cDs;
@@ -100,6 +107,8 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 		this.cSld = cSld;
 		
 		ffSld = GeoSldFactoryFactory.factory(cSld);
+		ffGeo = GeoJsfFactoryFactory.factory(cL,cD,cScale,cDs);
+		
 		efLang = EjbLangFactory.createFactory(cL);
     	efDescription = EjbDescriptionFactory.createFactory(cD);
     	
@@ -107,10 +116,11 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
     	efService = EjbGeoServiceFactory.factory(cService);
     	efLayer = EjbGeoLayerFactory.factory(cL,cLayer);
     	efMap = EjbGeoMapFactory.factory(cL,cMap);
+    	efScale = ffGeo.ejbScale();
     	efView = EjbGeoViewFactory.factory(cView);
     	efViewPort = EjbGeoViewPortFactory.factory(cViewPort);
     	
-		efDs = EjbGeoDataSourceFactory.factory(cL,cD,cDs);
+		efDs = ffGeo.ejbDs();
 		efSld = ffSld.sld();
 		efTemplate = EjbGeoSldTemplateFactory.factory(cTemplate);
 	}
@@ -119,5 +129,8 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	{
 		this.langKeys=langKeys;
 		this.fGeo=fGeo;
+		postInit();
 	}
+	
+	protected void postInit(){}
 }
