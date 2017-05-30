@@ -26,6 +26,13 @@
 	</dependencyManagement>
    	
 	<dependencies>
+	
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
 		<!-- Interfaces -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
