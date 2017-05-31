@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.test.GeoJsfDocTestBootstrap;
+import org.jeesl.doc.er.AbstractErDiagram;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.ahtutils.doc.er.AbstractErDiagram;
 
 public class GeoJsfErDiagram extends AbstractErDiagram
 {
