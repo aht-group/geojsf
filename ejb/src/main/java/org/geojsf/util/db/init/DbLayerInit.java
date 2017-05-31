@@ -16,6 +16,8 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.model.xml.geojsf.Layers;
 import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
+import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
+import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -25,8 +27,6 @@ import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
@@ -73,8 +73,8 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,
         this.fUtils=fUtils;
         this.fGeo=fGeo;
 		
-		efLang = EjbLangFactory.createFactory(cL);
-		efDescription = EjbDescriptionFactory.createFactory(cD);
+		efLang = EjbLangFactory.factory(cL);
+		efDescription = EjbDescriptionFactory.factory(cD);
 		ejbLayerFactory = EjbGeoLayerFactory.factory(cL, cLayer);
 		dbVpInit = DbViewPortInit.factory(cVp,fUtils);
 	}

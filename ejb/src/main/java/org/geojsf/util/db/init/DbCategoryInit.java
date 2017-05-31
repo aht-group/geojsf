@@ -15,6 +15,8 @@ import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.Service;
 import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
+import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
+import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -24,8 +26,6 @@ import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
@@ -62,8 +62,8 @@ public class DbCategoryInit <L extends UtilsLang,D extends UtilsDescription,
         
         this.fSecurity=fAcl;
         
-        ejbLangFactory = EjbLangFactory.createFactory(cL);
-		ejbDescriptionFactory = EjbDescriptionFactory.createFactory(cD);
+        ejbLangFactory = EjbLangFactory.factory(cL);
+		ejbDescriptionFactory = EjbDescriptionFactory.factory(cD);
 	}
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,

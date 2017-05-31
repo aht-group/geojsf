@@ -1,8 +1,6 @@
 package org.geojsf.factory.ejb.area;
 
 import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.factory.ejb.status.EjbDescriptionFactory;
-import net.sf.ahtutils.factory.ejb.status.EjbLangFactory;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -10,6 +8,8 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import org.geojsf.factory.wkt.MultiPolygonFactory;
 import org.geojsf.interfaces.model.area.GeoBasin;
 import org.geojsf.model.xml.area.Basin;
+import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
+import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,8 +38,8 @@ public class EjbBasinFactory<L extends UtilsLang,D extends UtilsDescription,BASI
         
         gisMultiPolygonFactory = new MultiPolygonFactory();
         
-        efLang = EjbLangFactory.createFactory(cL);
-        efDescription = EjbDescriptionFactory.createFactory(cD);
+        efLang = EjbLangFactory.factory(cL);
+        efDescription = EjbDescriptionFactory.factory(cD);
     } 
 	
 	public BASIN build(Basin basin, MODEL model)

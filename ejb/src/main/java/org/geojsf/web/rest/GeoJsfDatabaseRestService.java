@@ -35,6 +35,7 @@ import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.geojsf.model.xml.geojsf.ViewPort;
 import org.geojsf.model.xml.geojsf.ViewPorts;
 import org.geojsf.util.query.GeoJsfQuery;
+import org.jeesl.factory.ejb.system.status.EjbStatusFactory;
 import org.jeesl.factory.xml.system.status.XmlStatusFactory;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
@@ -43,7 +44,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.db.xml.AhtStatusDbInit;
-import net.sf.ahtutils.factory.ejb.status.EjbStatusFactory;
 import net.sf.ahtutils.factory.xml.aht.XmlContainerFactory;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
