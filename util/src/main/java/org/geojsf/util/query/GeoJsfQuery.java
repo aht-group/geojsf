@@ -16,7 +16,7 @@ import org.geojsf.model.xml.geojsf.View;
 import org.geojsf.model.xml.geojsf.ViewPort;
 import org.jeesl.factory.xml.system.status.XmlStyleFactory;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
-import org.jeesl.util.query.xml.StatusQuery;
+import org.jeesl.util.query.xml.XmlStatusQuery;
 
 public class GeoJsfQuery
 {
@@ -59,8 +59,8 @@ public class GeoJsfQuery
 		xml.setCode("");
 		xml.setWms("");
 		xml.setWcs("");
-		xml.setLangs(StatusQuery.langs());
-		xml.setDescriptions(StatusQuery.descriptions());
+		xml.setLangs(XmlStatusQuery.langs());
+		xml.setDescriptions(XmlStatusQuery.descriptions());
 		
 		return xml;
 	}
@@ -71,8 +71,8 @@ public class GeoJsfQuery
 
 		xml.setCode("");
 		
-		xml.setLangs(StatusQuery.langs());
-		xml.setDescriptions(StatusQuery.descriptions());
+		xml.setLangs(XmlStatusQuery.langs());
+		xml.setDescriptions(XmlStatusQuery.descriptions());
 		
 		return xml;
 	}
@@ -98,8 +98,8 @@ public class GeoJsfQuery
 		xml.setCode("");
 		xml.setService(service);
 		xml.setCategory(category);
-		xml.setLangs(StatusQuery.langs());
-		xml.setDescriptions(StatusQuery.descriptions());
+		xml.setLangs(XmlStatusQuery.langs());
+		xml.setDescriptions(XmlStatusQuery.descriptions());
 		xml.setViewPort(viewPort());
 		return xml;
 	}
@@ -149,8 +149,8 @@ public class GeoJsfQuery
 		
 		Map xml = new Map();
 		xml.setCode("");
-		xml.setLangs(StatusQuery.langs());
-		xml.setDescriptions(StatusQuery.descriptions());
+		xml.setLangs(XmlStatusQuery.langs());
+		xml.setDescriptions(XmlStatusQuery.descriptions());
 		xml.setViewPort(viewPort());
 		return xml;
 	}
@@ -160,8 +160,8 @@ public class GeoJsfQuery
 		SldTemplate xml = new SldTemplate();
 		xml.setCode("");
 		xml.setType(XmlTypeFactory.create("myType"));
-		xml.setLangs(StatusQuery.langs());
-		xml.setDescriptions(StatusQuery.descriptions());
+		xml.setLangs(XmlStatusQuery.langs());
+		xml.setDescriptions(XmlStatusQuery.descriptions());
 		return xml;
 	}
 	
@@ -174,8 +174,8 @@ public class GeoJsfQuery
 		rule.setSize(0);
 		rule.setColor("");
 		rule.setStyle(XmlStyleFactory.build(""));
-		rule.setLangs(StatusQuery.langs());
-		rule.setDescriptions(StatusQuery.descriptions());
+		rule.setLangs(XmlStatusQuery.langs());
+		rule.setDescriptions(XmlStatusQuery.descriptions());
 		
 		Sld xml = new Sld();
 		xml.getSldRule().add(rule);

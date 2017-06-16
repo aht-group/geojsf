@@ -2,14 +2,14 @@ package org.geojsf.model.xml.area;
 
 import java.io.FileNotFoundException;
 
-import net.sf.ahtutils.factory.xml.status.XmlDescriptionsFactory;
-import net.sf.ahtutils.factory.xml.status.XmlLangsFactory;
-import net.sf.ahtutils.factory.xml.status.XmlModelFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.model.xml.area.Basin;
 import org.geojsf.model.xml.geojsf.TestXmlWkt;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
+import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
+import org.jeesl.factory.xml.system.status.XmlModelFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
