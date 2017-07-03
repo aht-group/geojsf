@@ -24,6 +24,12 @@ public class DefaultGeoJsfGraphicFigure implements EjbRemoveable,Serializable,Ej
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
+	@Override public String resolveParentAttribute() {return JeeslGraphicFigure.Attributes.graphic.toString();}
+	@ManyToOne
+	private DefaultGeoJsfGraphic graphic;
+	@Override public DefaultGeoJsfGraphic getGraphic() {return graphic;}
+	@Override public void setGraphic(DefaultGeoJsfGraphic graphic) {this.graphic = graphic;}
+	
 	@ManyToOne
 	private DefaultGeoJsfGraphicStyle style;
 	public DefaultGeoJsfGraphicStyle getStyle() {return style;}

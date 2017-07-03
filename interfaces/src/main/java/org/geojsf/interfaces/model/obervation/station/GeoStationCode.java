@@ -14,13 +14,14 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
 import com.vividsolutions.jts.geom.Point;
 
-public interface GeoStation<L extends UtilsLang,
+public interface GeoStationCode<L extends UtilsLang,
 							D extends UtilsDescription,
 							STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
 							TYPE extends UtilsStatus<TYPE,L,D>,
 							SUBTYPE extends UtilsStatus<SUBTYPE,L,D>,
 							SCHEME extends UtilsStatus<SCHEME,L,D>,
-							CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
+							CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
+							CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
 							CAPT extends UtilsStatus<CAPT,L,D>,
 							CAPS extends UtilsStatus<CAPS,L,D>>
 			extends EjbWithId,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>,EjbWithGeometry<Point>
