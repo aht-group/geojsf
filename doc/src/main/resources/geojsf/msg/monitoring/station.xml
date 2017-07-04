@@ -49,4 +49,11 @@
 	        <s:lang key="fr" translation="Sub Type"/>
 	    </s:langs>
 	</s:translation>
+	<s:translation key="geojsfMonitoringStationCodes">
+	    <s:langs>
+	        <s:lang key="de" translation="Station Codes"/>
+	        <s:lang key="en" translation="Station Codes"/>
+	        <s:lang key="fr" translation="Station Codes"/>
+	    </s:langs>
+	</s:translation>
 </s:translations>

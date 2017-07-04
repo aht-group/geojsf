@@ -74,7 +74,7 @@ public class XmlMapFactory implements Serializable
 		
 		if(q.isSetDescriptions())
 		{
-			XmlDescriptionsFactory f = new XmlDescriptionsFactory(q.getDescriptions());
+			XmlDescriptionsFactory<D> f = new XmlDescriptionsFactory<D>(q.getDescriptions());
 			xml.setDescriptions(f.create(ejb.getDescription()));
 		}
 		

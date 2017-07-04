@@ -4,6 +4,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.interfaces.model.with.code.EjbWithCode;
+import net.sf.ahtutils.interfaces.model.with.parent.EjbWithParentAttributeResolver;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 public interface GeoStationCode<L extends UtilsLang, D extends UtilsDescription,
@@ -15,9 +16,12 @@ public interface GeoStationCode<L extends UtilsLang, D extends UtilsDescription,
 							CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
 							CAPT extends UtilsStatus<CAPT,L,D>,
 							CAPS extends UtilsStatus<CAPS,L,D>>
-			extends EjbWithId,EjbWithCode
+			extends EjbWithId,EjbWithCode,EjbWithParentAttributeResolver
 {
-	public enum Attributes{capabilities}
+	public enum Attributes{scheme,station}
+	
+	STATION getStation();
+	void setStation(STATION station);
 	
 	SCHEME getScheme();
 	void setScheme(SCHEME scheme);
