@@ -27,9 +27,6 @@ public interface GeoStation<L extends UtilsLang,
 {
 	public enum Attributes{capabilities}
 	
-	SCHEME getScheme();
-	void setScheme(SCHEME scheme);
-	
 	TYPE getType();
 	void setType(TYPE type);
 	
@@ -38,4 +35,7 @@ public interface GeoStation<L extends UtilsLang,
 	
 	List<CAP> getCapabilities();
 	void setCapabilities(List<CAP> capabilities);
+	
+	List<CODE> getCodes();
+	void setCodes(List<CODE> codes);
 }
