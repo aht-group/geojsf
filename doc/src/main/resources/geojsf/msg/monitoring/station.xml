@@ -56,4 +56,11 @@
 	        <s:lang key="fr" translation="Station Codes"/>
 	    </s:langs>
 	</s:translation>
+	<s:translation key="geojsfMonitoringStationCode">
+	    <s:langs>
+	        <s:lang key="de" translation="Station Code"/>
+	        <s:lang key="en" translation="Station Code"/>
+	        <s:lang key="fr" translation="Station Code"/>
+	    </s:langs>
+	</s:translation>
 </s:translations>
