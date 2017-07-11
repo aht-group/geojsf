@@ -49,6 +49,23 @@
 	        <s:lang key="fr" translation="Sub Type"/>
 	    </s:langs>
 	</s:translation>
+	
+	<s:translation key="geojsfStationSource">
+	    <s:langs>
+	        <s:lang key="de" translation="Source"/>
+	        <s:lang key="en" translation="Source"/>
+	        <s:lang key="fr" translation="Source"/>
+	    </s:langs>
+	</s:translation>
+	<s:translation key="geojsfStationOperation">
+	    <s:langs>
+	        <s:lang key="de" translation="Operation"/>
+	        <s:lang key="en" translation="Operation"/>
+	        <s:lang key="fr" translation="Operation"/>
+	    </s:langs>
+	</s:translation>
+	
+	
 	<s:translation key="geojsfMonitoringStationCodes">
 	    <s:langs>
 	        <s:lang key="de" translation="Station Codes"/>
