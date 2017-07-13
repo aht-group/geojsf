@@ -1,8 +1,13 @@
 package org.geojsf.model.pojo.util.symbol;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
@@ -56,6 +61,12 @@ public class DefaultGeoJsfGraphic implements EjbRemoveable,Serializable,EjbPersi
 	private String colorBorder;
 	public String getColorBorder() {return colorBorder;}
 	public void setColorBorder(String colorBorder) {this.colorBorder = colorBorder;}
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="graphic")
+	@OrderBy("position ASC")
+	private List<DefaultGeoJsfGraphicFigure> figures;
+	@Override public List<DefaultGeoJsfGraphicFigure> getFigures() {return figures;}
+	@Override public void setFigures(List<DefaultGeoJsfGraphicFigure> figures) {this.figures = figures;}
 	
 	public String toString()
 	{
