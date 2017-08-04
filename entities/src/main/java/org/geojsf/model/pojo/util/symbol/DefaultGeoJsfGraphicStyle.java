@@ -6,11 +6,11 @@ import java.util.Map;
 import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
 import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.interfaces.model.with.code.EjbWithCode;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
+import org.jeesl.interfaces.model.system.with.code.EjbWithCode;
 
 @EjbErNode(name="Style",category="symbol",subset="sld",level=3)
 public class DefaultGeoJsfGraphicStyle implements Serializable,EjbRemoveable,EjbPersistable,
