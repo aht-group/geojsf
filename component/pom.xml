@@ -86,6 +86,14 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 		</dependency> -->
+		
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	
 	<build>
