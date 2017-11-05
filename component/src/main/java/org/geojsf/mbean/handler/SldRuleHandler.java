@@ -18,10 +18,10 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.factory.builder.system.SvgFactoryBuilder;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.factory.ejb.system.symbol.EjbGraphicFactory;
-import org.jeesl.factory.factory.SvgFactoryFactory;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphicStyle;
@@ -105,7 +105,7 @@ public class SldRuleHandler <L extends UtilsLang, D extends UtilsDescription,
 		
 		mapBounds = new Hashtable<RULE,String>();
 		
-		SvgFactoryFactory<L,D,G,GT,F,FS> ffSvg = SvgFactoryFactory.factory(cL,cD,cGraphic,cF,cGraphicStyle);
+		SvgFactoryBuilder<L,D,G,GT,F,FS> ffSvg = SvgFactoryBuilder.factory(cL,cD,cGraphic,cF,cGraphicStyle);
 		
 		efLang = EjbLangFactory.factory(cL);
 		efDescription = EjbDescriptionFactory.factory(cD);
