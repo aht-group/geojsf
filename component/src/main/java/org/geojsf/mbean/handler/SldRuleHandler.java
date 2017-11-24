@@ -105,7 +105,7 @@ public class SldRuleHandler <L extends UtilsLang, D extends UtilsDescription,
 		
 		mapBounds = new Hashtable<RULE,String>();
 		
-		SvgFactoryBuilder<L,D,G,GT,F,FS> ffSvg = SvgFactoryBuilder.factory(cL,cD,cGraphic,cF,cGraphicStyle);
+		SvgFactoryBuilder<L,D,G,GT,F,FS> ffSvg = SvgFactoryBuilder.factory(cL,cD,cGraphic,cGraphicType,cF,cGraphicStyle);
 		
 		efLang = EjbLangFactory.factory(cL);
 		efDescription = EjbDescriptionFactory.factory(cD);
