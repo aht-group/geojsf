@@ -2,6 +2,9 @@ package org.geojsf.mbean.admin;
 
 import java.io.Serializable;
 
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
+import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
+import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.EjbGeoMapFactory;
@@ -59,17 +62,15 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	
 	protected String[] langKeys;
 	protected GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
-	
-	protected final Class<L> cL;
-	protected final Class<D> cD;
-	protected final Class<CATEGORY> cCategory;
-	protected final Class<SERVICE> cService;
-	protected final Class<LAYER> cLayer;
-	protected final Class<MAP> cMap;
-	protected final Class<SCALE> cScale;
-	protected final Class<VIEW> cView;
-	protected final Class<VP> cViewPort;
-	protected final Class<DS> cDs;
+	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
+	protected final GeoMetaFactoryBuilder<L,D,DS> fbMeta;
+
+
+
+
+
+
+
 	protected final Class<SLDTEMPLATE> cTemplate;
 	protected final Class<SLDTYPE> cSldType;
 	protected final Class<SLD> cSld;
@@ -92,35 +93,31 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final EjbGeoSldTemplateFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efTemplate;
 	protected final EjbGeoSldFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSld;
 	
-	public AbstractGeoJsfBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<SCALE> cScale, final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+							GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+							GeoSldFactoryBuilder<L,D> fbSld
+			, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		this.cL = cL;
-		this.cD = cD;
-		this.cCategory = cCategory;
-		this.cService = cService;
-		this.cLayer = cLayer;
-		this.cMap = cMap;
-		this.cScale = cScale;
-		this.cView = cView;
-		this.cViewPort = cViewPort;
-		this.cDs = cDs;
+		this.fbCore=fbCore;
+		this.fbMeta=fbMeta;
+		
 		this.cTemplate = cTemplate;
 		this.cSldType = cSldType;
 		this.cSld = cSld;
 		
 		ffSld = GeoSldFactoryFactory.factory(cSld);
-		ffGeo = GeoJsfFactoryFactory.factory(cL,cD,cScale,cDs);
+		ffGeo = GeoJsfFactoryFactory.factory(fbCore.getClassL(),fbCore.getClassD(),fbCore.getClassScale(),cDs);
 		
-		efLang = EjbLangFactory.factory(cL);
-    	efDescription = EjbDescriptionFactory.factory(cD);
-    	
-    	efCategory = EjbGeoCategoryFactory.factory(cCategory);
-    	efService = EjbGeoServiceFactory.factory(cService);
-    	efLayer = EjbGeoLayerFactory.factory(cL,cLayer);
-    	efMap = EjbGeoMapFactory.factory(cL,cMap);
-    	efScale = ffGeo.ejbScale();
-    	efView = EjbGeoViewFactory.factory(cView);
-    	efViewPort = EjbGeoViewPortFactory.factory(cViewPort);
+		efLang = EjbLangFactory.factory(fbCore.getClassL());
+	    	efDescription = EjbDescriptionFactory.factory(fbCore.getClassD());
+	    	
+	    	efCategory = EjbGeoCategoryFactory.factory(fbCore.getClassCategory());
+	    	efService = EjbGeoServiceFactory.factory(fbCore.getClassService());
+	    	efLayer = EjbGeoLayerFactory.factory(fbCore.getClassL(),fbCore.getClassLayer());
+	    	efMap = EjbGeoMapFactory.factory(fbCore.getClassL(),fbCore.getClassMap());
+	    	efScale = ffGeo.ejbScale();
+	    	efView = EjbGeoViewFactory.factory(fbCore.getClassView());
+	    	efViewPort = EjbGeoViewPortFactory.factory(fbCore.getClassViewPort());
     	
 		efDs = ffGeo.ejbDs();
 		efSld = ffSld.sld();

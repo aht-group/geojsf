@@ -3,6 +3,9 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
+import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
+import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -49,17 +52,20 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfDataSourceBean.class);
 		
-	public AbstractGeoJsfDataSourceBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<SCALE> cScale,final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+	public AbstractGeoJsfDataSourceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+										GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+										GeoSldFactoryBuilder<L,D> fbSld
+			, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		super(cL,cD,cCategory,cService,cLayer,cMap,cScale,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
+		super(fbCore,fbMeta,fbSld,cDs,cTemplate,cSldType,cSld);
 	}
 	
 	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		super.initSuper(langKeys,fGeo);
 
-    	availableLayers = fGeo.all(cLayer);
-    	categories = fGeo.all(cCategory);
+	    	availableLayers = fGeo.all(fbCore.getClassLayer());
+	    	categories = fGeo.all(fbCore.getClassCategory());
 		reloadSources();
 	}
 	
@@ -73,7 +79,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 	
 	private void reloadSources()
 	{
-		sources = fGeo.all(cDs);
+		sources = fGeo.all(fbMeta.getClassDs());
 	}
 	
 	//DataSource
@@ -83,7 +89,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 	
 	public void addSource() throws UtilsConstraintViolationException
 	{
-		logger.info(AbstractLogMessage.addEntity(cDs));
+		logger.info(AbstractLogMessage.addEntity(fbMeta.getClassDs()));
 		source = efDs.build(langKeys);		
 	}
 
@@ -97,7 +103,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 	
 	private void reloadSource()
 	{
-		source = fGeo.load(cDs, source);
+		source = fGeo.load(fbMeta.getClassDs(), source);
 		layers = source.getLayers();
 	}
 	

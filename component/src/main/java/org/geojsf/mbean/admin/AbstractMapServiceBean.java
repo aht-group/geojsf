@@ -4,12 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.geojsf.event.MapAjaxEvent;
-import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
-import org.geojsf.factory.ejb.EjbGeoLayerFactory;
-import org.geojsf.factory.ejb.EjbGeoMapFactory;
-import org.geojsf.factory.ejb.EjbGeoServiceFactory;
-import org.geojsf.factory.ejb.EjbGeoViewFactory;
-import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
+import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
+import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -22,8 +19,6 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
-import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -71,9 +66,12 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	protected SERVICE service; public SERVICE getService() {return service;} public void setService(SERVICE service) {this.service = service;}
 	protected LAYER layer; public LAYER getLayer() {return layer;} public void setLayer(LAYER layer) {this.layer = layer;}
 		
-	public AbstractMapServiceBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<SCALE> cScale,final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+	public AbstractMapServiceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+									GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+									GeoSldFactoryBuilder<L,D> fbSld
+			, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		super(cL,cD,cCategory,cService,cLayer,cMap,cScale,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
+		super(fbCore,fbMeta,fbSld,cDs,cTemplate,cSldType,cSld);
 	}
 	
 	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
@@ -84,7 +82,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	
 	protected void reloadServices()
 	{
-		services = fGeo.all(cService);
+		services = fGeo.all(fbCore.getClassService());
 	}
 	
 	public void addService() throws UtilsConstraintViolationException
@@ -101,7 +99,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 
 	public void selectService() throws UtilsNotFoundException
 	{
-		service = fGeo.load(cService,service);
+		service = fGeo.load(fbCore.getClassService(),service);
 		logger.info("selectService "+service);
 		layer=null;
 		category = null;
@@ -141,7 +139,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	// CATEGORY
 	protected void reloadCategories()
 	{
-		categories = fGeo.allOrderedPositionVisible(cCategory);
+		categories = fGeo.allOrderedPositionVisible(fbCore.getClassCategory());
 	}
 	
 	public void addCategory() throws UtilsConstraintViolationException
@@ -156,7 +154,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	
 	public void selectCategory() throws UtilsNotFoundException
 	{
-		category = fGeo.load(cCategory,category);
+		category = fGeo.load(fbCore.getClassCategory(),category);
 		logger.info("selectCategory "+category);
 		reloadLayers();
 		layer=null;
@@ -203,8 +201,8 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	
 	protected void reloadLayers()
 	{
-		category = fGeo.load(cCategory, category);
-		layers = fGeo.allOrderedPositionVisibleParent(cLayer, category);;
+		category = fGeo.load(fbCore.getClassCategory(), category);
+		layers = fGeo.allOrderedPositionVisibleParent(fbCore.getClassLayer(), category);;
 		logger.info("#Layer:"+layers.size());
 	}
 	
@@ -219,7 +217,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	public void selectLayer() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info("selectLayer "+layer);
-		layer = fGeo.load(cLayer,layer);
+		layer = fGeo.load(fbCore.getClassLayer(),layer);
 		if(layer.getViewPort()==null){addViewPort();}
 		else{viewPort=layer.getViewPort();}
 		
@@ -234,8 +232,8 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	public void saveLayer() throws UtilsConstraintViolationException, UtilsLockingException, UtilsNotFoundException
 	{
 		logger.info("saveLayer "+layer);
-		layer.setService(fGeo.find(cService, layer.getService()));
-		layer.setCategory(fGeo.find(cCategory, layer.getCategory()));
+		layer.setService(fGeo.find(fbCore.getClassService(), layer.getService()));
+		layer.setCategory(fGeo.find(fbCore.getClassCategory(), layer.getCategory()));
 		layer = fGeo.save(layer);
 		reloadLayers();
 		selectLayer();
@@ -244,7 +242,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	public void rmLayer()
 	{
 		logger.info("rm "+layer);
-		fGeo.rm(cLayer,layer);
+		fGeo.rm(fbCore.getClassLayer(),layer);
 		reloadLayers();
 		layer=null;
 		viewPort=null;

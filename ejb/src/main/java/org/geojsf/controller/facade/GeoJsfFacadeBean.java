@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -60,7 +61,7 @@ public class GeoJsfFacadeBean <L extends UtilsLang, D extends UtilsDescription,
 	
 	private final Class<SLD> cSld;
 	
-	public GeoJsfFacadeBean(EntityManager em, final Class<SLD> cSld)
+	public GeoJsfFacadeBean(EntityManager em, GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, final Class<SLD> cSld)
 	{
 		super(em);
 		this.cSld=cSld;

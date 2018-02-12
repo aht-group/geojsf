@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
+import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
+import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -57,9 +60,12 @@ public class AbstractMapScaleBean <L extends UtilsLang, D extends UtilsDescripti
 	
 	private final Comparator<SCALE> cmpScale;
 	
-	public AbstractMapScaleBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<SCALE> cScale, final Class<VIEW> cView, final Class<VP> cViewPort,final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+	public AbstractMapScaleBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+								GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+								GeoSldFactoryBuilder<L,D> fbSld
+			,final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		super(cL,cD,cCategory,cService,cLayer,cMap,cScale,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
+		super(fbCore,fbMeta,fbSld,cDs,cTemplate,cSldType,cSld);
 		cmpScale = ffGeo.cmpScale(GeoScaleComparator.Type.value);
 	}
 	
@@ -67,7 +73,7 @@ public class AbstractMapScaleBean <L extends UtilsLang, D extends UtilsDescripti
 	
 	protected void reloadScales()
 	{
-		scales = fGeo.all(cScale);
+		scales = fGeo.all(fbCore.getClassScale());
 		Collections.sort(scales,cmpScale);
 	}
 	

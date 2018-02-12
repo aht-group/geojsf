@@ -3,6 +3,9 @@ package org.geojsf.mbean.admin;
 import java.io.Serializable;
 import java.util.List;
 
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
+import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
+import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -52,9 +55,12 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 	protected List<SLDTEMPLATE> templates; public List<SLDTEMPLATE> getTemplates(){return templates;}
 	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
 	
-	public AbstractSldTemplateBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<SCALE> cScale,final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+	public AbstractSldTemplateBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+									GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+									GeoSldFactoryBuilder<L,D> fbSld
+			, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		super(cL,cD,cCategory,cService,cLayer,cMap,cScale,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
+		super(fbCore,fbMeta,fbSld,cDs,cTemplate,cSldType,cSld);
 	}
 	
 	protected void reloadTemplates()

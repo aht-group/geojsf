@@ -6,6 +6,9 @@ import java.util.List;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.geojsf.event.MapAjaxEvent;
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
+import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
+import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.EjbGeoMapFactory;
@@ -87,14 +90,17 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	public VP getViewPort(){return viewPort;}
 	public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 	
-	public AbstractMapThematicBean(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<SCALE> cScale,final Class<VIEW> cView, final Class<VP> cViewPort, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+	public AbstractMapThematicBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+									GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+									GeoSldFactoryBuilder<L,D> fbSld
+			, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
-		super(cL,cD,cCategory,cService,cLayer,cMap,cScale,cView,cViewPort,cDs,cTemplate,cSldType,cSld);
+		super(fbCore,fbMeta,fbSld,cDs,cTemplate,cSldType,cSld);
 	}
 	
 	protected void reloadMaps()
 	{
-		maps = fGeo.all(cMap);
+		maps = fGeo.all(fbCore.getClassMap());
 	}
 	
 	public void selectMap() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
@@ -108,7 +114,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	
 	protected void reloadMap() throws UtilsConstraintViolationException, UtilsLockingException
 	{
-		map = fGeo.load(cMap,map);
+		map = fGeo.load(fbCore.getClassMap(),map);
 		if(map.getViewPort()==null){addViewPort();}
 		else{viewPort=map.getViewPort();}
 		logger.info(map.getViewPort().toString());
@@ -124,7 +130,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	
 	public void addMap()
 	{
-		logger.info(AbstractLogMessage.addEntity(cMap));
+		logger.info(AbstractLogMessage.addEntity(fbCore.getClassMap()));
 		map = efMap.create("",langKeys);
 		map.setName(efLang.createEmpty(langKeys));
 		map.setDescription(efDescription.createEmpty(langKeys));
@@ -145,7 +151,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 		int i=1;
 		for(VIEW view : map.getViews())
 		{
-			view = fGeo.find(cView, view);
+			view = fGeo.find(fbCore.getClassView(), view);
 			logger.trace(i+" "+view.getLayer().toString());
 			view.setOrderNo(i);
 			fGeo.update(view);
@@ -165,7 +171,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 		try
 		{
 			logger.info("Views"+map.getViews().size());
-			map = fGeo.find(cMap,map);
+			map = fGeo.find(fbCore.getClassMap(),map);
 			logger.info("Views"+map.getViews().size());
 			fGeo.rm(map);
 			map=null;
@@ -192,7 +198,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	// VIEW
 	public void addView() throws UtilsNotFoundException
 	{
-		logger.info(AbstractLogMessage.addEntity(cView));
+		logger.info(AbstractLogMessage.addEntity(fbCore.getClassView()));
 		view = efView.create(map,null,0,true,true);
 		category = categories.get(0);
 		changeCategory();
@@ -213,19 +219,19 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	public void saveView() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(view));
-		view.setLayer(fGeo.find(cLayer,view.getLayer()));
+		view.setLayer(fGeo.find(fbCore.getClassLayer(),view.getLayer()));
 		view = fGeo.save(view);
 		reloadMap();
 		updateOrder();
 		reloadMap();
-		view = fGeo.find(cView,view);
+		view = fGeo.find(fbCore.getClassView(),view);
 		logger.info("VIEW"+view.toString());
 	}
 	
 	public void rmView() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.rmEntity(view));
-		fGeo.rm(cView,view);
+		fGeo.rm(fbCore.getClassView(),view);
 		view=null;
 		reloadMap();
 		updateOrder();
@@ -234,7 +240,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	
 	public void changeCategory()
 	{
-		category = fGeo.load(cCategory,category);
+		category = fGeo.load(fbCore.getClassCategory(),category);
 		layers = category.getLayer();
 		logger.info(AbstractLogMessage.selectOneMenuChange(category));
 	}
