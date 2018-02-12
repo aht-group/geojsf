@@ -95,7 +95,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	
 	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 							GeoMetaFactoryBuilder<L,D,DS> fbMeta,
-							GeoSldFactoryBuilder<L,D> fbSld
+							GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld
 			, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
 		this.fbCore=fbCore;
