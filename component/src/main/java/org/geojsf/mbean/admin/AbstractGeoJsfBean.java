@@ -90,16 +90,15 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	
 	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 							GeoMetaFactoryBuilder<L,D,DS> fbMeta,
-							GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld
-			, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+							GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		this.fbCore=fbCore;
 		this.fbMeta=fbMeta;
 		this.fbSld=fbSld;
 
 		
-		ffSld = GeoSldFactoryFactory.factory(cSld);
-		ffGeo = GeoJsfFactoryFactory.factory(fbCore.getClassL(),fbCore.getClassD(),fbCore.getClassScale(),cDs);
+		ffSld = GeoSldFactoryFactory.factory(fbSld.getClassSld());
+		ffGeo = GeoJsfFactoryFactory.factory(fbCore.getClassL(),fbCore.getClassD(),fbCore.getClassScale(),fbMeta.getClassDs());
 		
 		efLang = EjbLangFactory.factory(fbCore.getClassL());
 	    	efDescription = EjbDescriptionFactory.factory(fbCore.getClassD());
@@ -114,7 +113,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
     	
 		efDs = ffGeo.ejbDs();
 		efSld = ffSld.sld();
-		efTemplate = EjbGeoSldTemplateFactory.factory(cTemplate);
+		efTemplate = EjbGeoSldTemplateFactory.factory(fbSld.getClassTemplate());
 	}
 	
 	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)

@@ -54,10 +54,9 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 		
 	public AbstractGeoJsfDataSourceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 										GeoMetaFactoryBuilder<L,D,DS> fbMeta,
-										GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld
-			, final Class<DS> cDs, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
+										GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
-		super(fbCore,fbMeta,fbSld,cDs,cTemplate,cSldType,cSld);
+		super(fbCore,fbMeta,fbSld);
 	}
 	
 	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
