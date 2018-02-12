@@ -62,18 +62,13 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	
 	protected String[] langKeys;
 	protected GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
+	
 	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
 	protected final GeoMetaFactoryBuilder<L,D,DS> fbMeta;
+	protected final GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
 
+	
 
-
-
-
-
-
-	protected final Class<SLDTEMPLATE> cTemplate;
-	protected final Class<SLDTYPE> cSldType;
-	protected final Class<SLD> cSld;
 	
 	protected final GeoSldFactoryFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffSld;
 	protected final GeoJsfFactoryFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffGeo;
@@ -100,10 +95,8 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	{
 		this.fbCore=fbCore;
 		this.fbMeta=fbMeta;
-		
-		this.cTemplate = cTemplate;
-		this.cSldType = cSldType;
-		this.cSld = cSld;
+		this.fbSld=fbSld;
+
 		
 		ffSld = GeoSldFactoryFactory.factory(cSld);
 		ffGeo = GeoJsfFactoryFactory.factory(fbCore.getClassL(),fbCore.getClassD(),fbCore.getClassScale(),cDs);

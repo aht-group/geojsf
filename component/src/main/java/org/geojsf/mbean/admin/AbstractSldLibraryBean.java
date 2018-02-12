@@ -75,8 +75,8 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	{
 		super.initSuper(langKeys,fGeo);
 	
-		templates = fGeo.all(cTemplate);
-		types = fGeo.allOrderedPositionVisible(cSldType);
+		templates = fGeo.all(fbSld.getClassTemplate());
+		types = fGeo.allOrderedPositionVisible(fbSld.getClassSldType());
 	}
 	
 	public void cancelSld(){reset(true);}
@@ -98,7 +98,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	
 	public void addSld()
 	{
-		logger.info(AbstractLogMessage.addEntity(cSld));
+		logger.info(AbstractLogMessage.addEntity(fbSld.getClassSld()));
 		sld = efSld.build(null,true);
 		sld.setName(efLang.createEmpty(langKeys));
 		sld.setDescription(efDescription.createEmpty(langKeys));
@@ -107,11 +107,11 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	public void saveSld() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info("1: "+sld.getStatusAttribute());
-		sld.setType(fGeo.find(cSldType,sld.getType()));
+		sld.setType(fGeo.find(fbSld.getClassSldType(),sld.getType()));
 //		if(!sld.getType().getCode().equals(GeoJsfTYPE.Type.template.toString())){sld.setTemplate(null);}
 //		if(!sld.getType().getCode().equals(GeoJsfTYPE.Type.status.toString())){sld.setStatusClass(null);}
 //		
-		if(sld.getTemplate()!=null){sld.setTemplate(fGeo.find(cTemplate,sld.getTemplate()));}
+		if(sld.getTemplate()!=null){sld.setTemplate(fGeo.find(fbSld.getClassTemplate(),sld.getTemplate()));}
 		
 		logger.info(AbstractLogMessage.saveEntity(sld));
 		sld = fGeo.save(sld);
@@ -129,7 +129,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	
 	public void changeTYPE()
 	{
-		sld.setType(fGeo.find(cSldType, sld.getType()));
+		sld.setType(fGeo.find(fbSld.getClassSldType(), sld.getType()));
 		logger.info(AbstractLogMessage.selectOneMenuChange(sld.getType()));
 	}
 	

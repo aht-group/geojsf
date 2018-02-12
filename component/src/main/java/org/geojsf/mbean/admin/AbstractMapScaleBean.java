@@ -86,7 +86,7 @@ public class AbstractMapScaleBean <L extends UtilsLang, D extends UtilsDescripti
 	
 	public void addScale()
 	{
-		logger.info(AbstractLogMessage.addEntity(cTemplate));
+		logger.info(AbstractLogMessage.addEntity(fbSld.getClassTemplate()));
 		scale = efScale.build(langKeys);
 	}
 	

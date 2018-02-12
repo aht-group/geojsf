@@ -65,7 +65,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 	
 	protected void reloadTemplates()
 	{
-		templates = fGeo.all(cTemplate);
+		templates = fGeo.all(fbSld.getClassTemplate());
 	}
 	
 	public void selectTemplate() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
@@ -77,7 +77,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 	
 	public void addTemplate()
 	{
-		logger.info(AbstractLogMessage.addEntity(cTemplate));
+		logger.info(AbstractLogMessage.addEntity(fbSld.getClassTemplate()));
 		template = efTemplate.build(null);
 		template.setName(efLang.createEmpty(langKeys));
 		template.setDescription(efDescription.createEmpty(langKeys));

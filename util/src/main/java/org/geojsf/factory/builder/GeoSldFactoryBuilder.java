@@ -23,11 +23,15 @@ public class GeoSldFactoryBuilder<L extends UtilsLang, D extends UtilsDescriptio
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoSldFactoryBuilder.class);
 	
-//	protected final Class<CATEGORY> cCategory;
-
+	private final Class<SLDTEMPLATE> cTemplate; public Class<SLDTEMPLATE> getClassTemplate(){return cTemplate;}
+	private final Class<SLDTYPE> cSldType; public Class<SLDTYPE> getClassSldType(){return cSldType;}
+	private final Class<SLD> cSld; public Class<SLD> getClassSld(){return cSld;}
 	
-	public GeoSldFactoryBuilder(final Class<L> cL, final Class<D> cD)//, final Class<CATEGORY> cCategory)
+	public GeoSldFactoryBuilder(final Class<L> cL, final Class<D> cD, final Class<SLDTEMPLATE> cTemplate, final Class<SLDTYPE> cSldType, final Class<SLD> cSld)
 	{
 		super(cL,cD);
+		this.cTemplate=cTemplate;
+		this.cSldType=cSldType;
+		this.cSld=cSld;
 	}
 }
