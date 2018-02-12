@@ -41,7 +41,8 @@ public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 		service.getLayer().add(layerA);
 		
 		String expected = layerA.getCode();
-		String actual = TxtOpenlayersLayerFactory.buildLayerString(service);
+		logger.error("NYI, uncommented");
+		String actual = null;//TxtOpenlayersLayerFactory.buildLayerString(service);
 		Assert.assertEquals(expected, actual);
 	}
 	
@@ -53,7 +54,8 @@ public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 		service.getLayer().add(layerB);
 		
 		String expected = layerB.getCode()+","+layerA.getCode();
-		String actual = TxtOpenlayersLayerFactory.buildLayerString(service);
+		logger.error("NYI, uncommented");
+		String actual = null;//TxtOpenlayersLayerFactory.buildLayerString(service);
 		Assert.assertEquals(expected, actual);
 	}
 }

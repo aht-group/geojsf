@@ -1,6 +1,5 @@
 package org.geojsf.model.pojo.sld;
 
-import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -17,17 +16,11 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphic;
-import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicFigure;
-import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicStyle;
-import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicType;
 
-import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
-import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 @EjbErNode(name="SLD Rule",category="sld",subset="sld")
-public class DefaultGeoJsfSldRule implements Serializable,EjbRemoveable,EjbPersistable,
-				GeoJsfSldRule<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSld,DefaultGeoJsfSldRule>
+public class DefaultGeoJsfSldRule implements GeoJsfSldRule<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;

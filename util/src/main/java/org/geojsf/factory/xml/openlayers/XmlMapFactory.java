@@ -27,7 +27,21 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
-public class XmlMapFactory implements Serializable
+public class XmlMapFactory <L extends UtilsLang, D extends UtilsDescription,
+G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
+F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
+CATEGORY extends GeoJsfCategory<L,D,LAYER>,
+SERVICE extends GeoJsfService<L,D,LAYER>,
+LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
+SCALE extends GeoJsfScale<L,D>, 
+VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
+VP extends GeoJsfViewPort,
+DS extends GeoJsfDataSource<L,D,LAYER>,
+SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
+SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+RULE extends GeoJsfSldRule<L,D,G>> implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlMapFactory.class);
 	
@@ -41,22 +55,8 @@ public class XmlMapFactory implements Serializable
 		this.q=q;
 	}
 
-	public <L extends UtilsLang, D extends UtilsDescription,
-			G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
-			F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
-			CATEGORY extends GeoJsfCategory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-			SERVICE extends GeoJsfService<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-			LAYER extends GeoJsfLayer<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-			MAP extends GeoJsfMap<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-			SCALE extends GeoJsfScale<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>, 
-			VIEW extends GeoJsfView<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-			VP extends GeoJsfViewPort<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-			DS extends GeoJsfDataSource<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-			SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-			SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-			SLD extends GeoJsfSld<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-			RULE extends GeoJsfSldRule<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
-		Map build (GeoJsfMap<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ejb)
+	public 
+		Map build (GeoJsfMap<L,D,CATEGORY,VIEW,VP> ejb)
 	{
 		Map xml = new Map();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}

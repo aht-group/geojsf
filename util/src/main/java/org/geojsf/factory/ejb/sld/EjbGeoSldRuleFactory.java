@@ -17,8 +17,8 @@ public class EjbGeoSldRuleFactory<L extends UtilsLang, D extends UtilsDescriptio
 									F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-									SLD extends GeoJsfSld<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+									RULE extends GeoJsfSldRule<L,D,G>
 									>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldRuleFactory.class);
@@ -36,8 +36,8 @@ public class EjbGeoSldRuleFactory<L extends UtilsLang, D extends UtilsDescriptio
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 					SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 					STYLE extends UtilsStatus<STYLE,L,D>,
-					SLD extends GeoJsfSld<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					RULE extends GeoJsfSldRule<L,D,G>
 					>
     	EjbGeoSldRuleFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> factory(final Class<RULE> cRule)
     {

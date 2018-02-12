@@ -15,8 +15,8 @@ public class TxtSldFactory<L extends UtilsLang, D extends UtilsDescription,
 							F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
 							TYPE extends UtilsStatus<TYPE,L,D>,
-							SLD extends GeoJsfSld<L,D,G,GT,F,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G,GT,F,FS,SLDTEMPLATE,TYPE,SLD,RULE>
+							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
+							RULE extends GeoJsfSldRule<L,D,G>
 							>
 {	
 	public TxtSldFactory()

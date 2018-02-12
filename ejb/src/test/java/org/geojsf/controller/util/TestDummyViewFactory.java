@@ -61,7 +61,8 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		Assert.assertEquals(2, actual.size());
 		
 		XmlRepositoryFactory f = new XmlRepositoryFactory(GeoJsfQuery.get(GeoJsfQuery.Key.repositoryService, null));
-		JaxbUtil.error(f.build(actual));
+		logger.error("NYI, uncommented");
+//		JaxbUtil.error(f.build(actual));
     }
 	
 	@Test
@@ -96,7 +97,8 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		
 		logger.info("***********************");
 		logger.info("This is the MAP");
-		GeojsfDatastructureDebugger.debug(map);
+		logger.warn("NYI, deactivated");
+//		GeojsfDatastructureDebugger.debug(map);
 		
 		GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfScale,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSld,DefaultGeoJsfSldRule> fService;
 		fService = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
@@ -106,7 +108,8 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		List<DefaultGeoJsfService> list = fService.build(map);
 		for(DefaultGeoJsfService service : list)
 		{
-			GeojsfDatastructureDebugger.debug(service);
+			logger.error("NYI, uncommented");
+//			GeojsfDatastructureDebugger.debug(service);
 		}
 		
 	}

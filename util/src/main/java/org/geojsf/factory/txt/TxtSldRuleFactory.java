@@ -16,8 +16,8 @@ public class TxtSldRuleFactory<L extends UtilsLang, D extends UtilsDescription,
 								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
 								TYPE extends UtilsStatus<TYPE,L,D>,
-								SLD extends GeoJsfSld<L,D,G,GT,F,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G,GT,F,FS,SLDTEMPLATE,TYPE,SLD,RULE>
+								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
+								RULE extends GeoJsfSldRule<L,D,G>
 								>
 {	
 	private TxtSldRuleFactory()
@@ -29,8 +29,8 @@ public class TxtSldRuleFactory<L extends UtilsLang, D extends UtilsDescription,
 					G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 					TYPE extends UtilsStatus<TYPE,L,D>,
-					SLD extends GeoJsfSld<L,D,G,GT,F,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G,GT,F,FS,SLDTEMPLATE,TYPE,SLD,RULE>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
+					RULE extends GeoJsfSldRule<L,D,G>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>>
 		TxtSldRuleFactory<L,D,G,GT,F,FS,SLDTEMPLATE,TYPE,SLD,RULE> factory()
 	{

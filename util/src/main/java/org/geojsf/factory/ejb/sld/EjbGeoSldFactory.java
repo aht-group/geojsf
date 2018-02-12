@@ -17,8 +17,8 @@ public class EjbGeoSldFactory<L extends UtilsLang,D extends UtilsDescription,
 								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-								SLD extends GeoJsfSld<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>>
+								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+								RULE extends GeoJsfSldRule<L,D,G>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldFactory.class);
 	
