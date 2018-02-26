@@ -52,22 +52,8 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 @SuppressWarnings("rawtypes")
-public class WfsPointQuery<W extends EjbWithGeometry,I extends EjbWithId,
-							L extends UtilsLang,D extends UtilsDescription,
-							G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
-							F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
-							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-							SERVICE extends GeoJsfService<L,D,LAYER>,
-							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-							MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-							SCALE extends GeoJsfScale<L,D>, 
-							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-							VP extends GeoJsfViewPort,
-							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G>> 
+public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
+							LAYER extends GeoJsfLayer<?,?,?,?,?,?,?>> 
 {
 	final static Logger logger = LoggerFactory.getLogger(WfsPointQuery.class);
 	
