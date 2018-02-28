@@ -61,7 +61,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 	
 	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		super.initSuper(langKeys,fGeo);
+		super.postConstructGeojsf(langKeys,fGeo);
 
 	    	availableLayers = fGeo.all(fbCore.getClassLayer());
 	    	categories = fGeo.all(fbCore.getClassCategory());

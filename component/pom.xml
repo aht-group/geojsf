@@ -39,6 +39,11 @@
 		<!-- AHT Utils -->
 		<dependency>
 			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jeesl</groupId>
 			<artifactId>jeesl-jsf</artifactId>
 			<scope>provided</scope>
 		</dependency>

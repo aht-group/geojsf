@@ -75,8 +75,8 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	
 	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		super.initSuper(langKeys,fGeo);  	
-    	slds = fGeo.fLibrarySlds();
+		super.postConstructGeojsf(langKeys,fGeo);  	
+		slds = fGeo.fLibrarySlds();
 	}
 	
 	protected void reloadServices()

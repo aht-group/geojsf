@@ -20,6 +20,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfProvideSldStatus;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.api.bean.JeeslTranslationBean;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -69,9 +70,9 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 		sldStatusClasses = new ArrayList<String>();
 	}
 	
-	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	protected void initSuper(JeeslTranslationBean bTranslation, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		super.initSuper(langKeys,fGeo);
+		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]),fGeo);
 	
 		templates = fGeo.all(fbSld.getClassTemplate());
 		types = fGeo.allOrderedPositionVisible(fbSld.getClassSldType());

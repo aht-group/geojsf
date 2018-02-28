@@ -6,6 +6,7 @@ import java.util.List;
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
+import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -17,6 +18,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.api.bean.JeeslTranslationBean;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
 import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -60,6 +62,11 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 									GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);
+	}
+	
+	protected void initSuper(JeeslTranslationBean bTranslation, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	{
+		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]),fGeo);
 	}
 	
 	protected void reloadTemplates()

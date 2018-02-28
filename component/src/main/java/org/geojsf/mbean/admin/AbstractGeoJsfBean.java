@@ -66,9 +66,6 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
 	protected final GeoMetaFactoryBuilder<L,D,DS> fbMeta;
 	protected final GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
-
-	
-
 	
 	protected final GeoSldFactoryFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffSld;
 	protected final GeoJsfFactoryFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffGeo;
@@ -116,7 +113,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 		efTemplate = EjbGeoSldTemplateFactory.factory(fbSld.getClassTemplate());
 	}
 	
-	protected void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	protected void postConstructGeojsf(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		this.langKeys=langKeys;
 		this.fGeo=fGeo;
