@@ -38,13 +38,13 @@
 				</aht:slot>
 				<aht:slot id="sSld" width="6">
 					<h:form id="fSld">
-						<p:panel header="#{msg.geoJsfAdminSld}" rendered="#{not empty cc.attrs.bean.sld}" styleClass="auPanelWithGrid">
+						<p:panel header="#{msg.geoJsfAdminSld}" rendered="#{not empty cc.attrs.bean.sld}" styleClass="jeeslPanel">
 							<f:facet name="actions">
 								<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelSld()}" update=":#{cc.id}:grid"/>
 								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveSld()}" update=":#{cc.id}:grid"/>
 								<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.deleteSld()}" update=":#{cc.id}:grid" rendered="#{cc.attrs.bean.sld.id gt 0}"/>	
 							</f:facet>
-							<p:panelGrid columns="2" columnClasses="auPwg30,auPwg70">
+							<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
 								
 								<p:outputLabel value="#{msg.geoJsfType}"/>
 								<p:selectOneMenu value="#{cc.attrs.bean.sld.type}" effect="fade" styleClass="w100" >  

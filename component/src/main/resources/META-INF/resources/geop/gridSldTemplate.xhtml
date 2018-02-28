@@ -39,13 +39,13 @@
 				</aht:slot>
 				<aht:slot id="sTemplate" width="8">
 					<h:form id="fTemplate">
-						<p:panel header="#{msg.geoJsfAdminSldTemplate}" styleClass="auPanelWithGrid"  rendered="#{not empty cc.attrs.bean.template}">
+						<p:panel header="#{msg.geoJsfAdminSldTemplate}" rendered="#{not empty cc.attrs.bean.template}" styleClass="jeeslPanel">
 							<f:facet name="actions">
 								<aht:icon type="geoJsfCancel" mayDisappear="true" listener="#{cc.attrs.bean.cancelTemplate()}" update=":#{cc.id}:grid"/>
 								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveTemplate()}" update=":#{cc.id}:grid"/>
 								<aht:icon type="geoJsfDelete" mayDisappear="true" listener="#{cc.attrs.bean.rmTemplate()}" update=":#{cc.id}:grid"/>
 							</f:facet>
-							<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">
+							<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
 								<p:inputText value="#{cc.attrs.bean.template.code}" autocomplete="false"/>
 							</p:panelGrid>
