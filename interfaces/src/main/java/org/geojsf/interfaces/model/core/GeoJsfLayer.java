@@ -35,7 +35,6 @@ public interface GeoJsfLayer<L extends UtilsLang, D extends UtilsDescription,
 	VP getViewPort();
 	void setViewPort(VP viewPort);
 	
-	boolean getTemporalLayer();
 	boolean isTemporalLayer();
 	void setTemporalLayer(boolean temporalLayer);
 	

@@ -65,7 +65,7 @@ public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,
     
     public EjbGeoLayerFactory(final Class<L> cLang, final Class<LAYER> clLayer)
     {
-    	fLang = EjbLangFactory.factory(cLang);
+    		fLang = EjbLangFactory.factory(cLang);
         this.clLayer = clLayer;
     } 
 	
@@ -75,13 +75,15 @@ public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,
 		try
 		{
 			ejb = clLayer.newInstance();
+			ejb.setVisible(true);
 			ejb.setName(fLang.createEmpty(langKeys));
+			ejb.setCode(code);
+			ejb.setService(service);
+			ejb.setCategory(category);
 		}
 		catch (InstantiationException e) {throw new UtilsConstraintViolationException(e.getMessage());}
 		catch (IllegalAccessException e) {throw new UtilsConstraintViolationException(e.getMessage());}
-		ejb.setCode(code);
-		ejb.setService(service);
-		ejb.setCategory(category);
+
         return ejb;
     }
 }

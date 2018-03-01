@@ -12,6 +12,7 @@
     
 	<composite:interface>
 		<composite:attribute name="bean" required="false" default="#{gisSldTemplateBean}"/>
+		<composite:attribute name="localeKeys" required="false" default="#{appTranslationBean.langKeys}"/>
 	</composite:interface>
         
 	<composite:implementation>
@@ -27,7 +28,6 @@
 							</aht:pfDataTableHeader>
 						</f:facet>
 						<p:ajax event="rowSelect" update=":#{cc.id}:sTemplate" listener="#{cc.attrs.bean.selectTemplate}"/>
-
 						<p:column headerText="#{msg.geoJsfAdminCode}" sortBy="#{t.code}">
 							<h:outputText value="#{t.code}" /> 
 						</p:column>
@@ -45,14 +45,12 @@
 								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveTemplate()}" update=":#{cc.id}:grid"/>
 								<aht:icon type="geoJsfDelete" mayDisappear="true" listener="#{cc.attrs.bean.rmTemplate()}" update=":#{cc.id}:grid"/>
 							</f:facet>
-							<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
+							<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
 								<p:inputText value="#{cc.attrs.bean.template.code}" autocomplete="false"/>
 							</p:panelGrid>
 							<p:panelGrid columns="1" columnClasses="auPwg100">
-								<aht:tabTranslationEditor value="#{cc.attrs.bean.template}"
-											keys="#{translationBean.langKeys}" withDescription="true"
-											labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"/>
+								<aht:tabTranslationEditor value="#{cc.attrs.bean.template}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
 								<jtp:inputRemark value="#{cc.attrs.bean.template.xml}" rows="20"/>
 							</p:panelGrid>
 						</p:panel>

@@ -63,7 +63,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractMapThematicBean.class);
 	
-	protected EjbGeoCategoryFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efCategory;
+	protected EjbGeoCategoryFactory<L,D,CATEGORY> efCategory;
 	protected EjbGeoServiceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efService;
 	protected EjbGeoLayerFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efLayer;
 	protected EjbGeoMapFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efMap;

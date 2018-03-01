@@ -40,7 +40,7 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,G>>
 {
-	private EjbGeoCategoryFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fCategory;
+	private EjbGeoCategoryFactory<L,D,CATEGORY> fCategory;
 	private EjbGeoServiceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fService;
 	private EjbGeoLayerFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fLayer;
 	private EjbGeoMapFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fMap;

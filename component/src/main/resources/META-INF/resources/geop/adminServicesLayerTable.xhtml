@@ -8,20 +8,20 @@
     xmlns:composite="http://java.sun.com/jsf/composite">
     
 	<composite:interface>
-
+		<composite:attribute name="bean" required="false" default="#{adminMapServiceBean}"/>
 	</composite:interface>
         
 	<composite:implementation>
-		<p:dataTable rendered="#{adminMapServiceBean.category.id gt 0}"
-				var="l" value="#{adminMapServiceBean.layers}"
-				selection="#{adminMapServiceBean.layer}" selectionMode="single" rowKey="#{l.id}" draggableRows="true">
+		<p:dataTable rendered="#{cc.attrs.bean.category.id gt 0}"
+				var="l" value="#{cc.attrs.bean.layers}"
+				selection="#{cc.attrs.bean.layer}" selectionMode="single" rowKey="#{l.id}" draggableRows="true">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
-                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addLayer()}" update=":sLayer" tooltip="#{msg.ttNew}"/>
+                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addLayer()}" update=":sLayer" tooltip="#{msg.ttNew}"/>
                 </aht:pfDataTableHeader>
             </f:facet>
-            <p:ajax event="rowReorder" listener="#{adminMapServiceBean.reorderLayer()}" update="@form"/>
-			<p:ajax event="rowSelect" listener="#{adminMapServiceBean.selectLayer}" update=":sLayer"/>
+            <p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorderLayer()}" update="@form"/>
+			<p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectLayer}" update=":sLayer"/>
 			<p:column headerText="#" sortBy="#{l.position}">
 				<h:outputText value="#{l.position}" />  
 			</p:column>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    	xmlns:geojsf="http://geojsf.org/ui"
+    xmlns:geop="http://geojsf.org/prototype"
+	xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
+    xmlns:aht="http://ahtutils.sourceforge.net/jsf"
+    xmlns:aup="http://ahtutils.sourceforge.net/prototype"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	<composite:interface>
+		<composite:attribute name="bean" required="false" default="#{gisSldTemplateBean}"/>
+		<composite:attribute name="localeKeys" required="false" default="#{appTranslationBean.langKeys}"/>
+	</composite:interface>
+        
+	<composite:implementation>
+		<aup:grid id="grid">
+			<aht:row id="rowServices">
+				<aht:slot width="3">
+					<h:form id="fServices">
+						<p:dataTable var="s" value="#{cc.attrs.bean.services}"
+							selection="#{cc.attrs.bean.service}" selectionMode="single" rowKey="#{s.id}">
+							<f:facet name="header">
+				                <aht:pfDataTableHeader title="#{msg.geoJsfAdminServices}">
+				                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttNew}"/>
+				                </aht:pfDataTableHeader>
+				            </f:facet>
+				            <p:ajax event="rowSelect" update=":#{cc.id}:rowServices" listener="#{cc.attrs.bean.selectService}"/>
+				            <p:column headerText="#{msg.geoJsfAdminName}" sortBy="#{s.code}">
+								<h:outputText value="#{s.name[userBean.localeCode].lang}" />  
+							</p:column>
+						</p:dataTable>
+					</h:form>
+					<h:form id="fService">
+						<p:panel header="#{msg.geoJsfAdminService}" rendered="#{not empty cc.attrs.bean.service}" styleClass="jeeslPanel">
+							<f:facet name="actions">
+								<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}"/>
+								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
+								<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.service)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
+							</f:facet>
+							<p:panelGrid columns="1" columnClasses="jeeslGrid100">
+								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
+								<p:inputText value="#{cc.attrs.bean.service.code}" placeholder="#{msg.EnterUniqueCode}" autocomplete="false"/>
+								<p:outputLabel value="#{msg.geoJsfServiceWms}"/>
+								<p:inputText value="#{cc.attrs.bean.service.wms}"/>
+								<p:outputLabel value="#{msg.geoJsfServiceWcs}"/>
+								<p:inputText value="#{cc.attrs.bean.service.wcs}"/>
+							</p:panelGrid>
+							<aht:tabTranslationEditor value="#{cc.attrs.bean.service}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
+						</p:panel>
+					</h:form>
+					<h:form id="fCategories">
+						<p:dataTable var="c" value="#{cc.attrs.bean.categories}" draggableRows="true"
+							selection="#{cc.attrs.bean.category}" selectionMode="single" rowKey="#{c.id}">
+							<f:facet name="header">
+				                <aht:pfDataTableHeader title="#{msg.geoJsfAdminCategories}">
+				                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addCategory()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttNew}"/>
+				                </aht:pfDataTableHeader>
+				            </f:facet>
+				            <p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorderCategories()}" update="@form"/>
+				            <p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectCategory}" update=":#{cc.id}:rowServices"/>
+				            <p:column headerText="#" sortBy="#{c.position}">
+								<h:outputText value="#{c.position}" />  
+							</p:column>
+				            <p:column headerText="#{msg.geoJsfAdminCategory}" sortBy="#{c.code}">
+								<h:outputText value="#{c.name[userBean.localeCode].lang}" />  
+							</p:column>
+						</p:dataTable>
+					</h:form>
+					<h:form id="fCategory">
+						<p:panel header="#{msg.geoJsfAdminCategory}" rendered="#{not empty cc.attrs.bean.category}" styleClass="jeeslPanel">
+							<f:facet name="actions">
+								<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelCategory()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}"/>
+								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveCategory()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
+								<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.category)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
+							</f:facet>
+							<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
+								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
+								<p:inputText value="#{cc.attrs.bean.category.code}" placeholder="#{msg.EnterUniqueCode}" autocomplete="false"/>
+							</p:panelGrid>
+							<aht:tabTranslationEditor value="#{cc.attrs.bean.category}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
+						</p:panel>
+					</h:form>
+				</aht:slot>
+				<aht:slot id="sLayers" width="4" >
+					<h:form id="fLayers" rendered="#{not empty cc.attrs.bean.category}">
+						<p:dataTable rendered="#{cc.attrs.bean.category.id gt 0}" var="l" value="#{cc.attrs.bean.layers}"
+								selection="#{cc.attrs.bean.layer}" selectionMode="single" rowKey="#{l.id}" draggableRows="true">
+							<f:facet name="header">
+				                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
+				                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addLayer()}" update=":#{cc.id}:sLayer" tooltip="#{msg.ttNew}"/>
+				                </aht:pfDataTableHeader>
+				            </f:facet>
+				            <p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorderLayer()}" update="@form"/>
+							<p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectLayer}" update=":#{cc.id}:sLayer"/>
+							<p:column headerText="#" sortBy="#{l.position}">
+								<h:outputText value="#{l.position}" />  
+							</p:column>
+							<p:column headerText="#{msg.jeeslName}" sortBy="#{l.name[localeCode].lang}">
+								<h:outputText value="#{l.name[localeCode].lang}" />  
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</aht:slot>
+				<aht:slot id="sLayer" width="5">
+					<h:form id="fLayer" rendered="#{not empty cc.attrs.bean.layer}">
+						<p:panel header="#{msg.geoJsfAdminLayer}" styleClass="jeeslPanel">
+							<f:facet name="actions">
+								<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" mayDisappear="true" tooltip="#{msg.ttCancel}"/>
+								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttSave}"/>
+								<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" mayDisappear="true" tooltip="#{msg.ttDelete}"/>
+							</f:facet>
+							<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
+								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
+								<p:inputText value="#{cc.attrs.bean.layer.code}" autocomplete="false"/>
+						<ui:remove>					
+								<p:outputLabel value="#{msg.geoJsfAdminLayerTemporal}" />  
+								<p:selectBooleanCheckbox value="#{cc.attrs.bean.layer.temporalLayer}" />
+						</ui:remove>			
+								<p:outputLabel value="#{msg.geoJsfAdminLayerSql}" />  
+								<p:selectBooleanCheckbox value="#{cc.attrs.bean.layer.sqlLayer}" />
+								
+								<p:outputLabel value="#{msg.geoJsfAdminService}"/>
+								<p:selectOneMenu value="#{cc.attrs.bean.layer.service}" effect="fade" autoWidth="false">  
+									<f:selectItems value="#{cc.attrs.bean.services}" var="s" itemLabel="#{s.name[localeCode].lang}" itemValue="#{s}"/>
+								</p:selectOneMenu>
+								
+								<p:outputLabel value="#{msg.geoJsfAdminCategory}"/>
+								<p:selectOneMenu value="#{cc.attrs.bean.layer.category}" effect="fade" autoWidth="false">  
+									<f:selectItems value="#{cc.attrs.bean.categories}" var="c" itemLabel="#{c.name[localeCode].lang}" itemValue="#{c}"/>
+								</p:selectOneMenu>
+								
+								<p:outputLabel value="#{msg.geoJsfSld}"/>
+								<p:selectOneMenu value="#{cc.attrs.bean.layer.sld}" effect="fade" autoWidth="false">
+									<f:selectItem itemLabel="---"/>  
+									<f:selectItems value="#{cc.attrs.bean.slds}" var="t" itemLabel="#{t.name[localeCode].lang}" itemValue="#{t}"/>
+								</p:selectOneMenu>
+							</p:panelGrid>
+							<aht:tabTranslationEditor value="#{cc.attrs.bean.layer}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
+						</p:panel>
+					</h:form>
+					<h:form id="fMap">
+						<p:panel header="#{msg.geoJsfAdminPreview}: #{cc.attrs.bean.layer.name[localeCode].lang}"
+									styleClass="geojsfPrimefacesPanelMap" 
+									rendered="#{cc.attrs.bean.layer.id gt 0}">
+							<f:facet name="actions">
+								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.layer.saveViewPort()}"  tooltip="#{msg.ttSave}"/>
+							</f:facet>
+								<geojsf:map id="map" baseMap="osm" rendered="#{cc.attrs.bean.layer.id gt 0}" value="#{cc.attrs.bean.layer.map}">
+									<geojsf:viewport value="#{cc.attrs.bean.layer.viewPort}"/>
+									<p:ajax event="mapMove" listener="#{cc.attrs.bean.layer.mapMove}" update=":#{cc.id}:fLayer"/>
+								</geojsf:map>
+							</p:panel>	
+					</h:form>
+				</aht:slot>
+			</aht:row>
+		</aup:grid>
+	</composite:implementation>
+</html>

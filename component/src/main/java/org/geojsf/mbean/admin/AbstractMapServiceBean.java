@@ -148,6 +148,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		
 		category.setName(efLang.createEmpty(langKeys));
 		category.setDescription(efDescription.createEmpty(langKeys));
+		
 		service=null;
 	}
 	

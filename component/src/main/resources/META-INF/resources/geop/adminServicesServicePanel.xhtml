@@ -10,6 +10,7 @@
 	<composite:interface>
 		<composite:attribute name="bean" required="false" default="#{adminMapServiceBean}"/>
 		<composite:attribute name="update" required="false" default=":rowServices"/>
+		<composite:attribute name="localeKeys" required="false" default="#{appTranslationBean.langKeys}"/>
 	</composite:interface>
         
 	<composite:implementation>
@@ -27,9 +28,7 @@
 				<p:outputLabel value="#{msg.geoJsfServiceWcs}"/>
 				<p:inputText value="#{cc.attrs.bean.service.wcs}"/>
 			</p:panelGrid>
-			<aht:tabTranslationEditor value="#{cc.attrs.bean.service}"
-					labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"
-       				keys="#{translationBean.langKeys}" withDescription="true"/>
+			<aht:tabTranslationEditor value="#{cc.attrs.bean.service}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
 		</p:panel>
    </composite:implementation>
 </html>

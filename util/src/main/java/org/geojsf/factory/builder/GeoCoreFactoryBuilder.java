@@ -1,5 +1,6 @@
 package org.geojsf.factory.builder;
 
+import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -50,5 +51,10 @@ public class GeoCoreFactoryBuilder<L extends UtilsLang, D extends UtilsDescripti
 		this.cScale=cScale;
 		this.cView=cView;
 		this.cViewPort=cViewPort;
+	}
+	
+	public EjbGeoCategoryFactory<L,D,CATEGORY> ejbCategory()
+	{
+	    return new EjbGeoCategoryFactory<L,D,CATEGORY>(cCategory);
 	}
 }

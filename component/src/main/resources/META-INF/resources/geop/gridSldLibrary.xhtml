@@ -12,6 +12,7 @@
     
 	<composite:interface>
 		<composite:attribute name="bean" required="false" default="#{gisSldLibraryBean}"/>
+		<composite:attribute name="localeKeys" required="false" default="#{appTranslationBean.langKeys}"/>
 	</composite:interface>
         
 	<composite:implementation>
@@ -64,10 +65,7 @@
 								</p:selectOneMenu>
 							
 							</p:panelGrid>
-							<aht:tabTranslationEditor value="#{cc.attrs.bean.sld}"
-											keys="#{translationBean.langKeys}" withDescription="true"
-											labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"/>
-
+							<aht:tabTranslationEditor value="#{cc.attrs.bean.sld}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
 						</p:panel>
 					</h:form>
 				</aht:slot>

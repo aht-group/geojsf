@@ -66,7 +66,6 @@ public class DefaultGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,Default
 	@Override public void setViewPort(DefaultGeoJsfViewPort viewPort){this.viewPort = viewPort;}
 	
 	private boolean temporalLayer;
-	@Override public boolean getTemporalLayer(){return temporalLayer;}
 	@Override public boolean isTemporalLayer() {return temporalLayer;}
 	@Override public void setTemporalLayer(boolean temporalLayer) {this.temporalLayer = temporalLayer;}
 	

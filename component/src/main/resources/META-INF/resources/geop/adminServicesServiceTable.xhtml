@@ -8,18 +8,18 @@
     xmlns:composite="http://java.sun.com/jsf/composite">
     
 	<composite:interface>
-
+		<composite:attribute name="bean" required="false" default="#{adminMapServiceBean}"/>
 	</composite:interface>
         
 	<composite:implementation>
-		<p:dataTable var="s" value="#{adminMapServiceBean.services}"
-						selection="#{adminMapServiceBean.service}" selectionMode="single" rowKey="#{s.id}">
+		<p:dataTable var="s" value="#{cc.attrs.bean.services}"
+						selection="#{cc.attrs.bean.service}" selectionMode="single" rowKey="#{s.id}">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.geoJsfAdminServices}">
-                    <aht:icon type="geoJsfAdd" listener="#{adminMapServiceBean.addService()}" update=":rowServices" tooltip="#{msg.ttNew}"/>
+                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addService()}" update=":rowServices" tooltip="#{msg.ttNew}"/>
                 </aht:pfDataTableHeader>
             </f:facet>
-            <p:ajax event="rowSelect" update=":rowServices" listener="#{adminMapServiceBean.selectService}"/>
+            <p:ajax event="rowSelect" update=":rowServices" listener="#{cc.attrs.bean.selectService}"/>
             <p:column headerText="#{msg.geoJsfAdminName}" sortBy="#{s.code}">
 				<h:outputText value="#{s.name[userBean.localeCode].lang}" />  
 			</p:column>
