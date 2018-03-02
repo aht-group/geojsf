@@ -142,14 +142,14 @@
 							<aht:tabTranslationEditor value="#{cc.attrs.bean.layer}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
 						</p:panel>
 					</h:form>
-					<h:form id="fMap">
+					<h:form id="fMap" rendered="#{not empty cc.attrs.bean.layer}">
 						<p:panel header="#{msg.geoJsfAdminPreview}: #{cc.attrs.bean.layer.name[localeCode].lang}"
 									styleClass="geojsfPrimefacesPanelMap" 
 									rendered="#{cc.attrs.bean.layer.id gt 0}">
 							<f:facet name="actions">
 								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.layer.saveViewPort()}"  tooltip="#{msg.ttSave}"/>
 							</f:facet>
-								<geojsf:map id="map" baseMap="osm" rendered="#{cc.attrs.bean.layer.id gt 0}" value="#{cc.attrs.bean.layer.map}">
+								<geojsf:map id="map" baseMap="osm" rendered="#{cc.attrs.bean.layer.id gt 0}" value="#{cc.attrs.bean.map}">
 									<geojsf:viewport value="#{cc.attrs.bean.layer.viewPort}"/>
 									<p:ajax event="mapMove" listener="#{cc.attrs.bean.layer.mapMove}" update=":#{cc.id}:fLayer"/>
 								</geojsf:map>
