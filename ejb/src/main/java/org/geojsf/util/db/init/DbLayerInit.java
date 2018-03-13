@@ -110,7 +110,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,
 
 		for(Layer layer : layers.getLayer())
 		{
-			updateLayer.actualAdd(layer.getCode());
+			updateLayer.handled(layer.getCode());
 			
 			SERVICE service;
 			CATEGORY category;

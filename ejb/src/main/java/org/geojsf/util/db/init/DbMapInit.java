@@ -112,7 +112,7 @@ F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 
 		for(Map map : maps.getMap())
 		{
-			ejbUpdater.actualAdd(map.getCode());
+			ejbUpdater.handled(map.getCode());
 			
 			MAP ejb;
 			try

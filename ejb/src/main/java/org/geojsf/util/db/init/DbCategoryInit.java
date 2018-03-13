@@ -95,7 +95,7 @@ public class DbCategoryInit <L extends UtilsLang,D extends UtilsDescription,
 
 		for(Category category : categories.getCategory())
 		{
-			ejbUpdater.actualAdd(category.getCode());
+			ejbUpdater.handled(category.getCode());
 			
 			CATEGORY ejb;
 			try

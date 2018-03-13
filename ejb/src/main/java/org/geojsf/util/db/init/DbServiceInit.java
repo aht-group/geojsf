@@ -94,7 +94,7 @@ public class DbServiceInit <L extends UtilsLang,D extends UtilsDescription,
 
 		for(Service service : repository.getService())
 		{
-			ejbUpdater.actualAdd(service.getCode());
+			ejbUpdater.handled(service.getCode());
 			
 			SERVICE ejb;
 			try
