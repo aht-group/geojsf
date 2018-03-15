@@ -12,8 +12,8 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.provider.SldConfigurationProvider;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;

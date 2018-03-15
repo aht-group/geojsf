@@ -11,9 +11,9 @@ import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.jeesl.factory.xml.system.symbol.XmlGraphicFactory;
 import org.jeesl.factory.xml.system.symbol.XmlSymbolFactory;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphicType;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

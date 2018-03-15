@@ -17,8 +17,8 @@ import org.geojsf.model.xml.geojsf.Service;
 import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

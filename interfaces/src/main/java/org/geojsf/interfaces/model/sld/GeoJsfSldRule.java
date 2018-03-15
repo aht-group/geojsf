@@ -2,7 +2,7 @@ package org.geojsf.interfaces.model.sld;
 
 import java.io.Serializable;
 
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;

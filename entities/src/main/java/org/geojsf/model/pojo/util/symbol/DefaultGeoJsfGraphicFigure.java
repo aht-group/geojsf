@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 
 import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
 import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;

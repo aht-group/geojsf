@@ -9,8 +9,8 @@ import org.geojsf.model.xml.geojsf.Query;
 import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

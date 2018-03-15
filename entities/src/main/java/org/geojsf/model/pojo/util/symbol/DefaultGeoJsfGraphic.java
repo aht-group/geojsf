@@ -11,7 +11,7 @@ import javax.persistence.OrderBy;
 
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 
 import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
 import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;

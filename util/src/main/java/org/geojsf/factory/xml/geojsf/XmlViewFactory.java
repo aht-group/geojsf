@@ -16,8 +16,8 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.model.xml.geojsf.Query;
 import org.geojsf.model.xml.geojsf.View;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphic;
-import org.jeesl.interfaces.model.system.symbol.JeeslGraphicFigure;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
