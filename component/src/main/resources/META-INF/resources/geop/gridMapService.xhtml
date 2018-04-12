@@ -149,11 +149,11 @@
 							<f:facet name="actions">
 								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.layer.saveViewPort()}"  tooltip="#{msg.ttSave}"/>
 							</f:facet>
-								<geojsf:map id="map" baseMap="osm" rendered="#{cc.attrs.bean.layer.id gt 0}" value="#{cc.attrs.bean.map}">
-									<geojsf:viewport value="#{cc.attrs.bean.layer.viewPort}"/>
-									<p:ajax event="mapMove" listener="#{cc.attrs.bean.layer.mapMove}" update=":#{cc.id}:fLayer"/>
-								</geojsf:map>
-							</p:panel>	
+							<geojsf:map id="map" baseMap="osm" rendered="#{cc.attrs.bean.layer.id gt 0}" value="#{cc.attrs.bean.map}">
+								<geojsf:viewport value="#{cc.attrs.bean.layer.viewPort}"/>
+								<p:ajax event="mapMove" listener="#{cc.attrs.bean.layer.mapMove}" update=":#{cc.id}:fLayer"/>
+							</geojsf:map>
+						</p:panel>	
 					</h:form>
 				</aht:slot>
 			</aht:row>
