@@ -58,7 +58,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
 	
 	public AbstractSldTemplateBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-									GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+									GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
 									GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);

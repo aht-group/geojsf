@@ -1,5 +1,6 @@
 package org.geojsf.util.db.init;
 
+import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -64,7 +65,10 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,
     
     private DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> dbVpInit;
     
-    public DbLayerInit(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+    public DbLayerInit(GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+    					final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,
+    					UtilsFacade fUtils,
+    					GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{       
     	this.cCategory = cCategory;
     	this.cService = cService;
@@ -73,10 +77,10 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,
         this.fUtils=fUtils;
         this.fGeo=fGeo;
 		
-		efLang = EjbLangFactory.factory(cL);
-		efDescription = EjbDescriptionFactory.factory(cD);
-		ejbLayerFactory = EjbGeoLayerFactory.factory(cL, cLayer);
-		dbVpInit = DbViewPortInit.factory(cVp,fUtils);
+		efLang = EjbLangFactory.factory(fbMeta.getClassL());
+		efDescription = EjbDescriptionFactory.factory(fbMeta.getClassD());
+		ejbLayerFactory = EjbGeoLayerFactory.factory(fbMeta.getClassL(), cLayer);
+		dbVpInit = DbViewPortInit.factory(fbMeta,cVp,fUtils);
 	}
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,
@@ -95,9 +99,10 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>> 
 	
 		DbLayerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(final Class<L> cL, final Class<D> cD,final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,UtilsFacade fUtils,GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+		factory(GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+					final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,UtilsFacade fUtils,GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		return new DbLayerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cL,cD,cCategory,cService,cLayer,cVp,fUtils,fGeo);
+		return new DbLayerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbMeta,cCategory,cService,cLayer,cVp,fUtils,fGeo);
 	}
 
 	public void iuLayers(Layers layers, String[] langKeys) throws UtilsConfigurationException

@@ -53,7 +53,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfDataSourceBean.class);
 		
 	public AbstractGeoJsfDataSourceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-										GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+										GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
 										GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);

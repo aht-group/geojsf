@@ -1,5 +1,6 @@
 package org.geojsf.util.db.init;
 
+import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -49,14 +50,14 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,
     
     private UtilsFacade fUtils;
     
-    private EjbGeoViewPortFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efVp;
+    private EjbGeoViewPortFactory<VP> efVp;
     
-    public DbViewPortInit(final Class<VP> cVp, UtilsFacade fUtils)
+    public DbViewPortInit(GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta, final Class<VP> cVp, UtilsFacade fUtils)
 	{       
         this.cVp = cVp;
         this.fUtils=fUtils;
 		
-		efVp = EjbGeoViewPortFactory.factory(cVp);
+		efVp = fbMeta.ejbViewPort();
 		
 	}
 	
@@ -75,9 +76,9 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>>
 		DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(final Class<VP> cVp,UtilsFacade fUtils)
+		factory(GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta, final Class<VP> cVp,UtilsFacade fUtils)
 	{
-		return new DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cVp,fUtils);
+		return new DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbMeta,cVp,fUtils);
 	}
 	
 	public void iuViewPort(MAP ejbMap, ViewPort viewPort) throws UtilsConstraintViolationException, UtilsLockingException, UtilsNotFoundException

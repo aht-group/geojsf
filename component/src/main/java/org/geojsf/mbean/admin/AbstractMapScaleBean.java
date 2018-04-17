@@ -61,7 +61,7 @@ public class AbstractMapScaleBean <L extends UtilsLang, D extends UtilsDescripti
 	private final Comparator<SCALE> cmpScale;
 	
 	public AbstractMapScaleBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-								GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+								GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
 								GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);

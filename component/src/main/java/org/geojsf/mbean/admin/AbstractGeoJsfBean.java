@@ -64,7 +64,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
 	
 	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
-	protected final GeoMetaFactoryBuilder<L,D,DS> fbMeta;
+	protected final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta;
 	protected final GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
 	
 	protected final GeoSldFactoryFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffSld;
@@ -79,14 +79,14 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final EjbGeoMapFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efMap;
 	protected final EjbGeoScaleFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efScale;
 	protected final EjbGeoViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efView;
-	protected final EjbGeoViewPortFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efViewPort;
+	protected final EjbGeoViewPortFactory<VP> efViewPort;
 	
 	protected final EjbGeoDataSourceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efDs;
 	protected final EjbGeoSldTemplateFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efTemplate;
 	protected final EjbGeoSldFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSld;
 	
 	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-							GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+							GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
 							GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		this.fbCore=fbCore;
@@ -98,15 +98,15 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 		ffGeo = GeoJsfFactoryFactory.factory(fbCore.getClassL(),fbCore.getClassD(),fbCore.getClassScale(),fbMeta.getClassDs());
 		
 		efLang = EjbLangFactory.factory(fbCore.getClassL());
-	    	efDescription = EjbDescriptionFactory.factory(fbCore.getClassD());
+	    efDescription = EjbDescriptionFactory.factory(fbCore.getClassD());
 	    	
-	    	efCategory = fbCore.ejbCategory();
-	    	efService = EjbGeoServiceFactory.factory(fbCore.getClassService());
-	    	efLayer = EjbGeoLayerFactory.factory(fbCore.getClassL(),fbCore.getClassLayer());
-	    	efMap = EjbGeoMapFactory.factory(fbCore.getClassL(),fbCore.getClassMap());
-	    	efScale = ffGeo.ejbScale();
-	    	efView = EjbGeoViewFactory.factory(fbCore.getClassView());
-	    	efViewPort = EjbGeoViewPortFactory.factory(fbCore.getClassViewPort());
+	    efCategory = fbCore.ejbCategory();
+	    efService = EjbGeoServiceFactory.factory(fbCore.getClassService());
+	    efLayer = EjbGeoLayerFactory.factory(fbCore.getClassL(),fbCore.getClassLayer());
+	    efMap = EjbGeoMapFactory.factory(fbCore.getClassL(),fbCore.getClassMap());
+	    efScale = ffGeo.ejbScale();
+	    efView = EjbGeoViewFactory.factory(fbCore.getClassView());
+	    efViewPort = fbMeta.ejbViewPort();
     	
 		efDs = ffGeo.ejbDs();
 		efSld = ffSld.sld();

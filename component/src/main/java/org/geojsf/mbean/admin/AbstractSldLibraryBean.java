@@ -62,7 +62,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 	private SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
 
 	public AbstractSldLibraryBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-									GeoMetaFactoryBuilder<L,D,DS> fbMeta,
+									GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
 									GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);
