@@ -1,4 +1,4 @@
-package org.geojsf.factory.ejb;
+package org.geojsf.factory.ejb.core;
 
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.slf4j.Logger;

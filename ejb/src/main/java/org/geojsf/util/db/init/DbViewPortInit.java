@@ -1,7 +1,7 @@
 package org.geojsf.util.db.init;
 
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
-import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
+import org.geojsf.factory.ejb.meta.EjbGeoViewPortFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;

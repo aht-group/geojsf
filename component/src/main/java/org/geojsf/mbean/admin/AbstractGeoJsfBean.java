@@ -5,14 +5,14 @@ import java.io.Serializable;
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
-import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
-import org.geojsf.factory.ejb.EjbGeoLayerFactory;
-import org.geojsf.factory.ejb.EjbGeoMapFactory;
-import org.geojsf.factory.ejb.EjbGeoServiceFactory;
-import org.geojsf.factory.ejb.EjbGeoViewFactory;
-import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
+import org.geojsf.factory.ejb.core.EjbGeoCategoryFactory;
+import org.geojsf.factory.ejb.core.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.core.EjbGeoMapFactory;
+import org.geojsf.factory.ejb.core.EjbGeoServiceFactory;
+import org.geojsf.factory.ejb.core.EjbGeoViewFactory;
 import org.geojsf.factory.ejb.meta.EjbGeoDataSourceFactory;
 import org.geojsf.factory.ejb.meta.EjbGeoScaleFactory;
+import org.geojsf.factory.ejb.meta.EjbGeoViewPortFactory;
 import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
 import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
 import org.geojsf.factory.factory.GeoJsfFactoryFactory;
@@ -76,9 +76,9 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final EjbGeoCategoryFactory<L,D,CATEGORY> efCategory;
 	protected final EjbGeoServiceFactory<L,D,SERVICE> efService;
 	protected final EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER> efLayer;
-	protected final EjbGeoMapFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efMap;
+	protected final EjbGeoMapFactory<L,D,MAP> efMap;
 	protected final EjbGeoScaleFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efScale;
-	protected final EjbGeoViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efView;
+	protected final EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> efView;
 	protected final EjbGeoViewPortFactory<VP> efViewPort;
 	
 	protected final EjbGeoDataSourceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efDs;
@@ -103,9 +103,9 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	    efCategory = fbCore.ejbCategory();
 	    efService = fbCore.ejbService();
 	    efLayer = fbCore.ejbLayer();
-	    efMap = EjbGeoMapFactory.factory(fbCore.getClassL(),fbCore.getClassMap());
+	    efMap = fbCore.ejbMap();
 	    efScale = ffGeo.ejbScale();
-	    efView = EjbGeoViewFactory.factory(fbCore.getClassView());
+	    efView = fbCore.ejbView();
 	    efViewPort = fbMeta.ejbViewPort();
     	
 		efDs = ffGeo.ejbDs();

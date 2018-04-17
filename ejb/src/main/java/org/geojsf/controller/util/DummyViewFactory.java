@@ -1,11 +1,11 @@
 package org.geojsf.controller.util;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
-import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
-import org.geojsf.factory.ejb.EjbGeoLayerFactory;
-import org.geojsf.factory.ejb.EjbGeoMapFactory;
-import org.geojsf.factory.ejb.EjbGeoServiceFactory;
-import org.geojsf.factory.ejb.EjbGeoViewFactory;
+import org.geojsf.factory.ejb.core.EjbGeoCategoryFactory;
+import org.geojsf.factory.ejb.core.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.core.EjbGeoMapFactory;
+import org.geojsf.factory.ejb.core.EjbGeoServiceFactory;
+import org.geojsf.factory.ejb.core.EjbGeoViewFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -44,8 +44,8 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,
 	private EjbGeoCategoryFactory<L,D,CATEGORY> fCategory;
 	private EjbGeoServiceFactory<L,D,SERVICE> fService;
 	private EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER> fLayer;
-	private EjbGeoMapFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fMap;
-	private EjbGeoViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fView;
+	private EjbGeoMapFactory<L,D,MAP> fMap;
+	private EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> fView;
 	
 	public SERVICE serviceOsm,serviceAht;
 	public SERVICE getServiceOsm() {return serviceOsm;}
@@ -95,8 +95,8 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,
         fCategory = fbCore.ejbCategory();
         fService = fbCore.ejbService();
 		fLayer = fbCore.ejbLayer();
-		fMap = EjbGeoMapFactory.factory(fbCore.getClassL(),clMap);
-		fView = EjbGeoViewFactory.factory(clView);
+		fMap = fbCore.ejbMap();
+		fView = fbCore.ejbView();
 		
 		try
 		{

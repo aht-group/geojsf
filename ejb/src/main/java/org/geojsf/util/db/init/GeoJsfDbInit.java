@@ -164,7 +164,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 	public DataUpdate importGeoJsfMaps(Maps maps)
 	{
 		DbMapInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> viewInit;
-		viewInit  = DbMapInit.factory(fbMeta,cLayer,cMap,cView,cVp,fSecurity,fGeo);
+		viewInit  = DbMapInit.factory(fbCore,fbMeta,cLayer,cMap,cView,cVp,fSecurity,fGeo);
 		try
 		{
 			viewInit.iuMaps(maps);

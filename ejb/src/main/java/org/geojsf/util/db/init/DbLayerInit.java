@@ -2,7 +2,7 @@ package org.geojsf.util.db.init;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
-import org.geojsf.factory.ejb.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.core.EjbGeoLayerFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;

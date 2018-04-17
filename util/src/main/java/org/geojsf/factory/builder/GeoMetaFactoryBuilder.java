@@ -1,6 +1,6 @@
 package org.geojsf.factory.builder;
 
-import org.geojsf.factory.ejb.EjbGeoViewPortFactory;
+import org.geojsf.factory.ejb.meta.EjbGeoViewPortFactory;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.jeesl.factory.builder.AbstractFactoryBuilder;

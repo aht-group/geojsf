@@ -1,8 +1,10 @@
 package org.geojsf.factory.builder;
 
-import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
-import org.geojsf.factory.ejb.EjbGeoLayerFactory;
-import org.geojsf.factory.ejb.EjbGeoServiceFactory;
+import org.geojsf.factory.ejb.core.EjbGeoCategoryFactory;
+import org.geojsf.factory.ejb.core.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.core.EjbGeoMapFactory;
+import org.geojsf.factory.ejb.core.EjbGeoServiceFactory;
+import org.geojsf.factory.ejb.core.EjbGeoViewFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -75,5 +77,15 @@ public class GeoCoreFactoryBuilder<L extends UtilsLang, D extends UtilsDescripti
     public EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER> ejbLayer()
 	{
     	return new EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER>(cL,cLayer);
+	}
+    
+    public EjbGeoMapFactory<L,D,MAP> ejbMap()
+    {
+        return new EjbGeoMapFactory<L,D,MAP>(cL,cMap);
+    }
+    
+    public EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> ejbView()
+	{
+    	return new EjbGeoViewFactory<L,D,LAYER,MAP,VIEW>(cView);
 	}
 }

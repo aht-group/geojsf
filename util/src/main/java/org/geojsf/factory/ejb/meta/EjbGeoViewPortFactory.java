@@ -1,4 +1,4 @@
-package org.geojsf.factory.ejb;
+package org.geojsf.factory.ejb.meta;
 
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.model.xml.geojsf.ViewPort;
