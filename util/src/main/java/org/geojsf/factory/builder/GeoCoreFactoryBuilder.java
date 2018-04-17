@@ -1,19 +1,28 @@
 package org.geojsf.factory.builder;
 
 import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
+import org.geojsf.factory.ejb.EjbGeoLayerFactory;
+import org.geojsf.factory.ejb.EjbGeoServiceFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
+import org.geojsf.interfaces.model.sld.GeoJsfSld;
+import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
+import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.jeesl.factory.builder.AbstractFactoryBuilder;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
+import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
 public class GeoCoreFactoryBuilder<L extends UtilsLang, D extends UtilsDescription,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
@@ -56,5 +65,15 @@ public class GeoCoreFactoryBuilder<L extends UtilsLang, D extends UtilsDescripti
 	public EjbGeoCategoryFactory<L,D,CATEGORY> ejbCategory()
 	{
 	    return new EjbGeoCategoryFactory<L,D,CATEGORY>(cCategory);
+	}
+	
+    public EjbGeoServiceFactory<L,D,SERVICE> ejbService()
+	{
+    	return new EjbGeoServiceFactory<L,D,SERVICE>(cService);
+	}
+    
+    public EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER> ejbLayer()
+	{
+    	return new EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER>(cL,cLayer);
 	}
 }

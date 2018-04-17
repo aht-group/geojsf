@@ -9,6 +9,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import org.geojsf.controller.util.DummyViewFactory;
+import org.geojsf.controller.util.TestDummyViewFactory;
 import org.geojsf.model.json.MapConfiguration;
 import org.geojsf.model.json.MapData;
 import org.geojsf.model.json.WmsLayer;
@@ -32,6 +33,8 @@ import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicFigure;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicStyle;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicType;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -40,8 +43,9 @@ import com.google.gson.Gson;
  *
  * @author helgehemmer
  */
-public class TestJavaScript {
-    
+public class TestJavaScript
+{
+	final static Logger logger = LoggerFactory.getLogger(TestJavaScript.class);
     String javaScriptLibraryPath = "src/main/resources/META-INF/resources/js.geojsf/";
     
     public TestJavaScript()
@@ -128,11 +132,13 @@ public class TestJavaScript {
         
         // Better create the GeoJSF datamodel
         DummyViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfScale,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSld,DefaultGeoJsfSldRule> dvf;
-	DefaultGeoJsfMap map;
-        dvf = DummyViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfDescription.class,DefaultGeoJsfCategory.class,DefaultGeoJsfService.class,DefaultGeoJsfLayer.class,DefaultGeoJsfMap.class,DefaultGeoJsfView.class);
-	map = dvf.getMap();
+        DefaultGeoJsfMap map;
+        
+        logger.error("NYI, we need a FactoryProvider here!");
+//        dvf = DummyViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfDescription.class,DefaultGeoJsfCategory.class,DefaultGeoJsfService.class,DefaultGeoJsfLayer.class,DefaultGeoJsfMap.class,DefaultGeoJsfView.class);
+ //       map = dvf.getMap();
         Gson gson = new Gson();
-        engine.put("dmMap", map);
+ //       engine.put("dmMap", map);
         engine.eval("print('Map ID: ' +dmMap.id);");
     }
     

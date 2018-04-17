@@ -46,7 +46,8 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 	public void init() throws UtilsConstraintViolationException
 	{
 		fJsf = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
-		dvf = DummyViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfDescription.class,DefaultGeoJsfCategory.class,DefaultGeoJsfService.class,DefaultGeoJsfLayer.class,DefaultGeoJsfMap.class,DefaultGeoJsfView.class);
+//		dvf = DummyViewFactory.factory(GeoFactoryProvider.
+//				DefaultGeoJsfLang.class,DefaultGeoJsfDescription.class,DefaultGeoJsfCategory.class,DefaultGeoJsfService.class,DefaultGeoJsfLayer.class,DefaultGeoJsfMap.class,DefaultGeoJsfView.class);
 		map = dvf.getMap();
 	}
 	

@@ -74,8 +74,8 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final EjbDescriptionFactory<D> efDescription;
 	
 	protected final EjbGeoCategoryFactory<L,D,CATEGORY> efCategory;
-	protected final EjbGeoServiceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efService;
-	protected final EjbGeoLayerFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efLayer;
+	protected final EjbGeoServiceFactory<L,D,SERVICE> efService;
+	protected final EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER> efLayer;
 	protected final EjbGeoMapFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efMap;
 	protected final EjbGeoScaleFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efScale;
 	protected final EjbGeoViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efView;
@@ -101,8 +101,8 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	    efDescription = EjbDescriptionFactory.factory(fbCore.getClassD());
 	    	
 	    efCategory = fbCore.ejbCategory();
-	    efService = EjbGeoServiceFactory.factory(fbCore.getClassService());
-	    efLayer = EjbGeoLayerFactory.factory(fbCore.getClassL(),fbCore.getClassLayer());
+	    efService = fbCore.ejbService();
+	    efLayer = fbCore.ejbLayer();
 	    efMap = EjbGeoMapFactory.factory(fbCore.getClassL(),fbCore.getClassMap());
 	    efScale = ffGeo.ejbScale();
 	    efView = EjbGeoViewFactory.factory(fbCore.getClassView());

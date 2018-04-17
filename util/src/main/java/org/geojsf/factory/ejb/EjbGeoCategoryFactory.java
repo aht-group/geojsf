@@ -19,12 +19,6 @@ public class EjbGeoCategoryFactory<L extends UtilsLang,D extends UtilsDescriptio
     {
         this.cCategory = cCategory;
     }
-    
-    public static <L extends UtilsLang,D extends UtilsDescription,CATEGORY extends GeoJsfCategory<L,D,?>>
-    	EjbGeoCategoryFactory<L,D,CATEGORY> factory(final Class<CATEGORY> cCategory)
-    {
-        return new EjbGeoCategoryFactory<L,D,CATEGORY>(cCategory);
-    }
 	
 	public CATEGORY build(String code)
 	{

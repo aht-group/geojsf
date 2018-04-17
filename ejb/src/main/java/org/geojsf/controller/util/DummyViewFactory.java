@@ -1,5 +1,6 @@
 package org.geojsf.controller.util;
 
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.ejb.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.EjbGeoMapFactory;
@@ -41,8 +42,8 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,
 								RULE extends GeoJsfSldRule<L,D,G>>
 {
 	private EjbGeoCategoryFactory<L,D,CATEGORY> fCategory;
-	private EjbGeoServiceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fService;
-	private EjbGeoLayerFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fLayer;
+	private EjbGeoServiceFactory<L,D,SERVICE> fService;
+	private EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER> fLayer;
 	private EjbGeoMapFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fMap;
 	private EjbGeoViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fView;
 	
@@ -57,10 +58,6 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,
 	private MAP map;
 	public MAP getMap() {return map;}
 	
-	final Class<L> clLang;
-	final Class<D> clDescription;
-	final Class<CATEGORY> cCategory;
-	final Class<SERVICE> clService;
 	final Class<LAYER> clLayer;
 	final Class<MAP> clMap;
 	final Class<VIEW> clView;
@@ -82,25 +79,23 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>>
     	DummyViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-    	factory(final Class<L> clLang,final Class<D> clDescription,final Class<CATEGORY> cCategory,final Class<SERVICE> clService,final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)
+    	factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+    			final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)
     {
-        return new DummyViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(clLang,clDescription,cCategory,clService,clLayer,clMap,clView);
+        return new DummyViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,clLayer,clMap,clView);
     }
 	
-    public DummyViewFactory(final Class<L> clLang,final Class<D> clDescription,final Class<CATEGORY> cCategory,final Class<SERVICE> clService,final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)
+    public DummyViewFactory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+    						final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)
     {
-        this.clLang = clLang;
-        this.clDescription = clDescription;
-        this.cCategory = cCategory;
-        this.clService = clService;
         this.clLayer = clLayer;
         this.clMap = clMap;
         this.clView = clView;
         
-        fCategory = EjbGeoCategoryFactory.factory(cCategory);
-        fService = EjbGeoServiceFactory.factory(clService);
-		fLayer = EjbGeoLayerFactory.factory(clLang,clLayer);
-		fMap = EjbGeoMapFactory.factory(clLang,clMap);
+        fCategory = fbCore.ejbCategory();
+        fService = fbCore.ejbService();
+		fLayer = fbCore.ejbLayer();
+		fMap = EjbGeoMapFactory.factory(fbCore.getClassL(),clMap);
 		fView = EjbGeoViewFactory.factory(clView);
 		
 		try

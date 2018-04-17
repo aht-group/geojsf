@@ -1,5 +1,6 @@
 package org.geojsf.util.db.init;
 
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -49,7 +50,10 @@ public class DbGeoServerInit <L extends UtilsLang, D extends UtilsDescription,
 {
 	final static Logger logger = LoggerFactory.getLogger(DbGeoServerInit.class);
 	
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
 	private final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta;
+	
+	
 	private final Class<L> cL;
 	private final Class<D> cD;
 	private final Class<CATEGORY> cCategory;
@@ -62,9 +66,10 @@ public class DbGeoServerInit <L extends UtilsLang, D extends UtilsDescription,
     private UtilsFacade fUtils;
     private GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
  
-    public DbGeoServerInit(GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+    public DbGeoServerInit(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
     		final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
+    	this.fbCore=fbCore;
     	this.fbMeta=fbMeta;
     	this.cL = cL;
     	this.cD = cD;
@@ -94,11 +99,11 @@ public class DbGeoServerInit <L extends UtilsLang, D extends UtilsDescription,
 					SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>> 
 		DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
 				
 				final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		return new DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbMeta,cL,cD,cCategory,cService,cLayer,cMap,cView,cVp,fUtils,fGeo);
+		return new DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,fbMeta,cL,cD,cCategory,cService,cLayer,cMap,cView,cVp,fUtils,fGeo);
 	}
 
 	public void iuGeoJsf(Repository repository, Layers layers, Maps maps, String[] langKeys) throws UtilsConfigurationException
@@ -106,7 +111,7 @@ public class DbGeoServerInit <L extends UtilsLang, D extends UtilsDescription,
 		logger.info("Importing/Updating GeoJSF "+Service.class.getSimpleName()+"/"+Layer.class.getSimpleName()+"/"+Map.class.getSimpleName());
 		
 		DbServiceInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> serviceInit = DbServiceInit.factory(cL,cD,cService,fUtils);
-		DbLayerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit = DbLayerInit.factory(fbMeta,cCategory,cService,cLayer,cVp,fUtils,fGeo);
+		DbLayerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit = DbLayerInit.factory(fbCore,fbMeta,cCategory,cService,cLayer,cVp,fUtils,fGeo);
 		DbMapInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> viewInit = DbMapInit.factory(fbMeta,cLayer,cMap,cView,cVp,fUtils,fGeo);
 		
 		serviceInit.iuServices(repository);

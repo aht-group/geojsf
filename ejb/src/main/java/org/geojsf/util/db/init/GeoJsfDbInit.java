@@ -1,5 +1,6 @@
 package org.geojsf.util.db.init;
 
+import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
@@ -61,10 +62,9 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfDbInit.class);
 	
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
 	private final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta;
 	
-    private final Class<SERVICE> cService;
-    private final Class<CATEGORY> cCategory;
     private final Class<LAYER> cLayer;
     private final Class<MAP> cMap;
     private final Class<VIEW> cView;
@@ -82,17 +82,16 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     private EjbGeoSldTemplateFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSldTemplate;
     
-    public GeoJsfDbInit(final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+    public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
     					UtilsFacade fUtils, String[] langKeys,
     					
     					GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,
-    					final Class<L> cLang, final Class<D> cDescription, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,final Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
+    					final Class<LAYER> cLayer,final Class<MAP> cMap,final Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
 	{   
-    	super(fUtils,langKeys,cLang,cDescription);
+    	super(fUtils,langKeys,fbCore.getClassL(),fbCore.getClassD());
+    	this.fbCore=fbCore;
     	this.fbMeta=fbMeta;
     	
-        this.cService = cService;
-        this.cCategory = cCategory;
         this.cLayer=cLayer;
         this.cMap=cMap;
         this.cView=cView;
@@ -106,8 +105,8 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
         
         this.langKeys=langKeys;
         
-        ejbLangFactory = EjbLangFactory.factory(cLang);
-		ejbDescriptionFactory = EjbDescriptionFactory.factory(cDescription);
+        ejbLangFactory = EjbLangFactory.factory(fbCore.getClassL());
+		ejbDescriptionFactory = EjbDescriptionFactory.factory(fbCore.getClassD());
         efSldTemplate = EjbGeoSldTemplateFactory.factory(cSldTemplate);
 	}
 	
@@ -126,16 +125,16 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 				SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 				SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>> 
 		GeoJsfDbInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
 				UtilsFacade fUtils,GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,String[] langKeys,final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType,final Class<SLDTEMPLATE> cSldTemplate)
 	{
-		return new GeoJsfDbInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbMeta,fUtils,langKeys,fGeo,cL,cD,cService,cCategory,cLayer,cMap,cView,cVp,cSldType,cSldTemplate);
+		return new GeoJsfDbInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,fbMeta,fUtils,langKeys,fGeo,cLayer,cMap,cView,cVp,cSldType,cSldTemplate);
 	}
 		
 	public DataUpdate importGeoJsfServices(Repository repository)
 	{
 		DbServiceInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> serviceInit;
-		serviceInit = DbServiceInit.factory(cL,cD,cService,fSecurity);
+		serviceInit = DbServiceInit.factory(cL,cD,fbCore.getClassService(),fSecurity);
 		try{serviceInit.iuServices(repository);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}
 		return new DataUpdate();
@@ -145,7 +144,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 	public DataUpdate importGeoJsfCategories(Repository categories)
 	{
 		DbCategoryInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> geoCategoryDbInit;
-		geoCategoryDbInit = DbCategoryInit.factory(cL,cD,cCategory,fSecurity);
+		geoCategoryDbInit = DbCategoryInit.factory(cL,cD,fbCore.getClassCategory(),fSecurity);
 		try{geoCategoryDbInit.iuServices(categories);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}
 		return new DataUpdate();
@@ -155,7 +154,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 	public DataUpdate importGeoJsfLayers(Layers layers)
 	{
 		DbLayerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit;
-		layerInit = DbLayerInit.factory(fbMeta,cCategory,cService,cLayer,cVp,fSecurity,fGeo);
+		layerInit = DbLayerInit.factory(fbCore,fbMeta,fbCore.getClassCategory(),fbCore.getClassService(),cLayer,cVp,fSecurity,fGeo);
 		try {layerInit.iuLayers(layers, langKeys);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}
 		return new DataUpdate();
