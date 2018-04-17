@@ -9,7 +9,6 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import org.geojsf.controller.util.DummyViewFactory;
-import org.geojsf.controller.util.TestDummyViewFactory;
 import org.geojsf.model.json.MapConfiguration;
 import org.geojsf.model.json.MapData;
 import org.geojsf.model.json.WmsLayer;
