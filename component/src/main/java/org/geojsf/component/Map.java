@@ -51,6 +51,7 @@ import com.google.gson.Gson;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import org.geojsf.exception.UnconsistentConfgurationException;
 
 @ResourceDependencies({
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
@@ -136,6 +137,8 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 				child.setRendered(false);
 			}	
 		}*/
+		
+		logger.info("Is Map in initStage?" +initStage);
 		if (this.isRendered())
 		{
 			logger.debug("entering encodebegin");
@@ -390,7 +393,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 		    }
 		    
 		    //if (null!=services && ((null != behaviorEvent && !isLayerSwitchEvent) || null==behaviorEvent || isUpdateMapEvent))
-		    if (null!=serviceList)
+		    if (null!=serviceList && dmMap!=null && dmMap.getViews()!=null)
 			{
 		    	// Load the (maybe updated) SqlViewParameters
 		    	logger.debug("Searching for SQLVP in Decode");
