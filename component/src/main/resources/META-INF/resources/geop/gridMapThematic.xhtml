@@ -28,20 +28,65 @@
 	<aht:row id="rowMaps">
 		<aht:slot width="2">
 			<h:form id="fMaps">
-				<geop:adminMapsMapTable bean="#{cc.attrs.bean}" update=":#{cc.id}:rowMaps"/>
+				<p:dataTable var="m" value="#{cc.attrs.bean.maps}"
+						selection="#{cc.attrs.bean.map}" selectionMode="single" rowKey="#{m.id}"
+						sortBy="#{m.name[userBean.localeCode].lang}" sortOrder="ascending">
+					<f:facet name="header">
+						<aht:pfDataTableHeader title="#{msg.geoJsfAdminThamaticMaps}">
+							<aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttNew}"/>
+						</aht:pfDataTableHeader>
+					</f:facet>
+					<p:ajax event="rowSelect" update=":#{cc.id}:rowMaps" listener="#{cc.attrs.bean.selectMap}"/>
+					<p:column headerText="#{msg.jeeslName}"
+								sortBy="#{m.name[userBean.localeCode].lang}"
+								filterBy="#{m.name[userBean.localeCode].lang}" filterMatchMode="contains">
+						<h:outputText value="#{m.name[userBean.localeCode].lang}" /> 
+					</p:column>
+				</p:dataTable>
 			</h:form>
 		</aht:slot>
 		<aht:slot id="sMap" width="4">
 			<h:form id="fMap">
-				<geop:adminMapsMapPanel bean="#{cc.attrs.bean}" update=":#{cc.id}:rowMaps"/>
+				<p:panel id="pMap" header="#{msg.geoJsfDetailsThamaticMap}" rendered="#{not empty cc.attrs.bean.map}" styleClass="jeeslPanel">
+					<f:facet name="actions">
+						<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttCancel}"/>
+						<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttSave}"/>
+						<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttDelete}"/>
+					</f:facet>
+					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
+						<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
+						<p:inputText value="#{cc.attrs.bean.map.code}" autocomplete="false"/>
+					</p:panelGrid>
+					<aht:tabTranslationEditor value="#{cc.attrs.bean.map}" keys="#{appTranslationBean.langKeys}" withDescription="true"/>
+				</p:panel>
 			</h:form>
 			<h:form id="fLayers">
-				<geop:adminMapsLayerTable bean="#{cc.attrs.bean}" update=":#{cc.id}:fView" updateMap=":#{cc.id}:fGeoJsfMap"/>
+				<p:dataTable var="v" value="#{cc.attrs.bean.map.views}"
+					rendered="#{(not empty cc.attrs.bean.map) and (cc.attrs.bean.map.id gt 0)}"
+					selection="#{cc.attrs.bean.view}" selectionMode="single" rowKey="#{v.id}"
+					draggableRows="true">
+					<f:facet name="header">
+		                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
+		                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addView()}" update=":#{cc.id}:fView" tooltip="#{msg.ttNew}"/>
+		                </aht:pfDataTableHeader>
+		            </f:facet>
+		            <p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectView()}" update=":#{cc.id}:fView"/>
+		            <p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorderLayer}" update=":#{cc.id}:fGeoJsfMap" oncomplete="GeoJSF.refreshMap()"/>
+		            <p:column headerText="#{msg.geoJsfAdminOrderNo}">
+						<h:outputText value="#{v.orderNo} " />  
+					</p:column>
+		            <p:column headerText="#{msg.geoJsfAdminLayer}">
+						<h:outputText value="#{v.layer.name[userBean.localeCode].lang} " />  
+					</p:column>
+					<p:column headerText="#{msg.geoJsfAdminLegendOrderNo}">
+						<h:outputText rendered="#{v.legend}" value="#{v.legendNo}" />  
+					</p:column>
+				</p:dataTable>
 			</h:form>
 		</aht:slot>
 		<aht:slot id="sView" width="6">
 			<h:form id="fGeoJsfMap">
-				<p:panel header="#{cc.attrs.bean.map.name[userBean.localeCode].lang}" styleClass="geojsfPrimefacesPanelMap" 
+				<p:panel header="#{cc.attrs.bean.map.name[localeCode].lang}" styleClass="geojsfPrimefacesPanelMap" 
 							rendered="#{(not empty cc.attrs.bean.map) and (cc.attrs.bean.map.id gt 0) and (fn:length(cc.attrs.bean.map.views) gt 0)}">
 					<f:facet name="actions">
 						<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveViewPort()}"/>
@@ -54,7 +99,44 @@
 				</p:panel>
 			</h:form>
 			<h:form id="fView">
-				<geop:adminMapsViewPanel update=":#{cc.id}:fLayers :#{cc.id}:fView"/>
+				<p:panel header="#{msg.geoJsfAdminDetailsLayer}" rendered="#{not empty cc.attrs.bean.view}" styleClass="jeeslPanel">
+					<f:facet name="actions">
+						<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttCancel}"/>
+						<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttSave}"/>
+						<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttDelete}"/>
+					</f:facet>
+					<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">
+						<p:outputLabel value="#{msg.geoJsfAdminOrderNo}"/>
+						<h:outputText value="#{cc.attrs.bean.view.orderNo}"/>
+					</p:panelGrid>
+					<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">
+						<p:selectBooleanCheckbox value="#{cc.attrs.bean.view.visible}" />
+						<p:outputLabel value="#{msg.geoJsfViewLayerDefaultVisible}"/>
+		
+						<p:selectBooleanCheckbox value="#{cc.attrs.bean.view.legend}" />
+						<p:outputLabel value="#{msg.geoJsfAdminShowInLegend}"/>
+						
+						<p:selectBooleanCheckbox value="#{cc.attrs.bean.view.legendSymbol}" />
+						<p:outputLabel value="#{msg.geoJsfAdminViewLegendSymbol}"/>
+					</p:panelGrid>
+					<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">		
+				
+						<p:outputLabel value="#{msg.geoJsfAdminLegendOrderNo}"/>
+						<h:inputText value="#{cc.attrs.bean.view.legendNo}" styleClass="w100"/>
+						
+						<p:outputLabel value="#{msg.geoJsfAdminCategory}"/>
+						<p:selectOneMenu styleClass="w100" value="#{cc.attrs.bean.category}" effect="fade">  
+							<f:selectItems value="#{cc.attrs.bean.categories}" var="c" itemLabel="#{c.name[localeCode].lang}" itemValue="#{c}"/>
+							<p:ajax update="@form" event="change" listener="#{cc.attrs.bean.changeCategory()}"/>
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="#{msg.geoJsfAdminLayer}"/>
+						<p:selectOneMenu styleClass="w100" value="#{cc.attrs.bean.view.layer}" effect="fade">  
+							<f:selectItems value="#{cc.attrs.bean.layers}" var="l" itemLabel="#{l.name[localeCode].lang}" itemValue="#{l}"/>
+						</p:selectOneMenu>
+						
+					</p:panelGrid>
+				</p:panel>
 			</h:form>
 		</aht:slot>
 	</aht:row>
