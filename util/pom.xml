@@ -56,6 +56,14 @@
 					<artifactId>commons-codec</artifactId>
 					<groupId>commons-codec</groupId>
 				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-databind</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-core</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		
@@ -121,6 +129,23 @@
 				<exclusion>
 					<artifactId>commons-codec</artifactId>
 					<groupId>commons-codec</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- GeoJson -->
+		<dependency>
+			<groupId>de.grundid.opendatalab</groupId>
+			<artifactId>geojson-jackson</artifactId>
+			<version>1.8</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-databind</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-core</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
