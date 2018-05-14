@@ -4,7 +4,9 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
-    	xmlns:geojsf="http://geojsf.org/ui"
+    xmlns:j="http://www.jeesl.org/jsf"
+    xmlns:geojsf="http://geojsf.org/ui"
+    xmlns:jp="http://jsf.jeesl.org/prototype"
     xmlns:geop="http://geojsf.org/prototype"
 	xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
     xmlns:aht="http://ahtutils.sourceforge.net/jsf"
@@ -17,15 +19,15 @@
 	</composite:interface>
         
 	<composite:implementation>
-		<aup:grid id="grid">
-			<aht:row id="rowServices">
-				<aht:slot width="3">
+		<jp:grid id="grid">
+			<j:row id="rowServices">
+				<j:slot width="3">
 					<h:form id="fServices">
 						<p:dataTable var="s" value="#{cc.attrs.bean.services}"
 							selection="#{cc.attrs.bean.service}" selectionMode="single" rowKey="#{s.id}">
 							<f:facet name="header">
 				                <aht:pfDataTableHeader title="#{msg.geoJsfAdminServices}">
-				                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttNew}"/>
+				                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttNew}"/>
 				                </aht:pfDataTableHeader>
 				            </f:facet>
 				            <p:ajax event="rowSelect" update=":#{cc.id}:rowServices" listener="#{cc.attrs.bean.selectService}"/>
@@ -37,9 +39,9 @@
 					<h:form id="fService">
 						<p:panel header="#{msg.geoJsfAdminService}" rendered="#{not empty cc.attrs.bean.service}" styleClass="jeeslPanel">
 							<f:facet name="actions">
-								<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}"/>
-								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
-								<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.service)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
+								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}"/>
+								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
+								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.service)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
 							</f:facet>
 							<p:panelGrid columns="1" columnClasses="jeeslGrid100">
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
@@ -57,7 +59,7 @@
 							selection="#{cc.attrs.bean.category}" selectionMode="single" rowKey="#{c.id}">
 							<f:facet name="header">
 				                <aht:pfDataTableHeader title="#{msg.geoJsfAdminCategories}">
-				                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addCategory()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttNew}"/>
+				                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addCategory()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttNew}"/>
 				                </aht:pfDataTableHeader>
 				            </f:facet>
 				            <p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorderCategories()}" update="@form"/>
@@ -73,9 +75,9 @@
 					<h:form id="fCategory">
 						<p:panel header="#{msg.geoJsfAdminCategory}" rendered="#{not empty cc.attrs.bean.category}" styleClass="jeeslPanel">
 							<f:facet name="actions">
-								<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelCategory()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}"/>
-								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveCategory()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
-								<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.category)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
+								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelCategory()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}"/>
+								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveCategory()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
+								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.category)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
 							</f:facet>
 							<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
@@ -84,14 +86,14 @@
 							<aht:tabTranslationEditor value="#{cc.attrs.bean.category}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
 						</p:panel>
 					</h:form>
-				</aht:slot>
-				<aht:slot id="sLayers" width="4" >
+				</j:slot>
+				<j:slot id="sLayers" width="4" >
 					<h:form id="fLayers" rendered="#{not empty cc.attrs.bean.category}">
 						<p:dataTable rendered="#{cc.attrs.bean.category.id gt 0}" var="l" value="#{cc.attrs.bean.layers}"
 								selection="#{cc.attrs.bean.layer}" selectionMode="single" rowKey="#{l.id}" draggableRows="true">
 							<f:facet name="header">
 				                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
-				                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addLayer()}" update=":#{cc.id}:sLayer" tooltip="#{msg.ttNew}"/>
+				                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addLayer()}" update=":#{cc.id}:sLayer" tooltip="#{msg.ttNew}"/>
 				                </aht:pfDataTableHeader>
 				            </f:facet>
 				            <p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorderLayer()}" update="@form"/>
@@ -104,14 +106,14 @@
 							</p:column>
 						</p:dataTable>
 					</h:form>
-				</aht:slot>
-				<aht:slot id="sLayer" width="5">
+				</j:slot>
+				<j:slot id="sLayer" width="5">
 					<h:form id="fLayer" rendered="#{not empty cc.attrs.bean.layer}">
 						<p:panel header="#{msg.geoJsfAdminLayer}" styleClass="jeeslPanel">
 							<f:facet name="actions">
-								<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" mayDisappear="true" tooltip="#{msg.ttCancel}"/>
-								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttSave}"/>
-								<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" mayDisappear="true" tooltip="#{msg.ttDelete}"/>
+								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" mayDisappear="true" tooltip="#{msg.ttCancel}"/>
+								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttSave}"/>
+								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" mayDisappear="true" tooltip="#{msg.ttDelete}"/>
 							</f:facet>
 							<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
@@ -147,16 +149,16 @@
 									styleClass="geojsfPrimefacesPanelMap" 
 									rendered="#{cc.attrs.bean.layer.id gt 0}">
 							<f:facet name="actions">
-								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.layer.saveViewPort()}"  tooltip="#{msg.ttSave}"/>
+								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.layer.saveViewPort()}"  tooltip="#{msg.ttSave}"/>
 							</f:facet>
 							<geojsf:map id="map" baseMap="osm" rendered="#{cc.attrs.bean.layer.id gt 0}" value="#{cc.attrs.bean.map}">
 								<geojsf:viewport value="#{cc.attrs.bean.layer.viewPort}"/>
-								<p:ajax event="mapMove" listener="#{cc.attrs.bean.layer.mapMove}" update=":#{cc.id}:fLayer"/>
+								<p:ajax event="mapMove" listener="#{cc.attrs.bean.mapMove}" update=":#{cc.id}:fLayer"/>
 							</geojsf:map>
 						</p:panel>	
 					</h:form>
-				</aht:slot>
-			</aht:row>
-		</aup:grid>
+				</j:slot>
+			</j:row>
+		</jp:grid>
 	</composite:implementation>
 </html>

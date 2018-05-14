@@ -47,6 +47,11 @@
 			<artifactId>jeesl-jsf</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-prototype</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		
 		<dependency>
 		    <groupId>com.sun.faces</groupId>
