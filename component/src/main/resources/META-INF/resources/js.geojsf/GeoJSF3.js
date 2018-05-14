@@ -356,6 +356,52 @@ var GeoJSF = {
 				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
 		},
 		
+		
+		
+		addFeature : function()
+		{
+			
+			var source = new ol.source.Vector();
+			var vector = new ol.layer.Vector({
+			  source: source,
+			  style: new ol.style.Style({
+				fill: new ol.style.Fill({
+				  color: 'rgba(255, 255, 255, 0.2)'
+				}),
+				stroke: new ol.style.Stroke({
+				  color: '#ffcc33',
+				  width: 2
+				}),
+				image: new ol.style.Circle({
+				  radius: 7,
+				  fill: new ol.style.Fill({
+					color: '#ffcc33'
+				  })
+				})
+			  })
+			});
+			
+			var modify = new ol.interaction.Modify({source: source});
+			GeoJSF.map.addInteraction(modify);
+
+			var draw, snap; // global so we can remove them later
+			var typeSelect = "Point";
+
+			function addInteractions() {
+			  draw = new ol.interaction.Draw({
+				source: source,
+				type: typeSelect.value
+			  });
+			  GeoJSF.map.addInteraction(draw);
+			  snap = new ol.interaction.Snap({source: source});
+			  GeoJSF.map.addInteraction(snap);
+			}
+			GeoJSF.map.addLayer(vector);
+
+
+			addInteractions();
+		},
+		
 		performLayerSwitch : function(xhr, status, args)
 		{
 			try {
