@@ -8,7 +8,6 @@ import org.geojsf.factory.xml.specs.ogc.XmlFilterFactory;
 import org.geojsf.factory.xml.specs.sld.XmlGraphicFactory;
 import org.geojsf.factory.xml.specs.sld.XmlPointSymbolizerFactory;
 import org.geojsf.factory.xml.specs.sld.XmlSizeFactory;
-import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
