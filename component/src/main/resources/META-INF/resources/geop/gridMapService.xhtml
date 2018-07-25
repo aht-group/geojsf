@@ -26,9 +26,9 @@
 						<p:dataTable var="s" value="#{cc.attrs.bean.services}"
 							selection="#{cc.attrs.bean.service}" selectionMode="single" rowKey="#{s.id}">
 							<f:facet name="header">
-				                <aht:pfDataTableHeader title="#{msg.geoJsfAdminServices}">
+				                <j:dtHeader title="#{msg.geoJsfAdminServices}">
 				                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttNew}"/>
-				                </aht:pfDataTableHeader>
+				                </j:dtHeader>
 				            </f:facet>
 				            <p:ajax event="rowSelect" update=":#{cc.id}:rowServices" listener="#{cc.attrs.bean.selectService}"/>
 				            <p:column headerText="#{msg.geoJsfAdminName}" sortBy="#{s.code}">
@@ -39,7 +39,7 @@
 					<h:form id="fService">
 						<p:panel header="#{msg.geoJsfAdminService}" rendered="#{not empty cc.attrs.bean.service}" styleClass="jeeslPanel">
 							<f:facet name="actions">
-								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}"/>
+								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}" mayDisappear="true"/>
 								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
 								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.service)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
 							</f:facet>
@@ -140,6 +140,9 @@
 									<f:selectItem itemLabel="---"/>  
 									<f:selectItems value="#{cc.attrs.bean.slds}" var="t" itemLabel="#{t.name[localeCode].lang}" itemValue="#{t}"/>
 								</p:selectOneMenu>
+								
+								<p:outputLabel value="#{msg.geoJsfRemark}"/>
+								<p:inputText value="#{cc.attrs.bean.layer.remark}" autocomplete="false"/>
 							</p:panelGrid>
 							<aht:tabTranslationEditor value="#{cc.attrs.bean.layer}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
 						</p:panel>

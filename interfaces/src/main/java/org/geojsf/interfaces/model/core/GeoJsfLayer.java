@@ -47,4 +47,7 @@ public interface GeoJsfLayer<L extends UtilsLang, D extends UtilsDescription,
 	
 	List<DS> getSources();
 	void setSources(List<DS> sources);
+	
+	String getRemark();
+	void setRemark(String remark);
 }

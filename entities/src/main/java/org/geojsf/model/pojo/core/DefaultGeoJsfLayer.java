@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -82,6 +84,11 @@ public class DefaultGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,Default
 	private List<DefaultGeoJsfDataSource> sources;
 	@Override public List<DefaultGeoJsfDataSource> getSources() {if(sources==null){sources = new ArrayList<DefaultGeoJsfDataSource>();};return sources;}
 	@Override public void setSources(List<DefaultGeoJsfDataSource> sources) {this.sources = sources;}
+	
+	@Basic @Column(columnDefinition="text")
+	private String remark;
+	@Override public String getRemark() {return remark;}
+	@Override public void setRemark(String remark) {this.remark = remark;}
 	
 	public boolean equals(Object object)
 	{

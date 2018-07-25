@@ -105,7 +105,7 @@
 						<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttSave}"/>
 						<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttDelete}"/>
 					</f:facet>
-					<p:panelGrid columns="2" columnClasses="auPwg20,auPwg80">
+					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 						<p:outputLabel value="#{msg.geoJsfAdminOrderNo}"/>
 						<h:outputText value="#{cc.attrs.bean.view.orderNo}"/>
 					</p:panelGrid>
