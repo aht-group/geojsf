@@ -35,10 +35,10 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 public class XmlRuleStatusFactory <L extends UtilsLang,D extends UtilsDescription,
 								G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
-								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
+								
 								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
+								LAYER extends GeoJsfLayer<L,D,?,SERVICE,VP,DS,SLD>,
+								MAP extends GeoJsfMap<L,D,?,VIEW,VP>,
 								SCALE extends GeoJsfScale<L,D>,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,
@@ -52,9 +52,9 @@ public class XmlRuleStatusFactory <L extends UtilsLang,D extends UtilsDescriptio
 	final static Logger logger = LoggerFactory.getLogger(XmlRuleStatusFactory.class);
 	public static final long serialVersionUID=1;
 	
-	private final SldConfigurationProvider<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> sldCp;
+	private final SldConfigurationProvider sldCp;
 	
-	public XmlRuleStatusFactory(final SldConfigurationProvider<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> sldCp)
+	public XmlRuleStatusFactory(final SldConfigurationProvider sldCp)
 	{
 		this.sldCp=sldCp;
 	}

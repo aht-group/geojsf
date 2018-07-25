@@ -27,10 +27,9 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 public class XmlUserStyleFactory <L extends UtilsLang,D extends UtilsDescription,
 									G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 									F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
-									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 									SERVICE extends GeoJsfService<L,D,LAYER>,
-									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-									MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
+									LAYER extends GeoJsfLayer<L,D,?,SERVICE,VP,DS,SLD>,
+									MAP extends GeoJsfMap<L,D,?,VIEW,VP>,
 									SCALE extends GeoJsfScale<L,D>,
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 									VP extends GeoJsfViewPort,
@@ -44,13 +43,13 @@ public class XmlUserStyleFactory <L extends UtilsLang,D extends UtilsDescription
 	final static Logger logger = LoggerFactory.getLogger(XmlUserStyleFactory.class);
 	public static final long serialVersionUID=1;
 	
-	private final SldConfigurationProvider<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> sldCp;
-	private XmlFeatureTypeStyleFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> xfFeatureTypeStyle;
+	private final SldConfigurationProvider sldCp;
+	private XmlFeatureTypeStyleFactory<L,D,G,GT,F,FS,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> xfFeatureTypeStyle;
 	
-	public XmlUserStyleFactory(final SldConfigurationProvider<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> sldCp)
+	public XmlUserStyleFactory(final SldConfigurationProvider sldCp)
 	{
 		this.sldCp=sldCp;
-		xfFeatureTypeStyle = new XmlFeatureTypeStyleFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(sldCp);
+		xfFeatureTypeStyle = new XmlFeatureTypeStyleFactory<L,D,G,GT,F,FS,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(sldCp);
 	}
 	
 	public UserStyle build(SLD sld)

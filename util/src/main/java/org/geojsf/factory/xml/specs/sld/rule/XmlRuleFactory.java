@@ -29,10 +29,9 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 public class XmlRuleFactory <L extends UtilsLang,D extends UtilsDescription,
 								G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
-								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
+								LAYER extends GeoJsfLayer<L,D,?,SERVICE,VP,DS,SLD>,
+								MAP extends GeoJsfMap<L,D,?,VIEW,VP>,
 								SCALE extends GeoJsfScale<L,D>,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,
@@ -46,7 +45,7 @@ public class XmlRuleFactory <L extends UtilsLang,D extends UtilsDescription,
 	final static Logger logger = LoggerFactory.getLogger(XmlRuleFactory.class);
 	public static final long serialVersionUID=1;
 	
-	public XmlRuleFactory(final SldConfigurationProvider<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> sldCp)
+	public XmlRuleFactory(final SldConfigurationProvider sldCp)
 	{
 		
 	}

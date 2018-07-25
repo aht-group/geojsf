@@ -19,21 +19,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
-public interface SldConfigurationProvider<L extends UtilsLang,D extends UtilsDescription,
-										G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
-										F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
-										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-										SERVICE extends GeoJsfService<L,D,LAYER>,
-										LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-										MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-										SCALE extends GeoJsfScale<L,D>,
-										VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-										VP extends GeoJsfViewPort,
-										DS extends GeoJsfDataSource<L,D,LAYER>,
-										SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-										SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-										RULE extends GeoJsfSldRule<L,D,G>>
+public interface SldConfigurationProvider
 {
 	String getLocaleCode();
 	UtilsFacade getJeeslFacade();
