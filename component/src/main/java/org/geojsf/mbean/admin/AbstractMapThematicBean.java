@@ -9,11 +9,6 @@ import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
-import org.geojsf.factory.ejb.core.EjbGeoCategoryFactory;
-import org.geojsf.factory.ejb.core.EjbGeoLayerFactory;
-import org.geojsf.factory.ejb.core.EjbGeoMapFactory;
-import org.geojsf.factory.ejb.core.EjbGeoServiceFactory;
-import org.geojsf.factory.ejb.core.EjbGeoViewFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -84,7 +79,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	
 	public AbstractMapThematicBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 									GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
-									GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+									GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);
 	}

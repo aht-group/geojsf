@@ -63,7 +63,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 
 	public AbstractSldLibraryBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 									GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
-									GeoSldFactoryBuilder<L,D,G,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+									GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);
 		
