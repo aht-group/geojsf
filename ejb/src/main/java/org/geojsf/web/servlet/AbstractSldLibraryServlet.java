@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.batik.svggen.SVGGraphics2D;
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.commons.io.IOUtils;
+import org.geojsf.controller.util.GeoJsfSldConfigurationProvider;
+import org.geojsf.interfaces.model.core.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfMap;
+import org.geojsf.interfaces.model.sld.GeoJsfSld;
+import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
+import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.jeesl.factory.svg.SvgSymbolFactory;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
@@ -28,70 +34,26 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
-public class AbstractSldLibraryServlet<L extends UtilsLang, D extends UtilsDescription,
+public class AbstractSldLibraryServlet<L extends UtilsLang,D extends UtilsDescription,
 										G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
-										F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>>
+										F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
+										LAYER extends GeoJsfLayer<L,D,?,?,?,?,SLD>,
+										MAP extends GeoJsfMap<L,D,?,?,?>,
+										SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+										SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
+										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+										RULE extends GeoJsfSldRule<L,D,G>>
 				extends HttpServlet
 				implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractSldLibraryServlet.class);
-	
-	private SvgSymbolFactory<L,D,G,GT,F,FS> svgF;
+
+	protected GeoJsfSldConfigurationProvider sldConfigurationProvider;
 	
 	public AbstractSldLibraryServlet()
 	{
-		svgF = SvgSymbolFactory.factory();
-	}
-	
-	protected Image getPathInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		if (request.getPathInfo() == null)
-		{
-			response.sendError(HttpServletResponse.SC_NOT_FOUND);
-			return null;
-		}
-
-        String path = URLDecoder.decode(request.getPathInfo(), "UTF-8");
-        if(path.length()<1)
-        {
-        	response.sendError(HttpServletResponse.SC_NOT_FOUND);
-        	return null;
-        }
-        
-        String[] pathElements = path.split("/");
-        Integer size = new Integer(pathElements[1]);
-        Long id = new Long(pathElements[2]);
-        
-        if(logger.isTraceEnabled())
-        {
-        	logger.trace("Requested size " +size+" id:"+id);
-        }
-        
-        return XmlImageFactory.idHeight(id,size);
-	}
-	
-	protected void process(HttpServletRequest request, HttpServletResponse response, G graphic, Image image) throws ServletException, IOException, TranscoderException, UtilsProcessingException
-    {
-		byte[] bytes = null;
-    	
-		String id = image.getId();
-		int size = (int) image.getHeight().getValue();
 		
-		if(graphic==null){throw new UtilsProcessingException("graphic is null");}
-		if(graphic.getType()==null){throw new UtilsProcessingException("graphic.type is null");}
-    	if(graphic.getType().getCode().equals(JeeslGraphicType.Code.symbol.toString()))
-		{
-			logger.info("Build SVG: size " + size + " id:" + id);
-	    	SVGGraphics2D g = svgF.build(size,graphic);
-	    	bytes = Svg2SvgTranscoder.transcode(g);
-	    	respond(request,response,bytes,"svg");
-		}
-    	else if(graphic.getType().getCode().equals(JeeslGraphicType.Code.svg.toString()))
-    	{
-//    		bytes = Svg2PngTranscoder.transcode(size,graphic.getData());
-    		respond(request,response,graphic.getData(),"svg");
-    	}
 	}
 	
 	protected void respond(HttpServletRequest request, HttpServletResponse response,byte[] bytes, String suffix) throws ServletException, IOException
