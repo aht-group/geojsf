@@ -135,6 +135,27 @@ public class JsfRenderUtil {
 		renderTextWithLB("GeoJSF.setAjaxUpdates('" +encodeAjax(map, "mapClick") +"', '" +encodeAjax(map, "mapMove") +"');");
 		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"','" +map.getBaseMap() +"');");
 		renderLinebreaks(2);
+		String srcUrl = context.getExternalContext().getRequestScheme() +"://" +context.getExternalContext().getRequestServerName() +":" +context.getExternalContext().getRequestServerPort() +context.getExternalContext().getRequestContextPath() +"/javax.faces.resource/30px-Location-marker.png.jsf?ln=geojsf";
+			
+		if (map.getMarkerUrl()!=null)
+		{
+			srcUrl = map.getMarkerUrl();
+			renderTextWithLB("GeoJSF.setMarkerUrl('" +srcUrl+"');");
+			renderLinebreaks(2);
+		}
+		else
+		{
+			logger.info("Using standard marker Icon at " +srcUrl);
+			renderTextWithLB("GeoJSF.setMarkerUrl('" +srcUrl+"');");
+			renderLinebreaks(2);
+		}
+		
+		if (map.getMarkerPosition()!=null)
+		{
+			renderTextWithLB("GeoJSF.setMarkerPosition(" +map.getMarkerPosition().getLat() +"," +map.getMarkerPosition().getLon() +");");
+			renderTextWithLB("GeoJSF.initMarker(" +map.getMarkerPosition().getLat() +"," +map.getMarkerPosition().getLon() +",'" +srcUrl+"');");
+			renderLinebreaks(2);
+		}
 		renderTextWithLB("// GeoJSF: Adding layers");
 		renderTextWithLB("// GeoJSF: The last given layer will be taken as base layer:");
 		renderLinebreaks(1);

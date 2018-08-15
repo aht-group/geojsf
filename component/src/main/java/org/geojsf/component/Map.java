@@ -37,6 +37,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Scales;
+import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.model.xml.specs.gml.Coordinates;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.util.component.GeoJsfScalesUtil;
@@ -51,7 +52,6 @@ import com.google.gson.Gson;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import org.geojsf.exception.UnconsistentConfgurationException;
 
 @ResourceDependencies({
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
@@ -90,6 +90,8 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 	
 	// Internal fields
 	private Coordinates coords            = new Coordinates();
+	private Coordinate  markerPosition	  = null;
+	private String markerUrl			  = null;
 	private Boolean initStage             = true;
 	private Boolean refreshLayersOnUpdate = true;
 	private Boolean changedState          = false;
@@ -144,6 +146,25 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 			logger.debug("entering encodebegin");
 			try
 			{
+				markerPosition = (Coordinate)getAttributes().get("markerPosition");
+				if(markerPosition!=null)
+				{
+					logger.info("Marker initially at " +markerPosition.getLat() + "," +markerPosition.getLon());
+				}
+				else
+				{
+					logger.warn("Could not read marker position");
+				}
+				markerUrl = (String)getAttributes().get("markerUrl");
+				if(markerUrl!=null)
+				{
+					logger.info("Marker image to be found at " +markerUrl);
+				}
+				else
+				{
+					logger.warn("Could not read marker source url");
+				}
+
 				if (!containsLayer())
 				{
 					dmMap = (MAP)getAttributes().get("value");
@@ -345,6 +366,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 	// JSF Decode Phase method
 	// --------------------------
 	
+	@Override
 	public void decode(FacesContext context)
 	{
 		logger.debug("Current Phase: " +context.getCurrentPhaseId().toString());
@@ -380,6 +402,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 		    Boolean isUpdateParamsEvent= false;
 		    Boolean isMapClickEvent    = false;
 		    Boolean isMapMoveEvent     = false;
+		    Boolean isMarkerMoveEvent  = false;
 		    
 		    if (null!=behaviorEvent)
 		    {
@@ -390,6 +413,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 			    isUpdateParamsEvent= behaviorEvent.equals("updateParams");
 			    isMapClickEvent    = behaviorEvent.equals("mapClick");
 			    isMapMoveEvent     = behaviorEvent.equals("mapMove");
+			    isMarkerMoveEvent  = behaviorEvent.equals("markerMove");
 		    }
 		    
 		    //if (null!=services && ((null != behaviorEvent && !isLayerSwitchEvent) || null==behaviorEvent || isUpdateMapEvent))
@@ -436,6 +460,37 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 					}
 				}
 			}
+			
+			// Handling of mapClick event fired by JavaScript API
+	        if (null!= behaviorEvent && isMarkerMoveEvent)
+	        {
+	        	java.util.Map<String, List<ClientBehavior>> behaviors = getClientBehaviors();
+	     		if (behaviors.isEmpty())
+	     		{
+	     			logger.debug("no behaviors.exiting.");
+	     			return;
+	     		}
+	            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
+	            if (behaviors.size() > 0)
+	            {
+	            	String behaviorSource = params.get("javax.faces.source");
+	            	String clientId = getClientId(context);
+	            	if (behaviorSource != null && null!= behaviorsForEvent && behaviorSource.equals(clientId))
+	            	{
+	            		for (ClientBehavior behavior: behaviorsForEvent)
+	            		{
+	            			logger.trace("Found " +behavior.getClass().toString());
+	            			MapAjaxEvent ajaxEvent = new MapAjaxEvent(this, behavior);
+	            			
+	            			logger.trace("Setting CLiCK ");
+	            			ajaxEvent.setClickCoordinates(params);
+	            			ajaxEvent.setViewport(params);
+	            			
+	            			behavior.broadcast(ajaxEvent);
+	            		}
+	            	}
+	            }
+	        }
 			
 			// Handling of mapClick event fired by JavaScript API
 	        if (null!= behaviorEvent && isMapClickEvent)
@@ -644,6 +699,7 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 		ArrayList<String> events = new ArrayList<String>();
 		events.add("mapClick");
 		events.add("mapMove");
+		events.add("markerMove");
 		events.add("updateModel");
 		events.add("updateParams");
 		return events;
@@ -718,4 +774,10 @@ public class Map <L extends UtilsLang,D extends UtilsDescription,
 
 	public MAP getDmMap() {return dmMap;}
 	public void setDmMap(MAP dmMap) {this.dmMap = dmMap;}
+
+	public Coordinate getMarkerPosition() {return markerPosition;}
+	public void setMarkerPosition(Coordinate markerPosition) {this.markerPosition = markerPosition;}
+
+	public String getMarkerUrl() {return markerUrl;}
+	public void setMarkerUrl(String markerUrl) {this.markerUrl = markerUrl;}
 }
