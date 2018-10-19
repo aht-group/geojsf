@@ -110,23 +110,25 @@
 				<groupId>org.jeesl</groupId>
 				<artifactId>jeesl-maven</artifactId>
 				<executions>
+                                    <!-- Deactivated because currently not used
  					<execution>
-						<id>create-js</id>
-						<phase>process-resources</phase> 
-						<goals>
-							<goal>createJs</goal>
-						</goals>
-						<configuration>
-							<projectBaseDir>${project.basedir}</projectBaseDir>
-	              			<jsDir>src/main/resources/META-INF/resources/js.geojsf</jsDir>
-	              			<targetFile>${project.build.directory}/classes/META-INF/resources/js.geojsf/GeoJsf.min.js</targetFile>
-	              			<log>WARN</log>
-	              			<libOrder>
-	              				<lib>OpenLayers.js</lib>
-	              				<lib>GeoJSF.js</lib>
-	              			</libOrder>
-	              		</configuration>
+                                            <id>create-js</id>
+                                            <phase>process-resources</phase> 
+                                            <goals>
+                                                    <goal>createJs</goal>
+                                            </goals>
+                                            <configuration>
+                                                    <projectBaseDir>${project.basedir}</projectBaseDir>
+                                                    <jsDir>src/main/resources/META-INF/resources/js.geojsf</jsDir>
+                                                    <targetFile>${project.build.directory}/classes/META-INF/resources/js.geojsf/GeoJsf.min.js</targetFile>
+                                                    <log>WARN</log>
+                                                    <libOrder>
+                                                            <lib>OpenLayers.js</lib>
+                                                            <lib>GeoJSF.js</lib>
+                                                    </libOrder>
+                                            </configuration>
 					</execution>
+                                    -->
 				</executions>
 			</plugin>
 		</plugins>
