@@ -18,6 +18,12 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>sld</tag-name>
+		<component>
+			<component-type>org.geojsf.component.Sld</component-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>scales</tag-name>
 		<component>
 			<component-type>org.geojsf.component.ScalesContainer</component-type>
