@@ -31,13 +31,12 @@ public class SldParameter extends UIComponentBase
 	{
 		if(event instanceof PostAddToViewEvent)
 		{
-			
 		}
 		super.processEvent(event);
 	}
 	
 	@Override
-	public void encodeAll(FacesContext ctx) throws IOException
+	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		Map<String,Object> map = this.getAttributes();
 		this.value   = (String) map.get(Attribute.value.toString());

@@ -338,7 +338,7 @@ var GeoJSF = {
 		{
 			 console.log("SLD Parameter Update requested.");
 			 var params = {};
-			     params.env = "SLD: "  +parameters;
+			     params.SLD = parameters;
                          if (GeoJSF.map.getLayers())
                          {
                             GeoJSF.map.getLayers().forEach(function (layer) {
