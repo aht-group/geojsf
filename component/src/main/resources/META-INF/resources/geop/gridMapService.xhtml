@@ -5,10 +5,10 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
     xmlns:j="http://www.jeesl.org/jsf"
-    xmlns:geojsf="http://geojsf.org/ui"
     xmlns:jp="http://jsf.jeesl.org/prototype"
+    xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
+    xmlns:geojsf="http://geojsf.org/ui"
     xmlns:geop="http://geojsf.org/prototype"
-	xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
     xmlns:aht="http://ahtutils.sourceforge.net/jsf"
     xmlns:aup="http://ahtutils.sourceforge.net/prototype"
     xmlns:composite="http://java.sun.com/jsf/composite">
@@ -152,7 +152,7 @@
 									styleClass="geojsfPrimefacesPanelMap" 
 									rendered="#{cc.attrs.bean.layer.id gt 0}">
 							<f:facet name="actions">
-								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.layer.saveViewPort()}"  tooltip="#{msg.ttSave}"/>
+								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveViewPort()}"  tooltip="#{msg.ttSave}"/>
 							</f:facet>
 							<geojsf:map id="map" baseMap="osm" rendered="#{cc.attrs.bean.layer.id gt 0}" value="#{cc.attrs.bean.map}">
 								<geojsf:viewport value="#{cc.attrs.bean.layer.viewPort}"/>
