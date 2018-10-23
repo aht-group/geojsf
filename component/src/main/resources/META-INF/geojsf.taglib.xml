@@ -24,6 +24,12 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>ecql</tag-name>
+		<component>
+			<component-type>org.geojsf.component.EcqlParameter</component-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>scales</tag-name>
 		<component>
 			<component-type>org.geojsf.component.ScalesContainer</component-type>

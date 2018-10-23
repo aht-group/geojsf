@@ -349,7 +349,28 @@ var GeoJSF = {
                                 else
                                 {
                                     layer.getSource().updateParams(params);
-                                    console.log("Merging new SldParameter parameter: " +params.env);
+                                    console.log("Merging new SldParameter parameter: " +params.SLD);
+                                }
+                            });
+                         }
+		},
+		
+		updateEcqlParams : function(parameters)
+		{
+			 console.log("ECQL Parameter Update requested.");
+			 var params = {};
+			     params.CQL_FILTER = parameters;
+                         if (GeoJSF.map.getLayers())
+                         {
+                            GeoJSF.map.getLayers().forEach(function (layer) {
+                                if (layer.getSource() instanceof ol.source.OSM)
+                                {
+                                   console.log("Ignoring OSM base layer"); 
+                                }
+                                else
+                                {
+                                    layer.getSource().updateParams(params);
+                                    console.log("Merging new ECQL parameter: " +params.CQL_FILTER);
                                 }
                             });
                          }
