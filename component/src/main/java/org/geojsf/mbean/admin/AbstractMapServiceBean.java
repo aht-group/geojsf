@@ -34,7 +34,7 @@ import net.sf.ahtutils.jsf.util.FacesContextMessage;
 import net.sf.ahtutils.jsf.util.PositionListReorderer;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
-public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescription,
+public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescription,LOC extends UtilsStatus<LOC,L,D>,
 									G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 									F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
@@ -49,7 +49,7 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,G>>
-	extends AbstractGeoJsfBean<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -59,6 +59,8 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	protected List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
 	protected List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
 	protected List<SLD> slds; public List<SLD> getSlds() {return slds;}
+	
+
 	
 	protected MAP map; public MAP getMap() {return map;}
 	protected CATEGORY category; public CATEGORY getCategory(){return category;} public void setCategory(CATEGORY category){this.category = category;}
@@ -73,8 +75,9 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 		super(fbCore,fbMeta,fbSld);
 	}
 	
-	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	public void postConstructService(List<LOC> locales, String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
+		this.locales=locales;
 		super.postConstructGeojsf(langKeys,fGeo);  	
 		slds = fGeo.fLibrarySlds();
 	}
@@ -99,6 +102,8 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	public void selectService() throws UtilsNotFoundException
 	{
 		service = fGeo.load(fbCore.getClassService(),service);
+		service = efLang.persistMissingLangs(fGeo,locales,service);
+		service = efDescription.persistMissingLangs(fGeo,locales,service);
 		logger.info("selectService "+service);
 		layer=null;
 		category = null;
@@ -155,6 +160,8 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	public void selectCategory() throws UtilsNotFoundException
 	{
 		category = fGeo.load(fbCore.getClassCategory(),category);
+		category = efLang.persistMissingLangs(fGeo,locales,category);
+		category = efDescription.persistMissingLangs(fGeo,locales,category);
 		logger.info("selectCategory "+category);
 		reloadLayers();
 		layer=null;
@@ -218,6 +225,8 @@ public class AbstractMapServiceBean <L extends UtilsLang,D extends UtilsDescript
 	{
 		logger.info("selectLayer "+layer);
 		layer = fGeo.load(fbCore.getClassLayer(),layer);
+		layer = efLang.persistMissingLangs(fGeo,locales,layer);
+		layer = efDescription.persistMissingLangs(fGeo,locales,layer);
 		if(layer.getViewPort()==null){addViewPort();}
 		else{viewPort=layer.getViewPort();}
 		

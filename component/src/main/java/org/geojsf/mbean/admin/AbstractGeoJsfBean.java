@@ -1,6 +1,7 @@
 package org.geojsf.mbean.admin;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
@@ -40,7 +41,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 
-public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription,
+public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription,LOC extends UtilsStatus<LOC,L,D>,
 									G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 									F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
@@ -60,7 +61,10 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfBean.class);
 	
+	@Deprecated
 	protected String[] langKeys;
+	protected List<LOC> locales;
+	
 	protected GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
 	
 	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;

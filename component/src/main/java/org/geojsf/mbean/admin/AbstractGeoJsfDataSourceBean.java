@@ -31,7 +31,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
-public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsDescription,
+public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsDescription,LOC extends UtilsStatus<LOC,L,D>,
 									G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 									F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
@@ -46,7 +46,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,G>>
-	extends AbstractGeoJsfBean<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -59,12 +59,12 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 		super(fbCore,fbMeta,fbSld);
 	}
 	
-	public void initSuper(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	public void postConstructDataSource(List<LOC> locales, String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		super.postConstructGeojsf(langKeys,fGeo);
 
-	    	availableLayers = fGeo.all(fbCore.getClassLayer());
-	    	categories = fGeo.all(fbCore.getClassCategory());
+	    availableLayers = fGeo.all(fbCore.getClassLayer());
+	    categories = fGeo.all(fbCore.getClassCategory());
 		reloadSources();
 	}
 	
