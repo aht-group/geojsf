@@ -1,35 +1,17 @@
 package org.geojsf.model.xml.monitoring;
 
-import java.io.FileNotFoundException;
-
-import net.sf.exlp.util.xml.JaxbUtil;
-
-import org.geojsf.model.xml.monitoring.Value;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlValue extends AbstractXmlMonitoringTest
+public class TestXmlValue extends AbstractXmlMonitoringTest<Value>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlValue.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-        setXmlFile(dirSuffix, Value.class);
-	}
+	public TestXmlValue(){super(Value.class);}
+	public static Value create(boolean withChildren){return (new TestXmlValue()).build(withChildren);}
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Value actual = create(true);
-    	Value expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Value.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Value create(boolean withChilds)
+    public Value build(boolean withChilds)
     {
     	Value xml = new Value();
     	xml.setType("myT");
@@ -48,9 +30,7 @@ public class TestXmlValue extends AbstractXmlMonitoringTest
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-			
-		TestXmlValue.initFiles();	
 		TestXmlValue test = new TestXmlValue();
-		test.save();
+		test.saveReferenceXml();
     }
 }

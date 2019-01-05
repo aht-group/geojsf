@@ -1,32 +1,19 @@
 package org.geojsf.model.xml.monitoring;
 
-import java.io.FileNotFoundException;
-
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.jeesl.factory.xml.system.status.XmlStatusFactory;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlCapability extends AbstractXmlMonitoringTest
+public class TestXmlCapability extends AbstractXmlMonitoringTest<Capability>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlCapability.class);
 	
-	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, Capability.class);}
+	public TestXmlCapability(){super(Capability.class);}
+	public static Capability create(boolean withChildren){return (new TestXmlCapability()).build(withChildren);}
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Capability actual = create(true);
-    	Capability expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Capability.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Capability create(boolean withChilds)
+    public Capability build(boolean withChilds)
     {
     	Capability xml = new Capability();
     	xml.setId(123);
@@ -39,15 +26,11 @@ public class TestXmlCapability extends AbstractXmlMonitoringTest
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-			
-		TestXmlCapability.initFiles();	
 		TestXmlCapability test = new TestXmlCapability();
-		test.save();
+		test.saveReferenceXml();
     }
 }

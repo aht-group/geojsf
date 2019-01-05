@@ -1,31 +1,17 @@
 package org.geojsf.model.xml.monitoring;
 
-import java.io.FileNotFoundException;
-
-import net.sf.exlp.util.xml.JaxbUtil;
-
-import org.geojsf.model.xml.monitoring.Stations;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlStations extends AbstractXmlMonitoringTest
+public class TestXmlStations extends AbstractXmlMonitoringTest<Stations>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlStations.class);
 	
-	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, Stations.class);}
+	public TestXmlStations(){super(Stations.class);}
+	public static Stations create(boolean withChildren){return (new TestXmlStations()).build(withChildren);}
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Stations actual = create(true);
-    	Stations expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Stations.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Stations create(boolean withChilds)
+    public Stations build(boolean withChilds)
     {
     	Stations xml = new Stations();
     	
@@ -42,10 +28,8 @@ public class TestXmlStations extends AbstractXmlMonitoringTest
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
-			
-		TestXmlStations.initFiles();	
+		GeoJsfXmlTstBootstrap.init();	
 		TestXmlStations test = new TestXmlStations();
-		test.save();
+		test.saveReferenceXml();
     }
 }

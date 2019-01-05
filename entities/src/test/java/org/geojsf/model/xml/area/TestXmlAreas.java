@@ -1,31 +1,17 @@
 package org.geojsf.model.xml.area;
 
-import java.io.FileNotFoundException;
-
-import net.sf.exlp.util.xml.JaxbUtil;
-
-import org.geojsf.model.xml.area.Areas;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlAreas extends AbstractXmAreaTest
+public class TestXmlAreas extends AbstractXmAreaTest<Areas>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlAreas.class);
 	
-	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, Areas.class);}
+	public TestXmlAreas(){super(Areas.class);}
+	public static Areas create(boolean withChildren){return (new TestXmlAreas()).build(withChildren);}
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Areas actual = create(true);
-    	Areas expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Areas.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Areas create(boolean withChilds)
+    public Areas build(boolean withChilds)
     {
     	Areas xml = new Areas();
     	
@@ -43,9 +29,7 @@ public class TestXmlAreas extends AbstractXmAreaTest
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-			
-		TestXmlAreas.initFiles();	
 		TestXmlAreas test = new TestXmlAreas();
-		test.save();
+		test.saveReferenceXml();
     }
 }

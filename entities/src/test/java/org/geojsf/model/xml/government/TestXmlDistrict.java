@@ -1,35 +1,17 @@
 package org.geojsf.model.xml.government;
 
-import java.io.FileNotFoundException;
-
-import net.sf.exlp.util.xml.JaxbUtil;
-
-import org.geojsf.model.xml.government.District;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlDistrict extends AbstractXmlGovernmentTest
+public class TestXmlDistrict extends AbstractXmlGovernmentTest<District>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlDistrict.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-        setXmlFile(dirSuffix, District.class);
-	}
+	public TestXmlDistrict(){super(District.class);}
+	public static District create(boolean withChildren){return (new TestXmlDistrict()).build(withChildren);}
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	District actual = create(true);
-    	District expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), District.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static District create(boolean withChilds)
+    public District build(boolean withChilds)
     {
     	District xml = new District();
     	xml.setId(123);
@@ -49,9 +31,7 @@ public class TestXmlDistrict extends AbstractXmlGovernmentTest
 	public static void main(String[] args)
     {
 		GeoJsfXmlTstBootstrap.init();
-			
-		TestXmlDistrict.initFiles();	
 		TestXmlDistrict test = new TestXmlDistrict();
-		test.save();
+		test.saveReferenceXml();
     }
 }

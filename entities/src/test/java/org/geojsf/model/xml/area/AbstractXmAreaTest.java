@@ -4,9 +4,12 @@ import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractXmAreaTest extends AbstractGeoJsfXmlTest
+public abstract class AbstractXmAreaTest <T extends Object> extends AbstractGeoJsfXmlTest<T>
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractXmAreaTest.class);
 
-    protected static final String dirSuffix = "area";
+    public AbstractXmAreaTest(Class<T> cXml)
+   	{
+   		super(cXml,"area");
+   	}
 }
