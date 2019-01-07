@@ -70,7 +70,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 		sldStatusClasses = new ArrayList<String>();
 	}
 	
-	protected void postConstructSldLibrary(JeeslTranslationBean bTranslation, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	protected void postConstructSldLibrary(JeeslTranslationBean<L,D,LOC> bTranslation, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]),fGeo);
 	

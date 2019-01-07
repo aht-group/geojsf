@@ -11,8 +11,10 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.provider.SldConfigurationProvider;
+import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.Namespace;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -22,6 +24,8 @@ import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
+import net.sf.exlp.util.io.StringUtil;
+import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomStyledLayerDescriptorFactory <L extends UtilsLang,D extends UtilsDescription,
@@ -55,6 +59,8 @@ public class JdomStyledLayerDescriptorFactory <L extends UtilsLang,D extends Uti
 	private Document build(List<LAYER> layers) throws UtilsConfigurationException
 	{
 		Element xml = JaxbUtil.toDocument(XmlStyledLayerDescriptorFactory.build()).detachRootElement();
+		xml = build();
+
 		for(LAYER layer : layers)
 		{
 			if(layer.getSld()==null){throw new UtilsConfigurationException("Layer "+layer.getCode()+" has no SLD");}
@@ -64,5 +70,18 @@ public class JdomStyledLayerDescriptorFactory <L extends UtilsLang,D extends Uti
 		doc.setRootElement(xml);
 //		JDomUtil.correctNsPrefixes(doc, new GeoJsfNsPrefixMapper());
 		return doc;
+	}
+	
+	private Element build()
+	{
+		Element xml = new Element("StyledLayerDescriptor");
+		xml.setNamespace(Namespace.getNamespace("http://www.opengis.net/sld"));
+		xml.addNamespaceDeclaration(Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
+		xml.addNamespaceDeclaration(Namespace.getNamespace("ogc","http://www.opengis.net/ogc"));
+		xml.addNamespaceDeclaration(Namespace.getNamespace("se","http://www.opengis.net/se"));
+		xml.addNamespaceDeclaration(Namespace.getNamespace("xlink","http://www.w3.org/1999/xlink"));
+		xml.setAttribute("version", "1.0.0");
+		xml.setAttribute("schemaLocation", "http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd", Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance"));
+		return xml;
 	}
 }

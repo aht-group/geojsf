@@ -64,7 +64,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 		super(fbCore,fbMeta,fbSld);
 	}
 	
-	protected void postConstructSldTemplate(JeeslTranslationBean bTranslation, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	protected void postConstructSldTemplate(JeeslTranslationBean<L,D,LOC> bTranslation, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]),fGeo);
 	}

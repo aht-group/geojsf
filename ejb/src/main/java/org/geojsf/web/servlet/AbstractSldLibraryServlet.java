@@ -3,15 +3,12 @@ package org.geojsf.web.servlet;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.batik.svggen.SVGGraphics2D;
-import org.apache.batik.transcoder.TranscoderException;
 import org.apache.commons.io.IOUtils;
 import org.geojsf.controller.util.GeoJsfSldConfigurationProvider;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -19,17 +16,11 @@ import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.jeesl.factory.svg.SvgSymbolFactory;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
-import org.openfuxml.content.media.Image;
-import org.openfuxml.factory.xml.media.XmlImageFactory;
-import org.openfuxml.media.transcode.Svg2SvgTranscoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.processing.UtilsProcessingException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;

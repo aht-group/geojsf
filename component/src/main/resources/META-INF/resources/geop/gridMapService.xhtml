@@ -16,6 +16,7 @@
 	<composite:interface>
 		<composite:attribute name="bean" required="false" default="#{gisSldTemplateBean}"/>
 		<composite:attribute name="localeKeys" required="false" default="#{appTranslationBean.langKeys}"/>
+		<composite:attribute name="sld" required="false" default=""/>
 	</composite:interface>
         
 	<composite:implementation>
@@ -157,6 +158,7 @@
 							<geojsf:map id="map" baseMap="osm" rendered="#{cc.attrs.bean.layer.id gt 0}" value="#{cc.attrs.bean.map}">
 								<geojsf:viewport value="#{cc.attrs.bean.layer.viewPort}"/>
 								<p:ajax event="mapMove" listener="#{cc.attrs.bean.mapMove}" update=":#{cc.id}:fLayer"/>
+								<geojsf:sldParameter value="#{cc.attrs.sld}" rendered="#{not empty cc.attrs.sld}"/>
 							</geojsf:map>
 						</p:panel>	
 					</h:form>

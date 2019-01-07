@@ -57,13 +57,13 @@ public class JdomNamedLayerFactory <L extends UtilsLang,D extends UtilsDescripti
 		if(layer.getSld()!=null)
 		{
 			
-			logger.info(layer.getSld().getType().getCode());
+			logger.info("Building SLD for type="+layer.getSld().getType().getCode());
 			try
 			{
 				switch(GeoJsfSldType.Type.valueOf(layer.getSld().getType().getCode()))
 				{
 					case template:	element.addContent(userStyle(layer.getSld().getTemplate()));break;
-					default:	logger.warn("No Handling for "+layer.getSld().getType().getCode());
+					default:		logger.warn("No Handling for "+layer.getSld().getType().getCode());
 				}
 			}
 			catch (IOException e) {logger.error(e.getMessage());}
