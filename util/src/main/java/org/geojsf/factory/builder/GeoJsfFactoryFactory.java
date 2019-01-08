@@ -1,6 +1,4 @@
-package org.geojsf.factory.factory;
-
-import java.util.Comparator;
+package org.geojsf.factory.builder;
 
 import org.geojsf.factory.ejb.meta.EjbGeoDataSourceFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -14,7 +12,6 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.util.comparator.ejb.GeoScaleComparator;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -77,6 +74,7 @@ public class GeoJsfFactoryFactory<L extends UtilsLang,D extends UtilsDescription
         return new GeoJsfFactoryFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cL,cD,cScale,cDs);
     }
 	
+    @Deprecated //... needs to be moved to Meta
 	public EjbGeoDataSourceFactory<L,D,CATEGORY,LAYER,MAP,VIEW,DS> ejbDs()
 	{
 		 return new EjbGeoDataSourceFactory<L,D,CATEGORY,LAYER,MAP,VIEW,DS>(cL,cD,cDs);

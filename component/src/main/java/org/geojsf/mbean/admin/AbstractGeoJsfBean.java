@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
+import org.geojsf.factory.builder.GeoJsfFactoryFactory;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.factory.ejb.core.EjbGeoCategoryFactory;
@@ -16,7 +17,6 @@ import org.geojsf.factory.ejb.meta.EjbGeoScaleFactory;
 import org.geojsf.factory.ejb.meta.EjbGeoViewPortFactory;
 import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
 import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
-import org.geojsf.factory.factory.GeoJsfFactoryFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
