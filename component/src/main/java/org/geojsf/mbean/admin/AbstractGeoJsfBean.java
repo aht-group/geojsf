@@ -17,7 +17,6 @@ import org.geojsf.factory.ejb.meta.EjbGeoViewPortFactory;
 import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
 import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
 import org.geojsf.factory.factory.GeoJsfFactoryFactory;
-import org.geojsf.factory.factory.GeoSldFactoryFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -71,7 +70,6 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta;
 	protected final GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
 	
-	protected final GeoSldFactoryFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffSld;
 	protected final GeoJsfFactoryFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffGeo;
 	
 	protected final EjbLangFactory<L> efLang;
@@ -97,8 +95,6 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 		this.fbMeta=fbMeta;
 		this.fbSld=fbSld;
 
-		
-		ffSld = GeoSldFactoryFactory.factory(fbSld.getClassSld());
 		ffGeo = GeoJsfFactoryFactory.factory(fbCore.getClassL(),fbCore.getClassD(),fbCore.getClassScale(),fbMeta.getClassDs());
 		
 		efLang = EjbLangFactory.factory(fbCore.getClassL());
@@ -113,7 +109,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	    efViewPort = fbMeta.ejbViewPort();
     	
 		efDs = ffGeo.ejbDs();
-		efSld = ffSld.sld();
+		efSld = fbSld.sld();
 		efTemplate = EjbGeoSldTemplateFactory.factory(fbSld.getClassTemplate());
 	}
 	

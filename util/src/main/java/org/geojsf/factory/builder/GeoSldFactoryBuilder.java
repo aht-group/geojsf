@@ -1,5 +1,6 @@
 package org.geojsf.factory.builder;
 
+import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
 import org.geojsf.factory.jdom.specs.sld.JdomStyledLayerDescriptorFactory;
 import org.geojsf.factory.xml.specs.sld.XmlStyledLayerDescriptorFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -44,6 +45,11 @@ public class GeoSldFactoryBuilder<L extends UtilsLang,D extends UtilsDescription
 		this.cSld=cSld;
 	}
 	
+	public EjbGeoSldFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> sld()
+	{
+		 return new EjbGeoSldFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cSld);
+    }
+	
 	public XmlStyledLayerDescriptorFactory<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> xmlStyledLayerDescriptor(SldConfigurationProvider sldConfigurationProvider)
 	{
 		return new XmlStyledLayerDescriptorFactory<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE>(sldConfigurationProvider);
@@ -53,4 +59,6 @@ public class GeoSldFactoryBuilder<L extends UtilsLang,D extends UtilsDescription
 	{
 		return new JdomStyledLayerDescriptorFactory<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE>(sldConfigurationProvider);
 	}
+	
+	
 }
