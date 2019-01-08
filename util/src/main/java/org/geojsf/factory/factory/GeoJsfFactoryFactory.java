@@ -3,7 +3,6 @@ package org.geojsf.factory.factory;
 import java.util.Comparator;
 
 import org.geojsf.factory.ejb.meta.EjbGeoDataSourceFactory;
-import org.geojsf.factory.ejb.meta.EjbGeoScaleFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -83,14 +82,7 @@ public class GeoJsfFactoryFactory<L extends UtilsLang,D extends UtilsDescription
 		 return new EjbGeoDataSourceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cL,cD,cDs);
     }
 	
-	public EjbGeoScaleFactory<L,D,SCALE> ejbScale()
-	{
-		 return new EjbGeoScaleFactory<L,D,SCALE>(cL,cD,cScale);
-    }
+
 	
-	public Comparator<SCALE> cmpScale(GeoScaleComparator.Type type)
-	{
-		GeoScaleComparator<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> cF = new GeoScaleComparator<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>();
-		return cF.factory(type);
-	}
+
 }

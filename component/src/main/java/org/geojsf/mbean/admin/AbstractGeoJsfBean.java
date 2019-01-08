@@ -104,7 +104,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	    efService = fbCore.ejbService();
 	    efLayer = fbCore.ejbLayer();
 	    efMap = fbCore.ejbMap();
-	    efScale = ffGeo.ejbScale();
+	    efScale = fbCore.ejbScale();
 	    efView = fbCore.ejbView();
 	    efViewPort = fbMeta.ejbViewPort();
     	

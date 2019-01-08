@@ -65,7 +65,7 @@ public class AbstractMapScaleBean <L extends UtilsLang, D extends UtilsDescripti
 								GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);
-		cmpScale = ffGeo.cmpScale(GeoScaleComparator.Type.value);
+		cmpScale = fbCore.cmpScale(GeoScaleComparator.Type.value);
 	}
 	
 	protected void postInit(){reloadScales();}
