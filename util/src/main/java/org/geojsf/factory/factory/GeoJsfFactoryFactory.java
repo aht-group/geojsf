@@ -77,9 +77,9 @@ public class GeoJsfFactoryFactory<L extends UtilsLang,D extends UtilsDescription
         return new GeoJsfFactoryFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cL,cD,cScale,cDs);
     }
 	
-	public EjbGeoDataSourceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ejbDs()
+	public EjbGeoDataSourceFactory<L,D,CATEGORY,LAYER,MAP,VIEW,DS> ejbDs()
 	{
-		 return new EjbGeoDataSourceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cL,cD,cDs);
+		 return new EjbGeoDataSourceFactory<L,D,CATEGORY,LAYER,MAP,VIEW,DS>(cL,cD,cDs);
     }
 	
 

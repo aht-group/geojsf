@@ -83,7 +83,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> efView;
 	protected final EjbGeoViewPortFactory<VP> efViewPort;
 	
-	protected final EjbGeoDataSourceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efDs;
+	protected final EjbGeoDataSourceFactory<L,D,CATEGORY,LAYER,MAP,VIEW,DS> efDs;
 	protected final EjbGeoSldTemplateFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efTemplate;
 	protected final EjbGeoSldFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSld;
 	
