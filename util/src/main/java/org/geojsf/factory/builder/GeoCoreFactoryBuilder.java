@@ -81,4 +81,6 @@ public class GeoCoreFactoryBuilder<L extends UtilsLang, D extends UtilsDescripti
 	{
     	return new EjbGeoViewFactory<L,D,LAYER,MAP,VIEW>(cView);
 	}
+    
+    
 }

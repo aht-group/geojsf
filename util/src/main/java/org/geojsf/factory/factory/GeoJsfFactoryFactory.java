@@ -83,9 +83,9 @@ public class GeoJsfFactoryFactory<L extends UtilsLang,D extends UtilsDescription
 		 return new EjbGeoDataSourceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cL,cD,cDs);
     }
 	
-	public EjbGeoScaleFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ejbScale()
+	public EjbGeoScaleFactory<L,D,SCALE> ejbScale()
 	{
-		 return new EjbGeoScaleFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cL,cD,cScale);
+		 return new EjbGeoScaleFactory<L,D,SCALE>(cL,cD,cScale);
     }
 	
 	public Comparator<SCALE> cmpScale(GeoScaleComparator.Type type)
