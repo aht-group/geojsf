@@ -1,5 +1,6 @@
 package org.geojsf.factory.builder;
 
+import org.geojsf.factory.ejb.meta.EjbGeoDataSourceFactory;
 import org.geojsf.factory.ejb.meta.EjbGeoViewPortFactory;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
@@ -35,5 +36,8 @@ public class GeoMetaFactoryBuilder<L extends UtilsLang, D extends UtilsDescripti
 	    return new EjbGeoViewPortFactory<VP>(cViewPort);
 	}
     
-    
+	public EjbGeoDataSourceFactory<L,D,DS> ejbDs()
+	{
+		 return new EjbGeoDataSourceFactory<L,D,DS>(cL,cD,cDs);
+    }
 }

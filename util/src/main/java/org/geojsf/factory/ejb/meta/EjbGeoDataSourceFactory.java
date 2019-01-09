@@ -1,9 +1,5 @@
 package org.geojsf.factory.ejb.meta;
 
-import org.geojsf.interfaces.model.core.GeoJsfCategory;
-import org.geojsf.interfaces.model.core.GeoJsfLayer;
-import org.geojsf.interfaces.model.core.GeoJsfMap;
-import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
@@ -15,11 +11,8 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 
 public class EjbGeoDataSourceFactory<L extends UtilsLang,D extends UtilsDescription,
-								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,DS,?>,
-								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,?>,
-								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-								DS extends GeoJsfDataSource<L,D,LAYER>>
+								
+								DS extends GeoJsfDataSource<L,D,?>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoDataSourceFactory.class);
 	

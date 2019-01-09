@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
-import org.geojsf.factory.builder.GeoJsfFactoryFactory;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.factory.ejb.core.EjbGeoCategoryFactory;
@@ -70,8 +69,6 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta;
 	protected final GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
 	
-	protected final GeoJsfFactoryFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> ffGeo;
-	
 	protected final EjbLangFactory<L> efLang;
 	protected final EjbDescriptionFactory<D> efDescription;
 	
@@ -83,7 +80,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> efView;
 	protected final EjbGeoViewPortFactory<VP> efViewPort;
 	
-	protected final EjbGeoDataSourceFactory<L,D,CATEGORY,LAYER,MAP,VIEW,DS> efDs;
+	protected final EjbGeoDataSourceFactory<L,D,DS> efDs;
 	protected final EjbGeoSldTemplateFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efTemplate;
 	protected final EjbGeoSldFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSld;
 	
@@ -95,8 +92,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 		this.fbMeta=fbMeta;
 		this.fbSld=fbSld;
 
-		ffGeo = GeoJsfFactoryFactory.factory(fbCore.getClassL(),fbCore.getClassD(),fbCore.getClassScale(),fbMeta.getClassDs());
-		
+	
 		efLang = EjbLangFactory.factory(fbCore.getClassL());
 	    efDescription = EjbDescriptionFactory.factory(fbCore.getClassD());
 	    	
@@ -108,7 +104,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	    efView = fbCore.ejbView();
 	    efViewPort = fbMeta.ejbViewPort();
     	
-		efDs = ffGeo.ejbDs();
+		efDs = fbMeta.ejbDs();
 		efSld = fbSld.sld();
 		efTemplate = EjbGeoSldTemplateFactory.factory(fbSld.getClassTemplate());
 	}
