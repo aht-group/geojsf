@@ -10,9 +10,6 @@ import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
-import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Query;
 import org.geojsf.model.xml.geojsf.Service;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
@@ -31,30 +28,29 @@ public class XmlServiceFactory <L extends UtilsLang, D extends UtilsDescription,
 							F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
-							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
 							MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 							SCALE extends GeoJsfScale<L,D>, 
 							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 							VP extends GeoJsfViewPort,
-							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G>>  implements Serializable
+							DS extends GeoJsfDataSource<L,D,LAYER>>
+					implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlServiceFactory.class);
 	public static final long serialVersionUID=1;
 	
 	private Service q;
 	
+	private XmlLayerFactory xfLayer = new XmlLayerFactory(q.getLayer().get(0));
+	
 	public XmlServiceFactory(Query query) {this(query.getService());}
 	public XmlServiceFactory(Service q)
 	{
 		this.q=q;
+		if(q.isSetLayer()) {xfLayer = new XmlLayerFactory(q.getLayer().get(0));}
 	}
 
-	public 
-		Service build (GeoJsfService<L,D,LAYER> ejb)
+	public Service build (GeoJsfService<L,D,LAYER> ejb)
 	{
 		Service xml = new Service();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
@@ -63,10 +59,9 @@ public class XmlServiceFactory <L extends UtilsLang, D extends UtilsDescription,
 		
 		if(q.isSetLayer() && ejb.getLayer()!=null && ejb.getLayer().size()>0)
 		{
-			XmlLayerFactory f = new XmlLayerFactory(q.getLayer().get(0));
-			for(GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD> layer : ejb.getLayer())
+			for(GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?> layer : ejb.getLayer())
 			{
-				xml.getLayer().add(f.build(layer));
+				xml.getLayer().add(xfLayer.build(layer));
 			}
 		}
 		

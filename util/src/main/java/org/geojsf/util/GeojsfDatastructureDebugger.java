@@ -160,15 +160,11 @@ public class GeojsfDatastructureDebugger
 					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
-					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
 					MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>, SCALE extends GeoJsfScale<L,D>, 
 					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 					VP extends GeoJsfViewPort,
-					DS extends GeoJsfDataSource<L,D,LAYER>,
-					SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,SLDSTYLE extends UtilsStatus<SLDSTYLE,L,D>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
+					DS extends GeoJsfDataSource<L,D,LAYER>>
 		void debug(int indent, SERVICE service)
 	{
 		StringBuffer sb = new StringBuffer();
