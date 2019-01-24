@@ -7,6 +7,7 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
 import org.geojsf.test.GeoJsfDocTestBootstrap;
+import org.jeesl.model.xml.system.io.db.Db;
 import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.interfaces.configuration.DefaultSettingsManager;
@@ -22,7 +23,6 @@ import net.sf.ahtutils.doc.UtilsDocumentation;
 import net.sf.ahtutils.doc.ofx.status.OfxStatusTableFactory;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.aht.Aht;
-import net.sf.ahtutils.xml.dbseed.Db;
 import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.util.xml.JaxbUtil;
 
