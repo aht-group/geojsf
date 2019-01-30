@@ -122,7 +122,7 @@ public class MapUtil<L extends UtilsLang,D extends UtilsDescription,
 				{
 					parameters.put(s.getKey(), s.getValue());
 				}
-				logger.info("Added SQLViewParameter: " +s.getKey() +"=" +s.getValue());
+				if(logger.isTraceEnabled()) {logger.trace("Added SQLViewParameter: " +s.getKey() +"=" +s.getValue());}
 			}
 		}
 		return parameters;
