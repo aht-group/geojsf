@@ -165,7 +165,7 @@ var GeoJSF = {
 		processEventMarkerMove : function(event)
 		{
 			console.log("markerMove detected");
-            var lonlat                 = ol.proj.transform(this.getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326');
+            var lonlat                 = ol.proj.transform(event.features.getArray()[0].getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326');
 			try {
 				PrimeFaces.ab({
 					process:  '@form', 
@@ -457,8 +457,9 @@ var GeoJSF = {
 				var modify = new ol.interaction.Modify({
 					features: new ol.Collection([GeoJSF.feature])
 				});
+				modify.on('modifyend', GeoJSF.processEventMarkerMove);
 				
-			   GeoJSF.feature.on('change', GeoJSF.processEventMarkerMove ,GeoJSF.feature);
+			   //GeoJSF.feature.on('modifyend', GeoJSF.processEventMarkerMove ,GeoJSF.feature);
 			   GeoJSF.map.addInteraction(modify);
 		   
 		},
@@ -466,12 +467,26 @@ var GeoJSF = {
 		setMarkerUrl: function(srcUrl)
 		{
 			GeoJSF.markerUrl = srcUrl;
+			GeoJSF.iconStyle = new ol.style.Style({
+					image: new ol.style.Icon({
+					  anchor: [0.5, 0.75],
+					  anchorXUnits: 'fraction',
+					  anchorYUnits: 'fraction',
+					  opacity: 1,
+					  scale: 0.6,
+					  src: srcUrl
+					})
+				});
 			console.log("Marker source URL set to " +GeoJSF.markerUrl);
 		},
 		
 		setMarkerPosition: function(lat, lon)
 		{
 			GeoJSF.markerPosition = new ol.geom.Point(ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'));
+			GeoJSF.feature = new ol.Feature({
+					geometry: new ol.geom.Point(ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857')),
+					name: 'GeoJSF Marker'
+				  });
 			console.log("Marker position set to " +GeoJSF.markerPosition.getCoordinates()[0] +"," +GeoJSF.markerPosition.getCoordinates()[1]);
 		},
 		
