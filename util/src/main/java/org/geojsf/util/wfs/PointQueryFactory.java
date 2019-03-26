@@ -79,7 +79,7 @@ public class PointQueryFactory
 		dw.setPropertyName(pn);
 		
 		dw.setPoint(createPoint());
-		dw.setDistance(checkDistanceUnit(distance));
+		dw.setDistance(doNotCheckDistanceUnit(distance));
 		
 		return dw;
 	}
@@ -94,6 +94,7 @@ public class PointQueryFactory
 		return point;
 	}
 	
+	private Distance doNotCheckDistanceUnit(Distance distance) {return distance;}
 	private Distance checkDistanceUnit(Distance distance)
 	{
 		// Only the unit 'degree' is verified, so convert ...
@@ -124,6 +125,5 @@ public class PointQueryFactory
 		result.setUnits("degree");
 		result.setValue(degree.toString());
 		return result;
-
 	}
 }

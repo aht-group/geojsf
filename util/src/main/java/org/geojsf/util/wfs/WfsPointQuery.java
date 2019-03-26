@@ -14,17 +14,7 @@ import javax.persistence.ManyToOne;
 
 import org.geojsf.exception.GeoJsfDeveloperException;
 import org.geojsf.factory.xml.specs.gml.XmlCoordinatesFactory;
-import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
-import org.geojsf.interfaces.model.core.GeoJsfMap;
-import org.geojsf.interfaces.model.core.GeoJsfService;
-import org.geojsf.interfaces.model.core.GeoJsfView;
-import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
-import org.geojsf.interfaces.model.meta.GeoJsfScale;
-import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
-import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.model.with.EjbWithGeometry;
 import org.geojsf.interfaces.qualifier.IgnoreGeoJsfWfsProperty;
 import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
@@ -38,17 +28,13 @@ import org.jdom2.Namespace;
 import org.jdom2.filter.Filters;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
+import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 @SuppressWarnings("rawtypes")
@@ -152,8 +138,6 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 					}
 					if(!fieldAdded){propertyFields.add(field.getName());}
 				}
-				
-				
 			}
 		}
 		String[] result = new String[propertyFields.size()];
@@ -177,12 +161,12 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  queryProperties, geometryColumn,
 													  coordinates,distance);
-		
 		JaxbUtil.trace(gf);
 		
 		WfsHttpRequest r = new WfsHttpRequest(layer.getService().getWcs());
 		
 		Document doc = r.request(gf);
+//		JDomUtil.debug(doc);
 
 		Namespace nsQuery = propertyProvider.getNameSpace();
 		StringBuffer xpath = new StringBuffer();
@@ -201,9 +185,25 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 			try
 			{
 				String s = e.getAttributeValue("fid");
-				Long id = new Long(s.substring(s.lastIndexOf(".")+1));
-				if(!ids.contains(id)){results.add(fGeo.find(cId, id));}
-				ids.add(id);
+				String fid = s.substring(s.lastIndexOf(".")+1);
+				
+				Long id = null;
+				if(fid.startsWith("fid"))
+				{
+					Element eId = e.getChild("id",nsQuery);
+					id = Long.valueOf(eId.getValue());
+				}
+				else
+				{
+					id = new Long(s.substring(s.lastIndexOf(".")+1));
+				}
+				
+				if(id!=null)
+				{
+					if(!ids.contains(id)){results.add(fGeo.find(cId, id));}
+					ids.add(id);
+				}
+				
 			}
 			catch (UtilsNotFoundException ex)
 			{
@@ -252,8 +252,4 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 		}
 		return results;
 	}
-	
-	//ResultList
-	
-	
 }
