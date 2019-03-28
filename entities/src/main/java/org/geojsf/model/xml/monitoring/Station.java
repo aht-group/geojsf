@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Langs;
+import net.sf.ahtutils.xml.status.Type;
+import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.model.xml.geojsf.Wkt;
 
 
@@ -25,10 +27,12 @@ import org.geojsf.model.xml.geojsf.Wkt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
+ *         &lt;element ref="{http://ahtutils.aht-group.com/status}type"/&gt;
  *         &lt;element ref="{http://www.geojsf.org/monitoring}capability" maxOccurs="unbounded"/&gt;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}langs"/&gt;
  *         &lt;element ref="{http://ahtutils.aht-group.com/status}descriptions"/&gt;
  *         &lt;element ref="{http://www.geojsf.org}wkt"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org}coordinate"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" /&gt;
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -41,10 +45,12 @@ import org.geojsf.model.xml.geojsf.Wkt;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "type",
     "capability",
     "langs",
     "descriptions",
-    "wkt"
+    "wkt",
+    "coordinate"
 })
 @XmlRootElement(name = "station")
 public class Station
@@ -52,6 +58,8 @@ public class Station
 {
 
     private final static long serialVersionUID = 1L;
+    @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
+    protected Type type;
     @XmlElement(required = true)
     protected List<Capability> capability;
     @XmlElement(namespace = "http://ahtutils.aht-group.com/status", required = true)
@@ -60,10 +68,40 @@ public class Station
     protected Descriptions descriptions;
     @XmlElement(namespace = "http://www.geojsf.org", required = true)
     protected Wkt wkt;
+    @XmlElement(namespace = "http://www.geojsf.org", required = true)
+    protected Coordinate coordinate;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
     protected String code;
+
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Type }
+     *     
+     */
+    public Type getType() {
+        return type;
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Type }
+     *     
+     */
+    public void setType(Type value) {
+        this.type = value;
+    }
+
+    public boolean isSetType() {
+        return (this.type!= null);
+    }
 
     /**
      * Gets the value of the capability property.
@@ -184,6 +222,34 @@ public class Station
 
     public boolean isSetWkt() {
         return (this.wkt!= null);
+    }
+
+    /**
+     * Gets the value of the coordinate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Coordinate }
+     *     
+     */
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
+
+    /**
+     * Sets the value of the coordinate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Coordinate }
+     *     
+     */
+    public void setCoordinate(Coordinate value) {
+        this.coordinate = value;
+    }
+
+    public boolean isSetCoordinate() {
+        return (this.coordinate!= null);
     }
 
     /**

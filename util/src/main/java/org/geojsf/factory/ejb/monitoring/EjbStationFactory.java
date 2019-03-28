@@ -30,7 +30,7 @@ public class EjbStationFactory<L extends UtilsLang,D extends UtilsDescription, S
 	private EjbLangFactory<L> efLang;
     private EjbDescriptionFactory<D> efDescription;
     
-    public static <L extends UtilsLang,D extends UtilsDescription,
+    private static <L extends UtilsLang,D extends UtilsDescription,
     				STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
     				TYPE extends UtilsStatus<TYPE,L,D>,
     				SUBTYPE extends UtilsStatus<SUBTYPE,L,D>,

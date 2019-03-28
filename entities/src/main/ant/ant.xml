@@ -55,5 +55,6 @@
 		</java>
 		<delete dir="${src.dir}/net"/>
 		<delete dir="${src.dir}/com"/>
+		<delete dir="${src.dir}/org/jeesl"/>
 	</target>
 </project>

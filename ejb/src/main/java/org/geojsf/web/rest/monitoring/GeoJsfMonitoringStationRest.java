@@ -3,6 +3,7 @@ package org.geojsf.web.rest.monitoring;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.geojsf.factory.builder.GeoMonitoringFactoryBuilder;
 import org.geojsf.factory.ejb.monitoring.EjbStationFactory;
 import org.geojsf.interfaces.model.obervation.station.GeoStation;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
@@ -26,37 +27,48 @@ import net.sf.ahtutils.web.rest.AbstractUtilsRest;
 import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
-public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, TYPE extends UtilsStatus<TYPE,L,D>, SUBTYPE extends UtilsStatus<SUBTYPE,L,D>, SCHEME extends UtilsStatus<SCHEME,L,D>, CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
+public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDescription,
+										STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
+										TYPE extends UtilsStatus<TYPE,L,D>,
+										SUBTYPE extends UtilsStatus<SUBTYPE,L,D>,
+										SCHEME extends UtilsStatus<SCHEME,L,D>,
+										CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
+										CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, 
+										CAPT extends UtilsStatus<CAPT,L,D>,
+										CAPS extends UtilsStatus<CAPS,L,D>>
 	extends AbstractUtilsRest<L,D>
 	implements GeoJsfMonitoringStationRestExport,GeoJsfMonitoringStationRestImport
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMonitoringStationRest.class);
 
-	private final Class<STATION> cStation;
-	@SuppressWarnings("unused")
-	private final Class<CAP> cCap;
+	private final GeoMonitoringFactoryBuilder<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS> fbMonitoring;
+	
 	private final Class<CAPT> cCapT;
 	private final Class<CAPS> cCapS;
 	
 	private EjbStationFactory<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS> efStation;
 
-	public GeoJsfMonitoringStationRest(UtilsFacade fUtils, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
+	public GeoJsfMonitoringStationRest(UtilsFacade fUtils, final String[] defaultLangs,
+			GeoMonitoringFactoryBuilder<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS> fbMonitoring,
+			final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{
-		super(fUtils,defaultLangs,cL,cD);
+		super(fUtils,defaultLangs,fbMonitoring.getClassL(),fbMonitoring.getClassD());
+		this.fbMonitoring=fbMonitoring;
 		
-		this.cStation=cStation;
-		this.cCap=cCap;
 		this.cCapT=cCapT;
 		this.cCapS=cCapS;
 		
-		efStation = EjbStationFactory.factory(cL,cD,cStation);
+		efStation = fbMonitoring.station();
 	}
 	
 	public static <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, TYPE extends UtilsStatus<TYPE,L,D>, SUBTYPE extends UtilsStatus<SUBTYPE,L,D>, SCHEME extends UtilsStatus<SCHEME,L,D>, CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
 		GeoJsfMonitoringStationRest<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>
-		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
+		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs,
+				GeoMonitoringFactoryBuilder<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS> fbMonitoring,
+				final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{
-		return new GeoJsfMonitoringStationRest<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>(fGeoMonitoring,defaultLangs,cL,cD,cStation,cCap,cCapT,cCapS);
+		return new GeoJsfMonitoringStationRest<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>(fGeoMonitoring,defaultLangs,fbMonitoring
+					,cCapT,cCapS);
 	}
 	
 	//Import
@@ -66,13 +78,13 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	@Override public DataUpdate importGeoJsfMonitoringStations(Stations stations)
 	{
 		DataUpdateTracker dut = new DataUpdateTracker(true);
-		dut.setType(XmlTypeFactory.build(cStation.getName(),"DB Import"));
+		dut.setType(XmlTypeFactory.build(fbMonitoring.getClassStation().getName(),"DB Import"));
 		for(Station station : stations.getStation())
 		{
 			STATION ejb;
 			try
 			{
-				ejb = fUtils.fByCode(cStation,station.getCode());
+				ejb = fUtils.fByCode(fbMonitoring.getClassStation(),station.getCode());
 				dut.success();
 			}
 			catch (UtilsNotFoundException e)

@@ -11,9 +11,10 @@ public class XmlStationFactory implements Serializable
 	final static Logger logger = LoggerFactory.getLogger(XmlStationFactory.class);
 	public static final long serialVersionUID=1;
 	
+	public static Station build() {return new Station();}
 	public static Station build(String code, String label)
 	{
-		Station xml = new Station();
+		Station xml = build();
 		xml.setCode(code);
 		
 		return xml;
