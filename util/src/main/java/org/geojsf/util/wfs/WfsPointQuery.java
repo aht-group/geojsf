@@ -161,8 +161,7 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  queryProperties, geometryColumn,
 													  coordinates,distance);
-		JaxbUtil.trace(gf);
-		
+		JaxbUtil.info(gf);
 		WfsHttpRequest r = new WfsHttpRequest(layer.getService().getWcs());
 		
 		Document doc = r.request(gf);

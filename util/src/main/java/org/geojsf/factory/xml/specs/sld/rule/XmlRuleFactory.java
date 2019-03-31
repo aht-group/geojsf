@@ -56,7 +56,7 @@ public class XmlRuleFactory <L extends UtilsLang,D extends UtilsDescription,
 	{
 		Rule xml = new Rule();
 		xml.setName(XmlNameFactory.build(name));
-		xml.setDescription(XmlDescriptionFactory.title(title));
+		if(title!=null) {xml.setDescription(XmlDescriptionFactory.title(title));}
 		return xml;
 	}
 }
