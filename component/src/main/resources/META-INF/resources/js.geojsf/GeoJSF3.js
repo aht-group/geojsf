@@ -210,6 +210,11 @@ var GeoJSF = {
 			GeoJSF.map.getView().setResolution(1000);
 		},
 		
+		centerMap : function(lot, lan)
+		{
+			GeoJSF.map.getView().setCenter([lot,lan]);
+		},
+		
 		// Remove all layers and add the base layer again
 		resetLayers : function()
 		{
@@ -338,6 +343,27 @@ var GeoJSF = {
 		{
 			 console.log("SLD Parameter Update requested.");
 			 var params = {};
+			     params.env = parameters;
+                         if (GeoJSF.map.getLayers())
+                         {
+                            GeoJSF.map.getLayers().forEach(function (layer) {
+                                if (layer.getSource() instanceof ol.source.OSM)
+                                {
+                                   console.log("Ignoring OSM base layer"); 
+                                }
+                                else
+                                {
+                                    layer.getSource().updateParams(params);
+                                    console.log("Merging new SldParameter parameter: " +params.env);
+                                }
+                            });
+                         }
+		},
+		
+		updateSld : function(parameters)
+		{
+			 console.log("SLD Update requested.");
+			 var params = {};
 			     params.SLD = parameters;
                          if (GeoJSF.map.getLayers())
                          {
@@ -349,7 +375,7 @@ var GeoJSF = {
                                 else
                                 {
                                     layer.getSource().updateParams(params);
-                                    console.log("Merging new SldParameter parameter: " +params.SLD);
+                                    console.log("Merging new SLD parameter: " +params.SLD);
                                 }
                             });
                          }
