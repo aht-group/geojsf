@@ -26,17 +26,21 @@
 		</aht:slot>
 	</aht:row>
 	<aht:row id="rowMaps">
-		<aht:slot width="2">
+		<aht:slot width="3">
 			<h:form id="fMaps">
 				<p:dataTable var="m" value="#{cc.attrs.bean.maps}"
-						selection="#{cc.attrs.bean.map}" selectionMode="single" rowKey="#{m.id}"
-						sortBy="#{m.name[userBean.localeCode].lang}" sortOrder="ascending">
+						selection="#{cc.attrs.bean.map}" selectionMode="single" rowKey="#{m.id}" draggableRows="true"
+						sortBy="#{m.position}" sortOrder="ascending">
 					<f:facet name="header">
 						<aht:pfDataTableHeader title="#{msg.geoJsfAdminThamaticMaps}">
 							<aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttNew}"/>
 						</aht:pfDataTableHeader>
 					</f:facet>
-					<p:ajax event="rowSelect" update=":#{cc.id}:rowMaps" listener="#{cc.attrs.bean.selectMap}"/>
+					<p:ajax event="rowSelect"  listener="#{cc.attrs.bean.selectMap}" update=":#{cc.id}:rowMaps"/>
+					<p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorderMaps()}" update="@form"/>
+					<p:column>
+						<h:outputText value="#{m.position}"/> 
+					</p:column>
 					<p:column headerText="#{msg.jeeslName}"
 								sortBy="#{m.name[userBean.localeCode].lang}"
 								filterBy="#{m.name[userBean.localeCode].lang}" filterMatchMode="contains">
@@ -54,6 +58,12 @@
 						<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttDelete}"/>
 					</f:facet>
 					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
+					
+						<p:outputLabel value="#{msg.geoJsfAdminCategory}"/>
+						<p:selectOneMenu value="#{cc.attrs.bean.map.category}" effect="fade" autoWidth="false">  
+							<f:selectItems value="#{cc.attrs.bean.categories}" var="c" itemLabel="#{c.name[localeCode].lang}" itemValue="#{c}"/>
+						</p:selectOneMenu>
+					
 						<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
 						<p:inputText value="#{cc.attrs.bean.map.code}" autocomplete="false"/>
 					</p:panelGrid>
@@ -84,7 +94,7 @@
 				</p:dataTable>
 			</h:form>
 		</aht:slot>
-		<aht:slot id="sView" width="6">
+		<aht:slot id="sView" width="5">
 			<h:form id="fGeoJsfMap">
 				<p:panel header="#{cc.attrs.bean.map.name[localeCode].lang}" styleClass="geojsfPrimefacesPanelMap" 
 							rendered="#{(not empty cc.attrs.bean.map) and (cc.attrs.bean.map.id gt 0) and (fn:length(cc.attrs.bean.map.views) gt 0)}">

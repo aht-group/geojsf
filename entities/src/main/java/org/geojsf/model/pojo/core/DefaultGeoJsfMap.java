@@ -25,6 +25,10 @@ public class DefaultGeoJsfMap implements GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJ
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
+	private DefaultGeoJsfCategory category;
+	@Override public DefaultGeoJsfCategory getCategory(){return category;}
+	@Override public void setCategory(DefaultGeoJsfCategory category){this.category = category;}
+	
 	private String code;
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}

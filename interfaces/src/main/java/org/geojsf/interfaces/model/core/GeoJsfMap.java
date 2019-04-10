@@ -25,6 +25,9 @@ public interface GeoJsfMap<L extends UtilsLang, D extends UtilsDescription,
 					EjbSaveable,
 					EjbWithLang<L>,EjbWithDescription<D>
 {	
+	CATEGORY getCategory();
+	void setCategory(CATEGORY category);
+	
 	List<VIEW> getViews();
 	void setViews(List<VIEW> views);
 	

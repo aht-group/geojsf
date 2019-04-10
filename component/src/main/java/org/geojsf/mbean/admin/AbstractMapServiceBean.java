@@ -59,9 +59,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 	protected List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
 	protected List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
 	protected List<SLD> slds; public List<SLD> getSlds() {return slds;}
-	
 
-	
 	protected MAP map; public MAP getMap() {return map;}
 	protected CATEGORY category; public CATEGORY getCategory(){return category;} public void setCategory(CATEGORY category){this.category = category;}
 	protected VP viewPort; public VP getViewPort(){return viewPort;} public void setViewPort(VP viewPort){this.viewPort = viewPort;}
@@ -263,10 +261,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		viewPort=null;
 	}
 	
-	protected void reorderLayer() throws UtilsConstraintViolationException, UtilsLockingException
-	{
-		PositionListReorderer.reorder(fGeo, layers);
-	}
+	public void reorderLayer() throws UtilsConstraintViolationException, UtilsLockingException{PositionListReorderer.reorder(fGeo, layers);}
 	
 	// View Port
 	private void addViewPort() throws UtilsConstraintViolationException, UtilsLockingException

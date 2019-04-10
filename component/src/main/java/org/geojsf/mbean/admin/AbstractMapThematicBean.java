@@ -9,6 +9,7 @@ import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
+import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -33,6 +34,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.jsf.util.FacesContextMessage;
+import net.sf.ahtutils.jsf.util.PositionListReorderer;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 import net.sf.exlp.util.io.StringUtil;
 
@@ -84,9 +86,16 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 		super(fbCore,fbMeta,fbSld);
 	}
 	
+	protected void postConstructThematic(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	{
+		super.postConstructGeojsf(langKeys, fGeo);
+		categories = fGeo.allOrderedPositionVisible(fbCore.getClassCategory());
+		reloadMaps();
+	}
+	
 	protected void reloadMaps()
 	{
-		maps = fGeo.all(fbCore.getClassMap());
+		maps = fGeo.allOrderedPosition(fbCore.getClassMap());
 	}
 	
 	public void selectMap() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
@@ -125,6 +134,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	public void saveMap() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(map));
+		if(map.getCategory()!=null) {map.setCategory(fGeo.find(fbCore.getClassCategory(), map.getCategory()));}
 		map = fGeo.save(map);
 		reloadMaps();
 		updateOrder();
@@ -231,7 +241,6 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 		logger.info(AbstractLogMessage.selectOneMenuChange(category));
 	}
 	
-	
 	public void mapMove(AjaxBehaviorEvent ev)
 	{
 		MapAjaxEvent evt = (MapAjaxEvent) ev;
@@ -245,4 +254,6 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 		logger.info(AbstractLogMessage.saveEntity(viewPort));
 		viewPort = fGeo.save(viewPort);
 	}
+	
+	public void reorderMaps() throws UtilsConstraintViolationException, UtilsLockingException{PositionListReorderer.reorder(fGeo,maps);reloadMaps();}
 }
