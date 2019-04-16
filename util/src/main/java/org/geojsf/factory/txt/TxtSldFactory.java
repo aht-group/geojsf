@@ -35,8 +35,16 @@ public class TxtSldFactory<L extends UtilsLang, D extends UtilsDescription,
 		int i=1;
 		for(RULE rule : sld.getRules())
 		{
-			if(rule.getLowerBound()!=null){sb.append("lb").append(i).append(":").append(rule.getLowerBound()).append(";");}
-			if(rule.getUpperBound()!=null){sb.append("ub").append(i).append(":").append(rule.getUpperBound()).append(";");}
+			sb.append("lb").append(i).append(":");
+			if(rule.getLowerBound()!=null){sb.append(rule.getLowerBound());}
+			else {sb.append("-99999999");}
+			sb.append(";");
+			
+			sb.append("ub").append(i).append(":");
+			if(rule.getUpperBound()!=null){sb.append(rule.getUpperBound());}
+			else {sb.append("99999999");}
+			sb.append(";");
+			
 			if(rule.getGraphic().getColor()!=null && rule.getGraphic().getColor().length()>0){sb.append("c").append(i).append(":#").append(rule.getGraphic().getColor()).append(";");}
 			if(rule.getGraphic().getSize()!=null){sb.append("s").append(i).append(":").append(rule.getGraphic().getSize()).append(";");}
 			i++;
