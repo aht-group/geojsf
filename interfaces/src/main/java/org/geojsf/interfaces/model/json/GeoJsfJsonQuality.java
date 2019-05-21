@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.model.sld;
+package org.geojsf.interfaces.model.json;
 
 import java.io.Serializable;
 
@@ -12,7 +12,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatusFixedCode;
 
-public interface GeoJsfSldType<S extends UtilsStatus<S,L,D>,
+public interface GeoJsfJsonQuality<S extends UtilsStatus<S,L,D>,
 								L extends UtilsLang, D extends UtilsDescription,
 								G extends JeeslGraphic<L,D,G,?,?,?>>
 						extends Serializable,EjbPersistable,
@@ -20,5 +20,5 @@ public interface GeoJsfSldType<S extends UtilsStatus<S,L,D>,
 								UtilsStatus<S,L,D>,UtilsStatusFixedCode,
 								EjbWithCodeGraphic<G>
 {
-	public static enum Type{rule,status,template}
+	public static enum Code{low,medium,high}
 }
