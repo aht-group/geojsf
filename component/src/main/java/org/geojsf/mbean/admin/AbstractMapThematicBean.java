@@ -88,7 +88,8 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 		super(fbCore,fbMeta,fbSld);
 	}
 	
-	protected void postConstructThematic(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	protected void postConstructThematic(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
+										GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]), fGeo);
 		categories = fGeo.allOrderedPositionVisible(fbCore.getClassCategory());

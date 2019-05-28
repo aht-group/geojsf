@@ -75,7 +75,8 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		super(fbCore,fbMeta,fbSld);
 	}
 	
-	public void postConstructService(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	public void postConstructService(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
+									GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		this.locales=bTranslation.getLocales();
 		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]),fGeo);  	

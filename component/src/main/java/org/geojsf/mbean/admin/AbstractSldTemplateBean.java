@@ -19,6 +19,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.jeesl.api.bean.JeeslTranslationBean;
+import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -64,7 +65,8 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 		super(fbCore,fbMeta,fbSld);
 	}
 	
-	protected void postConstructSldTemplate(JeeslTranslationBean<L,D,LOC> bTranslation, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	protected void postConstructSldTemplate(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
+								GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]),fGeo);
 	}
