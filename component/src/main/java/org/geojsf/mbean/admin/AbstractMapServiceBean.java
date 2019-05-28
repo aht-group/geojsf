@@ -19,6 +19,8 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.api.bean.JeeslTranslationBean;
+import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -73,10 +75,10 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		super(fbCore,fbMeta,fbSld);
 	}
 	
-	public void postConstructService(List<LOC> locales, String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	public void postConstructService(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		this.locales=locales;
-		super.postConstructGeojsf(langKeys,fGeo);  	
+		this.locales=bTranslation.getLocales();
+		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]),fGeo);  	
 		slds = fGeo.fLibrarySlds();
 	}
 	

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:j="http://www.jeesl.org/jsf"
+    xmlns:jp="http://jsf.jeesl.org/prototype"
+    xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
+    xmlns:geojsf="http://geojsf.org/ui"
+    xmlns:geop="http://geojsf.org/prototype"
+    xmlns:aht="http://ahtutils.sourceforge.net/jsf"
+    xmlns:aup="http://ahtutils.sourceforge.net/prototype"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	<composite:interface>
+		<composite:attribute name="bean" required="false" default="#{gisSldTemplateBean}"/>
+		<composite:attribute name="localeKeys" required="false" default="#{appTranslationBean.langKeys}"/>
+		<composite:attribute name="sld" required="false" default=""/>
+	</composite:interface>
+        
+	<composite:implementation>
+		<jp:grid id="grid">
+			<j:row id="rowServices">
+				<j:slot width="7">
+					<h:form id="fServices">
+						<p:dataTable var="j" value="#{cc.attrs.bean.jsons}"
+							selection="#{cc.attrs.bean.json}" selectionMode="single" rowKey="#{j.id}">
+							<f:facet name="header">
+				                <j:dtHeader title="#{msg.geoJsfAdminServices}">
+				                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addService()}" update=":#{cc.id}:grid"/>
+				                </j:dtHeader>
+				            </f:facet>
+				            <p:ajax event="rowSelect" update=":#{cc.id}:fJson" listener="#{cc.attrs.bean.selectJson()}"/>
+				            <p:column headerText="#{msg.geoJsfAdminName}">
+								<h:outputText value="#{j.id}" />  
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</j:slot>
+				<j:slot width="5">
+					<h:form id="fJson">
+						<p:panel header="#{msg.geoJsfAdminService}" rendered="#{not empty cc.attrs.bean.json}" styleClass="jeeslPanel">
+							<f:facet name="actions">
+								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}" mayDisappear="true"/>
+								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
+								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.service)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
+							</f:facet>
+							<p:panelGrid columns="1" columnClasses="jeeslGrid100">
+								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
+								
+								
+							</p:panelGrid>
+						</p:panel>
+					</h:form>
+				</j:slot>
+			</j:row>
+		</jp:grid>
+	</composite:implementation>
+</html>

@@ -22,6 +22,7 @@ import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.interfaces.model.json.GeoJsfJsonData;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;

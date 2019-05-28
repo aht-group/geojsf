@@ -10,7 +10,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 
 public interface GeoJsfJsonData<L extends UtilsLang, D extends UtilsDescription,
 						   JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-						   JL extends GeoJsfJsonQuality<JL,L,D,?>
+						   JL extends GeoJsfLocationLevel<JL,L,D,?>
 						   >
 			extends Serializable,EjbRemoveable,EjbPersistable,EjbSaveable
 {

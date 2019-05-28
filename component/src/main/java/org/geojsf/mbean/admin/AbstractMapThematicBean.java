@@ -21,6 +21,8 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.api.bean.JeeslTranslationBean;
+import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.primefaces.event.ReorderEvent;
@@ -86,9 +88,9 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 		super(fbCore,fbMeta,fbSld);
 	}
 	
-	protected void postConstructThematic(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	protected void postConstructThematic(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		super.postConstructGeojsf(langKeys, fGeo);
+		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]), fGeo);
 		categories = fGeo.allOrderedPositionVisible(fbCore.getClassCategory());
 		reloadMaps();
 	}

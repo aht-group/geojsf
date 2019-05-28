@@ -18,6 +18,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.api.bean.JeeslTranslationBean;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
@@ -51,7 +52,10 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfDataSourceBean.class);
-		
+	
+	private List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
+	private List<DS> sources; public List<DS> getSources() {return sources;}
+	
 	public AbstractGeoJsfDataSourceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 										GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
 										GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
@@ -59,22 +63,16 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 		super(fbCore,fbMeta,fbSld);
 	}
 	
-	public void postConstructDataSource(List<LOC> locales, String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	public void postConstructDataSource(JeeslTranslationBean<L,D,LOC> bTranslation, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		super.postConstructGeojsf(langKeys,fGeo);
+		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]),fGeo);
 
 	    availableLayers = fGeo.all(fbCore.getClassLayer());
 	    categories = fGeo.all(fbCore.getClassCategory());
 		reloadSources();
 	}
 	
-	//Categories
-	private List<CATEGORY> categories;
-	public List<CATEGORY> getCategories() {return categories;}
 
-	//Datasources
-	private List<DS> sources;
-	public List<DS> getSources() {return sources;}
 	
 	private void reloadSources()
 	{
