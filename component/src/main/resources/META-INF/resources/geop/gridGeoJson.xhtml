@@ -28,7 +28,7 @@
 							selection="#{cc.attrs.bean.json}" selectionMode="single" rowKey="#{j.id}">
 							<f:facet name="header">
 				                <j:dtHeader title="#{msg.geoJsfAdminServices}">
-				                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addService()}" update=":#{cc.id}:grid"/>
+				                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addJson()}" update=":#{cc.id}:grid"/>
 				                </j:dtHeader>
 				            </f:facet>
 				            <p:ajax event="rowSelect" update=":#{cc.id}:fJson" listener="#{cc.attrs.bean.selectJson()}"/>
@@ -46,9 +46,17 @@
 								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
 								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.service)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
 							</f:facet>
-							<p:panelGrid columns="1" columnClasses="jeeslGrid100">
-								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
+							<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
 								
+								<p:outputLabel value="#{msg.geoJsfJsonQuality}"/>
+								<p:selectOneMenu value="#{cc.attrs.bean.json.quality}" effect="fade" autoWidth="false">  
+									<f:selectItems value="#{cc.attrs.bean.qualities}" var="q" itemLabel="#{q.name[localeCode].lang}" itemValue="#{q}"/>
+								</p:selectOneMenu>
+								
+								<p:outputLabel value="#{msg.geoJsfLocationLevel}"/>
+								<p:selectOneMenu value="#{cc.attrs.bean.json.level}" effect="fade" autoWidth="false">  
+									<f:selectItems value="#{cc.attrs.bean.levels}" var="l" itemLabel="#{l.name[localeCode].lang}" itemValue="#{l}"/>
+								</p:selectOneMenu>
 								
 							</p:panelGrid>
 						</p:panel>

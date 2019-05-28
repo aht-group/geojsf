@@ -23,12 +23,16 @@ import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.interfaces.model.json.GeoJsfJsonData;
+import org.geojsf.interfaces.model.json.GeoJsfJsonQuality;
+import org.geojsf.interfaces.model.json.GeoJsfLocationLevel;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.api.bean.JeeslTranslationBean;
+import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
@@ -54,7 +58,10 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G>>
+									RULE extends GeoJsfSldRule<L,D,G>,
+									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
+									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
+									JL extends GeoJsfLocationLevel<JL,L,D,?>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -62,12 +69,12 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	
 	@Deprecated
 	protected String[] langKeys;
-	protected List<LOC> locales;
 	
 	protected GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
+	protected JeeslTranslationBean<L,D,LOC> bTranslation;
 	
 	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
-	protected final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta;
+	protected final GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta;
 	protected final GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
 	
 	protected final EjbLangFactory<L> efLang;
@@ -86,7 +93,7 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 	protected final EjbGeoSldFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSld;
 	
 	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-							GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+							GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
 							GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		this.fbCore=fbCore;
@@ -110,9 +117,11 @@ public class AbstractGeoJsfBean <L extends UtilsLang, D extends UtilsDescription
 		efTemplate = EjbGeoSldTemplateFactory.factory(fbSld.getClassTemplate());
 	}
 	
-	protected void postConstructGeojsf(String[] langKeys, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+	protected void postConstructGeojsf(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
+									GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		this.langKeys=langKeys;
+		this.bTranslation=bTranslation;
+		this.langKeys=bTranslation.getLangKeys().toArray(new String[0]);
 		this.fGeo=fGeo;
 		postInit();
 	}

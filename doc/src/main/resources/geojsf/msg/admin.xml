@@ -240,11 +240,25 @@
 			<s:lang key="fr" translation="Scale"/>
 		</s:langs>
 	</s:translation>
-		<s:translation key="geoJsfRemark">
+	<s:translation key="geoJsfRemark">
 		<s:langs>
 			<s:lang key="de" translation="Bemerkung"/>
 			<s:lang key="en" translation="Remark"/>
 			<s:lang key="fr" translation="Remark"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfJsonQuality">
+		<s:langs>
+			<s:lang key="de" translation="Quality"/>
+			<s:lang key="en" translation="Quality"/>
+			<s:lang key="fr" translation="Quality"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfLocationLevel">
+		<s:langs>
+			<s:lang key="de" translation="Level"/>
+			<s:lang key="en" translation="Level"/>
+			<s:lang key="fr" translation="Level"/>
 		</s:langs>
 	</s:translation>
 	

@@ -63,7 +63,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfDbInit.class);
 	
 	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
-	private final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta;
+	private final GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta;
 	
     private final Class<LAYER> cLayer;
     private final Class<MAP> cMap;
@@ -82,7 +82,8 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     private EjbGeoSldTemplateFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSldTemplate;
     
-    public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+    public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+    					final GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta,
     					UtilsFacade fUtils, String[] langKeys,
     					
     					GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,
@@ -125,7 +126,8 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 				SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 				SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>> 
 		GeoJsfDbInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+				final GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta,
 				UtilsFacade fUtils,GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,String[] langKeys,final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType,final Class<SLDTEMPLATE> cSldTemplate)
 	{
 		return new GeoJsfDbInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,fbMeta,fUtils,langKeys,fGeo,cLayer,cMap,cView,cVp,cSldType,cSldTemplate);

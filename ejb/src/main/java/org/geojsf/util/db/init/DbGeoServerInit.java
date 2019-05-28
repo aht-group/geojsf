@@ -8,6 +8,9 @@ import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.interfaces.model.json.GeoJsfJsonData;
+import org.geojsf.interfaces.model.json.GeoJsfJsonQuality;
+import org.geojsf.interfaces.model.json.GeoJsfLocationLevel;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
@@ -45,13 +48,16 @@ public class DbGeoServerInit <L extends UtilsLang, D extends UtilsDescription,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 								SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G>
+								RULE extends GeoJsfSldRule<L,D,G>,
+								JSON extends GeoJsfJsonData<L,D,JQ,JL>,
+								JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
+								JL extends GeoJsfLocationLevel<JL,L,D,?>
 								>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbGeoServerInit.class);
 	
 	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
-	private final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta;
+	private final GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta;
 	
 	
 	private final Class<L> cL;
@@ -66,7 +72,8 @@ public class DbGeoServerInit <L extends UtilsLang, D extends UtilsDescription,
     private UtilsFacade fUtils;
     private GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
  
-    public DbGeoServerInit(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+    public DbGeoServerInit(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+    						GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
     		final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
     	this.fbCore=fbCore;
@@ -97,13 +104,17 @@ public class DbGeoServerInit <L extends UtilsLang, D extends UtilsDescription,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>,
 					SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>> 
-		DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, final GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+					JSON extends GeoJsfJsonData<L,D,JQ,JL>,
+					JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
+					JL extends GeoJsfLocationLevel<JL,L,D,?>> 
+		DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
+		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
+					final GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
 				
 				final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cVp,UtilsFacade fUtils, GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		return new DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,fbMeta,cL,cD,cCategory,cService,cLayer,cMap,cView,cVp,fUtils,fGeo);
+		return new DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>(fbCore,fbMeta,cL,cD,cCategory,cService,cLayer,cMap,cView,cVp,fUtils,fGeo);
 	}
 
 	public void iuGeoJsf(Repository repository, Layers layers, Maps maps, String[] langKeys) throws UtilsConfigurationException

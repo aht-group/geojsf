@@ -52,7 +52,7 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,
     
     private EjbGeoViewPortFactory<VP> efVp;
     
-    public DbViewPortInit(GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta, final Class<VP> cVp, UtilsFacade fUtils)
+    public DbViewPortInit(GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta, final Class<VP> cVp, UtilsFacade fUtils)
 	{       
         this.cVp = cVp;
         this.fUtils=fUtils;
@@ -76,7 +76,7 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>>
 		DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta, final Class<VP> cVp,UtilsFacade fUtils)
+		factory(GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta, final Class<VP> cVp,UtilsFacade fUtils)
 	{
 		return new DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbMeta,cVp,fUtils);
 	}

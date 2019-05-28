@@ -15,6 +15,9 @@ import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.interfaces.model.json.GeoJsfJsonData;
+import org.geojsf.interfaces.model.json.GeoJsfJsonQuality;
+import org.geojsf.interfaces.model.json.GeoJsfLocationLevel;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
@@ -54,8 +57,11 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 										SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 										SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-										RULE extends GeoJsfSldRule<L,D,G>>
-	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+										RULE extends GeoJsfSldRule<L,D,G>,
+										JSON extends GeoJsfJsonData<L,D,JQ,JL>,
+										JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
+										JL extends GeoJsfLocationLevel<JL,L,D,?>>
+	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -82,7 +88,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 	
 	public AbstractMapThematicBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-									GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+									GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
 									GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);
@@ -91,7 +97,7 @@ public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescri
 	protected void postConstructThematic(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
 										GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]), fGeo);
+		super.postConstructGeojsf(bTranslation,bMessage,fGeo);
 		categories = fGeo.allOrderedPositionVisible(fbCore.getClassCategory());
 		reloadMaps();
 	}

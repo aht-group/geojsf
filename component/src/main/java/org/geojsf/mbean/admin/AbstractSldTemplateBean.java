@@ -12,6 +12,9 @@ import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.interfaces.model.json.GeoJsfJsonData;
+import org.geojsf.interfaces.model.json.GeoJsfJsonQuality;
+import org.geojsf.interfaces.model.json.GeoJsfLocationLevel;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
@@ -47,9 +50,12 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G>
+									RULE extends GeoJsfSldRule<L,D,G>,
+									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
+									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
+									JL extends GeoJsfLocationLevel<JL,L,D,?>
 									>
-		extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+		extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -59,7 +65,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 	protected SLDTEMPLATE template; public SLDTEMPLATE getTemplate() {return template;} public void setTemplate(SLDTEMPLATE template) {this.template = template;}
 	
 	public AbstractSldTemplateBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-									GeoMetaFactoryBuilder<L,D,DS,VP> fbMeta,
+									GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
 									GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);
@@ -68,7 +74,7 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 	protected void postConstructSldTemplate(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
 								GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
-		super.postConstructGeojsf(bTranslation.getLangKeys().toArray(new String[0]),fGeo);
+		super.postConstructGeojsf(bTranslation,bMessage,fGeo);
 	}
 	
 	protected void reloadTemplates()
@@ -87,8 +93,8 @@ public class AbstractSldTemplateBean <L extends UtilsLang, D extends UtilsDescri
 	{
 		logger.info(AbstractLogMessage.addEntity(fbSld.getClassTemplate()));
 		template = efTemplate.build(null);
-		template.setName(efLang.createEmpty(langKeys));
-		template.setDescription(efDescription.createEmpty(langKeys));
+		template.setName(efLang.createEmpty(bTranslation.getLocales()));
+		template.setDescription(efDescription.createEmpty(bTranslation.getLocales()));
 	}
 	
 	public void cancelTemplate()
