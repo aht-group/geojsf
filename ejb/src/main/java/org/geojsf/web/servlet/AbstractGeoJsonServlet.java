@@ -45,7 +45,7 @@ public class AbstractGeoJsonServlet extends HttpServlet implements Serializable
 		ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
 		
 		response.reset();
-		response.setContentType("application/vnd.geo+json");
+		response.setContentType("application/json; charset=utf-8");
 		response.setHeader("Content-Length", String.valueOf(bytes.length));
 		
 	  	IOUtils.copy(bais,response.getOutputStream());
