@@ -8,7 +8,7 @@
 	<ofx:include lang="en">en/section/geojsf/admin/include/maps-1</ofx:include>
 	
 	<ofx:paragraph lang="en">
-        When services and layers are configured correctly, you can compose thematic maps from these
+        When services and layers are configured correctly, thematic maps can be composed from these
         sources. You can also specify the ordering of the layers by simple dragging and dropping their position
         in the layers list. The result will be reflected in the preview map, as shown in Figure <ofx:reference target="image.geojsf.admin.include.maps"/>.
 	</ofx:paragraph>
