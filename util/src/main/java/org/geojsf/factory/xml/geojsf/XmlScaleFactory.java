@@ -30,7 +30,7 @@ public class XmlScaleFactory implements Serializable
 	public static final long serialVersionUID=1;
 	
 	public static <L extends UtilsLang, D extends UtilsDescription,
-					G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
+					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,

@@ -1,6 +1,5 @@
 package org.geojsf.model.pojo.util.symbol;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,13 +12,10 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 
-import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
-import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 @EjbErNode(name="Graphic",category="symbol",subset="sld")
-public class DefaultGeoJsfGraphic implements EjbRemoveable,Serializable,EjbPersistable,
-								JeeslGraphic<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle>
+public class DefaultGeoJsfGraphic implements JeeslGraphic<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle>
 {
 	public static final long serialVersionUID=1;
 

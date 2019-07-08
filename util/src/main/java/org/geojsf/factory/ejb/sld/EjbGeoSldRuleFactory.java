@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class EjbGeoSldRuleFactory<L extends UtilsLang, D extends UtilsDescription,
-									G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
+									G extends JeeslGraphic<L,D,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 									F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 									SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
@@ -31,7 +31,7 @@ public class EjbGeoSldRuleFactory<L extends UtilsLang, D extends UtilsDescriptio
     } 
     
     public static <L extends UtilsLang, D extends UtilsDescription,
-				    G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
+				    G extends JeeslGraphic<L,D,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 					SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,

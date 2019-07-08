@@ -44,7 +44,7 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 import net.sf.exlp.util.io.StringUtil;
 
 public class AbstractMapThematicBean <L extends UtilsLang, D extends UtilsDescription,LOC extends UtilsStatus<LOC,L,D>,
-										G extends JeeslGraphic<L,D,G,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
+										G extends JeeslGraphic<L,D,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
 										F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 										SERVICE extends GeoJsfService<L,D,LAYER>,

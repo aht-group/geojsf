@@ -12,7 +12,7 @@ import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
 public interface GeoJsfSldRule<L extends UtilsLang, D extends UtilsDescription,
-							G extends JeeslGraphic<L,D,G,?,?,?>>
+							G extends JeeslGraphic<L,D,?,?,?>>
 			extends Serializable,EjbWithId,EjbWithPosition,EjbWithLang<L>,EjbWithDescription<D>
 {
 	public static enum Type{symbol,interval}
