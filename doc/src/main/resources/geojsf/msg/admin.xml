@@ -247,6 +247,20 @@
 			<s:lang key="fr" translation="Remark"/>
 		</s:langs>
 	</s:translation>
+	<s:translation key="geoJsfJsonDatas">
+		<s:langs>
+			<s:lang key="de" translation="GeoJson Datas"/>
+			<s:lang key="en" translation="GeoJson Datas"/>
+			<s:lang key="fr" translation="GeoJson Datas"/>
+		</s:langs>
+	</s:translation>
+	<s:translation key="geoJsfJsonData">
+		<s:langs>
+			<s:lang key="de" translation="GeoJson Data"/>
+			<s:lang key="en" translation="GeoJson Data"/>
+			<s:lang key="fr" translation="GeoJson Data"/>
+		</s:langs>
+	</s:translation>
 	<s:translation key="geoJsfJsonQuality">
 		<s:langs>
 			<s:lang key="de" translation="Quality"/>
@@ -261,5 +275,11 @@
 			<s:lang key="fr" translation="Level"/>
 		</s:langs>
 	</s:translation>
-	
+		<s:translation key="geoJsfJsonUrl">
+		<s:langs>
+			<s:lang key="de" translation="URL"/>
+			<s:lang key="en" translation="URL"/>
+			<s:lang key="fr" translation="URL"/>
+		</s:langs>
+	</s:translation>
 </s:translations>

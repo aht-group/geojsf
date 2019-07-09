@@ -21,4 +21,7 @@ public interface GeoJsfJsonData<L extends UtilsLang, D extends UtilsDescription,
 	
 	JL getLevel();
 	void setLevel(JL level);
+	
+	String getUrl();
+	void setUrl(String url);
 }

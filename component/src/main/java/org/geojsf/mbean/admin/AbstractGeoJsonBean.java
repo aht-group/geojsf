@@ -29,6 +29,8 @@ import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
+import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -78,9 +80,15 @@ public class AbstractGeoJsonBean <L extends UtilsLang, D extends UtilsDescriptio
 								GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		super.postConstructGeojsf(bTranslation,bMessage,fGeo);
-		reloadJsons();
 		qualities.addAll(fGeo.allOrderedPositionVisible(fbMeta.getClassQuality()));
 		levels.addAll(fGeo.allOrderedPositionVisible(fbMeta.getClassLevel()));
+		reloadJsons();
+	}
+	
+	public void cancelJson() {reset(true);}
+	private void reset(boolean rJson)
+	{
+		if(rJson) {json=null;}
 	}
 	
 	private void reloadJsons()
@@ -92,5 +100,13 @@ public class AbstractGeoJsonBean <L extends UtilsLang, D extends UtilsDescriptio
 	public void addJson()
 	{
 		json = fbMeta.ejbJson().build();
+	}
+	
+	public void saveJson() throws UtilsConstraintViolationException, UtilsLockingException
+	{
+		json.setQuality(fGeo.find(fbMeta.getClassQuality(),json.getQuality()));
+		json.setLevel(fGeo.find(fbMeta.getClassLevel(),json.getLevel()));
+		json = fGeo.save(json);
+		reloadJsons();
 	}
 }
