@@ -80,6 +80,11 @@ public class AbstractGeoJsonBean <L extends UtilsLang, D extends UtilsDescriptio
 								GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
 	{
 		super.postConstructGeojsf(bTranslation,bMessage,fGeo);
+		
+		if(qualities==null) {logger.warn("qualities==null");}
+		if(fGeo==null) {logger.warn("fGeo==null");}
+		if(fbMeta==null) {logger.warn("fbMeta==null");}
+		
 		qualities.addAll(fGeo.allOrderedPositionVisible(fbMeta.getClassQuality()));
 		levels.addAll(fGeo.allOrderedPositionVisible(fbMeta.getClassLevel()));
 		reloadJsons();
