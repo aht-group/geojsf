@@ -107,6 +107,11 @@ public class AbstractGeoJsonBean <L extends UtilsLang, D extends UtilsDescriptio
 		json = fbMeta.ejbJson().build();
 	}
 	
+	public void selectJson()
+	{
+		json = fGeo.find(fbMeta.getClassJson(),json);
+	}
+	
 	public void saveJson() throws UtilsConstraintViolationException, UtilsLockingException
 	{
 		json.setQuality(fGeo.find(fbMeta.getClassQuality(),json.getQuality()));
