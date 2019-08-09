@@ -5,6 +5,7 @@ import java.io.StringWriter;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.model.xml.geojsf.Service;
+import org.jeesl.util.query.xpath.StatusXpath;
 import org.openfuxml.content.list.Item;
 import org.openfuxml.content.list.List;
 import org.openfuxml.content.list.Type;
@@ -27,7 +28,6 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.xml.status.Description;
 import net.sf.ahtutils.xml.status.Lang;
 import net.sf.ahtutils.xml.status.Translations;
-import net.sf.ahtutils.xml.xpath.StatusXpath;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.xml.JaxbUtil;
