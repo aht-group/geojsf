@@ -21,8 +21,8 @@ import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.factory.xml.layout.XmlFloatFactory;
 import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
-import org.openfuxml.factory.xml.table.OfxCellFactory;
-import org.openfuxml.factory.xml.table.OfxColumnFactory;
+import org.openfuxml.factory.xml.table.XmlCellFactory;
+import org.openfuxml.factory.xml.table.XmlColumnFactory;
 import org.openfuxml.util.OfxCommentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,9 +92,9 @@ public class OfxSldTemplateTableFactory extends AbstractUtilsOfxDocumentationFac
 		specification.setFloat(XmlFloatFactory.build(false));
 		
 		Columns cols = new Columns();
-		cols.getColumn().add(OfxColumnFactory.flex(20));
-		cols.getColumn().add(OfxColumnFactory.flex(20));
-		cols.getColumn().add(OfxColumnFactory.flex(60));
+		cols.getColumn().add(XmlColumnFactory.flex(20));
+		cols.getColumn().add(XmlColumnFactory.flex(20));
+		cols.getColumn().add(XmlColumnFactory.flex(60));
 		specification.setColumns(cols);
 		
 		return specification;
@@ -123,13 +123,13 @@ public class OfxSldTemplateTableFactory extends AbstractUtilsOfxDocumentationFac
 	{		
 		Row row = new Row();
 		
-		row.getCell().add(OfxCellFactory.createParagraphCell(template.getCode()));
+		row.getCell().add(XmlCellFactory.createParagraphCell(template.getCode()));
 		
-		Cell cName = OfxCellFactory.build();
+		Cell cName = XmlCellFactory.build();
 		cName.getContent().addAll(OfxMultiLangFactory.paragraph(langs, template.getLangs()));
 		row.getCell().add(cName);
 		
-		Cell cDescription = OfxCellFactory.build();
+		Cell cDescription = XmlCellFactory.build();
 		cDescription.getContent().addAll(OfxMultiLangFactory.paragraph(langs, template.getDescriptions()));
 		row.getCell().add(cDescription);
 

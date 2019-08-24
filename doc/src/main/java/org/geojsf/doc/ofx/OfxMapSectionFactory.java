@@ -25,8 +25,8 @@ import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
 import org.openfuxml.factory.xml.ofx.content.structure.XmlParagraphFactory;
 import org.openfuxml.factory.xml.ofx.content.structure.XmlSectionFactory;
 import org.openfuxml.factory.xml.ofx.content.text.XmlTitleFactory;
-import org.openfuxml.factory.xml.table.OfxCellFactory;
-import org.openfuxml.factory.xml.table.OfxColumnFactory;
+import org.openfuxml.factory.xml.table.XmlCellFactory;
+import org.openfuxml.factory.xml.table.XmlColumnFactory;
 import org.openfuxml.util.OfxCommentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -121,8 +121,8 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 		Specification specification = new Specification();
 		
 		Columns cols = new Columns();
-		cols.getColumn().add(OfxColumnFactory.percentage(colWidths[0]));
-		cols.getColumn().add(OfxColumnFactory.flex(colWidths[1]));
+		cols.getColumn().add(XmlColumnFactory.percentage(colWidths[0]));
+		cols.getColumn().add(XmlColumnFactory.flex(colWidths[1]));
 //		cols.getColumn().add(OfxColumnFactory.flex(colWidths[2]));
 		
 		specification.setColumns(cols);
@@ -189,8 +189,8 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 		catch (ExlpXpathNotUniqueException e){throw new OfxAuthoringException(e.getMessage());}
 		
 		
-		row.getCell().add(OfxCellFactory.createParagraphCell(view.getNr()));
-		row.getCell().add(OfxCellFactory.createParagraphCell(layerName));
+		row.getCell().add(XmlCellFactory.createParagraphCell(view.getNr()));
+		row.getCell().add(XmlCellFactory.createParagraphCell(layerName));
 //		row.getCell().add(OfxCellFactory.createParagraphCell("a"));
 
 		return row;

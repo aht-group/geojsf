@@ -30,8 +30,8 @@ import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.factory.xml.layout.XmlFloatFactory;
 import org.openfuxml.factory.xml.layout.XmlHeightFactory;
 import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
-import org.openfuxml.factory.xml.table.OfxCellFactory;
-import org.openfuxml.factory.xml.table.OfxColumnFactory;
+import org.openfuxml.factory.xml.table.XmlCellFactory;
+import org.openfuxml.factory.xml.table.XmlColumnFactory;
 import org.openfuxml.media.transcode.Svg2SvgTranscoder;
 import org.openfuxml.util.OfxCommentBuilder;
 import org.slf4j.Logger;
@@ -109,9 +109,9 @@ public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
 		Columns cols = new Columns();
 //		cols.getColumn().add(OfxColumnFactory.percentage(30));
 //		cols.getColumn().add(OfxColumnFactory.flex(100));
-		cols.getColumn().add(OfxColumnFactory.flex(3,true));
-		cols.getColumn().add(OfxColumnFactory.flex(22,true));
-		cols.getColumn().add(OfxColumnFactory.flex(75));
+		cols.getColumn().add(XmlColumnFactory.flex(3,true));
+		cols.getColumn().add(XmlColumnFactory.flex(22,true));
+		cols.getColumn().add(XmlColumnFactory.flex(75));
 		specification.setColumns(cols);
 		
 		return specification;
@@ -141,9 +141,9 @@ public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
 		Row row = new Row();
 		
 		row.getCell().add(cellImage(rule));
-		row.getCell().add(OfxCellFactory.createParagraphCell(""+TxtSldRuleFactory.bounds(rule)));
+		row.getCell().add(XmlCellFactory.createParagraphCell(""+TxtSldRuleFactory.bounds(rule)));
 		
-		Cell cell = OfxCellFactory.build();
+		Cell cell = XmlCellFactory.build();
 		cell.getContent().addAll(OfxMultiLangFactory.paragraph(langs, rule.getLangs()));
 		row.getCell().add(cell);		
 
@@ -184,6 +184,6 @@ public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
 		image.setMedia(media);
 		image.setHeight(XmlHeightFactory.em(1));
 		
-		return OfxCellFactory.image(image);
+		return XmlCellFactory.image(image);
 	}
 }

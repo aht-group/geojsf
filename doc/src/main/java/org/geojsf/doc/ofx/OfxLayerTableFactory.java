@@ -24,8 +24,8 @@ import org.openfuxml.exception.OfxAuthoringException;
 import org.openfuxml.factory.xml.layout.XmlFloatFactory;
 import org.openfuxml.factory.xml.ofx.content.XmlCommentFactory;
 import org.openfuxml.factory.xml.ofx.content.text.XmlTitleFactory;
-import org.openfuxml.factory.xml.table.OfxCellFactory;
-import org.openfuxml.factory.xml.table.OfxColumnFactory;
+import org.openfuxml.factory.xml.table.XmlCellFactory;
+import org.openfuxml.factory.xml.table.XmlColumnFactory;
 import org.openfuxml.util.OfxCommentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,8 +101,8 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		Columns cols = new Columns();
 //		cols.getColumn().add(OfxColumnFactory.percentage(30));
 //		cols.getColumn().add(OfxColumnFactory.flex(100));
-		cols.getColumn().add(OfxColumnFactory.flex(15));
-		cols.getColumn().add(OfxColumnFactory.flex(85));
+		cols.getColumn().add(XmlColumnFactory.flex(15));
+		cols.getColumn().add(XmlColumnFactory.flex(85));
 		specification.setColumns(cols);
 		
 		return specification;
@@ -132,7 +132,7 @@ public class OfxLayerTableFactory extends AbstractUtilsOfxDocumentationFactory
 		Row row = new Row();
 		
 //		row.getCell().add(cellImage(layer));
-		row.getCell().add(OfxCellFactory.createParagraphCell(layer.getCode()));
+		row.getCell().add(XmlCellFactory.createParagraphCell(layer.getCode()));
 		
 		row.getCell().add(cellDescription(layer));		
 
