@@ -30,10 +30,10 @@ public class GeoJsfErDiagram extends AbstractErDiagram
 	public void create() throws IOException, ClassNotFoundException, TranscoderException
 	{
 		buildSvg("neato",new ArrayList<String>(),new File(fSvg,"all.svg"),null);
-		create("core");
-		create("datasource");
-		create("viewport");
-		create("sld");
+		create("core",false);
+		create("datasource",false);
+		create("viewport",false);
+		create("sld",false);
 	}
 	
 	public static void main(String args[]) throws Exception
