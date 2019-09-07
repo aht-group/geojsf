@@ -267,15 +267,11 @@
 				<executions>
 					<execution>
 						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
+						<goals><goal>jar</goal></goals>
 					</execution>
 					<execution>
 						<id>attach-sources-test</id>
-						<goals>
-							<goal>test-jar</goal>
-						</goals>
+						<goals><goal>test-jar</goal></goals>
 					</execution>
 				</executions>
 			</plugin>

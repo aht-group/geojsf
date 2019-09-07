@@ -85,6 +85,15 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<inherited>true</inherited>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+				<plugin>
 					<groupId>org.jeesl</groupId>
 					<artifactId>jeesl-maven</artifactId>
 					<version>0.2.6-SNAPSHOT</version>
@@ -100,16 +109,7 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<inherited>true</inherited>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
+			
 			<plugin>
         		<groupId>org.apache.maven.plugins</groupId>
         		<artifactId>maven-enforcer-plugin</artifactId>
