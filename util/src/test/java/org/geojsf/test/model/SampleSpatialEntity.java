@@ -12,9 +12,7 @@ import com.vividsolutions.jts.geom.Point;
 public class SampleSpatialEntity implements Serializable,EjbWithGeometry<Point>
 {
 	private static final long serialVersionUID = 1L;
-	
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>Fields<<<<<<<<<<<<<<<<<<<<<<<<<<<
-	
+		
 	private long id;
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
@@ -39,8 +37,8 @@ public class SampleSpatialEntity implements Serializable,EjbWithGeometry<Point>
 	public String toString()
 	{
 		StringBuffer sb = new StringBuffer();
-			sb.append(id);
-			sb.append(" ");
+		sb.append(id);
+		sb.append(" ");
 		return sb.toString();
 	}
 }
