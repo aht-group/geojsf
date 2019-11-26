@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element ref="{http://www.opengis.net/sld}SvgParameter" maxOccurs="unbounded"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/sld}CssParameter" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -32,7 +33,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "svgParameter"
+    "svgParameter",
+    "cssParameter"
 })
 @XmlRootElement(name = "Fill")
 public class Fill
@@ -42,6 +44,8 @@ public class Fill
     private final static long serialVersionUID = 1L;
     @XmlElement(name = "SvgParameter", required = true)
     protected List<SvgParameter> svgParameter;
+    @XmlElement(name = "CssParameter", required = true)
+    protected List<CssParameter> cssParameter;
 
     /**
      * Gets the value of the svgParameter property.
@@ -78,6 +82,43 @@ public class Fill
 
     public void unsetSvgParameter() {
         this.svgParameter = null;
+    }
+
+    /**
+     * Gets the value of the cssParameter property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the cssParameter property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getCssParameter().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link CssParameter }
+     * 
+     * 
+     */
+    public List<CssParameter> getCssParameter() {
+        if (cssParameter == null) {
+            cssParameter = new ArrayList<CssParameter>();
+        }
+        return this.cssParameter;
+    }
+
+    public boolean isSetCssParameter() {
+        return ((this.cssParameter!= null)&&(!this.cssParameter.isEmpty()));
+    }
+
+    public void unsetCssParameter() {
+        this.cssParameter = null;
     }
 
 }

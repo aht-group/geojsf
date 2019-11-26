@@ -48,6 +48,7 @@
 				<xsd:element ref="sld:Description" maxOccurs="1"/>
 				<xsd:element ref="ogc:Filter" maxOccurs="1"/>
 				<xsd:element ref="sld:PointSymbolizer" maxOccurs="1"/>
+				<xsd:element ref="sld:PolygonSymbolizer" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
@@ -55,6 +56,13 @@
         <xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref="sld:Graphic" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PolygonSymbolizer">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="sld:Fill" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
@@ -98,6 +106,7 @@
         <xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref="sld:SvgParameter" maxOccurs="unbounded"/>
+				<xsd:element ref="sld:CssParameter" maxOccurs="unbounded"/>
 			</xsd:sequence>
 		</xsd:complexType>
     </xsd:element>
@@ -117,7 +126,11 @@
             <xsd:attribute name="name" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
-    
+    <xsd:element name="CssParameter">
+		<xsd:complexType mixed="true">
+            <xsd:attribute name="name" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
 	<xsd:element name="Name">
         <xsd:complexType>
             <xsd:simpleContent>

@@ -24,6 +24,7 @@ import org.geojsf.model.xml.specs.ogc.Filter;
  *         &lt;element ref="{http://www.opengis.net/sld}Description"/&gt;
  *         &lt;element ref="{http://www.opengis.net/ogc}Filter"/&gt;
  *         &lt;element ref="{http://www.opengis.net/sld}PointSymbolizer"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/sld}PolygonSymbolizer"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,7 +38,8 @@ import org.geojsf.model.xml.specs.ogc.Filter;
     "name",
     "description",
     "filter",
-    "pointSymbolizer"
+    "pointSymbolizer",
+    "polygonSymbolizer"
 })
 @XmlRootElement(name = "Rule")
 public class Rule
@@ -53,6 +55,8 @@ public class Rule
     protected Filter filter;
     @XmlElement(name = "PointSymbolizer", required = true)
     protected PointSymbolizer pointSymbolizer;
+    @XmlElement(name = "PolygonSymbolizer", required = true)
+    protected PolygonSymbolizer polygonSymbolizer;
 
     /**
      * Gets the value of the name property.
@@ -164,6 +168,34 @@ public class Rule
 
     public boolean isSetPointSymbolizer() {
         return (this.pointSymbolizer!= null);
+    }
+
+    /**
+     * Gets the value of the polygonSymbolizer property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PolygonSymbolizer }
+     *     
+     */
+    public PolygonSymbolizer getPolygonSymbolizer() {
+        return polygonSymbolizer;
+    }
+
+    /**
+     * Sets the value of the polygonSymbolizer property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PolygonSymbolizer }
+     *     
+     */
+    public void setPolygonSymbolizer(PolygonSymbolizer value) {
+        this.polygonSymbolizer = value;
+    }
+
+    public boolean isSetPolygonSymbolizer() {
+        return (this.polygonSymbolizer!= null);
     }
 
 }

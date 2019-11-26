@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema targetNamespace="http://www.opengis.net/ogc"
-    xmlns:ogc="http://www.opengis.net/ogc"
     xmlns:gml="http://www.opengis.net/gml"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	xmlns="http://www.opengis.net/sld" 
+    xmlns:ogc="http://www.opengis.net/ogc" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="gml.xsd"/>
     <xsd:element name="PropertyName">
         <xsd:complexType>
@@ -24,6 +27,9 @@
                 <xsd:element ref="ogc:DWithin" maxOccurs="1"/>
                 <xsd:element ref="ogc:PropertyIsBetween" maxOccurs="1"/>
                 <xsd:element ref="ogc:PropertyIsEqualTo" maxOccurs="1"/>
+                <xsd:element ref="ogc:PropertyIsLessThan" maxOccurs="1"/>
+				<xsd:element ref="ogc:PropertyIsGreaterThanOrEqualTo" maxOccurs="1"/>
+				<xsd:element ref="ogc:PropertyIsGreaterThan" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -54,6 +60,30 @@
         </xsd:complexType>
     </xsd:element>
 	<xsd:element name="PropertyIsEqualTo">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ogc:PropertyName" maxOccurs="1"/>
+                <xsd:element ref="ogc:Literal" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="PropertyIsLessThan">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ogc:PropertyName" maxOccurs="1"/>
+                <xsd:element ref="ogc:Literal" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PropertyIsGreaterThanOrEqualTo">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ogc:PropertyName" maxOccurs="1"/>
+                <xsd:element ref="ogc:Literal" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="PropertyIsGreaterThan">
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element ref="ogc:PropertyName" maxOccurs="1"/>

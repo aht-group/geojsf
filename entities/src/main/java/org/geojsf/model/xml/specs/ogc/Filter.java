@@ -22,6 +22,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{http://www.opengis.net/ogc}DWithin"/&gt;
  *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsBetween"/&gt;
  *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsEqualTo"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsLessThan"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsGreaterThanOrEqualTo"/&gt;
+ *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsGreaterThan"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -34,7 +37,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "dWithin",
     "propertyIsBetween",
-    "propertyIsEqualTo"
+    "propertyIsEqualTo",
+    "propertyIsLessThan",
+    "propertyIsGreaterThanOrEqualTo",
+    "propertyIsGreaterThan"
 })
 @XmlRootElement(name = "Filter")
 public class Filter
@@ -48,6 +54,12 @@ public class Filter
     protected PropertyIsBetween propertyIsBetween;
     @XmlElement(name = "PropertyIsEqualTo", required = true)
     protected PropertyIsEqualTo propertyIsEqualTo;
+    @XmlElement(name = "PropertyIsLessThan", required = true)
+    protected PropertyIsLessThan propertyIsLessThan;
+    @XmlElement(name = "PropertyIsGreaterThanOrEqualTo", required = true)
+    protected PropertyIsGreaterThanOrEqualTo propertyIsGreaterThanOrEqualTo;
+    @XmlElement(name = "PropertyIsGreaterThan", required = true)
+    protected PropertyIsGreaterThan propertyIsGreaterThan;
 
     /**
      * Gets the value of the dWithin property.
@@ -131,6 +143,90 @@ public class Filter
 
     public boolean isSetPropertyIsEqualTo() {
         return (this.propertyIsEqualTo!= null);
+    }
+
+    /**
+     * Gets the value of the propertyIsLessThan property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PropertyIsLessThan }
+     *     
+     */
+    public PropertyIsLessThan getPropertyIsLessThan() {
+        return propertyIsLessThan;
+    }
+
+    /**
+     * Sets the value of the propertyIsLessThan property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PropertyIsLessThan }
+     *     
+     */
+    public void setPropertyIsLessThan(PropertyIsLessThan value) {
+        this.propertyIsLessThan = value;
+    }
+
+    public boolean isSetPropertyIsLessThan() {
+        return (this.propertyIsLessThan!= null);
+    }
+
+    /**
+     * Gets the value of the propertyIsGreaterThanOrEqualTo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PropertyIsGreaterThanOrEqualTo }
+     *     
+     */
+    public PropertyIsGreaterThanOrEqualTo getPropertyIsGreaterThanOrEqualTo() {
+        return propertyIsGreaterThanOrEqualTo;
+    }
+
+    /**
+     * Sets the value of the propertyIsGreaterThanOrEqualTo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PropertyIsGreaterThanOrEqualTo }
+     *     
+     */
+    public void setPropertyIsGreaterThanOrEqualTo(PropertyIsGreaterThanOrEqualTo value) {
+        this.propertyIsGreaterThanOrEqualTo = value;
+    }
+
+    public boolean isSetPropertyIsGreaterThanOrEqualTo() {
+        return (this.propertyIsGreaterThanOrEqualTo!= null);
+    }
+
+    /**
+     * Gets the value of the propertyIsGreaterThan property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PropertyIsGreaterThan }
+     *     
+     */
+    public PropertyIsGreaterThan getPropertyIsGreaterThan() {
+        return propertyIsGreaterThan;
+    }
+
+    /**
+     * Sets the value of the propertyIsGreaterThan property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PropertyIsGreaterThan }
+     *     
+     */
+    public void setPropertyIsGreaterThan(PropertyIsGreaterThan value) {
+        this.propertyIsGreaterThan = value;
+    }
+
+    public boolean isSetPropertyIsGreaterThan() {
+        return (this.propertyIsGreaterThan!= null);
     }
 
 }
