@@ -17,7 +17,7 @@ public class TxtCoordinateFactory
 	
 	public TxtCoordinateFactory()
 	{
-		df = new DecimalFormat("#.0");
+		df = new DecimalFormat("#.00");
 		df.setRoundingMode(RoundingMode.HALF_EVEN);
 	}
 	
@@ -37,4 +37,6 @@ public class TxtCoordinateFactory
 		sb.append(" ... we need to verify lat/log");
 		return sb.toString();
 	}
+	
+	
 }

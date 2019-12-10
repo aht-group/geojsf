@@ -48,8 +48,8 @@ public class SvgParameter
 
     private final static long serialVersionUID = 1L;
     @XmlElementRefs({
-        @XmlElementRef(name = "Literal", namespace = "http://www.opengis.net/ogc", type = Literal.class),
-        @XmlElementRef(name = "Function", namespace = "http://www.opengis.net/ogc", type = Function.class)
+        @XmlElementRef(name = "Function", namespace = "http://www.opengis.net/ogc", type = Function.class),
+        @XmlElementRef(name = "Literal", namespace = "http://www.opengis.net/ogc", type = Literal.class)
     })
     @XmlMixed
     protected List<Serializable> content;
@@ -75,8 +75,8 @@ public class SvgParameter
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link String }
-     * {@link Literal }
      * {@link Function }
+     * {@link Literal }
      * 
      * 
      */

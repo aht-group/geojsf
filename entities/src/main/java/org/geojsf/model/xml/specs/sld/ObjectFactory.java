@@ -142,6 +142,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CssParameter }
+     * 
+     */
+    public CssParameter createCssParameter() {
+        return new CssParameter();
+    }
+
+    /**
      * Create an instance of {@link Stroke }
      * 
      */
@@ -179,6 +187,14 @@ public class ObjectFactory {
      */
     public Size createSize() {
         return new Size();
+    }
+
+    /**
+     * Create an instance of {@link PolygonSymbolizer }
+     * 
+     */
+    public PolygonSymbolizer createPolygonSymbolizer() {
+        return new PolygonSymbolizer();
     }
 
 }

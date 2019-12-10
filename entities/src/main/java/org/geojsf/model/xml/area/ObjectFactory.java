@@ -38,6 +38,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Area }
+     * 
+     */
+    public Area createArea() {
+        return new Area();
+    }
+
+    /**
      * Create an instance of {@link Basin }
      * 
      */

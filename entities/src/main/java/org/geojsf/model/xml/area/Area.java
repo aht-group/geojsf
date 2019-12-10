@@ -1,12 +1,14 @@
 
-package org.geojsf.model.xml.specs.ogc;
+package org.geojsf.model.xml.area;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import org.geojsf.model.xml.geojsf.Wkt;
 
 
 /**
@@ -19,9 +21,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.opengis.net/ogc}PropertyName"/&gt;
- *         &lt;element ref="{http://www.opengis.net/ogc}Literal"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org}wkt"/&gt;
  *       &lt;/sequence&gt;
+ *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -31,74 +33,73 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "propertyName",
-    "literal"
+    "wkt"
 })
-@XmlRootElement(name = "PropertyIsLessThan")
-public class PropertyIsLessThan
+@XmlRootElement(name = "area")
+public class Area
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(name = "PropertyName", required = true)
-    protected PropertyName propertyName;
-    @XmlElement(name = "Literal", required = true)
-    protected Literal literal;
+    @XmlElement(namespace = "http://www.geojsf.org", required = true)
+    protected Wkt wkt;
+    @XmlAttribute(name = "code")
+    protected String code;
 
     /**
-     * Gets the value of the propertyName property.
+     * Gets the value of the wkt property.
      * 
      * @return
      *     possible object is
-     *     {@link PropertyName }
+     *     {@link Wkt }
      *     
      */
-    public PropertyName getPropertyName() {
-        return propertyName;
+    public Wkt getWkt() {
+        return wkt;
     }
 
     /**
-     * Sets the value of the propertyName property.
+     * Sets the value of the wkt property.
      * 
      * @param value
      *     allowed object is
-     *     {@link PropertyName }
+     *     {@link Wkt }
      *     
      */
-    public void setPropertyName(PropertyName value) {
-        this.propertyName = value;
+    public void setWkt(Wkt value) {
+        this.wkt = value;
     }
 
-    public boolean isSetPropertyName() {
-        return (this.propertyName!= null);
+    public boolean isSetWkt() {
+        return (this.wkt!= null);
     }
 
     /**
-     * Gets the value of the literal property.
+     * Gets the value of the code property.
      * 
      * @return
      *     possible object is
-     *     {@link Literal }
+     *     {@link String }
      *     
      */
-    public Literal getLiteral() {
-        return literal;
+    public String getCode() {
+        return code;
     }
 
     /**
-     * Sets the value of the literal property.
+     * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Literal }
+     *     {@link String }
      *     
      */
-    public void setLiteral(Literal value) {
-        this.literal = value;
+    public void setCode(String value) {
+        this.code = value;
     }
 
-    public boolean isSetLiteral() {
-        return (this.literal!= null);
+    public boolean isSetCode() {
+        return (this.code!= null);
     }
 
 }
