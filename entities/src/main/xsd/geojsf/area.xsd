@@ -9,6 +9,7 @@
 	<xsd:element name="areas">
 		<xsd:complexType>
             <xsd:sequence>
+            	<xsd:element ref="area:area" maxOccurs="unbounded"/>
                 <xsd:element ref="area:basin" maxOccurs="unbounded"/>
             </xsd:sequence>
 		</xsd:complexType>
@@ -24,6 +25,14 @@
 			<xsd:attribute name="id" type="xsd:long"/>
 			<xsd:attribute name="size" type="xsd:double"/>
 			<xsd:attribute name="label" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="area">
+		<xsd:complexType>
+        	<xsd:sequence>
+				<xsd:element ref="geojsf:wkt" maxOccurs="1"/>
+			</xsd:sequence>
+			<xsd:attribute name="code" type="xsd:string"/>
 		</xsd:complexType>
 	</xsd:element>
 </xsd:schema>

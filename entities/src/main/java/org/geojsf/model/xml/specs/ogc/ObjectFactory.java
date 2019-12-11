@@ -109,4 +109,28 @@ public class ObjectFactory {
         return new PropertyIsEqualTo();
     }
 
+    /**
+     * Create an instance of {@link PropertyIsLessThan }
+     * 
+     */
+    public PropertyIsLessThan createPropertyIsLessThan() {
+        return new PropertyIsLessThan();
+    }
+
+    /**
+     * Create an instance of {@link PropertyIsGreaterThanOrEqualTo }
+     * 
+     */
+    public PropertyIsGreaterThanOrEqualTo createPropertyIsGreaterThanOrEqualTo() {
+        return new PropertyIsGreaterThanOrEqualTo();
+    }
+
+    /**
+     * Create an instance of {@link PropertyIsGreaterThan }
+     * 
+     */
+    public PropertyIsGreaterThan createPropertyIsGreaterThan() {
+        return new PropertyIsGreaterThan();
+    }
+
 }
