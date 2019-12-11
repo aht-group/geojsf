@@ -36,6 +36,7 @@ var GeoJSF = {
 		feature: null,
 		vectorSource: null,
 		scaleValues: null,
+		featureCircleOnClick:null,
 		
 		iconStyle: new ol.style.Style({
 					image: new ol.style.Icon({
@@ -153,7 +154,10 @@ var GeoJSF = {
 							 {name: 'org.geojsf.viewport.unit',                     value: GeoJSF.map.getView().getProjection().getUnits()},
 		 			         {name: 'org.geojsf.viewport.scale',                    value:   Math.floor( GeoJSF.map.getView().getResolution())},
 		 			        ],
-		 			oncomplete: function(xhr, status, args) {console.log('mapClick AJAX request sent. Resolution : ' +GeoJSF.map.getView().getResolution()+ ' ' +GeoJSF.map.getView().getProjection().getUnits())}
+		 			oncomplete: function(xhr, status, args) {
+		 				  console.log('mapClick AJAX request sent. Resolution : ' +GeoJSF.map.getView().getResolution()+ ' ' +GeoJSF.map.getView().getProjection().getUnits())
+            			  GeoJSF.updateCircleOnClick(lonlat);
+		 			}
 				});
 			} catch(e) {
 				 console.log("MapClick failed." +e);
@@ -568,5 +572,31 @@ var GeoJSF = {
 			}
 			finally {}
 			GeoJSF.secondRun();
+		},
+		
+		 updateCircleOnClick: function(lonlat) {
+			var radius = Math.round(GeoJSF.map.getView().getResolution()*15).toString();
+			
+		    if (this.featureCircleOnClick && this.featureCircleOnClick!== 'null' && this.featureCircleOnClick !== "undefined") {
+		        GeoJSF.map.removeLayer(this.featureCircleOnClick);
+		        this.featureCircleOnClick = null;
+		    }
+		    
+		    var view = GeoJSF.map.getView();
+	        var projection = view.getProjection();
+    	    var resolutionAtEquator = view.getResolution();
+        	var center = ol.proj.fromLonLat([lonlat[0], lonlat[1]]);
+        	var pointResolution = projection.getPointResolution(resolutionAtEquator, center);
+        	var resolutionFactor = resolutionAtEquator/pointResolution;
+        	radius = (radius / ol.proj.METERS_PER_UNIT.m) * resolutionFactor;
+		    
+        	var circle = new ol.geom.Circle(center, radius);
+        	var circleFeature = new ol.Feature(circle);
+        	var vectorSource = new ol.source.Vector({features: [circleFeature]});
+        	 
+        	this.featureCircleOnClick = new ol.layer.Vector({
+        	source: vectorSource
+        	});
+        	GeoJSF.map.addLayer(this.featureCircleOnClick);
 		}
 };
