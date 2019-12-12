@@ -131,6 +131,18 @@
 			<component-type>org.geojsf.component.Rotation</component-type>
 		</component>
 	</tag>
+	<tag>
+		<tag-name>clickSearch</tag-name>
+		<component>
+			<component-type>org.geojsf.component.ClickSearch</component-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>dtSelectCallback</tag-name>
+		<component>
+			<component-type>org.geojsf.component.DtSelectCallback</component-type>
+		</component>
+	</tag>
 <!-- <tag>
 		<tag-name>switchLayer</tag-name>
 		<behavior>
