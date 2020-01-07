@@ -14,6 +14,20 @@
 	        <s:lang key="fr" translation="Capability"/>
 	    </s:langs>
 	</s:translation>
+	<s:translation key="geojsfMonitoringStationScopes">
+	    <s:langs>
+	        <s:lang key="de" translation="Scopes"/>
+	        <s:lang key="en" translation="Scopes"/>
+	        <s:lang key="fr" translation="Scopes"/>
+	    </s:langs>
+	</s:translation>
+	<s:translation key="geojsfMonitoringStationScope">
+	    <s:langs>
+	        <s:lang key="de" translation="Scope"/>
+	        <s:lang key="en" translation="Scope"/>
+	        <s:lang key="fr" translation="Scope"/>
+	    </s:langs>
+	</s:translation>
 	<s:translation key="geojsfMonitoringStations">
 	    <s:langs>
 	        <s:lang key="de" translation="Stations"/>
