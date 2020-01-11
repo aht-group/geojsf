@@ -24,4 +24,7 @@ public interface GeoJsfJsonData<L extends UtilsLang, D extends UtilsDescription,
 	
 	String getUrl();
 	void setUrl(String url);
+	
+	String getJoinCode();
+	void setJoinCode(String joinCode);
 }
