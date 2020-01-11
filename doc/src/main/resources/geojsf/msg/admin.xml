@@ -275,11 +275,19 @@
 			<s:lang key="fr" translation="Level"/>
 		</s:langs>
 	</s:translation>
-		<s:translation key="geoJsfJsonUrl">
+	<s:translation key="geoJsfJsonUrl">
 		<s:langs>
 			<s:lang key="de" translation="URL"/>
 			<s:lang key="en" translation="URL"/>
 			<s:lang key="fr" translation="URL"/>
 		</s:langs>
 	</s:translation>
+	<s:translation key="geoJsfJsonJoinCode">
+		<s:langs>
+			<s:lang key="de" translation="Join Code"/>
+			<s:lang key="en" translation="Join Code"/>
+			<s:lang key="fr" translation="Join Code"/>
+		</s:langs>
+	</s:translation>	
+	
 </s:translations>
