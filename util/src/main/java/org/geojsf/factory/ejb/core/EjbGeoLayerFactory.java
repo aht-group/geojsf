@@ -3,11 +3,11 @@ package org.geojsf.factory.ejb.core;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfService;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 
@@ -29,7 +29,7 @@ public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,
         this.cLayer = cLayer;
     } 
 	
-	public LAYER build(String code, SERVICE service, CATEGORY category, String[] langKeys) throws UtilsConstraintViolationException
+	public LAYER build(String code, SERVICE service, CATEGORY category, String[] langKeys) throws JeeslConstraintViolationException
 	{
 		LAYER ejb;
 		try
@@ -41,8 +41,8 @@ public class EjbGeoLayerFactory<L extends UtilsLang,D extends UtilsDescription,
 			ejb.setService(service);
 			ejb.setCategory(category);
 		}
-		catch (InstantiationException e) {throw new UtilsConstraintViolationException(e.getMessage());}
-		catch (IllegalAccessException e) {throw new UtilsConstraintViolationException(e.getMessage());}
+		catch (InstantiationException e) {throw new JeeslConstraintViolationException(e.getMessage());}
+		catch (IllegalAccessException e) {throw new JeeslConstraintViolationException(e.getMessage());}
 
         return ejb;
     }

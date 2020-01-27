@@ -1,7 +1,5 @@
 package org.geojsf.web.rest.area;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
@@ -16,6 +14,8 @@ import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestE
 import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestImport;
 import org.geojsf.model.xml.area.Basin;
 import org.jeesl.controller.monitor.DataUpdateTracker;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.geojsf.model.xml.area.Areas;
 import org.slf4j.Logger;
@@ -79,8 +79,8 @@ public class GeoJsfAreaBasinRest <L extends UtilsLang,D extends UtilsDescription
 				dut.success();
 				
 			}
-			catch (UtilsNotFoundException e){{dut.fail(e,true);}}
-			catch (UtilsConstraintViolationException e) {dut.fail(e,true);}
+			catch (JeeslNotFoundException e){{dut.fail(e,true);}}
+			catch (JeeslConstraintViolationException e) {dut.fail(e,true);}
 		}
 		return dut.toDataUpdate();
 	}

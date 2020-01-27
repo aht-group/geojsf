@@ -4,13 +4,12 @@ import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
 import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.core.DefaultGeoJsfService;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 
 public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 {
@@ -24,7 +23,7 @@ public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 	private DefaultGeoJsfLayer layerB;
 	
 	@Before
-	public void init() throws UtilsConstraintViolationException
+	public void init() throws JeeslConstraintViolationException
 	{
 		initGenericFactories();
 		

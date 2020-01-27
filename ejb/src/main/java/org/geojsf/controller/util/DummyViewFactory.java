@@ -17,10 +17,10 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -105,21 +105,21 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,
 			initLayer();
 			initViews();
 		}
-		catch (UtilsConstraintViolationException e) {e.printStackTrace();}
+		catch (JeeslConstraintViolationException e) {e.printStackTrace();}
     } 
  
-    private void initCategory() throws UtilsConstraintViolationException
+    private void initCategory() throws JeeslConstraintViolationException
 	{
 		if(category==null){category = fCategory.build("cat");serviceOsm.setId(0);}
 	}
     
-	private void initServices() throws UtilsConstraintViolationException
+	private void initServices() throws JeeslConstraintViolationException
 	{
 		if(serviceOsm==null){serviceOsm = fService.build("osm","http://vmap0.tiles.osgeo.org/wms/vmap0");serviceOsm.setId(0);}
 		if(serviceAht==null){serviceAht = fService.build("aht","https://www.aht-group.com/geoserver/sf/wms");serviceAht.setId(1);}
 	}
 	
-	private void initLayer() throws UtilsConstraintViolationException
+	private void initLayer() throws JeeslConstraintViolationException
 	{
 		layerOsmBasic = fLayer.build("basic", serviceOsm,category,langs);layerOsmBasic.setId(1);
 		layerAhtRoads = fLayer.build("roads",serviceAht,category,langs);layerAhtRoads.setId(2);
@@ -127,7 +127,7 @@ public class DummyViewFactory<L extends UtilsLang,D extends UtilsDescription,
 		layerAhtRestricted = fLayer.build("restricted",serviceAht,category,langs);layerAhtRestricted.setId(4);
 	}
 	
-	private void initViews() throws UtilsConstraintViolationException
+	private void initViews() throws JeeslConstraintViolationException
 	{
 		map = fMap.create("defaultMap",langs);map.setId(1);
 		map.getViews().add(fView.create(map, layerAhtRoads, 1, true,true));

@@ -14,11 +14,11 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.model.with.EjbWithSldRules;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
@@ -56,6 +56,6 @@ public interface GeoJsfFacade <L extends UtilsLang, D extends UtilsDescription,
 	List<DS> fDataSources(Class<MAP> cMap, Class<DS> cDs, MAP map);
 	List<SLD> fLibrarySlds();
 	
-	<W extends EjbWithSldRules<RULE>> RULE save(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;
-	<W extends EjbWithSldRules<RULE>> void rm(Class<W> cW, W entity, RULE rule) throws UtilsLockingException, UtilsConstraintViolationException;
+	<W extends EjbWithSldRules<RULE>> RULE save(Class<W> cW, W entity, RULE rule) throws JeeslLockingException, JeeslConstraintViolationException;
+	<W extends EjbWithSldRules<RULE>> void rm(Class<W> cW, W entity, RULE rule) throws JeeslLockingException, JeeslConstraintViolationException;
 }

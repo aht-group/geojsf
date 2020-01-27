@@ -15,6 +15,9 @@ import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.Service;
 import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslLockingException;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
@@ -22,9 +25,6 @@ import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
@@ -104,7 +104,7 @@ public class DbCategoryInit <L extends UtilsLang,D extends UtilsDescription,
 				ejbLangFactory.rmLang(fSecurity,ejb);
 				ejbDescriptionFactory.rmDescription(fSecurity,ejb);
 			}
-			catch (UtilsNotFoundException e)
+			catch (JeeslNotFoundException e)
 			{
 				try
 				{
@@ -114,7 +114,7 @@ public class DbCategoryInit <L extends UtilsLang,D extends UtilsDescription,
 				}
 				catch (InstantiationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 				catch (IllegalAccessException e2) {throw new UtilsConfigurationException(e2.getMessage());}
-				catch (UtilsConstraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}	
+				catch (JeeslConstraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}	
 			}
 			
 			try
@@ -123,8 +123,8 @@ public class DbCategoryInit <L extends UtilsLang,D extends UtilsDescription,
 				ejb.setDescription(ejbDescriptionFactory.create(category.getDescriptions()));
 				ejb=(CATEGORY)fSecurity.update(ejb);
 			}
-			catch (UtilsConstraintViolationException e) {logger.error("",e);}
-			catch (UtilsLockingException e) {logger.error("",e);}
+			catch (JeeslConstraintViolationException e) {logger.error("",e);}
+			catch (JeeslLockingException e) {logger.error("",e);}
 		}
 		
 		ejbUpdater.remove(fSecurity);

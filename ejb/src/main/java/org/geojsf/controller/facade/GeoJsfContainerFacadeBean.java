@@ -11,13 +11,13 @@ import javax.persistence.criteria.Root;
 import org.geojsf.interfaces.facade.GeoJsfContainerFacade;
 import org.geojsf.interfaces.model.with.EjbWithGeometry;
 import org.geojsf.interfaces.model.with.container.EjbWithPolygonContainer;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
 
 import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 
 public class GeoJsfContainerFacadeBean <P extends EjbWithGeometry<MultiPolygon>>
 				extends UtilsFacadeBean
@@ -33,7 +33,7 @@ public class GeoJsfContainerFacadeBean <P extends EjbWithGeometry<MultiPolygon>>
 		this.cP=cP;
 	}
 
-	@Override public <W extends EjbWithPolygonContainer<P>> P fPolygon(Class<W> c, W with) throws UtilsNotFoundException
+	@Override public <W extends EjbWithPolygonContainer<P>> P fPolygon(Class<W> c, W with) throws JeeslNotFoundException
 	{
 		CriteriaBuilder cB = em.getCriteriaBuilder();
 		CriteriaQuery<P> cQ = cB.createQuery(cP);
@@ -46,7 +46,7 @@ public class GeoJsfContainerFacadeBean <P extends EjbWithGeometry<MultiPolygon>>
 		cQ.select(pPolygon);
 		
 		try	{return em.createQuery(cQ).getSingleResult();}
-		catch (NoResultException ex){throw new UtilsNotFoundException("No Graphic found for status.id"+with.getId());}
-		catch (NonUniqueResultException ex){throw new UtilsNotFoundException("Multiple Results for status.id"+with.getId());}
+		catch (NoResultException ex){throw new JeeslNotFoundException("No Graphic found for status.id"+with.getId());}
+		catch (NonUniqueResultException ex){throw new JeeslNotFoundException("Multiple Results for status.id"+with.getId());}
 	}
 }

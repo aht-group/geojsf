@@ -14,14 +14,14 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.ViewPort;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslLockingException;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
@@ -81,7 +81,7 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,
 		return new DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbMeta,cVp,fUtils);
 	}
 	
-	public void iuViewPort(MAP ejbMap, ViewPort viewPort) throws UtilsConstraintViolationException, UtilsLockingException, UtilsNotFoundException
+	public void iuViewPort(MAP ejbMap, ViewPort viewPort) throws JeeslConstraintViolationException, JeeslLockingException, JeeslNotFoundException
 	{
 		if(ejbMap.getViewPort()==null)
 		{
@@ -98,7 +98,7 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,
 		}
 	}
 	
-	public void iuViewPort(LAYER ejbLayer, ViewPort viewPort) throws UtilsConstraintViolationException, UtilsLockingException, UtilsNotFoundException
+	public void iuViewPort(LAYER ejbLayer, ViewPort viewPort) throws JeeslConstraintViolationException, JeeslLockingException, JeeslNotFoundException
 	{
 		if(ejbLayer.getViewPort()==null)
 		{

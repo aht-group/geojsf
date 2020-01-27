@@ -25,13 +25,13 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.jeesl.api.bean.JeeslTranslationBean;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -111,7 +111,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 		sld.setDescription(efDescription.createEmpty(bTranslation.getLocales()));
 	}
 	
-	public void saveSld() throws UtilsConstraintViolationException, UtilsLockingException
+	public void saveSld() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("1: "+sld.getStatusAttribute());
 		sld.setType(fGeo.find(fbSld.getClassSldType(),sld.getType()));
@@ -126,7 +126,7 @@ public class AbstractSldLibraryBean <L extends UtilsLang, D extends UtilsDescrip
 		reloadSlds();
 	}
 	
-	public void deleteSld() throws UtilsConstraintViolationException, UtilsLockingException
+	public void deleteSld() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info(AbstractLogMessage.rmEntity(sld));
 		fGeo.rm(sld);

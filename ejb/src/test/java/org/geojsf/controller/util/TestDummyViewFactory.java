@@ -26,13 +26,13 @@ import org.geojsf.test.AbstractGeoJsfEjbTest;
 import org.geojsf.test.GeoJsfEjbTestBootstrap;
 import org.geojsf.util.GeojsfDatastructureDebugger;
 import org.geojsf.util.query.GeoJsfQuery;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
@@ -43,7 +43,7 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 	private DummyViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfScale,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSld,DefaultGeoJsfSldRule> dvf;
 	
 	@Before
-	public void init() throws UtilsConstraintViolationException
+	public void init() throws JeeslConstraintViolationException
 	{
 		fJsf = GeoJsfServiceFactory.factory(DefaultGeoJsfService.class);
 //		dvf = DummyViewFactory.factory(GeoFactoryProvider.
@@ -88,7 +88,7 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		}
 	}
 	
-	public static void main(String[] args) throws UtilsConstraintViolationException
+	public static void main(String[] args) throws JeeslConstraintViolationException
 	{
 		GeoJsfEjbTestBootstrap.init();
 		

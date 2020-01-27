@@ -1,12 +1,12 @@
 package org.geojsf.factory.ejb.meta;
 
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 
@@ -27,7 +27,7 @@ public class EjbGeoDataSourceFactory<L extends UtilsLang,D extends UtilsDescript
         this.cDs = cDs;
     }
 	
-	public DS build(String[] langKeys) throws UtilsConstraintViolationException
+	public DS build(String[] langKeys) throws JeeslConstraintViolationException
 	{
 		DS ejb;
 		try
@@ -36,8 +36,8 @@ public class EjbGeoDataSourceFactory<L extends UtilsLang,D extends UtilsDescript
 			ejb.setName(fLang.createEmpty(langKeys));
 			ejb.setDescription(efDescription.createEmpty(langKeys));
 		}
-		catch (InstantiationException e) {throw new UtilsConstraintViolationException(e.getMessage());}
-		catch (IllegalAccessException e) {throw new UtilsConstraintViolationException(e.getMessage());}
+		catch (InstantiationException e) {throw new JeeslConstraintViolationException(e.getMessage());}
+		catch (IllegalAccessException e) {throw new JeeslConstraintViolationException(e.getMessage());}
         return ejb;
     }
 }

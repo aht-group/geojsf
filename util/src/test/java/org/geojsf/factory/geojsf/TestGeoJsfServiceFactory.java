@@ -22,13 +22,12 @@ import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicFigure;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicStyle;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicType;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 
 public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 {
@@ -46,7 +45,7 @@ public class TestGeoJsfServiceFactory extends AbstractGeoJsfUtilTest
 	private GeoJsfServiceFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfScale,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSld,DefaultGeoJsfSldRule> fService;
 	
 	@Before
-	public void init() throws UtilsConstraintViolationException
+	public void init() throws JeeslConstraintViolationException
 	{
 		initGenericFactories();
 		

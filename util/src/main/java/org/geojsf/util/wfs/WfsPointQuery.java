@@ -28,10 +28,10 @@ import org.jdom2.Namespace;
 import org.jdom2.filter.Filters;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.exlp.util.xml.JDomUtil;
@@ -204,7 +204,7 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 				}
 				
 			}
-			catch (UtilsNotFoundException ex)
+			catch (JeeslNotFoundException ex)
 			{
 				logger.error(ex.getMessage());
 			}
@@ -244,7 +244,7 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 				Long id = new Long(s.substring(s.lastIndexOf(".")+1));
 				results.add(fGeo.find(cId, id));
 			}
-			catch (UtilsNotFoundException ex)
+			catch (JeeslNotFoundException ex)
 			{
 				logger.error(ex.getMessage());
 			}

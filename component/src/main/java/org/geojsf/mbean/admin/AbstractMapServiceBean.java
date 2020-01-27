@@ -24,14 +24,14 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.jeesl.api.bean.JeeslTranslationBean;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslLockingException;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -93,7 +93,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		services = fGeo.all(fbCore.getClassService());
 	}
 	
-	public void addService() throws UtilsConstraintViolationException
+	public void addService() throws JeeslConstraintViolationException
 	{
 		service = efService.build(null, null);
 		
@@ -105,7 +105,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		viewPort=null;
 	}
 
-	public void selectService() throws UtilsNotFoundException
+	public void selectService() throws JeeslNotFoundException
 	{
 		service = fGeo.load(fbCore.getClassService(),service);
 		service = efLang.persistMissingLangs(fGeo,bTranslation.getLocales(),service);
@@ -126,20 +126,20 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 			service=null;
 			reloadServices();
 		}
-		catch (UtilsConstraintViolationException e)
+		catch (JeeslConstraintViolationException e)
 		{
 			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
 		}
 	}
 	
-	public void saveService() throws UtilsConstraintViolationException, UtilsLockingException
+	public void saveService() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("saveService "+service);
 		service = fGeo.save(service);
 		reloadServices();
 	}
 	
-	public void cancelService() throws UtilsConstraintViolationException, UtilsLockingException
+	public void cancelService() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		service=null;
 		category=null;
@@ -152,7 +152,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		categories = fGeo.allOrderedPositionVisible(fbCore.getClassCategory());
 	}
 	
-	public void addCategory() throws UtilsConstraintViolationException
+	public void addCategory() throws JeeslConstraintViolationException
 	{
 		logger.info("ADD CAtegory");
 		category = efCategory.build(null);
@@ -163,7 +163,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		service=null;
 	}
 	
-	public void selectCategory() throws UtilsNotFoundException
+	public void selectCategory() throws JeeslNotFoundException
 	{
 		category = fGeo.load(fbCore.getClassCategory(),category);
 		category = efLang.persistMissingLangs(fGeo,bTranslation.getLocales(),category);
@@ -185,13 +185,13 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 			category=null;
 			service=null;
 		}
-		catch (UtilsConstraintViolationException e)
+		catch (JeeslConstraintViolationException e)
 		{
 			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
 		}
 	}
 	
-	public void saveCategory() throws UtilsConstraintViolationException, UtilsLockingException
+	public void saveCategory() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("saveCategory "+category);
 		category = fGeo.save(category);
@@ -207,7 +207,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		viewPort=null;
 	}
 	
-	protected void reorderCategories() throws UtilsConstraintViolationException, UtilsLockingException
+	protected void reorderCategories() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		PositionListReorderer.reorder(fGeo, categories);
 	}
@@ -219,7 +219,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		logger.info("#Layer:"+layers.size());
 	}
 	
-	public void addLayer() throws UtilsConstraintViolationException, UtilsNotFoundException
+	public void addLayer() throws JeeslConstraintViolationException, JeeslNotFoundException
 	{
 		logger.info("addLayer ");
 		layer = efLayer.build(null, service,category,langKeys);
@@ -227,7 +227,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		layer.setDescription(efDescription.createEmpty(langKeys));
 	}
 	
-	public void selectLayer() throws UtilsNotFoundException, UtilsConstraintViolationException, UtilsLockingException
+	public void selectLayer() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("selectLayer "+layer);
 		layer = fGeo.load(fbCore.getClassLayer(),layer);
@@ -244,7 +244,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		map.getViews().add(view);
 	}
 	
-	public void saveLayer() throws UtilsConstraintViolationException, UtilsLockingException, UtilsNotFoundException
+	public void saveLayer() throws JeeslConstraintViolationException, JeeslLockingException, JeeslNotFoundException
 	{
 		logger.info("saveLayer "+layer);
 		layer.setService(fGeo.find(fbCore.getClassService(), layer.getService()));
@@ -269,10 +269,10 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		viewPort=null;
 	}
 	
-	public void reorderLayer() throws UtilsConstraintViolationException, UtilsLockingException{PositionListReorderer.reorder(fGeo, layers);}
+	public void reorderLayer() throws JeeslConstraintViolationException, JeeslLockingException{PositionListReorderer.reorder(fGeo, layers);}
 	
 	// View Port
-	private void addViewPort() throws UtilsConstraintViolationException, UtilsLockingException
+	private void addViewPort() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		viewPort = efViewPort.build();
 		viewPort = fGeo.save(viewPort);
@@ -286,7 +286,7 @@ public class AbstractMapServiceBean <L extends UtilsLang, D extends UtilsDescrip
 		efViewPort.update(viewPort,evt.getViewPort());
 	}
 	
-	public void saveViewPort() throws UtilsConstraintViolationException, UtilsLockingException
+	public void saveViewPort() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(viewPort));
 		viewPort = fGeo.save(viewPort);

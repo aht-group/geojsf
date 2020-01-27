@@ -18,6 +18,9 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.model.xml.geojsf.Layers;
 import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslLockingException;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
@@ -25,9 +28,6 @@ import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
@@ -127,7 +127,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,
 				service = fUtils.fByCode(cService, layer.getService().getCode());
 				category = fUtils.fByCode(cCategory, layer.getCategory().getCode());
 			}
-			catch (UtilsNotFoundException e1) {throw new UtilsConfigurationException(e1.getMessage());}			
+			catch (JeeslNotFoundException e1) {throw new UtilsConfigurationException(e1.getMessage());}			
 			
 			LAYER ejb;
 			try
@@ -137,7 +137,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,
 				efDescription.rmDescription(fUtils,ejb);
 				
 			}
-			catch (UtilsNotFoundException e)
+			catch (JeeslNotFoundException e)
 			{
 				try
 				{
@@ -145,7 +145,7 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,
 					ejb = (LAYER)fUtils.persist(ejb);
 				}
 
-				catch (UtilsConstraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
+				catch (JeeslConstraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 			}
 			
 			try
@@ -169,9 +169,9 @@ public class DbLayerInit <L extends UtilsLang,D extends UtilsDescription,
 					dbVpInit.iuViewPort(ejb,layer.getViewPort());
 				}
 			}
-			catch (UtilsConstraintViolationException e) {logger.error("",e);}
-			catch (UtilsLockingException e) {logger.error("",e);}
-			catch (UtilsNotFoundException e) {logger.error("",e);}
+			catch (JeeslConstraintViolationException e) {logger.error("",e);}
+			catch (JeeslLockingException e) {logger.error("",e);}
+			catch (JeeslNotFoundException e) {logger.error("",e);}
 		}
 		
 		updateLayer.remove(fUtils);

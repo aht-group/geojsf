@@ -13,12 +13,12 @@ import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRest
 import org.geojsf.model.xml.monitoring.Station;
 import org.geojsf.model.xml.monitoring.Stations;
 import org.jeesl.controller.monitor.DataUpdateTracker;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
@@ -87,7 +87,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 				ejb = fUtils.fByCode(fbMonitoring.getClassStation(),station.getCode());
 				dut.success();
 			}
-			catch (UtilsNotFoundException e)
+			catch (JeeslNotFoundException e)
 			{
 				try
 				{
@@ -106,7 +106,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 					efDescription.persistMissingLangs(fUtils,defaultLangs,ejb);
 					dut.success();
 				}
-				catch (UtilsConstraintViolationException e1) {dut.fail(e1,true);}
+				catch (JeeslConstraintViolationException e1) {dut.fail(e1,true);}
 	//			catch (UtilsNotFoundException e1) {dut.fail(e1,true);}
 			}
 		}

@@ -23,14 +23,14 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.jeesl.api.bean.JeeslTranslationBean;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslLockingException;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -92,13 +92,13 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 	public DS getSource() {return source;}
 	public void setSource(DS source) {this.source = source;}
 	
-	public void addSource() throws UtilsConstraintViolationException
+	public void addSource() throws JeeslConstraintViolationException
 	{
 		logger.info(AbstractLogMessage.addEntity(fbMeta.getClassDs()));
 		source = efDs.build(langKeys);		
 	}
 
-	public void selectSource() throws UtilsNotFoundException
+	public void selectSource() throws JeeslNotFoundException
 	{
 		logger.info(AbstractLogMessage.selectEntity(source));
 //		service = fGeo.load(cService,service);
@@ -112,7 +112,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 		layers = source.getLayers();
 	}
 	
-	public void rmSource() throws UtilsConstraintViolationException
+	public void rmSource() throws JeeslConstraintViolationException
 	{
 		logger.info("rm "+source);
 		fGeo.rm(source);
@@ -120,7 +120,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 		reloadSources();
 	}
 	
-	public void saveSource() throws UtilsConstraintViolationException, UtilsLockingException
+	public void saveSource() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("saveService "+source);
 		source = fGeo.save(source);
@@ -128,7 +128,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 		reloadSource();
 	}
 	
-	public void cancelSource() throws UtilsConstraintViolationException, UtilsLockingException
+	public void cancelSource() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		source=null;
 	}
@@ -159,7 +159,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 		logger.info("showAvailable");
 	}
 	
-	public void addLayer() throws UtilsConstraintViolationException, UtilsLockingException
+	public void addLayer() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("addLayer");
 		if(!source.getLayers().contains(availableLayer))
@@ -171,7 +171,7 @@ public class AbstractGeoJsfDataSourceBean <L extends UtilsLang, D extends UtilsD
 		layer=null;
 	}
 	
-	public void rmLayer() throws UtilsConstraintViolationException, UtilsLockingException
+	public void rmLayer() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("rmLayer");
 		if(source.getLayers().contains(layer))

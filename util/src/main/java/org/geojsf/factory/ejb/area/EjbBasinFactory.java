@@ -1,6 +1,5 @@
 package org.geojsf.factory.ejb.area;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -8,6 +7,7 @@ import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
 import org.geojsf.factory.wkt.MultiPolygonFactory;
 import org.geojsf.interfaces.model.area.GeoBasin;
 import org.geojsf.model.xml.area.Basin;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.slf4j.Logger;
@@ -61,7 +61,7 @@ public class EjbBasinFactory<L extends UtilsLang,D extends UtilsDescription,BASI
 		catch (InstantiationException e) {e.printStackTrace();}
 		catch (IllegalAccessException e) {e.printStackTrace();}
 		catch (ParseException e) {e.printStackTrace();}
-		catch (UtilsConstraintViolationException e) {e.printStackTrace();}
+		catch (JeeslConstraintViolationException e) {e.printStackTrace();}
 		
         return ejb;
 	}

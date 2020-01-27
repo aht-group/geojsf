@@ -18,6 +18,9 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslLockingException;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.builder.system.SvgFactoryBuilder;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
@@ -30,9 +33,6 @@ import org.primefaces.event.ReorderEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -146,7 +146,7 @@ public class SldRuleHandler <L extends UtilsLang, D extends UtilsDescription,
 		}
 	}
 	
-	public void onRowReorder(ReorderEvent event) throws UtilsConstraintViolationException, UtilsLockingException
+	public void onRowReorder(ReorderEvent event) throws JeeslConstraintViolationException, JeeslLockingException
 	{
         logger.trace( "Row Moved", "From: " + event.getFromIndex() + ", To:" + event.getToIndex());
         PositionListReorderer.reorder(fGeo, sld.getRules());
@@ -154,7 +154,7 @@ public class SldRuleHandler <L extends UtilsLang, D extends UtilsDescription,
     }
 	
 	
-	public void addRule() throws UtilsNotFoundException
+	public void addRule() throws JeeslNotFoundException
 	{
 		logger.info(AbstractLogMessage.addEntity(cRule));
 		rule = efRule.build(sld);
@@ -186,7 +186,7 @@ public class SldRuleHandler <L extends UtilsLang, D extends UtilsDescription,
 		rule=null;
 	}
 	
-	public void saveRule() throws UtilsConstraintViolationException, UtilsLockingException
+	public void saveRule() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info(AbstractLogMessage.saveEntity(rule));
 		if(rule.getGraphic()!=null)
@@ -205,7 +205,7 @@ public class SldRuleHandler <L extends UtilsLang, D extends UtilsDescription,
 		rule2String();
 	}
 	
-	public void rmRule() throws UtilsConstraintViolationException, UtilsLockingException
+	public void rmRule() throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info(AbstractLogMessage.rmEntity(rule));
 		fGeo.rm(cSld,sld,rule);

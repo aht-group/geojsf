@@ -21,6 +21,9 @@ import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.jeesl.controller.monitor.DataUpdateTracker;
+import org.jeesl.exception.ejb.JeeslConstraintViolationException;
+import org.jeesl.exception.ejb.JeeslLockingException;
+import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
@@ -29,9 +32,6 @@ import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.ejb.UtilsConstraintViolationException;
-import net.sf.ahtutils.exception.ejb.UtilsLockingException;
-import net.sf.ahtutils.exception.ejb.UtilsNotFoundException;
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
@@ -191,7 +191,7 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 				ejbDescriptionFactory.rmDescription(fSecurity,eTemplate);
 				
 			}
-			catch (UtilsNotFoundException e)
+			catch (JeeslNotFoundException e)
 			{
 				try
 				{
@@ -200,8 +200,8 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 					eTemplate = fSecurity.persist(eTemplate);
 				}
 
-				catch (UtilsConstraintViolationException e1) {dut.fail(e1,true);}
-				catch (UtilsNotFoundException e1) {dut.fail(e1,true);}
+				catch (JeeslConstraintViolationException e1) {dut.fail(e1,true);}
+				catch (JeeslNotFoundException e1) {dut.fail(e1,true);}
 			}
 			
 			if(eTemplate!=null && eTemplate.getId()>0)
@@ -214,8 +214,8 @@ public class GeoJsfDbInit <L extends UtilsLang,D extends UtilsDescription,
 					eTemplate = fSecurity.update(eTemplate);
 					dut.success();
 				}
-				catch (UtilsConstraintViolationException e) {dut.fail(e,true);}
-				catch (UtilsLockingException e) {dut.fail(e,true);}
+				catch (JeeslConstraintViolationException e) {dut.fail(e,true);}
+				catch (JeeslLockingException e) {dut.fail(e,true);}
 			}
 		}
 		return dut.toDataUpdate();
