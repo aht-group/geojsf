@@ -15,10 +15,10 @@ import org.geojsf.interfaces.facade.GeoJsfStationFacade;
 import org.geojsf.interfaces.model.obervation.station.GeoStation;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCode;
+import org.jeesl.controller.facade.JeeslFacadeBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -31,7 +31,7 @@ public class GeoJsfStationFacadeBean <L extends UtilsLang, D extends UtilsDescri
 										CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
 										CAPT extends UtilsStatus<CAPT,L,D>,
 										CAPS extends UtilsStatus<CAPS,L,D>>
-				extends UtilsFacadeBean
+				extends JeeslFacadeBean
 				implements GeoJsfStationFacade<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>
 {	
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfStationFacadeBean.class);

@@ -20,13 +20,13 @@ import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
+import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
-import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -51,12 +51,12 @@ public class DbCategoryInit <L extends UtilsLang,D extends UtilsDescription,
 	
     private final Class<CATEGORY> cCategory;
     
-    private UtilsFacade fSecurity;
+    private JeeslFacade fSecurity;
     
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     
-    public DbCategoryInit(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, UtilsFacade fAcl)
+    public DbCategoryInit(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, JeeslFacade fAcl)
 	{       
         this.cCategory = cCategory;
         
@@ -81,7 +81,7 @@ public class DbCategoryInit <L extends UtilsLang,D extends UtilsDescription,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>>
 		DbCategoryInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, UtilsFacade fAcl)
+		factory(final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, JeeslFacade fAcl)
 	{
 		return new DbCategoryInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cL,cD,cCategory,fAcl);
 	}

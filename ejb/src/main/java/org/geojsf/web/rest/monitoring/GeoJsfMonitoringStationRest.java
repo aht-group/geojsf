@@ -16,10 +16,10 @@ import org.jeesl.controller.monitor.DataUpdateTracker;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
+import org.jeesl.interfaces.facade.JeeslFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -48,7 +48,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	
 	private EjbStationFactory<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS> efStation;
 
-	public GeoJsfMonitoringStationRest(UtilsFacade fUtils, final String[] defaultLangs,
+	public GeoJsfMonitoringStationRest(JeeslFacade fUtils, final String[] defaultLangs,
 			GeoMonitoringFactoryBuilder<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS> fbMonitoring,
 			final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{
@@ -63,7 +63,7 @@ public class GeoJsfMonitoringStationRest <L extends UtilsLang,D extends UtilsDes
 	
 	public static <L extends UtilsLang,D extends UtilsDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, TYPE extends UtilsStatus<TYPE,L,D>, SUBTYPE extends UtilsStatus<SUBTYPE,L,D>, SCHEME extends UtilsStatus<SCHEME,L,D>, CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAPT extends UtilsStatus<CAPT,L,D>,CAPS extends UtilsStatus<CAPS,L,D>>
 		GeoJsfMonitoringStationRest<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>
-		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs,
+		factory(JeeslFacade fGeoMonitoring, final String[] defaultLangs,
 				GeoMonitoringFactoryBuilder<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS> fbMonitoring,
 				final Class<STATION> cStation,final Class<CAP> cCap,final Class<CAPT> cCapT,final Class<CAPS> cCapS)
 	{

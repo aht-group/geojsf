@@ -11,16 +11,15 @@ import javax.persistence.criteria.Root;
 import org.geojsf.interfaces.facade.GeoJsfContainerFacade;
 import org.geojsf.interfaces.model.with.EjbWithGeometry;
 import org.geojsf.interfaces.model.with.container.EjbWithPolygonContainer;
+import org.jeesl.controller.facade.JeeslFacadeBean;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
 
-import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
-
 public class GeoJsfContainerFacadeBean <P extends EjbWithGeometry<MultiPolygon>>
-				extends UtilsFacadeBean
+				extends JeeslFacadeBean
 				implements GeoJsfContainerFacade<P>
 {	
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfContainerFacadeBean.class);

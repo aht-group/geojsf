@@ -1,6 +1,5 @@
 package org.geojsf.web.rest.area;
 
-import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -17,6 +16,7 @@ import org.jeesl.controller.monitor.DataUpdateTracker;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
+import org.jeesl.interfaces.facade.JeeslFacade;
 import org.geojsf.model.xml.area.Areas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class GeoJsfAreaBasinRest <L extends UtilsLang,D extends UtilsDescription
 	
 	private EjbBasinFactory<L,D,BASIN,MODEL> efBasin;
 	
-	public GeoJsfAreaBasinRest(UtilsFacade fUtils, final String[] defaultLangs, final Class<L> cL, final Class<D> cD, final Class<BASIN> cB, final Class<MODEL> cM)
+	public GeoJsfAreaBasinRest(JeeslFacade fUtils, final String[] defaultLangs, final Class<L> cL, final Class<D> cD, final Class<BASIN> cB, final Class<MODEL> cM)
 	{
 		super(fUtils,defaultLangs,cL,cD);
 		this.cB=cB;
@@ -42,7 +42,7 @@ public class GeoJsfAreaBasinRest <L extends UtilsLang,D extends UtilsDescription
 	
 	public static <L extends UtilsLang,D extends UtilsDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends UtilsStatus<MODEL,L,D>>
 		GeoJsfAreaBasinRest<L,D,BASIN,MODEL>
-		factory(UtilsFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<BASIN> cB,final Class<MODEL> cM)
+		factory(JeeslFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<BASIN> cB,final Class<MODEL> cM)
 	{
 		return new GeoJsfAreaBasinRest<L,D,BASIN,MODEL>(fGeoMonitoring,defaultLangs,cL,cD,cB,cM);
 	}

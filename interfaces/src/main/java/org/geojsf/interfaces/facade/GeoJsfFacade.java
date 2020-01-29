@@ -16,10 +16,10 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.model.with.EjbWithSldRules;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
+import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 
-import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -40,7 +40,7 @@ public interface GeoJsfFacade <L extends UtilsLang, D extends UtilsDescription,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,G>
 								>
-					extends UtilsFacade
+					extends JeeslFacade
 {		
 	SERVICE load(Class<SERVICE> cService, SERVICE service);
 	CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category);

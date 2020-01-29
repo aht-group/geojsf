@@ -29,10 +29,10 @@ import org.jdom2.filter.Filters;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
+import org.jeesl.interfaces.facade.JeeslIdFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
@@ -45,7 +45,7 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 	
 	private LAYER layer;
 	private WfsGetFeaturePropertyProvider propertyProvider;
-	private UtilsIdFacade fGeo;
+	private JeeslIdFacade fGeo;
 	
 	private Namespace nsGml;
 	
@@ -56,7 +56,7 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 	
 	private List<I> results; public List<I> getResults(){return results;}
 		
-	public WfsPointQuery(UtilsIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<W> cGeometry,Class<I> cId)
+	public WfsPointQuery(JeeslIdFacade fGeo, WfsGetFeaturePropertyProvider propertyProvider, LAYER layer, Class<W> cGeometry,Class<I> cId)
 	{
 		this.fGeo=fGeo;
 		this.propertyProvider=propertyProvider;

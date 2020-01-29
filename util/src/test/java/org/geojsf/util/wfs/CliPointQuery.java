@@ -10,10 +10,10 @@ import org.geojsf.model.xml.specs.wfs.GetFeature;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
 import org.geojsf.test.model.SampleSpatialEntity;
+import org.jeesl.interfaces.facade.JeeslIdFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.facade.UtilsIdFacade;
 import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
@@ -29,7 +29,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		this.config=config;
 	}
 	
-	private UtilsIdFacade getGeoFacade()
+	private JeeslIdFacade getGeoFacade()
 	{
 		return null;
 	}
@@ -58,7 +58,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	public void genericPointQuery()
 	{
 //ahtutils.highlight:point
-		UtilsIdFacade fGeo = getGeoFacade();
+		JeeslIdFacade fGeo = getGeoFacade();
 		
 		Coordinates coordinates = new Coordinates();
 		coordinates.setValue("5.4,6.2");

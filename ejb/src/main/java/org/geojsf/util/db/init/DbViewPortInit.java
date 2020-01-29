@@ -17,12 +17,12 @@ import org.geojsf.model.xml.geojsf.ViewPort;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
+import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -48,11 +48,11 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,
     @SuppressWarnings("unused")
 	private final Class<VP> cVp;
     
-    private UtilsFacade fUtils;
+    private JeeslFacade fUtils;
     
     private EjbGeoViewPortFactory<VP> efVp;
     
-    public DbViewPortInit(GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta, final Class<VP> cVp, UtilsFacade fUtils)
+    public DbViewPortInit(GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta, final Class<VP> cVp, JeeslFacade fUtils)
 	{       
         this.cVp = cVp;
         this.fUtils=fUtils;
@@ -76,7 +76,7 @@ public class DbViewPortInit <L extends UtilsLang,D extends UtilsDescription,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>>
 		DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta, final Class<VP> cVp,UtilsFacade fUtils)
+		factory(GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta, final Class<VP> cVp,JeeslFacade fUtils)
 	{
 		return new DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbMeta,cVp,fUtils);
 	}

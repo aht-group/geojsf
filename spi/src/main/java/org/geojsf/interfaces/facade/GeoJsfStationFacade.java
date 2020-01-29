@@ -5,8 +5,8 @@ import java.util.List;
 import org.geojsf.interfaces.model.obervation.station.GeoStation;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCode;
+import org.jeesl.interfaces.facade.JeeslFacade;
 
-import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -19,7 +19,7 @@ public interface GeoJsfStationFacade <L extends UtilsLang, D extends UtilsDescri
 										CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
 										CAPT extends UtilsStatus<CAPT,L,D>,
 										CAPS extends UtilsStatus<CAPS,L,D>>
-					extends UtilsFacade
+					extends JeeslFacade
 {
 	STATION load(STATION station);
 	

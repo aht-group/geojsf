@@ -25,6 +25,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.model.with.EjbWithSldRules;
+import org.jeesl.controller.facade.JeeslFacadeBean;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
@@ -32,7 +33,6 @@ import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -53,7 +53,7 @@ public class GeoJsfFacadeBean <L extends UtilsLang, D extends UtilsDescription,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,G>
 								>
-				extends UtilsFacadeBean
+				extends JeeslFacadeBean
 				implements GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		
 {	

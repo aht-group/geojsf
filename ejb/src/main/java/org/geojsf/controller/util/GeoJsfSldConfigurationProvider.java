@@ -1,8 +1,7 @@
 package org.geojsf.controller.util;
 
 import org.geojsf.interfaces.provider.SldConfigurationProvider;
-
-import net.sf.ahtutils.interfaces.facade.UtilsFacade;
+import org.jeesl.interfaces.facade.JeeslFacade;
 
 public class GeoJsfSldConfigurationProvider implements SldConfigurationProvider
 {
@@ -10,9 +9,9 @@ public class GeoJsfSldConfigurationProvider implements SldConfigurationProvider
 	@Override public String getLocaleCode() {return localeCode;}
 	public void setLocaleCode(String localeCode) {this.localeCode = localeCode;}
 	
-	private UtilsFacade fJeesl;
-	@Override public UtilsFacade getJeeslFacade() {return fJeesl;}
-	public void setJeeslFacade(UtilsFacade fJeesl) {this.fJeesl = fJeesl;}
+	private JeeslFacade fJeesl;
+	@Override public JeeslFacade getJeeslFacade() {return fJeesl;}
+	public void setJeeslFacade(JeeslFacade fJeesl) {this.fJeesl = fJeesl;}
 	
 	private String symbolizerUrlPrefix;
 	@Override public String getSymbolizerUrlPrefix() {return symbolizerUrlPrefix;}

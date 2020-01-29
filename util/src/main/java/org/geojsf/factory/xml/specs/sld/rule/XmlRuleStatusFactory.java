@@ -15,13 +15,13 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.geojsf.model.xml.specs.sld.Rule;
+import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
-import net.sf.ahtutils.interfaces.facade.UtilsFacade;
 import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
 import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
@@ -53,7 +53,7 @@ public class XmlRuleStatusFactory <L extends UtilsLang,D extends UtilsDescriptio
 		List<Rule> rules = new ArrayList<Rule>();
 		try
 		{
-			if(sldCp.getJeeslFacade()==null){throw new UtilsConfigurationException(UtilsFacade.class.getSimpleName()+" not available in "+sldCp.getClass().getSimpleName());}
+			if(sldCp.getJeeslFacade()==null){throw new UtilsConfigurationException(JeeslFacade.class.getSimpleName()+" not available in "+sldCp.getClass().getSimpleName());}
 			if(sld.getStatusClass()==null){throw new UtilsConfigurationException("Attribute statusClass not available in "+sld.getClass().getSimpleName());}
 			if(sld.getStatusClass()==null){throw new UtilsConfigurationException("Attribute statusAttribute not available in "+sld.getClass().getSimpleName());}
 			Class<X> cStatus = (Class<X>)Class.forName(sld.getStatusClass()).asSubclass(UtilsStatus.class);

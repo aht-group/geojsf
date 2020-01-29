@@ -1,10 +1,10 @@
 package org.geojsf.interfaces.provider;
 
-import net.sf.ahtutils.interfaces.facade.UtilsFacade;
+import org.jeesl.interfaces.facade.JeeslFacade;
 
 public interface SldConfigurationProvider
 {
 	String getLocaleCode();
-	UtilsFacade getJeeslFacade();
+	JeeslFacade getJeeslFacade();
 	String getSymbolizerUrlPrefix();
 }
