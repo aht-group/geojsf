@@ -14,13 +14,12 @@ import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Query;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-
-public class XmlCategoryFactory <L extends UtilsLang,D extends UtilsDescription,
+public class XmlCategoryFactory <L extends JeeslLang,D extends JeeslDescription,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
 								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,

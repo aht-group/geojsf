@@ -3,15 +3,15 @@ package org.geojsf.interfaces.model.sld;
 import java.io.Serializable;
 
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 import net.sf.ahtutils.interfaces.model.with.position.EjbWithPosition;
 import net.sf.ahtutils.model.interfaces.with.EjbWithDescription;
 import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 import net.sf.ahtutils.model.interfaces.with.EjbWithLang;
 
-public interface GeoJsfSldRule<L extends UtilsLang, D extends UtilsDescription,
+public interface GeoJsfSldRule<L extends JeeslLang, D extends JeeslDescription,
 							G extends JeeslGraphic<L,D,?,?,?>>
 			extends Serializable,EjbWithId,EjbWithPosition,EjbWithLang<L>,EjbWithDescription<D>
 {

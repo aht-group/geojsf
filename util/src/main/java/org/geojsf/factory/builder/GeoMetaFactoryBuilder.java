@@ -9,13 +9,12 @@ import org.geojsf.interfaces.model.json.GeoJsfLocationLevel;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.jeesl.factory.builder.AbstractFactoryBuilder;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-
-public class GeoMetaFactoryBuilder<L extends UtilsLang, D extends UtilsDescription,
+public class GeoMetaFactoryBuilder<L extends JeeslLang, D extends JeeslDescription,
 									DS extends GeoJsfDataSource<L,D,?>,
 									VP extends GeoJsfViewPort,
 									JSON extends GeoJsfJsonData<L,D,JQ,JL>,

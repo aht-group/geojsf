@@ -2,10 +2,11 @@ package org.geojsf.model.pojo.util;
 
 import java.io.Serializable;
 
-import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 
-public class DefaultGeoJsfDescription implements UtilsDescription,Serializable,EjbPersistable
+import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
+
+public class DefaultGeoJsfDescription implements JeeslDescription,Serializable,EjbPersistable
 {
 	public static final long serialVersionUID=1;
 	

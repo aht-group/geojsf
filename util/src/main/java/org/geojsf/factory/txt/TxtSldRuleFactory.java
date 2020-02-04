@@ -6,16 +6,15 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.SldRule;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
+import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-
-public class TxtSldRuleFactory<L extends UtilsLang, D extends UtilsDescription,
-								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
-								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
+public class TxtSldRuleFactory<L extends JeeslLang, D extends JeeslDescription,
+								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslStatus<GT,L,D>,
+								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
-								TYPE extends UtilsStatus<TYPE,L,D>,
+								TYPE extends JeeslStatus<TYPE,L,D>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,G>
 								>
@@ -25,10 +24,10 @@ public class TxtSldRuleFactory<L extends UtilsLang, D extends UtilsDescription,
 
 	}
 	
-	public static <L extends UtilsLang, D extends UtilsDescription,
-					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends UtilsStatus<GT,L,D>,
-					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends UtilsStatus<FS,L,D>,
-					TYPE extends UtilsStatus<TYPE,L,D>,
+	public static <L extends JeeslLang, D extends JeeslDescription,
+					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslStatus<GT,L,D>,
+					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+					TYPE extends JeeslStatus<TYPE,L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>>

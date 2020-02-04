@@ -17,14 +17,13 @@ import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.model.xml.geojsf.Query;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
+import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-
-public class XmlLayerFactory <L extends UtilsLang,D extends UtilsDescription,
+public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
 							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -33,7 +32,7 @@ public class XmlLayerFactory <L extends UtilsLang,D extends UtilsDescription,
 							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTYPE extends UtilsStatus<SLDTYPE,L,D>,
+							SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,?>>
 						implements Serializable

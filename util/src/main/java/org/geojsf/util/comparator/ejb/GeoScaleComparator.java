@@ -4,14 +4,13 @@ import java.util.Comparator;
 
 import org.apache.commons.lang.builder.CompareToBuilder;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.util.comparator.ejb.system.security.SecurityActionComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-
-public class GeoScaleComparator <L extends UtilsLang,D extends UtilsDescription,	
+public class GeoScaleComparator <L extends JeeslLang,D extends JeeslDescription,	
 									SCALE extends GeoJsfScale<L,D>>
 {
 	final static Logger logger = LoggerFactory.getLogger(SecurityActionComparator.class);

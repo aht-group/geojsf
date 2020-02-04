@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.with.EjbWithCodeGraphic;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
+import org.jeesl.interfaces.model.system.locale.status.JeeslStatusFixedCode;
+import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
 import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatusFixedCode;
 
-public interface GeoJsfLocationLevel<S extends UtilsStatus<S,L,D>,
-								L extends UtilsLang, D extends UtilsDescription,
+public interface GeoJsfLocationLevel<S extends JeeslStatus<S,L,D>,
+								L extends JeeslLang, D extends JeeslDescription,
 								G extends JeeslGraphic<L,D,?,?,?>>
 						extends Serializable,EjbPersistable,
 								
-								UtilsStatus<S,L,D>,UtilsStatusFixedCode,
+								JeeslStatus<S,L,D>,JeeslStatusFixedCode,
 								EjbWithCodeGraphic<G>
 {
 	

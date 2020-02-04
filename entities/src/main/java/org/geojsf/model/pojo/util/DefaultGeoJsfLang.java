@@ -2,11 +2,12 @@ package org.geojsf.model.pojo.util;
 
 import java.io.Serializable;
 
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
+
 import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
 import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
 
-public class DefaultGeoJsfLang implements UtilsLang,EjbRemoveable,Serializable,EjbPersistable
+public class DefaultGeoJsfLang implements JeeslLang,EjbRemoveable,Serializable,EjbPersistable
 {
 	public static final long serialVersionUID=1;
 	

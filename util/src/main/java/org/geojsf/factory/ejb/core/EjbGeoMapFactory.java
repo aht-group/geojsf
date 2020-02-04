@@ -2,13 +2,12 @@ package org.geojsf.factory.ejb.core;
 
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-
-public class EjbGeoMapFactory<L extends UtilsLang,D extends UtilsDescription,
+public class EjbGeoMapFactory<L extends JeeslLang,D extends JeeslDescription,
 								MAP extends GeoJsfMap<L,D,?,?,?>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoMapFactory.class);

@@ -4,13 +4,12 @@ import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-
-public class EjbGeoDataSourceFactory<L extends UtilsLang,D extends UtilsDescription,
+public class EjbGeoDataSourceFactory<L extends JeeslLang,D extends JeeslDescription,
 								
 								DS extends GeoJsfDataSource<L,D,?>>
 {

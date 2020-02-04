@@ -1,21 +1,20 @@
 package org.geojsf.factory.ejb.area;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-import net.sf.ahtutils.interfaces.model.status.UtilsStatus;
-
 import org.geojsf.factory.wkt.MultiPolygonFactory;
 import org.geojsf.interfaces.model.area.GeoBasin;
 import org.geojsf.model.xml.area.Basin;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
+import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.io.ParseException;
 
-public class EjbBasinFactory<L extends UtilsLang,D extends UtilsDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends UtilsStatus<MODEL,L,D>>
+public class EjbBasinFactory<L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<MODEL,L,D>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbBasinFactory.class);
 	
@@ -26,7 +25,7 @@ public class EjbBasinFactory<L extends UtilsLang,D extends UtilsDescription,BASI
 	private EjbLangFactory<L> efLang;
     private EjbDescriptionFactory<D> efDescription;
     
-    public static <L extends UtilsLang,D extends UtilsDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends UtilsStatus<MODEL,L,D>>
+    public static <L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<MODEL,L,D>>
 		EjbBasinFactory<L,D,BASIN,MODEL> factory(final Class<L> cL,final Class<D> cD,final Class<BASIN> cB)
     {
         return new EjbBasinFactory<L,D,BASIN,MODEL>(cL,cD,cB);

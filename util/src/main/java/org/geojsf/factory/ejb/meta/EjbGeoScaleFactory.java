@@ -3,13 +3,12 @@ package org.geojsf.factory.ejb.meta;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
+import org.jeesl.interfaces.model.system.locale.JeeslDescription;
+import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.interfaces.model.status.UtilsDescription;
-import net.sf.ahtutils.interfaces.model.status.UtilsLang;
-
-public class EjbGeoScaleFactory<L extends UtilsLang,D extends UtilsDescription,
+public class EjbGeoScaleFactory<L extends JeeslLang,D extends JeeslDescription,
 								SCALE extends GeoJsfScale<L,D>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoScaleFactory.class);
