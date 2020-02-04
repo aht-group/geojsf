@@ -14,6 +14,7 @@ import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
+import org.jeesl.exception.processing.UtilsConfigurationException;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
@@ -22,7 +23,6 @@ import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomStyledLayerDescriptorFactory <L extends JeeslLang,D extends JeeslDescription,

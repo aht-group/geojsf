@@ -14,6 +14,7 @@ import org.geojsf.factory.txt.TxtSldRuleFactory;
 import org.geojsf.model.xml.geojsf.Sld;
 import org.geojsf.model.xml.geojsf.SldRule;
 import org.jeesl.doc.ofx.OfxMultiLangFactory;
+import org.jeesl.exception.processing.UtilsConfigurationException;
 import org.jeesl.factory.svg.SvgSymbolFactory;
 import org.openfuxml.content.media.Image;
 import org.openfuxml.content.media.Media;
@@ -39,7 +40,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
-import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.util.io.HashUtil;
 

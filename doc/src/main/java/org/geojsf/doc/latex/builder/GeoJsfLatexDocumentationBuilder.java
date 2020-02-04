@@ -26,6 +26,7 @@ import org.geojsf.model.xml.geojsf.View;
 import org.geojsf.util.query.xpath.GeoJsfXpath;
 import org.geojsf.util.wms.WmsTileDownloader;
 import org.jeesl.doc.latex.builder.AbstractLatexDocumentationBuilder;
+import org.jeesl.exception.processing.UtilsConfigurationException;
 import org.openfuxml.content.ofx.Section;
 import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
@@ -35,7 +36,6 @@ import org.openfuxml.util.filter.OfxLangFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.exception.processing.UtilsConfigurationException;
 import net.sf.ahtutils.xml.status.Descriptions;
 import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
