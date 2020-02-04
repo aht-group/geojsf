@@ -2,10 +2,9 @@ package org.geojsf.model.pojo.util;
 
 import java.io.Serializable;
 
+import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
+import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-
-import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
-import net.sf.ahtutils.interfaces.model.crud.EjbRemoveable;
 
 public class DefaultGeoJsfLang implements JeeslLang,EjbRemoveable,Serializable,EjbPersistable
 {

@@ -2,9 +2,8 @@ package org.geojsf.model.pojo.util;
 
 import java.io.Serializable;
 
+import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
-
-import net.sf.ahtutils.interfaces.model.crud.EjbPersistable;
 
 public class DefaultGeoJsfDescription implements JeeslDescription,Serializable,EjbPersistable
 {
