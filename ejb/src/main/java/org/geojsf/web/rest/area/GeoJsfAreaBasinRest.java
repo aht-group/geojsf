@@ -9,7 +9,7 @@ import org.geojsf.interfaces.model.area.GeoBasin;
 import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestExport;
 import org.geojsf.interfaces.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestImport;
 import org.geojsf.model.xml.area.Basin;
-import org.jeesl.controller.monitor.DataUpdateTracker;
+import org.jeesl.controller.monitoring.counter.DataUpdateTracker;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;

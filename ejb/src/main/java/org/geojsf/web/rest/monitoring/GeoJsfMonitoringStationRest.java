@@ -12,7 +12,7 @@ import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRest
 import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRestImport;
 import org.geojsf.model.xml.monitoring.Station;
 import org.geojsf.model.xml.monitoring.Stations;
-import org.jeesl.controller.monitor.DataUpdateTracker;
+import org.jeesl.controller.monitoring.counter.DataUpdateTracker;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
