@@ -92,9 +92,9 @@
             </dependency>
 		    
 		    <!-- Manages BOMs -->
-    	   	<dependency>
-				<groupId>org.jeesl</groupId>
-				<artifactId>jeesl-bom</artifactId>
+			<dependency>
+				<groupId>org.jeesl.bom</groupId>
+				<artifactId>bom-core</artifactId>
 				<version>0.2.6-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
