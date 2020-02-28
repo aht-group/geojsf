@@ -1,6 +1,6 @@
 package org.geojsf.interfaces.model.with;
 
-import net.sf.ahtutils.model.interfaces.with.EjbWithId;
+import org.jeesl.interfaces.model.with.primitive.number.EjbWithId;
 
 public interface EjbWithGeometry <T extends Object> extends EjbWithId
 {

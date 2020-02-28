@@ -10,7 +10,7 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
-import org.jeesl.interfaces.model.with.code.EjbWithCode;
+import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
 
 @EjbErNode(name="Style (Deprecated)",category="sld",subset="sld",level=3)
 public class DefaultGeoJsfSldStyle implements Serializable,EjbRemoveable,EjbPersistable,

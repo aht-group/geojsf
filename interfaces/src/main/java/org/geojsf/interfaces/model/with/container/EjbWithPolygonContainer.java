@@ -1,10 +1,9 @@
 package org.geojsf.interfaces.model.with.container;
 
 import org.geojsf.interfaces.model.with.EjbWithGeometry;
+import org.jeesl.interfaces.model.with.primitive.number.EjbWithId;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
-
-import net.sf.ahtutils.model.interfaces.with.EjbWithId;
 
 public interface EjbWithPolygonContainer <P extends EjbWithGeometry<MultiPolygon>> extends EjbWithId
 {

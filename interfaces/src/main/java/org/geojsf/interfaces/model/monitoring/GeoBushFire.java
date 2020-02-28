@@ -1,10 +1,9 @@
 package org.geojsf.interfaces.model.monitoring;
 
 
-import net.sf.ahtutils.model.interfaces.with.EjbWithId;
-import net.sf.ahtutils.model.interfaces.with.EjbWithRecord;
-
 import org.geojsf.interfaces.model.with.EjbWithGeometry;
+import org.jeesl.interfaces.model.with.primitive.date.EjbWithRecord;
+import org.jeesl.interfaces.model.with.primitive.number.EjbWithId;
 
 import com.vividsolutions.jts.geom.Point;
 
