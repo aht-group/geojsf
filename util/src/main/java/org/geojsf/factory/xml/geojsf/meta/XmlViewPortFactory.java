@@ -18,6 +18,7 @@ import org.geojsf.model.xml.geojsf.Query;
 import org.geojsf.model.xml.geojsf.ViewPort;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
+import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
@@ -39,7 +40,7 @@ public class XmlViewPortFactory implements Serializable
 	}
 	
 	public <L extends JeeslLang,D extends JeeslDescription,
-			G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslStatus<GT,L,D>,
+			G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 			F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
 			CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 			SERVICE extends GeoJsfService<L,D,LAYER>,
