@@ -57,6 +57,8 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 				implements GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		
 {	
+	private static final long serialVersionUID = 1L;
+
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfFacadeBean.class);
 	
 	private final Class<SLD> cSld;
