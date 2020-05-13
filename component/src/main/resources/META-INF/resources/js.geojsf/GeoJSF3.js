@@ -142,15 +142,15 @@ var GeoJSF = {
 		 			update:   GeoJSF.updateOnClick,
 					params: [
 		 			         {name: 'org.geojsf.click.lat',				value: lonlat[1]},
-						     {name: 'org.geojsf.click.lon',				value: lonlat[0]},
+						 {name: 'org.geojsf.click.lon',				value: lonlat[0]},
 		 			         {name: 'org.geojsf.viewport.center.lon',               value: this.centerLon},
 		 			         {name: 'org.geojsf.viewport.center.lat',               value: this.centerLat},
 		 			         {name: 'org.geojsf.viewport.bottom',                   value: this.viewportBoundBottom},
 		 			         {name: 'org.geojsf.viewport.top',                      value: this.viewportBoundTop},
 		 			         {name: 'org.geojsf.viewport.left',                     value: this.viewportBoundLeft},
 		 			         {name: 'org.geojsf.viewport.right',                    value: this.viewportBoundRight},
-							 {name: 'org.geojsf.viewport.resolution',               value: GeoJSF.map.getView().getResolution()},
-							 {name: 'org.geojsf.viewport.unit',                     value: GeoJSF.map.getView().getProjection().getUnits()},
+						 {name: 'org.geojsf.viewport.resolution',               value: GeoJSF.map.getView().getResolution()},
+						 {name: 'org.geojsf.viewport.unit',                     value: GeoJSF.map.getView().getProjection().getUnits()},
 		 			         {name: 'org.geojsf.viewport.scale',                    value:   Math.floor( GeoJSF.map.getView().getResolution())},
 		 			        ],
 		 			oncomplete: function(xhr, status, args) {
@@ -448,8 +448,13 @@ var GeoJSF = {
 				 			params: [],
 				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
 		},
+                
+                initMarker : function(lat, lon, markerUrl)
+		{
+                    GeoJSF.initMarker(lat, lon);
+                },
 		
-		initMarker : function(lat, lon, markerUrl)
+		initMarker : function(lat, lon)
 		{
 			
 				GeoJSF.vectorSource = new ol.source.Vector({
@@ -490,6 +495,7 @@ var GeoJSF = {
 				
 			   //GeoJSF.feature.on('modifyend', GeoJSF.processEventMarkerMove ,GeoJSF.feature);
 			   GeoJSF.map.addInteraction(modify);
+                           GeoJSF.map.getView().centerOn(GeoJSF.feature.getGeometry().getCoordinates(), GeoJSF.map.getSize(), [GeoJSF.map.getSize()[0]/2, GeoJSF.map.getSize()[1]/2]);
 		   
 		},
 		
@@ -624,7 +630,6 @@ var dtSelectCallback = {
         '</svg>',
 
     lastMarker: '',
-
     createMarker: function(lon, lat) {
         this.removeMarker();
         var marker = new ol.Feature({
@@ -657,7 +662,6 @@ var dtSelectCallback = {
         });
         GeoJSF.map.addLayer(this.lastMarker);
     },
-
     removeMarker: function() {
         if (this.lastMarker) {
             GeoJSF.map.removeLayer(this.lastMarker);
