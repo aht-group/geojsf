@@ -213,9 +213,14 @@ var GeoJSF = {
 			GeoJSF.map.getView().setResolution(1000);
 		},
 		
-		centerMap : function(lot, lan)
+		centerMap : function(lat, lon)
 		{
-			GeoJSF.map.getView().setCenter([lot,lan]);
+			// GeoJSF.map.getView().setCenter([lot,lan]);
+                        console.log("Centering map to lat/lon: " +lat +"/" +lon);
+                        centerPoint = new ol.geom.Point(ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857')),
+                        console.log("Constructed Point: " +centerPoint);
+                        console.log("Constructed Points' coordinates: " +centerPoint.getCoordinates());
+                        GeoJSF.map.getView().centerOn(centerPoint.getCoordinates(), GeoJSF.map.getSize(), [GeoJSF.map.getSize()[0]/2, GeoJSF.map.getSize()[1]/2]);
 		},
 		
 		// Remove all layers and add the base layer again
@@ -456,47 +461,46 @@ var GeoJSF = {
 		
 		initMarker : function(lat, lon)
 		{
-			
-				GeoJSF.vectorSource = new ol.source.Vector({
-					projection: 'EPSG:3857'
-						}); 
-						
-				//GeoJSF.addPoint( -6.121435, 106.774124,GeoJSF.featureLayer);
-				console.log(GeoJSF.iconStyle);
-				
-				//layers.push(GeoJSF.featureLayer);
-				console.log(GeoJSF.markerPosition);
-				GeoJSF.feature = new ol.Feature({
-					geometry: new ol.geom.Point(ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857')),
-					name: 'GeoJSF Marker'
-				  });
-				  console.log(GeoJSF.feature.getGeometry().getCoordinates()[0] +"," +GeoJSF.feature.getGeometry().getCoordinates()[1]);
-				//console.log("Added feature");
-				//console.log(GeoJSF.feature);
-				GeoJSF.features = [];
-				GeoJSF.features.push(GeoJSF.feature);
-				GeoJSF.vectorSource.addFeatures(GeoJSF.features);
-				console.log(GeoJSF.vectorSource);
-				GeoJSF.featureLayer = new ol.layer.Vector({
-														style: GeoJSF.iconStyle,
-														source: GeoJSF.vectorSource,
-														name: 'marker Layer',
-														visibility: true
-					});
-				GeoJSF.map.addLayer(GeoJSF.featureLayer);
-				// Process marker
-				var features = GeoJSF.vectorSource.getFeatures();
-				console.log("features: " +features);
+                    GeoJSF.vectorSource = new ol.source.Vector({
+                        projection: 'EPSG:3857'
+                    }); 
 
-				var modify = new ol.interaction.Modify({
-					features: new ol.Collection([GeoJSF.feature])
-				});
-				modify.on('modifyend', GeoJSF.processEventMarkerMove);
-				
-			   //GeoJSF.feature.on('modifyend', GeoJSF.processEventMarkerMove ,GeoJSF.feature);
-			   GeoJSF.map.addInteraction(modify);
-                           GeoJSF.map.getView().centerOn(GeoJSF.feature.getGeometry().getCoordinates(), GeoJSF.map.getSize(), [GeoJSF.map.getSize()[0]/2, GeoJSF.map.getSize()[1]/2]);
-		   
+                    //GeoJSF.addPoint( -6.121435, 106.774124,GeoJSF.featureLayer);
+                    console.log(GeoJSF.iconStyle);
+
+                    //layers.push(GeoJSF.featureLayer);
+                    console.log(GeoJSF.markerPosition);
+                    GeoJSF.feature = new ol.Feature({
+                        geometry: new ol.geom.Point(ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857')),
+                        name: 'GeoJSF Marker'
+                      });
+                      console.log(GeoJSF.feature.getGeometry().getCoordinates()[0] +"," +GeoJSF.feature.getGeometry().getCoordinates()[1]);
+                    console.log("Layers " +GeoJSF.map.getLayers());
+                    //console.log(GeoJSF.feature);
+                    GeoJSF.features = [];
+                    GeoJSF.features.push(GeoJSF.feature);
+                    GeoJSF.vectorSource.clear;
+                    GeoJSF.vectorSource.addFeatures(GeoJSF.features);
+                    console.log(GeoJSF.vectorSource);
+                    GeoJSF.featureLayer = new ol.layer.Vector({
+                        style: GeoJSF.iconStyle,
+                        source: GeoJSF.vectorSource,
+                        name: 'marker Layer',
+                        visibility: true
+                    });
+                    GeoJSF.map.addLayer(GeoJSF.featureLayer);
+                    // Process marker
+                    var features = GeoJSF.vectorSource.getFeatures();
+                    console.log("features: " +features);
+
+                    var modify = new ol.interaction.Modify({
+                        features: new ol.Collection([GeoJSF.feature])
+                    });
+                    modify.on('modifyend', GeoJSF.processEventMarkerMove);
+
+                   //GeoJSF.feature.on('modifyend', GeoJSF.processEventMarkerMove ,GeoJSF.feature);
+                   GeoJSF.map.addInteraction(modify);
+                   GeoJSF.map.getView().centerOn(GeoJSF.feature.getGeometry().getCoordinates(), GeoJSF.map.getSize(), [GeoJSF.map.getSize()[0]/2, GeoJSF.map.getSize()[1]/2]);
 		},
 		
 		setMarkerUrl: function(srcUrl)
