@@ -391,23 +391,23 @@ var GeoJSF = {
 		
 		updateEcqlParams : function(parameters)
 		{
-			 console.log("ECQL Parameter Update requested.");
-			 var params = {};
-			     params.CQL_FILTER = parameters;
-                         if (GeoJSF.map.getLayers())
-                         {
-                            GeoJSF.map.getLayers().forEach(function (layer) {
-                                if (layer.getSource() instanceof ol.source.OSM)
-                                {
-                                   console.log("Ignoring OSM base layer"); 
-                                }
-                                else
-                                {
-                                    layer.getSource().updateParams(params);
-                                    console.log("Merging new ECQL parameter: " +params.CQL_FILTER);
-                                }
-                            });
-                         }
+                    console.log("ECQL Parameter Update requested.");
+                    var params = {};
+                        params.CQL_FILTER = parameters;
+                    if (GeoJSF.map.getLayers())
+                    {
+                       GeoJSF.map.getLayers().forEach(function (layer) {
+                           if (layer.getSource() instanceof ol.source.OSM || layer.getSource() instanceof ol.source.Vector)
+                           {
+                              console.log("Ignoring OSM base layer"); 
+                           }
+                           else
+                           {
+                               layer.getSource().updateParams(params);
+                               console.log("Merging new ECQL parameter: " +params.CQL_FILTER);
+                           }
+                       });
+                    }
 		},
 		
 		switchLayerClassic : function(layerId)
