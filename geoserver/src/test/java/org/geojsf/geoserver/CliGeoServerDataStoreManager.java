@@ -37,9 +37,9 @@ public class CliGeoServerDataStoreManager
 
 	public GeoServerDataStoreManager init()
 	{
-//ahtutils.highlight:init
+//jeesl.highlight:init
 		GeoServerDataStoreManager dataStoreManager = new GeoServerDataStoreManager(rest);
-//ahtutils.highlight:init
+//jeesl.highlight:init
 		return dataStoreManager;
 	}
 	
@@ -48,9 +48,9 @@ public class CliGeoServerDataStoreManager
 		Workspace ws = XmlWorkspaceFactory.build("lis");
 		DataStores dataStores;
 		boolean available;
-//ahtutils.highlight:basic		
+//jeesl.highlight:basic		
 		dataStores = dataStoreManager.getDataStores(ws);
-//ahtutils.highlight:basic
+//jeesl.highlight:basic
 		JaxbUtil.info(dataStores);
 	}
 
@@ -58,11 +58,11 @@ public class CliGeoServerDataStoreManager
 	{
 		Workspace ws = XmlWorkspaceFactory.build("lis");
 		DataStore ds = XmlDataStoreFactory.build("lcbc-public");
-//ahtutils.highlight:read
+//jeesl.highlight:read
 		boolean available = dataStoreManager.isAvailable(ws, ds);
 		DataStores dataStores = dataStoreManager.getDataStores(ws);
 		
-//ahtutils.highlight:read
+//jeesl.highlight:read
 		logger.info("DS available: "+available);
 		JaxbUtil.info(dataStores);
 	}
