@@ -125,7 +125,47 @@ public class MapUtil<L extends JeeslLang,D extends JeeslDescription,
 				if(logger.isTraceEnabled()) {logger.trace("Added SQLViewParameter: " +s.getKey() +"=" +s.getValue());}
 			}
 		}
+		if (parameters.size()>0)
+		{
+			StringBuffer sb = new StringBuffer();
+			sb.append("params.viewparams  = '");
+			for (String key : parameters.keySet())
+			{
+				sb.append(key +":" +parameters.get(key) +";");
+			}
+			sb.append("';");
+		//	renderer.renderTextWithLB(sb.toString());
+		}
 		return parameters;
+	}
+	
+	public static String renderSqlViewParameters(UIComponent map)
+	{
+		Hashtable<String,String> parameters = new Hashtable<String,String>();
+		for (UIComponent comp : map.getChildren())
+		{
+			if (comp.getClass().getSimpleName().toString().equals("SqlViewParameter"))
+			{
+				SqlViewParameter s = (SqlViewParameter) comp;
+				if (null!=s.getValue())
+				{
+					parameters.put(s.getKey(), s.getValue());
+				}
+				if(logger.isTraceEnabled()) {logger.trace("Added SQLViewParameter: " +s.getKey() +"=" +s.getValue());}
+			}
+		}
+		StringBuffer sb = new StringBuffer();
+		if (parameters.size()>0)
+		{
+			sb.append("params.viewparams  = '");
+			for (String key : parameters.keySet())
+			{
+				sb.append(key +":" +parameters.get(key) +";");
+			}
+			sb.append("';");
+		//	renderer.renderTextWithLB(sb.toString());
+		}
+		return sb.toString();
 	}
 	
 	public MAP buildViewsFromLayers(UIComponent map)
@@ -222,6 +262,31 @@ public class MapUtil<L extends JeeslLang,D extends JeeslDescription,
 		return null;
 	}
 	
+	public static Boolean containsLayer(UIComponent component)
+	{
+	    Boolean layer = false;
+	    for (UIComponent child : component.getChildren())
+	     {
+		if (child instanceof Layer)
+		{
+		    layer = true;
+		}
+	     }
+	    return layer;
+	}
+	
+	public static String buildStyle(Integer height, Integer width)
+	{
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("width: ");
+	    if(width!=null){sb.append(width +"px;");}
+	    else{sb.append("100%;");}
+	    sb.append("height: ");
+	    if(height!=null){sb.append(height +"px;");}
+	    else{sb.append("100%;");}
+	    return sb.toString();
+	}
+	
 	
 	/*	
 	public static ArrayList<String> hasTemporalLayer(GeoJsfService service)
@@ -236,17 +301,7 @@ public class MapUtil<L extends JeeslLang,D extends JeeslDescription,
 	}
 	*/
 	
-	public static String buildStyle(Integer height, Integer width)
-	{
-		StringBuffer sb = new StringBuffer();
-		sb.append("width: ");
-		if(width!=null){sb.append(width +"px;");}
-		else{sb.append("100%;");}
-		sb.append("height: ");
-		if(height!=null){sb.append(height +"px;");}
-		else{sb.append("100%;");}
-		return sb.toString();
-	}
+	
 	
 	
 

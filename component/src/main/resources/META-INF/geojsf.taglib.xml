@@ -12,6 +12,12 @@
 		</component>
 	</tag>
 	<tag>
+		<tag-name>coordinatePicker</tag-name>
+		<component>
+			<component-type>org.geojsf.component.CoordinatePicker</component-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>sldParameter</tag-name>
 		<component>
 			<component-type>org.geojsf.component.SldParameter</component-type>

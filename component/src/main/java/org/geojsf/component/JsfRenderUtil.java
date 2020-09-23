@@ -10,7 +10,6 @@ import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import org.geojsf.component.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -129,33 +128,69 @@ public class JsfRenderUtil {
 	public void renderMapInitialization(FacesContext context) throws IOException
 	{
 		renderLinebreaks(1);
-		Map map = (Map) component;
-		writer.startElement("script", map);
-		renderTextWithLB("// GeoJSF: Initializing OpenLayers map");
-		renderTextWithLB("GeoJSF.setAjaxUpdates('" +encodeAjax(map, "mapClick") +"', '" +encodeAjax(map, "mapMove") +"');");
-		renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"','" +map.getBaseMap() +"');");
-		renderLinebreaks(2);
-		String srcUrl = context.getExternalContext().getRequestScheme() +"://" +context.getExternalContext().getRequestServerName() +":" +context.getExternalContext().getRequestServerPort() +context.getExternalContext().getRequestContextPath() +"/javax.faces.resource/30px-Location-marker.png.jsf?ln=geojsf";
-			
-		if (map.getMarkerUrl()!=null)
+		if (component instanceof Map)
 		{
-			srcUrl = map.getMarkerUrl();
-			renderTextWithLB("GeoJSF.setMarkerUrl('" +srcUrl+"');");
-			renderLinebreaks(2);
-		}
-		else
-		{
-			logger.info("Using standard marker Icon at " +srcUrl);
-			renderTextWithLB("GeoJSF.setMarkerUrl('" +srcUrl+"');");
-			renderLinebreaks(2);
+		    Map map = (Map) component;
+		    writer.startElement("script", map);
+		    renderTextWithLB("// GeoJSF: Initializing OpenLayers map");
+		    renderTextWithLB("GeoJSF.setAjaxUpdates('" +encodeAjax(map, "mapClick") +"', '" +encodeAjax(map, "mapMove") +"');");
+		    renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"','" +map.getBaseMap() +"');");
+		    renderLinebreaks(2);
+		    String srcUrl = context.getExternalContext().getRequestScheme() +"://" +context.getExternalContext().getRequestServerName() +":" +context.getExternalContext().getRequestServerPort() +context.getExternalContext().getRequestContextPath() +"/javax.faces.resource/30px-Location-marker.png.jsf?ln=geojsf";
+
+		    if (map.getMarkerUrl()!=null)
+		    {
+			    srcUrl = map.getMarkerUrl();
+			    renderTextWithLB("GeoJSF.setMarkerUrl('" +srcUrl+"');");
+			    renderLinebreaks(2);
+		    }
+		    else
+		    {
+			    logger.info("Using standard marker Icon at " +srcUrl);
+			    renderTextWithLB("GeoJSF.setMarkerUrl('" +srcUrl+"');");
+			    renderLinebreaks(2);
+		    }
+
+		    if (map.getMarkerPosition()!=null)
+		    {
+			    renderTextWithLB("GeoJSF.setMarkerPosition(" +map.getMarkerPosition().getLat() +"," +map.getMarkerPosition().getLon() +");");
+			    renderTextWithLB("GeoJSF.initMarker(" +map.getMarkerPosition().getLat() +"," +map.getMarkerPosition().getLon() +",'" +srcUrl+"');");
+			    renderLinebreaks(2);
+		    }
 		}
 		
-		if (map.getMarkerPosition()!=null)
+		if (component instanceof CoordinatePicker)
 		{
-			renderTextWithLB("GeoJSF.setMarkerPosition(" +map.getMarkerPosition().getLat() +"," +map.getMarkerPosition().getLon() +");");
-			renderTextWithLB("GeoJSF.initMarker(" +map.getMarkerPosition().getLat() +"," +map.getMarkerPosition().getLon() +",'" +srcUrl+"');");
-			renderLinebreaks(2);
+		    CoordinatePicker map = (CoordinatePicker) component;
+		    writer.startElement("script", map);
+		    renderTextWithLB("// GeoJSF: Initializing OpenLayers map");
+		    renderTextWithLB("GeoJSF.setAjaxUpdates('" +encodeAjax(map, "mapClick") +"', '" +encodeAjax(map, "mapMove") +"');");
+		    renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"','" +map.getBaseMap() +"');");
+		    renderLinebreaks(2);
+		    String srcUrl = context.getExternalContext().getRequestScheme() +"://" +context.getExternalContext().getRequestServerName() +":" +context.getExternalContext().getRequestServerPort() +context.getExternalContext().getRequestContextPath() +"/javax.faces.resource/30px-Location-marker.png.jsf?ln=geojsf";
+
+		    if (map.getMarkerUrl()!=null)
+		    {
+			    srcUrl = map.getMarkerUrl();
+			    renderTextWithLB("GeoJSF.setMarkerUrl('" +srcUrl+"');");
+			    renderLinebreaks(2);
+		    }
+		    else
+		    {
+			    logger.info("Using standard marker Icon at " +srcUrl);
+			    renderTextWithLB("GeoJSF.setMarkerUrl('" +srcUrl+"');");
+			    renderLinebreaks(2);
+		    }
+
+		    if (map.getMarkerPosition()!=null)
+		    {
+			    renderTextWithLB("GeoJSF.setMarkerPosition(" +map.getMarkerPosition().getLat() +"," +map.getMarkerPosition().getLon() +");");
+			    renderTextWithLB("GeoJSF.initMarker(" +map.getMarkerPosition().getLat() +"," +map.getMarkerPosition().getLon() +",'" +srcUrl+"');");
+			    renderLinebreaks(2);
+		    }
 		}
+		
+		
 		renderTextWithLB("// GeoJSF: Adding layers");
 		renderTextWithLB("// GeoJSF: The last given layer will be taken as base layer:");
 		renderLinebreaks(1);
@@ -168,6 +203,21 @@ public class JsfRenderUtil {
 		} catch (IOException e) {
 			logger.info("Problem rendering " +text +" using JsfRenderUtil");
 		}
+	}
+	
+	public void renderScript(String command)
+	{
+	    renderTextWithLB("<script>" +command +"</script>");
+	}
+	
+	public void renderTagStart(String tagName)
+	{
+	    renderTextWithLB("<" +tagName +">");
+	}
+	
+	public void renderTagEnd(String tagName)
+	{
+	    renderTextWithLB("</" +tagName +">");
 	}
 	
 	public void renderPlayerInitialization(ResponseWriter writer)
