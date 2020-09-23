@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
+ *         &lt;element ref="{http://www.opengis.net/ogc}And"/&gt;
  *         &lt;element ref="{http://www.opengis.net/ogc}DWithin"/&gt;
  *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsBetween"/&gt;
  *         &lt;element ref="{http://www.opengis.net/ogc}PropertyIsEqualTo"/&gt;
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "and",
     "dWithin",
     "propertyIsBetween",
     "propertyIsEqualTo",
@@ -48,6 +50,8 @@ public class Filter
 {
 
     private final static long serialVersionUID = 1L;
+    @XmlElement(name = "And", required = true)
+    protected And and;
     @XmlElement(name = "DWithin", required = true)
     protected DWithin dWithin;
     @XmlElement(name = "PropertyIsBetween", required = true)
@@ -60,6 +64,34 @@ public class Filter
     protected PropertyIsGreaterThanOrEqualTo propertyIsGreaterThanOrEqualTo;
     @XmlElement(name = "PropertyIsGreaterThan", required = true)
     protected PropertyIsGreaterThan propertyIsGreaterThan;
+
+    /**
+     * Gets the value of the and property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link And }
+     *     
+     */
+    public And getAnd() {
+        return and;
+    }
+
+    /**
+     * Sets the value of the and property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link And }
+     *     
+     */
+    public void setAnd(And value) {
+        this.and = value;
+    }
+
+    public boolean isSetAnd() {
+        return (this.and!= null);
+    }
 
     /**
      * Gets the value of the dWithin property.

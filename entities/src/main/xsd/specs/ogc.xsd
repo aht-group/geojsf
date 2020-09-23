@@ -24,6 +24,7 @@
     <xsd:element name="Filter">
         <xsd:complexType>
             <xsd:sequence>
+            	<xsd:element ref="ogc:And" maxOccurs="1"/>
                 <xsd:element ref="ogc:DWithin" maxOccurs="1"/>
                 <xsd:element ref="ogc:PropertyIsBetween" maxOccurs="1"/>
                 <xsd:element ref="ogc:PropertyIsEqualTo" maxOccurs="1"/>
@@ -39,6 +40,18 @@
                 <xsd:element ref="ogc:Literal" maxOccurs="unbounded"/>
             </xsd:sequence>
             <xsd:attribute name="name" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+     <xsd:element name="And">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ogc:DWithin" maxOccurs="1"/>
+                <xsd:element ref="ogc:PropertyIsBetween" maxOccurs="5"/>
+                <xsd:element ref="ogc:PropertyIsEqualTo" maxOccurs="5"/>
+                <xsd:element ref="ogc:PropertyIsLessThan" maxOccurs="5"/>
+				<xsd:element ref="ogc:PropertyIsGreaterThanOrEqualTo" maxOccurs="5"/>
+				<xsd:element ref="ogc:PropertyIsGreaterThan" maxOccurs="5"/>
+            </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="DWithin">
