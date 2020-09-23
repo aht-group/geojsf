@@ -25,7 +25,7 @@ public class CliGeoServerRest
 		rest = new GeoServerRestWrapper(config);
 	}
 	
-//ahtutils.highlight:initDirectly
+//jeesl.highlight:initDirectly
 	public void initDirectly()
 	{
 		String url = "http://localhost:8080/geoserver";
@@ -33,14 +33,14 @@ public class CliGeoServerRest
 		String password = "password";
 		GeoServerRest rest = new GeoServerRestWrapper(url,user,password);
 	}
-//ahtutils.highlight:initDirectly
+//jeesl.highlight:initDirectly
 	
-//ahtutils.highlight:initWithCommons
+//jeesl.highlight:initWithCommons
 	public void initWithCommons(Configuration config)
 	{
 		GeoServerRest rest = new GeoServerRestWrapper(config);
 	}
-//ahtutils.highlight:initWithCommons
+//jeesl.highlight:initWithCommons
 	
 	public void test() throws IOException
 	{

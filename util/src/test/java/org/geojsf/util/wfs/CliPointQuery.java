@@ -57,7 +57,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	@SuppressWarnings({ "unchecked", "rawtypes", "unused" })
 	public void genericPointQuery()
 	{
-//ahtutils.highlight:point
+//jeesl.highlight:point
 		JeeslIdFacade fGeo = getGeoFacade();
 		
 		Coordinates coordinates = new Coordinates();
@@ -69,7 +69,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 		
 		WfsPointQuery pq = new WfsPointQuery(fGeo,new GeoJsfGetFeaturePropertyProvider(),layer,SampleSpatialEntity.class,SampleSpatialEntity.class);
 		List<SampleSpatialEntity> list = pq.execute(coordinates,distance);
-//ahtutils.highlight:point
+//jeesl.highlight:point
 	}
 	
 	public static void main(String[] args)

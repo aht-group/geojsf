@@ -23,15 +23,15 @@ public class CliGeoServerStyleManager
 		styleManager = init(rest,new File("target"),"target");
 	}
 
-//ahtutils.highlight:init
+//jeesl.highlight:init
 	public GeoServerStyleManager init(GeoServerRest rest, File styleDir, String stylePath)
 	{
 		GeoServerStyleManager styleManager = new GeoServerStyleManager(rest);
 		return styleManager;
 	}
-//ahtutils.highlight:init
+//jeesl.highlight:init
 	
-//ahtutils.highlight:basic
+//jeesl.highlight:basic
 	public void basic(GeoServerRest rest, Document docStyle) throws IOException
 	{
 		Styles styles = rest.styles();
@@ -43,7 +43,7 @@ public class CliGeoServerStyleManager
 //		rest.updateStyle(docStyle);
 //		rest.updateStyle("ws",docStyle);
 	}
-//ahtutils.highlight:basic
+//jeesl.highlight:basic
 	
 	
 }

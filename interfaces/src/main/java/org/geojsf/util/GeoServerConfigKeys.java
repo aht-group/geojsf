@@ -7,7 +7,7 @@ public interface GeoServerConfigKeys
 	
 	public static final String dirStyle = "geoserver.style.dir";
 
-//ahtutils.highlight:keys	
+//jeesl.highlight:keys	
 	public static String workspace = "geoserver.workspace";
 	
 	public static String restExportUrl = "geoserver.rest.export.url";
@@ -17,7 +17,7 @@ public interface GeoServerConfigKeys
 	public static String restUrl = "geoserver.rest.url";
 	public static String restUser = "geoserver.rest.user";
 	public static String restPassword = "geoserver.rest.password";
-//ahtutils.highlight:keys
+//jeesl.highlight:keys
 	
 	public static String dsName = "geoserver.ds.name";
 	public static String dsDescription = "geoserver.ds.description";

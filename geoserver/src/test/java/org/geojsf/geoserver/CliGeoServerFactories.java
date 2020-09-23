@@ -24,10 +24,10 @@ public class CliGeoServerFactories
 
 	public void examples()
 	{
-//ahtutils.highlight:examples
+//jeesl.highlight:examples
 		Workspace workspace = XmlWorkspaceFactory.build("myWorkspace");
 		DataStore ds = XmlDataStoreFactory.build("myDataSource");
-//ahtutils.highlight:examples
+//jeesl.highlight:examples
 		JaxbUtil.info(ds);
 		JaxbUtil.info(workspace);
 	}

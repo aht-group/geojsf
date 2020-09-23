@@ -31,9 +31,9 @@ public class CliGeoServerWorkspaceManager
 
 	public GeoServerWorkspaceManager init(GeoServerRest rest)
 	{
-//ahtutils.highlight:init
+//jeesl.highlight:init
 		GeoServerWorkspaceManager workspaceManager = new GeoServerWorkspaceManager(rest);
-//ahtutils.highlight:init
+//jeesl.highlight:init
 		return workspaceManager;
 	}
 	
@@ -41,19 +41,19 @@ public class CliGeoServerWorkspaceManager
 	{
 		String wsName = "ws";
 		Workspace ws = XmlWorkspaceFactory.build(wsName);
-//ahtutils.highlight:basic
+//jeesl.highlight:basic
 		boolean available = workspaceManager.isAvailable(ws);
 		Workspaces workspaces = workspaceManager.getWorkspaces();
-//ahtutils.highlight:basic
+//jeesl.highlight:basic
 	}
 
 	public void manager() throws IOException, GeoServerConfigurationException
 	{
-//ahtutils.highlight:create
+//jeesl.highlight:create
 		Workspace ws = new Workspace();
 		ws.setName("myWorkspace");
 		workspaceManager.create(ws);
-//ahtutils.highlight:create
+//jeesl.highlight:create
 	}
 	
 	public void documentation() throws IOException
