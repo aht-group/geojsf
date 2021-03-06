@@ -24,9 +24,9 @@ public class HttpUtil {
 	         }
 	         rd.close();
 	      } catch (IOException e) {
-	         e.printStackTrace();
+	         result = e.getMessage();
 	      } catch (Exception e) {
-	         e.printStackTrace();
+	         result = e.getMessage();
 	      }
 	      return result;
 	   }
