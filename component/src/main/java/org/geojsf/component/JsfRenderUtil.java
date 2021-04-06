@@ -167,7 +167,7 @@ public class JsfRenderUtil {
 		    renderTextWithLB("GeoJSF.setAjaxUpdates('" +encodeAjax(map, "mapClick") +"', '" +encodeAjax(map, "mapMove") +"');");
 		    renderTextWithLB("GeoJSF.initMap('" +map.getClientId() +"','" +map.getBaseMap() +"');");
 		    renderLinebreaks(2);
-		    String srcUrl = context.getExternalContext().getRequestScheme() +"://" +context.getExternalContext().getRequestServerName() +":" +context.getExternalContext().getRequestServerPort() +context.getExternalContext().getRequestContextPath() +"/javax.faces.resource/30px-Location-marker.png.jsf?ln=geojsf";
+		    String srcUrl = context.getExternalContext().getRequestScheme() +"://" +context.getExternalContext().getRequestServerName() +":" +context.getExternalContext().getRequestServerPort() +context.getExternalContext().getRequestContextPath() +"/javax.faces.resource/marker.png.jsf?ln=geojsf";
 
 		    if (map.getMarkerUrl()!=null)
 		    {
