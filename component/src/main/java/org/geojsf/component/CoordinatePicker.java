@@ -136,12 +136,16 @@ public class CoordinatePicker
 		renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width));
 		renderer.renderLinebreaks(1);
 
+		//First, render the JavaScript code to initialize the map
+		renderer.renderMapInitialization(this.getFacesContext());
+
+		
 		// Check if the list of VIEWs is empty
 		if (null == dmMap || dmMap.getViews().isEmpty())
 		{
-		    writer.startElement("center", this);
-		    writer.writeText("no layers given.", null);
-		    writer.endElement("center");
+		    //writer.startElement("center", this);
+		    //writer.writeText("no layers given.", null);
+		    //writer.endElement("center");
 		    logger.warn("Map can not be rendered without layers!");
 		}
 		else
@@ -149,18 +153,15 @@ public class CoordinatePicker
 		    layerManager = new LayerManager();
 		    layerManager.initLayers(dmMap);
 
-		    //First, render the JavaScript code to initialize the map
-		    renderer.renderMapInitialization(this.getFacesContext());
-
+		    
 		    //Next, render the layers
 		    layerManager.renderLayers(writer, renderer, false);
-
-		    //logger.info("Map initialization completed for " +this.getClientId() +" (ID: " +this.getId() +") holding " +serviceList.size() +" layers.");
-		    writer.endElement("script"); 
-
-		    //Set flag that map initiation is completed and not to be repeated
-		    initStage = false;
 		}
+		//logger.info("Map initialization completed for " +this.getClientId() +" (ID: " +this.getId() +") holding " +serviceList.size() +" layers.");
+		writer.endElement("script"); 
+
+		//Set flag that map initiation is completed and not to be repeated
+		initStage = false;
 	    }
 	}
 	
