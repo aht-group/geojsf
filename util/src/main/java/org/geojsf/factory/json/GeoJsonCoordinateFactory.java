@@ -22,4 +22,14 @@ public class GeoJsonCoordinateFactory implements Serializable
 		
 		return json;
 	}
+	
+	public static LngLatAlt build(org.locationtech.jts.geom.Coordinate coordintate)
+	{
+		LngLatAlt json = new LngLatAlt();
+		
+		json.setLatitude(coordintate.y);
+		json.setLongitude(coordintate.x);
+		
+		return json;
+	}
 }
