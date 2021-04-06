@@ -36,4 +36,12 @@ public class XmlCoordinateFactory implements Serializable
 		xml.setLon(point.getCoordinate().x);
 		return xml;
 	}
+	
+	public static Coordinate build(org.locationtech.jts.geom.Point point)
+	{
+		Coordinate xml = build();
+		xml.setLat(point.getCoordinate().y);
+		xml.setLon(point.getCoordinate().x);
+		return xml;
+	}
 }
