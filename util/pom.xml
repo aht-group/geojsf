@@ -241,10 +241,9 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>org.locationtech</groupId>
+			<groupId>org.locationtech.jts</groupId>
 			<artifactId>jts-core</artifactId>
-			<version>1.16.0-RC1
-			</version>
+			<version>1.16.0</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>xercesImpl</artifactId>
