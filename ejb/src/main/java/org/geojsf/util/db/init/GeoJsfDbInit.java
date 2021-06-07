@@ -44,7 +44,7 @@ import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 							G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+							F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
 							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -54,7 +54,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,LAYER>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-							SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 							RULE extends GeoJsfSldRule<L,D,G>
 							>
@@ -114,7 +114,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 	
 	public static <L extends JeeslLang,D extends JeeslDescription,
 				G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-				F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+				F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 				CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 				SERVICE extends GeoJsfService<L,D,LAYER>,
 				LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -124,7 +124,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 				DS extends GeoJsfDataSource<L,D,LAYER>,
 				SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 				RULE extends GeoJsfSldRule<L,D,G>,
-				SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+				SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 				SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>> 
 		GeoJsfDbInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,

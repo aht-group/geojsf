@@ -10,12 +10,12 @@ import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatusFixedCode;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
-public interface GeoJsfLocationLevel<S extends JeeslStatus<S,L,D>,
+public interface GeoJsfLocationLevel<S extends JeeslStatus<L,D,S>,
 								L extends JeeslLang, D extends JeeslDescription,
 								G extends JeeslGraphic<L,D,?,?,?>>
 						extends Serializable,EjbPersistable,
 								
-								JeeslStatus<S,L,D>,JeeslStatusFixedCode,
+								JeeslStatus<L,D,S>,JeeslStatusFixedCode,
 								EjbWithCodeGraphic<G>
 {
 	

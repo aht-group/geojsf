@@ -55,7 +55,7 @@ import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDescription,
 										G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-										F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+										F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 										SERVICE extends GeoJsfService<L,D,LAYER>,
 										LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -65,10 +65,10 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 										VP extends GeoJsfViewPort,
 										DS extends GeoJsfDataSource<L,D,LAYER>,
 										SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-										SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+										SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 										RULE extends GeoJsfSldRule<L,D,G>,
-										TMP extends JeeslStatus<TMP,L,D>
+										TMP extends JeeslStatus<L,D,TMP>
 										>
 	implements GeoJsfDatabaseExportRest,GeoJsfDatabaseImportRest2
 {
@@ -113,7 +113,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
 					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -124,9 +124,9 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>,
-					SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-					TMP extends JeeslStatus<TMP,L,D>>
+					TMP extends JeeslStatus<L,D,TMP>>
 		GeoJsfDatabaseRestService<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,TMP>
 		factory(GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate, final Class<TMP> cTypeMultiPolygon)
 	{
@@ -263,7 +263,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	@Override public DataUpdate importGeoJsfTypesMultipolygon(Container types){return importStatus(cTypeMultiPolygon,types,null);}
 	
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public <S extends JeeslStatus<S,L,D>, P extends JeeslStatus<P,L,D>> DataUpdate importStatus(Class<S> clStatus, Container container, Class<P> cParent)
+    public <S extends JeeslStatus<L,D,S>, P extends JeeslStatus<L,D,P>> DataUpdate importStatus(Class<S> clStatus, Container container, Class<P> cParent)
     {
     	for(Status xml : container.getStatus()){xml.setGroup(clStatus.getSimpleName());}
 		JeeslDbStatusUpdater asdi = new JeeslDbStatusUpdater();

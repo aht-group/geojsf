@@ -41,7 +41,7 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 							G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+							F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
 							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -51,7 +51,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,LAYER>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-							SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 							RULE extends GeoJsfSldRule<L,D,G>>
 	implements Serializable
@@ -116,7 +116,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
 					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -127,7 +127,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>,
-					SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>> 
 		SldRuleHandler<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> factory(GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,final String[] defaultLangs,final Class<L> cL, final Class<D> cD,final Class<RULE> cRule,final Class<SLD> cSld,final Class<G> cGraphic,final Class<GT> cGraphicType,final Class<F> cF,final Class<FS> cGraphicStyle)
 	{

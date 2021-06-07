@@ -24,12 +24,12 @@ import org.slf4j.LoggerFactory;
 
 public class GeoJsfStationFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 										STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
-										TYPE extends JeeslStatus<TYPE,L,D>, SUBTYPE extends JeeslStatus<SUBTYPE,L,D>,
-										SCHEME extends JeeslStatus<SCHEME,L,D>,
+										TYPE extends JeeslStatus<L,D,TYPE>, SUBTYPE extends JeeslStatus<L,D,SUBTYPE>,
+										SCHEME extends JeeslStatus<L,D,SCHEME>,
 										CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
 										CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
-										CAPT extends JeeslStatus<CAPT,L,D>,
-										CAPS extends JeeslStatus<CAPS,L,D>>
+										CAPT extends JeeslStatus<L,D,CAPT>,
+										CAPS extends JeeslStatus<L,D,CAPS>>
 				extends JeeslFacadeBean
 				implements GeoJsfStationFacade<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>
 {	

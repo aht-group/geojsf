@@ -21,7 +21,7 @@ import org.geojsf.model.xml.area.Areas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoJsfAreaBasinRest <L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<MODEL,L,D>>
+public class GeoJsfAreaBasinRest <L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<L,D,MODEL>>
 	extends AbstractUtilsRest<L,D>
 	implements GeoJsfAreaBasinSurfaceRestExport,GeoJsfAreaBasinSurfaceRestImport
 {
@@ -40,7 +40,7 @@ public class GeoJsfAreaBasinRest <L extends JeeslLang,D extends JeeslDescription
 		efBasin = EjbBasinFactory.factory(cL, cD, cB);
 	}
 	
-	public static <L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<MODEL,L,D>>
+	public static <L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<L,D,MODEL>>
 		GeoJsfAreaBasinRest<L,D,BASIN,MODEL>
 		factory(JeeslFacade fGeoMonitoring, final String[] defaultLangs, final Class<L> cL, final Class<D> cD,final Class<BASIN> cB,final Class<MODEL> cM)
 	{

@@ -13,9 +13,9 @@ import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
 public class TxtSldRuleFactory<L extends JeeslLang, D extends JeeslDescription,
 								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
-								TYPE extends JeeslStatus<TYPE,L,D>,
+								TYPE extends JeeslStatus<L,D,TYPE>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,G>
 								>
@@ -27,8 +27,8 @@ public class TxtSldRuleFactory<L extends JeeslLang, D extends JeeslDescription,
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
 					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
-					TYPE extends JeeslStatus<TYPE,L,D>,
+					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+					TYPE extends JeeslStatus<L,D,TYPE>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>>

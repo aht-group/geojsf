@@ -14,7 +14,7 @@ import com.vividsolutions.jts.geom.MultiPolygon;
 
 public interface GeoBasin<L extends JeeslLang, D extends JeeslDescription,
 							BASIN extends GeoBasin<L,D,BASIN,MODEL>,
-							MODEL extends JeeslStatus<MODEL,L,D>>
+							MODEL extends JeeslStatus<L,D,MODEL>>
 			extends Serializable,EjbWithId,EjbWithLang<L>,EjbWithDescription<D>,EjbWithGeometry<MultiPolygon>
 {
 	MODEL getModel();

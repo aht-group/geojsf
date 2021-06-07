@@ -44,9 +44,9 @@ import net.sf.ahtutils.jsf.util.FacesContextMessage;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 import net.sf.exlp.util.io.StringUtil;
 
-public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescription,LOC extends JeeslStatus<LOC,L,D>,
+public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescription,LOC extends JeeslStatus<L,D,LOC>,
 										G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-										F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+										F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 										SERVICE extends GeoJsfService<L,D,LAYER>,
 										LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -56,7 +56,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 										VP extends GeoJsfViewPort,
 										DS extends GeoJsfDataSource<L,D,LAYER>,
 										SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-										SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+										SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 										RULE extends GeoJsfSldRule<L,D,G>,
 										JSON extends GeoJsfJsonData<L,D,JQ,JL>,

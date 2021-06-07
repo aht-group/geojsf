@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 
 public class GeoViewComparator <L extends JeeslLang, D extends JeeslDescription,
 								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
 								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -37,7 +37,7 @@ public class GeoViewComparator <L extends JeeslLang, D extends JeeslDescription,
 								DS extends GeoJsfDataSource<L,D,LAYER>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,G>,
-								SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,SLDSTYLE extends JeeslStatus<SLDSTYLE,L,D>,
+								SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>>
 {
 	final static Logger logger = LoggerFactory.getLogger(SecurityActionComparator.class);

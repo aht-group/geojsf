@@ -28,11 +28,11 @@ import org.slf4j.LoggerFactory;
 
 public class XmlRuleStatusFactory <L extends JeeslLang,D extends JeeslDescription,
 								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 								LAYER extends GeoJsfLayer<L,D,?,?,?,?,SLD>,
 								MAP extends GeoJsfMap<L,D,?,?,?>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-								SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+								SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,G>> 
 				implements Serializable
@@ -48,7 +48,7 @@ public class XmlRuleStatusFactory <L extends JeeslLang,D extends JeeslDescriptio
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <X extends JeeslStatus<X,L,D>> List<Rule> build(SLD sld)
+	public <X extends JeeslStatus<L,D,X>> List<Rule> build(SLD sld)
 	{
 		List<Rule> rules = new ArrayList<Rule>();
 		try
@@ -67,7 +67,7 @@ public class XmlRuleStatusFactory <L extends JeeslLang,D extends JeeslDescriptio
 		return rules;
 	}
 	
-	private <X extends JeeslStatus<X,L,D>> Rule build(SLD sld, X x)
+	private <X extends JeeslStatus<L,D,X>> Rule build(SLD sld, X x)
 	{
 		Rule xml = XmlRuleFactory.build(x.getName().get(sldCp.getLocaleCode()).getLang());
 		xml.setFilter(XmlFilterFactory.equal(sld.getStatusAttribute(), x.getId()));

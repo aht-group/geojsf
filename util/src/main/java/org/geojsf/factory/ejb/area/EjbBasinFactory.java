@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.io.ParseException;
 
-public class EjbBasinFactory<L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<MODEL,L,D>>
+public class EjbBasinFactory<L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<L,D,MODEL>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbBasinFactory.class);
 	
@@ -25,7 +25,7 @@ public class EjbBasinFactory<L extends JeeslLang,D extends JeeslDescription,BASI
 	private EjbLangFactory<L> efLang;
     private EjbDescriptionFactory<D> efDescription;
     
-    public static <L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<MODEL,L,D>>
+    public static <L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<L,D,MODEL>>
 		EjbBasinFactory<L,D,BASIN,MODEL> factory(final Class<L> cL,final Class<D> cD,final Class<BASIN> cB)
     {
         return new EjbBasinFactory<L,D,BASIN,MODEL>(cL,cD,cB);

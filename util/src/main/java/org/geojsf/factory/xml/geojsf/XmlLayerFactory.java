@@ -32,7 +32,7 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,?>>
 						implements Serializable

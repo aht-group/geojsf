@@ -14,7 +14,7 @@ import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
 
 @EjbErNode(name="Type",category="sld",subset="sld",level=3)
 public class DefaultGeoJsfSldType implements Serializable,EjbRemoveable,EjbPersistable,
-								JeeslStatus<DefaultGeoJsfSldType,DefaultGeoJsfLang,DefaultGeoJsfDescription>
+								JeeslStatus<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldType>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;

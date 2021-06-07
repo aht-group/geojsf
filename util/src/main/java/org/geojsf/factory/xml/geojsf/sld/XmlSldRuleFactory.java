@@ -25,9 +25,9 @@ import net.sf.ahtutils.xml.symbol.Symbol;
 
 public class XmlSldRuleFactory <L extends JeeslLang, D extends JeeslDescription,
 								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-								SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+								SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,G>
 								>

@@ -29,13 +29,13 @@ import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public class GeoJsfMonitoringStationRest <L extends JeeslLang,D extends JeeslDescription,
 										STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
-										TYPE extends JeeslStatus<TYPE,L,D>,
-										SUBTYPE extends JeeslStatus<SUBTYPE,L,D>,
-										SCHEME extends JeeslStatus<SCHEME,L,D>,
+										TYPE extends JeeslStatus<L,D,TYPE>,
+										SUBTYPE extends JeeslStatus<L,D,SUBTYPE>,
+										SCHEME extends JeeslStatus<L,D,SCHEME>,
 										CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
 										CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, 
-										CAPT extends JeeslStatus<CAPT,L,D>,
-										CAPS extends JeeslStatus<CAPS,L,D>>
+										CAPT extends JeeslStatus<L,D,CAPT>,
+										CAPS extends JeeslStatus<L,D,CAPS>>
 	extends AbstractUtilsRest<L,D>
 	implements GeoJsfMonitoringStationRestExport,GeoJsfMonitoringStationRestImport
 {
@@ -61,7 +61,7 @@ public class GeoJsfMonitoringStationRest <L extends JeeslLang,D extends JeeslDes
 		efStation = fbMonitoring.station();
 	}
 	
-	public static <L extends JeeslLang,D extends JeeslDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, TYPE extends JeeslStatus<TYPE,L,D>, SUBTYPE extends JeeslStatus<SUBTYPE,L,D>, SCHEME extends JeeslStatus<SCHEME,L,D>, CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAPT extends JeeslStatus<CAPT,L,D>,CAPS extends JeeslStatus<CAPS,L,D>>
+	public static <L extends JeeslLang,D extends JeeslDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, TYPE extends JeeslStatus<L,D,TYPE>, SUBTYPE extends JeeslStatus<L,D,SUBTYPE>, SCHEME extends JeeslStatus<L,D,SCHEME>, CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAPT extends JeeslStatus<L,D,CAPT>,CAPS extends JeeslStatus<L,D,CAPS>>
 		GeoJsfMonitoringStationRest<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>
 		factory(JeeslFacade fGeoMonitoring, final String[] defaultLangs,
 				GeoMonitoringFactoryBuilder<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS> fbMonitoring,

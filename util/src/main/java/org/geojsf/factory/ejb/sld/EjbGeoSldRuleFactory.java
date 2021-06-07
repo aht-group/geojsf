@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
 
 public class EjbGeoSldRuleFactory<L extends JeeslLang, D extends JeeslDescription,
 									G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-									F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+									F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-									SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
+									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,G>
 									>
@@ -32,10 +32,10 @@ public class EjbGeoSldRuleFactory<L extends JeeslLang, D extends JeeslDescriptio
     
     public static <L extends JeeslLang, D extends JeeslDescription,
 				    G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<FS,L,D>,
+					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-					SLDTYPE extends JeeslStatus<SLDTYPE,L,D>,
-					STYLE extends JeeslStatus<STYLE,L,D>,
+					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+					STYLE extends JeeslStatus<L,D,STYLE>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>
 					>

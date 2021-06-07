@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.io.ParseException;
 
-public class EjbStationFactory<L extends JeeslLang,D extends JeeslDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, TYPE extends JeeslStatus<TYPE,L,D>, SUBTYPE extends JeeslStatus<SUBTYPE,L,D>, SCHEME extends JeeslStatus<SCHEME,L,D>, CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAPT extends JeeslStatus<CAPT,L,D>,CAPS extends JeeslStatus<CAPS,L,D>>
+public class EjbStationFactory<L extends JeeslLang,D extends JeeslDescription, STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, TYPE extends JeeslStatus<L,D,TYPE>, SUBTYPE extends JeeslStatus<L,D,SUBTYPE>, SCHEME extends JeeslStatus<L,D,SCHEME>, CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>, CAPT extends JeeslStatus<L,D,CAPT>,CAPS extends JeeslStatus<L,D,CAPS>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbStationFactory.class);
 	
@@ -31,12 +31,12 @@ public class EjbStationFactory<L extends JeeslLang,D extends JeeslDescription, S
     
     private static <L extends JeeslLang,D extends JeeslDescription,
     				STATION extends GeoStation<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
-    				TYPE extends JeeslStatus<TYPE,L,D>,
-    				SUBTYPE extends JeeslStatus<SUBTYPE,L,D>,
-    				SCHEME extends JeeslStatus<SCHEME,L,D>,
+    				TYPE extends JeeslStatus<L,D,TYPE>,
+    				SUBTYPE extends JeeslStatus<L,D,SUBTYPE>,
+    				SCHEME extends JeeslStatus<L,D,SCHEME>,
     				CODE extends GeoStationCode<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
     				CAP extends GeoStationCapability<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>,
-    				CAPT extends JeeslStatus<CAPT,L,D>,CAPS extends JeeslStatus<CAPS,L,D>>
+    				CAPT extends JeeslStatus<L,D,CAPT>,CAPS extends JeeslStatus<L,D,CAPS>>
 		EjbStationFactory<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS> factory(final Class<L> cL,final Class<D> cD,final Class<STATION> cStation)
     {
         return new EjbStationFactory<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>(cL,cD,cStation);

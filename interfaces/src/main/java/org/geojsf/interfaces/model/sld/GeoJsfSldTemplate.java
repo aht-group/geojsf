@@ -15,7 +15,7 @@ import org.jeesl.interfaces.model.with.system.locale.EjbWithLang;
 public interface GeoJsfSldTemplate<L extends JeeslLang,
 						   D extends JeeslDescription,
 						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-						   SLDTYPE extends JeeslStatus<SLDTYPE,L,D>>
+						   SLDTYPE extends JeeslStatus<L,D,SLDTYPE>>
 			extends Serializable,EjbPersistable,EjbSaveable,EjbRemoveable,EjbWithCode,EjbWithLang<L>,EjbWithDescription<D>
 {		
 	String getXml();
