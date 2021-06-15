@@ -38,12 +38,13 @@ public class JsfRenderUtil {
 		}
 	}
 	
-	public void renderDiv(String id, String style)
+	public void renderDiv(String id, String style, String content)
 	{
 		try {
 			writer.startElement("div", component);
 			writer.writeAttribute("id", id, null);
 			writer.writeAttribute("style", style, null);
+			writer.write(content);
 			writer.endElement("div");
 		} catch (IOException e) {
 			logger.warn("Could not render div!");
@@ -199,7 +200,7 @@ public class JsfRenderUtil {
 	public void renderTextWithLB(String text)
 	{
 		try {
-			writer.writeText(text +System.getProperty("line.separator"), null);
+			writer.writeText(text +"\n" +System.getProperty("line.separator"), null);
 		} catch (IOException e) {
 			logger.info("Problem rendering " +text +" using JsfRenderUtil");
 		}

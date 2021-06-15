@@ -189,7 +189,7 @@ public class Map <L extends JeeslLang,D extends JeeslDescription,
 				renderer.renderLinebreaks(2);
 				
 				// Render the DIV container that will be used by OpenLayers to inject the OpenLayers map
-				renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width));
+				renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width),"");
 				renderer.renderLinebreaks(1);
 				
 				// Check if the list of VIEWs is empty

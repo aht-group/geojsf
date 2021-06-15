@@ -32,7 +32,9 @@ import org.geojsf.helpers.LayerManager;
 @ResourceDependencies({
 @ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
 @ResourceDependency(library = "geoJsfCss"  , name = "ol.css", target = "head"),
-@ResourceDependency(library = "geojsf", name = "geojsf.css", target = "head")})
+@ResourceDependency(library = "js.geojsf", name = "geojsf.css", target = "head"),
+@ResourceDependency(library = "js.geojsf", name = "ol.js", target = "head"),
+@ResourceDependency(library = "js.geojsf", name = "GeoJSF3.js", target = "head")})
 @FacesComponent(value="org.geojsf.component.CoordinatePicker")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class CoordinatePicker 
@@ -133,7 +135,8 @@ public class CoordinatePicker
 		renderer.renderLinebreaks(2);
 
 		// Render the DIV container that will be used by OpenLayers to inject the OpenLayers map
-		renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width));
+		renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width),"");
+		//renderer.renderDiv(this.getClientId()+"_export-png", MapUtil.buildStyle(height, width),"PNG");
 		renderer.renderLinebreaks(1);
 
 		//First, render the JavaScript code to initialize the map
