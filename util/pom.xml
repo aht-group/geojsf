@@ -92,7 +92,11 @@
 					<groupId>commons-codec</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
 		
 		<!-- GeoJson -->
 		<dependency>
@@ -145,7 +149,6 @@
 			</exclusions>
 		</dependency>
 		
-		
 		<dependency>
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
@@ -192,6 +195,7 @@
 	         </exclusions>
         </dependency>
 		
+		<!-- GEO -->
 		<dependency>
 			<groupId>com.vividsolutions</groupId>
 			<artifactId>jts</artifactId>
@@ -212,11 +216,6 @@
 					<groupId>xerces</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
 		</dependency>
 		
 		<!-- Logging -->
