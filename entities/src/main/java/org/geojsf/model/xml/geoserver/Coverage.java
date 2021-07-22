@@ -1,10 +1,10 @@
 
-package org.geojsf.xml.geoserver;
+package org.geojsf.model.xml.geoserver;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -19,8 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.geojsf.org/geoserver}connection"/&gt;
  *       &lt;/sequence&gt;
+ *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -29,44 +29,42 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "connection"
-})
-@XmlRootElement(name = "postgis")
-public class Postgis
+@XmlType(name = "")
+@XmlRootElement(name = "coverage")
+public class Coverage
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(required = true)
-    protected Connection connection;
+    @XmlAttribute(name = "name")
+    protected String name;
 
     /**
-     * Gets the value of the connection property.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
-     *     {@link Connection }
+     *     {@link String }
      *     
      */
-    public Connection getConnection() {
-        return connection;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the connection property.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Connection }
+     *     {@link String }
      *     
      */
-    public void setConnection(Connection value) {
-        this.connection = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
-    public boolean isSetConnection() {
-        return (this.connection!= null);
+    public boolean isSetName() {
+        return (this.name!= null);
     }
 
 }

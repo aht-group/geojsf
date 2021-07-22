@@ -2,10 +2,10 @@ package org.geojsf.interfaces.rest.geoserver;
 
 import java.io.IOException;
 
-import org.geojsf.xml.geoserver.CoverageStore;
-import org.geojsf.xml.geoserver.CoverageStores;
-import org.geojsf.xml.geoserver.Coverages;
-import org.geojsf.xml.geoserver.Workspace;
+import org.geojsf.model.xml.geoserver.CoverageStore;
+import org.geojsf.model.xml.geoserver.CoverageStores;
+import org.geojsf.model.xml.geoserver.Coverages;
+import org.geojsf.model.xml.geoserver.Workspace;
 import org.jdom2.Document;
 
 public interface GeoServerCoverageRest

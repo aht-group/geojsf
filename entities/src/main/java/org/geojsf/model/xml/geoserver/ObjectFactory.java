@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geoserver;
+package org.geojsf.model.xml.geoserver;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

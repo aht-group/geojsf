@@ -11,9 +11,9 @@ import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.interfaces.rest.GeoServerRest;
+import org.geojsf.model.xml.geoserver.Workspace;
+import org.geojsf.model.xml.geoserver.Workspaces;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
-import org.geojsf.xml.geoserver.Workspace;
-import org.geojsf.xml.geoserver.Workspaces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

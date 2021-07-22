@@ -8,12 +8,12 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.interfaces.rest.geoserver.GeoServerLayerRest;
-import org.geojsf.xml.geoserver.CoverageStore;
-import org.geojsf.xml.geoserver.FeatureType;
-import org.geojsf.xml.geoserver.Layer;
-import org.geojsf.xml.geoserver.Layers;
-import org.geojsf.xml.geoserver.Style;
-import org.geojsf.xml.geoserver.Workspace;
+import org.geojsf.model.xml.geoserver.CoverageStore;
+import org.geojsf.model.xml.geoserver.FeatureType;
+import org.geojsf.model.xml.geoserver.Layer;
+import org.geojsf.model.xml.geoserver.Layers;
+import org.geojsf.model.xml.geoserver.Style;
+import org.geojsf.model.xml.geoserver.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

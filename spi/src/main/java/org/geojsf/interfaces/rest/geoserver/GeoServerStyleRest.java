@@ -2,7 +2,7 @@ package org.geojsf.interfaces.rest.geoserver;
 
 import java.io.IOException;
 
-import org.geojsf.xml.geoserver.Styles;
+import org.geojsf.model.xml.geoserver.Styles;
 import org.jdom2.Document;
 
 public interface GeoServerStyleRest

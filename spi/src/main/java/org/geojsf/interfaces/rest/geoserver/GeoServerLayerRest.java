@@ -2,8 +2,8 @@ package org.geojsf.interfaces.rest.geoserver;
 
 import java.io.IOException;
 
-import org.geojsf.xml.geoserver.Layer;
-import org.geojsf.xml.geoserver.Layers;
+import org.geojsf.model.xml.geoserver.Layer;
+import org.geojsf.model.xml.geoserver.Layers;
 
 public interface GeoServerLayerRest
 {	

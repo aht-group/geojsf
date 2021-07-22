@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geoserver;
+package org.geojsf.model.xml.geoserver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.geojsf.org/geoserver}style" maxOccurs="unbounded"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}featureType" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -32,52 +32,52 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "style"
+    "featureType"
 })
-@XmlRootElement(name = "styles")
-public class Styles
+@XmlRootElement(name = "featureTypes")
+public class FeatureTypes
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<Style> style;
+    protected List<FeatureType> featureType;
 
     /**
-     * Gets the value of the style property.
+     * Gets the value of the featureType property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the style property.
+     * This is why there is not a <CODE>set</CODE> method for the featureType property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getStyle().add(newItem);
+     *    getFeatureType().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Style }
+     * {@link FeatureType }
      * 
      * 
      */
-    public List<Style> getStyle() {
-        if (style == null) {
-            style = new ArrayList<Style>();
+    public List<FeatureType> getFeatureType() {
+        if (featureType == null) {
+            featureType = new ArrayList<FeatureType>();
         }
-        return this.style;
+        return this.featureType;
     }
 
-    public boolean isSetStyle() {
-        return ((this.style!= null)&&(!this.style.isEmpty()));
+    public boolean isSetFeatureType() {
+        return ((this.featureType!= null)&&(!this.featureType.isEmpty()));
     }
 
-    public void unsetStyle() {
-        this.style = null;
+    public void unsetFeatureType() {
+        this.featureType = null;
     }
 
 }

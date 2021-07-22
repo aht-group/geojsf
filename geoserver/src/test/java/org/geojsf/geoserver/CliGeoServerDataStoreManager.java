@@ -11,11 +11,11 @@ import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.interfaces.rest.GeoServerRest;
+import org.geojsf.model.xml.geoserver.DataStore;
+import org.geojsf.model.xml.geoserver.DataStores;
+import org.geojsf.model.xml.geoserver.Workspace;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
 import org.geojsf.util.GeoServerConfigKeys;
-import org.geojsf.xml.geoserver.DataStore;
-import org.geojsf.xml.geoserver.DataStores;
-import org.geojsf.xml.geoserver.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

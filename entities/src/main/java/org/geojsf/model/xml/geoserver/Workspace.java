@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geoserver;
+package org.geojsf.model.xml.geoserver;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,9 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *       &lt;/sequence&gt;
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="namespace" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -30,14 +29,16 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "coverage")
-public class Coverage
+@XmlRootElement(name = "workspace")
+public class Workspace
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlAttribute(name = "name")
     protected String name;
+    @XmlAttribute(name = "namespace")
+    protected String namespace;
 
     /**
      * Gets the value of the name property.
@@ -65,6 +66,34 @@ public class Coverage
 
     public boolean isSetName() {
         return (this.name!= null);
+    }
+
+    /**
+     * Gets the value of the namespace property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNamespace() {
+        return namespace;
+    }
+
+    /**
+     * Sets the value of the namespace property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNamespace(String value) {
+        this.namespace = value;
+    }
+
+    public boolean isSetNamespace() {
+        return (this.namespace!= null);
     }
 
 }

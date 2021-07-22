@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geoserver;
+package org.geojsf.model.xml.geoserver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.geojsf.org/geoserver}layer" maxOccurs="unbounded"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}dataStore" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -32,52 +32,52 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "layer"
+    "dataStore"
 })
-@XmlRootElement(name = "layers")
-public class Layers
+@XmlRootElement(name = "dataStores")
+public class DataStores
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<Layer> layer;
+    protected List<DataStore> dataStore;
 
     /**
-     * Gets the value of the layer property.
+     * Gets the value of the dataStore property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the layer property.
+     * This is why there is not a <CODE>set</CODE> method for the dataStore property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getLayer().add(newItem);
+     *    getDataStore().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Layer }
+     * {@link DataStore }
      * 
      * 
      */
-    public List<Layer> getLayer() {
-        if (layer == null) {
-            layer = new ArrayList<Layer>();
+    public List<DataStore> getDataStore() {
+        if (dataStore == null) {
+            dataStore = new ArrayList<DataStore>();
         }
-        return this.layer;
+        return this.dataStore;
     }
 
-    public boolean isSetLayer() {
-        return ((this.layer!= null)&&(!this.layer.isEmpty()));
+    public boolean isSetDataStore() {
+        return ((this.dataStore!= null)&&(!this.dataStore.isEmpty()));
     }
 
-    public void unsetLayer() {
-        this.layer = null;
+    public void unsetDataStore() {
+        this.dataStore = null;
     }
 
 }
