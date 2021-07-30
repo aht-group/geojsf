@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageRest;
-import org.geojsf.xml.geoserver.CoverageStore;
-import org.geojsf.xml.geoserver.CoverageStores;
-import org.geojsf.xml.geoserver.Workspace;
+import org.geojsf.model.xml.geoserver.CoverageStore;
+import org.geojsf.model.xml.geoserver.CoverageStores;
+import org.geojsf.model.xml.geoserver.Workspace;
 import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

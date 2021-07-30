@@ -3,7 +3,7 @@ package org.geojsf.factory.xml.geoserver;
 import java.io.Serializable;
 
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
-import org.geojsf.xml.geoserver.Layer;
+import org.geojsf.model.xml.geoserver.Layer;
 import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

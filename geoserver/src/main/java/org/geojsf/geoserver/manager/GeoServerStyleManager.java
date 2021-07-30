@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.geojsf.interfaces.rest.geoserver.GeoServerStyleRest;
-import org.geojsf.xml.geoserver.Style;
-import org.geojsf.xml.geoserver.Styles;
-import org.geojsf.xml.geoserver.Workspace;
+import org.geojsf.model.xml.geoserver.Style;
+import org.geojsf.model.xml.geoserver.Styles;
+import org.geojsf.model.xml.geoserver.Workspace;
 import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

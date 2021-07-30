@@ -3,8 +3,8 @@ package org.geojsf.factory.xml.geoserver;
 import java.io.Serializable;
 
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
-import org.geojsf.xml.geoserver.CoverageStore;
-import org.geojsf.xml.geoserver.Workspace;
+import org.geojsf.model.xml.geoserver.CoverageStore;
+import org.geojsf.model.xml.geoserver.Workspace;
 import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

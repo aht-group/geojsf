@@ -6,8 +6,8 @@ import java.util.Set;
 
 import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.interfaces.rest.GeoServerRest;
-import org.geojsf.xml.geoserver.Workspace;
-import org.geojsf.xml.geoserver.Workspaces;
+import org.geojsf.model.xml.geoserver.Workspace;
+import org.geojsf.model.xml.geoserver.Workspaces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

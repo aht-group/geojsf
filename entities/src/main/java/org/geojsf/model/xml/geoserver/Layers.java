@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geoserver;
+package org.geojsf.model.xml.geoserver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.geojsf.org/geoserver}featureType" maxOccurs="unbounded"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}layer" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -32,52 +32,52 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "featureType"
+    "layer"
 })
-@XmlRootElement(name = "featureTypes")
-public class FeatureTypes
+@XmlRootElement(name = "layers")
+public class Layers
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<FeatureType> featureType;
+    protected List<Layer> layer;
 
     /**
-     * Gets the value of the featureType property.
+     * Gets the value of the layer property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the featureType property.
+     * This is why there is not a <CODE>set</CODE> method for the layer property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getFeatureType().add(newItem);
+     *    getLayer().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link FeatureType }
+     * {@link Layer }
      * 
      * 
      */
-    public List<FeatureType> getFeatureType() {
-        if (featureType == null) {
-            featureType = new ArrayList<FeatureType>();
+    public List<Layer> getLayer() {
+        if (layer == null) {
+            layer = new ArrayList<Layer>();
         }
-        return this.featureType;
+        return this.layer;
     }
 
-    public boolean isSetFeatureType() {
-        return ((this.featureType!= null)&&(!this.featureType.isEmpty()));
+    public boolean isSetLayer() {
+        return ((this.layer!= null)&&(!this.layer.isEmpty()));
     }
 
-    public void unsetFeatureType() {
-        this.featureType = null;
+    public void unsetLayer() {
+        this.layer = null;
     }
 
 }

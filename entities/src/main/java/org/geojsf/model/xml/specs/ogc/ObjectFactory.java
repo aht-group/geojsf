@@ -54,6 +54,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link And }
+     * 
+     */
+    public And createAnd() {
+        return new And();
+    }
+
+    /**
      * Create an instance of {@link DWithin }
      * 
      */

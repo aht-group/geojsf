@@ -2,8 +2,8 @@ package org.geojsf.interfaces.rest.geoserver;
 
 import java.io.IOException;
 
-import org.geojsf.xml.geoserver.FeatureType;
-import org.geojsf.xml.geoserver.FeatureTypes;
+import org.geojsf.model.xml.geoserver.FeatureType;
+import org.geojsf.model.xml.geoserver.FeatureTypes;
 import org.jdom2.Document;
 
 public interface GeoServerFeatureTypeRest

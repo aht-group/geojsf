@@ -56,39 +56,7 @@
 					<artifactId>commons-codec</artifactId>
 					<groupId>commons-codec</groupId>
 				</exclusion>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-databind</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-core</artifactId>
-				</exclusion>
 			</exclusions>
-		</dependency>
-		
-		<!-- Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		
-		<!-- Test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jeesl</groupId>
@@ -106,17 +74,10 @@
 					<artifactId>jpwgen</artifactId>
 					<groupId>de.rrze</groupId>
 				</exclusion>
-				<exclusion>
-					<artifactId>poi</artifactId>
-					<groupId>org.apache.poi</groupId>
-				</exclusion>
+				
 				<exclusion>
 					<artifactId>joda-time</artifactId>
 					<groupId>joda-time</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>json</artifactId>
-					<groupId>org.json</groupId>
 				</exclusion>
 				<exclusion>
 					<artifactId>commons-collections</artifactId>
@@ -131,6 +92,10 @@
 					<groupId>commons-codec</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
 		</dependency>
 		
 		<!-- GeoJson -->
@@ -184,7 +149,6 @@
 			</exclusions>
 		</dependency>
 		
-		
 		<dependency>
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
@@ -195,18 +159,19 @@
 		    <scope>provided</scope>
 		</dependency>
 		
+ 		<!-- JPA -->
 		<dependency>
-         <groupId>org.hibernate.javax.persistence</groupId>
-         <artifactId>hibernate-jpa-2.0-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
-      <dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.1.0.Final</version>
             <scope>test</scope>
-      </dependency>
-      <dependency>
+		</dependency>
+		<dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-spatial</artifactId>
             <scope>test</scope>
@@ -230,6 +195,7 @@
 	         </exclusions>
         </dependency>
 		
+		<!-- GEO -->
 		<dependency>
 			<groupId>com.vividsolutions</groupId>
 			<artifactId>jts</artifactId>
@@ -252,22 +218,35 @@
 			</exclusions>
 		</dependency>
 		
+		<!-- Logging -->
 		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
-				
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.jeesl</groupId>
 			<artifactId>jeesl-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.openfuxml</groupId>
-			<artifactId>ofx-core</artifactId>
-			<scope>test</scope>
-		</dependency>
+		
 	</dependencies>
 	
 	<build>

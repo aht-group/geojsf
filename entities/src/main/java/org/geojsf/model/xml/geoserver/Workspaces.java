@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geoserver;
+package org.geojsf.model.xml.geoserver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.geojsf.org/geoserver}coverage" maxOccurs="unbounded"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}workspace" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -32,52 +32,52 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "coverage"
+    "workspace"
 })
-@XmlRootElement(name = "coverages")
-public class Coverages
+@XmlRootElement(name = "workspaces")
+public class Workspaces
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<Coverage> coverage;
+    protected List<Workspace> workspace;
 
     /**
-     * Gets the value of the coverage property.
+     * Gets the value of the workspace property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the coverage property.
+     * This is why there is not a <CODE>set</CODE> method for the workspace property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCoverage().add(newItem);
+     *    getWorkspace().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Coverage }
+     * {@link Workspace }
      * 
      * 
      */
-    public List<Coverage> getCoverage() {
-        if (coverage == null) {
-            coverage = new ArrayList<Coverage>();
+    public List<Workspace> getWorkspace() {
+        if (workspace == null) {
+            workspace = new ArrayList<Workspace>();
         }
-        return this.coverage;
+        return this.workspace;
     }
 
-    public boolean isSetCoverage() {
-        return ((this.coverage!= null)&&(!this.coverage.isEmpty()));
+    public boolean isSetWorkspace() {
+        return ((this.workspace!= null)&&(!this.workspace.isEmpty()));
     }
 
-    public void unsetCoverage() {
-        this.coverage = null;
+    public void unsetWorkspace() {
+        this.workspace = null;
     }
 
 }

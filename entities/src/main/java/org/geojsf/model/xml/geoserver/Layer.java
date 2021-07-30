@@ -1,5 +1,5 @@
 
-package org.geojsf.xml.geoserver;
+package org.geojsf.model.xml.geoserver;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -20,13 +20,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.geojsf.org/geoserver}coverages"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}coverageStore"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}featureType"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}styles"/&gt;
+ *         &lt;element ref="{http://www.geojsf.org/geoserver}style"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="enabled" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
- *       &lt;attribute name="url" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -36,53 +37,142 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "coverages"
+    "coverageStore",
+    "featureType",
+    "styles",
+    "style"
 })
-@XmlRootElement(name = "coverageStore")
-public class CoverageStore
+@XmlRootElement(name = "layer")
+public class Layer
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected Coverages coverages;
+    protected CoverageStore coverageStore;
+    @XmlElement(required = true)
+    protected FeatureType featureType;
+    @XmlElement(required = true)
+    protected Styles styles;
+    @XmlElement(required = true)
+    protected Style style;
     @XmlAttribute(name = "name")
     protected String name;
-    @XmlAttribute(name = "description")
-    protected String description;
     @XmlAttribute(name = "type")
     protected String type;
     @XmlAttribute(name = "enabled")
     protected Boolean enabled;
-    @XmlAttribute(name = "url")
-    protected String url;
 
     /**
-     * Gets the value of the coverages property.
+     * Gets the value of the coverageStore property.
      * 
      * @return
      *     possible object is
-     *     {@link Coverages }
+     *     {@link CoverageStore }
      *     
      */
-    public Coverages getCoverages() {
-        return coverages;
+    public CoverageStore getCoverageStore() {
+        return coverageStore;
     }
 
     /**
-     * Sets the value of the coverages property.
+     * Sets the value of the coverageStore property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Coverages }
+     *     {@link CoverageStore }
      *     
      */
-    public void setCoverages(Coverages value) {
-        this.coverages = value;
+    public void setCoverageStore(CoverageStore value) {
+        this.coverageStore = value;
     }
 
-    public boolean isSetCoverages() {
-        return (this.coverages!= null);
+    public boolean isSetCoverageStore() {
+        return (this.coverageStore!= null);
+    }
+
+    /**
+     * Gets the value of the featureType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FeatureType }
+     *     
+     */
+    public FeatureType getFeatureType() {
+        return featureType;
+    }
+
+    /**
+     * Sets the value of the featureType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FeatureType }
+     *     
+     */
+    public void setFeatureType(FeatureType value) {
+        this.featureType = value;
+    }
+
+    public boolean isSetFeatureType() {
+        return (this.featureType!= null);
+    }
+
+    /**
+     * Gets the value of the styles property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Styles }
+     *     
+     */
+    public Styles getStyles() {
+        return styles;
+    }
+
+    /**
+     * Sets the value of the styles property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Styles }
+     *     
+     */
+    public void setStyles(Styles value) {
+        this.styles = value;
+    }
+
+    public boolean isSetStyles() {
+        return (this.styles!= null);
+    }
+
+    /**
+     * Gets the value of the style property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Style }
+     *     
+     */
+    public Style getStyle() {
+        return style;
+    }
+
+    /**
+     * Sets the value of the style property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Style }
+     *     
+     */
+    public void setStyle(Style value) {
+        this.style = value;
+    }
+
+    public boolean isSetStyle() {
+        return (this.style!= null);
     }
 
     /**
@@ -111,34 +201,6 @@ public class CoverageStore
 
     public boolean isSetName() {
         return (this.name!= null);
-    }
-
-    /**
-     * Gets the value of the description property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Sets the value of the description property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescription(String value) {
-        this.description = value;
-    }
-
-    public boolean isSetDescription() {
-        return (this.description!= null);
     }
 
     /**
@@ -199,34 +261,6 @@ public class CoverageStore
 
     public void unsetEnabled() {
         this.enabled = null;
-    }
-
-    /**
-     * Gets the value of the url property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Sets the value of the url property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUrl(String value) {
-        this.url = value;
-    }
-
-    public boolean isSetUrl() {
-        return (this.url!= null);
     }
 
 }
