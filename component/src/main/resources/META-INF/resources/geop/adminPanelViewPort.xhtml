@@ -4,6 +4,7 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
+    xmlns:j="http://www.jeesl.org/jsf" xmlns:jp="http://jsf.jeesl.org/prototype" xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
     xmlns:aht="http://ahtutils.sourceforge.net/jsf"
     xmlns:composite="http://java.sun.com/jsf/composite">
     
@@ -14,7 +15,7 @@
 	<composite:implementation>
 		<p:panel header="#{msg.mapViewPort}" styleClass="auPanelWithGrid">
 			<f:facet name="actions">
-				<aht:icon type="save" listener="#{adminMapViewPortBean.saveViewPort()}" update=":sCenter :sEast"/>
+				<j:icon type="save" listener="#{adminMapViewPortBean.saveViewPort()}" update=":sCenter :sEast"/>
 			</f:facet>
 			<p:panelGrid columns="2" columnClasses="auPwg30,auPwg70">
 				<h:outputText value="#{msg.mapCode}"/>

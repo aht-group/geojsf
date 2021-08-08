@@ -4,8 +4,8 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
+    xmlns:j="http://www.jeesl.org/jsf" xmlns:jp="http://jsf.jeesl.org/prototype" xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
     xmlns:geop="http://geojsf.org/prototype"
-	xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
     xmlns:aht="http://ahtutils.sourceforge.net/jsf"
     xmlns:aup="http://ahtutils.sourceforge.net/prototype"
     xmlns:composite="http://java.sun.com/jsf/composite">
@@ -24,7 +24,7 @@
 								selection="#{cc.attrs.bean.sld}" selectionMode="single" rowKey="#{s.id}">
 							<f:facet name="header">
 								<aht:pfDataTableHeader title="#{msg.geoJsfAdminSlds}">
-									<aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addSld()}" update=":#{cc.id}:grid"/>
+									<j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addSld()}" update=":#{cc.id}:grid"/>
 								</aht:pfDataTableHeader>
 							</f:facet>
 							<p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectSld()}" update=":#{cc.id}:sSld" />
@@ -41,9 +41,9 @@
 					<h:form id="fSld">
 						<p:panel header="#{msg.geoJsfAdminSld}" rendered="#{not empty cc.attrs.bean.sld}" styleClass="jeeslPanel">
 							<f:facet name="actions">
-								<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelSld()}" update=":#{cc.id}:grid"/>
-								<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveSld()}" update=":#{cc.id}:grid"/>
-								<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.deleteSld()}" update=":#{cc.id}:grid" rendered="#{cc.attrs.bean.sld.id gt 0}"/>	
+								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelSld()}" update=":#{cc.id}:grid"/>
+								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveSld()}" update=":#{cc.id}:grid"/>
+								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.deleteSld()}" update=":#{cc.id}:grid" rendered="#{cc.attrs.bean.sld.id gt 0}"/>	
 							</f:facet>
 							<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
 								

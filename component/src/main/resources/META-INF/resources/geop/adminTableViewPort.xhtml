@@ -4,6 +4,7 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
+    xmlns:j="http://www.jeesl.org/jsf" xmlns:jp="http://jsf.jeesl.org/prototype" xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
     xmlns:aht="http://ahtutils.sourceforge.net/jsf"
     xmlns:composite="http://java.sun.com/jsf/composite">
     
@@ -16,7 +17,7 @@
 				selection="#{adminMapViewPortBean.viewPort}" selectionMode="single" rowKey="#{p.id}">
 			<f:facet name="header">
                 <aht:pfDataTableHeader title="#{msg.mapViewPorts}">
-                    <aht:icon type="geojsfAdd" listener="#{adminMapViewPortBean.addViewPort()}" update=":sCenter :sEast"/>
+                    <j:icon type="geojsfAdd" listener="#{adminMapViewPortBean.addViewPort()}" update=":sCenter :sEast"/>
                 </aht:pfDataTableHeader>
             </f:facet>
 			<p:ajax event="rowSelect" listener="#{adminMapViewPortBean.selectViewPort}" update=":sCenter :sEast"/>

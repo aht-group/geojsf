@@ -6,6 +6,7 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
+    xmlns:j="http://www.jeesl.org/jsf" xmlns:jp="http://jsf.jeesl.org/prototype" xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
     xmlns:geojsf="http://geojsf.org/ui"
     xmlns:geop="http://geojsf.org/prototype"
     xmlns:aht="http://ahtutils.sourceforge.net/jsf"
@@ -33,7 +34,7 @@
 						sortBy="#{m.position}" sortOrder="ascending">
 					<f:facet name="header">
 						<aht:pfDataTableHeader title="#{msg.geoJsfAdminThamaticMaps}">
-							<aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttNew}"/>
+							<j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttNew}"/>
 						</aht:pfDataTableHeader>
 					</f:facet>
 					<p:ajax event="rowSelect"  listener="#{cc.attrs.bean.selectMap}" update=":#{cc.id}:rowMaps"/>
@@ -53,9 +54,9 @@
 			<h:form id="fMap">
 				<p:panel id="pMap" header="#{msg.geoJsfDetailsThamaticMap}" rendered="#{not empty cc.attrs.bean.map}" styleClass="jeeslPanel">
 					<f:facet name="actions">
-						<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttCancel}"/>
-						<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttSave}"/>
-						<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttDelete}"/>
+						<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttCancel}"/>
+						<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttSave}"/>
+						<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttDelete}"/>
 					</f:facet>
 					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 					
@@ -77,7 +78,7 @@
 					draggableRows="true">
 					<f:facet name="header">
 		                <aht:pfDataTableHeader title="#{msg.geoJsfAdminLayers}">
-		                    <aht:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addView()}" update=":#{cc.id}:fView" tooltip="#{msg.ttNew}"/>
+		                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addView()}" update=":#{cc.id}:fView" tooltip="#{msg.ttNew}"/>
 		                </aht:pfDataTableHeader>
 		            </f:facet>
 		            <p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectView()}" update=":#{cc.id}:fView"/>
@@ -99,7 +100,7 @@
 				<p:panel header="#{cc.attrs.bean.map.name[localeCode].lang}" styleClass="geojsfPrimefacesPanelMap" 
 							rendered="#{(not empty cc.attrs.bean.map) and (cc.attrs.bean.map.id gt 0) and (fn:length(cc.attrs.bean.map.views) gt 0)}">
 					<f:facet name="actions">
-						<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveViewPort()}"/>
+						<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveViewPort()}"/>
 					</f:facet>
 					<geojsf:map id="map" baseMap="osm" value="#{cc.attrs.bean.map}">
 						<composite:renderFacet name="map"/>
@@ -111,9 +112,9 @@
 			<h:form id="fView">
 				<p:panel header="#{msg.geoJsfAdminDetailsLayer}" rendered="#{not empty cc.attrs.bean.view}" styleClass="jeeslPanel">
 					<f:facet name="actions">
-						<aht:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttCancel}"/>
-						<aht:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttSave}"/>
-						<aht:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttDelete}"/>
+						<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttCancel}"/>
+						<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttSave}"/>
+						<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttDelete}"/>
 					</f:facet>
 					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 						<p:outputLabel value="#{msg.geoJsfAdminOrderNo}"/>

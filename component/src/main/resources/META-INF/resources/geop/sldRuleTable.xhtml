@@ -4,6 +4,7 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
+    xmlns:j="http://www.jeesl.org/jsf" xmlns:jp="http://jsf.jeesl.org/prototype" xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
     xmlns:aht="http://ahtutils.sourceforge.net/jsf"
     xmlns:geojsf="http://geojsf.org/ui"
     xmlns:composite="http://java.sun.com/jsf/composite">
@@ -22,7 +23,7 @@
 				<p:ajax event="rowReorder" listener="#{cc.attrs.handler.onRowReorder}" update="@form" />
 				<f:facet name="header">
 					<aht:pfDataTableHeader title="#{msg.geoJsfSldRules}">
-						<aht:icon type="geoJsfAdd" listener="#{cc.attrs.handler.addRule()}" update="#{cc.attrs.update}"/>
+						<j:icon type="geoJsfAdd" listener="#{cc.attrs.handler.addRule()}" update="#{cc.attrs.update}"/>
 					</aht:pfDataTableHeader>
 				</f:facet>
 				<p:column>
