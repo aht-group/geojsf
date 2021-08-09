@@ -23,9 +23,9 @@
 						<p:dataTable var="t" value="#{cc.attrs.bean.templates}"
 							selection="#{cc.attrs.bean.template}" selectionMode="single" rowKey="#{t.id}">
 						<f:facet name="header">
-							<aht:pfDataTableHeader title="#{msg.geoJsfAdminSldTemplates}">
+							<j:dtHeader title="#{msg.geoJsfAdminSldTemplates}">
 								<j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addTemplate()}" update=":#{cc.id}:sTemplates :#{cc.id}:sTemplate"/>
-							</aht:pfDataTableHeader>
+							</j:dtHeader>
 						</f:facet>
 						<p:ajax event="rowSelect" update=":#{cc.id}:sTemplate" listener="#{cc.attrs.bean.selectTemplate}"/>
 						<p:column headerText="#{msg.geoJsfAdminCode}" sortBy="#{t.code}">

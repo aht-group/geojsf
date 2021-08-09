@@ -22,9 +22,9 @@
 						<p:dataTable var="s" value="#{cc.attrs.bean.scales}"
 							selection="#{cc.attrs.bean.scale}" selectionMode="single" rowKey="#{s.id}">
 						<f:facet name="header">
-							<aht:pfDataTableHeader title="#{msg.geoJsfScales}">
+							<j:dtHeader title="#{msg.geoJsfScales}">
 								<j:icon type="geoJsfAdd" update=":#{cc.id}:grid" listener="#{cc.attrs.bean.addScale()}" />
-							</aht:pfDataTableHeader>
+							</j:dtHeader>
 						</f:facet>
 						<p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectScale()}" update=":#{cc.id}:sScale"/>
 

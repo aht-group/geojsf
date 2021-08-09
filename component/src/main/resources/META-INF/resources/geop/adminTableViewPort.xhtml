@@ -16,9 +16,9 @@
 		<p:dataTable var="p" value="#{adminMapViewPortBean.viewPorts}"
 				selection="#{adminMapViewPortBean.viewPort}" selectionMode="single" rowKey="#{p.id}">
 			<f:facet name="header">
-                <aht:pfDataTableHeader title="#{msg.mapViewPorts}">
+                <j:dtHeader title="#{msg.mapViewPorts}">
                     <j:icon type="geojsfAdd" listener="#{adminMapViewPortBean.addViewPort()}" update=":sCenter :sEast"/>
-                </aht:pfDataTableHeader>
+                </j:dtHeader>
             </f:facet>
 			<p:ajax event="rowSelect" listener="#{adminMapViewPortBean.selectViewPort}" update=":sCenter :sEast"/>
 			<p:column headerText="#{msg.Name}">

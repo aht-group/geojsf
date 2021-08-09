@@ -22,9 +22,9 @@
 				<p:ajax event="rowSelect" update="#{cc.attrs.update}" listener="#{cc.attrs.handler.selectRule()}"/>
 				<p:ajax event="rowReorder" listener="#{cc.attrs.handler.onRowReorder}" update="@form" />
 				<f:facet name="header">
-					<aht:pfDataTableHeader title="#{msg.geoJsfSldRules}">
+					<j:dtHeader title="#{msg.geoJsfSldRules}">
 						<j:icon type="geoJsfAdd" listener="#{cc.attrs.handler.addRule()}" update="#{cc.attrs.update}"/>
-					</aht:pfDataTableHeader>
+					</j:dtHeader>
 				</f:facet>
 				<p:column>
 					<f:facet name="header">#{msg.geoJsfSldRulePosition}</f:facet>

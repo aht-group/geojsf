@@ -23,9 +23,9 @@
 						<p:dataTable var="s" value="#{cc.attrs.bean.slds}"
 								selection="#{cc.attrs.bean.sld}" selectionMode="single" rowKey="#{s.id}">
 							<f:facet name="header">
-								<aht:pfDataTableHeader title="#{msg.geoJsfAdminSlds}">
+								<j:dtHeader title="#{msg.geoJsfAdminSlds}">
 									<j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addSld()}" update=":#{cc.id}:grid"/>
-								</aht:pfDataTableHeader>
+								</j:dtHeader>
 							</f:facet>
 							<p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectSld()}" update=":#{cc.id}:sSld" />
 							<p:column headerText="#{msg.geoJsfType}">
