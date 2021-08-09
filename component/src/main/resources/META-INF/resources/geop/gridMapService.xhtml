@@ -38,7 +38,7 @@
 					<h:form id="fService">
 						<p:panel header="#{msg.geoJsfAdminService}" rendered="#{not empty cc.attrs.bean.service}" styleClass="jeeslPanel">
 							<f:facet name="actions">
-								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}" mayDisappear="true"/>
+								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttCancel}"/>
 								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveService()}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttSave}"/>
 								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rm(cc.attrs.bean.service)}" update=":#{cc.id}:rowServices" tooltip="#{msg.ttDelete}"/>
 							</f:facet>
@@ -110,9 +110,9 @@
 					<h:form id="fLayer" rendered="#{not empty cc.attrs.bean.layer}">
 						<p:panel header="#{msg.geoJsfAdminLayer}" styleClass="jeeslPanel">
 							<f:facet name="actions">
-								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" mayDisappear="true" tooltip="#{msg.ttCancel}"/>
+								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttCancel}"/>
 								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttSave}"/>
-								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" mayDisappear="true" tooltip="#{msg.ttDelete}"/>
+								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttDelete}"/>
 							</f:facet>
 							<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>

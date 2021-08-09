@@ -18,9 +18,9 @@
 		<p:panel id="pfPanel" header="#{msg.geoJsfSldRule}" styleClass="auPanelWithGrid"
 			rendered="#{not empty cc.attrs.handler.rule}">
 			<f:facet name="actions">
-				<j:icon type="geoJsfCancel" mayDisappear="true" listener="#{cc.attrs.handler.cancelRule()}" update="#{cc.attrs.update}"/>
+				<j:icon type="geoJsfCancel" listener="#{cc.attrs.handler.cancelRule()}" update="#{cc.attrs.update}"/>
 				<j:icon type="geoJsfSave" listener="#{cc.attrs.handler.saveRule()}" update="#{cc.attrs.update}"/>
-				<j:icon type="geoJsfDelete" mayDisappear="true" listener="#{cc.attrs.handler.rmRule()}" update="#{cc.attrs.update}"/>
+				<j:icon type="geoJsfDelete" listener="#{cc.attrs.handler.rmRule()}" update="#{cc.attrs.update}"/>
 			</f:facet>
 			<p:panelGrid columns="2" columnClasses="auPwg30,auPwg70" styleClass="auCleanPanelGrid">
 				<p:outputLabel rendered="false" value="#{msg.geoJsfSldRulePosition}"/>

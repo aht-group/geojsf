@@ -41,9 +41,9 @@
 					<h:form id="fTemplate">
 						<p:panel header="#{msg.geoJsfAdminSldTemplate}" rendered="#{not empty cc.attrs.bean.template}" styleClass="jeeslPanel">
 							<f:facet name="actions">
-								<j:icon type="geoJsfCancel" mayDisappear="true" listener="#{cc.attrs.bean.cancelTemplate()}" update=":#{cc.id}:grid"/>
+								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelTemplate()}" update=":#{cc.id}:grid"/>
 								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveTemplate()}" update=":#{cc.id}:grid"/>
-								<j:icon type="geoJsfDelete" mayDisappear="true" listener="#{cc.attrs.bean.rmTemplate()}" update=":#{cc.id}:grid"/>
+								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmTemplate()}" update=":#{cc.id}:grid"/>
 							</f:facet>
 							<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
