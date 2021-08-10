@@ -13,11 +13,11 @@
 	</composite:interface>
         
 	<composite:implementation>
-		<p:panel header="#{msg.mapViewPort}" styleClass="auPanelWithGrid">
+		<p:panel header="#{msg.mapViewPort}" styleClass="jeeslPanel">
 			<f:facet name="actions">
 				<j:icon type="save" listener="#{adminMapViewPortBean.saveViewPort()}" update=":sCenter :sEast"/>
 			</f:facet>
-			<p:panelGrid columns="2" columnClasses="auPwg30,auPwg70">
+			<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
 				<h:outputText value="#{msg.mapCode}"/>
 				<p:inputText value="#{adminMapViewPortBean.viewPort.id}"/>
 			</p:panelGrid>

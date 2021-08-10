@@ -39,7 +39,7 @@
 				</aht:slot>
 				<aht:slot id="sScale" width="8">
 					<h:form id="fTemplate">
-						<p:panel header="#{msg.geoJsfScale}" styleClass="auPanelWithGrid"  rendered="#{not empty cc.attrs.bean.scale}">
+						<p:panel header="#{msg.geoJsfScale}" styleClass="jeeslPanel"  rendered="#{not empty cc.attrs.bean.scale}">
 							<f:facet name="actions">
 								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelScale()}" update=":#{cc.id}:grid"/>
 								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveScale()}" update=":#{cc.id}:grid"/>
