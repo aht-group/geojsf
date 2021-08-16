@@ -66,6 +66,7 @@
 	
 	<dependencyManagement>
 		<dependencies>
+		<!-- 
 	         <dependency>
 	            <groupId>org.hibernate</groupId>
 	            <artifactId>hibernate-validator</artifactId>
@@ -78,6 +79,7 @@
 	               </exclusion>
 	            </exclusions>
 	         </dependency>
+	          -->
 		</dependencies>
 	</dependencyManagement>
 		
@@ -160,12 +162,7 @@
 			<snapshots><enabled>false</enabled></snapshots>
 		</repository>
 		
-		<!-- JBoss Repository used for hibernate-validator 4.0.0.GA and Java-ee spec-->
-		<repository>
-			<id>jboss.public</id>
-			<name>JBoss Repository</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-		</repository>
+
 		
 		<repository>
 			<id>hibernatespatial.org</id>
