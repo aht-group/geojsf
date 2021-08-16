@@ -72,12 +72,6 @@
 	         	</exclusion>
 	         </exclusions>
         </dependency>
-        
-        <!-- Cleanup 2020-07-16 tk removed 
-        <dependency>
-	        <groupId>javax.inject</groupId>
-	  		<artifactId>javax.inject</artifactId>
-        </dependency> -->
 	</dependencies>
 
 	<build>
