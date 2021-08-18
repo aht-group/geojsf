@@ -26,15 +26,11 @@ import org.slf4j.LoggerFactory;
 public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
-							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,?,?>,
 							MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 							SCALE extends GeoJsfScale<L,D>, 
 							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-							VP extends GeoJsfViewPort,
-							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,?>>
+							VP extends GeoJsfViewPort>
 						implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlLayerFactory.class);
@@ -49,7 +45,7 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 		this.q=q;
 	}
 
-	public Layer build (GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD> ejb)
+	public Layer build (LAYER ejb)
 	{
 		Layer xml = new Layer();
 		
@@ -94,7 +90,7 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 		return xml;
 	}
 	
-	public Layer build (GeoJsfView<LAYER,MAP,VIEW> ejb)
+	public Layer build (VIEW ejb)
 	{
 		Layer xml = new Layer();
 		

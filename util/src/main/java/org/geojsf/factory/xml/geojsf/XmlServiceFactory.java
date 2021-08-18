@@ -50,7 +50,7 @@ public class XmlServiceFactory <L extends JeeslLang, D extends JeeslDescription,
 		if(q.isSetLayer()) {xfLayer = new XmlLayerFactory(q.getLayer().get(0));}
 	}
 
-	public Service build (GeoJsfService<L,D,LAYER> ejb)
+	public Service build (SERVICE ejb)
 	{
 		Service xml = new Service();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
