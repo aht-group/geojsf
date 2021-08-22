@@ -89,7 +89,8 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	private final Class<SLDTEMPLATE> cSldTemplate;
 	private final Class<TMP> cTypeMultiPolygon;
 	
-	private XmlStatusFactory xfStatus;
+	private final XmlStatusFactory<L,D,TMP> xfStatus;
+	private final XmlStatusFactory<L,D,SLDTYPE> xfSldType;
 	
 	private GeoJsfDatabaseRestService(GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort, final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate, final Class<TMP> cTypeMultiPolygon)
 	{
@@ -108,7 +109,8 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 		this.cSldTemplate=cSldTemplate;
 		this.cTypeMultiPolygon=cTypeMultiPolygon;
 		
-		xfStatus = new XmlStatusFactory(XmlStatusQuery.get(XmlStatusQuery.Key.StatusExport).getStatus());
+		xfStatus = new XmlStatusFactory<>(XmlStatusQuery.get(XmlStatusQuery.Key.StatusExport).getStatus());
+		xfSldType = new XmlStatusFactory<>(XmlStatusQuery.get(XmlStatusQuery.Key.StatusExport).getStatus());
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
@@ -233,17 +235,23 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	
 	@Override public Container exportGeoJsfSldTemplateTypes()
 	{
-		Container aht = XmlContainerFactory.build();
-		for(SLDTYPE ejb : fGeo.allOrderedPosition(cSldType)){aht.getStatus().add(xfStatus.build(ejb));}
+		Container xml = XmlContainerFactory.build();
+		for(SLDTYPE ejb : fGeo.allOrderedPosition(cSldType))
+		{
+			xml.getStatus().add(xfSldType.build(ejb));
+		}
 		
-		return aht;
+		return xml;
 	}
 	
 	@Override public Container exportTypesMultiPolygon()
 	{
-		Container jeesl = XmlContainerFactory.build();
-		for(TMP ejb : fGeo.allOrderedPosition(cTypeMultiPolygon)){jeesl.getStatus().add(xfStatus.build(ejb));}		
-		return jeesl;
+		Container xml = XmlContainerFactory.build();
+		for(TMP ejb : fGeo.allOrderedPosition(cTypeMultiPolygon))
+		{
+			xml.getStatus().add(xfStatus.build(ejb));
+		}		
+		return xml;
 	}
 
 	@Override public Repository exportSldTemplates()
@@ -258,7 +266,6 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 		}
 		return repository;
 	}
-	
 	
 	@Override public DataUpdate importGeoJsfTypesMultipolygon(Container types){return importStatus(cTypeMultiPolygon,types,null);}
 	

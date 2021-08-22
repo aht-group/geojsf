@@ -3,29 +3,13 @@ package org.geojsf.model.pojo.meta;
 import java.io.Serializable;
 
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
-import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
-import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.core.DefaultGeoJsfMap;
-import org.geojsf.model.pojo.core.DefaultGeoJsfService;
-import org.geojsf.model.pojo.core.DefaultGeoJsfView;
-import org.geojsf.model.pojo.sld.DefaultGeoJsfSld;
-import org.geojsf.model.pojo.sld.DefaultGeoJsfSldRule;
-import org.geojsf.model.pojo.sld.DefaultGeoJsfSldTemplate;
-import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
-import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
-import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphic;
-import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicFigure;
-import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicStyle;
-import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicType;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
 
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 @EjbErNode(name="ViewPort",category="meta",subset="viewport")
-public class DefaultGeoJsfViewPort implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfViewPort
+public class DefaultGeoJsfViewPort implements Serializable,EjbRemoveable,EjbPersistable,GeoJsfViewPort
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;

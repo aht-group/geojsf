@@ -137,22 +137,14 @@ public class TimeControl extends UIComponentBase
 	}
 
 	
-
-	// -------------------------------------------
-	// JSF Methods for State Saving
-	// -------------------------------------------
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public void restoreState(FacesContext context, Object state)
+	@Override public void restoreState(FacesContext context, Object state)
 	{
 	    Object[] storedState = (Object[]) state;
 	    logger.info("Restoring state.");
 		initStage   = (Boolean) storedState[0];
 	}
 	
-	@Override
-	public Object saveState(FacesContext context)
+	@Override public Object saveState(FacesContext context)
 	{
 	    Object[] rtrn = new Object[1];
 	    rtrn[0] = initStage;
