@@ -48,7 +48,7 @@
 			<artifactId>commons-collections</artifactId>
 		</dependency>
 		
-		<!-- AhtUtils -->
+		<!-- JEESL -->
 		<dependency>
 			<groupId>org.jeesl</groupId>
 			<artifactId>jeesl-xml</artifactId>
@@ -60,6 +60,19 @@
 		<dependency>
 			<groupId>org.jeesl</groupId>
 			<artifactId>jeesl-doc</artifactId>
+		</dependency>
+		
+		<dependency>
+	 		<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<type>jar</type>
+			<scope>provided</scope>
+			<exclusions>
+        		<exclusion>
+        			<artifactId>commons-logging</artifactId>
+        			<groupId>commons-logging</groupId>
+        		</exclusion>
+			</exclusions>
 		</dependency>
 				
 		<!-- Documentation -->
