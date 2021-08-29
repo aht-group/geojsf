@@ -26,8 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoJsfServiceFactory<L extends JeeslLang,D extends JeeslDescription,
-									G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-									F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 									SERVICE extends GeoJsfService<L,D,LAYER>,
 									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -39,7 +37,7 @@ public class GeoJsfServiceFactory<L extends JeeslLang,D extends JeeslDescription
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G>> 
+									RULE extends GeoJsfSldRule<L,D,?>> 
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfServiceFactory.class);
 	
@@ -56,8 +54,6 @@ public class GeoJsfServiceFactory<L extends JeeslLang,D extends JeeslDescription
     } 
     
     public static <L extends JeeslLang,D extends JeeslDescription,
-				    G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -68,10 +64,10 @@ public class GeoJsfServiceFactory<L extends JeeslLang,D extends JeeslDescription
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>> 
-    	GeoJsfServiceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> factory(final Class<SERVICE> clService)
+					RULE extends GeoJsfSldRule<L,D,?>> 
+    	GeoJsfServiceFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> factory(final Class<SERVICE> clService)
     {
-        return new GeoJsfServiceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(clService);
+        return new GeoJsfServiceFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(clService);
     }
 	 
 	public List<SERVICE> build(MAP map)

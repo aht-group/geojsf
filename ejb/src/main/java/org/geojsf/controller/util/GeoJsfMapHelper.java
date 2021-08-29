@@ -49,7 +49,7 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMapHelper.class);
 	
-	private GeoJsfServiceFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fMapLayer;
+	private GeoJsfServiceFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fMapLayer;
 	
 	private List<SERVICE> layerServices;
 	private MAP map;

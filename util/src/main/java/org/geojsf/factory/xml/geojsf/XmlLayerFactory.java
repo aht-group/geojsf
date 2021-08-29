@@ -27,9 +27,7 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
 							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,?,?>,
-							MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-							SCALE extends GeoJsfScale<L,D>, 
-							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
+							VIEW extends GeoJsfView<LAYER,?,VIEW>,
 							VP extends GeoJsfViewPort>
 						implements Serializable
 {
@@ -39,10 +37,22 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 	
 	private Layer q;
 	
+	private XmlLangsFactory<L> xfLangs;
+	private XmlDescriptionsFactory<D> xfDescriptions;
+	private XmlCategoryFactory<L,D,CATEGORY,LAYER> xfCatgory;
+	private XmlViewPortFactory xfViewport;
+	private XmlServiceFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfService;
+	
 	public XmlLayerFactory(Query query){this(query.getLayer());}
 	public XmlLayerFactory(Layer q)
 	{
 		this.q=q;
+		
+		if(q.isSetLangs()) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
+		if(q.isSetDescriptions()) {xfDescriptions = new XmlDescriptionsFactory<D>(q.getDescriptions());}
+		if(q.isSetCategory()) {xfCatgory = new XmlCategoryFactory<>(q.getCategory());}
+		if(q.isSetViewPort()) {xfViewport = new XmlViewPortFactory(q.getViewPort());}
+		if(q.isSetService()) {xfService = new XmlServiceFactory<>(q.getService());}
 	}
 
 	public Layer build (LAYER ejb)
@@ -55,38 +65,15 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 		{
 			if(ejb.isSqlLayer()!=null){xml.setSql(ejb.isSqlLayer());}
 			else{xml.setSql(false);}
-		}	
-		
-		if(q.isSetService())
-		{
-			XmlServiceFactory f = new XmlServiceFactory(q.getService());
-			xml.setService(f.build(ejb.getService()));
 		}
 		
-		if(q.isSetCategory() && ejb.getCategory()!=null)
-		{
-			XmlCategoryFactory f = new XmlCategoryFactory(q.getCategory());
-			xml.setCategory(f.build(ejb.getCategory()));
-		}
+		if(q.isSetLangs()) {xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
+		if(q.isSetDescriptions()) {xml.setDescriptions(xfDescriptions.create(ejb.getDescription()));}
 		
-		if(q.isSetLangs())
-		{
-			XmlLangsFactory<L> f = new XmlLangsFactory<L>(q.getLangs());
-			xml.setLangs(f.getUtilsLangs(ejb.getName()));
-		}
+		if(q.isSetService()) {xml.setService(xfService.build(ejb.getService()));}
+		if(q.isSetCategory() && ejb.getCategory()!=null) {xml.setCategory(xfCatgory.build(ejb.getCategory()));}
+		if(q.isSetViewPort() && ejb.getViewPort()!=null) {xml.setViewPort(xfViewport.build(ejb.getViewPort()));}
 		
-		if(q.isSetDescriptions())
-		{
-			XmlDescriptionsFactory<D> f = new XmlDescriptionsFactory<D>(q.getDescriptions());
-			xml.setDescriptions(f.create(ejb.getDescription()));
-		}
-		
-		if(q.isSetViewPort() && ejb.getViewPort()!=null)
-		{
-			XmlViewPortFactory f = new XmlViewPortFactory(q.getViewPort());
-			xml.setViewPort(f.build(ejb.getViewPort()));
-		}
-				
 		return xml;
 	}
 	

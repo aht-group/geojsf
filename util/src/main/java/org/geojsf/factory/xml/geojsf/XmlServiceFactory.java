@@ -4,36 +4,25 @@ import java.io.Serializable;
 
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
-import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
-import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.model.xml.geojsf.Query;
 import org.geojsf.model.xml.geojsf.Service;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XmlServiceFactory <L extends JeeslLang, D extends JeeslDescription,
-							G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
-							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
-							MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-							SCALE extends GeoJsfScale<L,D>, 
-							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-							VP extends GeoJsfViewPort,
-							DS extends GeoJsfDataSource<L,D,LAYER>>
+							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,?,?>,
+							VIEW extends GeoJsfView<LAYER,?,VIEW>,
+							VP extends GeoJsfViewPort>
 					implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlServiceFactory.class);
@@ -41,13 +30,17 @@ public class XmlServiceFactory <L extends JeeslLang, D extends JeeslDescription,
 	
 	private Service q;
 	
-	private XmlLayerFactory xfLayer = new XmlLayerFactory(q.getLayer().get(0));
+	private XmlLangsFactory<L> xfLangs;
+	private XmlDescriptionsFactory<D> xfDescriptions;
+	private XmlLayerFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfLayer;
 	
 	public XmlServiceFactory(Query query) {this(query.getService());}
 	public XmlServiceFactory(Service q)
 	{
 		this.q=q;
-		if(q.isSetLayer()) {xfLayer = new XmlLayerFactory(q.getLayer().get(0));}
+		if(q.isSetLangs()) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
+		if(q.isSetDescriptions()) {xfDescriptions = new XmlDescriptionsFactory<D>(q.getDescriptions());}
+		if(q.isSetLayer()) {xfLayer = new XmlLayerFactory<>(q.getLayer().get(0));}
 	}
 
 	public Service build (SERVICE ejb)
@@ -57,26 +50,17 @@ public class XmlServiceFactory <L extends JeeslLang, D extends JeeslDescription,
 		if(q.isSetWms()){xml.setWms(ejb.getWms());}
 		if(q.isSetWcs()){xml.setWcs(ejb.getWcs());}
 		
-		if(q.isSetLayer() && ejb.getLayer()!=null && ejb.getLayer().size()>0)
+		if(q.isSetLangs()) {xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
+		if(q.isSetDescriptions()) {xml.setDescriptions(xfDescriptions.create(ejb.getDescription()));}
+		
+		if(q.isSetLayer() && ejb.getLayer()!=null)
 		{
-			for(GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?> layer : ejb.getLayer())
+			for(LAYER layer : ejb.getLayer())
 			{
 				xml.getLayer().add(xfLayer.build(layer));
 			}
 		}
-		
-		if(q.isSetLangs())
-		{
-			XmlLangsFactory<L> f = new XmlLangsFactory<L>(q.getLangs());
-			xml.setLangs(f.getUtilsLangs(ejb.getName()));
-		}
-		
-		if(q.isSetDescriptions())
-		{
-			XmlDescriptionsFactory<D> f = new XmlDescriptionsFactory<D>(q.getDescriptions());
-			xml.setDescriptions(f.create(ejb.getDescription()));
-		}
-		
+
 		return xml;
 	}
 	

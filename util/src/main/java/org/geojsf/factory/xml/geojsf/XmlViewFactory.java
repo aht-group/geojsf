@@ -23,16 +23,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XmlViewFactory <L extends JeeslLang,D extends JeeslDescription,
-								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
-								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-								SCALE extends GeoJsfScale<L,D>, 
-								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-								VP extends GeoJsfViewPort,
-								DS extends GeoJsfDataSource<L,D,LAYER>>
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,?,?>,
+								VIEW extends GeoJsfView<LAYER,?,VIEW>,
+								VP extends GeoJsfViewPort>
 						implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlViewFactory.class);
@@ -41,14 +36,16 @@ public class XmlViewFactory <L extends JeeslLang,D extends JeeslDescription,
 	
 	private View q;
 	
+	private XmlLayerFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfLayer;
+	
 	public XmlViewFactory(Query query){this(query.getView());}
 	public XmlViewFactory(View q)
 	{
 		this.q=q;
+		if(q.isSetLayer()) {xfLayer = new XmlLayerFactory<>(q.getLayer());}
 	}
 
-	public 
-		View build (GeoJsfView<LAYER,MAP,VIEW> ejb)
+	public View build (VIEW ejb)
 	{
 		View xml = new View();
 		
@@ -56,11 +53,7 @@ public class XmlViewFactory <L extends JeeslLang,D extends JeeslDescription,
 		if(q.isSetLegend()){xml.setLegend(ejb.getLegend());}
 		if(q.isSetNr()){xml.setNr(ejb.getOrderNo());}
 		
-		if(q.isSetLayer())
-		{
-			XmlLayerFactory f = new XmlLayerFactory(q.getLayer());
-			xml.setLayer(f.build(ejb.getLayer()));
-		}
+		if(q.isSetLayer()) {xml.setLayer(xfLayer.build(ejb.getLayer()));}
 			
 		return xml;
 	}

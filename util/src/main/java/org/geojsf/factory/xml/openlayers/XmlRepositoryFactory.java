@@ -26,7 +26,14 @@ import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlRepositoryFactory implements Serializable
+public class XmlRepositoryFactory <L extends JeeslLang, D extends JeeslDescription,
+									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
+									SERVICE extends GeoJsfService<L,D,LAYER>,
+									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,?,?>,
+									VIEW extends GeoJsfView<LAYER,?,VIEW>,
+									VP extends GeoJsfViewPort>
+									
+	implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlRepositoryFactory.class);
 	
@@ -34,37 +41,24 @@ public class XmlRepositoryFactory implements Serializable
 	
 	private Repository q;
 	
+	private XmlServiceFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfService;
+	
 	public XmlRepositoryFactory(Query q){this(q.getRepository());}
 	public XmlRepositoryFactory(Repository q)
 	{
 		this.q=q;
+		if(q.isSetService()){xfService = new XmlServiceFactory<>(q.getService().get(0));}
 	}
 
-	public <L extends JeeslLang, D extends JeeslDescription,
-			G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-			F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
-			CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-			SERVICE extends GeoJsfService<L,D,LAYER>,
-			LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-			MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-			SCALE extends GeoJsfScale<L,D>, 
-			VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-			VP extends GeoJsfViewPort,
-			DS extends GeoJsfDataSource<L,D,LAYER>,
-			SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-			SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-			SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-			RULE extends GeoJsfSldRule<L,D,G>>
-		Repository build (List<SERVICE> list)
+	public Repository build (List<SERVICE> list)
 	{
 		Repository xml = new Repository();
 		
-		if(q.isSetService() && list.size()>0)
+		if(q.isSetService())
 		{
-			XmlServiceFactory f = new XmlServiceFactory(q.getService().get(0));
-			for(GeoJsfService<L,D,LAYER> service : list)
+			for(SERVICE service : list)
 			{
-				xml.getService().add(f.build(service));
+				xml.getService().add(xfService.build(service));
 			}
 		}
 		

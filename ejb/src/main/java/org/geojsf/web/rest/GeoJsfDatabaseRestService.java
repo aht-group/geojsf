@@ -91,6 +91,11 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	
 	private final XmlStatusFactory<L,D,TMP> xfStatus;
 	private final XmlStatusFactory<L,D,SLDTYPE> xfSldType;
+	private final XmlCategoryFactory<L,D,CATEGORY,LAYER> xfCategory;
+	private final XmlLayerFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfLayer;
+	private final XmlServiceFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfService;
+	private final XmlViewFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfView;
+	private final XmlMapFactory<L,D,CATEGORY,LAYER,MAP,SCALE,VIEW,VP> xfMap;
 	
 	private GeoJsfDatabaseRestService(GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort, final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate, final Class<TMP> cTypeMultiPolygon)
 	{
@@ -111,6 +116,11 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 		
 		xfStatus = new XmlStatusFactory<>(XmlStatusQuery.get(XmlStatusQuery.Key.StatusExport).getStatus());
 		xfSldType = new XmlStatusFactory<>(XmlStatusQuery.get(XmlStatusQuery.Key.StatusExport).getStatus());
+		xfCategory = new XmlCategoryFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.category));
+		xfLayer = new XmlLayerFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.layer, null));
+		xfService = new XmlServiceFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.service, null));
+		xfView = new XmlViewFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.view, null));
+		xfMap = new XmlMapFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.map, null));
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
@@ -140,11 +150,10 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	{
 		logger.info("Export "+Service.class.getSimpleName());
 		Repository repository = new Repository();
-		XmlServiceFactory f = new XmlServiceFactory(GeoJsfQuery.get(GeoJsfQuery.Key.service, null));
-		
+
 		for(SERVICE service : fGeo.all(cService))
 		{
-			repository.getService().add(f.build(service));
+			repository.getService().add(xfService.build(service));
 		}
 		
 		return repository;
@@ -156,11 +165,9 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 		logger.info("Export "+Category.class.getSimpleName());
 		Repository repository = new Repository();
 		
-		XmlCategoryFactory f = new XmlCategoryFactory(GeoJsfQuery.get(GeoJsfQuery.Key.category));
-		
 		for(CATEGORY category : fGeo.all(cCategory))
 		{
-			repository.getCategory().add(f.build(category));
+			repository.getCategory().add(xfCategory.build(category));
 		}
 		
 		return repository;
@@ -171,12 +178,11 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	{
 		logger.info("Export "+Layer.class.getSimpleName());
 		Layers layers = new Layers();
-		XmlLayerFactory f = new XmlLayerFactory(GeoJsfQuery.get(GeoJsfQuery.Key.layer, null));
-		
+
 		for(LAYER layer : fGeo.all(cLayer))
 		{
 			layer = fGeo.load(cLayer,layer);
-			layers.getLayer().add(f.build(layer));
+			layers.getLayer().add(xfLayer.build(layer));
 		}
 		
 		return layers;
@@ -186,18 +192,16 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	{
 		logger.info("Export GeoJsf "+Map.class.getSimpleName());
 		Maps maps = new Maps();
-		XmlMapFactory fMap = new XmlMapFactory(GeoJsfQuery.get(GeoJsfQuery.Key.map, null));
-		XmlViewFactory fView = new XmlViewFactory(GeoJsfQuery.get(GeoJsfQuery.Key.view, null));
 		
 		for(MAP map : fGeo.all(cMap))
 		{
 			map = fGeo.load(cMap,map);
 			logger.warn("NYI, deactivated");
-			Map xml = fMap.build(map);
+			Map xml = xfMap.build(map);
 			
 			for(VIEW view : map.getViews())
 			{
-				xml.getView().add(fView.build(view));
+				xml.getView().add(xfView.build(view));
 			}
 			
 			maps.getMap().add(xml);

@@ -21,13 +21,8 @@ import org.slf4j.LoggerFactory;
 
 public class XmlCategoryFactory <L extends JeeslLang,D extends JeeslDescription,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
-								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-								SCALE extends GeoJsfScale<L,D>, 
-								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-								VP extends GeoJsfViewPort,
-								DS extends GeoJsfDataSource<L,D,LAYER>> implements Serializable
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,?,?>>
+						implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlCategoryFactory.class);
 	public static final long serialVersionUID=1;
@@ -49,16 +44,7 @@ public class XmlCategoryFactory <L extends JeeslLang,D extends JeeslDescription,
 	{
 		Category xml = new Category();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
-		
-/*		if(q.isSetLayer() && ejb.getLayer()!=null && ejb.getLayer().size()>0)
-		{
-			XmlLayerFactory f = new XmlLayerFactory(q.getLayer().get(0));
-			for(GeoJsfLayer<L,D,SERVICE,LAYER,MAP,VIEW,VP,SLDTYPE,SLDTEMPLATE> layer : ejb.getLayer())
-			{
-				xml.getLayer().add(f.build(layer));
-			}
-		}
-*/		
+			
 		if(q.isSetLangs()){xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
 		if(q.isSetDescriptions()){xml.setDescriptions(xfDescription.create(ejb.getDescription()));}
 		
