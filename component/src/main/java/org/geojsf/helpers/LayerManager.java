@@ -19,11 +19,11 @@ import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LayerManager {
+public class LayerManager
+{
     
     final static Logger logger = LoggerFactory.getLogger(LayerManager.class);
-	
-    
+	    
     private ArrayList<Long> orderedLayers = new ArrayList<Long>();
     private Hashtable<Long, String>    layerNames;
     Hashtable<Long, OlService> serviceList;
