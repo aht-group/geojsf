@@ -58,6 +58,7 @@ public class WmsTileDownloader
 		}
 		sb.deleteCharAt(sb.length()-1);
 		
+		logger.warn("Width/Hegh NYI"+width+"/"+height);
 //		calculateBoundingBox(map.getViewPort(),width,height);
 		
 		JaxbUtil.info(map.getViewPort());

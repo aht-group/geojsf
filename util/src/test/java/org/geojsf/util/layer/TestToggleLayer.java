@@ -7,13 +7,13 @@ import org.geojsf.util.layer.LayerUtil.Order;
 import org.geojsf.util.layer.LayerUtil.Service;
 import org.junit.Test;
 
-public class TestToggleLayer {
-
+public class TestToggleLayer
+{
 	private Hashtable<String, Service> services = new Hashtable<String,Service>();
-	private ArrayList<String> layers = new ArrayList<String>();
 	
 	@Test
-	public void testMerge() {
+	public void testMerge()
+	{
 		LayerUtil util = new LayerUtil();
 		Service serviceA = util.new Service();
 		serviceA.setServiceId("A");
@@ -25,7 +25,5 @@ public class TestToggleLayer {
 		util.setServices(services);
 		Order order = util.toggleLayer(serviceA.getServiceId(), "layer2", false);
 		System.out.println("order: " +order.getCommand() +" for " +order.getService().getLayer().toString());
-
 	}
-
 }
