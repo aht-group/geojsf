@@ -1,13 +1,10 @@
 package org.geojsf.model.pojo.util.symbol;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
-import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
 

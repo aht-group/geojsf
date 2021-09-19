@@ -24,7 +24,6 @@ import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicStyle;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphicType;
 import org.geojsf.test.AbstractGeoJsfEjbTest;
 import org.geojsf.test.GeoJsfEjbTestBootstrap;
-import org.geojsf.util.GeojsfDatastructureDebugger;
 import org.geojsf.util.query.GeoJsfQuery;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.junit.Assert;
@@ -32,8 +31,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 {
