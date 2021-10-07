@@ -490,3 +490,15 @@ div.olControlZoom{
 .oTileImage {
 	cursor: default;
 }
+
+.ol-northarrow {
+    top: 8px;
+    left: 8px;
+    position: absolute;
+}
+
+.ol-northarrow img
+{
+max-width: 30px;
+height: 30px;
+}

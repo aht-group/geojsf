@@ -149,6 +149,12 @@
 			<component-type>org.geojsf.component.DtSelectCallback</component-type>
 		</component>
 	</tag>
+	<tag>
+		<tag-name>northArrow</tag-name>
+		<component>
+			<component-type>org.geojsf.component.NorthArrow</component-type>
+		</component>
+	</tag>
 <!-- <tag>
 		<tag-name>switchLayer</tag-name>
 		<behavior>
