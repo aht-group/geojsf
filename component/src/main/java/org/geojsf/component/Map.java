@@ -47,11 +47,11 @@ import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
-import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
+import org.primefaces.PrimeFaces;
 
 @ResourceDependencies({
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
@@ -588,7 +588,7 @@ public class Map <L extends JeeslLang,D extends JeeslDescription,
 				// Now send the command (JSON-String representation of the Command object) to the client using PrimeFaces CallbackParam methodology
 				// This can be used in the oncomplete AJAX-callback JavaScript function like performLayerSwitch(xhr, status, args)
 				logger.debug("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +view.getLayer().getId() +" of service " +view.getLayer().getService().getId() +" to " +view.isVisible());
-				RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
+				PrimeFaces.current().ajax().addCallbackParam("toggleLayer", toggleCommand);
 	        	} catch (Exception e)
 	        	{
 	        		logger.error(e.getMessage());

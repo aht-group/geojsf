@@ -9,7 +9,7 @@ import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.helpers.LayerManager;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfView;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -119,7 +119,7 @@ public class EventHandler {
 			// Now send the command (JSON-String representation of the Command object) to the client using PrimeFaces CallbackParam methodology
 			// This can be used in the oncomplete AJAX-callback JavaScript function like performLayerSwitch(xhr, status, args)
 			logger.debug("Sending layer switch command to JavaScript client logic: " +toggleCommand +" to switch layer " +view.getLayer().getId() +" of service " +view.getLayer().getService().getId() +" to " +view.isVisible());
-			RequestContext.getCurrentInstance().addCallbackParam("toggleLayer", toggleCommand);
+			PrimeFaces.current().ajax().addCallbackParam("toggleLayer", toggleCommand);
 		    } catch (Exception e)
 		    {
 			logger.error(e.getMessage());
