@@ -491,7 +491,11 @@ public class Map <L extends JeeslLang,D extends JeeslDescription,
 	            	}
 	            }
 	        }
-			
+		if (null!= behaviorEvent && isUpdateModelEvent)
+		{
+		    logger.debug("==== Update Model ======");
+		}
+
 			// Handling of mapClick event fired by JavaScript API
 	        if (null!= behaviorEvent && isMapClickEvent)
 	        {

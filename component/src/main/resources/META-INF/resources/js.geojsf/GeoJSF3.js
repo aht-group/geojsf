@@ -454,11 +454,6 @@ var GeoJSF = {
 				 			oncomplete: function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}});
 		},
                 
-                initMarker : function(lat, lon, markerUrl)
-		{
-                    GeoJSF.initMarker(lat, lon);
-                },
-		
 		initMarker : function(lat, lon)
 		{
                     GeoJSF.vectorSource = new ol.source.Vector({
@@ -560,22 +555,30 @@ var GeoJSF = {
 			    	var layersToAdd = "";
                                 
                                     for (var i = GeoJSF.map.getLayers().getLength() - 1; i >= 0; i--) {
-                                        if(GeoJSF.map.getLayers().item(i).get('name') == command.serviceId ) 
-                                        {
-                                            for (var counter in command.layer)
-                                                    {
-                                                            layersToAdd += command.layer[counter];
-                                                            layersToAdd += ",";
-                                                    }
-                                            var layerList = layersToAdd.substring(0, layersToAdd.length - 1);
-                                            console.log("Trying to add " +layerList +" to Layer " +GeoJSF.map.getLayers().item(i).get('name'));
-                                            var params = {};
-                                            params.LAYERS = layerList;
-                                            console.log("New parameter set: " +params);
-                                            GeoJSF.map.getLayers().item(i).getSource().updateParams(params);
-                                        } else {console.log('big problem');}
+                                        if (GeoJSF.map.getLayers().item(i).getSource() instanceof ol.source.OSM)
+					    {
+					    console.log("Ignoring OSM base layer"); 
+					    }
+					    else
+					    {
+						    if(GeoJSF.map.getLayers().item(i).get('name') == command.serviceId ) 
+						    {
+							    for (var counter in command.layer)
+									    {
+											    layersToAdd += command.layer[counter];
+											    layersToAdd += ",";
+									    }
+							    var layerList = layersToAdd.substring(0, layersToAdd.length - 1);
+							    console.log("Trying to add " +layerList +" to Layer " +GeoJSF.map.getLayers().item(i).get('name'));
+							    var params = {};
+							    params.LAYERS = layerList;
+							    console.log("New parameter set: ");
+							    console.log(params);
+							    GeoJSF.map.getLayers().item(i).getSource().updateParams(params);
+						    } else {console.log('big problem');}
+					    }
+					}
 				}
-			}
 			} catch(e) {
 				 console.log("A problem occured when interpreting layer switch command. Maybe NULL?" +e);
 			}
