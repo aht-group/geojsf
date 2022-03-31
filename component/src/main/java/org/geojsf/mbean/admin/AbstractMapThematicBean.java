@@ -72,17 +72,10 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	protected List<CATEGORY> categories; public List<CATEGORY> getCategories(){return categories;}
 	protected List<LAYER> layers; public List<LAYER> getLayers(){return layers;}
 	
-	protected MAP map;
-	public MAP getMap() {return map;}
-	public void setMap(MAP map) {this.map = map;}
+	protected MAP map; public MAP getMap() {return map;} public void setMap(MAP map) {this.map = map;}
+	protected VIEW view; public VIEW getView(){return view;} public void setView(VIEW view){this.view = view;}
 	
-	protected VIEW view;
-	public VIEW getView(){return view;}
-	public void setView(VIEW view){this.view = view;}
-	
-	protected CATEGORY category;
-	public CATEGORY getCategory(){return category;}
-	public void setCategory(CATEGORY category){this.category = category;}
+	protected CATEGORY category; public CATEGORY getCategory(){return category;} public void setCategory(CATEGORY category){this.category = category;}
 	
 	protected VP viewPort;
 	public VP getViewPort(){return viewPort;}
