@@ -27,20 +27,23 @@
 						<p:dataTable var="j" value="#{cc.attrs.bean.jsons}"
 							selection="#{cc.attrs.bean.json}" selectionMode="single" rowKey="#{j.id}">
 							<f:facet name="header">
-				                <j:dtHeader title="#{msg.geoJsfJsonDatas}">
+				                <j:dtHeader entity="RevisionEntity" code="listOf">
 				                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addJson()}" update=":#{cc.id}:grid"/>
 				                </j:dtHeader>
 				            </f:facet>
 				            <p:ajax event="rowSelect" update=":#{cc.id}:fJson" listener="#{cc.attrs.bean.selectJson()}"/>
-				            <p:column headerText="#{msg.geoJsfLocationLevel}">
+				            <p:column>
+				            	<f:facet name="header"><jtp:label entity="GeoJsonData" code="level"/></f:facet>
 									<h:outputText value="#{j.level.name[localeCode].lang}" />  
-								</p:column>
-								<p:column headerText="#{msg.geoJsfJsonQuality}">
-									<h:outputText value="#{j.quality.name[localeCode].lang}" />  
-								</p:column>
-								<p:column headerText="#{msg.geoJsfJsonUrl}">
-									<h:outputText value="#{j.url}" />  
-								</p:column>
+							</p:column>
+							<p:column>
+								<f:facet name="header"><jtp:label entity="GeoJsonData" code="quality"/></f:facet>
+								<h:outputText value="#{j.quality.name[localeCode].lang}" />  
+							</p:column>
+							<p:column>
+								<f:facet name="header"><jtp:label entity="GeoJsonData" code="url"/></f:facet>
+								<h:outputText value="#{j.url}" />  
+							</p:column>
 						</p:dataTable>
 					</h:form>
 				</j:slot>
@@ -54,20 +57,20 @@
 							</f:facet>
 							<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
 								
-								<p:outputLabel value="#{msg.geoJsfLocationLevel}"/>
+								<jtp:label entity="GeoJsonData" code="level"/>
 								<p:selectOneMenu value="#{cc.attrs.bean.json.level}" effect="fade" autoWidth="false">  
 									<f:selectItems value="#{cc.attrs.bean.levels}" var="l" itemLabel="#{l.name[localeCode].lang}" itemValue="#{l}"/>
 								</p:selectOneMenu>
 								
-								<p:outputLabel value="#{msg.geoJsfJsonQuality}"/>
+								<jtp:label entity="GeoJsonData" code="quality"/>
 								<p:selectOneMenu value="#{cc.attrs.bean.json.quality}" effect="fade" autoWidth="false">  
 									<f:selectItems value="#{cc.attrs.bean.qualities}" var="q" itemLabel="#{q.name[localeCode].lang}" itemValue="#{q}"/>
 								</p:selectOneMenu>
 								
-								<p:outputLabel value="#{msg.geoJsfJsonUrl}"/>
+								<jtp:label entity="GeoJsonData" code="url"/>
 								<p:inputText value="#{cc.attrs.bean.json.url}"/>
 								
-								<p:outputLabel value="#{msg.geoJsfJsonJoinCode}"/>
+								<jtp:label entity="GeoJsonData" code="joinCode"/>
 								<p:inputText value="#{cc.attrs.bean.json.joinCode}"/>
 							</p:panelGrid>
 						</p:panel>
