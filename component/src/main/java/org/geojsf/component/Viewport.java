@@ -26,7 +26,7 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Viewport.class);
 	
-	private static enum Attribute {lat,lon,zoom, value}
+	private static enum Attribute {lat,lon,resolution,zoom, value}
 	
 	private GeoJsfViewPort value;
 	
@@ -49,6 +49,7 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 		Double  lat             = null;
 		Double  lon             = null;
 		Integer zoom            = null;
+		Integer resolution      = null;
 		
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("script", this);
@@ -61,11 +62,11 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 			lat             = this.value.getLat();
 			lon             = this.value.getLon();
                         
-                        // If there is no scale given, set it to 100 km
-                        if (this.value.getScale() == 0) 
-                            {this.value.setScale(100000);}
-                        else 
-                            {this.value.setScale(this.value.getScale());}
+			// If there is no scale given, set it to 100 km
+			if (this.value.getScale() == 0) 
+				{this.value.setScale(100000);}
+			else 
+				{this.value.setScale(this.value.getScale());}
 			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +this.value.getScale() +");" +System.getProperty("line.separator"), null);		
 		}
 		else
@@ -73,9 +74,10 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 			lat             = ComponentAttribute.getDouble(Attribute.lat.toString(), 0.0 ,ctx,  this);
 			lon             = ComponentAttribute.getDouble(Attribute.lon.toString(), 0.0 ,ctx,  this);
 			zoom            = ComponentAttribute.getInteger(Attribute.zoom.toString(), 0 ,ctx,  this);
-			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +zoom +");" +System.getProperty("line.separator"), null);
+			resolution      = ComponentAttribute.getInteger(Attribute.resolution.toString(), 0 ,ctx,  this);
+			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +resolution +"," +zoom +");" +System.getProperty("line.separator"), null);
 		}
 		 
 		writer.endElement("script");
 	}
-}
+}	
