@@ -196,7 +196,7 @@
 									source: new ol.source.OSM()
 								  }));
 			  }
-			  
+			  // console.log(layers);
 			  GeoJSF.map = new ol.Map({
 				  controls     : ol.control.defaults({ 
 								  attribution: false,
@@ -655,7 +655,8 @@
 						  style: GeoJSF.iconStyle,
 						  source: GeoJSF.vectorSource,
 						  name: 'marker Layer',
-						  visibility: true
+						  visibility: true,
+						  zIndex: 1000
 					  });
 					  GeoJSF.map.addLayer(GeoJSF.featureLayer);
 					  // Process marker
