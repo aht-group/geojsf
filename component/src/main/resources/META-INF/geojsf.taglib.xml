@@ -155,6 +155,12 @@
 			<component-type>org.geojsf.component.NorthArrow</component-type>
 		</component>
 	</tag>
+	<tag>
+		<tag-name>popUp</tag-name>
+		<component>
+			<component-type>org.geojsf.component.PopUp</component-type>
+		</component>
+	</tag>
 <!-- <tag>
 		<tag-name>switchLayer</tag-name>
 		<behavior>

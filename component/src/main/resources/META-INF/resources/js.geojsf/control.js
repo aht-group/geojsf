@@ -102,6 +102,81 @@ var GeoJsfControl = {
 			}
 			var northArrowControlObj = new ol.control.NorthArrow();
 			GeoJSF.map.addControl(northArrowControlObj);
+		},
+		
+		addPopUp : function()
+		{
+			ol.control.PopUp = function() 
+			{
+				popup = document.createElement('div');
+				popup.className = 'ol-popup';
+				popup.id = 'popup';
+				
+				closer = document.createElement('a');
+				closer.id = 'popup-closer';
+				closer.className = 'ol-popup-closer';
+				
+				popupContent = document.createElement('div');
+				popupContent.id = 'popup-content';
+				
+				popup.appendChild(closer);
+				popup.appendChild(popupContent);
+			};
+			
+			ol.control.PopUp.content = function(feature, coordinate){
+						    let content = "";
+						    content += "<p>"+feature.get("id")+"</p>";
+						    return content;
+			}
+			
+			var popUpContainer = document.getElementById('popup');
+			var popUpContent = document.getElementById('popup-content');
+			var popUpCloser = document.getElementById('popup-closer'); 
+			
+			/**
+			 * Create an overlay to anchor the popup to the map.
+			 */
+			var popUpOverlay = new ol.Overlay({
+			  element: popUpContainer,
+			  autoPan: {
+    			animation: {
+			      duration: 250,
+			    },
+			  },
+			});
+			
+			/**
+			 * Add a click handler to hide the popup.
+			 * @return {boolean} Don't follow the href.
+			 */
+			popUpCloser.onclick = function () {
+			  popUpOverlay.setPosition(undefined);
+			  popUpCloser.blur();
+			  return false;
+			};
+			
+			GeoJSF.map.addOverlay(popUpOverlay);
+			
+		 // Control Select 
+		  var selectedFeature = new ol.interaction.Select({});
+		  GeoJSF.map.addInteraction(selectedFeature);
+		
+		  // On selected => show/hide popup
+		  selectedFeature.getFeatures().on(['add'], function(e) {
+		   	let coordinate = e.element.getGeometry().getCoordinates();
+			console.log(coordinate);
+
+		    let feature = e.element;
+			let content = ol.control.PopUp.content(feature,coordinate);
+		    popUpContent.innerHTML = content;
+
+		    popUpOverlay.setPosition(coordinate);
+		  })
+		  
+		  selectedFeature.getFeatures().on(['remove'], function(e) {
+		     popUpOverlay.setPosition(undefined);
+			 popUpCloser.blur();
+			 return false;
+		  })
 		}
-	
 };
