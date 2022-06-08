@@ -26,6 +26,7 @@
 		  commandCorrect: true,
 		  updateOnClick: null,
 		  updateOnMove: null,
+		  updateOnPopUp: null,
 		  id: null,
 		  lastLayer: null,
 		  baseLayer: null,
@@ -52,6 +53,11 @@
 		  {
 			  this.updateOnClick = updateClicks;
 			  this.updateOnMove  = updateMove;
+		  },
+		  
+		  setAjaxUpdatesPopUp : function(updatePopUp)
+		  {
+			  this.updateOnPopUp = updatePopUp;
 		  },
 		  
 		  setScaleValues : function(values)
@@ -163,7 +169,30 @@
 			  }
 				  finally {}
 		  },
-		  
+
+		  processEventSelectFeature : function(featureId, type)
+		  {
+			  console.log("Select Feature detected id: " + featureId);
+			  try {
+				  PrimeFaces.ab({
+					  process:  '@form', 
+					  source:   GeoJSF.map.getTarget(), 
+					  event:    'featureSelected', 
+					  update:   GeoJSF.updateOnPopUp,
+					  params: [
+							   {name: 'org.geojsf.click.feature.id',				value: featureId},
+							   {name: 'org.geojsf.click.feature.type',				value: type},
+							   ],
+					   oncomplete: function(xhr, status, args) {
+					   		let content = ol.control.PopUp.content();
+							ol.control.PopUp.popUpContent.innerHTML = content;
+					   	}
+				  });
+			  } catch(e) {
+				   console.log("featureSelected failed." +e);
+			  }
+				  finally {}
+		  },
 		  
 		  processEventMarkerMove : function(event)
 		  {

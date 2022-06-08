@@ -15,12 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class JsfRenderUtil {
-	
+
 	final static Logger logger = LoggerFactory.getLogger(JsfRenderUtil.class);
-	
+
 	private ResponseWriter writer;
 	private UIComponent component;
-	
+
 	public JsfRenderUtil(ResponseWriter componentWriter, UIComponent caller){
 		this.writer = componentWriter;
 		this.component = caller;
@@ -37,7 +37,7 @@ public class JsfRenderUtil {
 			}
 		}
 	}
-	
+
 	public void renderDiv(String id, String style, String content)
 	{
 		try {
@@ -49,9 +49,9 @@ public class JsfRenderUtil {
 		} catch (IOException e) {
 			logger.warn("Could not render div!");
 		}
-		
+
 	}
-	
+
 	@Deprecated
 	public static String encodeAjax(ClientBehaviorHolder comp)
 	{
@@ -84,7 +84,7 @@ public class JsfRenderUtil {
 		}
 		return updateOnClick.toString();
 	}
-	
+
 	public static String encodeAjax(ClientBehaviorHolder comp, String eventName)
 	{
 		StringBuffer updateOnClick = new StringBuffer();
@@ -125,7 +125,7 @@ public class JsfRenderUtil {
 		}
 		return updateOnClick.toString();
 	}
-	
+
 	public void renderMapInitialization(FacesContext context) throws IOException
 	{
 		renderLinebreaks(1);
@@ -159,7 +159,7 @@ public class JsfRenderUtil {
 			    renderLinebreaks(2);
 		    }
 		}
-		
+
 		if (component instanceof CoordinatePicker)
 		{
 		    CoordinatePicker map = (CoordinatePicker) component;
@@ -190,13 +190,13 @@ public class JsfRenderUtil {
 			    renderLinebreaks(2);
 		    }
 		}
-		
-		
+
+
 		renderTextWithLB("// GeoJSF: Adding layers");
 		renderTextWithLB("// GeoJSF: The last given layer will be taken as base layer:");
 		renderLinebreaks(1);
 	}
-	
+
 	public void renderTextWithLB(String text)
 	{
 		try {
@@ -205,25 +205,39 @@ public class JsfRenderUtil {
 			logger.info("Problem rendering " +text +" using JsfRenderUtil");
 		}
 	}
-	
+
 	public void renderScript(String command)
 	{
 	    renderTextWithLB("<script>" +command +"</script>");
 	}
-	
+
 	public void renderTagStart(String tagName)
 	{
 	    renderTextWithLB("<" +tagName +">");
 	}
-	
+
 	public void renderTagEnd(String tagName)
 	{
 	    renderTextWithLB("</" +tagName +">");
 	}
-	
+
 	public void renderPlayerInitialization(ResponseWriter writer)
 	{
-		
+
+	}
+
+	public void renderPopUpInitialization(FacesContext facesContext)
+	{
+		renderLinebreaks(1);
+		if (component instanceof Map)
+		{
+		    Map map = (Map) component;
+		    renderTextWithLB("// GeoJSF: Initializing Popup");
+		    renderTextWithLB("GeoJSF.setAjaxUpdatesPopUp('" +encodeAjax(map, "featureSelected") +"');");
+		    renderTextWithLB("GeoJsfControl.addPopUp();");
+		    renderLinebreaks(2);
+		}
+
 	}
 
 }

@@ -106,38 +106,32 @@ var GeoJsfControl = {
 		
 		addPopUp : function()
 		{
-			ol.control.PopUp = function() 
-			{
-				popup = document.createElement('div');
-				popup.className = 'ol-popup';
-				popup.id = 'popup';
-				
-				closer = document.createElement('a');
-				closer.id = 'popup-closer';
-				closer.className = 'ol-popup-closer';
-				
-				popupContent = document.createElement('div');
-				popupContent.id = 'popup-content';
-				
-				popup.appendChild(closer);
-				popup.appendChild(popupContent);
-			};
+			ol.control.PopUp = {};
+			ol.control.PopUp.popUpContainer = document.createElement('div');
+			ol.control.PopUp.popUpContainer.className = 'ol-popup';
+			ol.control.PopUp.popUpContainer.id = 'popup';
 			
-			ol.control.PopUp.content = function(feature, coordinate){
-						    let content = "";
-						    content += "<p>"+feature.get("id")+"</p>";
-						    return content;
+			ol.control.PopUp.popUpCloser = document.createElement('a');
+			ol.control.PopUp.popUpCloser.id = 'popup-closer';
+			ol.control.PopUp.popUpCloser.className = 'ol-popup-closer';
+			
+			ol.control.PopUp.popUpContent = document.createElement('div');
+			ol.control.PopUp.popUpContent.id = 'popup-content';
+			
+			ol.control.PopUp.popUpContainer.appendChild(ol.control.PopUp.popUpCloser);
+			ol.control.PopUp.popUpContainer.appendChild(ol.control.PopUp.popUpContent);
+			
+			
+			ol.control.PopUp.content = function(coordinate){
+							let ajaxPopUpContent = document.getElementById(PF('wgtPopupContent').id);
+						    return ajaxPopUpContent.innerHTML;
 			}
-			
-			var popUpContainer = document.getElementById('popup');
-			var popUpContent = document.getElementById('popup-content');
-			var popUpCloser = document.getElementById('popup-closer'); 
-			
+				
 			/**
 			 * Create an overlay to anchor the popup to the map.
 			 */
 			var popUpOverlay = new ol.Overlay({
-			  element: popUpContainer,
+			  element: ol.control.PopUp.popUpContainer,
 			  autoPan: {
     			animation: {
 			      duration: 250,
@@ -149,11 +143,12 @@ var GeoJsfControl = {
 			 * Add a click handler to hide the popup.
 			 * @return {boolean} Don't follow the href.
 			 */
-			popUpCloser.onclick = function () {
+			 ol.control.PopUp.popUpCloser.onclick = function () {
 			  popUpOverlay.setPosition(undefined);
-			  popUpCloser.blur();
+			  ol.control.PopUp.popUpCloser.blur();
 			  return false;
 			};
+			
 			
 			GeoJSF.map.addOverlay(popUpOverlay);
 			
@@ -161,21 +156,21 @@ var GeoJsfControl = {
 		  var selectedFeature = new ol.interaction.Select({});
 		  GeoJSF.map.addInteraction(selectedFeature);
 		
-		  // On selected => show/hide popup
+		// On selected => show/hide popup
 		  selectedFeature.getFeatures().on(['add'], function(e) {
 		   	let coordinate = e.element.getGeometry().getCoordinates();
 			console.log(coordinate);
 
 		    let feature = e.element;
-			let content = ol.control.PopUp.content(feature,coordinate);
-		    popUpContent.innerHTML = content;
+			layerSource = selectedFeature.getLayer(feature);
+			GeoJSF.processEventSelectFeature(feature.get("id"), layerSource.get('name'));
 
 		    popUpOverlay.setPosition(coordinate);
 		  })
 		  
 		  selectedFeature.getFeatures().on(['remove'], function(e) {
 		     popUpOverlay.setPosition(undefined);
-			 popUpCloser.blur();
+			 ol.control.PopUp.popUpCloser.blur();
 			 return false;
 		  })
 		}
