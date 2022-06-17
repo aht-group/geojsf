@@ -184,8 +184,9 @@
 							   {name: 'org.geojsf.click.feature.type',				value: type},
 							   ],
 					   oncomplete: function(xhr, status, args) {
-					   		let content = ol.control.PopUp.content();
-							ol.control.PopUp.popUpContent.innerHTML = content;
+					   		// ol.control.PopUp.popUpContent.innerHTML = 'This should be coming from args of backend';
+							ol.control.PopUp.popUpContent.innerHTML = args.popupText;
+							console.log(args);
 					   	}
 				  });
 			  } catch(e) {
