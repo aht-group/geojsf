@@ -107,7 +107,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 		
 		SvgFactoryBuilder<L,D,G,GT,F,FS> ffSvg = SvgFactoryBuilder.factory(cL,cD,cGraphic,cGraphicType,cF,cGraphicStyle);
 		
-		efLang = EjbLangFactory.factory(cL);
+		efLang = EjbLangFactory.instance(cL);
 		efDescription = EjbDescriptionFactory.factory(cD);
 		efGraphic = ffSvg.efGraphic();
 		efRule = EjbGeoSldRuleFactory.factory(cRule);

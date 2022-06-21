@@ -80,7 +80,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
         this.fUtils=fUtils;
         this.fGeo=fGeo;
 		
-		ejbLangFactory = EjbLangFactory.factory(fbMeta.getClassL());
+		ejbLangFactory = EjbLangFactory.instance(fbMeta.getClassL());
 		ejbDescriptionFactory = EjbDescriptionFactory.factory(fbMeta.getClassD());
 		efView = fbCore.ejbView();
 		

@@ -21,7 +21,7 @@ public class EjbGeoDataSourceFactory<L extends JeeslLang,D extends JeeslDescript
         
     public EjbGeoDataSourceFactory(final Class<L> cL, final Class<D> cD, final Class<DS> cDs)
     {
-    	fLang = EjbLangFactory.factory(cL);
+    	fLang = EjbLangFactory.instance(cL);
     	efDescription = EjbDescriptionFactory.factory(cD);
         this.cDs = cDs;
     }

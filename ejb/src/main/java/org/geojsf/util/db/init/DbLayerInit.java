@@ -79,7 +79,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
         this.fUtils=fUtils;
         this.fGeo=fGeo;
 		
-		efLang = EjbLangFactory.factory(fbMeta.getClassL());
+		efLang = EjbLangFactory.instance(fbMeta.getClassL());
 		efDescription = EjbDescriptionFactory.factory(fbMeta.getClassD());
 		ejbLayerFactory =fbCore.ejbLayer();
 		dbVpInit = DbViewPortInit.factory(fbMeta,cVp,fUtils);

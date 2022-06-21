@@ -18,7 +18,7 @@ public class EjbGeoMapFactory<L extends JeeslLang,D extends JeeslDescription,
     public EjbGeoMapFactory(final Class<L> cLang,final Class<MAP> cMap)
     {
         this.cMap = cMap;
-        fLang = EjbLangFactory.factory(cLang);
+        fLang = EjbLangFactory.instance(cLang);
     } 
 	
 	public MAP create(String code,  String[] langKeys)

@@ -19,7 +19,7 @@ public class EjbGeoScaleFactory<L extends JeeslLang,D extends JeeslDescription,
         
     public EjbGeoScaleFactory(final Class<L> cL, final Class<D> cD, final Class<SCALE> cScale)
     {
-    	fLang = EjbLangFactory.factory(cL);
+    	fLang = EjbLangFactory.instance(cL);
     	efDescription = EjbDescriptionFactory.factory(cD);
         this.cScale = cScale;
     }

@@ -107,7 +107,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
         
         this.langKeys=langKeys;
         
-        ejbLangFactory = EjbLangFactory.factory(fbCore.getClassL());
+        ejbLangFactory = EjbLangFactory.instance(fbCore.getClassL());
 		ejbDescriptionFactory = EjbDescriptionFactory.factory(fbCore.getClassD());
         efSldTemplate = EjbGeoSldTemplateFactory.factory(cSldTemplate);
 	}

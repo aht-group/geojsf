@@ -61,7 +61,7 @@ public class DbServiceInit <L extends JeeslLang,D extends JeeslDescription,
         
         this.fSecurity=fAcl;
         
-        ejbLangFactory = EjbLangFactory.factory(cL);
+        ejbLangFactory = EjbLangFactory.instance(cL);
 		ejbDescriptionFactory = EjbDescriptionFactory.factory(cD);
 	}
 	

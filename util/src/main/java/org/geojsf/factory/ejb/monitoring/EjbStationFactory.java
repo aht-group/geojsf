@@ -48,7 +48,7 @@ public class EjbStationFactory<L extends JeeslLang,D extends JeeslDescription, S
         
         gisPointFactory = new PointFactory();
         
-        efLang = EjbLangFactory.factory(cL);
+        efLang = EjbLangFactory.instance(cL);
         efDescription = EjbDescriptionFactory.factory(cD);
     } 
 	

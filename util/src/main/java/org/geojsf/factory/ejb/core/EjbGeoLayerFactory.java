@@ -24,7 +24,7 @@ public class EjbGeoLayerFactory<L extends JeeslLang,D extends JeeslDescription,
 	
     public EjbGeoLayerFactory(final Class<L> cL, final Class<LAYER> cLayer)
     {
-    	efLang = EjbLangFactory.factory(cL);
+    	efLang = EjbLangFactory.instance(cL);
         this.cLayer = cLayer;
     } 
 	

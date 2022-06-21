@@ -100,7 +100,7 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 		this.fbSld=fbSld;
 
 	
-		efLang = EjbLangFactory.factory(fbCore.getClassL());
+		efLang = EjbLangFactory.instance(fbCore.getClassL());
 	    efDescription = EjbDescriptionFactory.factory(fbCore.getClassD());
 	    	
 	    efCategory = fbCore.ejbCategory();
