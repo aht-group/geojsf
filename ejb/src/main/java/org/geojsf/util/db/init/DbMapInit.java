@@ -144,7 +144,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 			{
 				ejb.setName(ejbLangFactory.getLangMap(map.getLangs()));
 				ejb.setDescription(ejbDescriptionFactory.create(map.getDescriptions()));
-				ejb=fUtils.update(ejb);
+				ejb=fUtils.save(ejb);
 				
 				iuViews(ejb,map.getView());
 				if(map.isSetViewPort())
@@ -183,7 +183,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 			fUtils.persist(vl);
 			i++;
 		}
-		ejbMap = fUtils.update(ejbMap);
+		ejbMap = fUtils.save(ejbMap);
 		logger.trace("Layer: "+ejbMap.getViews().size());
 	}
 }

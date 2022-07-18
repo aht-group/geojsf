@@ -166,7 +166,7 @@ public class AbstractGeoJsfDataSourceBean <L extends JeeslLang, D extends JeeslD
 		if(!source.getLayers().contains(availableLayer))
 		{
 			source.getLayers().add(availableLayer);
-			source = fGeo.update(source);
+			source = fGeo.save(source);
 			reloadSource();
 		}
 		layer=null;
@@ -178,7 +178,7 @@ public class AbstractGeoJsfDataSourceBean <L extends JeeslLang, D extends JeeslD
 		if(source.getLayers().contains(layer))
 		{
 			source.getLayers().remove(layer);
-			source = fGeo.update(source);
+			source = fGeo.save(source);
 			reloadSource();
 		}
 		layer=null;

@@ -88,13 +88,13 @@ public class DbViewPortInit <L extends JeeslLang,D extends JeeslDescription,
 			VP vp = efVp.build(viewPort);
 			vp = fUtils.persist(vp);
 			ejbMap.setViewPort(vp);
-			fUtils.update(ejbMap);
+			fUtils.save(ejbMap);
 		}
 		else
 		{
 			VP vp = ejbMap.getViewPort();
 			efVp.update(vp,viewPort);
-			fUtils.update(vp);
+			fUtils.save(vp);
 		}
 	}
 	
@@ -105,14 +105,13 @@ public class DbViewPortInit <L extends JeeslLang,D extends JeeslDescription,
 			VP vp = efVp.build(viewPort);
 			vp = fUtils.persist(vp);
 			ejbLayer.setViewPort(vp);
-			fUtils.update(ejbLayer);
+			fUtils.save(ejbLayer);
 		}
 		else
 		{
 			VP vp = ejbLayer.getViewPort();
 			efVp.update(vp,viewPort);
-			fUtils.update(vp);
+			fUtils.save(vp);
 		}
-	}
-		
+	}	
 }

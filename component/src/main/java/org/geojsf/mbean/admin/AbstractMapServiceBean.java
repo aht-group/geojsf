@@ -278,7 +278,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 		viewPort = efViewPort.build();
 		viewPort = fGeo.save(viewPort);
 		layer.setViewPort(viewPort);
-		layer = fGeo.update(layer);
+		layer = fGeo.save(layer);
 	}
 	
 	public void mapMove(MapAjaxEvent evt)

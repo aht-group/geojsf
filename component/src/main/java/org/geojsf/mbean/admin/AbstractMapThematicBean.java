@@ -123,7 +123,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 		viewPort = efViewPort.build();
 		viewPort = fGeo.save(viewPort);
 		map.setViewPort(viewPort);
-		map = fGeo.update(map);
+		map = fGeo.save(map);
 	}
 	
 	public void addMap()
@@ -153,7 +153,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 			view = fGeo.find(fbCore.getClassView(), view);
 			logger.trace(i+" "+view.getLayer().toString());
 			view.setOrderNo(i);
-			fGeo.update(view);
+			fGeo.save(view);
 			i++;
 		}
 	}

@@ -110,18 +110,19 @@ public class DbCategoryInit <L extends JeeslLang,D extends JeeslDescription,
 				{
 					ejb = cCategory.newInstance();
 					ejb.setCode(category.getCode());
-					ejb =fSecurity.persist(ejb);
+					ejb =fSecurity.save(ejb);
 				}
 				catch (InstantiationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 				catch (IllegalAccessException e2) {throw new UtilsConfigurationException(e2.getMessage());}
-				catch (JeeslConstraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}	
+				catch (JeeslConstraintViolationException e2) {throw new UtilsConfigurationException(e2.getMessage());}
+				catch (JeeslLockingException e2) {throw new UtilsConfigurationException(e2.getMessage());}
 			}
 			
 			try
 			{
 				ejb.setName(ejbLangFactory.getLangMap(category.getLangs()));
 				ejb.setDescription(ejbDescriptionFactory.create(category.getDescriptions()));
-				ejb=(CATEGORY)fSecurity.update(ejb);
+				ejb=(CATEGORY)fSecurity.save(ejb);
 			}
 			catch (JeeslConstraintViolationException e) {logger.error("",e);}
 			catch (JeeslLockingException e) {logger.error("",e);}
