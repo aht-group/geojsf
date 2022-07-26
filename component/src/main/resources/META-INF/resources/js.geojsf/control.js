@@ -106,6 +106,31 @@ var GeoJsfControl = {
 		
 		addPopUp : function()
 		{
+		 // Control Select 
+		  var selectedFeature = new ol.interaction.Select({});
+		  GeoJSF.map.addInteraction(selectedFeature);
+		
+		// On selected => show/hide popup
+		  selectedFeature.getFeatures().on(['add'], function(e) {
+		   	let coordinate = e.element.getGeometry().getCoordinates();
+			console.log(coordinate);
+
+		    let feature = e.element;
+			layerSource = selectedFeature.getLayer(feature);
+			GeoJSF.processEventSelectFeature(feature.get("id"), layerSource.get('name'));
+
+		    GeoJSF.popUpOverlay.setPosition(coordinate);
+		  })
+		  
+		  selectedFeature.getFeatures().on(['remove'], function(e) {
+		     GeoJSF.popUpOverlay.setPosition(undefined);
+			 ol.control.PopUp.popUpCloser.blur();
+			 return false;
+		  })
+		},
+		
+		addPopUpOverlay : function()
+		{
 			ol.control.PopUp = {};
 			ol.control.PopUp.popUpContainer = document.createElement('div');
 			ol.control.PopUp.popUpContainer.className = 'ol-popup';
@@ -130,7 +155,7 @@ var GeoJsfControl = {
 			/**
 			 * Create an overlay to anchor the popup to the map.
 			 */
-			var popUpOverlay = new ol.Overlay({
+			GeoJSF.popUpOverlay = new ol.Overlay({
 			  element: ol.control.PopUp.popUpContainer,
 			  autoPan: {
     			animation: {
@@ -144,34 +169,12 @@ var GeoJsfControl = {
 			 * @return {boolean} Don't follow the href.
 			 */
 			 ol.control.PopUp.popUpCloser.onclick = function () {
-			  popUpOverlay.setPosition(undefined);
-			  ol.control.PopUp.popUpCloser.blur();
-			  return false;
+				GeoJSF.popUpOverlay.setPosition(undefined);
+				ol.control.PopUp.popUpCloser.blur();
+				return false;
 			};
 			
 			
-			GeoJSF.map.addOverlay(popUpOverlay);
-			
-		 // Control Select 
-		  var selectedFeature = new ol.interaction.Select({});
-		  GeoJSF.map.addInteraction(selectedFeature);
-		
-		// On selected => show/hide popup
-		  selectedFeature.getFeatures().on(['add'], function(e) {
-		   	let coordinate = e.element.getGeometry().getCoordinates();
-			console.log(coordinate);
-
-		    let feature = e.element;
-			layerSource = selectedFeature.getLayer(feature);
-			GeoJSF.processEventSelectFeature(feature.get("id"), layerSource.get('name'));
-
-		    popUpOverlay.setPosition(coordinate);
-		  })
-		  
-		  selectedFeature.getFeatures().on(['remove'], function(e) {
-		     popUpOverlay.setPosition(undefined);
-			 ol.control.PopUp.popUpCloser.blur();
-			 return false;
-		  })
+			GeoJSF.map.addOverlay(GeoJSF.popUpOverlay);
 		}
 };

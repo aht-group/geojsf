@@ -161,6 +161,12 @@
 			<component-type>org.geojsf.component.PopUp</component-type>
 		</component>
 	</tag>
+	<tag>
+		<tag-name>toolTip</tag-name>
+		<component>
+			<component-type>org.geojsf.component.ToolTip</component-type>
+		</component>
+	</tag>
 <!-- <tag>
 		<tag-name>switchLayer</tag-name>
 		<behavior>

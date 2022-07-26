@@ -234,10 +234,24 @@ public class JsfRenderUtil {
 		    Map map = (Map) component;
 		    renderTextWithLB("// GeoJSF: Initializing Popup");
 		    renderTextWithLB("GeoJSF.setAjaxUpdatesPopUp('" +encodeAjax(map, "featureSelected") +"');");
+		    renderTextWithLB("GeoJsfControl.addPopUpOverlay();");
 		    renderTextWithLB("GeoJsfControl.addPopUp();");
+
 		    renderLinebreaks(2);
 		}
 
 	}
+	public void renderToolTipInitialization(FacesContext facesContext)
+	{
+		renderLinebreaks(1);
+		if (component instanceof Map)
+		{
+		    Map map = (Map) component;
+		    renderTextWithLB("// GeoJSF: Initializing ToolTop");
+		    renderTextWithLB("GeoJSF.map.on(\"pointermove\",  GeoJSF.processEventPointerMove)");
+		    renderTextWithLB("GeoJsfControl.addPopUpOverlay();");
+		    renderLinebreaks(2);
+		}
 
+	}
 }

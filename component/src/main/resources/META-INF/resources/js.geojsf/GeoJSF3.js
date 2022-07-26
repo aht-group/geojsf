@@ -27,6 +27,8 @@
 		  updateOnClick: null,
 		  updateOnMove: null,
 		  updateOnPopUp: null,
+		  toolTipFeature: null,
+		  popUpOverlay: null,
 		  id: null,
 		  lastLayer: null,
 		  baseLayer: null,
@@ -169,6 +171,33 @@
 			  }
 				  finally {}
 		  },
+		  
+		  processEventPointerMove : function(event)
+		  {
+			  console.log("processEventPointerMove");
+			  console.log(event);
+				  
+					  
+			 if (GeoJSF.toolTipFeature !== null) {
+			    GeoJSF.toolTipFeature = null;
+			  }
+			
+			  GeoJSF.map.forEachFeatureAtPixel(event.pixel, function (f) {
+			    GeoJSF.toolTipFeature = f;
+			    return true;
+			  });
+			
+			  if (GeoJSF.toolTipFeature) 
+			  {
+				ol.control.PopUp.popUpContent.innerHTML = GeoJSF.toolTipFeature.get('ttinfo');
+		    	GeoJSF.popUpOverlay.setPosition(event.coordinate);
+			  }
+			  else
+			  {
+				GeoJSF.popUpOverlay.setPosition(undefined);
+				ol.control.PopUp.popUpCloser.blur();
+			  } 
+			},	 
 
 		  processEventSelectFeature : function(featureId, type)
 		  {
