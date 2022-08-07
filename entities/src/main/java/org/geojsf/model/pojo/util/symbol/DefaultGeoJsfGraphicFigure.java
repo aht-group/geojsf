@@ -9,13 +9,13 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
 
 import net.sf.ahtutils.model.qualifier.EjbErNode;
 
 @EjbErNode(name="Figure",category="symbol",subset="symbol")
 public class DefaultGeoJsfGraphicFigure implements EjbRemoveable,Serializable,EjbPersistable,
-								JeeslGraphicFigure<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle>
+								JeeslGraphicComponent<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle>
 {
 	public static final long serialVersionUID=1;
 
@@ -24,7 +24,7 @@ public class DefaultGeoJsfGraphicFigure implements EjbRemoveable,Serializable,Ej
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
-	@Override public String resolveParentAttribute() {return JeeslGraphicFigure.Attributes.graphic.toString();}
+	@Override public String resolveParentAttribute() {return JeeslGraphicComponent.Attributes.graphic.toString();}
 	@ManyToOne
 	private DefaultGeoJsfGraphic graphic;
 	@Override public DefaultGeoJsfGraphic getGraphic() {return graphic;}

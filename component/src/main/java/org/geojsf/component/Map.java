@@ -41,8 +41,8 @@ import org.geojsf.model.xml.geojsf.Scales;
 import org.geojsf.model.xml.specs.gml.Coordinates;
 import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.util.component.GeoJsfScalesUtil;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
@@ -61,7 +61,7 @@ import com.google.gson.Gson;
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class Map <L extends JeeslLang,D extends JeeslDescription,
 					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,

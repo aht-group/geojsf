@@ -4,8 +4,8 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.SldRule;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
@@ -13,7 +13,7 @@ import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
 public class TxtSldRuleFactory<L extends JeeslLang, D extends JeeslDescription,
 								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+								F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,TYPE>,
 								TYPE extends JeeslStatus<L,D,TYPE>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
@@ -27,7 +27,7 @@ public class TxtSldRuleFactory<L extends JeeslLang, D extends JeeslDescription,
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
 					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 					TYPE extends JeeslStatus<L,D,TYPE>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>,

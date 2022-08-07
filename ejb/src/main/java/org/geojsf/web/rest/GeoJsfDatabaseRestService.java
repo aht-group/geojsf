@@ -37,8 +37,8 @@ import org.geojsf.model.xml.geojsf.ViewPorts;
 import org.geojsf.util.query.GeoJsfQuery;
 import org.jeesl.factory.ejb.system.status.EjbStatusFactory;
 import org.jeesl.factory.xml.system.status.XmlStatusFactory;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicFigure;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
@@ -55,7 +55,7 @@ import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDescription,
 										G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-										F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+										F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 										SERVICE extends GeoJsfService<L,D,LAYER>,
 										LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -125,7 +125,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
 					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicFigure<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
