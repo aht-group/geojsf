@@ -38,7 +38,7 @@
 								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveSource()}" update=":#{cc.id}:grid"/>
 								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmSource()}" update=":#{cc.id}:grid"/>
 							</f:facet>
-							<aht:tabTranslationEditor value="#{cc.attrs.bean.source}"
+							<j:tabTranslationEditor value="#{cc.attrs.bean.source}"
 									labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"
 				       				keys="#{appTranslationBean.langKeys}" withDescription="true"/>
 						</p:panel>

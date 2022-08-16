@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
    	xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
+   
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
     xmlns:geop="http://geojsf.org/prototype"
@@ -50,7 +50,7 @@
 								<p:inputText value="#{cc.attrs.bean.scale.value}" autocomplete="false"/>
 							</p:panelGrid>
 							<p:panelGrid columns="1" columnClasses="auPwg100">
-								<aht:tabTranslationEditor value="#{cc.attrs.bean.scale}"
+								<j:tabTranslationEditor value="#{cc.attrs.bean.scale}"
 											keys="#{translationBean.langKeys}" withDescription="true"
 											labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"/>
 							</p:panelGrid>
