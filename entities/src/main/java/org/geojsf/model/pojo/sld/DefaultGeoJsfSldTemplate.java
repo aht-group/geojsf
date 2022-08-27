@@ -11,8 +11,7 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="SLD Template",category="sld",subset="sld")
 public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbPersistable,

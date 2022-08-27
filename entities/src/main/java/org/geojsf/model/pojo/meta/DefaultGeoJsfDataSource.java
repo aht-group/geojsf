@@ -11,8 +11,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Data Source",category="meta",subset="datasource")
 public class DefaultGeoJsfDataSource implements GeoJsfDataSource<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer>

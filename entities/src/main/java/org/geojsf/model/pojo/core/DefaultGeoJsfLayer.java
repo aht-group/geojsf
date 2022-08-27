@@ -16,8 +16,7 @@ import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.sld.DefaultGeoJsfSld;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Layer",category="core",subset="core,viewport,datasource")
 public class DefaultGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSld>

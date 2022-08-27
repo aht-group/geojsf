@@ -7,8 +7,7 @@ import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Type",category="symbol",subset="sld",level=3)
 public class DefaultGeoJsfGraphicType implements JeeslGraphicType<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphic>

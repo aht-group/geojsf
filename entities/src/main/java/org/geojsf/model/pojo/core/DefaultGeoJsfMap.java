@@ -11,8 +11,7 @@ import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.model.pojo.meta.DefaultGeoJsfViewPort;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Map",category="core",subset="core,viewport,datasource")
 public class DefaultGeoJsfMap implements GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfView,DefaultGeoJsfViewPort>

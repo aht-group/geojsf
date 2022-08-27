@@ -3,14 +3,13 @@ package org.geojsf.model.pojo.sld;
 import java.io.Serializable;
 import java.util.Map;
 
-import net.sf.ahtutils.model.qualifier.EjbErNode;
-
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Type",category="sld",subset="sld",level=3)
 public class DefaultGeoJsfSldType implements Serializable,EjbRemoveable,EjbPersistable,

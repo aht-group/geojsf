@@ -11,8 +11,7 @@ import javax.persistence.OrderBy;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Graphic",category="symbol",subset="sld")
 public class DefaultGeoJsfGraphic implements JeeslGraphic<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle>

@@ -12,8 +12,7 @@ import javax.persistence.OneToMany;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Scale",category="meta",subset="datasource")
 public class DefaultGeoJsfScale implements GeoJsfScale<DefaultGeoJsfLang,DefaultGeoJsfDescription>

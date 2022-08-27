@@ -16,8 +16,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.geojsf.model.pojo.util.symbol.DefaultGeoJsfGraphic;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="SLD Rule",category="sld",subset="sld")
 public class DefaultGeoJsfSldRule implements GeoJsfSldRule<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic>

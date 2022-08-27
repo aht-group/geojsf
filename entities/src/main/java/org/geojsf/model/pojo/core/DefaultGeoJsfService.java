@@ -10,8 +10,7 @@ import javax.persistence.OneToMany;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Service",category="core",subset="core")
 public class DefaultGeoJsfService implements GeoJsfService<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer>

@@ -5,8 +5,7 @@ import java.io.Serializable;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="ViewPort",category="meta",subset="viewport")
 public class DefaultGeoJsfViewPort implements Serializable,EjbRemoveable,EjbPersistable,GeoJsfViewPort

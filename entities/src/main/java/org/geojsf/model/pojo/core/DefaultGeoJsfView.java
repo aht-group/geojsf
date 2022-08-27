@@ -3,8 +3,7 @@ package org.geojsf.model.pojo.core;
 import javax.persistence.ManyToOne;
 
 import org.geojsf.interfaces.model.core.GeoJsfView;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="View",category="core",subset="core,datasource")
 public class DefaultGeoJsfView implements GeoJsfView<DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>

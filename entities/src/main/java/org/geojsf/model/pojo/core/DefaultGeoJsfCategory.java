@@ -10,8 +10,7 @@ import javax.persistence.OneToMany;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-
-import net.sf.ahtutils.model.qualifier.EjbErNode;
+import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Category",category="core",level=3,subset="core")
 public class DefaultGeoJsfCategory implements GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer>
