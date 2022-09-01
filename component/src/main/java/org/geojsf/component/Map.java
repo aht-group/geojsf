@@ -53,6 +53,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
+import net.sf.ahtutils.jsf.util.ComponentAttribute;
+
 @ResourceDependencies({
 	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
 	@ResourceDependency(library = "geoJsfCss"  , name = "ol.css", target = "head"),
@@ -77,6 +79,9 @@ public class Map <L extends JeeslLang,D extends JeeslDescription,
 	extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
+	
+	private enum Properties {heigth}
+	
 	Gson gson = new Gson();
 
 	Hashtable<Long, OlService> serviceList;
@@ -102,8 +107,12 @@ public class Map <L extends JeeslLang,D extends JeeslDescription,
 
 	//Define attributes of the component
 	private Integer width  = null;
-	private Integer height = 400;
 
+	//	private Integer height = 400;
+//	public Integer getHeight() {return height;}
+//	public void setHeight(Integer height) {this.height = height;}
+	
+	
 	//These are related to the switching of layers
 	Hashtable<Long, String>    layerNames;
 
@@ -189,6 +198,10 @@ public class Map <L extends JeeslLang,D extends JeeslDescription,
 				renderer.renderLinebreaks(2);
 
 				// Render the DIV container that will be used by OpenLayers to inject the OpenLayers map
+				
+				//Test for managing the height via a EL-Expression
+				int height = ComponentAttribute.getInteger(Properties.heigth.toString(), 400, ctx, this);
+				
 				renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width),"");
 				renderer.renderLinebreaks(1);
 
@@ -784,9 +797,6 @@ public class Map <L extends JeeslLang,D extends JeeslDescription,
 
 	public Integer getWidth(){return width;}
 	public void setWidth(Integer width) {this.width = width;}
-
-	public Integer getHeight() {return height;}
-	public void setHeight(Integer height) {this.height = height;}
 
 	public Coordinates getCoords() {return coords;}
 	public void setCoords(Coordinates coords) {this.coords = coords;}
