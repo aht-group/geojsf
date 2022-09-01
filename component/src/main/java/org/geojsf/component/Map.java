@@ -80,7 +80,7 @@ public class Map <L extends JeeslLang,D extends JeeslDescription,
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
 	
-	private enum Properties {heigth}
+	private enum Properties {height}
 	
 	Gson gson = new Gson();
 
@@ -200,7 +200,7 @@ public class Map <L extends JeeslLang,D extends JeeslDescription,
 				// Render the DIV container that will be used by OpenLayers to inject the OpenLayers map
 				
 				//Test for managing the height via a EL-Expression
-				int height = ComponentAttribute.getInteger(Properties.heigth.toString(), 400, ctx, this);
+				int height = ComponentAttribute.getInteger(Properties.height.toString(), 400, ctx, this);
 				
 				renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width),"");
 				renderer.renderLinebreaks(1);
