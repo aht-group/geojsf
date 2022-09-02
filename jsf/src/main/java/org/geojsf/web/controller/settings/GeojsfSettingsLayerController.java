@@ -46,31 +46,22 @@ import net.sf.ahtutils.jsf.util.FacesContextMessage;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class GeojsfSettingsLayerController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
-									G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-									F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 									SERVICE extends GeoJsfService<L,D,LAYER>,
-									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,?,SLD>,
 									MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-									SCALE extends GeoJsfScale<L,D>, 
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 									VP extends GeoJsfViewPort,
-									DS extends GeoJsfDataSource<L,D,LAYER>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G>,
-									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
-									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-									JL extends GeoJsfLocationLevel<JL,L,D,?>>
+
+									SLD extends GeoJsfSld<L,D,?,?,?>>
 	extends AbstractJeeslWebController<L,D,LOC>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsLayerController.class);
 	
-	private GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
+	private GeoJsfFacade<L,D,?,?,?,?,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP,?,?,?,SLD,?> fGeo;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP> fbCore;
 	
 	private final EjbGeoMapFactory<L,D,MAP> efMap;
 	private final EjbGeoViewPortFactory<VP> efViewPort;
@@ -87,9 +78,8 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	protected SERVICE service; public SERVICE getService() {return service;} public void setService(SERVICE service) {this.service = service;}
 	protected LAYER layer; public LAYER getLayer() {return layer;} public void setLayer(LAYER layer) {this.layer = layer;}
 		
-	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-									GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
-									GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP> fbCore,
+									GeoMetaFactoryBuilder<L,D,?,VP,?,?,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore = fbCore;
@@ -98,7 +88,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		efViewPort = fbMeta.ejbViewPort();
 	}
 	
-	public void postConstructService(GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,
+	public void postConstructService(GeoJsfFacade<L,D,?,?,?,?,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP,?,?,?,SLD,?> fGeo,
 									 JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
 		super.postConstructWebController(lp);
@@ -138,12 +128,12 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		viewPort=null;
 	}
 	
-	public void rm(SERVICE item)
+	public void deleteService()
 	{
-		logger.info("rm "+item);
+		logger.info("rm "+service);
 		try
 		{
-			fGeo.rm(item);
+			fGeo.rm(service);
 			layer=null;
 			service=null;
 			reloadServices();
@@ -229,11 +219,6 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		viewPort=null;
 	}
 	
-	protected void reorderCategories() throws JeeslConstraintViolationException, JeeslLockingException
-	{
-		PositionListReorderer.reorder(fGeo, categories);
-	}
-	
 	protected void reloadLayers()
 	{
 		category = fGeo.load(fbCore.getClassCategory(), category);
@@ -291,8 +276,6 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		viewPort=null;
 	}
 	
-	public void reorderLayer() throws JeeslConstraintViolationException, JeeslLockingException{PositionListReorderer.reorder(fGeo, layers);}
-	
 	// View Port
 	private void addViewPort() throws JeeslConstraintViolationException, JeeslLockingException
 	{
@@ -313,4 +296,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		logger.info(AbstractLogMessage.saveEntity(viewPort));
 		viewPort = fGeo.save(viewPort);
 	}
+	
+	public void reorderCategories() throws JeeslConstraintViolationException, JeeslLockingException {PositionListReorderer.reorder(fGeo, categories);}
+	public void reorderLayer() throws JeeslConstraintViolationException, JeeslLockingException{PositionListReorderer.reorder(fGeo, layers);}
 }
