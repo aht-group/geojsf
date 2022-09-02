@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+    	<groupId>org.geojsf</groupId>
+    	<artifactId>geojsf</artifactId>
+    	<version>0.1.2-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+	</parent>
+	
+    <artifactId>geojsf-jsf</artifactId>
+    <name>GeoJSF - JSF</name>
+	<packaging>jar</packaging>
+	
+	<dependencyManagement>
+		<dependencies>      	         
+			<dependency>
+				<groupId>org.geojsf</groupId>
+				<artifactId>geojsf-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<dependencies>
+		<!-- GeoJSF -->
+		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-ejb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-entities</artifactId>
+		</dependency>
+	
+		<!-- JEESL -->
+		<dependency>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-jsf</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-prototype</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.sun.faces</groupId>
+		    <artifactId>jsf-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+  			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+	    	<groupId>com.google.code.gson</groupId>
+	    	<artifactId>gson</artifactId>
+	    	<version>2.2.4</version>
+		</dependency>
+		<dependency>  
+   			<groupId>org.primefaces</groupId>  
+   			<artifactId>primefaces</artifactId> 
+   			<scope>provided</scope>
+   		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+   		
+   		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+                
+		<!-- Jackson -->
+		<!-- 2021-07-16 tk: moved to test -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.6.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.6.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-annotations</artifactId>
+    		<version>2.6.0</version>
+    		<scope>test</scope>
+		</dependency>
+		
+<!--	Deactivated by tk on 21.12.2016 because of outdated jackson version
+	  	<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+		</dependency> -->
+		
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+         	<plugin>
+				<groupId>org.jeesl</groupId>
+				<artifactId>jeesl-maven</artifactId>
+				<executions>
+                                    <!-- Deactivated because currently not used
+ 					<execution>
+                                            <id>create-js</id>
+                                            <phase>process-resources</phase> 
+                                            <goals>
+                                                    <goal>createJs</goal>
+                                            </goals>
+                                            <configuration>
+                                                    <projectBaseDir>${project.basedir}</projectBaseDir>
+                                                    <jsDir>src/main/resources/META-INF/resources/js.geojsf</jsDir>
+                                                    <targetFile>${project.build.directory}/classes/META-INF/resources/js.geojsf/GeoJsf.min.js</targetFile>
+                                                    <log>WARN</log>
+                                                    <libOrder>
+                                                            <lib>OpenLayers.js</lib>
+                                                            <lib>GeoJSF.js</lib>
+                                                    </libOrder>
+                                            </configuration>
+					</execution>
+                                    -->
+				</executions>
+			</plugin>
+		</plugins>
+	</build>	
+	
+</project>
