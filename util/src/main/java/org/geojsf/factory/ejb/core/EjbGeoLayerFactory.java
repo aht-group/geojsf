@@ -26,7 +26,24 @@ public class EjbGeoLayerFactory<L extends JeeslLang,D extends JeeslDescription,
     {
     	efLang = EjbLangFactory.instance(cL);
         this.cLayer = cLayer;
-    } 
+    }
+    
+    public LAYER build(String code, SERVICE service, CATEGORY category) throws JeeslConstraintViolationException
+	{
+		LAYER ejb;
+		try
+		{
+			ejb = cLayer.newInstance();
+			ejb.setVisible(true);
+			ejb.setCode(code);
+			ejb.setService(service);
+			ejb.setCategory(category);
+		}
+		catch (InstantiationException e) {throw new JeeslConstraintViolationException(e.getMessage());}
+		catch (IllegalAccessException e) {throw new JeeslConstraintViolationException(e.getMessage());}
+
+        return ejb;
+    }
 	
 	public LAYER build(String code, SERVICE service, CATEGORY category, String[] langKeys) throws JeeslConstraintViolationException
 	{

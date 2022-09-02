@@ -34,6 +34,11 @@
 				<artifactId>geojsf-doc</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.geojsf</groupId>
+				<artifactId>geojsf-jsf</artifactId>
+				<version>${project.version}</version>
+			</dependency>
             <dependency>
                 <groupId>org.geojsf</groupId>
                 <artifactId>geojsf-util</artifactId>

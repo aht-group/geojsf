@@ -24,7 +24,6 @@ import javax.faces.event.PostAddToViewEvent;
 
 import org.geojsf.component.entities.OlLayer;
 import org.geojsf.component.entities.OlService;
-import org.geojsf.event.MapAjaxEvent;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -36,6 +35,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.jsf.event.MapAjaxEvent;
 import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.model.xml.geojsf.Scales;
 import org.geojsf.model.xml.specs.gml.Coordinates;

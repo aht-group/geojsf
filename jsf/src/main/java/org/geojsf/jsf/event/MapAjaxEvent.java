@@ -1,4 +1,4 @@
-package org.geojsf.event;
+package org.geojsf.jsf.event;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.behavior.ClientBehavior;

@@ -5,10 +5,11 @@ import java.util.List;
 import javax.faces.component.UIComponent;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.context.FacesContext;
-import org.geojsf.event.MapAjaxEvent;
+
 import org.geojsf.helpers.LayerManager;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.jsf.event.MapAjaxEvent;
 import org.primefaces.PrimeFaces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
