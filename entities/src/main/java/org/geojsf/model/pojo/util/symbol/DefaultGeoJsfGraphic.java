@@ -14,7 +14,7 @@ import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Graphic",category="symbol",subset="sld")
-public class DefaultGeoJsfGraphic implements JeeslGraphic<DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle>
+public class DefaultGeoJsfGraphic implements JeeslGraphic<DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicComponent,DefaultGeoJsfGraphicStyle>
 {
 	public static final long serialVersionUID=1;
 
@@ -59,9 +59,9 @@ public class DefaultGeoJsfGraphic implements JeeslGraphic<DefaultGeoJsfGraphicTy
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="graphic")
 	@OrderBy("position ASC")
-	private List<DefaultGeoJsfGraphicFigure> figures;
-	@Override public List<DefaultGeoJsfGraphicFigure> getFigures() {return figures;}
-	@Override public void setFigures(List<DefaultGeoJsfGraphicFigure> figures) {this.figures = figures;}
+	private List<DefaultGeoJsfGraphicComponent> figures;
+	@Override public List<DefaultGeoJsfGraphicComponent> getFigures() {return figures;}
+	@Override public void setFigures(List<DefaultGeoJsfGraphicComponent> figures) {this.figures = figures;}
 	
 	public String toString()
 	{

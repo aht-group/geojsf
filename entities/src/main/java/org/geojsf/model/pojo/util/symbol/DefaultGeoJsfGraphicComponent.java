@@ -5,16 +5,14 @@ import java.io.Serializable;
 import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
-import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
 import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Figure",category="symbol",subset="symbol")
-public class DefaultGeoJsfGraphicFigure implements EjbRemoveable,Serializable,EjbPersistable,
-								JeeslGraphicComponent<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle>
+public class DefaultGeoJsfGraphicComponent implements EjbRemoveable,Serializable,EjbPersistable,
+								JeeslGraphicComponent<DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicComponent,DefaultGeoJsfGraphicStyle>
 {
 	public static final long serialVersionUID=1;
 
@@ -73,6 +71,6 @@ public class DefaultGeoJsfGraphicFigure implements EjbRemoveable,Serializable,Ej
 		return sb.toString();
 	}
 	
-	@Override public boolean equals(Object object){return (object instanceof DefaultGeoJsfGraphicFigure) ? id == ((DefaultGeoJsfGraphicFigure) object).getId() : (object == this);}
+	@Override public boolean equals(Object object){return (object instanceof DefaultGeoJsfGraphicComponent) ? id == ((DefaultGeoJsfGraphicComponent) object).getId() : (object == this);}
 	@Override public int hashCode(){return new HashCodeBuilder(35,39).append(id).toHashCode();}
 }

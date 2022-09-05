@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 public class AbstractSldLibraryServlet<L extends JeeslLang,D extends JeeslDescription,
 										G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-										F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
+										F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 										LAYER extends GeoJsfLayer<L,D,?,?,?,?,SLD>,
 										MAP extends GeoJsfMap<L,D,?,?,?>,
 										SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
