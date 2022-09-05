@@ -35,6 +35,7 @@ import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
@@ -46,7 +47,7 @@ import org.slf4j.LoggerFactory;
 
 public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription,LOC extends JeeslLocale<L,D,LOC,?>,
 									G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-									F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+									F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 									SERVICE extends GeoJsfService<L,D,LAYER>,
 									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -55,7 +56,7 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 									VP extends GeoJsfViewPort,
 									DS extends GeoJsfDataSource<L,D,LAYER>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,G>,
@@ -70,12 +71,12 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 	@Deprecated
 	protected String[] langKeys;
 	
-	protected GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
+	protected GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo;
 	protected JeeslTranslationBean<L,D,LOC> bTranslation;
 	
 	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
 	protected final GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta;
-	protected final GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
+	protected final GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
 	
 	protected final EjbLangFactory<L> efLang;
 	protected final EjbDescriptionFactory<D> efDescription;
@@ -89,12 +90,12 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 	protected final EjbGeoViewPortFactory<VP> efViewPort;
 	
 	protected final EjbGeoDataSourceFactory<L,D,DS> efDs;
-	protected final EjbGeoSldTemplateFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efTemplate;
-	protected final EjbGeoSldFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> efSld;
+	protected final EjbGeoSldTemplateFactory<SLDTEMPLATE> efTemplate;
+	protected final EjbGeoSldFactory<SLDTYPE,SLD> efSld;
 	
 	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 							GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
-							GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+							GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		this.fbCore=fbCore;
 		this.fbMeta=fbMeta;
@@ -113,12 +114,12 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 	    efViewPort = fbMeta.ejbViewPort();
     	
 		efDs = fbMeta.ejbDs();
-		efSld = fbSld.sld();
-		efTemplate = EjbGeoSldTemplateFactory.factory(fbSld.getClassTemplate());
+		efSld = fbSld.ejbSld();
+		efTemplate = fbSld.efTemplate();
 	}
 	
 	protected void postConstructGeojsf(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
-									GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+									GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo)
 	{
 		this.bTranslation=bTranslation;
 		this.langKeys=bTranslation.getLangKeys().toArray(new String[0]);

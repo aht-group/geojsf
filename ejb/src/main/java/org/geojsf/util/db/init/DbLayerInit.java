@@ -26,6 +26,7 @@ import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
@@ -36,7 +37,7 @@ import org.slf4j.LoggerFactory;
 
 public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 							G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+							F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
 							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -45,7 +46,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 							RULE extends GeoJsfSldRule<L,D,G>
@@ -58,7 +59,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
     private final Class<LAYER> cLayer;
     
     private JeeslFacade fUtils;
-    private GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo;
+    private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo;
     
     private EjbLangFactory<L> efLang;
     private EjbDescriptionFactory<D> efDescription;
@@ -70,7 +71,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
     					GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta,
     					final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,
     					JeeslFacade fUtils,
-    					GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+    					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo)
 	{       
     	this.cCategory = cCategory;
     	this.cService = cService;
@@ -87,7 +88,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 	
 	public static <L extends JeeslLang,D extends JeeslDescription,
 					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -98,13 +99,13 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>,
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>> 
+					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>> 
 	
 		DbLayerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 				GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta,
 					final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,JeeslFacade fUtils,
-					GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo)
 	{
 		return new DbLayerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,fbMeta,cCategory,cService,cLayer,cVp,fUtils,fGeo);
 	}

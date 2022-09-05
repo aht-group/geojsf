@@ -15,7 +15,7 @@ import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="SLD Template",category="sld",subset="sld")
 public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfSldTemplate<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType>
+								GeoJsfSldTemplate<DefaultGeoJsfLang,DefaultGeoJsfDescription>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;

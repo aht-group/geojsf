@@ -7,6 +7,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.Sld;
 import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
@@ -17,8 +18,8 @@ import org.slf4j.LoggerFactory;
 
 public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
 							G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+							F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
+							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 							RULE extends GeoJsfSldRule<L,D,G>

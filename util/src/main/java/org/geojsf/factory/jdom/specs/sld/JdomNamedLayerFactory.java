@@ -7,20 +7,13 @@ import org.apache.commons.io.IOUtils;
 import org.geojsf.factory.xml.specs.sld.XmlNameFactory;
 import org.geojsf.factory.xml.specs.sld.XmlNamedLayerFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
-import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.geojsf.model.xml.specs.sld.NamedLayer;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
-import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
-import org.jeesl.interfaces.model.system.locale.JeeslDescription;
-import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,15 +21,10 @@ import org.slf4j.LoggerFactory;
 import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-public class JdomNamedLayerFactory <L extends JeeslLang,D extends JeeslDescription,
-									G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-									F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
-									LAYER extends GeoJsfLayer<L,D,?,?,?,?,SLD>,
-									MAP extends GeoJsfMap<L,D,?,?,?>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G>>
+public class JdomNamedLayerFactory <LAYER extends GeoJsfLayer<?,?,?,?,?,?,SLD>,
+									TEMPLATE extends GeoJsfSldTemplate<?,?>,
+									SLDTYPE extends JeeslStatus<?,?,SLDTYPE>,
+									SLD extends GeoJsfSld<?,?,TEMPLATE,SLDTYPE,?>>
 				implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(JdomNamedLayerFactory.class);
@@ -73,7 +61,7 @@ public class JdomNamedLayerFactory <L extends JeeslLang,D extends JeeslDescripti
 		return element;
 	}
 	
-	private Element userStyle(SLDTEMPLATE template) throws IOException
+	private Element userStyle(TEMPLATE template) throws IOException
 	{
 		Element source = JDomUtil.load(IOUtils.toInputStream(template.getXml(), "UTF-8")).detachRootElement();
 		

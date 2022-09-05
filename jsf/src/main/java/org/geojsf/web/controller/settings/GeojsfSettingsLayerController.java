@@ -9,6 +9,7 @@ import org.geojsf.factory.ejb.core.EjbGeoMapFactory;
 import org.geojsf.factory.ejb.core.EjbGeoViewFactory;
 import org.geojsf.factory.ejb.meta.EjbGeoViewPortFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
+import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -47,7 +48,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private static final long serialVersionUID = 1L;
 	private final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsLayerController.class);
 	
-	private GeoJsfFacade<L,D,?,?,?,?,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP,?,?,?,SLD,?> fGeo;
+	private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP,?> fGeo;
 	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP> fbCore;
 	
 	private final EjbGeoMapFactory<L,D,MAP> efMap;
@@ -75,13 +76,14 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		efViewPort = fbMeta.ejbViewPort();
 	}
 	
-	public void postConstructService(GeoJsfFacade<L,D,?,?,?,?,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP,?,?,?,SLD,?> fGeo,
+	public void postConstructService(GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP,?> fGeo,
+									GeoSldFacade<L,D,?,?,SLD,?> fSld,				
 									 JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
 		super.postConstructWebController(lp);
 		this.fGeo=fGeo;
 
-		slds = fGeo.fLibrarySlds();
+		slds = fSld.fLibrarySlds();
 		
 		this.reloadServices();
 		this.reloadCategories();

@@ -7,39 +7,22 @@ import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
-import org.geojsf.interfaces.model.geometry.GeoJsfMultiPolygon;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
-import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.interfaces.model.with.EjbWithSldRules;
-import org.jeesl.exception.ejb.JeeslConstraintViolationException;
-import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.interfaces.facade.JeeslFacade;
-import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
 public interface GeoJsfFacade <L extends JeeslLang, D extends JeeslDescription,
-								G extends JeeslGraphic<L,D,GT,GC,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								GC extends JeeslGraphicComponent<L,D,G,GT,GC,FS>, FS extends JeeslStatus<L,D,FS>,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
 								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 								SCALE extends GeoJsfScale<L,D>, 
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,
-								DS extends GeoJsfDataSource<L,D,LAYER>,
-								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-								SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G>
+								DS extends GeoJsfDataSource<L,D,LAYER>
 								>
 					extends JeeslFacade
 {		
@@ -47,33 +30,11 @@ public interface GeoJsfFacade <L extends JeeslLang, D extends JeeslDescription,
 	CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category);
 	MAP load(Class<MAP> cMap, MAP map);
 	LAYER load(Class<LAYER> cLayer, LAYER layer);
-	SLD load(SLD sld);
+	
 	DS load(Class<DS> cDs, DS ds);
-	RULE load(Class<RULE> cRule, RULE rule);
 	
 	void rm(Class<LAYER> cLayer, LAYER layer);	
 	void rm(Class<VIEW> cView, VIEW view);
 	
 	List<DS> fDataSources(Class<MAP> cMap, Class<DS> cDs, MAP map);
-	List<SLD> fLibrarySlds();
-	
-	<W extends EjbWithSldRules<RULE>> RULE save(Class<W> cW, W entity, RULE rule) throws JeeslLockingException, JeeslConstraintViolationException;
-	<W extends EjbWithSldRules<RULE>> void rm(Class<W> cW, W entity, RULE rule) throws JeeslLockingException, JeeslConstraintViolationException;
-	
-//	@Override public <OWNER extends JeeslWithMmgGallery<MG>> MG fMmgGallery(Class<OWNER> cOwner, OWNER owner) throws JeeslNotFoundException
-//	{
-//		CriteriaBuilder cB = em.getCriteriaBuilder();
-//		CriteriaQuery<MG> cQ = cB.createQuery(fbMmg.getClassGallery());
-//		Root<OWNER> root = cQ.from(cOwner);
-//		
-//		Path<MG> pathCalendar = root.get(JeeslWithMmgGallery.Attributes.mmgGallery.toString());
-//		Path<Long> pId = root.get(EjbWithId.attribute);
-//		
-//		cQ.where(cB.equal(pId,owner.getId()));
-//		cQ.select(pathCalendar);
-//		
-//		try	{return em.createQuery(cQ).getSingleResult();}
-//		catch (NoResultException ex){throw new JeeslNotFoundException("No "+fbMmg.getClassGallery()+" found for owner "+owner);}
-//		catch (NonUniqueResultException ex){throw new JeeslNotFoundException("Multiple "+fbMmg.getClassGallery()+" found for owner "+owner);}
-//	}
 }

@@ -13,7 +13,7 @@ import org.jeesl.interfaces.model.with.system.locale.EjbWithDescription;
 import org.jeesl.interfaces.model.with.system.locale.EjbWithLang;
 
 public interface GeoJsfSld<L extends JeeslLang, D extends JeeslDescription,
-						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 						   SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 						   RULE extends GeoJsfSldRule<L,D,?>
 						   >

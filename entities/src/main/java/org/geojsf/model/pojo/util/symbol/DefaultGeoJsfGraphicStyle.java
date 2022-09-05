@@ -1,19 +1,15 @@
 package org.geojsf.model.pojo.util.symbol;
 
-import java.io.Serializable;
 import java.util.Map;
 
 import org.geojsf.model.pojo.util.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.util.DefaultGeoJsfLang;
-import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
-import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
 import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Style",category="symbol",subset="sld",level=3)
-public class DefaultGeoJsfGraphicStyle implements Serializable,EjbRemoveable,EjbPersistable,
-								JeeslStatus<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphicStyle>
+public class DefaultGeoJsfGraphicStyle implements JeeslGraphicShape<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphicStyle,DefaultGeoJsfGraphic>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
@@ -64,5 +60,15 @@ public class DefaultGeoJsfGraphicStyle implements Serializable,EjbRemoveable,Ejb
 		StringBuffer sb = new StringBuffer();
 			sb.append(id);
 		return sb.toString();
+	}
+	@Override
+	public DefaultGeoJsfGraphic getGraphic() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setGraphic(DefaultGeoJsfGraphic graphic) {
+		// TODO Auto-generated method stub
+		
 	}
 }

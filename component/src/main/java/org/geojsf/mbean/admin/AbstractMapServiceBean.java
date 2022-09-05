@@ -7,6 +7,7 @@ import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
+import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
@@ -28,6 +29,7 @@ import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
@@ -44,7 +46,7 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 @Deprecated //Use GeojsfSettingsLayerController instead
 public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 									G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-									F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+									F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 									SERVICE extends GeoJsfService<L,D,LAYER>,
 									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -53,7 +55,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 									VP extends GeoJsfViewPort,
 									DS extends GeoJsfDataSource<L,D,LAYER>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,G>,
@@ -79,16 +81,17 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 		
 	public AbstractMapServiceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 									GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
-									GeoSldFactoryBuilder<L,D,G,GT,F,FS,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+									GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
 		super(fbCore,fbMeta,fbSld);
 	}
 	
 	public void postConstructService(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
-									GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo)
+									GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo,
+									GeoSldFacade<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> fSld)
 	{
 		super.postConstructGeojsf(bTranslation,bMessage,fGeo);  	
-		slds = fGeo.fLibrarySlds();
+		slds = fSld.fLibrarySlds();
 	}
 	
 	protected void reloadServices()

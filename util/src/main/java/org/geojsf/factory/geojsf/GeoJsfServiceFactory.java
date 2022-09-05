@@ -31,7 +31,7 @@ public class GeoJsfServiceFactory<L extends JeeslLang,D extends JeeslDescription
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 									VP extends GeoJsfViewPort,
 									DS extends GeoJsfDataSource<L,D,LAYER>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,?>> 
@@ -59,7 +59,7 @@ public class GeoJsfServiceFactory<L extends JeeslLang,D extends JeeslDescription
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
+					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>> 
     	GeoJsfServiceFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> factory(final Class<SERVICE> clService)

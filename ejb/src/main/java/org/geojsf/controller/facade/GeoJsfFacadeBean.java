@@ -6,10 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Root;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
@@ -18,56 +14,42 @@ import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
-import org.geojsf.interfaces.model.geometry.GeoJsfMultiPolygon;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
-import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.interfaces.model.with.EjbWithSldRules;
 import org.jeesl.controller.facade.JeeslFacadeBean;
-import org.jeesl.exception.ejb.JeeslConstraintViolationException;
-import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
+import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+								F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
 								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 								SCALE extends GeoJsfScale<L,D>, 
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,
-								DS extends GeoJsfDataSource<L,D,LAYER>,
-								SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-								SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G>
+								DS extends GeoJsfDataSource<L,D,LAYER>
 								>
 				extends JeeslFacadeBean
-				implements GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+				implements GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS>
 		
 {	
 	private static final long serialVersionUID = 1L;
 
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfFacadeBean.class);
 	
-	private final Class<SLD> cSld;
-	
-	public GeoJsfFacadeBean(EntityManager em, GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore, final Class<SLD> cSld)
+	public GeoJsfFacadeBean(EntityManager em, GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore)
 	{
 		super(em);
-		this.cSld=cSld;
 	}
 
 	@Override public MAP load(Class<MAP> cView, MAP map)
@@ -99,29 +81,13 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 		return layer;
 	}
 	
-	@Override public SLD load(SLD sld)
-	{
-		sld = em.find(cSld, sld.getId());
-		for(RULE r : sld.getRules())
-		{
-			if(r.getGraphic()!=null){r.getGraphic().getId();}
-		}
-		sld.getRules().size();
-		return sld;
-	}
+	
 	
 	@Override public DS load(Class<DS> cDs, DS ds)
 	{
 		ds = em.find(cDs, ds.getId());
 		ds.getLayers().size();
 		return ds;
-	}
-	
-	@Override public RULE load(Class<RULE> cRule, RULE rule)
-	{
-		rule = em.find(cRule, rule.getId());
-		rule.getGraphic().getId();
-		return rule;
 	}
 
 	@Override public void rm(Class<VIEW> cView, VIEW view)
@@ -186,39 +152,5 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 		return result;
 	}
 	
-	@Override public <W extends EjbWithSldRules<RULE>> RULE save(Class<W> cW, W entity, RULE rule) throws JeeslLockingException, JeeslConstraintViolationException
-	{
-		entity = this.find(cW, entity);
-		rule = this.saveProtected(rule);
-		if(!entity.getRules().contains(rule))
-		{
-			entity.getRules().add(rule);
-			this.saveProtected(entity);
-		}
-		return rule;
-	}
 	
-	@Override public <W extends EjbWithSldRules<RULE>> void rm(Class<W> cW, W entity, RULE rule) throws JeeslConstraintViolationException, JeeslLockingException
-	{
-		entity = this.find(cW, entity);
-		if(entity.getRules().contains(rule))
-		{
-			entity.getRules().remove(rule);
-			this.saveProtected(entity);
-		}
-		this.rmProtected(rule);		
-	}
-
-	@Override public List<SLD> fLibrarySlds()
-	{
-		CriteriaBuilder cB = em.getCriteriaBuilder();
-	    CriteriaQuery<SLD> criteriaQuery = cB.createQuery(cSld);
-	    Root<SLD> fromType = criteriaQuery.from(cSld);
-	    
-	    Path<Boolean> pLibrary = fromType.get(GeoJsfSld.Attributes.library.toString());
-	    
-	    CriteriaQuery<SLD> select = criteriaQuery.select(fromType);
-	    select.where(cB.equal(pLibrary,true));
-		return em.createQuery(select).getResultList();
-	}
 }
