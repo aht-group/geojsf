@@ -14,7 +14,6 @@ public class TxtIsoTimeFactory
 	final static Logger logger = LoggerFactory.getLogger(TxtIsoTimeFactory.class);
 	
 	
-	
 	public static String toDate(Date date)
 	{
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");

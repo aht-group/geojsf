@@ -82,10 +82,6 @@
 					<groupId>org.apache.poi</groupId>
 				</exclusion>
 				<exclusion>
-					<artifactId>joda-time</artifactId>
-					<groupId>joda-time</groupId>
-				</exclusion>
-				<exclusion>
 					<artifactId>jpwgen</artifactId>
 					<groupId>de.rrze</groupId>
 				</exclusion>

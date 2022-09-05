@@ -62,10 +62,6 @@
    	   		<scope>compile</scope>
    	   		<exclusions>
    	   			<exclusion>
-   	   				<artifactId>joda-time</artifactId>
-   	   				<groupId>joda-time</groupId>
-   	   			</exclusion>
-   	   			<exclusion>
    	   				<artifactId>commons-io</artifactId>
    	   				<groupId>commons-io</groupId>
    	   			</exclusion>
@@ -120,10 +116,6 @@
    	   			<exclusion>
    	   				<artifactId>poi</artifactId>
    	   				<groupId>org.apache.poi</groupId>
-   	   			</exclusion>
-   	   			<exclusion>
-   	   				<artifactId>joda-time</artifactId>
-   	   				<groupId>joda-time</groupId>
    	   			</exclusion>
    	   			<exclusion>
    	   				<artifactId>json</artifactId>

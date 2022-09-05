@@ -45,10 +45,6 @@
 			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
-					<artifactId>joda-time</artifactId>
-					<groupId>joda-time</groupId>
-				</exclusion>
-				<exclusion>
 					<artifactId>commons-io</artifactId>
 					<groupId>commons-io</groupId>
 				</exclusion>
@@ -74,11 +70,6 @@
 					<artifactId>jpwgen</artifactId>
 					<groupId>de.rrze</groupId>
 				</exclusion>
-				
-				<exclusion>
-					<artifactId>joda-time</artifactId>
-					<groupId>joda-time</groupId>
-				</exclusion>
 				<exclusion>
 					<artifactId>commons-collections</artifactId>
 					<groupId>commons-collections</groupId>
@@ -93,10 +84,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!--2022-09-04 tk Preparing removal  
 		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-		</dependency>
+			<groupId>jola-time</groupId>
+			<artifactId>jola-time</artifactId>
+		</dependency> -->
 		
 		<!-- GeoJson -->
 		<dependency>

@@ -1,46 +1,38 @@
 package org.geojsf.factory.txt;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 import org.geojsf.test.AbstractGeoJsfUtilTest;
-import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.exlp.util.DateUtil;
+
 public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestTxtIsoTimeFactory.class);
-		
-	private Date d1,d2;
+	
+	private ZonedDateTime zdt1,zdt2;
 	
 	@Before
 	public void init()
 	{
-		//Initialize dates with fixed values
-		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-		calendar.set(Calendar.DAY_OF_MONTH, 20);
-		calendar.set(Calendar.MONTH, 7);
-		calendar.set(Calendar.YEAR, 2011);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.HOUR_OF_DAY, 12);
-		calendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MILLISECOND, 0);
-		
-		d1 = calendar.getTime();
-		d2 = new DateTime(d1).plusDays(5).toDate();
+		zdt1 = ZonedDateTime.of(LocalDateTime.of(2011,7,20,12,0,0),ZoneId.of("UTC"));
+		zdt2 = zdt1.plusDays(5);
 	}
 	
 	@Test
 	public void value()
 	{
-		String expected = "2011-08-20T12:00:00Z";
-		String actual = TxtIsoTimeFactory.toDate(d1);
+		String expected = "2011-07-20T12:00:00Z";
+		String actual = TxtIsoTimeFactory.toDate(DateUtil.toDate(zdt1));
 		
 		logger.info("ISO result       : " +actual);
 		Assert.assertEquals(expected, actual);
@@ -49,8 +41,8 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 	@Test
 	public void range()
 	{
-		String expected = "2011-08-20T12:00:00Z/2011-08-25T12:00:00Z";
-		String actual = TxtIsoTimeFactory.toRange(d1, d2);
+		String expected = "2011-07-20T12:00:00Z/2011-07-25T12:00:00Z";
+		String actual = TxtIsoTimeFactory.toRange(DateUtil.toDate(zdt1),DateUtil.toDate(zdt2));
 	
 		logger.info("ISO result       : " +actual);
 		Assert.assertEquals(expected, actual);
@@ -59,10 +51,10 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 	@Test
 	public void list()
 	{
-		String expected = "2011-08-20T12:00:00Z,2011-08-25T12:00:00Z";
+		String expected = "2011-07-20T12:00:00Z,2011-07-25T12:00:00Z";
 		ArrayList<Date> list = new ArrayList<Date>();
-		list.add(d1);
-		list.add(d2);
+		list.add(DateUtil.toDate(zdt1));
+		list.add(DateUtil.toDate(zdt2));
 		String actual = TxtIsoTimeFactory.toList(list);
 	
 		logger.info("ISO result       : " +actual);
