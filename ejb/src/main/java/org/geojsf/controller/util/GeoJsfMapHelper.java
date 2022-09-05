@@ -32,7 +32,7 @@ import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
 
 @Deprecated
 public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
-								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+								G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 								F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
@@ -63,7 +63,7 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
     } 
     
     public static <L extends JeeslLang,D extends JeeslDescription,
-				    G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+				    G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
@@ -88,7 +88,7 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
     
     @Deprecated
     public static <L extends JeeslLang,D extends JeeslDescription,
-				    G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+				    G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,

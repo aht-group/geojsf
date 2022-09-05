@@ -12,7 +12,7 @@ import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
 public interface GeoJsfLocationLevel<S extends JeeslStatus<L,D,S>,
 								L extends JeeslLang, D extends JeeslDescription,
-								G extends JeeslGraphic<L,D,?,?,?>>
+								G extends JeeslGraphic<?,?,?>>
 						extends Serializable,EjbPersistable,
 								
 								JeeslStatus<L,D,S>,JeeslStatusFixedCode,

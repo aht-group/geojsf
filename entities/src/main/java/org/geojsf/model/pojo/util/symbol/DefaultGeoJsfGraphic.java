@@ -14,7 +14,7 @@ import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Graphic",category="symbol",subset="sld")
-public class DefaultGeoJsfGraphic implements JeeslGraphic<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle>
+public class DefaultGeoJsfGraphic implements JeeslGraphic<DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicFigure,DefaultGeoJsfGraphicStyle>
 {
 	public static final long serialVersionUID=1;
 

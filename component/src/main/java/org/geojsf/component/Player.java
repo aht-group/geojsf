@@ -43,7 +43,7 @@ import org.slf4j.LoggerFactory;
 @FacesComponent(value="org.geojsf.component.Player")
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class Player <L extends JeeslLang,D extends JeeslDescription,
-					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,

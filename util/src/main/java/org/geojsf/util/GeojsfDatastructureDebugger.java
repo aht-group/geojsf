@@ -26,7 +26,7 @@ public class GeojsfDatastructureDebugger
 	final static Logger logger = LoggerFactory.getLogger(GeojsfDatastructureDebugger.class);
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
@@ -53,7 +53,7 @@ public class GeojsfDatastructureDebugger
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
@@ -71,7 +71,7 @@ public class GeojsfDatastructureDebugger
 //		debug(0,view);
 	}
 	public static <L extends JeeslLang, D extends JeeslDescription,
-	G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+	G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 	F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
@@ -95,7 +95,7 @@ public class GeojsfDatastructureDebugger
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
@@ -114,7 +114,7 @@ public class GeojsfDatastructureDebugger
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-	G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+	G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 	F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
@@ -138,7 +138,7 @@ public class GeojsfDatastructureDebugger
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-	G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+	G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 	F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
@@ -157,7 +157,7 @@ public class GeojsfDatastructureDebugger
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-					G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
 					F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,

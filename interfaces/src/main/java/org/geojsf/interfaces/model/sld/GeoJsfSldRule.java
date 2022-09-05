@@ -11,7 +11,7 @@ import org.jeesl.interfaces.model.with.system.locale.EjbWithDescription;
 import org.jeesl.interfaces.model.with.system.locale.EjbWithLang;
 
 public interface GeoJsfSldRule<L extends JeeslLang, D extends JeeslDescription,
-							G extends JeeslGraphic<L,D,?,?,?>>
+							G extends JeeslGraphic<?,?,?>>
 			extends Serializable,EjbWithId,EjbWithPosition,EjbWithLang<L>,EjbWithDescription<D>
 {
 	public static enum Type{symbol,interval}
