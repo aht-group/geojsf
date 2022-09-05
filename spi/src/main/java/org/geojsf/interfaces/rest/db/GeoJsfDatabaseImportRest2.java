@@ -12,7 +12,5 @@ import net.sf.ahtutils.xml.sync.DataUpdate;
 public interface GeoJsfDatabaseImportRest2
 {		
 	//Will be merged to GeoJsfDbImportRest
-	
-	@POST @Path("/geojsf/type/multipolygon") @Produces(MediaType.APPLICATION_XML) @Consumes(MediaType.APPLICATION_XML)
-	DataUpdate importGeoJsfTypesMultipolygon(Container types);
+
 }

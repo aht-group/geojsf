@@ -67,8 +67,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 										SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
 										SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-										RULE extends GeoJsfSldRule<L,D,G>,
-										TMP extends JeeslStatus<L,D,TMP>
+										RULE extends GeoJsfSldRule<L,D,G>
 										>
 	implements GeoJsfDatabaseExportRest,GeoJsfDatabaseImportRest2
 {
@@ -87,9 +86,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	private final Class<SLDTYPE> cSldType;
 	
 	private final Class<SLDTEMPLATE> cSldTemplate;
-	private final Class<TMP> cTypeMultiPolygon;
 	
-	private final XmlStatusFactory<L,D,TMP> xfStatus;
 	private final XmlStatusFactory<L,D,SLDTYPE> xfSldType;
 	private final XmlCategoryFactory<L,D,CATEGORY,LAYER> xfCategory;
 	private final XmlLayerFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfLayer;
@@ -97,7 +94,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	private final XmlViewFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfView;
 	private final XmlMapFactory<L,D,CATEGORY,LAYER,MAP,SCALE,VIEW,VP> xfMap;
 	
-	private GeoJsfDatabaseRestService(GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort, final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate, final Class<TMP> cTypeMultiPolygon)
+	private GeoJsfDatabaseRestService(GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo,final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory,final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort, final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
 	{
 		this.fGeo=fGeo;
 		
@@ -112,9 +109,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 		this.cSldType=cSldType;
 		
 		this.cSldTemplate=cSldTemplate;
-		this.cTypeMultiPolygon=cTypeMultiPolygon;
 		
-		xfStatus = new XmlStatusFactory<>(XmlStatusQuery.get(XmlStatusQuery.Key.StatusExport).getStatus());
 		xfSldType = new XmlStatusFactory<>(XmlStatusQuery.get(XmlStatusQuery.Key.StatusExport).getStatus());
 		xfCategory = new XmlCategoryFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.category));
 		xfLayer = new XmlLayerFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.layer, null));
@@ -137,12 +132,11 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,G>,
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>,
-					TMP extends JeeslStatus<L,D,TMP>>
-		GeoJsfDatabaseRestService<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,TMP>
-		factory(GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate, final Class<TMP> cTypeMultiPolygon)
+					SLDTEMPLATE extends GeoJsfSldTemplate<L,D,SLDTEMPLATE,SLDTYPE>>
+		GeoJsfDatabaseRestService<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+		factory(GeoJsfFacade<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> fGeo, final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
 	{
-		return new GeoJsfDatabaseRestService<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,TMP>(fGeo,cLang,cDescription,cCategory,cService,cLayer,cMap,cViewPort,cSldType,cSldTemplate,cTypeMultiPolygon);
+		return new GeoJsfDatabaseRestService<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fGeo,cLang,cDescription,cCategory,cService,cLayer,cMap,cViewPort,cSldType,cSldTemplate);
 	}
 
 	@Override
@@ -247,16 +241,6 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 		
 		return xml;
 	}
-	
-	@Override public Container exportTypesMultiPolygon()
-	{
-		Container xml = XmlContainerFactory.build();
-		for(TMP ejb : fGeo.allOrderedPosition(cTypeMultiPolygon))
-		{
-			xml.getStatus().add(xfStatus.build(ejb));
-		}		
-		return xml;
-	}
 
 	@Override public Repository exportSldTemplates()
 	{
@@ -270,8 +254,6 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 		}
 		return repository;
 	}
-	
-	@Override public DataUpdate importGeoJsfTypesMultipolygon(Container types){return importStatus(cTypeMultiPolygon,types,null);}
 	
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public <S extends JeeslStatus<L,D,S>, P extends JeeslStatus<L,D,P>> DataUpdate importStatus(Class<S> clStatus, Container container, Class<P> cParent)

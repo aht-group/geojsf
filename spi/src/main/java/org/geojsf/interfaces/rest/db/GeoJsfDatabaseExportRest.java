@@ -35,9 +35,6 @@ public interface GeoJsfDatabaseExportRest
 	@GET @Path("/geojsf/sld/template/types") @Produces(MediaType.APPLICATION_XML)
 	Container exportGeoJsfSldTemplateTypes();
 	
-	@GET @Path("/geojsf/type/multipolygon") @Produces(MediaType.APPLICATION_XML)
-	Container exportTypesMultiPolygon();
-	
 //	@POST @Path("/import")
 //	@Produces(MediaType.TEXT_PLAIN)
 //	@Consumes(MediaType.APPLICATION_XML)

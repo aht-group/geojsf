@@ -7,6 +7,7 @@ import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.interfaces.model.geometry.GeoJsfMultiPolygon;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
@@ -25,8 +26,8 @@ import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
 public interface GeoJsfFacade <L extends JeeslLang, D extends JeeslDescription,
-								G extends JeeslGraphic<L,D,GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicComponent<L,D,G,GT,F,FS>, FS extends JeeslStatus<L,D,FS>,
+								G extends JeeslGraphic<L,D,GT,GC,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
+								GC extends JeeslGraphicComponent<L,D,G,GT,GC,FS>, FS extends JeeslStatus<L,D,FS>,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
 								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -58,4 +59,21 @@ public interface GeoJsfFacade <L extends JeeslLang, D extends JeeslDescription,
 	
 	<W extends EjbWithSldRules<RULE>> RULE save(Class<W> cW, W entity, RULE rule) throws JeeslLockingException, JeeslConstraintViolationException;
 	<W extends EjbWithSldRules<RULE>> void rm(Class<W> cW, W entity, RULE rule) throws JeeslLockingException, JeeslConstraintViolationException;
+	
+//	@Override public <OWNER extends JeeslWithMmgGallery<MG>> MG fMmgGallery(Class<OWNER> cOwner, OWNER owner) throws JeeslNotFoundException
+//	{
+//		CriteriaBuilder cB = em.getCriteriaBuilder();
+//		CriteriaQuery<MG> cQ = cB.createQuery(fbMmg.getClassGallery());
+//		Root<OWNER> root = cQ.from(cOwner);
+//		
+//		Path<MG> pathCalendar = root.get(JeeslWithMmgGallery.Attributes.mmgGallery.toString());
+//		Path<Long> pId = root.get(EjbWithId.attribute);
+//		
+//		cQ.where(cB.equal(pId,owner.getId()));
+//		cQ.select(pathCalendar);
+//		
+//		try	{return em.createQuery(cQ).getSingleResult();}
+//		catch (NoResultException ex){throw new JeeslNotFoundException("No "+fbMmg.getClassGallery()+" found for owner "+owner);}
+//		catch (NonUniqueResultException ex){throw new JeeslNotFoundException("Multiple "+fbMmg.getClassGallery()+" found for owner "+owner);}
+//	}
 }
