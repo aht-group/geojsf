@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageRest;
+import org.geojsf.api.rest.geoserver.GeoServerCoverageRest;
 import org.geojsf.model.xml.geoserver.CoverageStore;
 import org.geojsf.model.xml.geoserver.CoverageStores;
 import org.geojsf.model.xml.geoserver.Workspace;

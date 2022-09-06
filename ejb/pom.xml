@@ -31,6 +31,10 @@
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-spi</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-api</artifactId>
+		</dependency>
 		
 		<!-- Logging -->
 		<dependency>

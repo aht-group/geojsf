@@ -15,13 +15,16 @@
 		<module>jsf</module>
 		<module>doc</module>
 		<module>ejb</module>
+		
+		<module>spi</module>
+		<module>api</module>
 
 		<module>theme</module>
 		<module>interfaces</module>
 		<module>component</module>
 		<module>util</module>
 		<module>geoserver</module>
-		<module>spi</module>
+		
 		<module>xml</module>
 	</modules>
 

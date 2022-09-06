@@ -3,13 +3,13 @@ package org.geojsf.web.rest.monitoring;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.geojsf.api.rest.monitoring.station.GeoJsfMonitoringStationRestExport;
+import org.geojsf.api.rest.monitoring.station.GeoJsfMonitoringStationRestImport;
 import org.geojsf.factory.builder.GeoMonitoringFactoryBuilder;
 import org.geojsf.factory.ejb.monitoring.EjbStationFactory;
 import org.geojsf.interfaces.model.obervation.station.GeoStation;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCode;
-import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRestExport;
-import org.geojsf.interfaces.rest.monitoring.station.GeoJsfMonitoringStationRestImport;
 import org.geojsf.model.xml.monitoring.Station;
 import org.geojsf.model.xml.monitoring.Stations;
 import org.jeesl.controller.monitoring.counter.DataUpdateTracker;

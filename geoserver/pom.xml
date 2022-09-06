@@ -53,7 +53,7 @@
 		<!-- GeoJSF -->
 		<dependency>
 	   		<groupId>org.geojsf</groupId>
-	   		<artifactId>geojsf-spi</artifactId>
+	   		<artifactId>geojsf-api</artifactId>
 	   	</dependency>
    	   	<dependency>
    	   		<groupId>net.sf.exlp</groupId>

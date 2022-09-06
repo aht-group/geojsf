@@ -1,5 +1,6 @@
 package org.geojsf.util.db.init;
 
+import org.geojsf.api.rest.db.GeoJsfDatabaseImportRest;
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
@@ -16,7 +17,6 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.interfaces.rest.db.GeoJsfDatabaseImportRest;
 import org.geojsf.model.xml.geojsf.Layers;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.Repository;

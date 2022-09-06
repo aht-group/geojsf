@@ -7,9 +7,9 @@ import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.XmlUtil;
 
 import org.apache.commons.io.IOUtils;
+import org.geojsf.api.rest.geoserver.GeoServerLayerRest;
+import org.geojsf.api.rest.geoserver.GeoServerRestInterface;
 import org.geojsf.factory.xml.geoserver.XmlLayerFactory;
-import org.geojsf.interfaces.rest.GeoServerRestInterface;
-import org.geojsf.interfaces.rest.geoserver.GeoServerLayerRest;
 import org.geojsf.model.xml.geoserver.Layer;
 import org.geojsf.model.xml.geoserver.Layers;
 import org.jdom2.Document;

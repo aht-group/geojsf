@@ -6,8 +6,8 @@ import java.util.Set;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.geojsf.interfaces.rest.GeoServerRest;
-import org.geojsf.interfaces.rest.geoserver.GeoServerLayerRest;
+import org.geojsf.api.rest.geoserver.GeoServerLayerRest;
+import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.model.xml.geoserver.CoverageStore;
 import org.geojsf.model.xml.geoserver.FeatureType;
 import org.geojsf.model.xml.geoserver.Layer;

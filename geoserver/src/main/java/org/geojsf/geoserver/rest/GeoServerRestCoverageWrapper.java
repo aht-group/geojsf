@@ -7,10 +7,10 @@ import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.XmlUtil;
 
 import org.apache.commons.io.IOUtils;
+import org.geojsf.api.rest.geoserver.GeoServerCoverageRest;
+import org.geojsf.api.rest.geoserver.GeoServerRestInterface;
 import org.geojsf.factory.xml.geoserver.XmlCoverageFactory;
 import org.geojsf.factory.xml.geoserver.XmlCoverageStoreFactory;
-import org.geojsf.interfaces.rest.GeoServerRestInterface;
-import org.geojsf.interfaces.rest.geoserver.GeoServerCoverageRest;
 import org.geojsf.model.xml.geoserver.CoverageStore;
 import org.geojsf.model.xml.geoserver.CoverageStores;
 import org.geojsf.model.xml.geoserver.Coverages;

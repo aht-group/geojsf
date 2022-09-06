@@ -19,6 +19,11 @@
                 <artifactId>geojsf-interfaces</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+				<groupId>org.geojsf</groupId>
+				<artifactId>geojsf-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
         	<dependency>
 				<groupId>org.geojsf</groupId>
 				<artifactId>geojsf-spi</artifactId>

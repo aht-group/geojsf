@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+    	<groupId>org.geojsf</groupId>
+    	<artifactId>geojsf</artifactId>
+    	<version>0.1.2-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+	</parent>
+	
+    <artifactId>geojsf-api</artifactId>
+    <packaging>jar</packaging>
+    <name>GeoJSF - Application Programming Interface</name>
+   
+	<dependencyManagement>
+		<dependencies>      	         
+			<dependency>
+				<groupId>org.geojsf</groupId>
+				<artifactId>geojsf-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<dependencies>
+		<!-- Entities -->
+		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-xml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-spi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-xml</artifactId>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+            <artifactId>hibernate-spatial</artifactId>
+            <scope>provided</scope>
+            <exclusions>
+	         	<exclusion>
+	         		<groupId>org.hibernate</groupId>
+	         		<artifactId>hibernate-core</artifactId>
+	         	</exclusion>
+	         	<exclusion>
+	         		<groupId>dom4j</groupId>
+	         		<artifactId>dom4j</artifactId>
+	         	</exclusion>
+	         	<exclusion>
+	         		<groupId>xerces</groupId>
+	         		<artifactId>xercesImpl</artifactId>
+	         	</exclusion>
+	         	<exclusion>
+	         		<groupId>org.jboss.logging</groupId>
+	         		<artifactId>jboss-logging</artifactId>
+	         	</exclusion>
+	         </exclusions>
+        </dependency>
+		
+		<!-- XML -->
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- REST -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+   	   	
+		<!-- Testing -->
+		<dependency>
+   	   		<groupId>junit</groupId>
+   	   		<artifactId>junit</artifactId>
+   	   		<type>jar</type>
+   	   		<scope>test</scope>
+   	   	</dependency>
+	</dependencies>
+   
+</project>

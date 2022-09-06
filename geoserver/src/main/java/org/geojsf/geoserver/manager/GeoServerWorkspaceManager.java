@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.exception.GeoServerConfigurationException;
-import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.model.xml.geoserver.Workspace;
 import org.geojsf.model.xml.geoserver.Workspaces;
 import org.slf4j.Logger;

@@ -11,7 +11,7 @@ import javax.persistence.criteria.ListJoin;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.geojsf.interfaces.facade.GeoJsfStationFacade;
+import org.geojsf.api.facade.GeoJsfStationFacade;
 import org.geojsf.interfaces.model.obervation.station.GeoStation;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
 import org.geojsf.interfaces.model.obervation.station.GeoStationCode;

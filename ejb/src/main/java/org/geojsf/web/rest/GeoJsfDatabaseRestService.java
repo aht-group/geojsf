@@ -3,6 +3,8 @@ package org.geojsf.web.rest;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.geojsf.api.rest.db.GeoJsfDatabaseExportRest;
+import org.geojsf.api.rest.db.GeoJsfDatabaseImportRest2;
 import org.geojsf.factory.xml.geojsf.XmlCategoryFactory;
 import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
 import org.geojsf.factory.xml.geojsf.XmlServiceFactory;
@@ -22,8 +24,6 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.geojsf.interfaces.rest.db.GeoJsfDatabaseExportRest;
-import org.geojsf.interfaces.rest.db.GeoJsfDatabaseImportRest2;
 import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.model.xml.geojsf.Layers;

@@ -3,10 +3,10 @@ package org.geojsf.geoserver;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
-import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.model.xml.geoserver.DataStore;
 import org.geojsf.model.xml.geoserver.Workspace;
 import org.geojsf.test.GeoJsfGeoServerTestBootstrap;

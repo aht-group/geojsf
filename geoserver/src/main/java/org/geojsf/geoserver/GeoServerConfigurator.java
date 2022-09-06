@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.configuration.Configuration;
+import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.geoserver.manager.GeoServerCoverageManager;
 import org.geojsf.geoserver.manager.GeoServerDataStoreManager;
@@ -17,7 +18,6 @@ import org.geojsf.geoserver.manager.GeoServerStyleManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.geoserver.util.ConfigurationOverrider;
-import org.geojsf.interfaces.rest.GeoServerRest;
 import org.geojsf.model.xml.geoserver.Coverage;
 import org.geojsf.model.xml.geoserver.CoverageStore;
 import org.geojsf.model.xml.geoserver.CoverageStores;
