@@ -22,6 +22,7 @@
 		<module>util</module>
 		<module>geoserver</module>
 		<module>spi</module>
+		<module>xml</module>
 	</modules>
 
 	<properties>
