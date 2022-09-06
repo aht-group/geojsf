@@ -15,8 +15,6 @@
 		<module>jsf</module>
 		<module>doc</module>
 		<module>ejb</module>
-		
-		<module>spi</module>
 		<module>api</module>
 
 		<module>theme</module>

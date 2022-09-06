@@ -24,11 +24,6 @@
 				<artifactId>geojsf-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-        	<dependency>
-				<groupId>org.geojsf</groupId>
-				<artifactId>geojsf-spi</artifactId>
-				<version>${project.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>org.geojsf</groupId>
 				<artifactId>geojsf-doc</artifactId>
