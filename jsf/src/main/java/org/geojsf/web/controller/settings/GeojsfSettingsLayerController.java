@@ -42,8 +42,8 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 									VP extends GeoJsfViewPort,
 									SLD extends GeoJsfSld<L,D,?,?,?>>
-	extends AbstractJeeslWebController<L,D,LOC>
-	implements Serializable
+			extends AbstractJeeslWebController<L,D,LOC>
+			implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsLayerController.class);

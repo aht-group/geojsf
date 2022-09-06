@@ -21,6 +21,13 @@ public class EjbGeoMapFactory<L extends JeeslLang,D extends JeeslDescription,
         fLang = EjbLangFactory.instance(cLang);
     } 
 	
+    public MAP build(String code)
+	{
+		MAP ejb = build();
+		ejb.setCode(code);
+        return ejb;
+    }
+    
 	public MAP create(String code,  String[] langKeys)
 	{
 		MAP ejb = build();

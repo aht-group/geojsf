@@ -37,7 +37,7 @@
 							<j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addMap()}" update=":#{cc.id}:rowMaps" tooltip="#{msg.ttNew}"/>
 						</j:dtHeader>
 					</f:facet>
-					<p:ajax event="rowSelect"  listener="#{cc.attrs.bean.selectMap}" update=":#{cc.id}:rowMaps"/>
+					<p:ajax event="rowSelect"  listener="#{cc.attrs.bean.selectMap()}" update=":#{cc.id}:rowMaps"/>
 					<p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorderMaps()}" update="@form"/>
 					<p:column>
 						<h:outputText value="#{m.position}"/> 
