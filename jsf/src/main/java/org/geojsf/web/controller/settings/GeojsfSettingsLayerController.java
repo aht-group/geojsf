@@ -80,7 +80,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 									GeoSldFacade<L,D,?,?,SLD,?> fSld,				
 									 JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
-		super.postConstructWebController(lp);
+		super.postConstructWebController(lp,bMessage);
 		this.fGeo=fGeo;
 
 		slds = fSld.fLibrarySlds();
