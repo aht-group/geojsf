@@ -15,7 +15,7 @@
 		<module>jsf</module>
 		<module>doc</module>
 		<module>ejb</module>
-		<module>entities</module>
+
 		<module>theme</module>
 		<module>interfaces</module>
 		<module>component</module>

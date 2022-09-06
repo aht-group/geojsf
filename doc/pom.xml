@@ -27,7 +27,7 @@
 		<!-- GeoJSF -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
-			<artifactId>geojsf-entities</artifactId>
+			<artifactId>geojsf-xml</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.geojsf</groupId>
