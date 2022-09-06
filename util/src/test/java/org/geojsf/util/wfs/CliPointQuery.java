@@ -3,7 +3,7 @@ package org.geojsf.util.wfs;
 import java.util.List;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfLayer;
 import org.geojsf.model.xml.specs.gml.Coordinates;
 import org.geojsf.model.xml.specs.ogc.Distance;
 import org.geojsf.model.xml.specs.wfs.GetFeature;

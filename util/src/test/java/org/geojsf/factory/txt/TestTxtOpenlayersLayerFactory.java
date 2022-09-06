@@ -1,8 +1,8 @@
 package org.geojsf.factory.txt;
 
-import org.geojsf.model.pojo.core.DefaultGeoJsfCategory;
-import org.geojsf.model.pojo.core.DefaultGeoJsfLayer;
-import org.geojsf.model.pojo.core.DefaultGeoJsfService;
+import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfCategory;
+import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfService;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.junit.Assert;

@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.model.pojo.sld.DefaultGeoJsfSldStyle;
-import org.geojsf.model.pojo.sld.DefaultGeoJsfSldType;
+import org.geojsf.model.pojo.geojsf.sld.DefaultGeoJsfSldStyle;
+import org.geojsf.model.pojo.geojsf.sld.DefaultGeoJsfSldType;
 import org.geojsf.test.GeoJsfDocTestBootstrap;
 import org.jeesl.exception.processing.UtilsConfigurationException;
 import org.jeesl.model.xml.system.io.db.Db;

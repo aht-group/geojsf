@@ -18,8 +18,8 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
-import org.geojsf.component.entities.OlService;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
+import org.geojsf.model.component.OlService;
 import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.model.xml.geojsf.Scales;
 import org.geojsf.model.xml.specs.gml.Coordinates;

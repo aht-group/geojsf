@@ -50,7 +50,6 @@
                 <version>${project.version}</version>
                 <classifier>test-sources</classifier>
             </dependency>
-            
             <dependency>
                 <groupId>org.geojsf</groupId>
                 <artifactId>geojsf-interfaces</artifactId>
@@ -60,6 +59,11 @@
             <dependency>
                 <groupId>org.geojsf</groupId>
                 <artifactId>geojsf-ejb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.geojsf</groupId>
+                <artifactId>geojsf-xml</artifactId>
                 <version>${project.version}</version>
             </dependency>
 			

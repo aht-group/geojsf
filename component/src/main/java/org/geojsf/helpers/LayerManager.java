@@ -10,12 +10,12 @@ import java.util.List;
 import javax.faces.context.ResponseWriter;
 import org.geojsf.component.JsfRenderUtil;
 import org.geojsf.component.Order;
-import org.geojsf.component.entities.OlLayer;
-import org.geojsf.component.entities.OlService;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.model.component.OlLayer;
+import org.geojsf.model.component.OlService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
