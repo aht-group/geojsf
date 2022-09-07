@@ -56,20 +56,19 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private final EjbGeoViewPortFactory<VP> efViewPort;
 	private final EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> efView;
 	
-	protected List<SERVICE> services; public List<SERVICE> getServices() {return services;}
-	protected List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
-	protected List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
+	private List<SERVICE> services; public List<SERVICE> getServices() {return services;}
+	private List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
+	private List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
 	private final List<VIEW> views; public List<VIEW> getViews() {return views;}
-	protected List<SLD> slds; public List<SLD> getSlds() {return slds;}
+	private List<SLD> slds; public List<SLD> getSlds() {return slds;}
 
-	protected MAP map; public MAP getMap() {return map;}
-	protected CATEGORY category; public CATEGORY getCategory() {return category;} public void setCategory(CATEGORY category){this.category = category;}
-	protected VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort){this.viewPort = viewPort;}
-	protected SERVICE service; public SERVICE getService() {return service;} public void setService(SERVICE service) {this.service = service;}
-	protected LAYER layer; public LAYER getLayer() {return layer;} public void setLayer(LAYER layer) {this.layer = layer;}
+	private SERVICE service; public SERVICE getService() {return service;} public void setService(SERVICE service) {this.service = service;}
+	private CATEGORY category; public CATEGORY getCategory() {return category;} public void setCategory(CATEGORY category){this.category = category;}
+	private LAYER layer; public LAYER getLayer() {return layer;} public void setLayer(LAYER layer) {this.layer = layer;}
+	private MAP map; public MAP getMap() {return map;}
+	private VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 		
-	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP> fbCore,
-									GeoMetaFactoryBuilder<L,D,?,VP,?,?,?> fbMeta)
+	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP> fbCore, GeoMetaFactoryBuilder<L,D,?,VP,?,?,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore = fbCore;

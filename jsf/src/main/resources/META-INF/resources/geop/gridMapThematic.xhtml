@@ -108,6 +108,7 @@
 						<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttSave}"/>
 						<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.rmView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView" tooltip="#{msg.ttDelete}"/>
 					</f:facet>
+					<p:messages redisplay="false" severity="warn,error" showSummary="true" showDetail="true" closable="true"/>
 					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 						<p:outputLabel value="#{msg.geoJsfAdminOrderNo}"/>
 						<h:outputText value="#{cc.attrs.bean.view.orderNo}"/>
