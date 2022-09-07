@@ -1,6 +1,7 @@
 package org.geojsf.web.controller.settings;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
@@ -58,6 +59,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	protected List<SERVICE> services; public List<SERVICE> getServices() {return services;}
 	protected List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
 	protected List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
+	private final List<VIEW> views; public List<VIEW> getViews() {return views;}
 	protected List<SLD> slds; public List<SLD> getSlds() {return slds;}
 
 	protected MAP map; public MAP getMap() {return map;}
@@ -71,14 +73,17 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore = fbCore;
+		
 		efMap = fbCore.ejbMap();
 		efView = fbCore.ejbView();
 		efViewPort = fbMeta.ejbViewPort();
+		
+		views = new ArrayList<>();
 	}
 	
 	public void postConstructService(GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP,?> fGeo,
-									GeoSldFacade<L,D,?,?,SLD,?> fSld,				
-									 JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
+										GeoSldFacade<L,D,?,?,SLD,?> fSld,				
+										JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
 		super.postConstructWebController(lp,bMessage);
 		this.fGeo=fGeo;
@@ -87,6 +92,11 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		
 		this.reloadServices();
 		this.reloadCategories();
+	}
+	
+	private void reset(boolean rViews)
+	{
+		if(rViews) {views.clear();}
 	}
 	
 	protected void reloadServices()
@@ -229,6 +239,9 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		layer = fGeo.load(fbCore.getClassLayer(),layer);
 		layer = efLang.persistMissingLangs(fGeo,lp.getLocales(),layer);
 		layer = efDescription.persistMissingLangs(fGeo,lp.getLocales(),layer);
+		
+		reloadLayer();
+		
 		if(layer.getViewPort()==null){addViewPort();}
 		else{viewPort=layer.getViewPort();}
 		
@@ -238,6 +251,12 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		
 		map = efMap.build();
 		map.getViews().add(view);
+	}
+	
+	private void reloadLayer()
+	{
+		this.reset(true);
+		views.addAll(fGeo.fGeoViews(layer));
 	}
 	
 	public void saveLayer() throws JeeslConstraintViolationException, JeeslLockingException, JeeslNotFoundException

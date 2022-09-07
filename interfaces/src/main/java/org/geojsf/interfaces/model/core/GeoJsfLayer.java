@@ -15,16 +15,23 @@ import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
 import org.jeesl.interfaces.model.with.primitive.position.EjbWithPositionVisibleParent;
 import org.jeesl.interfaces.model.with.system.locale.EjbWithDescription;
 import org.jeesl.interfaces.model.with.system.locale.EjbWithLang;
+import org.jeesl.interfaces.qualifier.rest.option.DownloadJeeslAttributes;
+import org.jeesl.interfaces.qualifier.rest.option.DownloadJeeslDescription;
 
+@DownloadJeeslDescription
+@DownloadJeeslAttributes
 public interface GeoJsfLayer<L extends JeeslLang, D extends JeeslDescription,
 							CATEGORY extends GeoJsfCategory<L,D,?>,
 							SERVICE extends GeoJsfService<L,D,?>,
+//							LT extends GeoJsfLayerType<L,D,LT,?>,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,?>,
 							SLD extends GeoJsfSld<L,D,?,?,?>>
 			extends Serializable,EjbRemoveable,EjbPersistable,EjbSaveable,EjbWithCode,EjbWithPositionVisibleParent,
 					EjbWithLang<L>,EjbWithDescription<D>
 {
+	public enum Attributes{category}
+	
 	CATEGORY getCategory();
 	void setCategory(CATEGORY category);
 	

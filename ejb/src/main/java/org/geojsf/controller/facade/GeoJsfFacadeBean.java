@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
@@ -44,12 +49,14 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 		
 {	
 	private static final long serialVersionUID = 1L;
-
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfFacadeBean.class);
+	
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
 	
 	public GeoJsfFacadeBean(EntityManager em, GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore)
 	{
 		super(em);
+		this.fbCore = fbCore;
 	}
 
 	@Override public MAP load(Class<MAP> cView, MAP map)
@@ -81,8 +88,6 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 		return layer;
 	}
 	
-	
-	
 	@Override public DS load(Class<DS> cDs, DS ds)
 	{
 		ds = em.find(cDs, ds.getId());
@@ -104,6 +109,23 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 		layer.getCategory().getLayer().remove(layer);
 		layer.getService().getLayer().remove(layer);
 		em.remove(layer);
+	}
+	
+	@Override
+	public List<VIEW> fGeoViews(LAYER layer)
+	{
+		CriteriaBuilder cB = em.getCriteriaBuilder();
+		CriteriaQuery<VIEW> cQ = cB.createQuery(fbCore.getClassView());
+		Root<VIEW> root = cQ.from(fbCore.getClassView());
+		List<Predicate> predicates = new ArrayList<Predicate>();
+		
+		Path<LAYER> pLayer = root.get(GeoJsfView.Attributes.layer.toString());
+		predicates.add(cB.equal(pLayer,layer));
+		
+		cQ.where(cB.and(predicates.toArray(new Predicate[predicates.size()])));
+		cQ.select(root);
+
+		return em.createQuery(cQ).getResultList();
 	}
 	
 	public List<DS> fDataSources(Class<MAP> cMap, Class<DS> cDs, MAP map)
@@ -151,6 +173,4 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 		}
 		return result;
 	}
-	
-	
 }

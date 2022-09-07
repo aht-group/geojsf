@@ -61,7 +61,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 									RULE extends GeoJsfSldRule<L,D,G>,
 									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-									JL extends GeoJsfLocationLevel<JL,L,D,?>>
+									JL extends GeoJsfLocationLevel<L,D,JL,?>>
 	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
 	implements Serializable
 {
@@ -72,6 +72,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 	protected List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
 	protected List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
 	protected List<SLD> slds; public List<SLD> getSlds() {return slds;}
+	private List<VIEW> views; public List<VIEW> getViews() {return views;}
 
 	protected MAP map; public MAP getMap() {return map;}
 	protected CATEGORY category; public CATEGORY getCategory(){return category;} public void setCategory(CATEGORY category){this.category = category;}

@@ -62,7 +62,7 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 									RULE extends GeoJsfSldRule<L,D,G>,
 									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-									JL extends GeoJsfLocationLevel<JL,L,D,?>>
+									JL extends GeoJsfLocationLevel<L,D,JL,?>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
     xmlns:j="http://www.jeesl.org/jsf" xmlns:jp="http://jsf.jeesl.org/prototype" xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
@@ -20,14 +17,9 @@
 	</composite:interface>
         
 	<composite:implementation>
-		<aup:grid>
-	<aht:row>
-		<aht:slot>
-			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-		</aht:slot>
-	</aht:row>
-	<aht:row id="rowMaps">
-		<aht:slot width="3">
+<jp:grid>
+	<j:row id="rowMaps">
+		<j:slot width="3">
 			<h:form id="fMaps">
 				<p:dataTable var="m" value="#{cc.attrs.bean.maps}"
 						selection="#{cc.attrs.bean.map}" selectionMode="single" rowKey="#{m.id}" draggableRows="true"
@@ -49,8 +41,8 @@
 					</p:column>
 				</p:dataTable>
 			</h:form>
-		</aht:slot>
-		<aht:slot id="sMap" width="4">
+		</j:slot>
+		<j:slot id="sMap" width="4">
 			<h:form id="fMap">
 				<p:panel id="pMap" header="#{msg.geoJsfDetailsThamaticMap}" rendered="#{not empty cc.attrs.bean.map}" styleClass="jeeslPanel">
 					<f:facet name="actions">
@@ -94,8 +86,8 @@
 					</p:column>
 				</p:dataTable>
 			</h:form>
-		</aht:slot>
-		<aht:slot id="sView" width="5">
+		</j:slot>
+		<j:slot id="sView" width="5">
 			<h:form id="fGeoJsfMap">
 				<p:panel header="#{cc.attrs.bean.map.name[localeCode].lang}" styleClass="geojsfPrimefacesPanelMap" 
 							rendered="#{(not empty cc.attrs.bean.map) and (cc.attrs.bean.map.id gt 0) and (fn:length(cc.attrs.bean.map.views) gt 0)}">
@@ -149,8 +141,8 @@
 					</p:panelGrid>
 				</p:panel>
 			</h:form>
-		</aht:slot>
-	</aht:row>
-</aup:grid>
+		</j:slot>
+	</j:row>
+</jp:grid>
 	</composite:implementation>
 </html>

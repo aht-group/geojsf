@@ -6,6 +6,7 @@ import com.vividsolutions.jts.geom.MultiPolygon;
 
 public interface GeoJsfMultiPolygon extends EjbWithId
 {
+	public enum Attributes{entity}
 //	MultiPolygon getGeometry();
 //	void setGeometry(MultiPolygon geometry);
 }

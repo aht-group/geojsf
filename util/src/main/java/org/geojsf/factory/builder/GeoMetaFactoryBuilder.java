@@ -19,7 +19,7 @@ public class GeoMetaFactoryBuilder<L extends JeeslLang, D extends JeeslDescripti
 									VP extends GeoJsfViewPort,
 									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-									JL extends GeoJsfLocationLevel<JL,L,D,?>
+									JL extends GeoJsfLocationLevel<L,D,JL,?>
 										>
 				extends AbstractFactoryBuilder<L,D>
 {

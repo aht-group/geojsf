@@ -56,7 +56,7 @@ public class AbstractGeoJsfDataSourceBean <L extends JeeslLang, D extends JeeslD
 									RULE extends GeoJsfSldRule<L,D,G>,
 									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-									JL extends GeoJsfLocationLevel<JL,L,D,?>>
+									JL extends GeoJsfLocationLevel<L,D,JL,?>>
 	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
 	implements Serializable
 {

@@ -55,19 +55,12 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 										F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 										SERVICE extends GeoJsfService<L,D,LAYER>,
-										LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+										LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
 										MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 										SCALE extends GeoJsfScale<L,D>, 
 										VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 										VP extends GeoJsfViewPort,
-										DS extends GeoJsfDataSource<L,D,LAYER>,
-										SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-										SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-										RULE extends GeoJsfSldRule<L,D,G>,
-										JSON extends GeoJsfJsonData<L,D,JQ,JL>,
-										JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-										JL extends GeoJsfLocationLevel<JL,L,D,?>>
+										DS extends GeoJsfDataSource<L,D,LAYER>>
 			extends AbstractJeeslWebController<L,D,LOC>
 			implements Serializable
 {
@@ -96,8 +89,7 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 	public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 	
 	public GeojsfSettingsMapController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-									GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
-									GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+									GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore=fbCore;

@@ -52,7 +52,7 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 								RULE extends GeoJsfSldRule<L,D,G>,
 								JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 								JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-								JL extends GeoJsfLocationLevel<JL,L,D,?>
+								JL extends GeoJsfLocationLevel<L,D,JL,?>
 								>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbGeoServerInit.class);
@@ -109,7 +109,7 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 					JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-					JL extends GeoJsfLocationLevel<JL,L,D,?>> 
+					JL extends GeoJsfLocationLevel<L,D,JL,?>> 
 		DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
 		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
 					final GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,

@@ -37,4 +37,5 @@ public interface GeoJsfFacade <L extends JeeslLang, D extends JeeslDescription,
 	void rm(Class<VIEW> cView, VIEW view);
 	
 	List<DS> fDataSources(Class<MAP> cMap, Class<DS> cDs, MAP map);
+	List<VIEW> fGeoViews(LAYER layer);
 }
