@@ -12,5 +12,9 @@ public class NominatorReverseGeocode {
     @XmlElement(name = "addressparts")
     protected NominatorAddressParts addressParts;
 
+	@XmlElement(name = "result")
+	protected String locationString;
+
     public NominatorAddressParts getAddressParts() {return addressParts;} public void setAddressParts(NominatorAddressParts addressParts) {this.addressParts = addressParts;}
+	public String getLocationString() {return locationString;} public void setLocationString(String locationString) {this.locationString = locationString;}
 }
