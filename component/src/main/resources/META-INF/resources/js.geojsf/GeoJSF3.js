@@ -461,11 +461,12 @@
 					return style;
 				  },
 				});	
-
+				vectorlayer.setZIndex(-1);
+				GeoJSF.map.getLayers().item(0).setOpacity(0.3);
 				GeoJSF.map.addLayer(vectorlayer);
 		},
   
-		addPointDataLayer : function(name, url, theGlyph, theText)
+			addPointDataLayer : function(name, url, theGlyph, theText)
 		{
 			var viewOfMap = GeoJSF.map.getView();
 
