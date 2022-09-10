@@ -32,20 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DbServiceInit <L extends JeeslLang,D extends JeeslDescription,
-							G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
-							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-							SERVICE extends GeoJsfService<L,D,LAYER>,
-							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-							MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-							SCALE extends GeoJsfScale<L,D>, 
-							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-							VP extends GeoJsfViewPort,
-							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G>>
+							SERVICE extends GeoJsfService<L,D,?>>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbServiceInit.class);
 	
@@ -67,23 +54,11 @@ public class DbServiceInit <L extends JeeslLang,D extends JeeslDescription,
 	}
 	
 	public static <L extends JeeslLang,D extends JeeslDescription,
-					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
-					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-					SERVICE extends GeoJsfService<L,D,LAYER>,
-					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-					MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>, SCALE extends GeoJsfScale<L,D>, 
-					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-					VP extends GeoJsfViewPort,
-					DS extends GeoJsfDataSource<L,D,LAYER>,
-					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
-		DbServiceInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+					SERVICE extends GeoJsfService<L,D,?>>
+		DbServiceInit<L,D,SERVICE>
 		factory(final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService, JeeslFacade fAcl)
 	{
-		return new DbServiceInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(cL,cD,cService,fAcl);
+		return new DbServiceInit<L,D,SERVICE>(cL,cD,cService,fAcl);
 	}
 	
 	public void iuServices(Repository repository) throws UtilsConfigurationException

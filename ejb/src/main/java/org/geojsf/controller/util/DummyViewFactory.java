@@ -27,8 +27,6 @@ import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
 public class DummyViewFactory<L extends JeeslLang,D extends JeeslDescription,
-								G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
 								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -40,7 +38,7 @@ public class DummyViewFactory<L extends JeeslLang,D extends JeeslDescription,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 								SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G>>
+								RULE extends GeoJsfSldRule<L,D,?>>
 {
 	private EjbGeoCategoryFactory<L,D,CATEGORY> fCategory;
 	private EjbGeoServiceFactory<L,D,SERVICE> fService;
@@ -66,8 +64,6 @@ public class DummyViewFactory<L extends JeeslLang,D extends JeeslDescription,
 	private final String[] langs = {"en","de"};
 	
     public static <L extends JeeslLang,D extends JeeslDescription,
-				    G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -78,12 +74,12 @@ public class DummyViewFactory<L extends JeeslLang,D extends JeeslDescription,
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
-    	DummyViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+					RULE extends GeoJsfSldRule<L,D,?>>
+    	DummyViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
     	factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
     			final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)
     {
-        return new DummyViewFactory<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,clLayer,clMap,clView);
+        return new DummyViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,clLayer,clMap,clView);
     }
 	
     public DummyViewFactory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,

@@ -28,21 +28,9 @@ import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DbViewPortInit <L extends JeeslLang,D extends JeeslDescription,
-							G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
-							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-							SERVICE extends GeoJsfService<L,D,LAYER>,
-							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-							MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-							SCALE extends GeoJsfScale<L,D>, 
-							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-							VP extends GeoJsfViewPort,
-							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G>>
+public class DbViewPortInit <LAYER extends GeoJsfLayer<?,?,?,?,VP,?,?>,
+							MAP extends GeoJsfMap<?,?,?,?,VP>,
+							VP extends GeoJsfViewPort>
 {
 	final static Logger logger = LoggerFactory.getLogger(DbViewPortInit.class);
 	
@@ -53,7 +41,7 @@ public class DbViewPortInit <L extends JeeslLang,D extends JeeslDescription,
     
     private EjbGeoViewPortFactory<VP> efVp;
     
-    public DbViewPortInit(GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta, final Class<VP> cVp, JeeslFacade fUtils)
+    public DbViewPortInit(GeoMetaFactoryBuilder<?,?,?,VP,?> fbMeta, final Class<VP> cVp, JeeslFacade fUtils)
 	{       
         this.cVp = cVp;
         this.fUtils=fUtils;
@@ -62,24 +50,13 @@ public class DbViewPortInit <L extends JeeslLang,D extends JeeslDescription,
 		
 	}
 	
-	public static <L extends JeeslLang,D extends JeeslDescription,
-					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
-					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-					SERVICE extends GeoJsfService<L,D,LAYER>,
-					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-					MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>, SCALE extends GeoJsfScale<L,D>, 
-					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-					VP extends GeoJsfViewPort,
-					DS extends GeoJsfDataSource<L,D,LAYER>,
-					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
-		DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta, final Class<VP> cVp,JeeslFacade fUtils)
+	public static <LAYER extends GeoJsfLayer<?,?,?,?,VP,?,?>,
+					MAP extends GeoJsfMap<?,?,?,?,VP>,
+					VP extends GeoJsfViewPort>
+		DbViewPortInit<LAYER,MAP,VP>
+		factory(GeoMetaFactoryBuilder<?,?,?,VP,?> fbMeta, final Class<VP> cVp,JeeslFacade fUtils)
 	{
-		return new DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbMeta,cVp,fUtils);
+		return new DbViewPortInit<LAYER,MAP,VP>(fbMeta,cVp,fUtils);
 	}
 	
 	public void iuViewPort(MAP ejbMap, ViewPort viewPort) throws JeeslConstraintViolationException, JeeslLockingException, JeeslNotFoundException

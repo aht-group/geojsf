@@ -32,8 +32,8 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
-							G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
+							G extends JeeslGraphic<GT,F,GS>, GT extends JeeslGraphicType<L,D,GT,G>,
+							F extends JeeslGraphicComponent<G,GT,F,GS>, GS extends JeeslGraphicShape<L,D,GS,G>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
@@ -46,16 +46,16 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 	private final GeoSldFacade<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> fSld;
 	
 	private final GeoSldFactoryBuilder<L,D,?,?,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
-	private final SvgFactoryBuilder<L,D,G,GT,F,FS> fbSvg;
+	private final SvgFactoryBuilder<L,D,G,GT,F,GS> fbSvg;
 	
 	final String[] defaultLangs;
 	
 	private EjbLangFactory<L> efLang;
 	private EjbDescriptionFactory<D> efDescription;
-	private EjbGraphicFactory<L,D,G,GT,F,FS> efGraphic;
+	private EjbGraphicFactory<L,D,G,GT,GS> efGraphic;
 	private EjbGeoSldRuleFactory<SLD,RULE> efRule;
 	
-	private TxtSldRuleFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> tfRule;
+	private TxtSldRuleFactory<RULE> tfRule;
 	
 	private Map<RULE,String> mapBounds; public Map<RULE,String> getMapBounds() {return mapBounds;}
 	
@@ -65,7 +65,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 	private String upperBound; public String getUpperBound() {return upperBound;} public void setUpperBound(String upperBound) {this.upperBound = upperBound;}
 	
 	public SldRuleHandler(GeoSldFactoryBuilder<L,D,?,?,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld,
-						SvgFactoryBuilder<L,D,G,GT,F,FS> fbSvg,
+						SvgFactoryBuilder<L,D,G,GT,F,GS> fbSvg,
 						GeoSldFacade<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> fSld,
 			final String[] defaultLangs
 
@@ -113,7 +113,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 		rule.setDescription(efDescription.createEmpty(defaultLangs));
 		
 		GT type = fSld.fByEnum(fbSvg.getClassGraphicType(), JeeslGraphicType.Code.symbol);
-		FS style = fSld.fByEnum(fbSvg.getClassFigureStyle(), JeeslGraphicShape.Code.circle);
+		GS style = fSld.fByEnum(fbSvg.getClassFigureStyle(), JeeslGraphicShape.Code.circle);
 		G g = efGraphic.buildSymbol(type, style);
 		rule.setGraphic(g);
 	}

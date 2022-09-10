@@ -50,8 +50,6 @@ import net.sf.exlp.util.io.StringUtil;
 
 @Deprecated //Use GeojsfSettingsMapController instead
 public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
-										G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-										F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 										SERVICE extends GeoJsfService<L,D,LAYER>,
 										LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -63,11 +61,11 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 										SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 										SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-										RULE extends GeoJsfSldRule<L,D,G>,
+										RULE extends GeoJsfSldRule<L,D,?>,
 										JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 										JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
 										JL extends GeoJsfLocationLevel<L,D,JL,?>>
-	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS>
+	extends AbstractGeoJsfBean<L,D,LOC,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;

@@ -17,12 +17,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
-							G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G>
+							RULE extends GeoJsfSldRule<L,D,?>
 							>
 				implements Serializable
 {
@@ -31,13 +29,15 @@ public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
 	
 	private Sld q;
 	
-	private XmlSldTemplateFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> xfTemplate;
+	private XmlSldTemplateFactory<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> xfTemplate;
+	private XmlSldRuleFactory<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> xfRule;
 	
 //	public XmlSldFactory(Query query) {this(query.getSldTemplate());}
 	public XmlSldFactory(Sld q)
 	{
 		this.q=q;
-		if(q.isSetSldTemplate()){xfTemplate = new XmlSldTemplateFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(q.getSldTemplate());}
+		if(q.isSetSldTemplate()){xfTemplate = new XmlSldTemplateFactory<>(q.getSldTemplate());}
+		if(q.isSetSldRule()) {xfRule = new XmlSldRuleFactory<>(q.getSldRule().get(0));}
 	}
 
 	public Sld build (SLD ejb)
@@ -58,10 +58,10 @@ public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
 		
 		if(q.isSetSldRule())
 		{
-			XmlSldRuleFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE> f = new XmlSldRuleFactory<L,D,G,GT,F,FS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(q.getSldRule().get(0));
+			
 			for(RULE rule : ejb.getRules())
 			{
-				xml.getSldRule().add(f.build(rule));
+				xml.getSldRule().add(xfRule.build(rule));
 			}
 		}
 		

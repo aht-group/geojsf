@@ -20,12 +20,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XmlSldTemplateFactory <L extends JeeslLang, D extends JeeslDescription,
-									G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-									F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G>
+									RULE extends GeoJsfSldRule<L,D,?>
 									>
 							implements Serializable
 {

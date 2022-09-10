@@ -45,8 +45,7 @@ import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
-							G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
+
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
 							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -58,7 +57,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-							RULE extends GeoJsfSldRule<L,D,G>
+							RULE extends GeoJsfSldRule<L,D,?>
 							>
 	extends AbstractUtilsRest<L,D>
 	implements GeoJsfDatabaseImportRest
@@ -116,8 +115,6 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 	}
 	
 	public static <L extends JeeslLang,D extends JeeslDescription,
-				G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-				F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 				CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 				SERVICE extends GeoJsfService<L,D,LAYER>,
 				LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -126,10 +123,10 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 				VP extends GeoJsfViewPort,
 				DS extends GeoJsfDataSource<L,D,LAYER>,
 				SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-				RULE extends GeoJsfSldRule<L,D,G>,
+				RULE extends GeoJsfSldRule<L,D,?>,
 				SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 				SLDTEMPLATE extends GeoJsfSldTemplate<L,D>> 
-		GeoJsfDbInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+		GeoJsfDbInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
 				final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
 				final GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld,
@@ -142,7 +139,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 		
 	public DataUpdate importGeoJsfServices(Repository repository)
 	{
-		DbServiceInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> serviceInit;
+		DbServiceInit<L,D,SERVICE> serviceInit;
 		serviceInit = DbServiceInit.factory(cL,cD,fbCore.getClassService(),fSecurity);
 		try{serviceInit.iuServices(repository);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}
@@ -152,7 +149,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 	@Override
 	public DataUpdate importGeoJsfCategories(Repository categories)
 	{
-		DbCategoryInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> geoCategoryDbInit;
+		DbCategoryInit<L,D,CATEGORY> geoCategoryDbInit;
 		geoCategoryDbInit = DbCategoryInit.factory(cL,cD,fbCore.getClassCategory(),fSecurity);
 		try{geoCategoryDbInit.iuServices(categories);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}
@@ -162,7 +159,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 	@Override
 	public DataUpdate importGeoJsfLayers(Layers layers)
 	{
-		DbLayerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit;
+		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit;
 		layerInit = DbLayerInit.factory(fbCore,fbMeta,fbCore.getClassCategory(),fbCore.getClassService(),cLayer,cVp,fSecurity,fGeo);
 		try {layerInit.iuLayers(layers, langKeys);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}
@@ -172,7 +169,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 	@Override
 	public DataUpdate importGeoJsfMaps(Maps maps)
 	{
-		DbMapInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> viewInit;
+		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> viewInit;
 		viewInit  = DbMapInit.factory(fbCore,fbMeta,cLayer,cMap,cView,cVp,fSecurity,fGeo);
 		try
 		{

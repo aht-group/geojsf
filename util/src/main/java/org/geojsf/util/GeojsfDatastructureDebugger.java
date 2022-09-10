@@ -26,8 +26,6 @@ public class GeojsfDatastructureDebugger
 	final static Logger logger = LoggerFactory.getLogger(GeojsfDatastructureDebugger.class);
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -39,7 +37,7 @@ public class GeojsfDatastructureDebugger
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
+					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(MAP map)
 	{
 		StringBuffer sb = new StringBuffer();
@@ -53,8 +51,6 @@ public class GeojsfDatastructureDebugger
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -65,14 +61,12 @@ public class GeojsfDatastructureDebugger
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
+					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(VIEW view)
 	{
 //		debug(0,view);
 	}
 	public static <L extends JeeslLang, D extends JeeslDescription,
-	G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-	F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -83,7 +77,7 @@ public class GeojsfDatastructureDebugger
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
+					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(int indent, VIEW view)
 	{
 		StringBuffer sb = new StringBuffer();
@@ -95,8 +89,6 @@ public class GeojsfDatastructureDebugger
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -107,15 +99,13 @@ public class GeojsfDatastructureDebugger
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>> 
+					RULE extends GeoJsfSldRule<L,D,?>> 
 		void debug(LAYER layer)
 	{
 //		debug(0,layer);
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-	G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-	F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -126,7 +116,7 @@ public class GeojsfDatastructureDebugger
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
+					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(int indent, LAYER layer)
 	{
 		StringBuffer sb = new StringBuffer();
@@ -138,8 +128,6 @@ public class GeojsfDatastructureDebugger
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-	G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-	F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -150,15 +138,13 @@ public class GeojsfDatastructureDebugger
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
+					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(SERVICE service)
 	{
 //		debug(0,service);
 	}
 	
 	public static <L extends JeeslLang, D extends JeeslDescription,
-					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,

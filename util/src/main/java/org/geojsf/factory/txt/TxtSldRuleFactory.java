@@ -1,41 +1,19 @@
 package org.geojsf.factory.txt;
 
-import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.geojsf.model.xml.geojsf.SldRule;
-import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
-import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
-import org.jeesl.interfaces.model.system.locale.JeeslDescription;
-import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
-public class TxtSldRuleFactory<L extends JeeslLang, D extends JeeslDescription,
-								G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
-								SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-								TYPE extends JeeslStatus<L,D,TYPE>,
-								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G>
-								>
+public class TxtSldRuleFactory<RULE extends GeoJsfSldRule<?,?,?>>
 {	
 	private TxtSldRuleFactory()
 	{
 
 	}
 	
-	public static <L extends JeeslLang, D extends JeeslDescription,
-					G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
-					TYPE extends JeeslStatus<L,D,TYPE>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>>
-		TxtSldRuleFactory<L,D,G,GT,F,FS,SLDTEMPLATE,TYPE,SLD,RULE> factory()
+	public static <RULE extends GeoJsfSldRule<?,?,?>>
+		TxtSldRuleFactory<RULE> factory()
 	{
-		return new TxtSldRuleFactory<L,D,G,GT,F,FS,SLDTEMPLATE,TYPE,SLD,RULE>();
+		return new TxtSldRuleFactory<RULE>();
 	}
 	
 	public String build(RULE rule)

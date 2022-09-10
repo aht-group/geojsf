@@ -32,8 +32,6 @@ import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
 
 @Deprecated
 public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
-								G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
 								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -45,7 +43,7 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 								SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-								RULE extends GeoJsfSldRule<L,D,G>>
+								RULE extends GeoJsfSldRule<L,D,?>>
 	implements DmSingleSelect<LAYER>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfMapHelper.class);
@@ -63,8 +61,6 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
     } 
     
     public static <L extends JeeslLang,D extends JeeslDescription,
-				    G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -75,11 +71,11 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
-    	GeoJsfMapHelper<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+					RULE extends GeoJsfSldRule<L,D,?>>
+    	GeoJsfMapHelper<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
     	factory(final Class<SERVICE> clService,MAP view)
     {
-    	GeoJsfMapHelper<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> gjm = new GeoJsfMapHelper<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(clService);
+    	GeoJsfMapHelper<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> gjm = new GeoJsfMapHelper<>(clService);
     	gjm.setMap(view);
     	gjm.buildDmLayer();gjm.selectAll();
     	gjm.buildServices();
@@ -88,8 +84,6 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
     
     @Deprecated
     public static <L extends JeeslLang,D extends JeeslDescription,
-				    G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-					F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
@@ -100,8 +94,8 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-					RULE extends GeoJsfSldRule<L,D,G>>
-    	GeoJsfMapHelper<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+					RULE extends GeoJsfSldRule<L,D,?>>
+    	GeoJsfMapHelper<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
     build(final Class<SERVICE> clService, final Class<MAP> clMap, final Class<VIEW> clVl, LAYER layer)
 	{
     	MAP map = null;
