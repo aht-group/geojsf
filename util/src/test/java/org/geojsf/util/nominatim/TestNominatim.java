@@ -7,11 +7,12 @@ public class TestNominatim {
     
     public static void main(String[] args) throws JAXBException
     {
-	// Other example: Baumstr+Essen&format=xml&polygon=1&addressdetails=1
-	String location	    = "Baumstr. Essen";
-	String coordinates  = GeoCodingUtil.getCoordinates(location);
-	System.out.println(location + " has the coordinates " +coordinates);
-	Point  point	    = GeoCodingUtil.getPoint(location);
-	System.out.println(location + " has the point coordinates " +point.getY() + ", " +point.getX());
+		String location	    = "Essen,Baumstr";
+		String coordinates  = GeoCodingUtil.getCoordinates(location);
+		System.out.println(location + " has the coordinates " +coordinates);
+		Point  point	    = GeoCodingUtil.getPoint(location);
+		System.out.println(location + " has the point coordinates " +point.getY() + ", " +point.getX());
+		String reverse		= GeoCodingUtil.getPlaceInfoString(point.getY(), point.getX());
+		System.out.println(reverse);
     }
 }
