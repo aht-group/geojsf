@@ -12,7 +12,7 @@ import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Figure",category="symbol",subset="symbol")
 public class DefaultGeoJsfGraphicComponent implements EjbRemoveable,Serializable,EjbPersistable,
-								JeeslGraphicComponent<DefaultGeoJsfGraphic,DefaultGeoJsfGraphicType,DefaultGeoJsfGraphicComponent,DefaultGeoJsfGraphicStyle>
+								JeeslGraphicComponent<DefaultGeoJsfGraphic,DefaultGeoJsfGraphicComponent,DefaultGeoJsfGraphicStyle>
 {
 	public static final long serialVersionUID=1;
 

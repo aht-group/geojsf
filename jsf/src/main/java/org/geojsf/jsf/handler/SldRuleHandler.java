@@ -33,7 +33,7 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 							G extends JeeslGraphic<GT,F,GS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicComponent<G,GT,F,GS>, GS extends JeeslGraphicShape<L,D,GS,G>,
+							F extends JeeslGraphicComponent<G,F,GS>, GS extends JeeslGraphicShape<L,D,GS,G>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,

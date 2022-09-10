@@ -10,7 +10,7 @@ import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
 public class TxtSldFactory<L extends JeeslLang, D extends JeeslDescription,
-							G extends JeeslGraphic<?,GC,?>, GC extends JeeslGraphicComponent<G,?,GC,?>,
+							G extends JeeslGraphic<?,GC,?>, GC extends JeeslGraphicComponent<G,GC,?>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 							TYPE extends JeeslStatus<L,D,TYPE>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
