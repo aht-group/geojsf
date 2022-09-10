@@ -57,8 +57,8 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 {
 	final static Logger logger = LoggerFactory.getLogger(DbGeoServerInit.class);
 	
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
-	private final GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore;
+	private final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta;
 	
 	
 	private final Class<L> cL;
@@ -71,12 +71,12 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
     private final Class<VP> cVp;
    
     private JeeslFacade fUtils;
-    private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo;
+    private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo;
  
-    public DbGeoServerInit(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-    						GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
+    public DbGeoServerInit(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+    						GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
     		final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cVp,JeeslFacade fUtils,
-    		GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo)
+    		GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo)
 	{
     	this.fbCore=fbCore;
     	this.fbMeta=fbMeta;
@@ -111,11 +111,11 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 					JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
 					JL extends GeoJsfLocationLevel<L,D,JL,?>> 
 		DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
-		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-					final GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
+		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+					final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
 				
 				final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cVp,JeeslFacade fUtils,
-					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo)
+					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo)
 	{
 		return new DbGeoServerInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>(fbCore,fbMeta,cL,cD,cCategory,cService,cLayer,cMap,cView,cVp,fUtils,fGeo);
 	}

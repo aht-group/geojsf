@@ -33,8 +33,8 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 	
 	private XmlLangsFactory<L> xfLangs;
 	private XmlDescriptionsFactory<D> xfDescriptions;
-	private XmlCategoryFactory<L,D,CATEGORY,LAYER> xfCatgory;
-	private XmlViewPortFactory xfViewport;
+	private XmlCategoryFactory<L,D,CATEGORY> xfCatgory;
+	private XmlViewPortFactory<VP> xfViewport;
 	private XmlServiceFactory<L,D,CATEGORY,SERVICE,LAYER,VIEW,VP> xfService;
 	
 	public XmlLayerFactory(Query query){this(query.getLayer());}
@@ -45,7 +45,7 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 		if(q.isSetLangs()) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
 		if(q.isSetDescriptions()) {xfDescriptions = new XmlDescriptionsFactory<D>(q.getDescriptions());}
 		if(q.isSetCategory()) {xfCatgory = new XmlCategoryFactory<>(q.getCategory());}
-		if(q.isSetViewPort()) {xfViewport = new XmlViewPortFactory(q.getViewPort());}
+		if(q.isSetViewPort()) {xfViewport = new XmlViewPortFactory<>(q.getViewPort());}
 		if(q.isSetService()) {xfService = new XmlServiceFactory<>(q.getService());}
 	}
 

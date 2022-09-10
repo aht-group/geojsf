@@ -23,18 +23,12 @@ import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.jeesl.controller.facade.JeeslFacadeBean;
-import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
-import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
-								G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-								F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
 								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
@@ -45,15 +39,15 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 								DS extends GeoJsfDataSource<L,D,LAYER>
 								>
 				extends JeeslFacadeBean
-				implements GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS>
+				implements GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS>
 		
 {	
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfFacadeBean.class);
 	
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore;
 	
-	public GeoJsfFacadeBean(EntityManager em, GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore)
+	public GeoJsfFacadeBean(EntityManager em, GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore)
 	{
 		super(em);
 		this.fbCore = fbCore;
@@ -86,13 +80,6 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 		layer = em.find(cLayer, layer.getId());
 		if(layer.getViewPort()!=null){layer.getViewPort().getId();}
 		return layer;
-	}
-	
-	@Override public DS load(Class<DS> cDs, DS ds)
-	{
-		ds = em.find(cDs, ds.getId());
-		ds.getLayers().size();
-		return ds;
 	}
 
 	@Override public void rm(Class<VIEW> cView, VIEW view)

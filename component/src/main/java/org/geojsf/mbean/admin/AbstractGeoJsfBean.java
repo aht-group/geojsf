@@ -50,19 +50,12 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 									F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 									SERVICE extends GeoJsfService<L,D,LAYER>,
-									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
 									MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 									SCALE extends GeoJsfScale<L,D>,
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 									VP extends GeoJsfViewPort,
-									DS extends GeoJsfDataSource<L,D,LAYER>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G>,
-									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
-									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-									JL extends GeoJsfLocationLevel<L,D,JL,?>>
+									DS extends GeoJsfDataSource<L,D,LAYER>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -71,55 +64,31 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 	@Deprecated
 	protected String[] langKeys;
 	
-	protected GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo;
+	protected GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo;
 	protected JeeslTranslationBean<L,D,LOC> bTranslation;
 	
-	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
-	protected final GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta;
-	protected final GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
-	
+	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore;
+
+
 	protected final EjbLangFactory<L> efLang;
 	protected final EjbDescriptionFactory<D> efDescription;
 	
-	protected final EjbGeoCategoryFactory<L,D,CATEGORY> efCategory;
-	protected final EjbGeoServiceFactory<L,D,SERVICE> efService;
 	protected final EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER> efLayer;
 	protected final EjbGeoMapFactory<L,D,MAP> efMap;
-	protected final EjbGeoScaleFactory<L,D,SCALE> efScale;
-	protected final EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> efView;
-	protected final EjbGeoViewPortFactory<VP> efViewPort;
-	
-	protected final EjbGeoDataSourceFactory<L,D,DS> efDs;
-	protected final EjbGeoSldTemplateFactory<SLDTEMPLATE> efTemplate;
-	protected final EjbGeoSldFactory<SLDTYPE,SLD> efSld;
-	
-	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-							GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
-							GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+
+	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore)
 	{
 		this.fbCore=fbCore;
-		this.fbMeta=fbMeta;
-		this.fbSld=fbSld;
-
 	
 		efLang = EjbLangFactory.instance(fbCore.getClassL());
 	    efDescription = EjbDescriptionFactory.factory(fbCore.getClassD());
 	    	
-	    efCategory = fbCore.ejbCategory();
-	    efService = fbCore.ejbService();
 	    efLayer = fbCore.ejbLayer();
 	    efMap = fbCore.ejbMap();
-	    efScale = fbCore.ejbScale();
-	    efView = fbCore.ejbView();
-	    efViewPort = fbMeta.ejbViewPort();
-    	
-		efDs = fbMeta.ejbDs();
-		efSld = fbSld.ejbSld();
-		efTemplate = fbSld.efTemplate();
 	}
 	
 	protected void postConstructGeojsf(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
-									GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo)
+									GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo)
 	{
 		this.bTranslation=bTranslation;
 		this.langKeys=bTranslation.getLangKeys().toArray(new String[0]);

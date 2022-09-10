@@ -1,4 +1,4 @@
-package org.geojsf.web.controller.settings;
+package org.geojsf.web.controller.settings.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -49,8 +49,8 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private static final long serialVersionUID = 1L;
 	private final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsLayerController.class);
 	
-	private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP,?> fGeo;
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP> fbCore;
+	private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore;
 	
 	private final EjbGeoMapFactory<L,D,MAP> efMap;
 	private final EjbGeoViewPortFactory<VP> efViewPort;
@@ -68,7 +68,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private MAP map; public MAP getMap() {return map;}
 	private VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 		
-	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP> fbCore, GeoMetaFactoryBuilder<L,D,?,VP,?,?,?> fbMeta)
+	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore, GeoMetaFactoryBuilder<L,D,?,VP,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore = fbCore;
@@ -80,7 +80,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		views = new ArrayList<>();
 	}
 	
-	public void postConstructService(GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,?,VIEW,VP,?> fGeo,
+	public void postConstructService(GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo,
 										GeoSldFacade<L,D,?,?,SLD,?> fSld,				
 										JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
@@ -106,7 +106,6 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	public void addService() throws JeeslConstraintViolationException
 	{
 		service = fbCore.ejbService().build(null, null);
-		
 		service.setName(efLang.createEmpty(lp.getLocales()));
 		service.setDescription(efDescription.createEmpty(lp.getLocales()));
 		

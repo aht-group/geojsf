@@ -62,7 +62,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
     private final Class<VIEW> cView;
     
     private JeeslFacade fUtils;
-    private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo;
+    private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo;
     
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
@@ -70,10 +70,10 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
     
     private DbViewPortInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> dbVpInit;
     
-    public DbMapInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-    				 final GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta,
+    public DbMapInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+    				 final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
     				 final Class<LAYER> cLayer, final Class<MAP> cMap,final Class<VIEW> cView, final Class<VP> cVp, JeeslFacade fUtils,
-    				 GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo)
+    				 GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo)
 	{       
         this.cLayer = cLayer;
         this.cMap = cMap;
@@ -104,10 +104,10 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>> 
 		DbMapInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-				final GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta,
+		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+				final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
 				final Class<LAYER> cLayer, final Class<MAP> cMap,final Class<VIEW> cView,final Class<VP> cVp,JeeslFacade fUtils,
-				GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo)
+				GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo)
 	{
 		return new DbMapInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,fbMeta,cLayer,cMap,cView,cVp,fUtils,fGeo);
 	}

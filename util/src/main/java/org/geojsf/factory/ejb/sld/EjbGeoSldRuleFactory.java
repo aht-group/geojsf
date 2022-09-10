@@ -5,8 +5,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoSldRuleFactory<
-									SLD extends GeoJsfSld<?,?,?,?,RULE>,
+public class EjbGeoSldRuleFactory<SLD extends GeoJsfSld<?,?,?,?,RULE>,
 									RULE extends GeoJsfSldRule<?,?,?>
 									>
 {

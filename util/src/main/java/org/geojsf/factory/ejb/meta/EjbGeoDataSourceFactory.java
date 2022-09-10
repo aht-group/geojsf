@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class EjbGeoDataSourceFactory<L extends JeeslLang,D extends JeeslDescription,
-								
 								DS extends GeoJsfDataSource<L,D,?>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoDataSourceFactory.class);
@@ -34,6 +33,18 @@ public class EjbGeoDataSourceFactory<L extends JeeslLang,D extends JeeslDescript
 			ejb = cDs.newInstance();
 			ejb.setName(fLang.createEmpty(langKeys));
 			ejb.setDescription(efDescription.createEmpty(langKeys));
+		}
+		catch (InstantiationException e) {throw new JeeslConstraintViolationException(e.getMessage());}
+		catch (IllegalAccessException e) {throw new JeeslConstraintViolationException(e.getMessage());}
+        return ejb;
+    }
+	
+	public DS build() throws JeeslConstraintViolationException
+	{
+		DS ejb;
+		try
+		{
+			ejb = cDs.newInstance();
 		}
 		catch (InstantiationException e) {throw new JeeslConstraintViolationException(e.getMessage());}
 		catch (IllegalAccessException e) {throw new JeeslConstraintViolationException(e.getMessage());}

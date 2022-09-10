@@ -6,6 +6,10 @@ import java.util.List;
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
+import org.geojsf.factory.ejb.core.EjbGeoCategoryFactory;
+import org.geojsf.factory.ejb.core.EjbGeoServiceFactory;
+import org.geojsf.factory.ejb.core.EjbGeoViewFactory;
+import org.geojsf.factory.ejb.meta.EjbGeoViewPortFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -62,11 +66,16 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
 									JL extends GeoJsfLocationLevel<L,D,JL,?>>
-	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
+	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(AbstractMapServiceBean.class);
+	
+	protected final EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> efView;
+	protected final EjbGeoViewPortFactory<VP> efViewPort;
+	protected final EjbGeoCategoryFactory<L,D,CATEGORY> efCategory;
+	protected final EjbGeoServiceFactory<L,D,SERVICE> efService;
 	
 	protected List<SERVICE> services; public List<SERVICE> getServices() {return services;}
 	protected List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
@@ -80,15 +89,19 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 	protected SERVICE service; public SERVICE getService() {return service;} public void setService(SERVICE service) {this.service = service;}
 	protected LAYER layer; public LAYER getLayer() {return layer;} public void setLayer(LAYER layer) {this.layer = layer;}
 		
-	public AbstractMapServiceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-									GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
+	public AbstractMapServiceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+									GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
 									GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
 	{
-		super(fbCore,fbMeta,fbSld);
+		super(fbCore);
+	    efCategory = fbCore.ejbCategory();
+	    efService = fbCore.ejbService();
+	    efView = fbCore.ejbView();
+	    efViewPort = fbMeta.ejbViewPort();
 	}
 	
 	public void postConstructService(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
-									GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo,
+									GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo,
 									GeoSldFacade<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> fSld)
 	{
 		super.postConstructGeojsf(bTranslation,bMessage,fGeo);  	

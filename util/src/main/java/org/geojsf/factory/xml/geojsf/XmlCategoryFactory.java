@@ -3,7 +3,6 @@ package org.geojsf.factory.xml.geojsf;
 import java.io.Serializable;
 
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
-import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Query;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
@@ -13,9 +12,8 @@ import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlCategoryFactory <L extends JeeslLang,D extends JeeslDescription,
-								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,?,?>>
+public class XmlCategoryFactory <L extends JeeslLang, D extends JeeslDescription,
+								CATEGORY extends GeoJsfCategory<L,D,?>>
 						implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlCategoryFactory.class);
@@ -34,11 +32,10 @@ public class XmlCategoryFactory <L extends JeeslLang,D extends JeeslDescription,
 		if(q.isSetDescriptions()) {xfDescription = new XmlDescriptionsFactory<D>(q.getDescriptions());}
 	}
 
-	public Category build (GeoJsfCategory<L,D,LAYER> ejb)
+	public Category build (CATEGORY ejb)
 	{
 		Category xml = new Category();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}
-			
 		if(q.isSetLangs()){xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
 		if(q.isSetDescriptions()){xml.setDescriptions(xfDescription.create(ejb.getDescription()));}
 		

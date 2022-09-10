@@ -89,7 +89,7 @@
 						selection="#{cc.attrs.controller.layer}" selectionMode="single" rowKey="#{l.id}" draggableRows="true">
 					<f:facet name="header">
 		                <j:dtHeader title="#{msg.geoJsfAdminLayers}">
-		                    <j:svg type="jeeslAdd" listener="#{cc.attrs.controller.addLayer()}" update=":#{cc.id}:sLayers" />
+		                    <j:svg type="jeeslAdd" listener="#{cc.attrs.controller.addLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" />
 		                </j:dtHeader>
 		            </f:facet>
 		            <p:ajax event="rowReorder" listener="#{cc.attrs.controller.reorderLayer()}" update="@form"/>

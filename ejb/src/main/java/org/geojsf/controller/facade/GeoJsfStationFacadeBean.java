@@ -33,6 +33,8 @@ public class GeoJsfStationFacadeBean <L extends JeeslLang, D extends JeeslDescri
 				extends JeeslFacadeBean
 				implements GeoJsfStationFacade<L,D,STATION,TYPE,SUBTYPE,SCHEME,CODE,CAP,CAPT,CAPS>
 {	
+	private static final long serialVersionUID = 1L;
+
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfStationFacadeBean.class);
 	
 	private final Class<STATION> cStation;

@@ -15,5 +15,5 @@ public interface GeoJsfLayerType<L extends JeeslLang, D extends JeeslDescription
 								JeeslStatus<L,D,S>,JeeslStatusFixedCode,
 								EjbWithCodeGraphic<G>
 {
-	public enum Code {pg,pgSql,shape,shapeDir}
+	public enum Code {pg,pgSql,shapeFile,shapeDir}
 }

@@ -122,16 +122,18 @@
 						<p:outputLabel value="#{msg.geoJsfAdminLegendOrderNo}"/>
 						<p:inputText value="#{cc.attrs.controller.view.legendNo}"/>
 						
-						
-						<jtp:label entity="GeoCategory"/>
-						<p:selectOneMenu value="#{cc.attrs.controller.cat}" effect="fade" autoWidth="false" dynamic="true"> 
-							<f:selectItems value="#{cc.attrs.controller.categories}" var="c" itemLabel="#{c.name[localeCode].lang}" itemValue="#{c}"/>
-							<p:ajax event="change" listener="#{cc.attrs.controller.changeCategory()}" update="@form"/>
-						</p:selectOneMenu>
-						
 						<jtp:label entity="GeoView" code="layer"/>
-						<p:selectOneMenu value="#{cc.attrs.controller.view.layer}" effect="fade" autoWidth="false" dynamic="true">  
+						<p:selectOneMenu value="#{cc.attrs.controller.view.layer}" effect="fade" autoWidth="false"
+									var="lay" filter="true" filterMatchMode="contains" >
 							<f:selectItems value="#{cc.attrs.controller.layers}" var="l" itemLabel="#{l.name[localeCode].lang}" itemValue="#{l}"/>
+		
+							<p:column headerText="#{msg.aupCategory}">
+								<h:outputText value="#{lay.category.name[localeCode].lang}" />
+							</p:column>
+							<p:column headerText="#{msg.jeeslRevisionEntity}">
+								<h:outputText value="#{lay.name[localeCode].lang}" />
+							</p:column>
+		
 						</p:selectOneMenu>
 						
 					</p:panelGrid>

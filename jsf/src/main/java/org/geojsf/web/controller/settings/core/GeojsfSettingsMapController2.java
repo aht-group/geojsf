@@ -1,4 +1,4 @@
-package org.geojsf.web.controller.settings;
+package org.geojsf.web.controller.settings.core;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,6 +15,7 @@ import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
@@ -35,52 +36,53 @@ import net.sf.ahtutils.jsf.util.FacesContextMessage;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 import net.sf.exlp.util.io.StringUtil;
 
-public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
+public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 										LAYER extends GeoJsfLayer<L,D,CATEGORY,?,VP,?,?>,
 										MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
+										SCALE extends GeoJsfScale<L,D>, 
 										VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 										VP extends GeoJsfViewPort>
 			extends AbstractJeeslWebController<L,D,LOC>
 			implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsMapController.class);
+	final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsMapController2.class);
 	
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,MAP,?,VIEW,VP> fbCore;
+	private GeoJsfFacade<L,D,CATEGORY,?,LAYER,MAP,VIEW,VP,?> fGeo;
 	
-	private GeoJsfFacade<L,D,CATEGORY,?,LAYER,MAP,?,VIEW,VP,?> fGeo;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,MAP,VIEW> fbCore;
 	
 	private final EjbGeoMapFactory<L,D,MAP> efMap;
 	private final EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> efView;
 	private final EjbGeoViewPortFactory<VP> efViewPort;
 	
-	private List<CATEGORY> categories; public List<CATEGORY> getCategories(){return categories;}
-	private List<MAP> maps; public List<MAP> getMaps(){return maps;}
-	private List<LAYER> layers; public List<LAYER> getLayers(){return layers;}
+	private List<MAP> maps; public List<MAP> getMaps() {return maps;}
+	private List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
+	private List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
 	
-	private CATEGORY category; public CATEGORY getCategory() {return category;} public void setCategory(CATEGORY category) {this.category = category;}
 	private MAP map; public MAP getMap() {return map;} public void setMap(MAP map) {this.map = map;}
-	private VIEW view; public VIEW getView(){return view;} public void setView(VIEW view) {this.view = view;}
-	private VP viewPort; public VP getViewPort(){return viewPort;} public void setViewPort(VP viewPort) {this.viewPort = viewPort;}
+	private VIEW view; public VIEW getView() {return view;} public void setView(VIEW view){this.view = view;}
+	private VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort) {this.viewPort = viewPort;}
 	
-	public GeojsfSettingsMapController(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,MAP,?,VIEW,VP> fbCore,
-									GeoMetaFactoryBuilder<L,D,?,VP,?,?,?> fbMeta)
+	public GeojsfSettingsMapController2(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,MAP,VIEW> fbCore,
+									GeoMetaFactoryBuilder<L,D,?,VP,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore=fbCore;
 		
 		efMap = fbCore.ejbMap();
 		efView = fbCore.ejbView();
-		efViewPort = fbMeta.ejbViewPort();
+	    efViewPort = fbMeta.ejbViewPort();
 	}
 	
-	public void postConstructThematic(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
-										GeoJsfFacade<L,D,CATEGORY,?,LAYER,MAP,?,VIEW,VP,?> fGeo)
+	public void postConstructThematic(GeoJsfFacade<L,D,CATEGORY,?,LAYER,MAP,VIEW,VP,?> fGeo,
+										JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
 		super.postConstructWebController(lp,bMessage);
 		this.fGeo=fGeo;
 		categories = fGeo.allOrderedPositionVisible(fbCore.getClassCategory());
+		layers = fGeo.all(fbCore.getClassLayer());
 		reloadMaps();
 	}
 	
@@ -92,13 +94,11 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 	public void selectMap() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info(AbstractLogMessage.selectEntity(map));
-		
-		map = efLang.persistMissingLangs(fGeo,lp.getLocales(),map);
-		map = efDescription.persistMissingLangs(fGeo,lp.getLocales(),map);
-		
+		missingLangsMap();
 		reloadMap();
 		view=null;
 	}
+	protected void missingLangsMap(){}
 	
 	protected void reloadMap() throws JeeslConstraintViolationException, JeeslLockingException
 	{
@@ -189,15 +189,11 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 	{
 		logger.info(AbstractLogMessage.addEntity(fbCore.getClassView()));
 		view = efView.create(map,null,0,true,true);
-		category = categories.get(0);
-		changeCategory();
 	}
 	
 	public void selectView() throws JeeslNotFoundException
 	{
 		logger.info(AbstractLogMessage.selectEntity(view));
-		category = view.getLayer().getCategory();
-		changeCategory();
 	}
 	
 	public void cancelView()
@@ -225,13 +221,6 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 		reloadMap();
 		updateOrder();
 		reloadMap();
-	}
-	
-	public void changeCategory()
-	{
-		category = fGeo.load(fbCore.getClassCategory(),category);
-		layers = category.getLayer();
-		logger.info(AbstractLogMessage.selectOneMenuChange(category));
 	}
 	
 	public void mapMove(AjaxBehaviorEvent ev)

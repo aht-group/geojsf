@@ -65,8 +65,8 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfDbInit.class);
 	
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore;
-	private final GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore;
+	private final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta;
 	
     private final Class<LAYER> cLayer;
     private final Class<MAP> cMap;
@@ -77,7 +77,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
     private final Class<SLDTEMPLATE> cSldTemplate;
     
     private JeeslFacade fSecurity;
-    private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo;
+    private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo;
     
     private String[] langKeys;
     
@@ -85,12 +85,12 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     private EjbGeoSldTemplateFactory<SLDTEMPLATE> efSldTemplate;
     
-    public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-    					final GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta,
+    public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+    					final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
     					final GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld,
     					JeeslFacade fUtils, String[] langKeys,
     					
-    					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo,
+    					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo,
     					final Class<LAYER> cLayer,final Class<MAP> cMap,final Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
 	{   
     	super(fUtils,langKeys,fbCore.getClassL(),fbCore.getClassD());
@@ -130,11 +130,11 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 				SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
 				SLDTEMPLATE extends GeoJsfSldTemplate<L,D>> 
 		GeoJsfDbInit<L,D,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-				final GeoMetaFactoryBuilder<L,D,DS,VP,?,?,?> fbMeta,
+		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+				final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
 				final GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld,
 				JeeslFacade fUtils,
-				GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo,
+				GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo,
 				String[] langKeys,final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType,final Class<SLDTEMPLATE> cSldTemplate)
 	{
 		return new GeoJsfDbInit<>(fbCore,fbMeta,fbSld,fUtils,langKeys,fGeo,cLayer,cMap,cView,cVp,cSldType,cSldTemplate);

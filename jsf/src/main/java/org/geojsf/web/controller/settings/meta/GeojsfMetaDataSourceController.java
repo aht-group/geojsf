@@ -1,82 +1,65 @@
-package org.geojsf.mbean.admin;
+package org.geojsf.web.controller.settings.meta;
 
 import java.io.Serializable;
 import java.util.List;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
-import org.geojsf.factory.builder.GeoSldFactoryBuilder;
-import org.geojsf.interfaces.facade.GeoJsfFacade;
+import org.geojsf.factory.ejb.meta.EjbGeoDataSourceFactory;
+import org.geojsf.interfaces.facade.GeoMetaFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
-import org.geojsf.interfaces.model.core.GeoJsfMap;
-import org.geojsf.interfaces.model.core.GeoJsfService;
-import org.geojsf.interfaces.model.core.GeoJsfView;
-import org.geojsf.interfaces.model.json.GeoJsfJsonData;
-import org.geojsf.interfaces.model.json.GeoJsfJsonQuality;
-import org.geojsf.interfaces.model.json.GeoJsfLocationLevel;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
-import org.geojsf.interfaces.model.meta.GeoJsfScale;
-import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
-import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
-import org.jeesl.api.bean.JeeslTranslationBean;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
-import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
-import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
-import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
+import org.jeesl.interfaces.controller.handler.system.locales.JeeslLocaleProvider;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.JeeslLocale;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
+import org.jeesl.web.AbstractJeeslWebController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
-public class AbstractGeoJsfDataSourceBean <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
-									G extends JeeslGraphic<GT,F,FS>, GT extends JeeslGraphicType<L,D,GT,G>,
-									F extends JeeslGraphicComponent<G,GT,F,FS>, FS extends JeeslGraphicShape<L,D,FS,G>,
+public class GeojsfMetaDataSourceController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-									SERVICE extends GeoJsfService<L,D,LAYER>,
-									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-									MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-									SCALE extends GeoJsfScale<L,D>, 
-									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
-									VP extends GeoJsfViewPort,
-									DS extends GeoJsfDataSource<L,D,LAYER>,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-									RULE extends GeoJsfSldRule<L,D,G>,
-									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
-									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
-									JL extends GeoJsfLocationLevel<L,D,JL,?>>
-	extends AbstractGeoJsfBean<L,D,LOC,G,GT,F,FS,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
-	implements Serializable
+									
+									LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,DS,?>,
+									
+									DS extends GeoJsfDataSource<L,D,LAYER>>
+		extends AbstractJeeslWebController<L,D,LOC>
+		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfDataSourceBean.class);
+	final static Logger logger = LoggerFactory.getLogger(GeojsfMetaDataSourceController.class);
+	
+	private GeoMetaFacade<L,D,?,DS,?,?> fGeo;
+	
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,?> fbCore;
+	private final GeoMetaFactoryBuilder<L,D,DS,?,?> fbMeta;
+	
+	protected final EjbGeoDataSourceFactory<L,D,DS> efDs;
 	
 	private List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
 	private List<DS> sources; public List<DS> getSources() {return sources;}
 	
-	public AbstractGeoJsfDataSourceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP> fbCore,
-										GeoMetaFactoryBuilder<L,D,DS,VP,JSON,JQ,JL> fbMeta,
-										GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+	public GeojsfMetaDataSourceController(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,?> fbCore,
+										GeoMetaFactoryBuilder<L,D,DS,?,?> fbMeta)
 	{
-		super(fbCore,fbMeta,fbSld);
+		super(fbMeta.getClassL(),fbMeta.getClassD());
+		this.fbCore=fbCore;
+		this.fbMeta=fbMeta;
+		
+		efDs = fbMeta.ejbDs();
 	}
 	
-	public void postConstructDataSource(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
-							GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS> fGeo)
+	public void postConstructDataSource(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
+			GeoMetaFacade<L,D,?,DS,?,?> fGeo)
 	{
-		super.postConstructGeojsf(bTranslation,bMessage,fGeo);
+		super.postConstructWebController(lp,bMessage);
 
 	    availableLayers = fGeo.all(fbCore.getClassLayer());
 	    categories = fGeo.all(fbCore.getClassCategory());
@@ -98,7 +81,9 @@ public class AbstractGeoJsfDataSourceBean <L extends JeeslLang, D extends JeeslD
 	public void addSource() throws JeeslConstraintViolationException
 	{
 		logger.info(AbstractLogMessage.addEntity(fbMeta.getClassDs()));
-		source = efDs.build(langKeys);		
+		source = efDs.build();
+		source.setName(efLang.createEmpty(lp.getLocales()));
+		source.setDescription(efDescription.createEmpty(lp.getLocales()));
 	}
 
 	public void selectSource() throws JeeslNotFoundException
@@ -109,7 +94,7 @@ public class AbstractGeoJsfDataSourceBean <L extends JeeslLang, D extends JeeslD
 	
 	private void reloadSource()
 	{
-		source = fGeo.load(fbMeta.getClassDs(), source);
+		source = fGeo.load(source);
 		layers = source.getLayers();
 	}
 	

@@ -8,7 +8,6 @@ import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
-import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
@@ -19,7 +18,6 @@ public interface GeoJsfFacade <L extends JeeslLang, D extends JeeslDescription,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
 								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
 								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
-								SCALE extends GeoJsfScale<L,D>, 
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,
 								DS extends GeoJsfDataSource<L,D,LAYER>
@@ -30,8 +28,6 @@ public interface GeoJsfFacade <L extends JeeslLang, D extends JeeslDescription,
 	CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category);
 	MAP load(Class<MAP> cMap, MAP map);
 	LAYER load(Class<LAYER> cLayer, LAYER layer);
-	
-	DS load(Class<DS> cDs, DS ds);
 	
 	void rm(Class<LAYER> cLayer, LAYER layer);	
 	void rm(Class<VIEW> cView, VIEW view);

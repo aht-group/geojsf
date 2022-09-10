@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class EjbGeoCategoryFactory<L extends JeeslLang,D extends JeeslDescription,
-									
 									CATEGORY extends GeoJsfCategory<L,D,?>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoCategoryFactory.class);
