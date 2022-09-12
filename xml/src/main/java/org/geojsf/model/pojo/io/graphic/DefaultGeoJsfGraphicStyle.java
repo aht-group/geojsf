@@ -1,5 +1,7 @@
 package org.geojsf.model.pojo.io.graphic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfDescription;
@@ -49,6 +51,12 @@ public class DefaultGeoJsfGraphicStyle implements JeeslGraphicShape<DefaultGeoJs
 	@Override public <P extends EjbWithCode> P getParent() {return null;}
 	@Override public <P extends EjbWithCode> void setParent(P parent) {}
 	
+	@Override public List<String> getFixedCodes()
+	{
+		List<String> fixed = new ArrayList<String>();
+		for(JeeslGraphicShape.Code c : JeeslGraphicShape.Code.values()){fixed.add(c.toString());}
+		return fixed;
+	}
 	
 	public boolean equals(Object object)
 	{

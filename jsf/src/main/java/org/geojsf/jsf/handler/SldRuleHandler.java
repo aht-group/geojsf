@@ -113,7 +113,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 		rule.setDescription(efDescription.createEmpty(defaultLangs));
 		
 		GT type = fSld.fByEnum(fbSvg.getClassGraphicType(), JeeslGraphicType.Code.symbol);
-		GS style = fSld.fByEnum(fbSvg.getClassFigureStyle(), JeeslGraphicShape.Code.circle);
+		GS style = fSld.fByEnum(fbSvg.getClassFigureStyle(), JeeslGraphicShape.Code.shapeCircle);
 		G g = efGraphic.buildSymbol(type, style);
 		rule.setGraphic(g);
 	}
