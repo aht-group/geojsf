@@ -15,7 +15,6 @@ import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
 import org.geojsf.util.GeoJsfJsLoader;
-import org.joda.time.DateTime;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.panel.Panel;
 import org.primefaces.component.slider.Slider;
