@@ -60,6 +60,7 @@ public class GeojsfMetaDataSourceController <L extends JeeslLang, D extends Jees
 			GeoMetaFacade<L,D,?,DS,?,?> fGeo)
 	{
 		super.postConstructWebController(lp,bMessage);
+		this.fGeo=fGeo;
 
 	    availableLayers = fGeo.all(fbCore.getClassLayer());
 	    categories = fGeo.all(fbCore.getClassCategory());
