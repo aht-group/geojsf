@@ -28,7 +28,7 @@ import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.JeeslLocale;
 import org.jeesl.jsf.handler.PositionListReorderer;
-import org.jeesl.web.AbstractJeeslWebController;
+import org.jeesl.web.controller.AbstractJeeslWebController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
