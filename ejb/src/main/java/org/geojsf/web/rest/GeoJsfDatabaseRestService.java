@@ -200,7 +200,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	@Override public ViewPorts exportViewPorts()
 	{
 		logger.info("Export GeoJsf "+ViewPort.class.getSimpleName());
-		XmlViewPortFactory f = new XmlViewPortFactory(GeoJsfQuery.get(GeoJsfQuery.Key.viewPort, null));
+		XmlViewPortFactory<VP> f = new XmlViewPortFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.viewPort, null));
 		
 		Set<Long> geoJsfViewports = new HashSet<Long>();
 		for(MAP map : fGeo.all(cMap))

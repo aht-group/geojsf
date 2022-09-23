@@ -16,14 +16,11 @@ import org.geojsf.model.pojo.geojsf.sld.DefaultGeoJsfSld;
 import org.geojsf.model.pojo.geojsf.sld.DefaultGeoJsfSldRule;
 import org.geojsf.model.pojo.geojsf.sld.DefaultGeoJsfSldTemplate;
 import org.geojsf.model.pojo.geojsf.sld.DefaultGeoJsfSldType;
-import org.geojsf.model.pojo.io.graphic.DefaultGeoJsfGraphic;
-import org.geojsf.model.pojo.io.graphic.DefaultGeoJsfGraphicComponent;
-import org.geojsf.model.pojo.io.graphic.DefaultGeoJsfGraphicStyle;
-import org.geojsf.model.pojo.io.graphic.DefaultGeoJsfGraphicType;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.geojsf.test.AbstractGeoJsfEjbTest;
 import org.geojsf.test.GeoJsfEjbTestBootstrap;
+import org.geojsf.util.GeojsfDatastructureDebugger;
 import org.geojsf.util.query.GeoJsfQuery;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.junit.Assert;
@@ -108,7 +105,7 @@ public class TestDummyViewFactory extends AbstractGeoJsfEjbTest
 		for(DefaultGeoJsfService service : list)
 		{
 			logger.error("NYI, uncommented");
-//			GeojsfDatastructureDebugger.debug(service);
+			GeojsfDatastructureDebugger.debug(service);
 		}
 		
 	}

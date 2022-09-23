@@ -1,7 +1,5 @@
 package org.geojsf.interfaces.facade;
 
-import java.util.List;
-
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
