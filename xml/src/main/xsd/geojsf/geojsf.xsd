@@ -20,11 +20,21 @@
 				<xsd:element ref="geojsf:sldTemplate" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
-	</xsd:element>  
+	</xsd:element>
+	<xsd:element name="coordinates">
+        <xsd:complexType>
+        	<xsd:sequence>
+				<xsd:element ref="geojsf:coordinate" maxOccurs="unbounded"/>
+			</xsd:sequence>
+            <xsd:attribute name="label" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
 	<xsd:element name="coordinate">
         <xsd:complexType>
             <xsd:attribute name="lat" type="xsd:double"/>
             <xsd:attribute name="lon" type="xsd:double"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="label" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="scales">

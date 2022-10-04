@@ -134,6 +134,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Coordinates }
+     * 
+     */
+    public Coordinates createCoordinates() {
+        return new Coordinates();
+    }
+
+    /**
      * Create an instance of {@link Coordinate }
      * 
      */
