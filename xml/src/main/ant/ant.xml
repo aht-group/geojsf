@@ -18,7 +18,6 @@
 	<property name="relaxng.lib" value="${user.home}/.m2/repository/relaxngDatatype/relaxngDatatype/20020414/relaxngDatatype-20020414.jar"/>	
 
 	<!-- Upgrade to java11 -->
-	
 	<property name="jaxb-jakarta.lib" value="${user.home}/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/2.3.2/jakarta.xml.bind-api-2.3.2.jar"/>
 	<property name="activation.lib" value="${user.home}/.m2/repository/javax/activation/activation/1.1.1/activation-1.1.1.jar"/>
 	

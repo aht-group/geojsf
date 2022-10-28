@@ -91,8 +91,8 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	{
 		logger.info(AbstractLogMessage.addEntity(fbSld.getClassSld()));
 		sld = efSld.build(null,true);
-		sld.setName(efLang.createEmpty(lp.getLocales()));
-		sld.setDescription(efDescription.createEmpty(lp.getLocales()));
+		sld.setName(efLang.buildEmpty(lp.getLocales()));
+		sld.setDescription(efDescription.buildEmpty(lp.getLocales()));
 	}
 	
 	public void saveSld() throws JeeslConstraintViolationException, JeeslLockingException

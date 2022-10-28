@@ -74,8 +74,8 @@ public class GeojsfSldTemplateController <L extends JeeslLang, D extends JeeslDe
 	{
 		logger.info(AbstractLogMessage.addEntity(fbSld.getClassTemplate()));
 		template = efTemplate.build(null);
-		template.setName(efLang.createEmpty(lp.getLocales()));
-		template.setDescription(efDescription.createEmpty(lp.getLocales()));
+		template.setName(efLang.buildEmpty(lp.getLocales()));
+		template.setDescription(efDescription.buildEmpty(lp.getLocales()));
 	}
 	
 	public void cancelTemplate()

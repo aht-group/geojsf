@@ -70,8 +70,8 @@ public class GeojsfSettingsScaleController <L extends JeeslLang, D extends Jeesl
 	{
 		logger.info(AbstractLogMessage.addEntity(fbMeta.getClassScale()));
 		scale = efScale.build();
-		scale.setName(efLang.createEmpty(lp.getLocales()));
-		scale.setDescription(efDescription.createEmpty(lp.getLocales()));
+		scale.setName(efLang.buildEmpty(lp.getLocales()));
+		scale.setDescription(efDescription.buildEmpty(lp.getLocales()));
 	}
 	
 	public void selectTemplate() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException

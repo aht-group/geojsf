@@ -83,8 +83,8 @@ public class GeojsfMetaDataSourceController <L extends JeeslLang, D extends Jees
 	{
 		logger.info(AbstractLogMessage.addEntity(fbMeta.getClassDs()));
 		source = efDs.build();
-		source.setName(efLang.createEmpty(lp.getLocales()));
-		source.setDescription(efDescription.createEmpty(lp.getLocales()));
+		source.setName(efLang.buildEmpty(lp.getLocales()));
+		source.setDescription(efDescription.buildEmpty(lp.getLocales()));
 	}
 
 	public void selectSource() throws JeeslNotFoundException

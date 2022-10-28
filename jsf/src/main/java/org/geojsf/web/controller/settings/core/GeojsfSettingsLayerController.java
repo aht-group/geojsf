@@ -106,8 +106,8 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	public void addService() throws JeeslConstraintViolationException
 	{
 		service = fbCore.ejbService().build(null, null);
-		service.setName(efLang.createEmpty(lp.getLocales()));
-		service.setDescription(efDescription.createEmpty(lp.getLocales()));
+		service.setName(efLang.buildEmpty(lp.getLocales()));
+		service.setDescription(efDescription.buildEmpty(lp.getLocales()));
 		
 		layer=null;
 		category = null;
@@ -166,8 +166,8 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		logger.info("ADD CAtegory");
 		category = fbCore.ejbCategory().build(null);
 		
-		category.setName(efLang.createEmpty(lp.getLocales()));
-		category.setDescription(efDescription.createEmpty(lp.getLocales()));
+		category.setName(efLang.buildEmpty(lp.getLocales()));
+		category.setDescription(efDescription.buildEmpty(lp.getLocales()));
 		
 		service=null;
 	}
@@ -227,8 +227,8 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	{
 		logger.info("addLayer ");
 		layer = fbCore.ejbLayer().build(null, service,category);
-		layer.setName(efLang.createEmpty(lp.getLocales()));
-		layer.setDescription(efDescription.createEmpty(lp.getLocales()));
+		layer.setName(efLang.buildEmpty(lp.getLocales()));
+		layer.setDescription(efDescription.buildEmpty(lp.getLocales()));
 	}
 	
 	public void selectLayer() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException

@@ -120,8 +120,8 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 	{
 		logger.info(AbstractLogMessage.addEntity(fbCore.getClassMap()));
 		map = efMap.build("");
-		map.setName(efLang.createEmpty(lp.getLocales()));
-		map.setDescription(efDescription.createEmpty(lp.getLocales()));
+		map.setName(efLang.buildEmpty(lp.getLocales()));
+		map.setDescription(efDescription.buildEmpty(lp.getLocales()));
 	}
 	
 	public void saveMap() throws JeeslConstraintViolationException, JeeslLockingException

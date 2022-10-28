@@ -171,8 +171,8 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 		logger.info("ADD CAtegory");
 		category = efCategory.build(null);
 		
-		category.setName(efLang.createEmpty(bTranslation.getLocales()));
-		category.setDescription(efDescription.createEmpty(bTranslation.getLocales()));
+		category.setName(efLang.buildEmpty(bTranslation.getLocales()));
+		category.setDescription(efDescription.buildEmpty(bTranslation.getLocales()));
 		
 		service=null;
 	}
