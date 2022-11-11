@@ -107,7 +107,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 	
 	public void addRule()
 	{
-		logger.info(AbstractLogMessage.addEntity(fbSld.getClassRule()));
+		logger.info(AbstractLogMessage.createEntity(fbSld.getClassRule()));
 		rule = efRule.build(sld);
 		rule.setName(efLang.createEmpty(defaultLangs));
 		rule.setDescription(efDescription.createEmpty(defaultLangs));

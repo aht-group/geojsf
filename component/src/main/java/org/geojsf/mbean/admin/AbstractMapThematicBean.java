@@ -132,7 +132,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	
 	public void addMap()
 	{
-		logger.info(AbstractLogMessage.addEntity(fbCore.getClassMap()));
+		logger.info(AbstractLogMessage.createEntity(fbCore.getClassMap()));
 		map = efMap.create("",langKeys);
 		map.setName(efLang.createEmpty(langKeys));
 		map.setDescription(efDescription.createEmpty(langKeys));
@@ -201,7 +201,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	// VIEW
 	public void addView() throws JeeslNotFoundException
 	{
-		logger.info(AbstractLogMessage.addEntity(fbCore.getClassView()));
+		logger.info(AbstractLogMessage.createEntity(fbCore.getClassView()));
 		view = efView.create(map,null,0,true,true);
 		category = categories.get(0);
 		changeCategory();

@@ -89,7 +89,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	
 	public void addSld()
 	{
-		logger.info(AbstractLogMessage.addEntity(fbSld.getClassSld()));
+		logger.info(AbstractLogMessage.createEntity(fbSld.getClassSld()));
 		sld = efSld.build(null,true);
 		sld.setName(efLang.buildEmpty(lp.getLocales()));
 		sld.setDescription(efDescription.buildEmpty(lp.getLocales()));

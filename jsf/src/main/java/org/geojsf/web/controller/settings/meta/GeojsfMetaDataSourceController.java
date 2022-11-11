@@ -81,7 +81,7 @@ public class GeojsfMetaDataSourceController <L extends JeeslLang, D extends Jees
 	
 	public void addSource() throws JeeslConstraintViolationException
 	{
-		logger.info(AbstractLogMessage.addEntity(fbMeta.getClassDs()));
+		logger.info(AbstractLogMessage.createEntity(fbMeta.getClassDs()));
 		source = efDs.build();
 		source.setName(efLang.buildEmpty(lp.getLocales()));
 		source.setDescription(efDescription.buildEmpty(lp.getLocales()));

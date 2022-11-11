@@ -68,7 +68,7 @@ public class GeojsfSettingsScaleController <L extends JeeslLang, D extends Jeesl
 	
 	public void addScale()
 	{
-		logger.info(AbstractLogMessage.addEntity(fbMeta.getClassScale()));
+		logger.info(AbstractLogMessage.createEntity(fbMeta.getClassScale()));
 		scale = efScale.build();
 		scale.setName(efLang.buildEmpty(lp.getLocales()));
 		scale.setDescription(efDescription.buildEmpty(lp.getLocales()));

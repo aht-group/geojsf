@@ -118,7 +118,7 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 	
 	public void addMap()
 	{
-		logger.info(AbstractLogMessage.addEntity(fbCore.getClassMap()));
+		logger.info(AbstractLogMessage.createEntity(fbCore.getClassMap()));
 		map = efMap.build("");
 		map.setName(efLang.buildEmpty(lp.getLocales()));
 		map.setDescription(efDescription.buildEmpty(lp.getLocales()));
@@ -187,7 +187,7 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 	// VIEW
 	public void addView() throws JeeslNotFoundException
 	{
-		logger.info(AbstractLogMessage.addEntity(fbCore.getClassView()));
+		logger.info(AbstractLogMessage.createEntity(fbCore.getClassView()));
 		view = efView.create(map,null,0,true,true);
 	}
 	
