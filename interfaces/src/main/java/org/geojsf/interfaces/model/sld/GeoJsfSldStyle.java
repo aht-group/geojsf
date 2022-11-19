@@ -16,13 +16,12 @@ import org.jeesl.interfaces.qualifier.rest.option.DownloadJeeslDescription;
 @DownloadJeeslDescription
 @DownloadJeeslAttributes
 @DownloadJeeslData
-public interface GeoJsfSldType<L extends JeeslLang, D extends JeeslDescription,
+public interface GeoJsfSldStyle<L extends JeeslLang, D extends JeeslDescription,
 								S extends JeeslStatus<L,D,S>,
 								G extends JeeslGraphic<?,?,?>>
 						extends Serializable,EjbPersistable,
-								
 								JeeslStatus<L,D,S>,JeeslStatusFixedCode,
 								EjbWithCodeGraphic<G>
 {
-	public static enum Type{rule,status,template}
+	public static enum Code{circle}
 }
