@@ -170,7 +170,7 @@
 		<repository>
 			<id>hibernatespatial.org</id>
 			<name>Hibernate Spatial repo</name>
-			<url>http://www.hibernatespatial.org/repository</url>
+			<url>https://www.hibernatespatial.org/repository</url>
 			<layout>default</layout>
 			<releases><enabled>true</enabled></releases>
 			<snapshots><enabled>false</enabled></snapshots>
@@ -181,14 +181,14 @@
 			<id>bintray</id>
 			<name>bintray</name>
 			<snapshots><enabled>false</enabled></snapshots>
-			<url>http://dl.bintray.com/filosganga/maven</url>
+			<url>https://dl.bintray.com/filosganga/maven</url>
 			<layout>default</layout>
 		</repository>
 		
 		<repository>  
 		    <id>primefaces.org</id>  
 		    <name>PrimeFaces Maven Repository</name>  
-		    <url>http://repository.primefaces.org</url>  
+		    <url>https://repository.primefaces.org</url>  
 		    <layout>default</layout>  
 		</repository>
 		
