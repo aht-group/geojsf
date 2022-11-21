@@ -17,6 +17,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.model.xml.geojsf.Layers;
 import org.geojsf.model.xml.geojsf.Map;
@@ -27,7 +28,6 @@ import org.jeesl.exception.processing.UtilsConfigurationException;
 import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +41,7 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 								VP extends GeoJsfViewPort,
 								DS extends GeoJsfDataSource<L,D,LAYER>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-								SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+								SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,?>,
 								JSON extends GeoJsfJsonData<L,D,JQ,JL>,
@@ -97,7 +97,7 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>,
-					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 					JQ extends GeoJsfJsonQuality<JQ,L,D,?>,

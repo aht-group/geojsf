@@ -1,19 +1,21 @@
 package org.geojsf.model.pojo.geojsf.sld;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
+import org.geojsf.model.pojo.io.graphic.DefaultGeoJsfGraphic;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Type",category="sld",subset="sld",level=3)
 public class DefaultGeoJsfSldType implements Serializable,EjbRemoveable,EjbPersistable,
-								JeeslStatus<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldType>
+											GeoJsfSldType<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldType,DefaultGeoJsfGraphic>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
@@ -64,5 +66,20 @@ public class DefaultGeoJsfSldType implements Serializable,EjbRemoveable,EjbPersi
 		StringBuffer sb = new StringBuffer();
 			sb.append(id);
 		return sb.toString();
+	}
+	@Override
+	public List<String> getFixedCodes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public DefaultGeoJsfGraphic getGraphic() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setGraphic(DefaultGeoJsfGraphic graphic) {
+		// TODO Auto-generated method stub
+		
 	}
 }

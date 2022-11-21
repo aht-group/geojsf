@@ -1,68 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-   	xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
     xmlns:j="http://www.jeesl.org/jsf" xmlns:jp="http://jsf.jeesl.org/prototype" xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
-    xmlns:aht="http://ahtutils.sourceforge.net/jsf"
     xmlns:geojsf="http://geojsf.org/ui"
     xmlns:composite="http://java.sun.com/jsf/composite">
     
 	<composite:interface>
 		<composite:attribute name="handler"/>
 		<composite:attribute name="update"/>
-		<composite:attribute name="locale" default="#{userBean.localeCode}"/>
+		<composite:attribute name="locale" default="#{localeCode}"/>
 	</composite:interface>
         
 	<composite:implementation>
 		<p:dataTable var="rule" value="#{cc.attrs.handler.sld.rules}"
 								 selection="#{cc.attrs.handler.rule}" selectionMode="single" rowKey="#{rule.id}"
 								 draggableRows="true">
-				<p:ajax event="rowSelect" update="#{cc.attrs.update}" listener="#{cc.attrs.handler.selectRule()}"/>
-				<p:ajax event="rowReorder" listener="#{cc.attrs.handler.onRowReorder}" update="@form" />
-				<f:facet name="header">
-					<j:dtHeader title="#{msg.geoJsfSldRules}">
-						<j:icon type="geoJsfAdd" listener="#{cc.attrs.handler.addRule()}" update="#{cc.attrs.update}"/>
-					</j:dtHeader>
-				</f:facet>
-				<p:column>
-					<f:facet name="header">#{msg.geoJsfSldRulePosition}</f:facet>
-					<h:outputText value="#{rule.position}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">#{msg.geoJsfSldSymbol}</f:facet>
-					<geojsf:sldSymbolizer value="#{rule}"/>
-				</p:column>
-				<p:column>
-					<f:facet name="header">#{msg.geoJsfSldRuleBounds}</f:facet>
-					<h:outputText value="#{cc.attrs.handler.mapBounds[rule]}" />
-				</p:column>
-				<p:column rendered="false">
-					<f:facet name="header">#{msg.geoJsfSldRuleLower}</f:facet>
-					<h:outputText value="#{rule.lowerBound}" />
-				</p:column>
-				<p:column rendered="false">
-					<f:facet name="header">#{msg.geoJsfSldRuleUpper}</f:facet>
-					<h:outputText value="#{rule.upperBound}" />
-				</p:column>
-				<p:column rendered="false">
-					<f:facet name="header">#{msg.geoJsfSldRuleStyle}</f:facet>
-					<h:outputText value="#{rule.style.name[cc.attrs.locale].lang}" />
-				</p:column>
-				<p:column rendered="false">
-					<f:facet name="header">#{msg.geoJsfSldRuleSize}</f:facet>
-					<h:outputText value="#{rule.size}" />
-				</p:column>
-				<p:column rendered="false">
-					<f:facet name="header">#{msg.geoJsfSldRuleColor}</f:facet>
-					<h:outputText value="#{rule.color}" style="background-color: \##{rule.color}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">#{msg.Name}</f:facet>
-					<h:outputText value="#{rule.name[userBean.localeCode].lang}" />
-				</p:column>
-			</p:dataTable>
-	
+			<f:facet name="header">
+				<j:dtHeader entity="GeoSldRule" code="listOf">
+					<j:svg type="jeeslAdd" listener="#{cc.attrs.handler.addRule()}" update="#{cc.attrs.update}"/>
+				</j:dtHeader>
+			</f:facet>
+			<p:ajax event="rowSelect" update="#{cc.attrs.update}" listener="#{cc.attrs.handler.selectRule()}"/>
+			<p:ajax event="rowReorder" listener="#{cc.attrs.handler.onRowReorder}" update="@form" />
+			<p:column>
+				<f:facet name="header"><jtp:label entity="GeoSldRule" code="position"/></f:facet>
+				<h:outputText value="#{rule.position}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header"><jtp:label entity="GeoSldRule" code="symbol"/></f:facet>
+				<geojsf:sldSymbolizer value="#{rule}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header"><jtp:label entity="GeoSldRule" code="bounds"/></f:facet>
+				<h:outputText value="#{cc.attrs.handler.mapBounds[rule]}" />
+			</p:column>
+			<p:column rendered="false">
+				<f:facet name="header"><jtp:label entity="GeoSldRule" code="lowerBound"/></f:facet>
+				<h:outputText value="#{rule.lowerBound}" />
+			</p:column>
+			<p:column rendered="false">
+				<f:facet name="header"><jtp:label entity="GeoSldRule" code="upperBound"/></f:facet>
+				<h:outputText value="#{rule.upperBound}" />
+			</p:column>
+			<p:column rendered="false">
+				<f:facet name="header">#{msg.geoJsfSldRuleStyle}</f:facet>
+				<h:outputText value="#{rule.style.name[cc.attrs.locale].lang}" />
+			</p:column>
+			<p:column rendered="false">
+				<f:facet name="header">#{msg.geoJsfSldRuleSize}</f:facet>
+				<h:outputText value="#{rule.size}" />
+			</p:column>
+			<p:column rendered="false">
+				<f:facet name="header">#{msg.geoJsfSldRuleColor}</f:facet>
+				<h:outputText value="#{rule.color}" style="background-color: \##{rule.color}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header"><jtp:label entity="GeoSldRule" code="name"/></f:facet>
+				<h:outputText value="#{rule.name[localeCode].lang}" />
+			</p:column>
+		</p:dataTable>
    </composite:implementation>
 </html>

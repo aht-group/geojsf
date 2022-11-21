@@ -1,11 +1,11 @@
 package org.geojsf.factory.ejb.sld;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoSldFactory <TYPE extends JeeslStatus<?,?,TYPE>,
+public class EjbGeoSldFactory <TYPE extends GeoJsfSldType<?,?,TYPE,?>,
 								SLD extends GeoJsfSld<?,?,?,TYPE,?>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldFactory.class);

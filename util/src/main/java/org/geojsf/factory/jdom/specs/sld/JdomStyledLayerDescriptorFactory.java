@@ -6,24 +6,22 @@ import java.util.List;
 
 import org.geojsf.factory.xml.specs.sld.XmlStyledLayerDescriptorFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
-import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.jeesl.exception.processing.UtilsConfigurationException;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomStyledLayerDescriptorFactory < LAYER extends GeoJsfLayer<?,?,?,?,?,?,SLD>,
-												MAP extends GeoJsfMap<?,?,?,?,?>,
 												TEMPLATE extends GeoJsfSldTemplate<?,?>,
-												TYPE extends JeeslStatus<?,?,TYPE>,
+												TYPE extends GeoJsfSldType<?,?,TYPE,?>,
 												SLD extends GeoJsfSld<?,?,TEMPLATE,TYPE,?>>
 				implements Serializable
 {

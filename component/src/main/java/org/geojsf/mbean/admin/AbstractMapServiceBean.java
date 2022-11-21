@@ -26,6 +26,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.jeesl.api.bean.JeeslTranslationBean;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
@@ -35,7 +36,6 @@ import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.JeeslLocale;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.jeesl.jsf.handler.PositionListReorderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +54,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 									VP extends GeoJsfViewPort,
 									DS extends GeoJsfDataSource<L,D,LAYER>,
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+									SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,?>,
 									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
@@ -85,7 +85,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 		
 	public AbstractMapServiceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
 									GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
-									GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+									GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld)
 	{
 		super(fbCore);
 	    efCategory = fbCore.ejbCategory();
@@ -96,7 +96,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 	
 	public void postConstructService(JeeslTranslationBean<L,D,LOC> bTranslation, JeeslFacesMessageBean bMessage,
 									GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo,
-									GeoSldFacade<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> fSld)
+									GeoSldFacade<L,D,SLDTEMPLATE,SLD,SLDTYPE,RULE> fSld)
 	{
 		super.postConstructGeojsf(bTranslation,bMessage,fGeo);  	
 		slds = fSld.fLibrarySlds();

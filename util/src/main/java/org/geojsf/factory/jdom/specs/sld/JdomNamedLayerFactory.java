@@ -14,7 +14,6 @@ import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.geojsf.model.xml.specs.sld.NamedLayer;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,7 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomNamedLayerFactory <LAYER extends GeoJsfLayer<?,?,?,?,?,?,SLD>,
 									TEMPLATE extends GeoJsfSldTemplate<?,?>,
-									SLDTYPE extends JeeslStatus<?,?,SLDTYPE>,
+									SLDTYPE extends GeoJsfSldType<?,?,SLDTYPE,?>,
 									SLD extends GeoJsfSld<?,?,TEMPLATE,SLDTYPE,?>>
 				implements Serializable
 {

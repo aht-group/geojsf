@@ -6,24 +6,22 @@ import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
 import org.geojsf.factory.jdom.specs.sld.JdomStyledLayerDescriptorFactory;
 import org.geojsf.factory.xml.specs.sld.XmlStyledLayerDescriptorFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
-import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.jeesl.factory.builder.AbstractFactoryBuilder;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoSldFactoryBuilder<L extends JeeslLang,D extends JeeslDescription,
 									LAYER extends GeoJsfLayer<L,D,?,?,?,?,SLD>,
-									MAP extends GeoJsfMap<L,D,?,?,?>,
 									TEMPLATE extends GeoJsfSldTemplate<L,D>,
-									TYPE extends JeeslStatus<L,D,TYPE>,
 									SLD extends GeoJsfSld<L,D,TEMPLATE,TYPE,RULE>,
+									TYPE extends GeoJsfSldType<L,D,TYPE,?>,
 									RULE extends GeoJsfSldRule<L,D,?>>
 				extends AbstractFactoryBuilder<L,D>
 {
@@ -53,5 +51,5 @@ public class GeoSldFactoryBuilder<L extends JeeslLang,D extends JeeslDescription
 	
 	public XmlStyledLayerDescriptorFactory<L,LAYER,SLD,RULE> xmlStyledLayerDescriptor(SldConfigurationProvider sldConfigurationProvider) {return new XmlStyledLayerDescriptorFactory<>(sldConfigurationProvider);}
 	
-	public JdomStyledLayerDescriptorFactory<LAYER,MAP,TEMPLATE,TYPE,SLD> jdomStyledLayerDescriptor(SldConfigurationProvider sldConfigurationProvider) {return new JdomStyledLayerDescriptorFactory<>(sldConfigurationProvider);}
+	public JdomStyledLayerDescriptorFactory<LAYER,TEMPLATE,TYPE,SLD> jdomStyledLayerDescriptor(SldConfigurationProvider sldConfigurationProvider) {return new JdomStyledLayerDescriptorFactory<>(sldConfigurationProvider);}
 }

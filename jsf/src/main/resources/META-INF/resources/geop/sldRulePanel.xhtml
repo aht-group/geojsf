@@ -11,16 +11,18 @@
 	<composite:interface>
 		<composite:attribute name="handler" required="true"/>
 		<composite:attribute name="update"/>
-		<composite:attribute name="styles" required="true"/>
+		<composite:attribute name="styles" required="false" default="#{appIoGraphicBean.shapes}"/>
+		
+		
 	</composite:interface>
         
 	<composite:implementation>
 		<p:panel id="pfPanel" header="#{msg.geoJsfSldRule}" styleClass="jeeslPanel"
 			rendered="#{not empty cc.attrs.handler.rule}">
 			<f:facet name="actions">
-				<j:icon type="geoJsfCancel" listener="#{cc.attrs.handler.cancelRule()}" update="#{cc.attrs.update}"/>
-				<j:icon type="geoJsfSave" listener="#{cc.attrs.handler.saveRule()}" update="#{cc.attrs.update}"/>
-				<j:icon type="geoJsfDelete" listener="#{cc.attrs.handler.rmRule()}" update="#{cc.attrs.update}"/>
+				<j:svg type="jeeslCancel" listener="#{cc.attrs.handler.cancelRule()}" update="#{cc.attrs.update}"/>
+				<j:svg type="jeeslSave" listener="#{cc.attrs.handler.saveRule()}" update="#{cc.attrs.update}"/>
+				<j:svg type="jeeslDelete" listener="#{cc.attrs.handler.rmRule()}" update="#{cc.attrs.update}"/>
 			</f:facet>
 			<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70" styleClass="auCleanPanelGrid">
 				<p:outputLabel rendered="false" value="#{msg.geoJsfSldRulePosition}"/>
@@ -33,9 +35,10 @@
 				<p:inputText value="#{cc.attrs.handler.upperBound}"/>
 			</p:panelGrid>
 			<aht:graphicSymbol value="#{cc.attrs.handler.rule.graphic}" graphicStyles="#{cc.attrs.styles}"/>
-			<aht:tabTranslationEditor value="#{cc.attrs.handler.rule}"
-				keys="#{translationBean.langKeys}" withDescription="true"
-				labelTranslation="#{msg.Name}" labelDescription="#{msg.Description}"/>
+			<j:tabTranslationEditor value="#{cc.attrs.handler.rule}"
+				locales="#{appLabelBean.locales}"
+				labelTranslation="#{msg.Name}"
+				withDescription="true" labelDescription="#{msg.Description}"/>
 		</p:panel>
 	
    </composite:implementation>

@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-   	xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+   	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
     xmlns:j="http://www.jeesl.org/jsf" xmlns:jp="http://jsf.jeesl.org/prototype" xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
     xmlns:geop="http://geojsf.org/prototype"
-    xmlns:aht="http://ahtutils.sourceforge.net/jsf"
-    xmlns:aup="http://ahtutils.sourceforge.net/prototype"
     xmlns:composite="http://java.sun.com/jsf/composite">
     
 	<composite:interface>
@@ -16,60 +11,60 @@
 	</composite:interface>
         
 	<composite:implementation>
-		<aup:grid id="grid">
-			<aht:row>
-				<aht:slot id="sSlds" width="6">
-					<h:form id="fSlds">
-						<p:dataTable var="s" value="#{cc.attrs.bean.slds}"
-								selection="#{cc.attrs.bean.sld}" selectionMode="single" rowKey="#{s.id}">
-							<f:facet name="header">
-								<j:dtHeader title="#{msg.geoJsfAdminSlds}">
-									<j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addSld()}" update=":#{cc.id}:grid"/>
-								</j:dtHeader>
-							</f:facet>
-							<p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectSld()}" update=":#{cc.id}:sSld" />
-							<p:column headerText="#{msg.geoJsfType}">
-								<h:outputText value="#{s.type.name[userBean.localeCode].lang}" /> 
-							</p:column>
-							<p:column headerText="#{msg.geoJsfAdminName}">
-								<h:outputText value="#{s.name[userBean.localeCode].lang}" /> 
-							</p:column>
-						</p:dataTable>
-					</h:form>
-				</aht:slot>
-				<aht:slot id="sSld" width="6">
-					<h:form id="fSld">
-						<p:panel header="#{msg.geoJsfAdminSld}" rendered="#{not empty cc.attrs.bean.sld}" styleClass="jeeslPanel">
-							<f:facet name="actions">
-								<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelSld()}" update=":#{cc.id}:grid"/>
-								<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveSld()}" update=":#{cc.id}:grid"/>
-								<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.deleteSld()}" update=":#{cc.id}:grid" rendered="#{cc.attrs.bean.sld.id gt 0}"/>	
-							</f:facet>
-							<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
-								
-								<p:outputLabel value="#{msg.geoJsfType}"/>
-								<p:selectOneMenu value="#{cc.attrs.bean.sld.type}" effect="fade" styleClass="w100" >  
-									<f:selectItems value="#{cc.attrs.bean.types}" var="c" itemLabel="#{c.name[userBean.localeCode].lang}" itemValue="#{c}"/>
-								</p:selectOneMenu>
-									
-								<p:outputLabel value="#{msg.geoJsfSldStatusClass}"/>
-								<p:inputText value="#{cc.attrs.bean.sld.statusClass}"/>
-									
-								<p:outputLabel value="#{msg.geoJsfSldStatusAttribute}"/>
-								<p:inputText value="#{cc.attrs.bean.sld.statusAttribute}"/>
+<jp:grid id="grid">
+	<j:row>
+		<j:slot id="sSlds" width="6">
+			<h:form id="fSlds">
+				<p:dataTable var="s" value="#{cc.attrs.bean.slds}"
+						selection="#{cc.attrs.bean.sld}" selectionMode="single" rowKey="#{s.id}">
+					<f:facet name="header">
+						<j:dtHeader title="#{msg.geoJsfAdminSlds}">
+							<j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addSld()}" update=":#{cc.id}:grid"/>
+						</j:dtHeader>
+					</f:facet>
+					<p:ajax event="rowSelect" listener="#{cc.attrs.bean.selectSld()}" update=":#{cc.id}:sSld" />
+					<p:column headerText="#{msg.geoJsfType}">
+						<h:outputText value="#{s.type.name[userBean.localeCode].lang}" /> 
+					</p:column>
+					<p:column headerText="#{msg.geoJsfAdminName}">
+						<h:outputText value="#{s.name[userBean.localeCode].lang}" /> 
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</j:slot>
+		<j:slot id="sSld" width="6">
+			<h:form id="fSld">
+				<p:panel header="#{msg.geoJsfAdminSld}" rendered="#{not empty cc.attrs.bean.sld}" styleClass="jeeslPanel">
+					<f:facet name="actions">
+						<j:icon type="geoJsfCancel" listener="#{cc.attrs.bean.cancelSld()}" update=":#{cc.id}:grid"/>
+						<j:icon type="geoJsfSave" listener="#{cc.attrs.bean.saveSld()}" update=":#{cc.id}:grid"/>
+						<j:icon type="geoJsfDelete" listener="#{cc.attrs.bean.deleteSld()}" update=":#{cc.id}:grid" rendered="#{cc.attrs.bean.sld.id gt 0}"/>	
+					</f:facet>
+					<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
+						
+						<p:outputLabel value="#{msg.geoJsfType}"/>
+						<p:selectOneMenu value="#{cc.attrs.bean.sld.type}" effect="fade" styleClass="w100" >  
+							<f:selectItems value="#{cc.attrs.bean.types}" var="c" itemLabel="#{c.name[userBean.localeCode].lang}" itemValue="#{c}"/>
+						</p:selectOneMenu>
 							
-								<p:outputLabel value="#{msg.geojsfSldTemplate}"/>
-								<p:selectOneMenu value="#{cc.attrs.bean.sld.template}" effect="fade" styleClass="w100" >
-									<f:selectItem itemLabel="--"/> 
-									<f:selectItems value="#{cc.attrs.bean.templates}" var="t" itemLabel="#{t.name[userBean.localeCode].lang}" itemValue="#{t}"/>
-								</p:selectOneMenu>
+						<p:outputLabel value="#{msg.geoJsfSldStatusClass}"/>
+						<p:inputText value="#{cc.attrs.bean.sld.statusClass}"/>
 							
-							</p:panelGrid>
-							<aht:tabTranslationEditor value="#{cc.attrs.bean.sld}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
-						</p:panel>
-					</h:form>
-				</aht:slot>
-			</aht:row>
-		</aup:grid>
+						<p:outputLabel value="#{msg.geoJsfSldStatusAttribute}"/>
+						<p:inputText value="#{cc.attrs.bean.sld.statusAttribute}"/>
+					
+						<p:outputLabel value="#{msg.geojsfSldTemplate}"/>
+						<p:selectOneMenu value="#{cc.attrs.bean.sld.template}" effect="fade" styleClass="w100" >
+							<f:selectItem itemLabel="--"/> 
+							<f:selectItems value="#{cc.attrs.bean.templates}" var="t" itemLabel="#{t.name[userBean.localeCode].lang}" itemValue="#{t}"/>
+						</p:selectOneMenu>
+					
+					</p:panelGrid>
+					<j:tabTranslationEditor value="#{cc.attrs.bean.sld}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
+				</p:panel>
+			</h:form>
+		</j:slot>
+	</j:row>
+</jp:grid>
 	</composite:implementation>
 </html>

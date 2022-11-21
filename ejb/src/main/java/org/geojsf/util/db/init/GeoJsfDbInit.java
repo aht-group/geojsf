@@ -17,6 +17,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.model.xml.geojsf.Layers;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.Repository;
@@ -32,7 +33,6 @@ import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +51,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,LAYER>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+							SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 							RULE extends GeoJsfSldRule<L,D,?>
 							>
@@ -82,7 +82,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
     
     public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
     					final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
-    					final GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld,
+    					final GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld,
     					JeeslFacade fUtils, String[] langKeys,
     					
     					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo,
@@ -120,12 +120,12 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 				DS extends GeoJsfDataSource<L,D,LAYER>,
 				SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 				RULE extends GeoJsfSldRule<L,D,?>,
-				SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+				SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 				SLDTEMPLATE extends GeoJsfSldTemplate<L,D>> 
 		GeoJsfDbInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
 				final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
-				final GeoSldFactoryBuilder<L,D,LAYER,MAP,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld,
+				final GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld,
 				JeeslFacade fUtils,
 				GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo,
 				String[] langKeys,final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType,final Class<SLDTEMPLATE> cSldTemplate)

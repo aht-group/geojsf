@@ -11,6 +11,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfProvideSldStatus;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
@@ -18,28 +19,27 @@ import org.jeesl.interfaces.controller.handler.system.locales.JeeslLocaleProvide
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.JeeslLocale;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.jeesl.web.controller.AbstractJeeslWebController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
-public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
+public class GeoSldLibraryWebController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 									
 									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-									SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+									SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,?>>
 		extends AbstractJeeslWebController<L,D,LOC>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = LoggerFactory.getLogger(GeojsfSldLibraryController.class);
+	final static Logger logger = LoggerFactory.getLogger(GeoSldLibraryWebController.class);
 	
-	private GeoSldFacade<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> fSld;
+	private GeoSldFacade<L,D,SLDTEMPLATE,SLD,SLDTYPE,RULE> fSld;
 	
-	protected final GeoSldFactoryBuilder<L,D,?,?,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
+	protected final GeoSldFactoryBuilder<L,D,?,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld;
 
 	protected final EjbGeoSldFactory<SLDTYPE,SLD> efSld;
 	
@@ -51,7 +51,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	
 	private SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
 
-	public GeojsfSldLibraryController(GeoSldFactoryBuilder<L,D,?,?,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld)
+	public GeoSldLibraryWebController(GeoSldFactoryBuilder<L,D,?,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld)
 	{
 		super(fbSld.getClassL(),fbSld.getClassD());
 		this.fbSld=fbSld;
@@ -61,7 +61,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 		sldStatusClasses = new ArrayList<String>();
 	}
 	
-	public void postConstructSldLibrary(GeoSldFacade<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> fSld,
+	public void postConstructSldLibrary(GeoSldFacade<L,D,SLDTEMPLATE,SLD,SLDTYPE,RULE> fSld,
 											JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
 		super.postConstructWebController(lp,bMessage);

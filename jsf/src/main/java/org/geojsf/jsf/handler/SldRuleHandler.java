@@ -10,20 +10,17 @@ import org.geojsf.factory.txt.TxtSldRuleFactory;
 import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.factory.builder.system.SvgFactoryBuilder;
 import org.jeesl.factory.ejb.io.graphic.EjbGraphicFactory;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;
 import org.jeesl.factory.ejb.system.status.EjbLangFactory;
-import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
 import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicShape;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.jeesl.jsf.handler.PositionListReorderer;
 import org.primefaces.event.ReorderEvent;
 import org.slf4j.Logger;
@@ -32,21 +29,19 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
-							G extends JeeslGraphic<GT,F,GS>, GT extends JeeslGraphicType<L,D,GT,G>,
-							F extends JeeslGraphicComponent<G,F,GS>, GS extends JeeslGraphicShape<L,D,GS,G>,
-							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-							SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
-							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+							G extends JeeslGraphic<GT,?,GS>, GT extends JeeslGraphicType<L,D,GT,G>, GS extends JeeslGraphicShape<L,D,GS,G>,
+
+							SLD extends GeoJsfSld<L,D,?,?,RULE>,
 							RULE extends GeoJsfSldRule<L,D,G>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(SldRuleHandler.class);
 	
-	private final GeoSldFacade<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> fSld;
+	private final GeoSldFacade<L,D,?,SLD,?,RULE> fSld;
 	
-	private final GeoSldFactoryBuilder<L,D,?,?,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld;
-	private final SvgFactoryBuilder<L,D,G,GT,F,GS> fbSvg;
+	private final GeoSldFactoryBuilder<L,D,?,?,SLD,?,RULE> fbSld;
+	private final SvgFactoryBuilder<L,D,G,GT,?,GS> fbSvg;
 	
 	final String[] defaultLangs;
 	
@@ -64,9 +59,9 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 	private String lowerBound; public String getLowerBound() {return lowerBound;} public void setLowerBound(String lowerBound) {this.lowerBound = lowerBound;}
 	private String upperBound; public String getUpperBound() {return upperBound;} public void setUpperBound(String upperBound) {this.upperBound = upperBound;}
 	
-	public SldRuleHandler(GeoSldFactoryBuilder<L,D,?,?,SLDTEMPLATE,SLDTYPE,SLD,RULE> fbSld,
-						SvgFactoryBuilder<L,D,G,GT,F,GS> fbSvg,
-						GeoSldFacade<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> fSld,
+	public SldRuleHandler(GeoSldFactoryBuilder<L,D,?,?,SLD,?,RULE> fbSld,
+						SvgFactoryBuilder<L,D,G,GT,?,GS> fbSvg,
+						GeoSldFacade<L,D,?,SLD,?,RULE> fSld,
 			final String[] defaultLangs
 
 )

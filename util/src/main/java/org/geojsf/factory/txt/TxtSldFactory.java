@@ -3,16 +3,16 @@ package org.geojsf.factory.txt;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.interfaces.model.system.graphic.component.JeeslGraphicComponent;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphic;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 
 public class TxtSldFactory<L extends JeeslLang, D extends JeeslDescription,
 							G extends JeeslGraphic<?,GC,?>, GC extends JeeslGraphicComponent<G,GC,?>,
 							SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-							TYPE extends JeeslStatus<L,D,TYPE>,
+							TYPE extends GeoJsfSldType<L,D,TYPE,G>,
 							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
 							RULE extends GeoJsfSldRule<L,D,G>
 							>

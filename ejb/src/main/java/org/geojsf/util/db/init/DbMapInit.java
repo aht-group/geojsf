@@ -17,6 +17,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.View;
@@ -44,7 +45,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 						VP extends GeoJsfViewPort,
 						DS extends GeoJsfDataSource<L,D,LAYER>,
 						SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-						SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+						SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 						SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 						RULE extends GeoJsfSldRule<L,D,?>
 						>
@@ -93,7 +94,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>,
-					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>> 
 		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,

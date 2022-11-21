@@ -81,7 +81,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	}
 	
 	public void postConstructService(GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo,
-										GeoSldFacade<L,D,?,?,SLD,?> fSld,				
+										GeoSldFacade<L,D,?,SLD,?,?> fSld,				
 										JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
 		super.postConstructWebController(lp,bMessage);

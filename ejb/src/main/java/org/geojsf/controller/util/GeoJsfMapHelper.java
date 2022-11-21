@@ -15,9 +15,9 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +37,7 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 								VP extends GeoJsfViewPort,
 								DS extends GeoJsfDataSource<L,D,LAYER>,
 								SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-								SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+								SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,?>>
 	implements DmSingleSelect<LAYER>
@@ -64,7 +64,7 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
-					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>>
@@ -87,7 +87,7 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
-					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>>

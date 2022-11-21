@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+   	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+    xmlns:j="http://www.jeesl.org/jsf" xmlns:jp="http://jsf.jeesl.org/prototype" xmlns:jtp="http://jsf.jeesl.org/prototype/tag"
+    xmlns:geop="http://geojsf.org/prototype"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	<composite:interface>
+		<composite:attribute name="ctrl" required="true"/>
+	</composite:interface>
+        
+	<composite:implementation>
+<jp:grid id="grid">
+	<j:slot width="5">
+		<p:panel styleClass="jeesl-tree">
+			<f:facet name="header"><j:pHeader entity="TsScope" code="listOf"/></f:facet>
+			<p:tree var="node" value="#{cc.attrs.ctrl.tree}"
+					selection="#{cc.attrs.ctrl.node}" selectionMode="single"
+					draggable="true" droppable="true" dragdropScope="demo">
+				<p:ajax event="select" listener="#{cc.attrs.ctrl.onNodeSelect}" update=":#{cc.id}:sElement"/>
+				<p:ajax event="dragdrop" listener="#{cc.attrs.ctrl.onDragDrop}" oncomplete="try{calculateTreeHeight();}catch(e){}"/>
+				<p:treeNode>
+					<h:outputText value="#{node.name[localeCode].lang}" />
+				</p:treeNode>
+			</p:tree>
+		</p:panel>
+	</j:slot>
+	<j:slot id="sElement" width="7">
+		<h:form id="fScope" rendered="#{not empty cc.attrs.ctrl.scope}">
+			<p:panel  styleClass="jeesl-panel">
+				<f:facet name="header"><j:pHeader entity="TsScope"/></f:facet>
+				<f:facet name="actions">
+					<j:svg type="jeeslCancel" listener="#{cc.attrs.ctrl.cancelSelection()}" update=":#{cc.id}:grid"/>
+				</f:facet>
+				<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
+					
+					<jtp:label entity="TsScope" code="name"/>
+					<h:outputText value="#{cc.attrs.ctrl.scope.name[localeCode].lang}"/>
+				
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+		<h:form id="fMp" rendered="#{not empty cc.attrs.ctrl.mp}">
+			<p:panel  styleClass="jeesl-panel">
+				<f:facet name="header"><j:pHeader entity="TsMultiPoint"/></f:facet>
+				<f:facet name="actions">
+					<j:svg type="jeeslCancel" listener="#{cc.attrs.ctrl.cancelSelection()}" update=":#{cc.id}:grid"/>
+				</f:facet>
+				<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
+					
+					<jtp:label entity="TsMultiPoint" code="name"/>
+					<h:outputText value="#{cc.attrs.ctrl.mp.name[localeCode].lang}"/>
+				
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+		<h:form id="fRules" rendered="#{not empty cc.attrs.ctrl.sld}">
+			<geop:sldRuleTable handler="#{cc.attrs.ctrl.ruleHandler}" update=":#{cc.id}:fRule"/>
+		</h:form>
+		<h:form id="fRule" rendered="#{not empty cc.attrs.ctrl.sld}">
+			<geop:sldRulePanel id="rulePanel" handler="#{cc.attrs.ctrl.ruleHandler}" update=":#{cc.id}:fRules :#{cc.id}:fRule"/>
+		</h:form>
+	</j:slot>
+</jp:grid>
+	</composite:implementation>
+</html>

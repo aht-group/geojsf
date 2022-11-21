@@ -30,7 +30,7 @@ public interface GeoJsfLayer<L extends JeeslLang, D extends JeeslDescription,
 			extends Serializable,EjbRemoveable,EjbPersistable,EjbSaveable,EjbWithCode,EjbWithPositionVisibleParent,
 					EjbWithLang<L>,EjbWithDescription<D>
 {
-	public enum Attributes{category}
+	public enum Attributes{category,name}
 	
 	CATEGORY getCategory();
 	void setCategory(CATEGORY category);

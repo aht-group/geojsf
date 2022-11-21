@@ -33,6 +33,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.geojsf.model.component.OlLayer;
 import org.geojsf.model.component.OlService;
@@ -43,7 +44,6 @@ import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.util.component.GeoJsfScalesUtil;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.primefaces.PrimeFaces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +68,7 @@ public class Map <L extends JeeslLang, D extends JeeslDescription,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
-					SLDTYPE extends JeeslStatus<L,D,SLDTYPE>,
+					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>>
 	extends UINamingContainer implements ClientBehaviorHolder
