@@ -51,11 +51,12 @@ public class GeoSldTemplateWebController <L extends JeeslLang, D extends JeeslDe
 		efTemplate = fbSld.efTemplate();
 	}
 	
-	public void postConstructSldTemplate(GeoSldFacade<L,D,TEMPLATE,SLD,TYPE,RULE> fSld,
-											JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessag)
+	public void postConstructSldTemplate(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessag,
+										GeoSldFacade<L,D,TEMPLATE,SLD,TYPE,RULE> fSld)
 	{
 		super.postConstructWebController(lp,bMessage);
 		this.fSld=fSld;
+		this.reloadTemplates();
 	}
 	
 	protected void reloadTemplates()
