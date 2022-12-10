@@ -32,4 +32,14 @@ public class GeoJsonCoordinateFactory implements Serializable
 		
 		return json;
 	}
+	
+	public static LngLatAlt build(com.vividsolutions.jts.geom.Point point)
+	{
+		LngLatAlt json = new LngLatAlt();
+		
+		json.setLatitude(point.getY());
+		json.setLongitude(point.getX());
+		
+		return json;
+	}
 }

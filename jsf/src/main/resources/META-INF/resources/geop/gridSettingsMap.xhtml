@@ -7,7 +7,7 @@
     xmlns:composite="http://java.sun.com/jsf/composite">
     
 	<composite:interface>
-		<composite:attribute name="controller" required="true"/>
+		<composite:attribute name="ctrl" required="true"/>
 		
 		<composite:facet name="map" required="true"/>
 	</composite:interface>
@@ -17,16 +17,16 @@
 	<j:row id="rowMaps">
 		<j:slot width="3">
 			<h:form id="fMaps">
-				<p:dataTable var="m" value="#{cc.attrs.controller.maps}"
-						selection="#{cc.attrs.controller.map}" selectionMode="single" rowKey="#{m.id}" draggableRows="true"
+				<p:dataTable var="m" value="#{cc.attrs.ctrl.maps}"
+						selection="#{cc.attrs.ctrl.map}" selectionMode="single" rowKey="#{m.id}" draggableRows="true"
 						sortBy="#{m.position}" sortOrder="ascending">
 					<f:facet name="header">
 						<j:dtHeader title="#{msg.geoJsfAdminThamaticMaps}">
-							<j:svg type="jeeslAdd" listener="#{cc.attrs.controller.addMap()}" update=":#{cc.id}:rowMaps"/>
+							<j:svg type="jeeslAdd" listener="#{cc.attrs.ctrl.addMap()}" update=":#{cc.id}:rowMaps"/>
 						</j:dtHeader>
 					</f:facet>
-					<p:ajax event="rowSelect"  listener="#{cc.attrs.controller.selectMap()}" update=":#{cc.id}:rowMaps"/>
-					<p:ajax event="rowReorder" listener="#{cc.attrs.controller.reorderMaps()}" update="@form"/>
+					<p:ajax event="rowSelect"  listener="#{cc.attrs.ctrl.selectMap()}" update=":#{cc.id}:rowMaps"/>
+					<p:ajax event="rowReorder" listener="#{cc.attrs.ctrl.reorderMaps()}" update="@form"/>
 					<p:column>
 						<h:outputText value="#{m.position}"/> 
 					</p:column>
@@ -38,37 +38,37 @@
 		</j:slot>
 		<j:slot id="sMap" width="4">
 			<h:form id="fMap">
-				<p:panel id="pMap" header="#{msg.geoJsfDetailsThamaticMap}" rendered="#{not empty cc.attrs.controller.map}" styleClass="jeesl-panel">
+				<p:panel id="pMap" header="#{msg.geoJsfDetailsThamaticMap}" rendered="#{not empty cc.attrs.ctrl.map}" styleClass="jeesl-panel">
 					<f:facet name="actions">
-						<j:svg type="jeeslCancel" listener="#{cc.attrs.controller.cancelMap()}" update=":#{cc.id}:rowMaps"/>
-						<j:svg type="jeeslSave" listener="#{cc.attrs.controller.saveMap()}" update=":#{cc.id}:rowMaps"/>
-						<j:svg type="jeeslDelete" listener="#{cc.attrs.controller.rmMap()}" update=":#{cc.id}:rowMaps"/>
+						<j:svg type="jeeslCancel" listener="#{cc.attrs.ctrl.cancelMap()}" update=":#{cc.id}:rowMaps"/>
+						<j:svg type="jeeslSave" listener="#{cc.attrs.ctrl.saveMap()}" update=":#{cc.id}:rowMaps"/>
+						<j:svg type="jeeslDelete" listener="#{cc.attrs.ctrl.rmMap()}" update=":#{cc.id}:rowMaps"/>
 					</f:facet>
 					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 					
 						<p:outputLabel value="#{msg.geoJsfAdminCategory}"/>
-						<p:selectOneMenu value="#{cc.attrs.controller.map.category}" effect="fade" autoWidth="false">  
-							<f:selectItems value="#{cc.attrs.controller.categories}" var="c" itemLabel="#{c.name[localeCode].lang}" itemValue="#{c}"/>
+						<p:selectOneMenu value="#{cc.attrs.ctrl.map.category}" effect="fade" autoWidth="false">  
+							<f:selectItems value="#{cc.attrs.ctrl.categories}" var="c" itemLabel="#{c.name[localeCode].lang}" itemValue="#{c}"/>
 						</p:selectOneMenu>
 					
 						<p:outputLabel value="#{msg.geoJsfAdminCode}"/>
-						<p:inputText value="#{cc.attrs.controller.map.code}" autocomplete="false"/>
+						<p:inputText value="#{cc.attrs.ctrl.map.code}" autocomplete="false"/>
 					</p:panelGrid>
-					<j:tabTranslationEditor value="#{cc.attrs.controller.map}" keys="#{appTranslationBean.langKeys}" withDescription="true"/>
+					<j:tabTranslationEditor value="#{cc.attrs.ctrl.map}" keys="#{appTranslationBean.langKeys}" withDescription="true"/>
 				</p:panel>
 			</h:form>
 			<h:form id="fLayers">
-				<p:dataTable var="v" value="#{cc.attrs.controller.map.views}"
-					rendered="#{(not empty cc.attrs.controller.map) and (cc.attrs.controller.map.id gt 0)}"
-					selection="#{cc.attrs.controller.view}" selectionMode="single" rowKey="#{v.id}"
+				<p:dataTable var="v" value="#{cc.attrs.ctrl.map.views}"
+					rendered="#{(not empty cc.attrs.ctrl.map) and (cc.attrs.ctrl.map.id gt 0)}"
+					selection="#{cc.attrs.ctrl.view}" selectionMode="single" rowKey="#{v.id}"
 					draggableRows="true">
 					<f:facet name="header">
 		                <j:dtHeader title="#{msg.geoJsfAdminLayers}">
-		                    <j:svg type="jeeslAdd" listener="#{cc.attrs.controller.addView()}" update=":#{cc.id}:fView" tooltip="#{msg.ttNew}"/>
+		                    <j:svg type="jeeslAdd" listener="#{cc.attrs.ctrl.addView()}" update=":#{cc.id}:fView" tooltip="#{msg.ttNew}"/>
 		                </j:dtHeader>
 		            </f:facet>
-		            <p:ajax event="rowSelect" listener="#{cc.attrs.controller.selectView()}" update=":#{cc.id}:fView"/>
-		            <p:ajax event="rowReorder" listener="#{cc.attrs.controller.reorderLayer}" update=":#{cc.id}:fGeoJsfMap" oncomplete="GeoJSF.refreshMap()"/>
+		            <p:ajax event="rowSelect" listener="#{cc.attrs.ctrl.selectView()}" update=":#{cc.id}:fView"/>
+		            <p:ajax event="rowReorder" listener="#{cc.attrs.ctrl.reorderLayer}" update=":#{cc.id}:fGeoJsfMap" oncomplete="GeoJSF.refreshMap()"/>
 		            <p:column headerText="#{msg.geoJsfAdminOrderNo}">
 						<h:outputText value="#{v.orderNo} " />  
 					</p:column>
@@ -83,49 +83,49 @@
 		</j:slot>
 		<j:slot id="sView" width="5">
 			<h:form id="fGeoJsfMap">
-				<p:panel header="#{cc.attrs.controller.map.name[localeCode].lang}" styleClass="geojsfPrimefacesPanelMap" 
-							rendered="#{(not empty cc.attrs.controller.map) and (cc.attrs.controller.map.id gt 0) and (fn:length(cc.attrs.controller.map.views) gt 0)}">
+				<p:panel header="#{cc.attrs.ctrl.map.name[localeCode].lang}" styleClass="geojsfPrimefacesPanelMap" 
+							rendered="#{(not empty cc.attrs.ctrl.map) and (cc.attrs.ctrl.map.id gt 0) and (fn:length(cc.attrs.ctrl.map.views) gt 0)}">
 					<f:facet name="actions">
-						<j:svg type="jeeslSave" listener="#{cc.attrs.controller.saveViewPort()}"/>
+						<j:svg type="jeeslSave" listener="#{cc.attrs.ctrl.saveViewPort()}"/>
 					</f:facet>
-					<geojsf:map id="map" baseMap="osm" value="#{cc.attrs.controller.map}">
+					<geojsf:map id="map" baseMap="osm" value="#{cc.attrs.ctrl.map}">
 						<composite:renderFacet name="map"/>
-						<geojsf:viewport value="#{cc.attrs.controller.map.viewPort}"/>
-						<p:ajax event="mapMove" listener="#{cc.attrs.controller.mapMove}" update="@form"/>
+						<geojsf:viewport value="#{cc.attrs.ctrl.map.viewPort}"/>
+						<p:ajax event="mapMove" listener="#{cc.attrs.ctrl.mapMove}" update="@form"/>
 					</geojsf:map>
 				</p:panel>
 			</h:form>
 			<h:form id="fView">
-				<p:panel header="#{msg.geoJsfAdminDetailsLayer}" rendered="#{not empty cc.attrs.controller.view}" styleClass="jeesl-panel">
+				<p:panel header="#{msg.geoJsfAdminDetailsLayer}" rendered="#{not empty cc.attrs.ctrl.view}" styleClass="jeesl-panel">
 					<f:facet name="actions">
-						<j:svg type="jeeslCancel" listener="#{cc.attrs.controller.cancelView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView"/>
-						<j:svg type="jeeslSave" listener="#{cc.attrs.controller.saveView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView"/>
-						<j:svg type="jeeslDelete" listener="#{cc.attrs.controller.rmView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView"/>
+						<j:svg type="jeeslCancel" listener="#{cc.attrs.ctrl.cancelView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView"/>
+						<j:svg type="jeeslSave" listener="#{cc.attrs.ctrl.saveView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView"/>
+						<j:svg type="jeeslDelete" listener="#{cc.attrs.ctrl.rmView()}" update=":#{cc.id}:fLayers :#{cc.id}:fView"/>
 					</f:facet>
 					<p:messages redisplay="false" severity="warn,error" showSummary="true" showDetail="true" closable="true"/>
 					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 						<p:outputLabel value="#{msg.geoJsfAdminOrderNo}"/>
-						<h:outputText value="#{cc.attrs.controller.view.orderNo}"/>
+						<h:outputText value="#{cc.attrs.ctrl.view.orderNo}"/>
 					</p:panelGrid>
 					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
-						<p:selectBooleanCheckbox value="#{cc.attrs.controller.view.visible}" />
+						<p:selectBooleanCheckbox value="#{cc.attrs.ctrl.view.visible}" />
 						<p:outputLabel value="#{msg.geoJsfViewLayerDefaultVisible}"/>
 		
-						<p:selectBooleanCheckbox value="#{cc.attrs.controller.view.legend}" />
+						<p:selectBooleanCheckbox value="#{cc.attrs.ctrl.view.legend}" />
 						<p:outputLabel value="#{msg.geoJsfAdminShowInLegend}"/>
 						
-						<p:selectBooleanCheckbox value="#{cc.attrs.controller.view.legendSymbol}" />
+						<p:selectBooleanCheckbox value="#{cc.attrs.ctrl.view.legendSymbol}" />
 						<p:outputLabel value="#{msg.geoJsfAdminViewLegendSymbol}"/>
 					</p:panelGrid>
 					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">		
 				
 						<p:outputLabel value="#{msg.geoJsfAdminLegendOrderNo}"/>
-						<p:inputText value="#{cc.attrs.controller.view.legendNo}"/>
+						<p:inputText value="#{cc.attrs.ctrl.view.legendNo}"/>
 						
 						<jtp:label entity="GeoView" code="layer"/>
-						<p:selectOneMenu value="#{cc.attrs.controller.view.layer}" effect="fade" autoWidth="false"
+						<p:selectOneMenu value="#{cc.attrs.ctrl.view.layer}" effect="fade" autoWidth="false"
 									var="lay" filter="true" filterMatchMode="contains" >
-							<f:selectItems value="#{cc.attrs.controller.layers}" var="l" itemLabel="#{l.name[localeCode].lang}" itemValue="#{l}"/>
+							<f:selectItems value="#{cc.attrs.ctrl.layers}" var="l" itemLabel="#{l.name[localeCode].lang}" itemValue="#{l}"/>
 		
 							<p:column headerText="#{msg.aupCategory}">
 								<h:outputText value="#{lay.category.name[localeCode].lang}" />

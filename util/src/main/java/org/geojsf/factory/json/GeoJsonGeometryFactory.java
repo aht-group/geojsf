@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Point;
 
 public class GeoJsonGeometryFactory implements Serializable
 {
@@ -21,7 +22,6 @@ public class GeoJsonGeometryFactory implements Serializable
 	{
 		org.geojson.Polygon json = new org.geojson.Polygon();
 		
-		
 //		Geometry p = TopologyPreservingSimplifier.simplify(polygon, 100000000);
 //		logger.info(p.getGeometryType());
 		
@@ -31,9 +31,16 @@ public class GeoJsonGeometryFactory implements Serializable
 			list.add(GeoJsonCoordinateFactory.build(c));
 		}
 		
-//		List<List<LngLatAlt>> coordinates = new ArrayList<List<LngLatAlt>>();
-//		coordinates.add(list);
 		json.add(list);
+		
+		return json;
+	}
+	
+	public static GeoJsonObject build(Point point)
+	{
+		org.geojson.Point json = new org.geojson.Point();
+		
+		json.setCoordinates(GeoJsonCoordinateFactory.build(point));
 		
 		return json;
 	}

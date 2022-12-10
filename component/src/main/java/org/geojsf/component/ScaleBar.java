@@ -38,7 +38,7 @@ public class ScaleBar extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		logger.info("Adding scale bar.");
+		logger.debug("Adding scale bar.");
 		Map<String,Object> map = this.getAttributes();
 		
 		String orientation = "north";

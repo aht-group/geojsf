@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class ToolTip extends UINamingContainer implements ClientBehaviorHolder
 {
-	final static Logger logger = LoggerFactory.getLogger(Graticule.class);
+	final static Logger logger = LoggerFactory.getLogger(ToolTip.class);
 
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -38,7 +38,7 @@ public class ToolTip extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		logger.info("Adding ToolTip control.");
+		logger.debug("Adding ToolTip control.");
 	    String jsCall = "";
 	    logger.info(jsCall);
 

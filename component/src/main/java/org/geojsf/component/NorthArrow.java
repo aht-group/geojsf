@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class NorthArrow extends UINamingContainer implements ClientBehaviorHolder
 {
-	final static Logger logger = LoggerFactory.getLogger(Graticule.class);
+	final static Logger logger = LoggerFactory.getLogger(NorthArrow.class);
 
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
@@ -35,13 +35,12 @@ public class NorthArrow extends UINamingContainer implements ClientBehaviorHolde
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		logger.info("Adding NorthArrow.");
+		logger.debug("Adding NorthArrow.");
 
 		FacesContext context = this.getFacesContext();
 	    String srcUrl = context.getExternalContext().getRequestScheme() +"://" +context.getExternalContext().getRequestServerName() +":" +context.getExternalContext().getRequestServerPort() +context.getExternalContext().getRequestContextPath() +"/javax.faces.resource/img/narrow.png.jsf?ln=geojsf";
-	    logger.info(srcUrl);
 	    String jsCall = "GeoJsfControl.addNorthArrow('" + srcUrl + "');";
-	    logger.info(jsCall);
+	    logger.debug(jsCall);
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("script", this);
 		writer.writeText(jsCall, null);

@@ -1,7 +1,6 @@
 package org.geojsf.component;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UINamingContainer;
@@ -36,8 +35,8 @@ public class Graticule extends UINamingContainer implements ClientBehaviorHolder
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		logger.info("Adding Graticule.");
-		Map<String,Object> map = this.getAttributes();
+		logger.debug("Adding Graticule.");
+//		Map<String,Object> map = this.getAttributes();
 		
 		ResponseWriter writer = ctx.getResponseWriter();
 		writer.startElement("script", this);

@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 @ListenerFor(systemEventClass=PostAddToViewEvent.class)
 public class PopUp extends UINamingContainer implements ClientBehaviorHolder
 {
-	final static Logger logger = LoggerFactory.getLogger(Graticule.class);
+	final static Logger logger = LoggerFactory.getLogger(PopUp.class);
 
 	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException
