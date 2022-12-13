@@ -34,6 +34,7 @@ import org.jeesl.interfaces.model.with.primitive.number.EjbWithId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 @SuppressWarnings("rawtypes")
@@ -160,7 +161,7 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 		GetFeature gf = PointQueryFactory.cGetFeature(propertyProvider.getWorkspace()+":"+layer.getCode(),
 													  queryProperties, geometryColumn,
 													  coordinates,distance);
-		JaxbUtil.info(gf);
+		JaxbUtil.trace(gf);
 		WfsHttpRequest r = new WfsHttpRequest(layer.getService().getWcs());
 		
 		Document doc = r.request(gf);

@@ -16,10 +16,9 @@ public class XmlCoordinateFactory implements Serializable
 
 	public static Coordinate build(double lat, double lon)
 	{
-		Coordinate xml = new Coordinate();
-		xml.setLon(lon);
+		Coordinate xml = build();
 		xml.setLat(lat);
-		
+		xml.setLon(lon);
 		return xml;
 	}
 	

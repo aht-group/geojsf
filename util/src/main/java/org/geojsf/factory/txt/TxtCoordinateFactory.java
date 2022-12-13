@@ -24,8 +24,9 @@ public class TxtCoordinateFactory
 	public String build(Coordinate coordinate)
 	{
 		StringBuffer sb = new StringBuffer();
-		sb.append("lat:").append(df.format(coordinate.getLat()));
-		sb.append(" lon:").append(df.format(coordinate.getLon()));
+		sb.append("Latitue ").append(df.format(coordinate.getLat()));
+		sb.append(" Longitue:").append(df.format(coordinate.getLon()));
+		sb.append(" (Remember: lines of latitude run east/west, like equator with latitude 0)");
 		return sb.toString();
 	}
 	
@@ -37,6 +38,4 @@ public class TxtCoordinateFactory
 		sb.append(" ... we need to verify lat/log");
 		return sb.toString();
 	}
-	
-	
 }
