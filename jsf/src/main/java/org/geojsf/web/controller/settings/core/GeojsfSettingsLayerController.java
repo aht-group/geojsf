@@ -20,6 +20,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
+import org.jeesl.controller.web.AbstractJeeslWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
@@ -28,7 +29,6 @@ import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.JeeslLocale;
 import org.jeesl.jsf.handler.PositionListReorderer;
-import org.jeesl.web.controller.AbstractJeeslWebController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

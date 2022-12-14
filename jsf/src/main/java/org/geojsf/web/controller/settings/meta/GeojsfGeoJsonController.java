@@ -10,13 +10,13 @@ import org.geojsf.interfaces.model.json.GeoJsfJsonData;
 import org.geojsf.interfaces.model.json.GeoJsfJsonQuality;
 import org.geojsf.interfaces.model.json.GeoJsfLocationLevel;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
+import org.jeesl.controller.web.AbstractJeeslWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.interfaces.controller.handler.system.locales.JeeslLocaleProvider;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.JeeslLocale;
-import org.jeesl.web.controller.AbstractJeeslWebController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

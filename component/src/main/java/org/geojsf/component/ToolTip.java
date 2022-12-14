@@ -39,9 +39,6 @@ public class ToolTip extends UINamingContainer implements ClientBehaviorHolder
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
 		logger.debug("Adding ToolTip control.");
-	    String jsCall = "";
-	    logger.info(jsCall);
-
 
 		ResponseWriter writer = ctx.getResponseWriter();
 		if (this.getParent() instanceof Map)
