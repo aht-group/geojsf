@@ -44,7 +44,7 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException
 	{
-		logger.info("Rendering Viewport.");
+		logger.debug("Rendering Viewport.");
 		
 		Double  lat             = null;
 		Double  lon             = null;
@@ -64,9 +64,14 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
                         
 			// If there is no scale given, set it to 100 km
 			if (this.value.getScale() == 0) 
-				{this.value.setScale(100000);}
+			{
+				this.value.setScale(100000);
+			}
 			else 
-				{this.value.setScale(this.value.getScale());}
+			{
+				this.value.setScale(this.value.getScale());
+			}
+			
 			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +this.value.getScale() +");" +System.getProperty("line.separator"), null);		
 		}
 		else
