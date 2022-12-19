@@ -89,6 +89,19 @@
 			<artifactId>jola-time</artifactId>
 		</dependency> -->
 		
+		<!-- GeoTools -->
+		<dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-shapefile</artifactId>
+            <version>2.5.0</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+                </exclusion>
+			</exclusions>
+        </dependency>
 		<!-- GeoJson -->
 		<dependency>
 			<groupId>de.grundid.opendatalab</groupId>
@@ -214,6 +227,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>	<!-- Required for GeoJsonReader -->
+			<groupId>com.vividsolutions</groupId>
+			<artifactId>jts-io</artifactId>
+			<version>1.14.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.locationtech.jts</groupId>
 			<artifactId>jts-core</artifactId>
@@ -224,6 +242,13 @@
 					<groupId>xerces</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.6.0</version>
+			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>

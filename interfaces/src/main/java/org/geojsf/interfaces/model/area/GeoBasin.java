@@ -3,6 +3,7 @@ package org.geojsf.interfaces.model.area;
 import java.io.Serializable;
 
 import org.geojsf.interfaces.model.with.EjbWithGeometry;
+import org.jeesl.interfaces.model.marker.jpa.EjbSaveable;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
@@ -15,7 +16,8 @@ import com.vividsolutions.jts.geom.MultiPolygon;
 public interface GeoBasin<L extends JeeslLang, D extends JeeslDescription,
 							BASIN extends GeoBasin<L,D,BASIN,MODEL>,
 							MODEL extends JeeslStatus<L,D,MODEL>>
-			extends Serializable,EjbWithId,EjbWithLang<L>,EjbWithDescription<D>,EjbWithGeometry<MultiPolygon>
+			extends Serializable,EjbSaveable,
+						EjbWithId,EjbWithLang<L>,EjbWithDescription<D>,EjbWithGeometry<MultiPolygon>
 {
 	MODEL getModel();
 	void setModel(MODEL model);

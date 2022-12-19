@@ -11,9 +11,6 @@ import net.sf.ahtutils.xml.aht.Aht;
 
 public interface GeoJsfAreaBasinSurfaceRestExport
 {	
-	@GET @Path("/geojsf/area/basin/surface/model")
-	@Produces(MediaType.APPLICATION_XML)
-	Aht exportGeoJsfWaterSurfaceBasinModel();
 	
 	@GET @Path("/geojsf/area/basin/surface")
 	@Produces(MediaType.APPLICATION_XML)

@@ -15,9 +15,5 @@ public interface GeoJsfAreaBasinSurfaceRestImport
 {	
 	@POST @Path("/geojsf/area/basin/surface")
 	@Produces(MediaType.APPLICATION_XML) @Consumes(MediaType.APPLICATION_XML)
-	DataUpdate importGeoJsfAreaBasinSurfaceModel(Aht models);
-	
-	@POST @Path("/geojsf/area/basin/surface")
-	@Produces(MediaType.APPLICATION_XML) @Consumes(MediaType.APPLICATION_XML)
 	DataUpdate importGeoJsfAreaBasinSurface(Areas basins);
 }

@@ -35,7 +35,7 @@ public class EjbBasinFactory<L extends JeeslLang,D extends JeeslDescription,BASI
     {
         this.cB = cB;
         
-        gisMultiPolygonFactory = new MultiPolygonFactory();
+        gisMultiPolygonFactory = MultiPolygonFactory.instance();
         
         efLang = EjbLangFactory.instance(cL);
         efDescription = EjbDescriptionFactory.factory(cD);

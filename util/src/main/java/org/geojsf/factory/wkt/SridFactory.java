@@ -7,13 +7,9 @@ import org.slf4j.LoggerFactory;
 public class SridFactory
 {
 	final static Logger logger = LoggerFactory.getLogger(SridFactory.class);
-	
-	
-	
+
 	public static int toSrid(CoordinateReferenceSystem crs)
 	{
-		
-//		String name = crs.getCoordinateSystem().getName().toString();
 		String code = crs.getCoordinateSystem().getName().getCode();
 				
 //		logger.info("Name: "+name);
@@ -27,6 +23,4 @@ public class SridFactory
 		
 		return 0;
 	}
-	
-  
 }

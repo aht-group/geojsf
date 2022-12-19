@@ -48,8 +48,8 @@ public class GeoJsfAreaBasinRest <L extends JeeslLang,D extends JeeslDescription
 	}
 
 	//Model
-	@Override public Aht exportGeoJsfWaterSurfaceBasinModel(){return exportStatus(cM);}
-	@Override public DataUpdate importGeoJsfAreaBasinSurfaceModel(Aht models) {return importStatus(cM,null,models);}
+	
+	
 	
 	//Surface
 	@Override public DataUpdate importGeoJsfAreaBasinSurface(Areas basins){return importBasins(basins);}
