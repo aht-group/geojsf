@@ -169,7 +169,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 
 		for(LAYER layer : fGeo.all(cLayer))
 		{
-			layer = fGeo.load(cLayer,layer);
+			layer = fGeo.load(layer);
 			layers.getLayer().add(xfLayer.build(layer));
 		}
 		
@@ -183,7 +183,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 		
 		for(MAP map : fGeo.all(cMap))
 		{
-			map = fGeo.load(cMap,map);
+			map = fGeo.load(map);
 			logger.warn("NYI, deactivated");
 			Map xml = xfMap.build(map);
 			
@@ -210,7 +210,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 		}
 		for(LAYER layer : fGeo.all(cLayer))
 		{
-			layer = fGeo.load(cLayer,layer);
+			layer = fGeo.load(layer);
 			if(layer.getViewPort()!=null){geoJsfViewports.add(layer.getViewPort().getId());}
 		}
 		

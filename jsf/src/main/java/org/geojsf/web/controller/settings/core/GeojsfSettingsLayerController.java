@@ -116,7 +116,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 
 	public void selectService() throws JeeslNotFoundException
 	{
-		service = fGeo.load(fbCore.getClassService(),service);
+		service = fGeo.load(service);
 		service = efLang.persistMissingLangs(fGeo,lp.getLocales(),service);
 		service = efDescription.persistMissingLangs(fGeo,lp.getLocales(),service);
 		logger.info("selectService "+service);
@@ -174,7 +174,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	
 	public void selectCategory() throws JeeslNotFoundException
 	{
-		category = fGeo.load(fbCore.getClassCategory(),category);
+		category = fGeo.load(category);
 		category = efLang.persistMissingLangs(fGeo,lp.getLocales(),category);
 		category = efDescription.persistMissingLangs(fGeo,lp.getLocales(),category);
 		logger.info("selectCategory "+category);
@@ -218,7 +218,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	
 	protected void reloadLayers()
 	{
-		category = fGeo.load(fbCore.getClassCategory(), category);
+		category = fGeo.load(category);
 		layers = fGeo.allOrderedPositionVisibleParent(fbCore.getClassLayer(), category);;
 		logger.info("#Layer:"+layers.size());
 	}
@@ -234,7 +234,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	public void selectLayer() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("selectLayer "+layer);
-		layer = fGeo.load(fbCore.getClassLayer(),layer);
+		layer = fGeo.load(layer);
 		layer = efLang.persistMissingLangs(fGeo,lp.getLocales(),layer);
 		layer = efDescription.persistMissingLangs(fGeo,lp.getLocales(),layer);
 		

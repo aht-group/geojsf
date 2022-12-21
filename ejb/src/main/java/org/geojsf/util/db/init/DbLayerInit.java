@@ -159,7 +159,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 				
 				if(layer.isSetViewPort())
 				{
-					ejb = fGeo.load(cLayer,ejb);
+					ejb = fGeo.load(ejb);
 					dbVpInit.iuViewPort(ejb,layer.getViewPort());
 				}
 			}

@@ -90,7 +90,7 @@ public class GeoJsonFeatureCollectionFactory implements Serializable
 				
 				for(Property p : feature.getProperties())
 				{
-//					logger.info(p.getName().toString());
+					logger.info(p.getName().toString());
 					if(propertyFiler.contains(p.getName().toString()))
 					{
 						map.put(p.getName().toString(),p.getValue().toString());

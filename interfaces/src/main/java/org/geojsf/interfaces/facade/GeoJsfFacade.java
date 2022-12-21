@@ -22,12 +22,12 @@ public interface GeoJsfFacade <L extends JeeslLang, D extends JeeslDescription,
 								VP extends GeoJsfViewPort,
 								DS extends GeoJsfDataSource<L,D,LAYER>
 								>
-					extends JeeslFacade
-{		
-	SERVICE load(Class<SERVICE> cService, SERVICE service);
-	CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category);
-	MAP load(Class<MAP> cMap, MAP map);
-	LAYER load(Class<LAYER> cLayer, LAYER layer);
+		extends JeeslFacade
+{
+	CATEGORY load(CATEGORY category);
+	SERVICE load(SERVICE service);
+	MAP load(MAP map);
+	LAYER load(LAYER layer);
 	
 	void rm(Class<LAYER> cLayer, LAYER layer);	
 	void rm(Class<VIEW> cView, VIEW view);

@@ -121,7 +121,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 
 	public void selectService() throws JeeslNotFoundException
 	{
-		service = fGeo.load(fbCore.getClassService(),service);
+		service = fGeo.load(service);
 		service = efLang.persistMissingLangs(fGeo,bTranslation.getLocales(),service);
 		service = efDescription.persistMissingLangs(fGeo,bTranslation.getLocales(),service);
 		logger.info("selectService "+service);
@@ -179,7 +179,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 	
 	public void selectCategory() throws JeeslNotFoundException
 	{
-		category = fGeo.load(fbCore.getClassCategory(),category);
+		category = fGeo.load(category);
 		category = efLang.persistMissingLangs(fGeo,bTranslation.getLocales(),category);
 		category = efDescription.persistMissingLangs(fGeo,bTranslation.getLocales(),category);
 		logger.info("selectCategory "+category);
@@ -228,7 +228,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 	
 	protected void reloadLayers()
 	{
-		category = fGeo.load(fbCore.getClassCategory(), category);
+		category = fGeo.load(category);
 		layers = fGeo.allOrderedPositionVisibleParent(fbCore.getClassLayer(), category);;
 		logger.info("#Layer:"+layers.size());
 	}
@@ -244,7 +244,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 	public void selectLayer() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("selectLayer "+layer);
-		layer = fGeo.load(fbCore.getClassLayer(),layer);
+		layer = fGeo.load(layer);
 		layer = efLang.persistMissingLangs(fGeo,bTranslation.getLocales(),layer);
 		layer = efDescription.persistMissingLangs(fGeo,bTranslation.getLocales(),layer);
 		if(layer.getViewPort()==null){addViewPort();}

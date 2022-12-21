@@ -102,7 +102,9 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 	
 	protected void reloadMap() throws JeeslConstraintViolationException, JeeslLockingException
 	{
-		map = fGeo.load(fbCore.getClassMap(),map);
+		logger.info("Reload "+fbCore.getClassMap());
+		map = fGeo.load(map);
+		logger.info("Reloaded");
 		if(map.getViewPort()==null){addViewPort();}
 		else{viewPort=map.getViewPort();}
 		logger.info(map.getViewPort().toString());

@@ -53,31 +53,31 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 		this.fbCore = fbCore;
 	}
 
-	@Override public MAP load(Class<MAP> cView, MAP map)
+	@Override public MAP load(MAP map)
 	{
-		map = em.find(cView, map.getId());
+		map = em.find(fbCore.getClassMap(), map.getId());
 		map.getViews().size();
 		if(map.getViewPort()!=null){map.getViewPort().getId();}
 		return map;
 	}
 	
-	@Override public CATEGORY load(Class<CATEGORY> cCategory, CATEGORY category)
+	@Override public CATEGORY load(CATEGORY category)
 	{
-		category = em.find(cCategory, category.getId());
+		category = em.find(fbCore.getClassCategory(), category.getId());
 		category.getLayer().size();
 		return category;
 	}
 
-	@Override public SERVICE load(Class<SERVICE> cService, SERVICE service)
+	@Override public SERVICE load(SERVICE service)
 	{
-		service = em.find(cService, service.getId());
+		service = em.find(fbCore.getClassService(), service.getId());
 		service.getLayer().size();
 		return service;
 	}
 	
-	@Override public LAYER load(Class<LAYER> cLayer, LAYER layer)
+	@Override public LAYER load(LAYER layer)
 	{
-		layer = em.find(cLayer, layer.getId());
+		layer = em.find(fbCore.getClassLayer(), layer.getId());
 		if(layer.getViewPort()!=null){layer.getViewPort().getId();}
 		return layer;
 	}

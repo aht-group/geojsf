@@ -145,7 +145,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 				iuViews(ejb,map.getView());
 				if(map.isSetViewPort())
 				{
-					ejb = fGeo.load(cMap,ejb);
+					ejb = fGeo.load(ejb);
 					dbVpInit.iuViewPort(ejb,map.getViewPort());
 				}
 			}
@@ -160,14 +160,14 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 	
 	private void iuViews(MAP ejbMap, List<View> views) throws JeeslConstraintViolationException, JeeslLockingException, JeeslNotFoundException
 	{
-		ejbMap = fGeo.load(cMap, ejbMap);
+		ejbMap = fGeo.load(ejbMap);
 		logger.trace("Views: "+ejbMap.getViews().size());
 		
 		for(VIEW vl : ejbMap.getViews())
 		{
 			fGeo.rm(cView, vl);
 		}
-		ejbMap = fGeo.load(cMap, ejbMap);
+		ejbMap = fGeo.load(ejbMap);
 		logger.trace("Layer: "+ejbMap.getViews().size());
 		
 		int i=1;

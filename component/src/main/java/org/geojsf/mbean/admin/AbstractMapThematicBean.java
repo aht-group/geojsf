@@ -116,7 +116,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	
 	protected void reloadMap() throws JeeslConstraintViolationException, JeeslLockingException
 	{
-		map = fGeo.load(fbCore.getClassMap(),map);
+		map = fGeo.load(map);
 		if(map.getViewPort()==null){addViewPort();}
 		else{viewPort=map.getViewPort();}
 		logger.info(map.getViewPort().toString());
@@ -243,7 +243,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	
 	public void changeCategory()
 	{
-		category = fGeo.load(fbCore.getClassCategory(),category);
+		category = fGeo.load(category);
 		layers = category.getLayer();
 		logger.info(AbstractLogMessage.selectOneMenuChange(category));
 	}
