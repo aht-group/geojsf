@@ -466,10 +466,9 @@
 				GeoJSF.map.addLayer(vectorlayer);
 		},
   
-			addPointDataLayer : function(name, url, theGlyph, theText)
+				addPointDataLayer : function(name, url, theGlyph, theText)
 		{
 			var viewOfMap = GeoJSF.map.getView();
-
 			// GeoJSON layer
 			var vectorSource = new ol.source.Vector({
 				url: url,
@@ -480,35 +479,19 @@
 			var vectorlayer = new ol.layer.Vector({
 				name: name,
 				source: vectorSource,
-				style:  new ol.style.Style({
-					image: new ol.style.FontSymbol({
-					form: "poi", 
-						gradient: false,
-						glyph: theGlyph,
-						text: theText,    // text to use if no glyph is defined
-						font: 'sans-serif',
-						fontSize: 1,
-						fontStyle: "",
-						radius: 12, 
-					
-						color: "orange",
-						fill: new ol.style.Fill({
-						color: "navy"
+				style: function (feature) 
+				{
+					var img_Src = feature.get(theGlyph);
+					return new ol.style.Style({
+						image:new ol.style.Icon({
+							anchor: [0.5, 46],
+							anchorXUnits: 'fraction',
+							anchorYUnits: 'pixels',
+							src: img_Src,
 						}),
-						stroke: new ol.style.Stroke({
-						color: "white",
-						width: 2
-						})
-					}),
-					stroke: new ol.style.Stroke({
-						width: 2,
-						color: '#f80'
-					}),
-					fill: new ol.style.Fill({
-						color: [255, 136, 0, 0.6]
-					})
-					})
-				});
+					  });
+				  },
+				});	
 			GeoJSF.map.addLayer(vectorlayer);
 		  },
   
