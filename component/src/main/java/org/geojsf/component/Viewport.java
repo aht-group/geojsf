@@ -13,10 +13,9 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
 
-import net.sf.ahtutils.jsf.util.ComponentAttribute;
-
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.util.GeoJsfJsLoader;
+import org.jeesl.jsf.util.ComponentAttribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
