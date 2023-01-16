@@ -116,7 +116,7 @@ public class Map <L extends JeeslLang, D extends JeeslDescription,
 	{
 		if(event instanceof PostAddToViewEvent)
 		{
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"ol-debug.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"ol.js");
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"GeoJSF3.js");
 		}
 		else

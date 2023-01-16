@@ -121,7 +121,7 @@
 								{name: 'org.geojsf.viewport.top',            value: ol.extent.applyTransform(event.map.getView().calculateExtent(event.map.getSize()), ol.proj.getTransform("EPSG:3857", "EPSG:4326"))[0]},
 								{name: 'org.geojsf.viewport.left',           value: this.viewportBoundLeft},
 								{name: 'org.geojsf.viewport.right',          value: this.viewportBoundRight},
-								{name: 'org.geojsf.viewport.scale',          value:   Math.floor( GeoJSF.map.getView().getResolution())},
+								{name: 'org.geojsf.viewport.scale',          value: Math.floor( GeoJSF.mapScale() )},
 							   ],
 					   oncomplete: function(xhr, status, args) {console.log('map move AJAX request sent.')}
 				  });
@@ -131,11 +131,39 @@
 			  finally {}
 		  },
 		  
+			mapScale : function () {
+				var unit			= GeoJSF.map.getView().getProjection().getUnits();
+				var inchesPerMetre	= 39.37;
+				var dpi				= 72;
+				var resolution = ol.proj.getPointResolution(
+					GeoJSF.map.getView().getProjection(),
+					GeoJSF.map.getView().getResolution(),
+					GeoJSF.map.getView().getCenter(),
+					'm'
+				  );
+				for (let i = 0; i < 400; i++) 
+				{
+					if (matchMedia("(min-resolution: " +i +"dpi)").matches)
+					{
+						dpi			= i;
+					}
+				}
+				var scale = resolution * ol.proj.Units.METERS_PER_UNIT[unit] * inchesPerMetre * dpi;
+				console.log("Detected a dpi for your monitor of " +dpi +" resulting in a scale of " +scale);
+				console.log("Calculated by a resolution of " +resolution + " and a unit of " +unit +" using Meters_Per_Unit for that as " +ol.proj.Units.METERS_PER_UNIT[unit]);
+				
+				  // const dpi = this.dpi_ || DEFAULT_DPI;
+				  const inchesPerMeter = 1000 / 25.4;
+				  var mapScaleInternalCalc = resolution * inchesPerMeter * dpi;
+				console.log("Scale according to Map is " +mapScaleInternalCalc);
+				return scale;
+			},
+		  
 		  processEventClick : function(event)
 		  {
 			  console.log("mapClick detected");
-			  this.centerLat             = event.map.getView().getCenter()[0];
-			  this.centerLon             = event.map.getView().getCenter()[1];
+			  this.centerLat             = event.map.getView().getCenter()[1];
+			  this.centerLon             = event.map.getView().getCenter()[0];
 						  var extent = event.map.getView().calculateExtent(event.map.getSize());
 			  this.viewportBoundTop      = extent[0];
 			  this.viewportBoundBottom   = extent[1];
@@ -149,17 +177,17 @@
 					   event:    'mapClick', 
 					   update:   GeoJSF.updateOnClick,
 					  params: [
-								{name: 'org.geojsf.click.lat',				value: lonlat[1]},
-						   {name: 'org.geojsf.click.lon',				value: lonlat[0]},
+								{name: 'org.geojsf.click.lat',							value: lonlat[1]},
+								{name: 'org.geojsf.click.lon',					  	value: lonlat[0]},
 								{name: 'org.geojsf.viewport.center.lon',               value: this.centerLon},
 								{name: 'org.geojsf.viewport.center.lat',               value: this.centerLat},
 								{name: 'org.geojsf.viewport.bottom',                   value: this.viewportBoundBottom},
 								{name: 'org.geojsf.viewport.top',                      value: this.viewportBoundTop},
 								{name: 'org.geojsf.viewport.left',                     value: this.viewportBoundLeft},
 								{name: 'org.geojsf.viewport.right',                    value: this.viewportBoundRight},
-						   {name: 'org.geojsf.viewport.resolution',               value: GeoJSF.map.getView().getResolution()},
-						   {name: 'org.geojsf.viewport.unit',                     value: GeoJSF.map.getView().getProjection().getUnits()},
-								{name: 'org.geojsf.viewport.scale',                    value:   Math.floor( GeoJSF.map.getView().getResolution())},
+								{name: 'org.geojsf.viewport.resolution',               value: GeoJSF.map.getView().getResolution()},
+								{name: 'org.geojsf.viewport.unit',                     value: GeoJSF.map.getView().getProjection().getUnits()},
+								{name: 'org.geojsf.viewport.scale',                    value:   Math.floor( GeoJSF.mapScale() )},
 							   ],
 					   oncomplete: function(xhr, status, args) {
 							 console.log('mapClick AJAX request sent. Resolution : ' +GeoJSF.map.getView().getResolution()+ ' ' +GeoJSF.map.getView().getProjection().getUnits())
@@ -257,7 +285,7 @@
 			  }
 			  // console.log(layers);
 			  GeoJSF.map = new ol.Map({
-				  controls     : ol.control.defaults({ 
+				  controls     : ol.control.defaults.defaults({ 
 								  attribution: false,
 								  zoom       : false,
 								  rotate     : false

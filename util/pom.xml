@@ -93,7 +93,93 @@
 		<dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-shapefile</artifactId>
-            <version>2.5.0</version>
+            <version>27.2</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+                </exclusion>
+			</exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geojson</artifactId>
+            <version>27.2</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+                </exclusion>
+			</exclusions>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geojsondatastore</artifactId>
+            <version>26.6</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+                </exclusion>
+			</exclusions>
+        </dependency>
+-->
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geojson-store</artifactId>
+            <version>27.2</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+                </exclusion>
+			</exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-main</artifactId>
+            <version>27.2</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+                </exclusion>
+			</exclusions>
+        </dependency>
+         <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-referencing</artifactId>
+            <version>27.2</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+                </exclusion>
+			</exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-metadata</artifactId>
+            <version>27.2</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+                </exclusion>
+			</exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geotiff</artifactId>
+            <version>27.2</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -235,7 +321,7 @@
 		<dependency>
 			<groupId>org.locationtech.jts</groupId>
 			<artifactId>jts-core</artifactId>
-			<version>1.16.0</version>
+			<version>1.19.0</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>xercesImpl</artifactId>
@@ -245,9 +331,21 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-json-org</artifactId>
+			<version>2.14.1</version>
+			<scope>provided</scope>
+		</dependency>
+                <dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.14.1</version>
+			<scope>provided</scope>
+		</dependency>
+                <dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.6.0</version>
+			<version>2.14.1</version>
 			<scope>provided</scope>
 		</dependency>
 		
