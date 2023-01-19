@@ -45,16 +45,19 @@ var GeoJsfControl = {
                 
 		addGraticule : function()
 		{
+			var style = new ol.style.Style();
+				style.setStroke (new ol.style.Stroke({ color: "rgba(255,120,0,0.9)", width:1 }));
+				//style.setFill (new ol.style.Fill({ color:  "#ffff"} ));
+				style.setText (new ol.style.Text({
+				  stroke: new ol.style.Stroke({ color:"#fff", width:2 }),
+				  fill: new ol.style.Fill({ color: "rgba(255,120,0,0.9)" }),
+				  font: "10px",
+				}));
 			// Create the graticule component
-			var graticule = new ol.Graticule({
-			  // the style to use for the lines, optional.
-			  // (taken from openlayers.org standard example)
-				strokeStyle: new ol.style.Stroke({
-				color: 'rgba(255,120,0,0.9)',
-				width: 2,
-				lineDash: [0.5, 4]
-			  })
+			var graticule = new ol.control.Graticule({
+				step: 0.5, stepCoord: 5, margin:5, projection: 'EPSG:4326', formatCoord:function(c){ return c.toFixed(1)+"°" },
 			});
+			graticule.setStyle(style);
 		    graticule.setMap(GeoJSF.map);
 		},
 		
@@ -75,9 +78,7 @@ var GeoJsfControl = {
 				narrowImage = document.createElement('img');
 				narrowImage.src = this.options.imagePath;
 				this.div.appendChild(narrowImage);
-				ol.control.Control.call(this, {
-					element: this.div
-				});
+				return new ol.control.Control({ element: this.div });
 			};
 			ol.inherits(ol.control.NorthArrow, ol.control.Control);
 			ol.control.NorthArrow.prototype.setMap = function(map) {
