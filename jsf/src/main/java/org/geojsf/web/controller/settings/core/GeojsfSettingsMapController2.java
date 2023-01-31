@@ -175,7 +175,7 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 	}
 	
 	// LAYER
-	public void reorderLayer(ReorderEvent event)
+	public void reorderLayer(ReorderEvent event) throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info(StringUtil.stars());
 		logger.info("Reordering Layer, moving old postion "+(event.getFromIndex()+1)+" to new position "+(event.getToIndex()+1));
@@ -183,7 +183,9 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 		for(VIEW v : map.getViews())
 		{
 			v.setOrderNo(i);i++;
+			v = fGeo.save(v);
 		}
+		this.reloadMap();
 	}
 	
 	// VIEW
@@ -239,5 +241,5 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 		viewPort = fGeo.save(viewPort);
 	}
 	
-	public void reorderMaps() throws JeeslConstraintViolationException, JeeslLockingException{PositionListReorderer.reorder(fGeo,maps);reloadMaps();}
+	public void reorderMaps() throws JeeslConstraintViolationException, JeeslLockingException {PositionListReorderer.reorder(fGeo,maps); reloadMaps();}
 }

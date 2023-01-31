@@ -30,7 +30,6 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 							G extends JeeslGraphic<GT,?,GS>, GT extends JeeslGraphicType<L,D,GT,G>, GS extends JeeslGraphicShape<L,D,GS,G>,
-
 							SLD extends GeoJsfSld<L,D,?,?,RULE>,
 							RULE extends GeoJsfSldRule<L,D,G>>
 	implements Serializable
