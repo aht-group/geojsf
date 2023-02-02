@@ -78,7 +78,7 @@ var GeoJsfUtil = {
 							{name: 'org.geojsf.viewport.top',                      value: this.viewportBoundTop},
 							{name: 'org.geojsf.viewport.left',                     value: this.viewportBoundLeft},
 							{name: 'org.geojsf.viewport.right',                    value: this.viewportBoundRight},	
-							{name: 'org.geojsf.viewport.zoom',					value: GeoJSF.map.getView().getResolution()},
+							{name: 'org.geojsf.viewport.zoom',					value: GeoJSF.map.getView().getZoom()},
 							{name: 'org.geojsf.viewport.unit',                  value: GeoJSF.map.getView().getProjection().getUnits()},
 						//	{name: 'org.geojsf.viewport.scale',                 value: Math.floor( GeoJsfUtil.getCurrentScale() )}
 						//	{name: 'org.geojsf.viewport.scale',                 value: Math.floor( distance )}

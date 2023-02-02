@@ -12,8 +12,8 @@ import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
-
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
+
 import org.geojsf.util.GeoJsfJsLoader;
 import org.jeesl.jsf.util.ComponentAttribute;
 import org.slf4j.Logger;
@@ -47,7 +47,8 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 		
 		Double  lat             = null;
 		Double  lon             = null;
-		Integer zoom            = null;
+		Double  zoom            = null;
+		Integer scale           = null;
 		Integer resolution      = null;
 		
 		ResponseWriter writer = ctx.getResponseWriter();
@@ -56,32 +57,36 @@ public class Viewport extends UIPanel implements ClientBehaviorHolder
 		Map<String,Object> map = this.getAttributes();
 		this.value = (GeoJsfViewPort) map.get(Attribute.value.toString());
 		
-		if (this.value != null)
+		// Choose given ViewPort object over attributes given in tag
+		if (this.value!=null)
 		{
+			// Read the coordinates for the center of the map
 			lat             = this.value.getLat();
 			lon             = this.value.getLon();
-                        
-			// If there is no scale given, set it to 100 km
-			if (this.value.getScale() == 0) 
+        
+			// Choose zoom if given in favor of scale
+			if (this.value.getScale()>0)
 			{
-				this.value.setScale(100000);
-			}
-			else 
+				scale = this.value.getScale();
+				writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +","+scale +",null);" +System.getProperty("line.separator"), null);
+			} 
+			else if (this.value.getZoom()>0)
 			{
-				this.value.setScale(this.value.getScale());
+				zoom = this.value.getZoom();
+				writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +",null ," +zoom +");" +System.getProperty("line.separator"), null);
 			}
 			
-			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +this.value.getScale() +");" +System.getProperty("line.separator"), null);		
 		}
-		else
+		else 
 		{
-			lat             = ComponentAttribute.getDouble(Attribute.lat.toString(), 0.0 ,ctx,  this);
-			lon             = ComponentAttribute.getDouble(Attribute.lon.toString(), 0.0 ,ctx,  this);
-			zoom            = ComponentAttribute.getInteger(Attribute.zoom.toString(), 0 ,ctx,  this);
-			resolution      = ComponentAttribute.getInteger(Attribute.resolution.toString(), 0 ,ctx,  this);
+			lat             = ComponentAttribute.getDouble( Attribute.lat.toString(),		 0.0 ,	ctx,  this);
+			lon             = ComponentAttribute.getDouble( Attribute.lon.toString(),		 0.0 ,	ctx,  this);
+			zoom            = ComponentAttribute.getDouble(Attribute.zoom.toString(),		 0 ,		ctx,  this);
+			resolution      = ComponentAttribute.getInteger(Attribute.resolution.toString(), 0 ,		ctx,  this);
 			writer.writeText("GeoJsfViewport.center(" +lon +"," +lat +"," +resolution +"," +zoom +");" +System.getProperty("line.separator"), null);
 		}
-		 
+		
+		// Close the Script tag
 		writer.endElement("script");
 	}
 }	
