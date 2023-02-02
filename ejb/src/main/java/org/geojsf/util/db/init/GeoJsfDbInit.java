@@ -8,6 +8,7 @@ import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfLayerType;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
@@ -41,10 +42,10 @@ import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
-
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
-							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,DS,SLD>,
+							LT extends GeoJsfLayerType<L,D,LT,?>,
 							MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 							SCALE extends GeoJsfScale<L,D>, 
 							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
@@ -113,8 +114,10 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 	public static <L extends JeeslLang,D extends JeeslDescription,
 				CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 				SERVICE extends GeoJsfService<L,D,LAYER>,
-				LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-				MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>, SCALE extends GeoJsfScale<L,D>, 
+				LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,DS,SLD>,
+				LT extends GeoJsfLayerType<L,D,LT,?>,
+				MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
+				SCALE extends GeoJsfScale<L,D>, 
 				VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 				VP extends GeoJsfViewPort,
 				DS extends GeoJsfDataSource<L,D,LAYER>,
@@ -122,7 +125,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 				RULE extends GeoJsfSldRule<L,D,?>,
 				SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 				SLDTEMPLATE extends GeoJsfSldTemplate<L,D>> 
-		GeoJsfDbInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
+		GeoJsfDbInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
 				final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
 				final GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld,
@@ -155,7 +158,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 	@Override
 	public DataUpdate importGeoJsfLayers(Layers layers)
 	{
-		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit;
+		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit;
 		layerInit = DbLayerInit.factory(fbCore,fbMeta,fbCore.getClassCategory(),fbCore.getClassService(),cLayer,cVp,fSecurity,fGeo);
 		try {layerInit.iuLayers(layers, langKeys);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}

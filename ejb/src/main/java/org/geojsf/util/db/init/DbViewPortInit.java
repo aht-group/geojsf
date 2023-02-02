@@ -13,7 +13,7 @@ import org.jeesl.interfaces.facade.JeeslFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DbViewPortInit <LAYER extends GeoJsfLayer<?,?,?,?,VP,?,?>,
+public class DbViewPortInit <LAYER extends GeoJsfLayer<?,?,?,?,?,VP,?,?>,
 							MAP extends GeoJsfMap<?,?,?,?,VP>,
 							VP extends GeoJsfViewPort>
 {
@@ -35,7 +35,7 @@ public class DbViewPortInit <LAYER extends GeoJsfLayer<?,?,?,?,VP,?,?>,
 		
 	}
 	
-	public static <LAYER extends GeoJsfLayer<?,?,?,?,VP,?,?>,
+	public static <LAYER extends GeoJsfLayer<?,?,?,?,?,VP,?,?>,
 					MAP extends GeoJsfMap<?,?,?,?,VP>,
 					VP extends GeoJsfViewPort>
 		DbViewPortInit<LAYER,MAP,VP>

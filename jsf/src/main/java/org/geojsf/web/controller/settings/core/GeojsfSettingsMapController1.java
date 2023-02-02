@@ -37,7 +37,7 @@ import net.sf.exlp.util.io.StringUtil;
 
 public class GeojsfSettingsMapController1 <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-										LAYER extends GeoJsfLayer<L,D,CATEGORY,?,VP,?,?>,
+										LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,VP,?,?>,
 										MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 										VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 										VP extends GeoJsfViewPort>

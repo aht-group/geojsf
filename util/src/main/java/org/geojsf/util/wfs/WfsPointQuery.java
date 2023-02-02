@@ -39,7 +39,7 @@ import net.sf.exlp.util.xml.JaxbUtil;
 
 @SuppressWarnings("rawtypes")
 public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
-							LAYER extends GeoJsfLayer<?,?,?,?,?,?,?>> 
+							LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,?>> 
 {
 	final static Logger logger = LoggerFactory.getLogger(WfsPointQuery.class);
 	

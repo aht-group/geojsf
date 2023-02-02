@@ -14,6 +14,7 @@ import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfLayerType;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
@@ -47,7 +48,8 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 									SERVICE extends GeoJsfService<L,D,LAYER>,
-									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,DS,SLD>,
+									LT extends GeoJsfLayerType<L,D,LT,?>,
 									MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 									SCALE extends GeoJsfScale<L,D>, 
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,

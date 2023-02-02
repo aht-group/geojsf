@@ -1,21 +1,15 @@
 package org.geojsf.factory.builder;
 
-import java.util.Comparator;
-
 import org.geojsf.factory.ejb.core.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.core.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.core.EjbGeoMapFactory;
 import org.geojsf.factory.ejb.core.EjbGeoServiceFactory;
 import org.geojsf.factory.ejb.core.EjbGeoViewFactory;
-import org.geojsf.factory.ejb.meta.EjbGeoScaleFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
-import org.geojsf.interfaces.model.meta.GeoJsfScale;
-import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
-import org.geojsf.util.comparator.ejb.GeoScaleComparator;
 import org.jeesl.factory.builder.AbstractFactoryBuilder;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
@@ -25,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class GeoCoreFactoryBuilder<L extends JeeslLang, D extends JeeslDescription,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,?,?>,
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,?,?,?>,
 								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,?>,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>>
 				extends AbstractFactoryBuilder<L,D>

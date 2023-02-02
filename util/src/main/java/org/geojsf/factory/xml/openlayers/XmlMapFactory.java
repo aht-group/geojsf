@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 public class XmlMapFactory <L extends JeeslLang, D extends JeeslDescription,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-							LAYER extends GeoJsfLayer<L,D,CATEGORY,?,VP,?,?>,
+							LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,VP,?,?>,
 							MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 							SCALE extends GeoJsfScale<L,D>, 
 							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,

@@ -19,7 +19,7 @@ import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Layer",category="core",subset="core,viewport,datasource")
-public class DefaultGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSld>
+public class DefaultGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayerType,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSld>
 {
 	public static enum Code {welcome}
 	

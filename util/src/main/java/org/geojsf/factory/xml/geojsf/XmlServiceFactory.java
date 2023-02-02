@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class XmlServiceFactory <L extends JeeslLang, D extends JeeslDescription,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 							SERVICE extends GeoJsfService<L,D,LAYER>,
-							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,?,?>,
+							LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,?,?>,
 							VIEW extends GeoJsfView<LAYER,?,VIEW>,
 							VP extends GeoJsfViewPort>
 					implements Serializable

@@ -5,6 +5,7 @@ import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfLayerType;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
@@ -34,7 +35,8 @@ import org.slf4j.LoggerFactory;
 public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,DS,SLD>,
+								LT extends GeoJsfLayerType<L,D,LT,?>,
 								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 								SCALE extends GeoJsfScale<L,D>, 
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
@@ -90,8 +92,10 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 	public static <L extends JeeslLang, D extends JeeslDescription,
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
-					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
-					MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>, SCALE extends GeoJsfScale<L,D>, 
+					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,DS,SLD>,
+					LT extends GeoJsfLayerType<L,D,LT,?>,
+					MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
+					SCALE extends GeoJsfScale<L,D>, 
 					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
@@ -102,14 +106,14 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 					JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 					JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
 					JL extends GeoJsfLocationLevel<L,D,JL,?>> 
-		DbGeoServerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
+		DbGeoServerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>
 		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
 					final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
 				
 				final Class<L> cL, final Class<D> cD, final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer, final Class<MAP> cMap, final Class<VIEW> cView, final Class<VP> cVp,JeeslFacade fUtils,
 					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo)
 	{
-		return new DbGeoServerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>(fbCore,fbMeta,cL,cD,cCategory,cService,cLayer,cMap,cView,cVp,fUtils,fGeo);
+		return new DbGeoServerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE,JSON,JQ,JL>(fbCore,fbMeta,cL,cD,cCategory,cService,cLayer,cMap,cView,cVp,fUtils,fGeo);
 	}
 
 	public void iuGeoJsf(Repository repository, Layers layers, Maps maps, String[] langKeys) throws UtilsConfigurationException
@@ -117,7 +121,7 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 		logger.info("Importing/Updating GeoJSF "+Service.class.getSimpleName()+"/"+Layer.class.getSimpleName()+"/"+Map.class.getSimpleName());
 		
 		DbServiceInit<L,D,SERVICE> serviceInit = DbServiceInit.factory(cL,cD,cService,fUtils);
-		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit = DbLayerInit.factory(fbCore,fbMeta,cCategory,cService,cLayer,cVp,fUtils,fGeo);
+		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit = DbLayerInit.factory(fbCore,fbMeta,cCategory,cService,cLayer,cVp,fUtils,fGeo);
 		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> viewInit = DbMapInit.factory(fbCore,fbMeta,cLayer,cMap,cView,cVp,fUtils,fGeo);
 		
 		serviceInit.iuServices(repository);

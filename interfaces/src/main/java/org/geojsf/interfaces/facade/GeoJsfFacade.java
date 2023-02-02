@@ -16,7 +16,7 @@ import org.jeesl.interfaces.model.system.locale.JeeslLang;
 public interface GeoJsfFacade <L extends JeeslLang, D extends JeeslDescription,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,?>,
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,DS,?>,
 								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,

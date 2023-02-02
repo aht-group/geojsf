@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AbstractSldLibraryServlet<L extends JeeslLang,D extends JeeslDescription,
-										LAYER extends GeoJsfLayer<L,D,?,?,?,?,SLD>,
+										LAYER extends GeoJsfLayer<L,D,?,?,?,?,?,SLD>,
 										MAP extends GeoJsfMap<L,D,?,?,?>,
 										SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
 										SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,

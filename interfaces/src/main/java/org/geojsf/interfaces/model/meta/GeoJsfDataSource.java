@@ -17,7 +17,7 @@ import org.jeesl.interfaces.qualifier.rest.option.DownloadJeeslDescription;
 @DownloadJeeslDescription
 @DownloadJeeslAttributes
 public interface GeoJsfDataSource<L extends JeeslLang,D extends JeeslDescription,
-									LAYER extends GeoJsfLayer<L,D,?,?,?,?,?>
+									LAYER extends GeoJsfLayer<L,D,?,?,?,?,?,?>
 									>
 			extends Serializable,EjbRemoveable,EjbPersistable,EjbWithId,EjbSaveable,EjbWithLangDescription<L,D>
 {

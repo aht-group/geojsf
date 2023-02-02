@@ -12,7 +12,7 @@ public class TxtOpenlayersLayerFactory
 	final static Logger logger = LoggerFactory.getLogger(TxtOpenlayersLayerFactory.class);
 	
 	public static <SERVICE extends GeoJsfService<?,?,LAYER>,
-					LAYER extends GeoJsfLayer<?,?,?,SERVICE,?,?,?>> 
+					LAYER extends GeoJsfLayer<?,?,?,SERVICE,?,?,?,?>> 
 		String buildLayerString(SERVICE service)
 	{
 		List<LAYER> layers = service.getLayer();

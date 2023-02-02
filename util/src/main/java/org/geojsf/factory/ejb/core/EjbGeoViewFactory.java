@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class EjbGeoViewFactory<L extends JeeslLang,D extends JeeslDescription,
-								LAYER extends GeoJsfLayer<L,D,?,?,?,?,?>,
+								LAYER extends GeoJsfLayer<L,D,?,?,?,?,?,?>,
 								MAP extends GeoJsfMap<L,D,?,VIEW,?>,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>
 								>

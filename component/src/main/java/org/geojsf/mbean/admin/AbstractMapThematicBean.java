@@ -48,7 +48,7 @@ import net.sf.exlp.util.io.StringUtil;
 public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 										SERVICE extends GeoJsfService<L,D,LAYER>,
-										LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,VP,DS,SLD>,
+										LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,DS,SLD>,
 										MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 										SCALE extends GeoJsfScale<L,D>, 
 										VIEW extends GeoJsfView<LAYER,MAP,VIEW>,

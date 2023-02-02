@@ -23,7 +23,7 @@ import org.jeesl.interfaces.qualifier.rest.option.DownloadJeeslDescription;
 public interface GeoJsfLayer<L extends JeeslLang, D extends JeeslDescription,
 							CATEGORY extends GeoJsfCategory<L,D,?>,
 							SERVICE extends GeoJsfService<L,D,?>,
-//							LT extends GeoJsfLayerType<L,D,LT,?>,
+							LT extends GeoJsfLayerType<L,D,LT,?>,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,?>,
 							SLD extends GeoJsfSld<L,D,?,?,?>>

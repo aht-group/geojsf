@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class EjbGeoLayerFactory<L extends JeeslLang,D extends JeeslDescription,
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
-								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,?,?>
+								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,?,?,?>
 								>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoLayerFactory.class);

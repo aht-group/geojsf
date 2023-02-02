@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-public class JdomNamedLayerFactory <LAYER extends GeoJsfLayer<?,?,?,?,?,?,SLD>,
+public class JdomNamedLayerFactory <LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,SLD>,
 									TEMPLATE extends GeoJsfSldTemplate<?,?>,
 									SLDTYPE extends GeoJsfSldType<?,?,SLDTYPE,?>,
 									SLD extends GeoJsfSld<?,?,TEMPLATE,SLDTYPE,?>>

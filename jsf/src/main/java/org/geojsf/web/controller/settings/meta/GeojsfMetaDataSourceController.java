@@ -26,9 +26,7 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class GeojsfMetaDataSourceController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
-									
-									LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,DS,?>,
-									
+									LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,?,DS,?>,
 									DS extends GeoJsfDataSource<L,D,LAYER>>
 		extends AbstractJeeslWebController<L,D,LOC>
 		implements Serializable

@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoSldFactoryBuilder<L extends JeeslLang,D extends JeeslDescription,
-									LAYER extends GeoJsfLayer<L,D,?,?,?,?,SLD>,
+									LAYER extends GeoJsfLayer<L,D,?,?,?,?,?,SLD>,
 									TEMPLATE extends GeoJsfSldTemplate<L,D>,
 									SLD extends GeoJsfSld<L,D,TEMPLATE,TYPE,RULE>,
 									TYPE extends GeoJsfSldType<L,D,TYPE,?>,
