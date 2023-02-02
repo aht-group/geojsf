@@ -378,7 +378,7 @@
 					  layer.set('name', name);
 					  GeoJSF.map.addLayer(layer);
 					 // var layerExtent = layer.getSource().getExtent();
-					GeoJSF.map.getView().fit(extents, GeoJSF.map.getSize());
+				//	GeoJSF.map.getView().fit(extents, GeoJSF.map.getSize());
 		  },
 
 		addPointDataLayerWithSld : function(name, url, sldLayerUrl)

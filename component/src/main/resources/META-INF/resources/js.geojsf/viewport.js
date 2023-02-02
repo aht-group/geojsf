@@ -3,7 +3,7 @@ var GeoJsfViewport = {
 		center : function(lon,lat,resolution,zoom)
 		{
 			// Coordinates must be transformed from GPS to Web Mercator
-			GeoJSF.map.getView().setCenter(ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'));
+			GeoJSF.map.getView().setCenter(ol.proj.transform([lat, lon], 'EPSG:4326', 'EPSG:3857'));
 			
 			// Set the resolution if given
 			if (resolution) {console.log("Rendering Resolution of " +resolution); GeoJSF.map.getView().setResolution(resolution);}
