@@ -29,6 +29,10 @@ public class DefaultGeoJsfViewPort implements Serializable,EjbRemoveable,EjbPers
 	@Override public int getScale(){return scale;}
 	@Override public void setScale(int scale){this.scale = scale;}
 	
+	private Double zoom;
+	@Override public double getZoom(){return zoom;}
+	@Override public void setZoom(double zoom){this.zoom = zoom;}
+	
 	private double marginLeft;
 	@Override public double getMarginLeft() {return marginLeft;}
 	@Override public void setMarginLeft(double marginLeft) {this.marginLeft=marginLeft;}

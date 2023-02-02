@@ -5,10 +5,12 @@ import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.AjaxBehaviorListener;
 import javax.faces.event.FacesListener;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.model.xml.geojsf.Scale;
 import org.geojsf.model.xml.geojsf.ViewPort;
+import org.geojsf.util.GeoJsfDistanceCalculator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,7 +61,7 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 		click = new Coordinate();
 		click.setLat(new Double(lat));
 		click.setLon(new Double(lon));
-		logger.trace("Setting click coordinates: lat:"+lat+" lon:"+lon);
+		logger.info("Setting click coordinates: lat:"+lat+" lon:"+lon);
 	}
 
 	public void setSelectedFeature(java.util.Map<String,String> params)
@@ -78,46 +80,72 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 		{
 			String viewPortCenterLon = params.get("org.geojsf.viewport.center.lon");
 			String viewPortCenterLat = params.get("org.geojsf.viewport.center.lat");
+			String viewPortZoom		 = params.get("org.geojsf.viewport.zoom");
+			String viewPortScale	 = params.get("org.geojsf.viewport.scale");
 			String viewPortBottom    = params.get("org.geojsf.viewport.bottom");
 			String viewPortTop       = params.get("org.geojsf.viewport.top");
 			String viewPortLeft      = params.get("org.geojsf.viewport.left");
 			String viewPortRight     = params.get("org.geojsf.viewport.right");
+
+			logger.info("org.geojsf.viewport.bottom "+viewPortBottom);
+			logger.info("org.geojsf.viewport.top "+viewPortTop);
+			logger.info("org.geojsf.viewport.left "+viewPortLeft);
+			logger.info("org.geojsf.viewport.right "+viewPortRight);
+	
 
 			boolean debug = false;
 			if(debug)
 			{
 				logger.info("org.geojsf.viewport.center.lon "+viewPortCenterLon);
 				logger.info("org.geojsf.viewport.center.lat "+viewPortCenterLat);
-				logger.info("org.geojsf.viewport.bottom "+viewPortBottom);
-				logger.info("org.geojsf.viewport.top "+viewPortTop);
-				logger.info("org.geojsf.viewport.left "+viewPortLeft);
-				logger.info("org.geojsf.viewport.right "+viewPortRight);
 			}
 
-			setViewport(viewPortCenterLat, viewPortCenterLon, viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
-			addScale(params.get("org.geojsf.viewport.scale"));
+			setViewport(viewPortCenterLat, viewPortCenterLon, viewPortZoom, viewPortScale,viewPortTop, viewPortBottom, viewPortLeft, viewPortRight);
 		}
-		catch (Exception ex) {}
+		catch (Exception ex) 
+		{
+			ex.printStackTrace();
+		}
 	}
 
-	public void setViewport(String lat, String lon, String top, String bottom, String left, String right)
+	public void setViewport(String viewPortCenterLat,String viewPortCenterLon, String viewPortZoom, String viewPortScale, String top, String bottom, String left, String right)
 	{
 		viewPort = new org.geojsf.model.xml.geojsf.ViewPort();
-		viewPort.setLat(new Double(lat));
-		viewPort.setLon(new Double(lon));
+		viewPort.setLat(Double.parseDouble(viewPortCenterLat));
+		viewPort.setLon(Double.parseDouble(viewPortCenterLon));
 		viewPort.setTop(new Double(top));
 		viewPort.setBottom(new Double(bottom));
 		viewPort.setLeft(new Double(left));
 		viewPort.setRight(new Double(right));
+		Scale scale = new Scale();
+		scale.setValue((new Double(viewPortScale)).intValue());
+		scale.setZoom((new Double(viewPortZoom)).intValue());
+		viewPort.setScale(scale);
+		JaxbUtil.info(viewPort);
+		org.locationtech.jts.geom.Coordinate start = new org.locationtech.jts.geom.Coordinate(viewPort.getLeft(), viewPort.getTop());
+		org.locationtech.jts.geom.Coordinate end   = new org.locationtech.jts.geom.Coordinate(viewPort.getLeft(), viewPort.getBottom());
+		Double distance;
+		try {
+			distance = GeoJsfDistanceCalculator.getDistance(start, end);
+			logger.info("Distance by GeoTools: " +distance + " m - will be ignored for given scale/resolution");
+		//	viewPort.getScale().setValue(distance.intValue());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
 	}
 
-	public void addScale(String scale)
+	public void addScale(String scale, String zoom)
 	{
 		Scale scl = new Scale();
-		scl.setValue(new Integer(scale));
+		scl.setValue(new Integer(scale).intValue());
+		scl.setZoom(new Double(zoom).doubleValue());
 		addScale(scl);
 	}
-	public void addScale(Scale scale){viewPort.setScale(scale);}
+	public void addScale(Scale scale)
+	{
+		viewPort.setScale(scale);
+	}
 
 
 	@Override public boolean isAppropriateListener(FacesListener faceslistener) {return (faceslistener instanceof AjaxBehaviorListener);}

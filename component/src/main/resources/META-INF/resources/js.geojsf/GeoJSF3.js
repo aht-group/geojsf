@@ -1,3 +1,4 @@
+
 /**
  * Protect window.console method calls, e.g. console is not defined on IE
  * unless dev tools are open, and IE doesn't define console.debug
@@ -39,7 +40,6 @@
 		  feature: null,
 		  vectorSource: null,
 		  scaleValues: null,
-			  
 		  iconStyle: new ol.style.Style({
 					  image: new ol.style.Icon({
 						anchor: [0.5, 0.75],
@@ -94,9 +94,10 @@
 		  {
 			  console.log("mapMove");
 			  console.log(event);
-				  
-						  
+				  GeoJsfUtil.triggerJsfAjaxEvent(event, "mapMove");
+						  /*
 			  this.centerLat             = ol.proj.transform(event.map.getView().getCenter(), 'EPSG:3857', 'EPSG:4326')[0];
+			  this.centerLon             = ol.proj.transform(event.map.getView().getCenter(), 'EPSG:3857', 'EPSG:4326')[1];
 			  this.centerLon             = ol.proj.transform(event.map.getView().getCenter(), 'EPSG:3857', 'EPSG:4326')[1];
 			  
 			  // var extent = event.map.getView().calculateExtent(event.map.getSize());
@@ -129,6 +130,7 @@
 				   console.log("MapMove failed." +e);
 			  }
 			  finally {}
+			  */
 		  },
 		  
 			mapScale : function () {
@@ -162,14 +164,18 @@
 		  processEventClick : function(event)
 		  {
 			  console.log("mapClick detected");
+			  GeoJsfUtil.triggerJsfAjaxEvent(event, "mapClick");
+			  /*
 			  this.centerLat             = event.map.getView().getCenter()[1];
 			  this.centerLon             = event.map.getView().getCenter()[0];
-						  var extent = event.map.getView().calculateExtent(event.map.getSize());
-			  this.viewportBoundTop      = extent[0];
-			  this.viewportBoundBottom   = extent[1];
-			  this.viewportBoundLeft     = extent[2];
-			  this.viewportBoundRight    = extent[3];
+				var extent = event.map.getView().calculateExtent(event.map.getSize());
+			  this.viewportBoundTop      = ol.proj.transform(extent[0], 'EPSG:3857', 'EPSG:4326');
+			  this.viewportBoundBottom   = ol.proj.transform(extent[1], 'EPSG:3857', 'EPSG:4326');
+			  this.viewportBoundLeft     = ol.proj.transform(extent[2], 'EPSG:3857', 'EPSG:4326');
+			  this.viewportBoundRight    = ol.proj.transform(extent[3], 'EPSG:3857', 'EPSG:4326');
 			  var lonlat                 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+			  console.log(this.viewportBoundTop);
+			  console.log(extent);
 			  try {
 				  PrimeFaces.ab({
 					  process:  '@form', 
@@ -190,7 +196,7 @@
 								{name: 'org.geojsf.viewport.scale',                    value:   Math.floor( GeoJSF.mapScale() )},
 							   ],
 					   oncomplete: function(xhr, status, args) {
-							 console.log('mapClick AJAX request sent. Resolution : ' +GeoJSF.map.getView().getResolution()+ ' ' +GeoJSF.map.getView().getProjection().getUnits())
+							 console.log('mapClick AJAX request sent. Resolution : ' +GeoJSF.map.getView().getResolution()+ ' ' +GeoJSF.map.getView().getProjection().getUnits());
 							clickSearcher.updateCircleOnClick(lonlat);
 					   }
 				  });
@@ -198,12 +204,13 @@
 				   console.log("MapClick failed." +e);
 			  }
 				  finally {}
+			  */
 		  },
 		  
 		  processEventPointerMove : function(event)
 		  {
-			  console.log("processEventPointerMove");
-			  console.log(event);
+			// console.log("processEventPointerMove");
+			//  console.log(event);
 				  
 					  
 			 if (GeoJSF.toolTipFeature !== null) {
@@ -332,7 +339,7 @@
 					  var viewOfMap = GeoJSF.map.getView();
 					  console.log("View of Map:" +viewOfMap);
 					  console.log("View Projection: " +viewOfMap.getProjection().getCode());
-					  console.log("View Center: " +viewOfMap.getCenter());
+					  //console.log("View Center: " +viewOfMap.getCenter());
 					  
 					  var bounds = viewOfMap.calculateExtent(sizeOfMap);
 					  console.log("Bounds: " +bounds);
@@ -349,6 +356,12 @@
 					  // Now get the bottom left of this extent array
 					  // e.g. [13.970363546985254, 13.30751144611122]
 					  var coordinates = ol.extent.getBottomLeft(extent);
+					  
+					  // Center the map with the center of the new layer
+					  // e.g. [13.970363546985254, 13.30751144611122]
+					 // var coordinates = ol.extent.getBottomLeft(extent);
+					  
+					  //GeoJSF.map.getView().setCenter([0,0]);
   
 					  console.log(coordinates);
   
@@ -364,6 +377,8 @@
 						  });
 					  layer.set('name', name);
 					  GeoJSF.map.addLayer(layer);
+					 // var layerExtent = layer.getSource().getExtent();
+					GeoJSF.map.getView().fit(extents, GeoJSF.map.getSize());
 		  },
 
 		addPointDataLayerWithSld : function(name, url, sldLayerUrl)
@@ -920,5 +935,5 @@
 			  GeoJSF.map.removeLayer(this.lastMarker);
 			  this.lastMarker = '';
 		  }
-	  },
+	  }
   };

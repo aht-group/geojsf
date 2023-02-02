@@ -102,6 +102,18 @@
                 </exclusion>
 			</exclusions>
         </dependency>
+		<dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geometry</artifactId>
+            <version>24.6</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+                </exclusion>
+			</exclusions>
+        </dependency>
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-geojson</artifactId>
@@ -313,6 +325,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
 		<dependency>	<!-- Required for GeoJsonReader -->
 			<groupId>com.vividsolutions</groupId>
 			<artifactId>jts-io</artifactId>
@@ -429,5 +442,19 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<repositories>
+		<repository>
+		    <id>osgeo</id>
+		    <name>OSGeo Release Repository</name>
+		    <url>https://repo.osgeo.org/repository/release/</url>
+		    <releases>
+			<enabled>true</enabled>
+		    </releases>
+		    <snapshots>
+			<enabled>false</enabled>
+		    </snapshots>
+		</repository>
+	</repositories>
 	
 </project>

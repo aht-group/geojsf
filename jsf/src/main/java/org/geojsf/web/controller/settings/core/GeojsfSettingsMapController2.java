@@ -227,12 +227,11 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 		reloadMap();
 	}
 	
-	public void mapMove(AjaxBehaviorEvent ev)
+	public void mapMove(MapAjaxEvent ev)
 	{
 		MapAjaxEvent evt = (MapAjaxEvent) ev;
 		logger.trace("Viewport: "+evt.getViewPort().getLat() +"/" +evt.getViewPort().getLon() +" in bounds of " +evt.getViewPort().getTop() +" and " +evt.getViewPort().getBottom());
 		efViewPort.update(viewPort,evt.getViewPort());
-		logger.info(viewPort.getLon()+"/"+viewPort.getLat());
 	}
 	
 	public void saveViewPort() throws JeeslConstraintViolationException, JeeslLockingException

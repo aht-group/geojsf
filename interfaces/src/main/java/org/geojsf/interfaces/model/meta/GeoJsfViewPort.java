@@ -19,6 +19,9 @@ public interface GeoJsfViewPort extends Serializable,EjbRemoveable,EjbPersistabl
 	int getScale();
 	void setScale(int scale);
 	
+	double getZoom();
+	void setZoom(double zoom);
+	
 	double getMarginLeft();
 	void setMarginLeft(double marginLeft);
 	

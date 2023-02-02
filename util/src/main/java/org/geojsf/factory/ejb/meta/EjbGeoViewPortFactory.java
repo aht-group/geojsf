@@ -52,6 +52,7 @@ public class EjbGeoViewPortFactory<VP extends GeoJsfViewPort>
 	public VP update(VP viewPort, ViewPort xmlViewPort)
 	{
 		viewPort.setScale(xmlViewPort.getScale().getValue());
+		viewPort.setZoom(xmlViewPort.getScale().getZoom());
 		
 		viewPort.setMarginLeft(xmlViewPort.getLeft());
 		viewPort.setMarginRight(xmlViewPort.getRight());

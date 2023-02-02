@@ -43,7 +43,7 @@ public class Scale
     @XmlAttribute(name = "unit")
     protected String unit;
     @XmlAttribute(name = "zoom")
-    protected Integer zoom;
+    protected Double zoom;
 
     /**
      * Gets the value of the value property.
@@ -101,7 +101,7 @@ public class Scale
      *     {@link Integer }
      *     
      */
-    public int getZoom() {
+    public double getZoom() {
         return zoom;
     }
 
@@ -113,7 +113,7 @@ public class Scale
      *     {@link Integer }
      *     
      */
-    public void setZoom(int value) {
+    public void setZoom(double value) {
         this.zoom = value;
     }
 

@@ -50,7 +50,7 @@
         	<xsd:simpleContent>
                 <xsd:extension base="xsd:int">
                     <xsd:attribute name="unit" type="xsd:string"/>
-                    <xsd:attribute name="zoom" type="xsd:int"/>
+                    <xsd:attribute name="zoom" type="xsd:double"/>
                 </xsd:extension>
             </xsd:simpleContent>
         </xsd:complexType>
