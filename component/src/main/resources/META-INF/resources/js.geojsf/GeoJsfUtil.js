@@ -48,8 +48,8 @@ var GeoJsfUtil = {
 			// Getting view information
 			var centerCoordinates	   = ol.proj.transform(olEventObject.map.getView().getCenter(), 'EPSG:3857', 'EPSG:4326');
 			var extent				   = olEventObject.map.getView().calculateExtent(olEventObject.map.getSize());
-			this.centerLat             = centerCoordinates[0];
-			this.centerLon             = centerCoordinates[1];
+			this.centerLat             = centerCoordinates[1];
+			this.centerLon             = centerCoordinates[0];
 			this.viewportBoundTop      = ol.proj.transform(ol.extent.getTopLeft(extent), 'EPSG:3857', 'EPSG:4326')[1];
 			this.viewportBoundBottom   = ol.proj.transform(ol.extent.getBottomLeft(extent), 'EPSG:3857', 'EPSG:4326')[1];
 			this.viewportBoundLeft     = ol.proj.transform(ol.extent.getBottomLeft(extent), 'EPSG:3857', 'EPSG:4326')[0];
@@ -70,14 +70,14 @@ var GeoJsfUtil = {
 					event:    jsfEventName, 
 					update:   GeoJSF.updateOnClick,
 					params: [
-							{name: 'org.geojsf.click.lat',						value: latlon[0]},
-							{name: 'org.geojsf.click.lon',						value: latlon[1]},
+							{name: 'org.geojsf.click.lat',						value: latlon[1]},
+							{name: 'org.geojsf.click.lon',						value: latlon[0]},
 							{name: 'org.geojsf.viewport.center.lon',            value: this.centerLon},
 							{name: 'org.geojsf.viewport.center.lat',            value: this.centerLat},
-							{name: 'org.geojsf.viewport.bottom',                   value: this.viewportBoundBottom},
-							{name: 'org.geojsf.viewport.top',                      value: this.viewportBoundTop},
-							{name: 'org.geojsf.viewport.left',                     value: this.viewportBoundLeft},
-							{name: 'org.geojsf.viewport.right',                    value: this.viewportBoundRight},	
+							{name: 'org.geojsf.viewport.bottom',                value: this.viewportBoundBottom},
+							{name: 'org.geojsf.viewport.top',                   value: this.viewportBoundTop},
+							{name: 'org.geojsf.viewport.left',                  value: this.viewportBoundLeft},
+							{name: 'org.geojsf.viewport.right',                 value: this.viewportBoundRight},	
 							{name: 'org.geojsf.viewport.zoom',					value: GeoJSF.map.getView().getZoom()},
 							{name: 'org.geojsf.viewport.unit',                  value: GeoJSF.map.getView().getProjection().getUnits()},
 						//	{name: 'org.geojsf.viewport.scale',                 value: Math.floor( GeoJsfUtil.getCurrentScale() )}
