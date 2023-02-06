@@ -24,8 +24,8 @@ public class TxtCoordinateFactory
 	public String build(Coordinate coordinate)
 	{
 		StringBuffer sb = new StringBuffer();
-		sb.append("Latitue ").append(df.format(coordinate.getLat()));
-		sb.append(" Longitue:").append(df.format(coordinate.getLon()));
+		sb.append("Latitude ").append(df.format(coordinate.getLat()));
+		sb.append(" Longitude:").append(df.format(coordinate.getLon()));
 		sb.append(" (Remember: lines of latitude run east/west, like equator with latitude 0)");
 		return sb.toString();
 	}
