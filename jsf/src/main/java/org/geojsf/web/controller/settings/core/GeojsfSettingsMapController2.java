@@ -3,8 +3,6 @@ package org.geojsf.web.controller.settings.core;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.event.AjaxBehaviorEvent;
-
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.ejb.core.EjbGeoMapFactory;
@@ -51,7 +49,7 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 	
 	private GeoJsfFacade<L,D,CATEGORY,?,LAYER,MAP,VIEW,VP,?> fGeo;
 	
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,MAP,VIEW> fbCore;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,MAP,VIEW> fbCore;
 	
 	private final EjbGeoMapFactory<L,D,MAP> efMap;
 	private final EjbGeoViewFactory<L,D,LAYER,MAP,VIEW> efView;
@@ -65,7 +63,7 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 	private VIEW view; public VIEW getView() {return view;} public void setView(VIEW view){this.view = view;}
 	private VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort) {this.viewPort = viewPort;}
 	
-	public GeojsfSettingsMapController2(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,MAP,VIEW> fbCore,
+	public GeojsfSettingsMapController2(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,MAP,VIEW> fbCore,
 									GeoMetaFactoryBuilder<L,D,?,VP,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());

@@ -15,6 +15,7 @@ import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
 import org.jeesl.interfaces.model.with.primitive.position.EjbWithPositionVisibleParent;
 import org.jeesl.interfaces.model.with.system.locale.EjbWithDescription;
 import org.jeesl.interfaces.model.with.system.locale.EjbWithLang;
+import org.jeesl.interfaces.model.with.system.status.JeeslWithType;
 import org.jeesl.interfaces.qualifier.rest.option.DownloadJeeslAttributes;
 import org.jeesl.interfaces.qualifier.rest.option.DownloadJeeslDescription;
 
@@ -28,7 +29,7 @@ public interface GeoJsfLayer<L extends JeeslLang, D extends JeeslDescription,
 							DS extends GeoJsfDataSource<L,D,?>,
 							SLD extends GeoJsfSld<L,D,?,?,?>>
 			extends Serializable,EjbRemoveable,EjbPersistable,EjbSaveable,EjbWithCode,EjbWithPositionVisibleParent,
-					EjbWithLang<L>,EjbWithDescription<D>
+					EjbWithLang<L>,EjbWithDescription<D>,JeeslWithType<LT>
 {
 	public enum Attributes{category,name}
 	

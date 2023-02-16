@@ -83,7 +83,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	public VP getViewPort(){return viewPort;}
 	public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 	
-	public AbstractMapThematicBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+	public AbstractMapThematicBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
 									GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
 									GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld)
 	{

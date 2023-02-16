@@ -39,7 +39,7 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 public class GeojsfSettingsLayerController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 									SERVICE extends GeoJsfService<L,D,LAYER>,
-									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,?,SLD>,
+									LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,LT,VP,?,SLD>,
 									LT extends GeoJsfLayerType<L,D,LT,?>,
 									MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
@@ -52,7 +52,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsLayerController.class);
 	
 	private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo;
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,VIEW> fbCore;
 	
 	private final EjbGeoMapFactory<L,D,MAP> efMap;
 	private final EjbGeoViewPortFactory<VP> efViewPort;
@@ -61,6 +61,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private List<SERVICE> services; public List<SERVICE> getServices() {return services;}
 	private List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
 	private List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
+	private final List<LT> layerTypes; public List<LT> getLayerTypes() {return layerTypes;}
 	private final List<VIEW> views; public List<VIEW> getViews() {return views;}
 	private List<SLD> slds; public List<SLD> getSlds() {return slds;}
 
@@ -70,7 +71,8 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private MAP map; public MAP getMap() {return map;}
 	private VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 		
-	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore, GeoMetaFactoryBuilder<L,D,?,VP,?> fbMeta)
+	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,VIEW> fbCore,
+											GeoMetaFactoryBuilder<L,D,?,VP,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore = fbCore;
@@ -80,6 +82,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		efViewPort = fbMeta.ejbViewPort();
 		
 		views = new ArrayList<>();
+		layerTypes = new ArrayList<>();
 	}
 	
 	public void postConstructService(GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo,
@@ -90,6 +93,8 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		this.fGeo=fGeo;
 
 		slds = fSld.fLibrarySlds();
+		
+		layerTypes.addAll(fGeo.allOrderedPositionVisible(fbCore.getClassLayerType()));
 		
 		this.reloadServices();
 		this.reloadCategories();

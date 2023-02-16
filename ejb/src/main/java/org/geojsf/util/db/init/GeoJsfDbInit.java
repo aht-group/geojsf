@@ -61,7 +61,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfDbInit.class);
 	
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore;
 	private final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta;
 	
     private final Class<LAYER> cLayer;
@@ -81,7 +81,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
     private EjbGeoSldTemplateFactory<SLDTEMPLATE> efSldTemplate;
     
-    public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+    public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
     					final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
     					final GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld,
     					JeeslFacade fUtils, String[] langKeys,
@@ -126,7 +126,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 				SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 				SLDTEMPLATE extends GeoJsfSldTemplate<L,D>> 
 		GeoJsfDbInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
 				final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta,
 				final GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld,
 				JeeslFacade fUtils,

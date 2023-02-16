@@ -72,13 +72,13 @@ public class DummyViewFactory<L extends JeeslLang,D extends JeeslDescription,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>>
     	DummyViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
-    	factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+    	factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
     			final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)
     {
         return new DummyViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>(fbCore,clLayer,clMap,clView);
     }
 	
-    public DummyViewFactory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore,
+    public DummyViewFactory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
     						final Class<LAYER> clLayer,final Class<MAP> clMap,final Class<VIEW> clView)
     {
         this.clLayer = clLayer;

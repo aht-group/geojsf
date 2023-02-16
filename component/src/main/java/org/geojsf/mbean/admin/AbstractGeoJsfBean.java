@@ -45,7 +45,7 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 	protected GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo;
 	protected JeeslTranslationBean<L,D,LOC> bTranslation;
 	
-	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore;
+	protected final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore;
 
 
 	protected final EjbLangFactory<L> efLang;
@@ -54,7 +54,7 @@ public class AbstractGeoJsfBean <L extends JeeslLang, D extends JeeslDescription
 	protected final EjbGeoLayerFactory<L,D,CATEGORY,SERVICE,LAYER> efLayer;
 	protected final EjbGeoMapFactory<L,D,MAP> efMap;
 
-	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW> fbCore)
+	public AbstractGeoJsfBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore)
 	{
 		this.fbCore=fbCore;
 	

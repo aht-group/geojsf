@@ -47,7 +47,7 @@ public class GeojsfSettingsMapController1 <L extends JeeslLang, D extends JeeslD
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsMapController1.class);
 	
-	private final GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,MAP,VIEW> fbCore;
+	private final GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,MAP,VIEW> fbCore;
 	
 	private GeoJsfFacade<L,D,CATEGORY,?,LAYER,MAP,VIEW,VP,?> fGeo;
 	
@@ -64,7 +64,7 @@ public class GeojsfSettingsMapController1 <L extends JeeslLang, D extends JeeslD
 	private VIEW view; public VIEW getView(){return view;} public void setView(VIEW view) {this.view = view;}
 	private VP viewPort; public VP getViewPort(){return viewPort;} public void setViewPort(VP viewPort) {this.viewPort = viewPort;}
 	
-	public GeojsfSettingsMapController1(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,MAP,VIEW> fbCore,
+	public GeojsfSettingsMapController1(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,MAP,VIEW> fbCore,
 									GeoMetaFactoryBuilder<L,D,?,VP,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());

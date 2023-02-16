@@ -39,6 +39,11 @@ public class DefaultGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,Default
 	@Override public DefaultGeoJsfCategory getCategory(){return category;}
 	@Override public void setCategory(DefaultGeoJsfCategory category){this.category = category;}
 
+	@ManyToOne
+	private DefaultGeoJsfLayerType type;
+	@Override public DefaultGeoJsfLayerType getType() {return type;}
+	@Override public void setType(DefaultGeoJsfLayerType type) {this.type = type;}
+	
 	private String code;
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}

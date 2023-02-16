@@ -7,6 +7,7 @@ import org.geojsf.factory.ejb.core.EjbGeoServiceFactory;
 import org.geojsf.factory.ejb.core.EjbGeoViewFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
+import org.geojsf.interfaces.model.core.GeoJsfLayerType;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
@@ -20,6 +21,7 @@ public class GeoCoreFactoryBuilder<L extends JeeslLang, D extends JeeslDescripti
 								CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 								SERVICE extends GeoJsfService<L,D,LAYER>,
 								LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,?,?,?>,
+								LT extends GeoJsfLayerType<L,D,LT,?>,
 								MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,?>,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>>
 				extends AbstractFactoryBuilder<L,D>
@@ -29,6 +31,7 @@ public class GeoCoreFactoryBuilder<L extends JeeslLang, D extends JeeslDescripti
 	private final Class<CATEGORY> cCategory; public Class<CATEGORY> getClassCategory() {return cCategory;}
 	private final Class<SERVICE> cService; public Class<SERVICE> getClassService() {return cService;}
 	private final Class<LAYER> cLayer; public Class<LAYER> getClassLayer() {return cLayer;}
+	private final Class<LT> cLayerType; public Class<LT> getClassLayerType() {return cLayerType;}
 	private final Class<MAP> cMap; public Class<MAP> getClassMap() {return cMap;}
 	private final Class<VIEW> cView; public Class<VIEW> getClassView() {return cView;}
 	
@@ -36,6 +39,7 @@ public class GeoCoreFactoryBuilder<L extends JeeslLang, D extends JeeslDescripti
 									final Class<CATEGORY> cCategory,
 									final Class<SERVICE> cService,
 									final Class<LAYER> cLayer,
+									final Class<LT> cLayerType,
 									final Class<MAP> cMap,
 									final Class<VIEW> cView)
 	{
@@ -43,6 +47,7 @@ public class GeoCoreFactoryBuilder<L extends JeeslLang, D extends JeeslDescripti
 		this.cCategory=cCategory;
 		this.cService=cService;
 		this.cLayer=cLayer;
+		this.cLayerType=cLayerType;
 		this.cMap=cMap;
 		this.cView=cView;
 	}
