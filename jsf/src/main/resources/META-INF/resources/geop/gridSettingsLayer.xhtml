@@ -100,6 +100,9 @@
 					<p:column headerText="#{msg.jeeslName}" sortBy="#{l.name[localeCode].lang}">
 						<h:outputText value="#{l.name[localeCode].lang}" />  
 					</p:column>
+					<p:column>
+						<jtp:symbolizer value="#{l.type}"/>  
+					</p:column>
 				</p:dataTable>
 			</h:form>
 			<h:form id="fViews" >
@@ -137,7 +140,8 @@
 						<p:selectBooleanCheckbox value="#{cc.attrs.controller.layer.sqlLayer}" />
 						
 						<jtp:label entity="GeoLayer" code="type"/>
-						<p:selectOneMenu value="#{cc.attrs.controller.layer.type}" effect="fade" autoWidth="false" dynamic="true">  
+						<p:selectOneMenu value="#{cc.attrs.controller.layer.type}" effect="fade" autoWidth="false" dynamic="true">
+							<f:selectItem itemLabel="--"/>  
 							<f:selectItems value="#{cc.attrs.controller.layerTypes}" var="t" itemLabel="#{t.name[localeCode].lang}" itemValue="#{t}"/>
 						</p:selectOneMenu>
 						

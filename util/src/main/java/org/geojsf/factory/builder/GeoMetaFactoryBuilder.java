@@ -3,13 +3,10 @@ package org.geojsf.factory.builder;
 import java.util.Comparator;
 
 import org.geojsf.factory.ejb.meta.EjbGeoDataSourceFactory;
-import org.geojsf.factory.ejb.meta.EjbGeoJsonDataFactory;
 import org.geojsf.factory.ejb.meta.EjbGeoScaleFactory;
 import org.geojsf.factory.ejb.meta.EjbGeoViewPortFactory;
-import org.geojsf.interfaces.model.json.GeoJsfJsonData;
-import org.geojsf.interfaces.model.json.GeoJsfJsonQuality;
-import org.geojsf.interfaces.model.json.GeoJsfLocationLevel;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
+import org.geojsf.interfaces.model.meta.GeoJsfEcql;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.util.comparator.ejb.GeoScaleComparator;
@@ -22,7 +19,9 @@ import org.slf4j.LoggerFactory;
 public class GeoMetaFactoryBuilder<L extends JeeslLang, D extends JeeslDescription,
 									DS extends GeoJsfDataSource<L,D,?>,
 									VP extends GeoJsfViewPort,
-									SCALE extends GeoJsfScale<L,D>>
+									SCALE extends GeoJsfScale<L,D>
+									,ECQL extends GeoJsfEcql<?,?,?>
+>
 				extends AbstractFactoryBuilder<L,D>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoMetaFactoryBuilder.class);

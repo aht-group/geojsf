@@ -27,9 +27,9 @@ public class GeoMetaFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(GeoMetaFacadeBean.class);
 	
-	private final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta;
+	private final GeoMetaFactoryBuilder<L,D,DS,VP,SCALE,?> fbMeta;
 	
-	public GeoMetaFacadeBean(EntityManager em, GeoMetaFactoryBuilder<L,D,DS,VP,SCALE> fbMeta)
+	public GeoMetaFacadeBean(EntityManager em, GeoMetaFactoryBuilder<L,D,DS,VP,SCALE,?> fbMeta)
 	{
 		super(em);
 		this.fbMeta=fbMeta;

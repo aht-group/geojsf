@@ -17,6 +17,7 @@ import org.geojsf.interfaces.model.core.GeoJsfLayerType;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.core.GeoJsfService;
 import org.geojsf.interfaces.model.core.GeoJsfView;
+import org.geojsf.interfaces.model.meta.GeoJsfEcql;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.jsf.event.MapAjaxEvent;
@@ -25,7 +26,10 @@ import org.jeesl.controller.web.AbstractJeeslWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
+import org.jeesl.factory.builder.io.IoRevisionFactoryBuilder;
 import org.jeesl.interfaces.controller.handler.system.locales.JeeslLocaleProvider;
+import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionAttribute;
+import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionEntity;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.JeeslLocale;
@@ -44,6 +48,9 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 									MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
 									VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 									VP extends GeoJsfViewPort,
+									ECQL extends GeoJsfEcql<LAYER,LE,LA>,
+									LE extends JeeslRevisionEntity<L,D,?,?,LA,?>,
+									LA extends JeeslRevisionAttribute<L,D,LE,?,?>,
 									SLD extends GeoJsfSld<L,D,?,?,?>>
 			extends AbstractJeeslWebController<L,D,LOC>
 			implements Serializable
@@ -72,7 +79,8 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort){this.viewPort = viewPort;}
 		
 	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,VIEW> fbCore,
-											GeoMetaFactoryBuilder<L,D,?,VP,?> fbMeta)
+											GeoMetaFactoryBuilder<L,D,?,VP,?,ECQL> fbMeta,
+											IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore = fbCore;

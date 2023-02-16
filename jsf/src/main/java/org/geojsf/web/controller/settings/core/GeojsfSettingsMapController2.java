@@ -64,7 +64,7 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 	private VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort) {this.viewPort = viewPort;}
 	
 	public GeojsfSettingsMapController2(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,MAP,VIEW> fbCore,
-									GeoMetaFactoryBuilder<L,D,?,VP,?> fbMeta)
+									GeoMetaFactoryBuilder<L,D,?,VP,?,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore=fbCore;

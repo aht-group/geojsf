@@ -26,7 +26,7 @@ public class DbViewPortInit <LAYER extends GeoJsfLayer<?,?,?,?,?,VP,?,?>,
     
     private EjbGeoViewPortFactory<VP> efVp;
     
-    public DbViewPortInit(GeoMetaFactoryBuilder<?,?,?,VP,?> fbMeta, final Class<VP> cVp, JeeslFacade fUtils)
+    public DbViewPortInit(GeoMetaFactoryBuilder<?,?,?,VP,?,?> fbMeta, final Class<VP> cVp, JeeslFacade fUtils)
 	{       
         this.cVp = cVp;
         this.fUtils=fUtils;
@@ -39,7 +39,7 @@ public class DbViewPortInit <LAYER extends GeoJsfLayer<?,?,?,?,?,VP,?,?>,
 					MAP extends GeoJsfMap<?,?,?,?,VP>,
 					VP extends GeoJsfViewPort>
 		DbViewPortInit<LAYER,MAP,VP>
-		factory(GeoMetaFactoryBuilder<?,?,?,VP,?> fbMeta, final Class<VP> cVp,JeeslFacade fUtils)
+		factory(GeoMetaFactoryBuilder<?,?,?,VP,?,?> fbMeta, final Class<VP> cVp,JeeslFacade fUtils)
 	{
 		return new DbViewPortInit<LAYER,MAP,VP>(fbMeta,cVp,fUtils);
 	}

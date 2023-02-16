@@ -37,7 +37,7 @@ public class GeojsfMetaDataSourceController <L extends JeeslLang, D extends Jees
 	private GeoMetaFacade<L,D,?,DS,?,?> fGeo;
 	
 	private final GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,?,?> fbCore;
-	private final GeoMetaFactoryBuilder<L,D,DS,?,?> fbMeta;
+	private final GeoMetaFactoryBuilder<L,D,DS,?,?,?> fbMeta;
 	
 	protected final EjbGeoDataSourceFactory<L,D,DS> efDs;
 	
@@ -45,7 +45,7 @@ public class GeojsfMetaDataSourceController <L extends JeeslLang, D extends Jees
 	private List<DS> sources; public List<DS> getSources() {return sources;}
 	
 	public GeojsfMetaDataSourceController(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,?,?> fbCore,
-										GeoMetaFactoryBuilder<L,D,DS,?,?> fbMeta)
+										GeoMetaFactoryBuilder<L,D,DS,?,?,?> fbMeta)
 	{
 		super(fbMeta.getClassL(),fbMeta.getClassD());
 		this.fbCore=fbCore;

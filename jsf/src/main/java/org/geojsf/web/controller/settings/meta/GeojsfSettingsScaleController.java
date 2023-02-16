@@ -36,7 +36,7 @@ public class GeojsfSettingsScaleController <L extends JeeslLang, D extends Jeesl
 	
 	private GeoMetaFacade<L,D,?,?,?,SCALE> fGeo;
 	
-	GeoMetaFactoryBuilder<L,D,?,?,SCALE> fbMeta;
+	private final GeoMetaFactoryBuilder<L,D,?,?,SCALE,?> fbMeta;
 	
 	protected final EjbGeoScaleFactory<SCALE> efScale;
 	
@@ -45,7 +45,7 @@ public class GeojsfSettingsScaleController <L extends JeeslLang, D extends Jeesl
 	
 	private final Comparator<SCALE> cmpScale;
 	
-	public GeojsfSettingsScaleController(GeoMetaFactoryBuilder<L,D,?,?,SCALE> fbMeta)
+	public GeojsfSettingsScaleController(GeoMetaFactoryBuilder<L,D,?,?,SCALE,?> fbMeta)
 	{
 		super(fbMeta.getClassL(),fbMeta.getClassD());
 		this.fbMeta=fbMeta;
