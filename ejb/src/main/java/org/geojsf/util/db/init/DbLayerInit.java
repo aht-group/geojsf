@@ -64,7 +64,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
     private DbViewPortInit<LAYER,MAP,VP> dbVpInit;
     
     public DbLayerInit(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
-    					GeoMetaFactoryBuilder<L,D,DS,VP,SCALE,?> fbMeta,
+    					GeoMetaFactoryBuilder<L,D,LAYER,DS,VP,SCALE,?> fbMeta,
     					final Class<CATEGORY> cCategory, final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,
     					JeeslFacade fUtils,
     					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo)
@@ -99,7 +99,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 	
 		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
-				GeoMetaFactoryBuilder<L,D,DS,VP,SCALE,?> fbMeta,
+				GeoMetaFactoryBuilder<L,D,LAYER,DS,VP,SCALE,?> fbMeta,
 					final Class<CATEGORY> cCategory,final Class<SERVICE> cService, final Class<LAYER> cLayer,final Class<VP> cVp,JeeslFacade fUtils,
 					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo)
 	{

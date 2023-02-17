@@ -3,6 +3,7 @@ package org.geojsf.web.controller.settings.core;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
@@ -22,11 +23,13 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
+import org.jeesl.api.facade.io.JeeslIoRevisionFacade;
 import org.jeesl.controller.web.AbstractJeeslWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.factory.builder.io.IoRevisionFactoryBuilder;
+import org.jeesl.factory.ejb.util.EjbPositionFactory;
 import org.jeesl.interfaces.controller.handler.system.locales.JeeslLocaleProvider;
 import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionAttribute;
 import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionEntity;
@@ -59,7 +62,11 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsLayerController.class);
 	
 	private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo;
+	private JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision;
+	
 	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,VIEW> fbCore;
+	private final GeoMetaFactoryBuilder<L,D,LAYER,?,VP,?,ECQL> fbMeta;
+	private final IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel;
 	
 	private final EjbGeoMapFactory<L,D,MAP> efMap;
 	private final EjbGeoViewPortFactory<VP> efViewPort;
@@ -67,42 +74,56 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	
 	private List<SERVICE> services; public List<SERVICE> getServices() {return services;}
 	private List<CATEGORY> categories; public List<CATEGORY> getCategories() {return categories;}
-	private List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
+	private final List<LAYER> layers; public List<LAYER> getLayers() {return layers;}
 	private final List<LT> layerTypes; public List<LT> getLayerTypes() {return layerTypes;}
+	private final List<ECQL> ecqls; public List<ECQL> getEcqls() {return ecqls;}
 	private final List<VIEW> views; public List<VIEW> getViews() {return views;}
 	private List<SLD> slds; public List<SLD> getSlds() {return slds;}
-
+	private final List<LE> entities; public List<LE> getEntities() {return entities;}
+	private final List<LA> attributes; public List<LA> getAttributes() {return attributes;}
+	
 	private SERVICE service; public SERVICE getService() {return service;} public void setService(SERVICE service) {this.service = service;}
 	private CATEGORY category; public CATEGORY getCategory() {return category;} public void setCategory(CATEGORY category){this.category = category;}
 	private LAYER layer; public LAYER getLayer() {return layer;} public void setLayer(LAYER layer) {this.layer = layer;}
 	private MAP map; public MAP getMap() {return map;}
 	private VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort){this.viewPort = viewPort;}
-		
+	private ECQL ecql; public ECQL getEcql() {return ecql;} public void setEcql(ECQL ecql) {this.ecql = ecql;}
+	
 	public GeojsfSettingsLayerController(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,VIEW> fbCore,
-											GeoMetaFactoryBuilder<L,D,?,VP,?,ECQL> fbMeta,
+											GeoMetaFactoryBuilder<L,D,LAYER,?,VP,?,ECQL> fbMeta,
 											IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());
 		this.fbCore = fbCore;
+		this.fbMeta = fbMeta;
+		this.fbLabel = fbLabel;
 		
 		efMap = fbCore.ejbMap();
 		efView = fbCore.ejbView();
 		efViewPort = fbMeta.ejbViewPort();
 		
+		layers = new ArrayList<>();
 		views = new ArrayList<>();
 		layerTypes = new ArrayList<>();
+		ecqls = new ArrayList<>();
+		entities = new ArrayList<>();
+		attributes = new ArrayList<>();
 	}
 	
-	public void postConstructService(GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo,
-										GeoSldFacade<L,D,?,SLD,?,?> fSld,				
-										JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
+	public void postConstructService(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
+										GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo,
+										GeoSldFacade<L,D,?,SLD,?,?> fSld,
+										JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision
+										)
 	{
 		super.postConstructWebController(lp,bMessage);
 		this.fGeo=fGeo;
+		this.fRevision=fRevision;
 
 		slds = fSld.fLibrarySlds();
 		
 		layerTypes.addAll(fGeo.allOrderedPositionVisible(fbCore.getClassLayerType()));
+		entities.addAll(fGeo.allOrderedPositionVisible(fbLabel.getClassEntity()));
 		
 		this.reloadServices();
 		this.reloadCategories();
@@ -233,9 +254,12 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	
 	protected void reloadLayers()
 	{
-		category = fGeo.load(category);
-		layers = fGeo.allOrderedPositionVisibleParent(fbCore.getClassLayer(), category);;
-		logger.info("#Layer:"+layers.size());
+//		category = fGeo.load(category);
+//		layers = fGeo.allOrderedPositionVisibleParent(fbCore.getClassLayer(), category);;
+		
+		layers.clear();
+		layers.addAll(fGeo.allForParent(fbCore.getClassLayer(), category));
+		logger.info(fbCore.getClassLayer().getSimpleName()+": "+layers.size());
 	}
 	
 	public void addLayer() throws JeeslConstraintViolationException, JeeslNotFoundException
@@ -248,12 +272,13 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	
 	public void selectLayer() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException
 	{
-		logger.info("selectLayer "+layer);
+		logger.info(AbstractLogMessage.selectEntity(layer));
 		layer = fGeo.load(layer);
 		layer = efLang.persistMissingLangs(fGeo,lp.getLocales(),layer);
 		layer = efDescription.persistMissingLangs(fGeo,lp.getLocales(),layer);
 		
 		reloadLayer();
+		this.reloadEcqls();
 		
 		if(layer.getViewPort()==null){addViewPort();}
 		else{viewPort=layer.getViewPort();}
@@ -270,6 +295,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	{
 		this.reset(true);
 		views.addAll(fGeo.fGeoViews(layer));
+		
 	}
 	
 	public void saveLayer() throws JeeslConstraintViolationException, JeeslLockingException, JeeslNotFoundException
@@ -316,6 +342,58 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	{
 		logger.info(AbstractLogMessage.saveEntity(viewPort));
 		viewPort = fGeo.save(viewPort);
+	}
+	
+	// ECQL
+	private void reloadEcqls()
+	{
+		ecqls.clear();
+		ecqls.addAll(fGeo.allForParent(fbMeta.getClassEcql(), layer));
+	}
+	
+	public void addEcql() throws JeeslConstraintViolationException, JeeslLockingException
+	{
+		logger.info(AbstractLogMessage.createEntity(fbMeta.getClassEcql()));
+		ecql = fbMeta.ejbEcql().build(layer);
+		ecql.setEntity(entities.get(0));
+		EjbPositionFactory.next(ecql,ecqls);
+		this.reloadAttributes();
+	}
+	public void reloadAttributes()
+	{
+		attributes.clear();
+		if(Objects.nonNull(ecql.getEntity()))
+		{
+			ecql.setEntity(fRevision.find(fbLabel.getClassEntity(), ecql.getEntity()));
+			ecql.setEntity(fRevision.load(fbLabel.getClassEntity(), ecql.getEntity()));
+			attributes.addAll(ecql.getEntity().getAttributes());
+		}
+		logger.info(AbstractLogMessage.reloaded(fbLabel.getClassAttribute(),attributes));
+	}
+	public void reloadAttribute()
+	{
+		if(Objects.nonNull(ecql.getAttribute()))
+		{
+			ecql.setAttribute(fRevision.find(fbLabel.getClassAttribute(), ecql.getAttribute()));
+		}
+	}
+	public void saveEcql() throws JeeslConstraintViolationException, JeeslLockingException
+	{
+		logger.info(AbstractLogMessage.saveEntity(ecql));
+		ecql = fGeo.save(ecql);
+		this.reloadEcqls();
+	}
+	public void selectEcql() throws JeeslConstraintViolationException, JeeslLockingException
+	{
+		logger.info(AbstractLogMessage.selectEntity(ecql));
+		this.reloadAttributes();
+	}
+	public void deleteEcql() throws JeeslConstraintViolationException, JeeslLockingException
+	{
+		logger.info(AbstractLogMessage.rmEntity(ecql));
+		fGeo.rm(ecql);
+		ecql = null;
+		this.reloadAttributes();
 	}
 	
 	public void reorderCategories() throws JeeslConstraintViolationException, JeeslLockingException {PositionListReorderer.reorder(fGeo, categories);}

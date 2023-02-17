@@ -93,8 +93,8 @@
 		                </j:dtHeader>
 		            </f:facet>
 		            <p:ajax event="rowReorder" listener="#{cc.attrs.controller.reorderLayer()}" update="@form"/>
-					<p:ajax event="rowSelect" listener="#{cc.attrs.controller.selectLayer}" update=":#{cc.id}:fViews :#{cc.id}:sLayer"/>
-					<p:column headerText="#" sortBy="#{l.position}">
+					<p:ajax event="rowSelect" listener="#{cc.attrs.controller.selectLayer}" update=":#{cc.id}:fViews :#{cc.id}:fEcqls :#{cc.id}:fEcql :#{cc.id}:sLayer"/>
+					<p:column headerText="#">
 						<h:outputText value="#{l.position}" />  
 					</p:column>
 					<p:column headerText="#{msg.jeeslName}" sortBy="#{l.name[localeCode].lang}">
@@ -118,15 +118,94 @@
 					</p:column>
 				</p:dataTable>
 			</h:form>
+			<h:form id="fEcqls" >
+				<p:dataTable var="e" value="#{cc.attrs.controller.ecqls}" rendered="#{cc.attrs.controller.layer.id gt 0}"
+						selection="#{cc.attrs.controller.ecql}" selectionMode="single" rowKey="#{e.id}" draggableRows="true">
+					<f:facet name="header">
+		                <j:dtHeader entity="GeoEcql" code="listOf">
+		                    <j:svg type="jeeslAdd" listener="#{cc.attrs.controller.addEcql()}" update=":#{cc.id}:fEcqls :#{cc.id}:fEcql" />
+		                </j:dtHeader>
+		            </f:facet>
+		            <p:ajax event="rowReorder" listener="#{cc.attrs.controller.reorderEcql()}" update="@form"/>
+					<p:ajax event="rowSelect" listener="#{cc.attrs.controller.selectEcql}" update=":#{cc.id}:fEcqls :#{cc.id}:fEcql"/>
+					<p:column headerText="#">
+						<h:outputText value="#{e.position}" />  
+					</p:column>
+					<p:column>
+						<f:facet name="header"><jtp:label entity="GeoEcql" code="code"/></f:facet>
+						<h:outputText value="#{e.code}"/>  
+					</p:column>
+					<p:column>
+						<f:facet name="header"><jtp:label entity="GeoEcql" code="entity"/></f:facet>
+						<h:outputText value="#{e.entity.name[localeCode].lang}" />  
+					</p:column>
+					<p:column>
+						<f:facet name="header"><jtp:label entity="GeoEcql" code="attribute"/></f:facet>
+						<jtp:symbolizer value="#{e.attribute.relation}" marginRight="5" rendered="#{not empty e.attribute.relation}"/>
+						<h:outputText value="#{e.attribute.name[localeCode].lang}"/>  
+					</p:column>
+					
+				</p:dataTable>
+			</h:form>
+			<h:form id="fEcql">
+				<p:panel styleClass="jeesl-panel" rendered="#{not empty cc.attrs.controller.ecql}">
+					<f:facet name="header"><j:pHeader entity="GeoEcql"/></f:facet>
+					<f:facet name="actions">
+						<j:icon type="jeeslCancel" listener="#{cc.attrs.controller.cancelEcql()}" update=":#{cc.id}:sLayers"/>
+						<j:icon type="jeeslSave" listener="#{cc.attrs.controller.saveEcql()}" update=":#{cc.id}:sLayers"/>
+						<j:icon type="jeeslDelete" listener="#{cc.attrs.controller.deleteEcql()}" update=":#{cc.id}:sLayers"/>
+					</f:facet>
+					<p:messages redisplay="false" severity="warn,error" showSummary="true" showDetail="true" closable="true"/>
+					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
+						
+						<jtp:label entity="GeoEcql" code="code"/>
+						<p:inputText value="#{cc.attrs.controller.ecql.code}" autocomplete="false"/>
+						
+						<jtp:label entity="GeoEcql" code="entity"/>
+								<p:selectOneMenu value="#{cc.attrs.controller.ecql.entity}" effect="fade" autoWidth="false"
+									filter="true" filterMatchMode="contains" var="entity">
+							<f:selectItems value="#{cc.attrs.controller.entities}" var="l" itemLabel="#{l.category.position}.#{l.position} #{l.name[localeCode].lang}" itemValue="#{l}"/>
+							<p:ajax event="change" listener="#{cc.attrs.controller.reloadAttributes()}" update="@form"/>
+							<p:column>
+								<h:outputText value="#{entity.category.position}.#{entity.position}" />
+							</p:column>
+							<p:column headerText="#{msg.aupCategory}">
+								<h:outputText value="#{entity.category.name[localeCode].lang}" />
+							</p:column>
+							<p:column headerText="#{msg.jeeslRevisionDiagramShort}">
+								<h:outputText value="#{entity.diagram.name[localeCode].lang}" />
+							</p:column>
+							<p:column headerText="#{msg.jeeslRevisionEntity}">
+								<h:outputText value="#{entity.name[localeCode].lang}" />
+							</p:column>
+						</p:selectOneMenu>
+						
+						<jtp:label entity="GeoEcql" code="attribute"/>
+						<p:selectOneMenu id="s1Attributes" value="#{cc.attrs.controller.ecql.attribute}" effect="fade" autoWidth="false" dynamic="true">
+							<f:selectItems value="#{cc.attrs.controller.attributes}" var="a" itemLabel="#{a.name[localeCode].lang}" itemValue="#{a}"/>
+							<p:ajax event="change" listener="#{cc.attrs.controller.reloadAttribute()}" update="@form"/>
+						</p:selectOneMenu>
+						
+						<h:outputText value=""/>
+						<ui:fragment>
+							<jtp:symbolizer value="#{cc.attrs.controller.ecql.attribute.relation}"/>
+							<h:outputText value="#{cc.attrs.controller.ecql.attribute.entity.name[localeCode].lang}"/>
+						</ui:fragment>
+						
+						
+					</p:panelGrid>
+					
+				</p:panel>
+			</h:form>
 		</j:slot>
 		<j:slot id="sLayer" width="5">
 			<h:form id="fLayer" rendered="#{not empty cc.attrs.controller.layer}">
 				<p:panel styleClass="jeesl-panel">
 					<f:facet name="header"><j:pHeader entity="GeoLayer"/></f:facet>
 					<f:facet name="actions">
-						<j:icon type="geoJsfCancel" listener="#{cc.attrs.controller.cancelLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttCancel}"/>
-						<j:icon type="geoJsfSave" listener="#{cc.attrs.controller.saveLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttSave}"/>
-						<j:icon type="geoJsfDelete" listener="#{cc.attrs.controller.rmLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttDelete}"/>
+						<j:icon type="jeeslCancel" listener="#{cc.attrs.controller.cancelLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttCancel}"/>
+						<j:icon type="jeeslSave" listener="#{cc.attrs.controller.saveLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttSave}"/>
+						<j:icon type="jeeslDelete" listener="#{cc.attrs.controller.rmLayer()}" update=":#{cc.id}:sLayers :#{cc.id}:sLayer" tooltip="#{msg.ttDelete}"/>
 					</f:facet>
 					<p:messages redisplay="false" severity="warn,error" showSummary="true" showDetail="true" closable="true"/>
 					<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
