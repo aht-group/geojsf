@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.geojsf.model.xml.specs.sld.UserStyle;
+import org.geojsf.util.SldConfigurationProvider;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

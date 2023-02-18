@@ -1,6 +1,6 @@
 package org.geojsf.controller.util;
 
-import org.geojsf.interfaces.provider.SldConfigurationProvider;
+import org.geojsf.util.SldConfigurationProvider;
 import org.jeesl.interfaces.facade.JeeslFacade;
 
 public class GeoJsfSldConfigurationProvider implements SldConfigurationProvider

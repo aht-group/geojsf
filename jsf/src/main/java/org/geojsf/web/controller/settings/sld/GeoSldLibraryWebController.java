@@ -7,11 +7,11 @@ import java.util.List;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
 import org.geojsf.interfaces.facade.GeoSldFacade;
-import org.geojsf.interfaces.model.sld.GeoJsfProvideSldStatus;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
+import org.geojsf.interfaces.util.qualifier.GeoJsfProvideSldStatus;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.controller.web.AbstractJeeslWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
@@ -27,7 +27,7 @@ import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class GeoSldLibraryWebController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 									
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
+									SLDTEMPLATE extends GeoJsfSldXml<L,D>,
 									SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,?>>

@@ -8,10 +8,10 @@ import org.geojsf.factory.xml.specs.sld.XmlNameFactory;
 import org.geojsf.factory.xml.specs.sld.XmlNamedLayerFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
-import org.geojsf.interfaces.provider.SldConfigurationProvider;
 import org.geojsf.model.xml.specs.sld.NamedLayer;
+import org.geojsf.util.SldConfigurationProvider;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomNamedLayerFactory <LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,SLD>,
-									TEMPLATE extends GeoJsfSldTemplate<?,?>,
+									TEMPLATE extends GeoJsfSldXml<?,?>,
 									SLDTYPE extends GeoJsfSldType<?,?,SLDTYPE,?>,
 									SLD extends GeoJsfSld<?,?,TEMPLATE,SLDTYPE,?>>
 				implements Serializable

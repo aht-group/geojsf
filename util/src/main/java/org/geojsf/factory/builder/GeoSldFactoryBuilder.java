@@ -8,9 +8,9 @@ import org.geojsf.factory.xml.specs.sld.XmlStyledLayerDescriptorFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
-import org.geojsf.interfaces.provider.SldConfigurationProvider;
+import org.geojsf.util.SldConfigurationProvider;
 import org.jeesl.factory.builder.AbstractFactoryBuilder;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 
 public class GeoSldFactoryBuilder<L extends JeeslLang,D extends JeeslDescription,
 									LAYER extends GeoJsfLayer<L,D,?,?,?,?,?,SLD>,
-									TEMPLATE extends GeoJsfSldTemplate<L,D>,
+									TEMPLATE extends GeoJsfSldXml<L,D>,
 									SLD extends GeoJsfSld<L,D,TEMPLATE,TYPE,RULE>,
 									TYPE extends GeoJsfSldType<L,D,TYPE,?>,
 									RULE extends GeoJsfSldRule<L,D,?>>

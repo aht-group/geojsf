@@ -14,7 +14,7 @@ import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.interfaces.util.with.EjbWithSld;
 import org.geojsf.interfaces.util.with.EjbWithSldRules;
@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoSldFacadeBean <L extends JeeslLang, D extends JeeslDescription,
-								SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
+								SLDTEMPLATE extends GeoJsfSldXml<L,D>,
 								TYPE extends GeoJsfSldType<L,D,TYPE,?>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,?>

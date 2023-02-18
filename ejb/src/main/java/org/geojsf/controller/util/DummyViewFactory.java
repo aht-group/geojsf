@@ -16,7 +16,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
@@ -31,7 +31,7 @@ public class DummyViewFactory<L extends JeeslLang,D extends JeeslDescription,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,
 								DS extends GeoJsfDataSource<L,D,LAYER>,
-								SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
+								SLDTEMPLATE extends GeoJsfSldXml<L,D>,
 								SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 								RULE extends GeoJsfSldRule<L,D,?>>
@@ -68,7 +68,7 @@ public class DummyViewFactory<L extends JeeslLang,D extends JeeslDescription,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>>
     	DummyViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>

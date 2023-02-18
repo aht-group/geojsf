@@ -23,7 +23,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Layer;
@@ -60,7 +60,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 										VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 										VP extends GeoJsfViewPort,
 										DS extends GeoJsfDataSource<L,D,LAYER>,
-										SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
+										SLDTEMPLATE extends GeoJsfSldXml<L,D>,
 										SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 										RULE extends GeoJsfSldRule<L,D,?>
@@ -126,7 +126,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>>
+					SLDTEMPLATE extends GeoJsfSldXml<L,D>>
 		GeoJsfDatabaseRestService<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo, final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
 	{

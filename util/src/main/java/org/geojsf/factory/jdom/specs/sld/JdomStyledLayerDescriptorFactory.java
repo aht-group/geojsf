@@ -7,9 +7,9 @@ import java.util.List;
 import org.geojsf.factory.xml.specs.sld.XmlStyledLayerDescriptorFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
-import org.geojsf.interfaces.provider.SldConfigurationProvider;
+import org.geojsf.util.SldConfigurationProvider;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomStyledLayerDescriptorFactory < LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,SLD>,
-												TEMPLATE extends GeoJsfSldTemplate<?,?>,
+												TEMPLATE extends GeoJsfSldXml<?,?>,
 												TYPE extends GeoJsfSldType<?,?,TYPE,?>,
 												SLD extends GeoJsfSld<?,?,TEMPLATE,TYPE,?>>
 				implements Serializable

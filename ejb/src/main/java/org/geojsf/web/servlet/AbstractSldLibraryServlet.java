@@ -15,7 +15,7 @@ import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfMap;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 public class AbstractSldLibraryServlet<L extends JeeslLang,D extends JeeslDescription,
 										LAYER extends GeoJsfLayer<L,D,?,?,?,?,?,SLD>,
 										MAP extends GeoJsfMap<L,D,?,?,?>,
-										SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
+										SLDTEMPLATE extends GeoJsfSldXml<L,D>,
 										SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 										RULE extends GeoJsfSldRule<L,D,?>>

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.persistence.ManyToOne;
 
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
@@ -15,7 +15,7 @@ import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="SLD Template",category="sld",subset="sld")
 public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfSldTemplate<DefaultGeoJsfLang,DefaultGeoJsfDescription>
+								GeoJsfSldXml<DefaultGeoJsfLang,DefaultGeoJsfDescription>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;

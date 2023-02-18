@@ -8,7 +8,7 @@ import org.geojsf.factory.ejb.sld.EjbGeoSldTemplateFactory;
 import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.controller.web.AbstractJeeslWebController;
@@ -24,27 +24,27 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
-public class GeoSldTemplateWebController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
-											TEMPLATE extends GeoJsfSldTemplate<L,D>,
+public class GeoSldXmlWebController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
+											SXD extends GeoJsfSldXml<L,D>,
 											TYPE extends GeoJsfSldType<L,D,TYPE,?>,
-											SLD extends GeoJsfSld<L,D,TEMPLATE,TYPE,RULE>,
+											SLD extends GeoJsfSld<L,D,SXD,TYPE,RULE>,
 											RULE extends GeoJsfSldRule<L,D,?>>
 		extends AbstractJeeslWebController<L,D,LOC>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = LoggerFactory.getLogger(GeoSldTemplateWebController.class);
+	final static Logger logger = LoggerFactory.getLogger(GeoSldXmlWebController.class);
 	
-	private GeoSldFacade<L,D,TEMPLATE,SLD,TYPE,RULE> fSld;
+	private GeoSldFacade<L,D,SXD,SLD,TYPE,RULE> fSld;
 	
-	private final GeoSldFactoryBuilder<L,D,?,TEMPLATE,SLD,TYPE,RULE> fbSld;
+	private final GeoSldFactoryBuilder<L,D,?,SXD,SLD,TYPE,RULE> fbSld;
 	
-	protected final EjbGeoSldTemplateFactory<TEMPLATE> efTemplate;
+	protected final EjbGeoSldTemplateFactory<SXD> efTemplate;
 	
-	protected List<TEMPLATE> templates; public List<TEMPLATE> getTemplates(){return templates;}
-	protected TEMPLATE template; public TEMPLATE getTemplate() {return template;} public void setTemplate(TEMPLATE template) {this.template = template;}
+	protected List<SXD> templates; public List<SXD> getTemplates(){return templates;}
+	protected SXD template; public SXD getTemplate() {return template;} public void setTemplate(SXD template) {this.template = template;}
 	
-	public GeoSldTemplateWebController(GeoSldFactoryBuilder<L,D,?,TEMPLATE,SLD,TYPE,RULE> fbSld)
+	public GeoSldXmlWebController(GeoSldFactoryBuilder<L,D,?,SXD,SLD,TYPE,RULE> fbSld)
 	{
 		super(fbSld.getClassL(),fbSld.getClassD());
 		this.fbSld=fbSld;
@@ -52,7 +52,7 @@ public class GeoSldTemplateWebController <L extends JeeslLang, D extends JeeslDe
 	}
 	
 	public void postConstructSldTemplate(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessag,
-										GeoSldFacade<L,D,TEMPLATE,SLD,TYPE,RULE> fSld)
+										GeoSldFacade<L,D,SXD,SLD,TYPE,RULE> fSld)
 	{
 		super.postConstructWebController(lp,bMessage);
 		this.fSld=fSld;

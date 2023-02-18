@@ -16,7 +16,7 @@ import org.jeesl.interfaces.qualifier.rest.option.DownloadJeeslDescription;
 @DownloadJeeslDescription
 @DownloadJeeslAttributes
 public interface GeoJsfSld<L extends JeeslLang, D extends JeeslDescription,
-						   SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
+						   SLDTEMPLATE extends GeoJsfSldXml<L,D>,
 						   TYPE extends GeoJsfSldType<L,D,TYPE,?>,
 						   RULE extends GeoJsfSldRule<L,D,?>
 						   >

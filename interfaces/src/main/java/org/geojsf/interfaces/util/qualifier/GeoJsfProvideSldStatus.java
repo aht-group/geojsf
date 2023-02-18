@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.model.sld;
+package org.geojsf.interfaces.util.qualifier;
 
 public interface GeoJsfProvideSldStatus
 {	

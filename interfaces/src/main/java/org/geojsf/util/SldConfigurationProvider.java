@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.provider;
+package org.geojsf.util;
 
 import org.jeesl.interfaces.facade.JeeslFacade;
 

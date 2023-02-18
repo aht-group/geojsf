@@ -18,7 +18,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.model.xml.geojsf.Scales;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
@@ -36,7 +36,7 @@ public class MapUtil<L extends JeeslLang,D extends JeeslDescription,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
 					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 					RULE extends GeoJsfSldRule<L,D,?>>
 {	

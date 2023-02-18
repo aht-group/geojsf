@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.model.xml.geojsf.Query;
 import org.geojsf.model.xml.geojsf.SldTemplate;
@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XmlSldTemplateFactory <L extends JeeslLang, D extends JeeslDescription,
-									SLDTEMPLATE extends GeoJsfSldTemplate<L,D>,
+									SLDTEMPLATE extends GeoJsfSldXml<L,D>,
 									SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
 									RULE extends GeoJsfSldRule<L,D,?>

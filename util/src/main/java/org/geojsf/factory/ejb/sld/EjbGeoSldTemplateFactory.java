@@ -1,10 +1,10 @@
 package org.geojsf.factory.ejb.sld;
 
-import org.geojsf.interfaces.model.sld.GeoJsfSldTemplate;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoSldTemplateFactory<TEMPLATE extends GeoJsfSldTemplate<?,?>>
+public class EjbGeoSldTemplateFactory<TEMPLATE extends GeoJsfSldXml<?,?>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldTemplateFactory.class);
 	
