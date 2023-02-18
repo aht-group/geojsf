@@ -12,9 +12,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.geojsf.api.facade.GeoJsfStationFacade;
-import org.geojsf.interfaces.model.obervation.station.GeoStation;
-import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
-import org.geojsf.interfaces.model.obervation.station.GeoStationCode;
+import org.geojsf.interfaces.model.domain.station.GeoStation;
+import org.geojsf.interfaces.model.domain.station.GeoStationCapability;
+import org.geojsf.interfaces.model.domain.station.GeoStationCode;
 import org.jeesl.controller.facade.JeeslFacadeBean;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;

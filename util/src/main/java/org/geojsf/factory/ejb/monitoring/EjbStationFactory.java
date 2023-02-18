@@ -3,9 +3,9 @@ package org.geojsf.factory.ejb.monitoring;
 import java.util.List;
 
 import org.geojsf.factory.wkt.PointFactory;
-import org.geojsf.interfaces.model.obervation.station.GeoStation;
-import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
-import org.geojsf.interfaces.model.obervation.station.GeoStationCode;
+import org.geojsf.interfaces.model.domain.station.GeoStation;
+import org.geojsf.interfaces.model.domain.station.GeoStationCapability;
+import org.geojsf.interfaces.model.domain.station.GeoStationCode;
 import org.geojsf.model.xml.monitoring.Station;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;

@@ -1,9 +1,9 @@
 package org.geojsf.factory.builder;
 
 import org.geojsf.factory.ejb.monitoring.EjbStationFactory;
-import org.geojsf.interfaces.model.obervation.station.GeoStation;
-import org.geojsf.interfaces.model.obervation.station.GeoStationCapability;
-import org.geojsf.interfaces.model.obervation.station.GeoStationCode;
+import org.geojsf.interfaces.model.domain.station.GeoStation;
+import org.geojsf.interfaces.model.domain.station.GeoStationCapability;
+import org.geojsf.interfaces.model.domain.station.GeoStationCode;
 import org.jeesl.factory.builder.AbstractFactoryBuilder;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;

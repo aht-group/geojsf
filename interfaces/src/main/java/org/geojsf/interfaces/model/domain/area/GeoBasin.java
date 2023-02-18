@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.model.area;
+package org.geojsf.interfaces.model.domain.area;
 
 import java.io.Serializable;
 

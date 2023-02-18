@@ -1,6 +1,6 @@
 package org.geojsf.factory.ejb.monitoring;
 
-import org.geojsf.interfaces.model.monitoring.GeoBushFire;
+import org.geojsf.interfaces.model.domain.monitoring.GeoBushFire;
 import org.geojsf.model.xml.monitoring.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

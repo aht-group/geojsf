@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.model.monitoring;
+package org.geojsf.interfaces.model.domain.monitoring;
 
 
 import org.geojsf.interfaces.model.with.EjbWithGeometry;

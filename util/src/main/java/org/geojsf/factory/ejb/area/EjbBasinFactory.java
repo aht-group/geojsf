@@ -1,7 +1,7 @@
 package org.geojsf.factory.ejb.area;
 
 import org.geojsf.factory.wkt.MultiPolygonFactory;
-import org.geojsf.interfaces.model.area.GeoBasin;
+import org.geojsf.interfaces.model.domain.area.GeoBasin;
 import org.geojsf.model.xml.area.Basin;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.factory.ejb.system.status.EjbDescriptionFactory;

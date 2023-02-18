@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.model.obervation.station;
+package org.geojsf.interfaces.model.domain.station;
 
 import java.io.Serializable;
 
