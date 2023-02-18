@@ -51,9 +51,9 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+							SDX extends GeoJsfSldXml<L,D,SLD>,
 							SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+							SLD extends GeoJsfSld<L,D,SDX,SLDTYPE,RULE,?,?>,
 							RULE extends GeoJsfSldRule<L,D,?>
 							>
 	extends AbstractUtilsRest<L,D>
@@ -70,7 +70,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
     private final Class<VP> cVp;
     
     private final Class<SLDTYPE> cSldType;
-    private final Class<SLDTEMPLATE> cSldTemplate;
+    private final Class<SDX> cSldTemplate;
     
     private JeeslFacade fSecurity;
     private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo;
@@ -79,15 +79,15 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
     
     private EjbLangFactory<L> ejbLangFactory;
     private EjbDescriptionFactory<D> ejbDescriptionFactory;
-    private EjbGeoSldTemplateFactory<SLDTEMPLATE> efSldTemplate;
+    private EjbGeoSldTemplateFactory<SDX> efSldTemplate;
     
     public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
     					final GeoMetaFactoryBuilder<L,D,LAYER,DS,VP,SCALE,?> fbMeta,
-    					final GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld,
+    					final GeoSldFactoryBuilder<L,D,LAYER,SDX,SLD,SLDTYPE,RULE> fbSld,
     					JeeslFacade fUtils, String[] langKeys,
     					
     					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo,
-    					final Class<LAYER> cLayer,final Class<MAP> cMap,final Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
+    					final Class<LAYER> cLayer,final Class<MAP> cMap,final Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType, final Class<SDX> cSldTemplate)
 	{   
     	super(fUtils,langKeys,fbCore.getClassL(),fbCore.getClassD());
     	this.fbCore=fbCore;
@@ -121,10 +121,10 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 				VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 				VP extends GeoJsfViewPort,
 				DS extends GeoJsfDataSource<L,D,LAYER>,
-				SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+				SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 				RULE extends GeoJsfSldRule<L,D,?>,
 				SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-				SLDTEMPLATE extends GeoJsfSldXml<L,D>> 
+				SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>> 
 		GeoJsfDbInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
 				final GeoMetaFactoryBuilder<L,D,LAYER,DS,VP,SCALE,?> fbMeta,
@@ -158,7 +158,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 	@Override
 	public DataUpdate importGeoJsfLayers(Layers layers)
 	{
-		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit;
+		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SDX,SLDTYPE,SLD,RULE> layerInit;
 		layerInit = DbLayerInit.factory(fbCore,fbMeta,fbCore.getClassCategory(),fbCore.getClassService(),cLayer,cVp,fSecurity,fGeo);
 		try {layerInit.iuLayers(layers, langKeys);}
 		catch (UtilsConfigurationException e) {e.printStackTrace();}
@@ -168,7 +168,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 	@Override
 	public DataUpdate importGeoJsfMaps(Maps maps)
 	{
-		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> viewInit;
+		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SDX,SLDTYPE,SLD,RULE> viewInit;
 		viewInit  = DbMapInit.factory(fbCore,fbMeta,cLayer,cMap,cView,cVp,fSecurity,fGeo);
 		try
 		{
@@ -186,7 +186,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 		dut.setType(XmlTypeFactory.build(cSldTemplate.getName(),"DB Import"));
 		for(SldTemplate xTemplate : templates.getSldTemplate())
 		{
-			SLDTEMPLATE eTemplate = null;
+			SDX eTemplate = null;
 			try
 			{
 				eTemplate = fSecurity.fByCode(cSldTemplate,xTemplate.getCode());

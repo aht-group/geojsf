@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class EjbGeoSldFactory <TYPE extends GeoJsfSldType<?,?,TYPE,?>,
-								SLD extends GeoJsfSld<?,?,?,TYPE,?>>
+								SLD extends GeoJsfSld<?,?,?,TYPE,?,?,?>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldFactory.class);
 	

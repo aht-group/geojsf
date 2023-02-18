@@ -8,13 +8,13 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
-import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.geojsf.core.DfGeoJsfLayer;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Data Source",category="meta",subset="datasource")
-public class DefaultGeoJsfDataSource implements GeoJsfDataSource<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer>
+public class DefaultGeoJsfDataSource implements GeoJsfDataSource<DefaultGeoJsfLang,DefaultGeoJsfDescription,DfGeoJsfLayer>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
@@ -32,9 +32,9 @@ public class DefaultGeoJsfDataSource implements GeoJsfDataSource<DefaultGeoJsfLa
 	@Override public void setDescription(Map<String, DefaultGeoJsfDescription> description) {this.description = description;}
 
 	@ManyToMany(fetch=FetchType.LAZY)
-	private List<DefaultGeoJsfLayer> layers;
-	@Override public List<DefaultGeoJsfLayer> getLayers() {if(layers==null){layers = new ArrayList<DefaultGeoJsfLayer>();};return layers;}
-	@Override public void setLayers(List<DefaultGeoJsfLayer> layers) {this.layers = layers;}
+	private List<DfGeoJsfLayer> layers;
+	@Override public List<DfGeoJsfLayer> getLayers() {if(layers==null){layers = new ArrayList<DfGeoJsfLayer>();};return layers;}
+	@Override public void setLayers(List<DfGeoJsfLayer> layers) {this.layers = layers;}
 
 	
 	@Override public String toString()

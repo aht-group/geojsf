@@ -42,9 +42,9 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,
 								DS extends GeoJsfDataSource<L,D,LAYER>,
-								SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+								SDX extends GeoJsfSldXml<L,D,SLD>,
 								SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+								SLD extends GeoJsfSld<L,D,SDX,SLDTYPE,RULE,?,?>,
 								RULE extends GeoJsfSldRule<L,D,?>,
 								JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 								JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
@@ -99,10 +99,10 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
 					JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 					JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
 					JL extends GeoJsfLocationLevel<L,D,JL,?>> 
@@ -120,8 +120,8 @@ public class DbGeoServerInit <L extends JeeslLang, D extends JeeslDescription,
 		logger.info("Importing/Updating GeoJSF "+Service.class.getSimpleName()+"/"+Layer.class.getSimpleName()+"/"+Map.class.getSimpleName());
 		
 		DbServiceInit<L,D,SERVICE> serviceInit = DbServiceInit.factory(cL,cD,cService,fUtils);
-		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> layerInit = DbLayerInit.factory(fbCore,fbMeta,cCategory,cService,cLayer,cVp,fUtils,fGeo);
-		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE> viewInit = DbMapInit.factory(fbCore,fbMeta,cLayer,cMap,cView,cVp,fUtils,fGeo);
+		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SDX,SLDTYPE,SLD,RULE> layerInit = DbLayerInit.factory(fbCore,fbMeta,cCategory,cService,cLayer,cVp,fUtils,fGeo);
+		DbMapInit<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SDX,SLDTYPE,SLD,RULE> viewInit = DbMapInit.factory(fbCore,fbMeta,cLayer,cMap,cView,cVp,fUtils,fGeo);
 		
 		serviceInit.iuServices(repository);
 		layerInit.iuLayers(layers, langKeys);

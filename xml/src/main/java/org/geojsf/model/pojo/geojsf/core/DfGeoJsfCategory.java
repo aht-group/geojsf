@@ -13,7 +13,7 @@ import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Category",category="core",level=3,subset="core")
-public class DefaultGeoJsfCategory implements GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer>
+public class DfGeoJsfCategory implements GeoJsfCategory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DfGeoJsfLayer>
 {
 	public static enum Code {welcome}
 	
@@ -36,9 +36,9 @@ public class DefaultGeoJsfCategory implements GeoJsfCategory<DefaultGeoJsfLang,D
 	@Override public void setPosition(int position) {this.position = position;}
 	
 	@OneToMany
-	private List<DefaultGeoJsfLayer> layer;
-	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
-	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
+	private List<DfGeoJsfLayer> layer;
+	@Override public List<DfGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DfGeoJsfLayer>();} return layer;}
+	@Override public void setLayer(List<DfGeoJsfLayer> layer) {this.layer=layer;}
 
 //	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 //	@MapKey(name = "lkey")
@@ -60,5 +60,5 @@ public class DefaultGeoJsfCategory implements GeoJsfCategory<DefaultGeoJsfLang,D
 		return sb.toString();
 	}
 	
-	@Override public boolean equals(Object object) {return (object instanceof DefaultGeoJsfCategory) ? id == ((DefaultGeoJsfCategory) object).getId() : (object == this);}
+	@Override public boolean equals(Object object) {return (object instanceof DfGeoJsfCategory) ? id == ((DfGeoJsfCategory) object).getId() : (object == this);}
 }

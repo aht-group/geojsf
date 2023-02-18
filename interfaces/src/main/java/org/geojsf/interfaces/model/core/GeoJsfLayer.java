@@ -27,7 +27,7 @@ public interface GeoJsfLayer<L extends JeeslLang, D extends JeeslDescription,
 							LT extends GeoJsfLayerType<L,D,LT,?>,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,?>,
-							SLD extends GeoJsfSld<L,D,?,?,?>>
+							SLD extends GeoJsfSld<L,D,?,?,?,?,?>>
 			extends Serializable,EjbRemoveable,EjbPersistable,EjbSaveable,EjbWithCode,EjbWithPositionVisibleParent,
 					EjbWithLang<L>,EjbWithDescription<D>,JeeslWithType<LT>
 {

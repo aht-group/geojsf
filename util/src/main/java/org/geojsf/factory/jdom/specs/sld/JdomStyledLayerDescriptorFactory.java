@@ -20,9 +20,9 @@ import org.slf4j.LoggerFactory;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomStyledLayerDescriptorFactory < LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,SLD>,
-												TEMPLATE extends GeoJsfSldXml<?,?>,
+												TEMPLATE extends GeoJsfSldXml<?,?,SLD>,
 												TYPE extends GeoJsfSldType<?,?,TYPE,?>,
-												SLD extends GeoJsfSld<?,?,TEMPLATE,TYPE,?>>
+												SLD extends GeoJsfSld<?,?,TEMPLATE,TYPE,?,?,?>>
 				implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(JdomStyledLayerDescriptorFactory.class);

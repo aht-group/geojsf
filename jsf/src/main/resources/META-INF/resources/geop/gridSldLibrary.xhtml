@@ -7,7 +7,6 @@
     
 	<composite:interface>
 		<composite:attribute name="ctrl" required="true"/>
-		<composite:attribute name="localeKeys" required="false" default="#{appTranslationBean.langKeys}"/>
 	</composite:interface>
         
 	<composite:implementation>
@@ -18,49 +17,58 @@
 				<p:dataTable var="s" value="#{cc.attrs.ctrl.slds}"
 						selection="#{cc.attrs.ctrl.sld}" selectionMode="single" rowKey="#{s.id}">
 					<f:facet name="header">
-						<j:dtHeader title="#{msg.geoJsfAdminSlds}">
-							<j:icon type="geoJsfAdd" listener="#{cc.attrs.ctrl.addSld()}" update=":#{cc.id}:grid"/>
+						<j:dtHeader entity="GeoSld" code="listOf">
+							<j:svg type="jeeslAdd" listener="#{cc.attrs.ctrl.addSld()}" update=":#{cc.id}:grid"/>
 						</j:dtHeader>
 					</f:facet>
 					<p:ajax event="rowSelect" listener="#{cc.attrs.ctrl.selectSld()}" update=":#{cc.id}:sSld" />
-					<p:column headerText="#{msg.geoJsfType}">
-						<h:outputText value="#{s.type.name[userBean.localeCode].lang}" /> 
+					<p:column>
+						<f:facet name="header"><jtp:label entity="GeoSld" code="type"/></f:facet>
+						<jtp:symbolizer value="#{s.type}" marginRight="5"/>
+						<h:outputText value="#{s.type.name[localeCode].lang}" /> 
 					</p:column>
-					<p:column headerText="#{msg.geoJsfAdminName}">
-						<h:outputText value="#{s.name[userBean.localeCode].lang}" /> 
+					<p:column>
+						<f:facet name="header"><jtp:label entity="GeoSld" code="name"/></f:facet>
+						<h:outputText value="#{s.name[localeCode].lang}" /> 
 					</p:column>
 				</p:dataTable>
 			</h:form>
 		</j:slot>
 		<j:slot id="sSld" width="6">
 			<h:form id="fSld">
-				<p:panel header="#{msg.geoJsfAdminSld}" rendered="#{not empty cc.attrs.ctrl.sld}" styleClass="jeeslPanel">
+				<p:panel rendered="#{not empty cc.attrs.ctrl.sld}" styleClass="jeesl-panel">
+					<f:facet name="header"><j:pHeader entity="GeoSld"/></f:facet>
 					<f:facet name="actions">
-						<j:icon type="geoJsfCancel" listener="#{cc.attrs.ctrl.cancelSld()}" update=":#{cc.id}:grid"/>
-						<j:icon type="geoJsfSave" listener="#{cc.attrs.ctrl.saveSld()}" update=":#{cc.id}:grid"/>
-						<j:icon type="geoJsfDelete" listener="#{cc.attrs.ctrl.deleteSld()}" update=":#{cc.id}:grid" rendered="#{cc.attrs.ctrl.sld.id gt 0}"/>	
+						<j:svg type="jeeslCancel" listener="#{cc.attrs.ctrl.cancelSld()}" update=":#{cc.id}:grid"/>
+						<j:svg type="jeeslSave" listener="#{cc.attrs.ctrl.saveSld()}" update=":#{cc.id}:grid"/>
+						<j:svg type="jeeslDelete" listener="#{cc.attrs.ctrl.deleteSld()}" update=":#{cc.id}:grid" rendered="#{cc.attrs.ctrl.sld.id gt 0}"/>	
 					</f:facet>
-					<p:panelGrid columns="2" columnClasses="jeeslGrid30,jeeslGrid70">
+					<j:inputGrid>
 						
-						<p:outputLabel value="#{msg.geoJsfType}"/>
+						<jtp:label entity="GeoSld" code="type"/>
 						<p:selectOneMenu value="#{cc.attrs.ctrl.sld.type}" effect="fade" styleClass="w100" >  
 							<f:selectItems value="#{cc.attrs.ctrl.types}" var="c" itemLabel="#{c.name[userBean.localeCode].lang}" itemValue="#{c}"/>
 						</p:selectOneMenu>
-							
+
+					</j:inputGrid>
+					
+					<j:inputGrid>
+						<jtp:label entity="GeoSld" code="template"/>
+						<p:selectOneMenu value="#{cc.attrs.ctrl.sld.template}" effect="fade" styleClass="w100" >
+							<f:selectItem itemLabel="--"/> 
+							<f:selectItems value="#{cc.attrs.ctrl.templates}" var="t" itemLabel="#{t.name[localeCode].lang}" itemValue="#{t}"/>
+						</p:selectOneMenu>
+					</j:inputGrid>
+					
+					<j:inputGrid>
 						<p:outputLabel value="#{msg.geoJsfSldStatusClass}"/>
 						<p:inputText value="#{cc.attrs.ctrl.sld.statusClass}"/>
 							
 						<p:outputLabel value="#{msg.geoJsfSldStatusAttribute}"/>
 						<p:inputText value="#{cc.attrs.ctrl.sld.statusAttribute}"/>
+					</j:inputGrid>
 					
-						<p:outputLabel value="#{msg.geojsfSldTemplate}"/>
-						<p:selectOneMenu value="#{cc.attrs.ctrl.sld.template}" effect="fade" styleClass="w100" >
-							<f:selectItem itemLabel="--"/> 
-							<f:selectItems value="#{cc.attrs.ctrl.templates}" var="t" itemLabel="#{t.name[userBean.localeCode].lang}" itemValue="#{t}"/>
-						</p:selectOneMenu>
-					
-					</p:panelGrid>
-					<j:tabTranslationEditor value="#{cc.attrs.ctrl.sld}" keys="#{cc.attrs.localeKeys}" withDescription="true"/>
+					<j:tabTranslationEditor value="#{cc.attrs.ctrl.sld}" withDescription="true"/>
 				</p:panel>
 			</h:form>
 		</j:slot>

@@ -25,9 +25,9 @@ import org.slf4j.LoggerFactory;
 public class AbstractSldLibraryServlet<L extends JeeslLang,D extends JeeslDescription,
 										LAYER extends GeoJsfLayer<L,D,?,?,?,?,?,SLD>,
 										MAP extends GeoJsfMap<L,D,?,?,?>,
-										SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+										SDX extends GeoJsfSldXml<L,D,SLD>,
 										SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+										SLD extends GeoJsfSld<L,D,SDX,SLDTYPE,RULE,?,?>,
 										RULE extends GeoJsfSldRule<L,D,?>>
 				extends HttpServlet
 				implements Serializable

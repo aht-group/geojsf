@@ -15,12 +15,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
+import org.geojsf.model.pojo.io.label.core.DfRevisionAttribute;
+import org.geojsf.model.pojo.io.label.core.DfRevisionEntity;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="SLD",category="sld",subset="sld")
-public class DefaultGeoJsfSld implements GeoJsfSld<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSldRule>
+public class DefaultGeoJsfSld implements GeoJsfSld<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSldRule,DfRevisionEntity,DfRevisionAttribute>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;

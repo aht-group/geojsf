@@ -33,8 +33,8 @@ public class GeojsfDatastructureDebugger
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(MAP map)
 	{
@@ -58,8 +58,8 @@ public class GeojsfDatastructureDebugger
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(VIEW view)
 	{
@@ -75,8 +75,8 @@ public class GeojsfDatastructureDebugger
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(int indent, VIEW view)
 	{
@@ -98,8 +98,8 @@ public class GeojsfDatastructureDebugger
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>> 
 		void debug(LAYER layer)
 	{
@@ -116,8 +116,8 @@ public class GeojsfDatastructureDebugger
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(int indent, LAYER layer)
 	{
@@ -139,8 +139,8 @@ public class GeojsfDatastructureDebugger
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
 					SLDSTYLE extends JeeslStatus<L,D,SLDSTYLE>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
 		void debug(SERVICE service)
 	{
@@ -151,7 +151,8 @@ public class GeojsfDatastructureDebugger
 					CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 					SERVICE extends GeoJsfService<L,D,LAYER>,
 					LAYER extends GeoJsfLayer<L,D,CATEGORY,SERVICE,?,VP,DS,?>,
-					MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>, SCALE extends GeoJsfScale<L,D>, 
+					MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
+					SCALE extends GeoJsfScale<L,D>, 
 					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>>

@@ -21,9 +21,9 @@ import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomNamedLayerFactory <LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,SLD>,
-									TEMPLATE extends GeoJsfSldXml<?,?>,
-									SLDTYPE extends GeoJsfSldType<?,?,SLDTYPE,?>,
-									SLD extends GeoJsfSld<?,?,TEMPLATE,SLDTYPE,?>>
+									SDX extends GeoJsfSldXml<?,?,SLD>,
+									SDT extends GeoJsfSldType<?,?,SDT,?>,
+									SLD extends GeoJsfSld<?,?,SDX,SDT,?,?,?>>
 				implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(JdomNamedLayerFactory.class);
@@ -50,7 +50,7 @@ public class JdomNamedLayerFactory <LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,SLD>
 			{
 				switch(GeoJsfSldType.Type.valueOf(layer.getSld().getType().getCode()))
 				{
-					case template:	element.addContent(userStyle(layer.getSld().getTemplate()));break;
+					case xml:	element.addContent(userStyle(layer.getSld().getTemplate()));break;
 					default:		logger.warn("No Handling for "+layer.getSld().getType().getCode());
 				}
 			}
@@ -60,7 +60,7 @@ public class JdomNamedLayerFactory <LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,SLD>
 		return element;
 	}
 	
-	private Element userStyle(TEMPLATE template) throws IOException
+	private Element userStyle(SDX template) throws IOException
 	{
 		Element source = JDomUtil.load(IOUtils.toInputStream(template.getXml(), "UTF-8")).detachRootElement();
 		

@@ -31,9 +31,9 @@ public class DummyViewFactory<L extends JeeslLang,D extends JeeslDescription,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,
 								DS extends GeoJsfDataSource<L,D,LAYER>,
-								SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+								SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
 								SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 								RULE extends GeoJsfSldRule<L,D,?>>
 {
 	private EjbGeoCategoryFactory<L,D,CATEGORY> fCategory;
@@ -68,8 +68,8 @@ public class DummyViewFactory<L extends JeeslLang,D extends JeeslDescription,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
     	DummyViewFactory<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
     	factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,

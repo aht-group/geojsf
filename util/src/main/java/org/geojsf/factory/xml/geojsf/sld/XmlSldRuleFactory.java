@@ -22,10 +22,10 @@ import net.sf.ahtutils.xml.symbol.Graphic;
 import net.sf.ahtutils.xml.symbol.Symbol;
 
 public class XmlSldRuleFactory <L extends JeeslLang, D extends JeeslDescription,
-
-								SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
+								SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
 								SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+								
 								RULE extends GeoJsfSldRule<L,D,?>
 								>
 							implements Serializable

@@ -14,7 +14,7 @@ import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Map",category="core",subset="core,viewport,datasource")
-public class DefaultGeoJsfMap implements GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfView,DefaultGeoJsfViewPort>
+public class DefaultGeoJsfMap implements GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJsfDescription,DfGeoJsfCategory,DefaultGeoJsfView,DefaultGeoJsfViewPort>
 {
 	public static enum Code {welcome}
 	
@@ -24,9 +24,9 @@ public class DefaultGeoJsfMap implements GeoJsfMap<DefaultGeoJsfLang,DefaultGeoJ
 	@Override public long getId() {return id;}
 	@Override public void setId(long id) {this.id = id;}
 	
-	private DefaultGeoJsfCategory category;
-	@Override public DefaultGeoJsfCategory getCategory(){return category;}
-	@Override public void setCategory(DefaultGeoJsfCategory category){this.category = category;}
+	private DfGeoJsfCategory category;
+	@Override public DfGeoJsfCategory getCategory(){return category;}
+	@Override public void setCategory(DfGeoJsfCategory category){this.category = category;}
 	
 	private String code;
 	@Override public String getCode() {return code;}

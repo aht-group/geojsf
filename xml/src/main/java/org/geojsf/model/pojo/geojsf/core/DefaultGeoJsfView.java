@@ -6,7 +6,7 @@ import org.geojsf.interfaces.model.core.GeoJsfView;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="View",category="core",subset="core,datasource")
-public class DefaultGeoJsfView implements GeoJsfView<DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
+public class DefaultGeoJsfView implements GeoJsfView<DfGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfView>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
@@ -19,9 +19,9 @@ public class DefaultGeoJsfView implements GeoJsfView<DefaultGeoJsfLayer,DefaultG
 	private DefaultGeoJsfMap view;
 	
 	@ManyToOne
-	private DefaultGeoJsfLayer layer;
-	@Override public DefaultGeoJsfLayer getLayer() {return layer;}
-	@Override public void setLayer(DefaultGeoJsfLayer layer) {this.layer = layer;}
+	private DfGeoJsfLayer layer;
+	@Override public DfGeoJsfLayer getLayer() {return layer;}
+	@Override public void setLayer(DfGeoJsfLayer layer) {this.layer = layer;}
 
 	private int orderNo;
 	@Override public int getOrderNo() {return orderNo;}

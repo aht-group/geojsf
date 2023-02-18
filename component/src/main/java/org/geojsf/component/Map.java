@@ -66,9 +66,9 @@ public class Map <L extends JeeslLang, D extends JeeslDescription,
 					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
 	extends UINamingContainer implements ClientBehaviorHolder
 {

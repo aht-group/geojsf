@@ -24,5 +24,5 @@ public interface GeoJsfSldType<L extends JeeslLang, D extends JeeslDescription,
 								JeeslStatus<L,D,S>,JeeslStatusFixedCode,
 								EjbWithCodeGraphic<G>
 {
-	public static enum Type{rule,status,template}
+	public static enum Type{xml,status,rule}
 }

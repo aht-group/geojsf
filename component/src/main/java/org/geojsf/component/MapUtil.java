@@ -36,8 +36,8 @@ public class MapUtil<L extends JeeslLang,D extends JeeslDescription,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SDX extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SDX,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
 {	
 	final static Logger logger = LoggerFactory.getLogger(MapUtil.class);

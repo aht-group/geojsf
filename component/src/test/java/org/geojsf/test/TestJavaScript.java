@@ -13,8 +13,8 @@ import org.geojsf.model.json.MapConfiguration;
 import org.geojsf.model.json.MapData;
 import org.geojsf.model.json.WmsLayer;
 import org.geojsf.model.json.WmsService;
-import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfCategory;
-import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.geojsf.core.DfGeoJsfCategory;
+import org.geojsf.model.pojo.geojsf.core.DfGeoJsfLayer;
 import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfMap;
 import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfService;
 import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfView;
@@ -126,8 +126,8 @@ public class TestJavaScript
         // engine.eval(reader);
         
         // Better create the GeoJSF datamodel
-        DummyViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfScale,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSld,DefaultGeoJsfSldRule> dvf;
-        DefaultGeoJsfMap map;
+//        DummyViewFactory<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayer,DefaultGeoJsfMap,DefaultGeoJsfScale,DefaultGeoJsfView,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSldTemplate,DefaultGeoJsfSldType,DefaultGeoJsfSld,DefaultGeoJsfSldRule> dvf;
+//        DefaultGeoJsfMap map;
         
         logger.error("NYI, we need a FactoryProvider here!");
 //        dvf = DummyViewFactory.factory(DefaultGeoJsfLang.class,DefaultGeoJsfDescription.class,DefaultGeoJsfCategory.class,DefaultGeoJsfService.class,DefaultGeoJsfLayer.class,DefaultGeoJsfMap.class,DefaultGeoJsfView.class);

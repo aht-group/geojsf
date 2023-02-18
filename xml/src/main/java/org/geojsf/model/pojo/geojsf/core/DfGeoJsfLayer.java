@@ -19,7 +19,7 @@ import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Layer",category="core",subset="core,viewport,datasource")
-public class DefaultGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayerType,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSld>
+public class DfGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DfGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayerType,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSld>
 {
 	public static enum Code {welcome}
 	
@@ -35,9 +35,9 @@ public class DefaultGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,Default
 	@Override public void setService(DefaultGeoJsfService service) {this.service = service;}
 	
 	@ManyToOne
-	private DefaultGeoJsfCategory category;
-	@Override public DefaultGeoJsfCategory getCategory(){return category;}
-	@Override public void setCategory(DefaultGeoJsfCategory category){this.category = category;}
+	private DfGeoJsfCategory category;
+	@Override public DfGeoJsfCategory getCategory(){return category;}
+	@Override public void setCategory(DfGeoJsfCategory category){this.category = category;}
 
 	@ManyToOne
 	private DefaultGeoJsfLayerType type;
@@ -96,8 +96,8 @@ public class DefaultGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,Default
 	
 	public boolean equals(Object object)
 	{
-        return (object instanceof DefaultGeoJsfLayer)
-             ? id == ((DefaultGeoJsfLayer) object).getId()
+        return (object instanceof DfGeoJsfLayer)
+             ? id == ((DfGeoJsfLayer) object).getId()
              : (object == this);
     }
 	

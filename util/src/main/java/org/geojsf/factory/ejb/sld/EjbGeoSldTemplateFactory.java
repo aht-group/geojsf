@@ -4,20 +4,20 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EjbGeoSldTemplateFactory<TEMPLATE extends GeoJsfSldXml<?,?>>
+public class EjbGeoSldTemplateFactory<SDX extends GeoJsfSldXml<?,?,?>>
 {
 	final static Logger logger = LoggerFactory.getLogger(EjbGeoSldTemplateFactory.class);
 	
-	final Class<TEMPLATE> cTemplate;
+	final Class<SDX> cTemplate;
 	
-    public EjbGeoSldTemplateFactory(final Class<TEMPLATE> cTemplate)
+    public EjbGeoSldTemplateFactory(final Class<SDX> cTemplate)
     {
         this.cTemplate = cTemplate;
     }
 	
-	public TEMPLATE build(String code)
+	public SDX build(String code)
 	{
-		TEMPLATE ejb;
+		SDX ejb;
 		try
 		{
 			ejb = cTemplate.newInstance();

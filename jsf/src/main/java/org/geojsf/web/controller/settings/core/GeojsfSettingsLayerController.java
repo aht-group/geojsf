@@ -54,7 +54,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 									ECQL extends GeoJsfEcql<LAYER,LE,LA>,
 									LE extends JeeslRevisionEntity<L,D,?,?,LA,?>,
 									LA extends JeeslRevisionAttribute<L,D,LE,?,?>,
-									SLD extends GeoJsfSld<L,D,?,?,?>>
+									SLD extends GeoJsfSld<L,D,?,?,?,?,?>>
 			extends AbstractJeeslWebController<L,D,LOC>
 			implements Serializable
 {

@@ -34,7 +34,7 @@ import net.sf.ahtutils.jsf.util.FacesContextMessage;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 import net.sf.exlp.util.io.StringUtil;
 
-public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
+public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 										LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,VP,?,?>,
 										MAP extends GeoJsfMap<L,D,CATEGORY,VIEW,VP>,
@@ -45,7 +45,7 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 			implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsMapController2.class);
+	final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsMapController.class);
 	
 	private GeoJsfFacade<L,D,CATEGORY,?,LAYER,MAP,VIEW,VP,?> fGeo;
 	
@@ -63,7 +63,7 @@ public class GeojsfSettingsMapController2 <L extends JeeslLang, D extends JeeslD
 	private VIEW view; public VIEW getView() {return view;} public void setView(VIEW view){this.view = view;}
 	private VP viewPort; public VP getViewPort() {return viewPort;} public void setViewPort(VP viewPort) {this.viewPort = viewPort;}
 	
-	public GeojsfSettingsMapController2(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,MAP,VIEW> fbCore,
+	public GeojsfSettingsMapController(GeoCoreFactoryBuilder<L,D,CATEGORY,?,LAYER,?,MAP,VIEW> fbCore,
 									GeoMetaFactoryBuilder<L,D,LAYER,?,VP,?,?> fbMeta)
 	{
 		super(fbCore.getClassL(),fbCore.getClassD());

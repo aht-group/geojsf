@@ -8,7 +8,8 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SldRuleColorProcessor <SLD extends GeoJsfSld<?,?,?,?,RULE>, RULE extends GeoJsfSldRule<?,?,?>>
+public class SldRuleColorProcessor <SLD extends GeoJsfSld<?,?,?,?,RULE,?,?>,
+									RULE extends GeoJsfSldRule<?,?,?>>
 	implements Serializable
 {
 	private static final long serialVersionUID = 1L;

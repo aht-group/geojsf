@@ -15,26 +15,25 @@ import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlSldTemplateFactory <L extends JeeslLang, D extends JeeslDescription,
-									SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-									SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-									SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-									RULE extends GeoJsfSldRule<L,D,?>
+public class XmlSldXmlFactory <L extends JeeslLang, D extends JeeslDescription,
+									SLD extends GeoJsfSld<L,D,SDX,SDT,?,?,?>,
+									SDX extends GeoJsfSldXml<L,D,SLD>,
+									SDT extends GeoJsfSldType<L,D,SDT,?>
 									>
 							implements Serializable
 {
-	final static Logger logger = LoggerFactory.getLogger(XmlSldTemplateFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(XmlSldXmlFactory.class);
 	public static final long serialVersionUID=1;
 	
 	private SldTemplate q;
 	
-	public XmlSldTemplateFactory(Query query) {this(query.getSldTemplate());}
-	public XmlSldTemplateFactory(SldTemplate q)
+	public XmlSldXmlFactory(Query query) {this(query.getSldTemplate());}
+	public XmlSldXmlFactory(SldTemplate q)
 	{
 		this.q=q;
 	}
 
-	public SldTemplate build (SLDTEMPLATE ejb)
+	public SldTemplate build (SDX ejb)
 	{
 		SldTemplate xml = new SldTemplate();
 		if(q.isSetCode()){xml.setCode(ejb.getCode());}

@@ -16,8 +16,8 @@ import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 
 public interface GeoSldFacade <L extends JeeslLang, D extends JeeslDescription,
-								SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
+								SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE,?,?>,
 								TYPE extends GeoJsfSldType<L,D,TYPE,?>,
 								RULE extends GeoJsfSldRule<L,D,?>
 								>

@@ -7,7 +7,7 @@ import org.geojsf.interfaces.util.with.EjbWithSld;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 
-public interface GeoSldTimeSeriesCallback <SLD extends GeoJsfSld<?,?,?,?,?>>  extends Serializable
+public interface GeoSldTimeSeriesCallback <SLD extends GeoJsfSld<?,?,?,?,?,?,?>>  extends Serializable
 {
 	<W extends EjbWithSld<SLD>> SLD fcSld(W entity) throws JeeslConstraintViolationException, JeeslLockingException;
 }

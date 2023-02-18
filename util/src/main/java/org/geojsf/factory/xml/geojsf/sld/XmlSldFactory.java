@@ -13,10 +13,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
-							SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-							SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
-							RULE extends GeoJsfSldRule<L,D,?>
+							SLD extends GeoJsfSld<L,D,SDX,SDT,SDR,?,?>,
+							SDX extends GeoJsfSldXml<L,D,SLD>,
+							SDT extends GeoJsfSldType<L,D,SDT,?>,
+							SDR extends GeoJsfSldRule<L,D,?>
 							>
 				implements Serializable
 {
@@ -25,14 +25,14 @@ public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
 	
 	private Sld q;
 	
-	private XmlSldTemplateFactory<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> xfTemplate;
-	private XmlSldRuleFactory<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> xfRule;
+	private XmlSldXmlFactory<L,D,SLD,SDX,SDT> xfTemplate;
+	private XmlSldRuleFactory<L,D,SLD,SDX,SDT,SDR> xfRule;
 	
 //	public XmlSldFactory(Query query) {this(query.getSldTemplate());}
 	public XmlSldFactory(Sld q)
 	{
 		this.q=q;
-		if(q.isSetSldTemplate()){xfTemplate = new XmlSldTemplateFactory<>(q.getSldTemplate());}
+		if(q.isSetSldTemplate()){xfTemplate = new XmlSldXmlFactory<>(q.getSldTemplate());}
 		if(q.isSetSldRule()) {xfRule = new XmlSldRuleFactory<>(q.getSldRule().get(0));}
 	}
 
@@ -54,8 +54,7 @@ public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
 		
 		if(q.isSetSldRule())
 		{
-			
-			for(RULE rule : ejb.getRules())
+			for(SDR rule : ejb.getRules())
 			{
 				xml.getSldRule().add(xfRule.build(rule));
 			}

@@ -36,9 +36,9 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 								VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 								VP extends GeoJsfViewPort,
 								DS extends GeoJsfDataSource<L,D,LAYER>,
-								SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+								SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
 								SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 								RULE extends GeoJsfSldRule<L,D,?>>
 	implements DmSingleSelect<LAYER>
 {
@@ -65,8 +65,8 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
     	GeoJsfMapHelper<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
     	factory(final Class<SERVICE> clService,MAP view)
@@ -88,8 +88,8 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>>
     	GeoJsfMapHelper<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
     build(final Class<SERVICE> clService, final Class<MAP> clMap, final Class<VIEW> clVl, LAYER layer)

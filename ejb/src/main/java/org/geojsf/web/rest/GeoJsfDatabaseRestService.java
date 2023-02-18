@@ -10,7 +10,7 @@ import org.geojsf.factory.xml.geojsf.XmlLayerFactory;
 import org.geojsf.factory.xml.geojsf.XmlServiceFactory;
 import org.geojsf.factory.xml.geojsf.XmlViewFactory;
 import org.geojsf.factory.xml.geojsf.meta.XmlViewPortFactory;
-import org.geojsf.factory.xml.geojsf.sld.XmlSldTemplateFactory;
+import org.geojsf.factory.xml.geojsf.sld.XmlSldXmlFactory;
 import org.geojsf.factory.xml.openlayers.XmlMapFactory;
 import org.geojsf.interfaces.facade.GeoJsfFacade;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -60,9 +60,9 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 										VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 										VP extends GeoJsfViewPort,
 										DS extends GeoJsfDataSource<L,D,LAYER>,
-										SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+										SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
 										SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 										RULE extends GeoJsfSldRule<L,D,?>
 										>
 	implements GeoJsfDatabaseExportRest,GeoJsfDatabaseImportRest2
@@ -123,10 +123,10 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>>
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>>
 		GeoJsfDatabaseRestService<L,D,CATEGORY,SERVICE,LAYER,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo, final Class<L> cLang, final Class<D> cDescription,final Class<CATEGORY> cCategory, final Class<SERVICE> cService,final Class<LAYER> cLayer,final Class<MAP> cMap, final Class<VP> cViewPort,final Class<SLDTYPE> cSldType, final Class<SLDTEMPLATE> cSldTemplate)
 	{
@@ -239,7 +239,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
 	@Override public Repository exportSldTemplates()
 	{
 		logger.info("Export GeoJsf "+SldTemplate.class.getSimpleName());
-		XmlSldTemplateFactory<L,D,SLDTEMPLATE,SLDTYPE,SLD,RULE> f = new XmlSldTemplateFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.sldTemplate, null));
+		XmlSldXmlFactory<L,D,SLD,SLDTEMPLATE,SLDTYPE> f = new XmlSldXmlFactory<>(GeoJsfQuery.get(GeoJsfQuery.Key.sldTemplate, null));
 		Repository repository = new Repository();
 		
 		for(SLDTEMPLATE template : fGeo.all(cSldTemplate))

@@ -3,7 +3,7 @@ package org.geojsf.util.wfs;
 import java.util.List;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.geojsf.core.DfGeoJsfLayer;
 import org.geojsf.model.xml.specs.gml.Coordinates;
 import org.geojsf.model.xml.specs.ogc.Distance;
 import org.geojsf.model.xml.specs.wfs.GetFeature;
@@ -22,7 +22,7 @@ public class CliPointQuery extends AbstractGeoJsfUtilTest
 	final static Logger logger = LoggerFactory.getLogger(CliPointQuery.class);
 	
 	private Configuration config;
-	private DefaultGeoJsfLayer layer;
+	private DfGeoJsfLayer layer;
 	
 	public CliPointQuery(Configuration config)
 	{

@@ -1,7 +1,7 @@
 package org.geojsf.util.wfs;
 
 import org.geojsf.interfaces.util.wfs.WfsGetFeaturePropertyProvider;
-import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.geojsf.core.DfGeoJsfLayer;
 import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfService;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.model.SampleSpatialEntity;
@@ -12,18 +12,18 @@ import org.junit.Test;
 
 public class TestWfsPointQuery extends AbstractGeoJsfUtilTest
 {
-	private WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DefaultGeoJsfLayer> wfsPq;
+	private WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DfGeoJsfLayer> wfsPq;
 	
 	@Before
 	public void init()
 	{
 		DefaultGeoJsfService service = new DefaultGeoJsfService();
 		
-		DefaultGeoJsfLayer layer = new DefaultGeoJsfLayer(); 
+		DfGeoJsfLayer layer = new DfGeoJsfLayer(); 
 		layer.setService(service);
 		
 		WfsGetFeaturePropertyProvider wfsPp = new GeoJsfGetFeaturePropertyProvider();
-		wfsPq = new WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DefaultGeoJsfLayer>
+		wfsPq = new WfsPointQuery<SampleSpatialEntity,SampleSpatialEntity,DfGeoJsfLayer>
 								(null,wfsPp,layer,SampleSpatialEntity.class,SampleSpatialEntity.class);
 	}
 	

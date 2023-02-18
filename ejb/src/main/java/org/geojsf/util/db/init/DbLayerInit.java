@@ -42,9 +42,9 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 							VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 							VP extends GeoJsfViewPort,
 							DS extends GeoJsfDataSource<L,D,LAYER>,
-							SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+							SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
 							SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+							SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 							RULE extends GeoJsfSldRule<L,D,?>
 							>
 {
@@ -92,10 +92,10 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 					VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 					VP extends GeoJsfViewPort,
 					DS extends GeoJsfDataSource<L,D,LAYER>,
-					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+					SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
 					RULE extends GeoJsfSldRule<L,D,?>,
 					SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-					SLDTEMPLATE extends GeoJsfSldXml<L,D>> 
+					SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>> 
 	
 		DbLayerInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,

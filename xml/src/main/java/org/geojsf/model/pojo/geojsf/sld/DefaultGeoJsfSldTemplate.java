@@ -1,21 +1,19 @@
 package org.geojsf.model.pojo.geojsf.sld;
 
-import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.Map;
 
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfDescription;
 import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
-import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
-import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="SLD Template",category="sld",subset="sld")
-public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbPersistable,
-								GeoJsfSldXml<DefaultGeoJsfLang,DefaultGeoJsfDescription>
+public class DefaultGeoJsfSldTemplate implements GeoJsfSldXml<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfSld>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
@@ -27,6 +25,11 @@ public class DefaultGeoJsfSldTemplate implements Serializable,EjbRemoveable,EjbP
 	private String code;
 	@Override public String getCode() {return code;}
 	@Override public void setCode(String code) {this.code = code;}
+	
+	@OneToOne(fetch=FetchType.EAGER, mappedBy="template")
+	private DefaultGeoJsfSld sld;
+	@Override public DefaultGeoJsfSld getSld() {return sld;}
+	@Override public void setSld(DefaultGeoJsfSld sld) {this.sld = sld;}
 	
 	@ManyToOne
 	private DefaultGeoJsfSldType type;

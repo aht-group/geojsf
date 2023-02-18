@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XmlRuleFactory <L extends JeeslLang,D extends JeeslDescription,
-								SLD extends GeoJsfSld<L,D,?,?,RULE>,
+								SLD extends GeoJsfSld<L,D,?,?,RULE,?,?>,
 								RULE extends GeoJsfSldRule<L,D,?>> 
 				implements Serializable
 {

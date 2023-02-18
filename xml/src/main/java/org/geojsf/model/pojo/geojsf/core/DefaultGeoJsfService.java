@@ -13,7 +13,7 @@ import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Service",category="core",subset="core")
-public class DefaultGeoJsfService implements GeoJsfService<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayer>
+public class DefaultGeoJsfService implements GeoJsfService<DefaultGeoJsfLang,DefaultGeoJsfDescription,DfGeoJsfLayer>
 {
 	public static enum Code {welcome}
 	
@@ -38,9 +38,9 @@ public class DefaultGeoJsfService implements GeoJsfService<DefaultGeoJsfLang,Def
 	@Override public void setWcs(String wcs){this.wcs = wcs;}
 	
 	@OneToMany
-	private List<DefaultGeoJsfLayer> layer;
-	@Override public List<DefaultGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DefaultGeoJsfLayer>();} return layer;}
-	@Override public void setLayer(List<DefaultGeoJsfLayer> layer) {this.layer=layer;}
+	private List<DfGeoJsfLayer> layer;
+	@Override public List<DfGeoJsfLayer> getLayer() {if(layer==null){layer = new ArrayList<DfGeoJsfLayer>();} return layer;}
+	@Override public void setLayer(List<DfGeoJsfLayer> layer) {this.layer=layer;}
 		
 	
 //	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)

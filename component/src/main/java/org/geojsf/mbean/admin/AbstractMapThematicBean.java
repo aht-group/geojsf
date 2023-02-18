@@ -54,9 +54,9 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 										VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 										VP extends GeoJsfViewPort,
 										DS extends GeoJsfDataSource<L,D,LAYER>,
-										SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+										SDX extends GeoJsfSldXml<L,D,SLD>,
 										SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-										SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE>,
+										SLD extends GeoJsfSld<L,D,SDX,SLDTYPE,RULE,?,?>,
 										RULE extends GeoJsfSldRule<L,D,?>,
 										JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 										JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
@@ -85,7 +85,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	
 	public AbstractMapThematicBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
 									GeoMetaFactoryBuilder<L,D,LAYER,DS,VP,SCALE,?> fbMeta,
-									GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld)
+									GeoSldFactoryBuilder<L,D,LAYER,SDX,SLD,SLDTYPE,RULE> fbSld)
 	{
 		super(fbCore);
 	    efView = fbCore.ejbView();

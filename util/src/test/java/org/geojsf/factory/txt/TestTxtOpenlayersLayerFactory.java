@@ -1,7 +1,7 @@
 package org.geojsf.factory.txt;
 
-import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfCategory;
-import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfLayer;
+import org.geojsf.model.pojo.geojsf.core.DfGeoJsfCategory;
+import org.geojsf.model.pojo.geojsf.core.DfGeoJsfLayer;
 import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfService;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
@@ -17,10 +17,10 @@ public class TestTxtOpenlayersLayerFactory extends AbstractGeoJsfUtilTest
 	
 	private static String[] langKeys = {"de","en"};
 	
-	private DefaultGeoJsfCategory cat1;
+	private DfGeoJsfCategory cat1;
 	private DefaultGeoJsfService service;
-	private DefaultGeoJsfLayer layerA;
-	private DefaultGeoJsfLayer layerB;
+	private DfGeoJsfLayer layerA;
+	private DfGeoJsfLayer layerB;
 	
 	@Before
 	public void init() throws JeeslConstraintViolationException

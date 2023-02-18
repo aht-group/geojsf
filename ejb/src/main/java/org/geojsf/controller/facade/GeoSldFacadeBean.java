@@ -28,9 +28,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GeoSldFacadeBean <L extends JeeslLang, D extends JeeslDescription,
-								SLDTEMPLATE extends GeoJsfSldXml<L,D>,
+								SLDTEMPLATE extends GeoJsfSldXml<L,D,SLD>,
 								TYPE extends GeoJsfSldType<L,D,TYPE,?>,
-								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE>,
+								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,TYPE,RULE,?,?>,
 								RULE extends GeoJsfSldRule<L,D,?>
 								>
 				extends JeeslFacadeBean

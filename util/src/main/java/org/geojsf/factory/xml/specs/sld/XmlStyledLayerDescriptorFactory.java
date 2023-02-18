@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 public class XmlStyledLayerDescriptorFactory <L extends JeeslLang,
 												LAYER extends GeoJsfLayer<L,?,?,?,?,?,?,SLD>,
-												SLD extends GeoJsfSld<L,?,?,?,RULE>,
+												SLD extends GeoJsfSld<L,?,?,?,RULE,?,?>,
 												RULE extends GeoJsfSldRule<L,?,?>>
 				implements Serializable
 {

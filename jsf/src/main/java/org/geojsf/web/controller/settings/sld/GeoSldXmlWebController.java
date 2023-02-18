@@ -25,9 +25,9 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class GeoSldXmlWebController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
-											SXD extends GeoJsfSldXml<L,D>,
+											SXD extends GeoJsfSldXml<L,D,SLD>,
 											TYPE extends GeoJsfSldType<L,D,TYPE,?>,
-											SLD extends GeoJsfSld<L,D,SXD,TYPE,RULE>,
+											SLD extends GeoJsfSld<L,D,SXD,TYPE,RULE,?,?>,
 											RULE extends GeoJsfSldRule<L,D,?>>
 		extends AbstractJeeslWebController<L,D,LOC>
 		implements Serializable

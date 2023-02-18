@@ -39,7 +39,7 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 											G extends JeeslGraphic<GT,?,GS>,
 											GT extends JeeslGraphicType<L,D,GT,G>,
 											GS extends JeeslGraphicShape<L,D,GS,G>,
-											SLD extends GeoJsfSld<L,D,?,TYPE,RULE>,
+											SLD extends GeoJsfSld<L,D,?,TYPE,RULE,?,?>,
 											TYPE extends GeoJsfSldType<L,D,TYPE,G>,
 											RULE extends GeoJsfSldRule<L,D,G>,
 											CAT extends JeeslTsCategory<L,D,CAT,?>,

@@ -20,30 +20,36 @@
 			<aht:row>
 				<aht:slot id="sTemplates" width="4">
 					<h:form id="fTemplates">
-						<p:dataTable var="t" value="#{cc.attrs.ctrl.templates}"
-							selection="#{cc.attrs.ctrl.template}" selectionMode="single" rowKey="#{t.id}">
+						<p:dataTable var="x" value="#{cc.attrs.ctrl.templates}"
+							selection="#{cc.attrs.ctrl.template}" selectionMode="single" rowKey="#{x.id}">
 						<f:facet name="header">
-							<j:dtHeader title="#{msg.geoJsfAdminSldTemplates}">
-								<j:icon type="geoJsfAdd" listener="#{cc.attrs.ctrl.addTemplate()}" update=":#{cc.id}:sTemplates :#{cc.id}:sTemplate"/>
+							<j:dtHeader entity="GeoSldXml" code="listOf">
+								<j:svg type="jeeslAdd" listener="#{cc.attrs.ctrl.addTemplate()}" update=":#{cc.id}:sTemplates :#{cc.id}:sTemplate"/>
 							</j:dtHeader>
 						</f:facet>
 						<p:ajax event="rowSelect" update=":#{cc.id}:sTemplate" listener="#{cc.attrs.ctrl.selectTemplate}"/>
-						<p:column headerText="#{msg.geoJsfAdminCode}" sortBy="#{t.code}">
-							<h:outputText value="#{t.code}" /> 
+						<p:column sortBy="#{x.code}">
+							<f:facet name="header"><jtp:label entity="GeoSldXml" code="code"/></f:facet>
+							<h:outputText value="#{x.code}" /> 
 						</p:column>
-						<p:column headerText="#{msg.geoJsfAdminName}" sortBy="#{t.name[userBean.localeCode].lang}">
-							<h:outputText value="#{t.name[userBean.localeCode].lang}" /> 
+						<p:columns>
+							<f:facet name="header"><jtp:label entity="GeoSldXml" code="name"/></f:facet>
+							<h:outputText value="#{x.name[localeCode].lang}" /> 
+						</p:column>
+						<p:column >
+							<jtp:symbolizer value="#{x.sld.type}" /> 
 						</p:column>
 					</p:dataTable>
 					</h:form>
 				</aht:slot>
 				<aht:slot id="sTemplate" width="8">
-					<h:form id="fTemplate">
-						<p:panel header="#{msg.geoJsfAdminSldTemplate}" rendered="#{not empty cc.attrs.ctrl.template}" styleClass="jeeslPanel">
+					<h:form id="fTemplate" rendered="#{not empty cc.attrs.ctrl.template}">
+						<p:panel styleClass="jeesl-panel">
+							<f:facet name="header"><j:pHeader entity="GeoSldXml"/></f:facet>
 							<f:facet name="actions">
-								<j:icon type="geoJsfCancel" listener="#{cc.attrs.ctrl.cancelTemplate()}" update=":#{cc.id}:grid"/>
-								<j:icon type="geoJsfSave" listener="#{cc.attrs.ctrl.saveTemplate()}" update=":#{cc.id}:grid"/>
-								<j:icon type="geoJsfDelete" listener="#{cc.attrs.ctrl.rmTemplate()}" update=":#{cc.id}:grid"/>
+								<j:svg type="jeeslCancel" listener="#{cc.attrs.ctrl.cancelTemplate()}" update=":#{cc.id}:grid"/>
+								<j:svg type="jeeslSave" listener="#{cc.attrs.ctrl.saveTemplate()}" update=":#{cc.id}:grid"/>
+								<j:svg type="jeeslDelete" listener="#{cc.attrs.ctrl.rmTemplate()}" update=":#{cc.id}:grid"/>
 							</f:facet>
 							<p:panelGrid columns="2" columnClasses="jeeslGrid20,jeeslGrid80">
 								<p:outputLabel value="#{msg.geoJsfAdminCode}"/>

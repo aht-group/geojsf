@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XmlUserStyleFactory <L extends JeeslLang,
-									SLD extends GeoJsfSld<L,?,?,?,RULE>,
+									SLD extends GeoJsfSld<L,?,?,?,RULE,?,?>,
 									RULE extends GeoJsfSldRule<L,?,?>>
 				implements Serializable
 {
