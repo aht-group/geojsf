@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.apache.commons.configuration.Configuration;
-import org.geojsf.model.pojo.geojsf.sld.DefaultGeoJsfSldStyle;
-import org.geojsf.model.pojo.geojsf.sld.DefaultGeoJsfSldType;
 import org.geojsf.test.GeoJsfDocTestBootstrap;
 import org.jeesl.exception.processing.UtilsConfigurationException;
 import org.jeesl.model.xml.system.io.db.Db;
@@ -19,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.db.xml.UtilsDbXmlSeedUtil;
-import net.sf.ahtutils.db.xml.UtilsDbXmlSeedUtil.DataSource;
 import net.sf.ahtutils.doc.UtilsDocumentation;
 import net.sf.ahtutils.doc.ofx.status.OfxStatusTableFactory;
 import net.sf.ahtutils.xml.aht.Aht;
@@ -63,11 +60,11 @@ public class GeoJsfOfxDocumentation
 	
 	public void optionTablesOfx() throws FileNotFoundException, UtilsConfigurationException
 	{
-		Aht sldStyles = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldStyle.class.getSimpleName()), Aht.class);
-		Aht sldTypes = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldType.class.getSimpleName()), Aht.class);
+//		Aht sldStyles = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldStyle.class.getSimpleName()), Aht.class);
+//		Aht sldTypes = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldType.class.getSimpleName()), Aht.class);
 		
-		table(sldStyles,null,"geojsf/sld/style","src/main/resources/ofx.geojsf/geojsf/sld/table/style.xml",15,20,30);
-		table(sldTypes,null,"geojsf/sld/type","src/main/resources/ofx.geojsf/geojsf/sld/table/type.xml",15,20,30);
+//		table(sldStyles,null,"geojsf/sld/style","src/main/resources/ofx.geojsf/geojsf/sld/table/style.xml",15,20,30);
+//		table(sldTypes,null,"geojsf/sld/type","src/main/resources/ofx.geojsf/geojsf/sld/table/type.xml",15,20,30);
 	}
 		
 	private void table(Aht athStatus, Aht ahtParents, String srcXml, String dstXml, int... colWidths) throws UtilsConfigurationException
