@@ -70,7 +70,7 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 		queryProperties = getPropertyColumnNames(cGeometry);
 	}
 	
-	protected String getGeometryColumnName(Class<W> clazz)
+	public String getGeometryColumnName(Class<W> clazz)
 	{
 		Field geometryField = getGeometryfield(clazz);
 		
@@ -108,7 +108,7 @@ public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,
 		return geometryField;
 	}
 	
-	protected String[] getPropertyColumnNames(Class<W> clazz)
+	public String[] getPropertyColumnNames(Class<W> clazz)
 	{
 		List<String> propertyFields = new ArrayList<String>();
 	
