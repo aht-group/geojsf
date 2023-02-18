@@ -30,5 +30,6 @@ public interface GeoJsfEcql <LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,?>,
 	LA getAttribute();
 	void setAttribute(LA attribute);
 	
-//	void x();
+	String getFilter();
+	void setFilter(String filter);
 }

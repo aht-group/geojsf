@@ -129,9 +129,10 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		this.reloadCategories();
 	}
 	
-	private void reset(boolean rViews)
+	private void reset(boolean rViews, boolean rEcql)
 	{
 		if(rViews) {views.clear();}
+		if(rEcql) {ecql = null;}
 	}
 	
 	protected void reloadServices()
@@ -272,12 +273,13 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	
 	public void selectLayer() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException
 	{
+		this.reset(true,true);
 		logger.info(AbstractLogMessage.selectEntity(layer));
 		layer = fGeo.load(layer);
 		layer = efLang.persistMissingLangs(fGeo,lp.getLocales(),layer);
 		layer = efDescription.persistMissingLangs(fGeo,lp.getLocales(),layer);
 		
-		reloadLayer();
+		this.reloadLayer();
 		this.reloadEcqls();
 		
 		if(layer.getViewPort()==null){addViewPort();}
@@ -293,7 +295,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	
 	private void reloadLayer()
 	{
-		this.reset(true);
+		this.reset(true,false);
 		views.addAll(fGeo.fGeoViews(layer));
 		
 	}

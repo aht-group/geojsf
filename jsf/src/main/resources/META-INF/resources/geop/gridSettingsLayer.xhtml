@@ -141,8 +141,10 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header"><jtp:label entity="GeoEcql" code="attribute"/></f:facet>
+						<jtp:symbolizer value="#{e.attribute.type}" marginRight="5" rendered="#{empty e.attribute.relation}"/>
 						<jtp:symbolizer value="#{e.attribute.relation}" marginRight="5" rendered="#{not empty e.attribute.relation}"/>
-						<h:outputText value="#{e.attribute.name[localeCode].lang}"/>  
+						<h:outputText value="#{e.attribute.name[localeCode].lang}"/>
+						<h:outputText value=" (#{e.filter})" rendered="#{not empty e.filter}" styleClass="jeeslItalic"/>
 					</p:column>
 					
 				</p:dataTable>
@@ -192,6 +194,8 @@
 							<h:outputText value="#{cc.attrs.controller.ecql.attribute.entity.name[localeCode].lang}"/>
 						</ui:fragment>
 						
+						<jtp:label entity="GeoEcql" code="filter"/>
+						<p:inputText value="#{cc.attrs.controller.ecql.filter}" autocomplete="false"/>
 						
 					</p:panelGrid>
 					
