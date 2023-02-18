@@ -11,7 +11,7 @@ import org.jeesl.interfaces.model.with.primitive.code.EjbWithCode;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Type",category="sld",subset="sld",level=3)
-public class DefaultGeoJsfLayerType implements GeoJsfLayerType<DefaultGeoJsfLang,DefaultGeoJsfDescription,DefaultGeoJsfLayerType,DefaultGeoJsfGraphic>
+public class DfGeoJsfLayerType implements GeoJsfLayerType<DefaultGeoJsfLang,DefaultGeoJsfDescription,DfGeoJsfLayerType,DefaultGeoJsfGraphic>
 {
 	public static enum Code {welcome}
 	public static final long serialVersionUID=1;
@@ -54,7 +54,7 @@ public class DefaultGeoJsfLayerType implements GeoJsfLayerType<DefaultGeoJsfLang
 	
 	public boolean equals(Object object)
 	{
-        return (object instanceof DefaultGeoJsfLayerType) ? id == ((DefaultGeoJsfLayerType) object).getId() : (object == this);
+        return (object instanceof DfGeoJsfLayerType) ? id == ((DfGeoJsfLayerType) object).getId() : (object == this);
     }
 	
 	public String toString()

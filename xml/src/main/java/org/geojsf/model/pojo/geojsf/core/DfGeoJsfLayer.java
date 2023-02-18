@@ -19,7 +19,7 @@ import org.geojsf.model.pojo.io.locale.DefaultGeoJsfLang;
 import org.jeesl.interfaces.qualifier.er.EjbErNode;
 
 @EjbErNode(name="Layer",category="core",subset="core,viewport,datasource")
-public class DfGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DfGeoJsfCategory,DefaultGeoJsfService,DefaultGeoJsfLayerType,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSld>
+public class DfGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJsfDescription,DfGeoJsfCategory,DefaultGeoJsfService,DfGeoJsfLayerType,DefaultGeoJsfViewPort,DefaultGeoJsfDataSource,DefaultGeoJsfSld>
 {
 	public static enum Code {welcome}
 	
@@ -40,9 +40,9 @@ public class DfGeoJsfLayer implements GeoJsfLayer<DefaultGeoJsfLang,DefaultGeoJs
 	@Override public void setCategory(DfGeoJsfCategory category){this.category = category;}
 
 	@ManyToOne
-	private DefaultGeoJsfLayerType type;
-	@Override public DefaultGeoJsfLayerType getType() {return type;}
-	@Override public void setType(DefaultGeoJsfLayerType type) {this.type = type;}
+	private DfGeoJsfLayerType type;
+	@Override public DfGeoJsfLayerType getType() {return type;}
+	@Override public void setType(DfGeoJsfLayerType type) {this.type = type;}
 	
 	private String code;
 	@Override public String getCode() {return code;}

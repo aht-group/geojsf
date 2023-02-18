@@ -1,6 +1,5 @@
 package org.geojsf.test;
 
-import org.geojsf.factory.GeoDefaultFactoryProvider;
 import org.geojsf.factory.ejb.core.EjbGeoCategoryFactory;
 import org.geojsf.factory.ejb.core.EjbGeoLayerFactory;
 import org.geojsf.factory.ejb.core.EjbGeoMapFactory;
