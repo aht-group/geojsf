@@ -1,7 +1,7 @@
 package org.geojsf.interfaces.facade;
 
-import org.geojsf.interfaces.model.geometry.EjbWithMultiPolygon;
-import org.geojsf.interfaces.model.geometry.GeoJsfMultiPolygon;
+import org.geojsf.interfaces.util.geometry.EjbWithMultiPolygon;
+import org.geojsf.interfaces.util.geometry.GeoJsfMultiPolygon;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.jeesl.interfaces.facade.JeeslFacade;
 

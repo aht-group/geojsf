@@ -3,7 +3,7 @@ package org.geojsf.interfaces.controller.web;
 import java.io.Serializable;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.with.EjbWithSld;
+import org.geojsf.interfaces.util.with.EjbWithSld;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 

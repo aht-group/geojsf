@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.qualifier;
+package org.geojsf.interfaces.util.qualifier;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.model.geometry;
+package org.geojsf.interfaces.util.geometry;
 
 import org.jeesl.interfaces.model.with.primitive.number.EjbWithId;
 

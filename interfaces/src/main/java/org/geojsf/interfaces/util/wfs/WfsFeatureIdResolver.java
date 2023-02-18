@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.wfs;
+package org.geojsf.interfaces.util.wfs;
 
 
 public class WfsFeatureIdResolver

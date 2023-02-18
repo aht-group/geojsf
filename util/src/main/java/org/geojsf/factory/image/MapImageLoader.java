@@ -2,7 +2,8 @@ package org.geojsf.factory.image;
 
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Point;
-import org.geojsf.interfaces.model.with.EjbWithGeometry;
+
+import org.geojsf.interfaces.util.with.EjbWithGeometry;
 import org.geojsf.util.network.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ public class MapImageLoader {
     
     /**
      * Create a SVG image holding a map centered at the location of the entity and expanded to the given size incl. a circle marker in the center with given radius (set to 0.0 if not needed)
-     * @param entity An entity implementing {@link org.geojsf.interfaces.model.with.EjbWithGeometry EjbWithGeometry} with a {@link com.vividsolutions.jts.geom.Point Point} as Geometry
+     * @param entity An entity implementing {@link org.geojsf.interfaces.util.with.EjbWithGeometry EjbWithGeometry} with a {@link com.vividsolutions.jts.geom.Point Point} as Geometry
      * @param mapSize The radius of the {@link com.vividsolutions.jts.geom.Envelope Envelope} envelope
      * @param centerMarkerPointRadius Radius of the point marking the center
      * @return The XML representation of the SVG as text

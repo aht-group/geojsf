@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.model.with;
+package org.geojsf.interfaces.util.with;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.jeesl.interfaces.model.with.primitive.number.EjbWithId;

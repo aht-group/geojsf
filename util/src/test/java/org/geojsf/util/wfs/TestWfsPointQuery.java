@@ -1,6 +1,6 @@
 package org.geojsf.util.wfs;
 
-import org.geojsf.interfaces.wfs.WfsGetFeaturePropertyProvider;
+import org.geojsf.interfaces.util.wfs.WfsGetFeaturePropertyProvider;
 import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfLayer;
 import org.geojsf.model.pojo.geojsf.core.DefaultGeoJsfService;
 import org.geojsf.test.AbstractGeoJsfUtilTest;

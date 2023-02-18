@@ -1,4 +1,4 @@
-package org.geojsf.interfaces.wfs;
+package org.geojsf.interfaces.util.wfs;
 
 import org.jdom2.Namespace;
 

@@ -2,7 +2,7 @@ package org.geojsf.interfaces.model.domain.station;
 
 import java.util.List;
 
-import org.geojsf.interfaces.model.with.EjbWithGeometry;
+import org.geojsf.interfaces.util.with.EjbWithGeometry;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;

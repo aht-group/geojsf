@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 
-import org.geojsf.interfaces.model.with.EjbWithGeometry;
+import org.geojsf.interfaces.util.with.EjbWithGeometry;
 import org.hibernate.annotations.Type;
 
 import com.vividsolutions.jts.geom.Point;

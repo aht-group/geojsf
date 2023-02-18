@@ -10,7 +10,7 @@ import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
-import org.geojsf.interfaces.model.with.EjbWithSld;
+import org.geojsf.interfaces.util.with.EjbWithSld;
 import org.geojsf.jsf.handler.SldRuleHandler;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.controller.web.AbstractJeeslWebController;

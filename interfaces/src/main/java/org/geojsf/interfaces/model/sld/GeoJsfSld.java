@@ -2,7 +2,7 @@ package org.geojsf.interfaces.model.sld;
 
 import java.io.Serializable;
 
-import org.geojsf.interfaces.model.with.EjbWithSldRules;
+import org.geojsf.interfaces.util.with.EjbWithSldRules;
 import org.jeesl.interfaces.model.marker.jpa.EjbPersistable;
 import org.jeesl.interfaces.model.marker.jpa.EjbRemoveable;
 import org.jeesl.interfaces.model.marker.jpa.EjbSaveable;

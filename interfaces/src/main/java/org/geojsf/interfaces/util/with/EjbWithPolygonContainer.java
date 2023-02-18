@@ -1,6 +1,5 @@
-package org.geojsf.interfaces.model.with.container;
+package org.geojsf.interfaces.util.with;
 
-import org.geojsf.interfaces.model.with.EjbWithGeometry;
 import org.jeesl.interfaces.model.with.primitive.number.EjbWithId;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
