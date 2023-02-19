@@ -87,7 +87,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 		
 	public AbstractMapServiceBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
 									GeoMetaFactoryBuilder<L,D,LAYER,DS,VP,SCALE,?> fbMeta,
-									GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld)
+									GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE,?,?> fbSld)
 	{
 		super(fbCore);
 	    efCategory = fbCore.ejbCategory();

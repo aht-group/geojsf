@@ -3,6 +3,7 @@ package org.geojsf.web.controller.settings.sld;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
@@ -13,61 +14,82 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.interfaces.util.qualifier.GeoJsfProvideSldStatus;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
+import org.jeesl.api.facade.io.JeeslIoRevisionFacade;
 import org.jeesl.controller.web.AbstractJeeslWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
+import org.jeesl.factory.builder.io.IoRevisionFactoryBuilder;
 import org.jeesl.interfaces.controller.handler.system.locales.JeeslLocaleProvider;
+import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionAttribute;
+import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionEntity;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.JeeslLocale;
+import org.jeesl.interfaces.model.with.primitive.number.EjbWithId;
+import org.jeesl.interfaces.model.with.primitive.position.EjbWithPosition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
-									
-									SDX extends GeoJsfSldXml<L,D,SLD>,
-									SLDTYPE extends GeoJsfSldType<L,D,SLDTYPE,?>,
-									SLD extends GeoJsfSld<L,D,SDX,SLDTYPE,RULE,?,?>,
-									RULE extends GeoJsfSldRule<L,D,?>>
+										SLD extends GeoJsfSld<L,D,SDX,SDT,SDR,LE,LA>,
+										SDT extends GeoJsfSldType<L,D,SDT,?>,
+										SDX extends GeoJsfSldXml<L,D,SLD>,
+										SDR extends GeoJsfSldRule<L,D,?>,
+										LE extends JeeslRevisionEntity<L,D,?,?,LA,?>,
+										LA extends JeeslRevisionAttribute<L,D,LE,?,?>>
 		extends AbstractJeeslWebController<L,D,LOC>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = LoggerFactory.getLogger(GeojsfSldLibraryController.class);
 	
-	private GeoSldFacade<L,D,SDX,SLD,SLDTYPE,RULE> fSld;
+	private GeoSldFacade<L,D,SDX,SLD,SDT,SDR> fSld;
+	private JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision;
 	
-	protected final GeoSldFactoryBuilder<L,D,?,SDX,SLD,SLDTYPE,RULE> fbSld;
+	private final GeoSldFactoryBuilder<L,D,?,SDX,SLD,SDT,SDR,LE,LA> fbSld;
+	private final IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel;
+//	private final JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision;
 
-	protected final EjbGeoSldFactory<SLDTYPE,SLD> efSld;
+	protected final EjbGeoSldFactory<SDT,SLD> efSld;
 	
-	
-	private List<SLDTYPE> types; public List<SLDTYPE> getTypes() {return types;}
+	private List<SDT> types; public List<SDT> getTypes() {return types;}
 	private List<SDX> templates; public List<SDX> getTemplates(){return templates;}
 	private List<SLD> slds; public List<SLD> getSlds() {return slds;} public void setSlds(List<SLD> slds) {this.slds = slds;}
+	private final List<LE> entities; public List<LE> getEntities() {return entities;}
+	private final List<LA> attributes; public List<LA> getAttributes() {return attributes;}
+	private final List<EjbWithId> options; public List<EjbWithId> getOptions() {return options;}
+	
 	private List<String> sldStatusClasses; public List<String> getSldStatusClasses() {return sldStatusClasses;}
 	
 	private SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
 
-	public GeojsfSldLibraryController(GeoSldFactoryBuilder<L,D,?,SDX,SLD,SLDTYPE,RULE> fbSld)
+	public GeojsfSldLibraryController(GeoSldFactoryBuilder<L,D,?,SDX,SLD,SDT,SDR,LE,LA> fbSld, IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel)
 	{
 		super(fbSld.getClassL(),fbSld.getClassD());
 		this.fbSld=fbSld;
+		this.fbLabel=fbLabel;
 
 		efSld = fbSld.ejbSld();
 		
-		sldStatusClasses = new ArrayList<String>();
+		sldStatusClasses = new ArrayList<>();
+		entities = new ArrayList<>();
+		attributes = new ArrayList<>();
+		options = new ArrayList<>();
 	}
 	
 	public void postConstruct(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
-								GeoSldFacade<L,D,SDX,SLD,SLDTYPE,RULE> fSld)
+								GeoSldFacade<L,D,SDX,SLD,SDT,SDR> fSld,
+								JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision)
 	{
 		super.postConstructWebController(lp,bMessage);
 		this.fSld=fSld;
+		this.fRevision=fRevision;
+		
 		templates = fSld.all(fbSld.getClassTemplate());
 		types = fSld.allOrderedPositionVisible(fbSld.getClassSldType());
+		entities.addAll(fSld.allOrderedPositionVisible(fbLabel.getClassEntity()));
 		this.reloadSlds();
 	}
 	
@@ -86,7 +108,11 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	public void selectSld()
 	{
 		logger.info(AbstractLogMessage.selectEntity(sld));
+		efLang.persistMissingLangs(fSld,lp.getLocales(),sld);
+		efDescription.persistMissingLangs(fSld,lp.getLocales(),sld);
 		sld = fSld.load(sld);
+		this.reloadAttributes();
+		this.reloadAttribute();
 	}
 	
 	public void addSld()
@@ -109,7 +135,9 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 		logger.info(AbstractLogMessage.saveEntity(sld));
 		sld = fSld.save(sld);
 		logger.info("2: "+sld.getStatusAttribute());
-		reloadSlds();
+		this.reloadSlds(); 
+		this.reloadAttributes();
+		this.reloadAttribute();
 	}
 	
 	public void deleteSld() throws JeeslConstraintViolationException, JeeslLockingException
@@ -120,7 +148,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 		this.reloadSlds();
 	}
 	
-	public void changeTYPE()
+	public void changeType()
 	{
 		sld.setType(fSld.find(fbSld.getClassSldType(), sld.getType()));
 		logger.info(AbstractLogMessage.selectOneMenuChange(sld.getType()));
@@ -129,5 +157,36 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	public <C extends GeoJsfProvideSldStatus> void activateSldType(Class<C> c)
 	{
 		sldStatusClasses.add(c.getName());
+	}
+	
+	public void reloadAttributes()
+	{
+		attributes.clear();
+		if(Objects.nonNull(sld.getEntity()))
+		{
+			sld.setEntity(fRevision.find(fbLabel.getClassEntity(), sld.getEntity()));
+			sld.setEntity(fRevision.load(fbLabel.getClassEntity(), sld.getEntity()));
+			attributes.addAll(sld.getEntity().getAttributes());
+			attributes.removeIf(x -> (Objects.isNull(x.getRelation())));
+		}
+		logger.info(AbstractLogMessage.reloaded(fbLabel.getClassAttribute(),attributes));
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void reloadAttribute()
+	{
+		options.clear();
+		if(Objects.nonNull(sld.getAttribute()))
+		{
+			sld.setAttribute(fRevision.find(fbLabel.getClassAttribute(), sld.getAttribute()));
+			
+			try
+			{
+				Class<EjbWithPosition> cOption = (Class<EjbWithPosition>)Class.forName(sld.getAttribute().getEntity().getCode()).asSubclass(EjbWithPosition.class);
+				options.addAll(fRevision.allOrderedPosition(cOption));
+			}
+			catch (ClassNotFoundException e) {e.printStackTrace();}
+//			
+		}
 	}
 }

@@ -121,18 +121,18 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 		scale.setValue((new Double(viewPortScale)).intValue());
 		scale.setZoom((new Double(viewPortZoom)).intValue());
 		viewPort.setScale(scale);
-		JaxbUtil.info(viewPort);
+//		JaxbUtil.info(viewPort);
 		org.locationtech.jts.geom.Coordinate start = new org.locationtech.jts.geom.Coordinate(viewPort.getLeft(), viewPort.getTop());
 		org.locationtech.jts.geom.Coordinate end   = new org.locationtech.jts.geom.Coordinate(viewPort.getLeft(), viewPort.getBottom());
 		Double distance;
-		try {
+		try
+		{
 			distance = GeoJsfDistanceCalculator.getDistance(start, end);
 			logger.info("Distance by GeoTools: " +distance + " m - will be ignored for given scale/resolution");
 		//	viewPort.getScale().setValue(distance.intValue());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
 	}
 
 	public void addScale(String scale, String zoom)

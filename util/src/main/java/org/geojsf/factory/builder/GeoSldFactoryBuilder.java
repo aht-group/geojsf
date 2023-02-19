@@ -12,6 +12,8 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.util.SldConfigurationProvider;
 import org.jeesl.factory.builder.AbstractFactoryBuilder;
+import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionAttribute;
+import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionEntity;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
@@ -20,9 +22,11 @@ import org.slf4j.LoggerFactory;
 public class GeoSldFactoryBuilder<L extends JeeslLang,D extends JeeslDescription,
 									LAYER extends GeoJsfLayer<L,D,?,?,?,?,?,SLD>,
 									SDX extends GeoJsfSldXml<L,D,SLD>,
-									SLD extends GeoJsfSld<L,D,SDX,TYPE,RULE,?,?>,
+									SLD extends GeoJsfSld<L,D,SDX,TYPE,RULE,LE,LA>,
 									TYPE extends GeoJsfSldType<L,D,TYPE,?>,
-									RULE extends GeoJsfSldRule<L,D,?>>
+									RULE extends GeoJsfSldRule<L,D,?>,
+									LE extends JeeslRevisionEntity<L,D,?,?,LA,?>,
+									LA extends JeeslRevisionAttribute<L,D,LE,?,?>>
 				extends AbstractFactoryBuilder<L,D>
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoSldFactoryBuilder.class);
@@ -49,7 +53,7 @@ public class GeoSldFactoryBuilder<L extends JeeslLang,D extends JeeslDescription
 	public EjbGeoSldRuleFactory<SLD,RULE> ejbRule() {return new EjbGeoSldRuleFactory<>(cRule);}
 	public EjbGeoSldTemplateFactory<SDX> efTemplate() {return new EjbGeoSldTemplateFactory<>(cTemplate);}
 	
-	public XmlStyledLayerDescriptorFactory<L,LAYER,SLD,RULE> xmlStyledLayerDescriptor(SldConfigurationProvider sldConfigurationProvider) {return new XmlStyledLayerDescriptorFactory<>(sldConfigurationProvider);}
+	public XmlStyledLayerDescriptorFactory<L,LAYER,SLD,RULE,LE,LA> xmlStyledLayerDescriptor(SldConfigurationProvider sldConfigurationProvider) {return new XmlStyledLayerDescriptorFactory<>(sldConfigurationProvider);}
 	
 	public JdomStyledLayerDescriptorFactory<LAYER,SDX,TYPE,SLD> jdomStyledLayerDescriptor(SldConfigurationProvider sldConfigurationProvider) {return new JdomStyledLayerDescriptorFactory<>(sldConfigurationProvider);}
 }

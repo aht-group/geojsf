@@ -20,9 +20,9 @@ import org.jeesl.interfaces.qualifier.rest.option.DownloadJeeslDescription;
 public interface GeoJsfSld<L extends JeeslLang, D extends JeeslDescription,
 						   SDX extends GeoJsfSldXml<L,D,?>,
 						   SDT extends GeoJsfSldType<L,D,SDT,?>,
-						   SDR extends GeoJsfSldRule<L,D,?>
-,LE extends JeeslRevisionEntity<?,?,?,?,LA,?>,
-LA extends JeeslRevisionAttribute<?,?,LE,?,?>
+						   SDR extends GeoJsfSldRule<L,D,?>,
+						   LE extends JeeslRevisionEntity<L,D,?,?,LA,?>,
+						   LA extends JeeslRevisionAttribute<L,D,LE,?,?>
 						   >
 			extends Serializable,EjbRemoveable,EjbPersistable,EjbSaveable,
 					EjbWithLang<L>,EjbWithDescription<D>,
@@ -45,5 +45,9 @@ LA extends JeeslRevisionAttribute<?,?,LE,?,?>
 	String getStatusAttribute();
 	void setStatusAttribute(String statusAttribute);
 	
+	LE getEntity();
+	void setEntity(LE entity);
 	
+	LA getAttribute();
+	void setAttribute(LA attribute);
 }

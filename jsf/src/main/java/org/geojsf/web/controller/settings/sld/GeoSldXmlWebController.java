@@ -37,14 +37,14 @@ public class GeoSldXmlWebController <L extends JeeslLang, D extends JeeslDescrip
 	
 	private GeoSldFacade<L,D,SXD,SLD,TYPE,RULE> fSld;
 	
-	private final GeoSldFactoryBuilder<L,D,?,SXD,SLD,TYPE,RULE> fbSld;
+	private final GeoSldFactoryBuilder<L,D,?,SXD,SLD,TYPE,RULE,?,?> fbSld;
 	
 	protected final EjbGeoSldTemplateFactory<SXD> efTemplate;
 	
 	protected List<SXD> templates; public List<SXD> getTemplates(){return templates;}
 	protected SXD template; public SXD getTemplate() {return template;} public void setTemplate(SXD template) {this.template = template;}
 	
-	public GeoSldXmlWebController(GeoSldFactoryBuilder<L,D,?,SXD,SLD,TYPE,RULE> fbSld)
+	public GeoSldXmlWebController(GeoSldFactoryBuilder<L,D,?,SXD,SLD,TYPE,RULE,?,?> fbSld)
 	{
 		super(fbSld.getClassL(),fbSld.getClassD());
 		this.fbSld=fbSld;

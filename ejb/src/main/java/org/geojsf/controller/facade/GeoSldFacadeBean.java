@@ -41,10 +41,10 @@ public class GeoSldFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 
 	final static Logger logger = LoggerFactory.getLogger(GeoSldFacadeBean.class);
 	
-	private final GeoSldFactoryBuilder<L,D,?,SLDTEMPLATE,SLD,TYPE,RULE> fbSld;
+	private final GeoSldFactoryBuilder<L,D,?,SLDTEMPLATE,SLD,TYPE,RULE,?,?> fbSld;
 
 	
-	public GeoSldFacadeBean(EntityManager em, GeoSldFactoryBuilder<L,D,?,SLDTEMPLATE,SLD,TYPE,RULE> fbSld)
+	public GeoSldFacadeBean(EntityManager em, GeoSldFactoryBuilder<L,D,?,SLDTEMPLATE,SLD,TYPE,RULE,?,?> fbSld)
 	{
 		super(em);
 		this.fbSld=fbSld;

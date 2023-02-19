@@ -39,7 +39,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 	
 	private final GeoSldFacade<L,D,?,SLD,?,RULE> fSld;
 	
-	private final GeoSldFactoryBuilder<L,D,?,?,SLD,?,RULE> fbSld;
+	private final GeoSldFactoryBuilder<L,D,?,?,SLD,?,RULE,?,?> fbSld;
 	private final SvgFactoryBuilder<L,D,G,GT,?,GS> fbSvg;
 	
 	final String[] defaultLangs;
@@ -58,7 +58,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 	private String lowerBound; public String getLowerBound() {return lowerBound;} public void setLowerBound(String lowerBound) {this.lowerBound = lowerBound;}
 	private String upperBound; public String getUpperBound() {return upperBound;} public void setUpperBound(String upperBound) {this.upperBound = upperBound;}
 	
-	public SldRuleHandler(GeoSldFactoryBuilder<L,D,?,?,SLD,?,RULE> fbSld,
+	public SldRuleHandler(GeoSldFactoryBuilder<L,D,?,?,SLD,?,RULE,?,?> fbSld,
 						SvgFactoryBuilder<L,D,G,GT,?,GS> fbSvg,
 						GeoSldFacade<L,D,?,SLD,?,RULE> fSld,
 			final String[] defaultLangs

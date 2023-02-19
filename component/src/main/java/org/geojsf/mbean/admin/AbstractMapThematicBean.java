@@ -85,7 +85,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	
 	public AbstractMapThematicBean(GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
 									GeoMetaFactoryBuilder<L,D,LAYER,DS,VP,SCALE,?> fbMeta,
-									GeoSldFactoryBuilder<L,D,LAYER,SDX,SLD,SLDTYPE,RULE> fbSld)
+									GeoSldFactoryBuilder<L,D,LAYER,SDX,SLD,SLDTYPE,RULE,?,?> fbSld)
 	{
 		super(fbCore);
 	    efView = fbCore.ejbView();

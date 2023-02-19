@@ -10,20 +10,24 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.model.xml.specs.sld.StyledLayerDescriptor;
 import org.geojsf.util.SldConfigurationProvider;
 import org.jeesl.exception.processing.UtilsConfigurationException;
+import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionAttribute;
+import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionEntity;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XmlStyledLayerDescriptorFactory <L extends JeeslLang,
 												LAYER extends GeoJsfLayer<L,?,?,?,?,?,?,SLD>,
-												SLD extends GeoJsfSld<L,?,?,?,RULE,?,?>,
-												RULE extends GeoJsfSldRule<L,?,?>>
+												SLD extends GeoJsfSld<L,?,?,?,RULE,LE,LA>,
+												RULE extends GeoJsfSldRule<L,?,?>,
+												LE extends JeeslRevisionEntity<L,?,?,?,LA,?>,
+												LA extends JeeslRevisionAttribute<L,?,LE,?,?>>
 				implements Serializable
 {
 	final static Logger logger = LoggerFactory.getLogger(XmlStyledLayerDescriptorFactory.class);
 	public static final long serialVersionUID=1;
 	
-	private final XmlNamedLayerFactory<L,LAYER,SLD,RULE> xfNamedLayer;
+	private final XmlNamedLayerFactory<L,LAYER,SLD,RULE,LE,LA> xfNamedLayer;
 	
 	public XmlStyledLayerDescriptorFactory(final SldConfigurationProvider sldCp)
 	{
@@ -46,6 +50,13 @@ public class XmlStyledLayerDescriptorFactory <L extends JeeslLang,
 			sld.getNamedLayer().add(xfNamedLayer.build(layer));
 		}
 		return sld;
+	}
+	
+	public StyledLayerDescriptor build(SLD sld)
+	{
+		StyledLayerDescriptor xml = build();
+		
+		return xml;
 	}
 	
 	public static StyledLayerDescriptor build()

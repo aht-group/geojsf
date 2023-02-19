@@ -48,11 +48,12 @@
 						<jtp:label entity="GeoSld" code="type"/>
 						<p:selectOneMenu value="#{cc.attrs.ctrl.sld.type}" effect="fade" styleClass="w100" >  
 							<f:selectItems value="#{cc.attrs.ctrl.types}" var="c" itemLabel="#{c.name[userBean.localeCode].lang}" itemValue="#{c}"/>
+							<p:ajax event="change" listener="#{cc.attrs.ctrl.changeType()}" update="@form"/>
 						</p:selectOneMenu>
 
 					</j:inputGrid>
 					
-					<j:inputGrid>
+					<j:inputGrid rendered="#{cc.attrs.ctrl.sld.type.code eq 'xml'}">
 						<jtp:label entity="GeoSld" code="template"/>
 						<p:selectOneMenu value="#{cc.attrs.ctrl.sld.template}" effect="fade" styleClass="w100" >
 							<f:selectItem itemLabel="--"/> 
@@ -68,7 +69,42 @@
 						<p:inputText value="#{cc.attrs.ctrl.sld.statusAttribute}"/>
 					</j:inputGrid>
 					
-					<j:tabTranslationEditor value="#{cc.attrs.ctrl.sld}" withDescription="true"/>
+					<j:inputGrid rendered="#{cc.attrs.ctrl.sld.type.code eq 'status'}">
+						<jtp:label entity="GeoSld" code="entity"/>
+						<p:selectOneMenu value="#{cc.attrs.ctrl.sld.entity}" effect="fade" autoWidth="false"
+									filter="true" filterMatchMode="contains" var="entity">
+							<f:selectItems value="#{cc.attrs.ctrl.entities}" var="l" itemLabel="#{l.category.position}.#{l.position} #{l.name[localeCode].lang}" itemValue="#{l}"/>
+							<p:ajax event="change" listener="#{cc.attrs.ctrl.reloadAttributes()}" update="@form"/>
+							<p:column>
+								<h:outputText value="#{entity.category.position}.#{entity.position}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header"><jtp:label entity="RevisionEntity" code="category"/></f:facet>
+								<h:outputText value="#{entity.category.name[localeCode].lang}" />
+							</p:column>
+							<p:column headerText="#{msg.jeeslRevisionDiagramShort}">
+								<h:outputText value="#{entity.diagram.name[localeCode].lang}" />
+							</p:column>
+							<p:column headerText="#{msg.jeeslRevisionEntity}">
+								<h:outputText value="#{entity.name[localeCode].lang}" />
+							</p:column>
+						</p:selectOneMenu>
+						
+						<jtp:label entity="GeoSld" code="attribute"/>
+						<p:selectOneMenu id="s1Attributes" value="#{cc.attrs.ctrl.sld.attribute}" effect="fade" autoWidth="false" dynamic="true">
+							<f:selectItems value="#{cc.attrs.ctrl.attributes}" var="a" itemLabel="#{a.name[localeCode].lang}" itemValue="#{a}"/>
+							<p:ajax event="change" listener="#{cc.attrs.ctrl.reloadAttribute()}" update="@form"/>
+						</p:selectOneMenu>
+						
+						<jtp:label entity="GeoSld" code="smybols"/>
+						<ui:fragment>
+							<ui:repeat var="o" value="#{cc.attrs.ctrl.options}">
+								<jtp:symbolizer value="#{o}" marginRight="2"/>
+							</ui:repeat>
+						</ui:fragment>
+					</j:inputGrid>
+					
+					<j:tabTranslationEditor value="#{cc.attrs.ctrl.sld}" withDescription="true" locales="#{appLabelBean.locales}"/>
 				</p:panel>
 			</h:form>
 		</j:slot>

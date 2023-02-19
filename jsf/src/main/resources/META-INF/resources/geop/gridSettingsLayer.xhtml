@@ -164,7 +164,7 @@
 						<p:inputText value="#{cc.attrs.controller.ecql.code}" autocomplete="false"/>
 						
 						<jtp:label entity="GeoEcql" code="entity"/>
-								<p:selectOneMenu value="#{cc.attrs.controller.ecql.entity}" effect="fade" autoWidth="false"
+						<p:selectOneMenu value="#{cc.attrs.controller.ecql.entity}" effect="fade" autoWidth="false"
 									filter="true" filterMatchMode="contains" var="entity">
 							<f:selectItems value="#{cc.attrs.controller.entities}" var="l" itemLabel="#{l.category.position}.#{l.position} #{l.name[localeCode].lang}" itemValue="#{l}"/>
 							<p:ajax event="change" listener="#{cc.attrs.controller.reloadAttributes()}" update="@form"/>

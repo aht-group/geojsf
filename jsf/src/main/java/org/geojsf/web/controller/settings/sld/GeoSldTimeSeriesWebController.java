@@ -54,7 +54,7 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 	private GeoSldFacade<L,D,?,SLD,TYPE,RULE> fSld;
 	
 	private SvgFactoryBuilder<L,D,G,GT,?,GS> fbSvg;
-	private final GeoSldFactoryBuilder<L,D,?,?,SLD,TYPE,RULE> fbSld;
+	private final GeoSldFactoryBuilder<L,D,?,?,SLD,TYPE,RULE,?,?> fbSld;
 	private final TsFactoryBuilder<L,D,LOC,CAT,SCOPE,?,?,MP,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?> fbTs;
 	
 	private final GeoSldTimeSeriesCallback<SLD> callback;
@@ -69,7 +69,7 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 
 	public GeoSldTimeSeriesWebController(GeoSldTimeSeriesCallback<SLD> callback,
 										SvgFactoryBuilder<L,D,G,GT,?,GS> fbSvg,
-										GeoSldFactoryBuilder<L,D,?,?,SLD,TYPE,RULE> fbSld,
+										GeoSldFactoryBuilder<L,D,?,?,SLD,TYPE,RULE,?,?> fbSld,
 										TsFactoryBuilder<L,D,LOC,CAT,SCOPE,?,?,MP,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?> fbTs)
 	{
 		super(fbSld.getClassL(),fbSld.getClassD());

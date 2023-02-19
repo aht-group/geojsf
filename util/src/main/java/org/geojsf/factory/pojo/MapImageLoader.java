@@ -1,4 +1,4 @@
-package org.geojsf.factory.image;
+package org.geojsf.factory.pojo;
 
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Point;

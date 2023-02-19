@@ -83,7 +83,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
     
     public GeoJsfDbInit(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
     					final GeoMetaFactoryBuilder<L,D,LAYER,DS,VP,SCALE,?> fbMeta,
-    					final GeoSldFactoryBuilder<L,D,LAYER,SDX,SLD,SLDTYPE,RULE> fbSld,
+    					final GeoSldFactoryBuilder<L,D,LAYER,SDX,SLD,SLDTYPE,RULE,?,?> fbSld,
     					JeeslFacade fUtils, String[] langKeys,
     					
     					GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo,
@@ -128,7 +128,7 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 		GeoJsfDbInit<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,SCALE,VIEW,VP,DS,SLDTEMPLATE,SLDTYPE,SLD,RULE>
 		factory(final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,?,MAP,VIEW> fbCore,
 				final GeoMetaFactoryBuilder<L,D,LAYER,DS,VP,SCALE,?> fbMeta,
-				final GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE> fbSld,
+				final GeoSldFactoryBuilder<L,D,LAYER,SLDTEMPLATE,SLD,SLDTYPE,RULE,?,?> fbSld,
 				JeeslFacade fUtils,
 				GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,DS> fGeo,
 				String[] langKeys,final Class<L> cL, final Class<D> cD, final Class<SERVICE> cService,final Class<CATEGORY> cCategory,final Class<LAYER> cLayer,final Class<MAP> cMap,Class<VIEW> cView,final Class<VP> cVp,final Class<SLDTYPE> cSldType,final Class<SLDTEMPLATE> cSldTemplate)
