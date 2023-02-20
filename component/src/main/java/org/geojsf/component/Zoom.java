@@ -45,7 +45,7 @@ public class Zoom extends UINamingContainer implements ClientBehaviorHolder
 		}
 		writer.writeText("GeoJsfControl.addZoom('" +type +"','" +position +"');", null); 
 		writer.endElement("script");
-		logger.info("adding " +type);
+		logger.debug("adding " +type);
 	}
 
 	public String getType() {return type;}

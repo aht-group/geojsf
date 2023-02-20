@@ -84,6 +84,7 @@ public class GeoJsfFacadeBean <L extends JeeslLang, D extends JeeslDescription,
 
 	@Override public void rm(Class<VIEW> cView, VIEW view)
 	{
+		logger.info("rm "+cView.getName()+" "+view.toString());
 		view = em.find(cView, view.getId());
 		view.getMap().getViews().remove(view);
 		em.remove(view);
