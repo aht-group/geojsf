@@ -88,6 +88,12 @@
         </jxb:schemaBindings>
     </jxb:bindings>
     
+    	<jxb:bindings schemaLocation="../xsd/../../../../../jeesl/xml/src/main/xsd/jeesl/system/security.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="net.sf.ahtutils.xml.symbol"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
     <jxb:bindings schemaLocation="../xsd/../../../../../exlp/xml/src/main/xsd/util/net.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="net.sf.exlp.xml.net"/>
