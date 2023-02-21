@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;simpleContent&gt;
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;int"&gt;
  *       &lt;attribute name="unit" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *       &lt;attribute name="zoom" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -98,7 +98,7 @@ public class Scale
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link Double }
      *     
      */
     public double getZoom() {
@@ -110,7 +110,7 @@ public class Scale
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link Double }
      *     
      */
     public void setZoom(double value) {
