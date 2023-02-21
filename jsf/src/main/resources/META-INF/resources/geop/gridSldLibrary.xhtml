@@ -82,10 +82,12 @@
 								<f:facet name="header"><jtp:label entity="RevisionEntity" code="category"/></f:facet>
 								<h:outputText value="#{entity.category.name[localeCode].lang}" />
 							</p:column>
-							<p:column headerText="#{msg.jeeslRevisionDiagramShort}">
+							<p:column>
+								<f:facet name="header"><jtp:label entity="RevisionEntity" code="scope"/></f:facet>
 								<h:outputText value="#{entity.diagram.name[localeCode].lang}" />
 							</p:column>
-							<p:column headerText="#{msg.jeeslRevisionEntity}">
+							<p:column>
+								<f:facet name="header"><jtp:label entity="RevisionEntity"/></f:facet>
 								<h:outputText value="#{entity.name[localeCode].lang}" />
 							</p:column>
 						</p:selectOneMenu>
@@ -96,7 +98,7 @@
 							<p:ajax event="change" listener="#{cc.attrs.ctrl.reloadAttribute()}" update="@form"/>
 						</p:selectOneMenu>
 						
-						<jtp:label entity="GeoSld" code="smybols"/>
+						<jtp:label entity="GeoSld" code="symbols"/>
 						<ui:fragment>
 							<ui:repeat var="o" value="#{cc.attrs.ctrl.options}">
 								<jtp:symbolizer value="#{o}" marginRight="2"/>
