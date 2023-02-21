@@ -61,15 +61,18 @@
 						</p:selectOneMenu>
 					</j:inputGrid>
 					
-					<j:inputGrid>
-						<p:outputLabel value="#{msg.geoJsfSldStatusClass}"/>
-						<p:inputText value="#{cc.attrs.ctrl.sld.statusClass}"/>
+					<j:inputGrid rendered="#{(cc.attrs.ctrl.sld.type.code eq 'status') or (cc.attrs.ctrl.sld.type.code eq 'rule')}">
+						<jtp:label entity="GeoSld" code="parameterPrefix" rendered="#{cc.attrs.ctrl.sld.type.code eq 'rule'}"/>
+						<p:inputText value="#{cc.attrs.ctrl.sld.statusClass}" rendered="#{cc.attrs.ctrl.sld.type.code eq 'rule'}"/>
 							
-						<p:outputLabel value="#{msg.geoJsfSldStatusAttribute}"/>
+						<jtp:label entity="GeoSld" code="statusAttribute"/>
 						<p:inputText value="#{cc.attrs.ctrl.sld.statusAttribute}"/>
+						
 					</j:inputGrid>
 					
-					<j:inputGrid rendered="#{cc.attrs.ctrl.sld.type.code eq 'status'}">
+					<j:inputGrid rendered="#{(cc.attrs.ctrl.sld.type.code eq 'status') or (cc.attrs.ctrl.sld.type.code eq 'rule')}">
+						
+						
 						<jtp:label entity="GeoSld" code="entity"/>
 						<p:selectOneMenu value="#{cc.attrs.ctrl.sld.entity}" effect="fade" autoWidth="false"
 									filter="true" filterMatchMode="contains" var="entity">
@@ -107,6 +110,12 @@
 					</j:inputGrid>
 					
 					<j:tabTranslationEditor value="#{cc.attrs.ctrl.sld}" withDescription="true" locales="#{appLabelBean.locales}"/>
+				</p:panel>
+			</h:form>
+			<h:form id="fXml">
+				<p:panel rendered="#{not empty cc.attrs.ctrl.xml}" styleClass="jeesl-panel">
+					<f:facet name="header"><j:pHeader entity="GeoSld"/></f:facet>
+					<j:highlight value="#{cc.attrs.ctrl.xml}"/>
 				</p:panel>
 			</h:form>
 		</j:slot>

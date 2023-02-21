@@ -43,5 +43,13 @@ public class XmlNamedLayerFactory <L extends JeeslLang,
 		xml.setName(XmlNameFactory.build(layer.getService().getCode()+":"+layer.getCode()));
 		xml.setUserStyle(xfUserStyle.build(layer.getSld()));
 		return xml;
+	}
+	
+	public NamedLayer build(SLD sld)
+	{
+		NamedLayer xml = build();
+		xml.setName(XmlNameFactory.build(sld.getName().get("en").getLang()));
+		xml.setUserStyle(xfUserStyle.build(sld));
+		return xml;
 	}	
 }

@@ -16,7 +16,7 @@ public class XmlPropertyIsBetweenFactory implements Serializable
 		PropertyIsBetween xml = new PropertyIsBetween();
 		xml.setPropertyName(XmlPropertyNameFactory.build(property));
 		xml.setLowerBoundary(XmlLowerBoundaryFactory.build(lowerAttribute, lowerValue));
-		xml.setUpperBoundary(XmlUpperBoundaryFactory.build(lowerAttribute, lowerValue));
+		xml.setUpperBoundary(XmlUpperBoundaryFactory.build(upperAttribute, upperValue));
 		return xml;
 	}
 }

@@ -13,6 +13,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.interfaces.util.qualifier.GeoJsfProvideSldStatus;
+import org.geojsf.util.GeoJsfSldConfigurationProvider;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.api.facade.io.JeeslIoRevisionFacade;
 import org.jeesl.controller.web.AbstractJeeslWebController;
@@ -31,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 										SLD extends GeoJsfSld<L,D,SDX,SDT,SDR,LE,LA>,
@@ -52,6 +54,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	private final IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel;
 //	private final JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision;
 
+	private GeoJsfSldConfigurationProvider scp; public void setScp(GeoJsfSldConfigurationProvider scp) {this.scp = scp;}
 	protected final EjbGeoSldFactory<SDT,SLD> efSld;
 	
 	private List<SDT> types; public List<SDT> getTypes() {return types;}
@@ -64,8 +67,10 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	private List<String> sldStatusClasses; public List<String> getSldStatusClasses() {return sldStatusClasses;}
 	
 	private SLD sld; public SLD getSld() {return sld;} public void setSld(SLD sld) {this.sld = sld;}
-
-	public GeojsfSldLibraryController(GeoSldFactoryBuilder<L,D,?,SDX,SLD,SDT,SDR,LE,LA> fbSld, IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel)
+	private String xml; public String getXml() {return xml;}
+	
+	public GeojsfSldLibraryController(GeoSldFactoryBuilder<L,D,?,SDX,SLD,SDT,SDR,LE,LA> fbSld,
+			IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel)
 	{
 		super(fbSld.getClassL(),fbSld.getClassD());
 		this.fbSld=fbSld;
@@ -113,6 +118,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 		sld = fSld.load(sld);
 		this.reloadAttributes();
 		this.reloadAttribute();
+		this.generateXml();
 	}
 	
 	public void addSld()
@@ -138,6 +144,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 		this.reloadSlds(); 
 		this.reloadAttributes();
 		this.reloadAttribute();
+		this.generateXml();
 	}
 	
 	public void deleteSld() throws JeeslConstraintViolationException, JeeslLockingException
@@ -187,6 +194,16 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 			}
 			catch (ClassNotFoundException e) {e.printStackTrace();}
 //			
+		}
+	}
+	
+	private void generateXml()
+	{
+		xml = null;
+		if(Objects.isNull(scp)){logger.warn("No "+GeoJsfSldConfigurationProvider.class.getSimpleName()+" configured!"); return;}
+		if(sld.getType().getCode().equals(GeoJsfSldType.Type.status.toString()))
+		{
+			xml = JaxbUtil.toString(fbSld.xmlStyledLayerDescriptor(scp).build(sld));
 		}
 	}
 }

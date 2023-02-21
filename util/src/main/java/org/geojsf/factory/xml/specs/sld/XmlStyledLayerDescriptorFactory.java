@@ -43,19 +43,19 @@ public class XmlStyledLayerDescriptorFactory <L extends JeeslLang,
 	
 	private StyledLayerDescriptor build(List<LAYER> layers) throws UtilsConfigurationException
 	{
-		StyledLayerDescriptor sld = build();
+		StyledLayerDescriptor xml = build();
 		for(LAYER layer : layers)
 		{
 			if(layer.getSld()==null){throw new UtilsConfigurationException("Layer "+layer.getCode()+" has no SLD");}
-			sld.getNamedLayer().add(xfNamedLayer.build(layer));
+			xml.getNamedLayer().add(xfNamedLayer.build(layer));
 		}
-		return sld;
+		return xml;
 	}
 	
 	public StyledLayerDescriptor build(SLD sld)
 	{
 		StyledLayerDescriptor xml = build();
-		
+		xml.getNamedLayer().add(xfNamedLayer.build(sld));
 		return xml;
 	}
 	

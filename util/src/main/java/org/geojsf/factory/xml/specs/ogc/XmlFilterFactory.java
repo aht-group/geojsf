@@ -12,6 +12,8 @@ public class XmlFilterFactory implements Serializable
 	final static Logger logger = LoggerFactory.getLogger(XmlFilterFactory.class);
 	public static final long serialVersionUID=1;
 
+	public static Filter build(){return new Filter();}
+	
 	public static Filter interval(String property, String lowerAttribute, double lowerValue, String upperAttribute, double upperValue)
 	{
 		Filter xml = build();
@@ -27,13 +29,8 @@ public class XmlFilterFactory implements Serializable
 		return xml;
 	}
 
-	public static Filter build()
+	public static Filter andFilter()
 	{
-		Filter xml = new Filter();
-		return xml;
-	}
-
-	public static Filter andFilter() {
 		Filter xml = build();
 		xml.setAnd(new And());
 		return xml;

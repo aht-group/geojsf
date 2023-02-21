@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.model.xml.specs.sld.FeatureTypeStyle;
 import org.geojsf.util.SldConfigurationProvider;
 import org.jeesl.interfaces.model.io.label.entity.JeeslRevisionAttribute;
@@ -23,30 +22,23 @@ public class XmlFeatureTypeStyleFactory <L extends JeeslLang,
 	final static Logger logger = LoggerFactory.getLogger(XmlFeatureTypeStyleFactory.class);
 	public static final long serialVersionUID=1;
 	
-	private XmlRuleFactory<L,SLD,RULE,LE,LA> xfRuleStatus;
+	private XmlRuleFactory<L,SLD,RULE,LE,LA> xfRule;
 	
 	public XmlFeatureTypeStyleFactory(final SldConfigurationProvider sldCp)
 	{
-		xfRuleStatus = new XmlRuleFactory<>(sldCp);
+		xfRule = new XmlRuleFactory<>(sldCp);
 	}
 	
+	public static FeatureTypeStyle build() {return new FeatureTypeStyle();}
 	public FeatureTypeStyle build(SLD sld)
 	{
 		FeatureTypeStyle xml = build();
 		xml.setName(XmlNameFactory.build("xx"));
 		
-		if(sld.getType().getCode().equals(GeoJsfSldType.Type.status.toString()))
-		{
-			logger.info(sld.toString());
-			xml.getRule().addAll(xfRuleStatus.build(sld));
-		}
+		xml.getRule().addAll(xfRule.build(sld));
 		
 		return xml;
 	}
 	
-	public static FeatureTypeStyle build()
-	{
-		FeatureTypeStyle xml = new FeatureTypeStyle();
-		return xml;
-	}
+	
 }
