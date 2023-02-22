@@ -24,10 +24,12 @@ public class XmlNamedLayerFactory <L extends JeeslLang,
 	final static Logger logger = LoggerFactory.getLogger(XmlNamedLayerFactory.class);
 	public static final long serialVersionUID=1;
 	
+	private final SldConfigurationProvider scp;
 	private XmlUserStyleFactory<L,SLD,RULE,LE,LA> xfUserStyle;
 	
 	public XmlNamedLayerFactory(final SldConfigurationProvider scp)
 	{
+		this.scp=scp;
 		xfUserStyle = new XmlUserStyleFactory<>(scp);
 	}
 	
@@ -48,7 +50,7 @@ public class XmlNamedLayerFactory <L extends JeeslLang,
 	public NamedLayer build(SLD sld)
 	{
 		NamedLayer xml = build();
-		xml.setName(XmlNameFactory.build(sld.getName().get("en").getLang()));
+		xml.setName(XmlNameFactory.build(sld.getName().get(scp.getLocaleCode()).getLang()));
 		xml.setUserStyle(xfUserStyle.build(sld));
 		return xml;
 	}	
