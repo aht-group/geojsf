@@ -11,6 +11,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.model.xml.specs.ogc.Filter;
+import org.geojsf.model.xml.specs.sld.PolygonSymbolizer;
 import org.geojsf.model.xml.specs.sld.Rule;
 import org.geojsf.util.SldConfigurationProvider;
 import org.jeesl.exception.processing.UtilsConfigurationException;
@@ -107,10 +108,14 @@ public class XmlRuleFactory <L extends JeeslLang,
 	private Rule buildRuleElement(int i, SLD sld)
 	{
 		Filter xFilter = XmlFilterFactory.build();
-		xFilter.setPropertyIsBetween(XmlPropertyIsBetweenFactory.build("a", "lb"+i, -9999, "ub"+i,9999));
+		xFilter.setPropertyIsBetween(XmlPropertyIsBetweenFactory.build("value", "lb"+i, -9999, "ub"+i,9999));
+		
+		PolygonSymbolizer xPolygon = XmlPolygonSymbolizerFactory.build();
+		xPolygon.setFill(XmlFillFactory.build("c"+i));
 		
 		Rule xml = XmlRuleFactory.build("Element "+i);
 		xml.setFilter(xFilter);
+		xml.setPolygonSymbolizer(xPolygon);
 		return xml;
 	}
 }
