@@ -16,7 +16,7 @@ public class JtsSearchCircleFactory implements Serializable
 	final static Logger logger = LoggerFactory.getLogger(JtsSearchCircleFactory.class);
 	public static final long serialVersionUID=1;
 	
-	public static Geometry build(Coordinate coordinate, ViewPort viewport)
+	public static Geometry areaPoint(Coordinate coordinate, ViewPort viewport)
 	{
 		GeometricShapeFactory shapeFactory = new GeometricShapeFactory();
 		shapeFactory.setNumPoints(32);
@@ -26,5 +26,14 @@ public class JtsSearchCircleFactory implements Serializable
 		g.setSRID(4326);
 		return g;
 	}
-
+	public static Geometry microPoint(Coordinate coordinate, ViewPort viewport)
+	{
+		GeometricShapeFactory shapeFactory = new GeometricShapeFactory();
+		shapeFactory.setNumPoints(32);
+		shapeFactory.setCentre(new com.vividsolutions.jts.geom.Coordinate(coordinate.getLon(),coordinate.getLat()));
+		shapeFactory.setSize(0.000001);
+		Geometry g = shapeFactory.createCircle();
+		g.setSRID(4326);
+		return g;
+	}
 }
