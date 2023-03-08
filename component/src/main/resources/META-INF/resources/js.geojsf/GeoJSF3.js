@@ -859,8 +859,15 @@
 			  this.enable = true;
 		  },
 		  
-		   updateCircleOnClick: function(lonlat) {
-			   if(!this.enable){return;}
+		   updateCircleOnClick: function(olEventObject) 
+		   {
+			  if(!this.enable){return;}
+			  var latlon = [0.0,0.0];
+			  if (olEventObject.coordinate)
+			  {
+				latlon = ol.proj.transform(olEventObject.coordinate, 'EPSG:3857', 'EPSG:4326');
+			  }
+			   
 			  var radius = Math.round(GeoJSF.map.getView().getResolution()*this.radiusFactor).toString();
 			  
 			  if (this.featureCircleOnClick && this.featureCircleOnClick!== 'null' && this.featureCircleOnClick !== "undefined") {
@@ -871,18 +878,37 @@
 			  var view = GeoJSF.map.getView();
 			  var projection = view.getProjection();
 			  var resolutionAtEquator = view.getResolution();
-			  var center = ol.proj.fromLonLat([lonlat[0], lonlat[1]]);
-			  var pointResolution = projection.getPointResolution(resolutionAtEquator, center);
+			  var center = ol.proj.fromLonLat([latlon[0], latlon[1]]);
+			  var pointResolution = ol.proj.getPointResolution(projection, resolutionAtEquator, center);
 			  var resolutionFactor = resolutionAtEquator/pointResolution;
-			  radius = (radius / ol.proj.METERS_PER_UNIT.m) * resolutionFactor;
+			  radius = (radius / ol.proj.Units.METERS_PER_UNIT.m) * resolutionFactor;
 			  
 			  var circle = new ol.geom.Circle(center, radius);
 			  var circleFeature = new ol.Feature(circle);
 			  var vectorSource = new ol.source.Vector({features: [circleFeature]});
 			   
 			  this.featureCircleOnClick = new ol.layer.Vector({
-			  source: vectorSource
-			  });
+				source: vectorSource,
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(255, 100, 50, 0.3)'
+					}),
+					stroke: new ol.style.Stroke({
+						width: 3,
+						color: 'rgba(255, 0, 0, 1)'
+					}),
+					image: new ol.style.Circle({
+						fill: new ol.style.Fill({
+							color: 'rgba(55, 200, 150, 0.5)'
+						}),
+						stroke: new ol.style.Stroke({
+							width: 3,
+							color: 'rgba(255, 0, 0, 1)'
+						}),
+						radius: 7
+					}),
+				})
+				});
 			  GeoJSF.map.addLayer(this.featureCircleOnClick);
 		  }
   };
@@ -903,24 +929,27 @@
 		  var marker = new ol.Feature({
 			  geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
 		  });
-		  /*
+		 
 		  marker.setStyle(new ol.style.Style({
-			  image: new ol.style.Icon({
-				  src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(this.svgMarker)
-			  })
-		  }));
-		  
-		  marker.setStyle(new ol.style.Style({
-			  image: new ol.style.Icon(({
-				  crossOrigin: 'anonymous',
-				  src: '../geojsf/marker.png',
-				  // the real size of your icon
-				  size: [255, 300],
-				  // the scale factor
-				  scale: 0.2
-			  }))
-		  }));
-		  */
+			fill: new ol.style.Fill({
+				color: 'rgba(255, 100, 50, 0.3)'
+			}),
+			stroke: new ol.style.Stroke({
+				width: 3,
+				color: 'rgba(255, 0, 0, 1)'
+			}),
+			image: new ol.style.Circle({
+				fill: new ol.style.Fill({
+					color: 'rgba(55, 200, 150, 0.5)'
+				}),
+				stroke: new ol.style.Stroke({
+					width: 3,
+					color: 'rgba(255, 0, 0, 1)'
+				}),
+				radius: 7
+			}),
+		}));
+	
 		  var vectorSource = new ol.source.Vector({
 			  features: [marker]
 		  });

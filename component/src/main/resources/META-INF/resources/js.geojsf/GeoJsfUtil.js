@@ -86,11 +86,12 @@ var GeoJsfUtil = {
 							],
 					   oncomplete: function(xhr, status, args) {
 							console.log('AJAX Event ' +jsfEventName + ' sent . Resolution : ' +GeoJSF.map.getView().getResolution()+ ' ' +GeoJSF.map.getView().getProjection().getUnits());
-						//	clickSearcher.updateCircleOnClick(lonlat);
+							clickSearcher.updateCircleOnClick(olEventObject);
 					   }
 				  });
 			  } catch(e) {
 				   console.log("MapClick failed." +e);
 			  }
-		}
+		},
+
 };
