@@ -27,7 +27,7 @@
 						<p:dataTable var="j" value="#{cc.attrs.bean.jsons}"
 							selection="#{cc.attrs.bean.json}" selectionMode="single" rowKey="#{j.id}">
 							<f:facet name="header">
-				                <j:dtHeader entity="RevisionEntity" code="listOf">
+				                <j:dtHeader entity="IoLabelEntity" code="listOf">
 				                    <j:icon type="geoJsfAdd" listener="#{cc.attrs.bean.addJson()}" update=":#{cc.id}:grid"/>
 				                </j:dtHeader>
 				            </f:facet>
