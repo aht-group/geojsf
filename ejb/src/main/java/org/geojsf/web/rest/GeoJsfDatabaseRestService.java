@@ -254,7 +254,7 @@ public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDesc
     {
     	for(Status xml : container.getStatus()){xml.setGroup(clStatus.getSimpleName());}
 		JeeslDbStatusUpdater asdi = new JeeslDbStatusUpdater();
-        asdi.setStatusEjbFactory(EjbStatusFactory.createFactory(clStatus, cLang, cDescription));
+        asdi.setStatusEjbFactory(EjbStatusFactory.instance(clStatus, cLang, cDescription));
         asdi.setFacade(fGeo);
         DataUpdate dataUpdate = asdi.iuStatus(container.getStatus(),clStatus,cLang,cParent);
         asdi.deleteUnusedStatus(clStatus,cLang,cDescription);
