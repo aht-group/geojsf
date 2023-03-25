@@ -1,13 +1,10 @@
 package org.geojsf.web.rest.area;
 
-import net.sf.ahtutils.web.rest.AbstractUtilsRest;
-import net.sf.ahtutils.xml.aht.Aht;
-import net.sf.ahtutils.xml.sync.DataUpdate;
-
 import org.geojsf.api.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestExport;
 import org.geojsf.api.rest.area.basin.surface.GeoJsfAreaBasinSurfaceRestImport;
 import org.geojsf.factory.ejb.area.EjbBasinFactory;
 import org.geojsf.interfaces.model.domain.area.GeoBasin;
+import org.geojsf.model.xml.area.Areas;
 import org.geojsf.model.xml.area.Basin;
 import org.jeesl.controller.monitoring.counter.DataUpdateTracker;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
@@ -17,9 +14,11 @@ import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
-import org.geojsf.model.xml.area.Areas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.web.rest.AbstractUtilsRest;
+import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public class GeoJsfAreaBasinRest <L extends JeeslLang,D extends JeeslDescription,BASIN extends GeoBasin<L,D,BASIN,MODEL>,MODEL extends JeeslStatus<L,D,MODEL>>
 	extends AbstractUtilsRest<L,D>

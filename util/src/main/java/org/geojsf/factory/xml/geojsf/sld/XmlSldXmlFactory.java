@@ -3,9 +3,8 @@ package org.geojsf.factory.xml.geojsf.sld;
 import java.io.Serializable;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
-import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.model.xml.geojsf.Query;
 import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;

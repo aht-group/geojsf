@@ -1,10 +1,10 @@
 package org.geojsf.model.component;
 
 import java.io.Serializable;
-import java.util.Hashtable;
 import java.util.LinkedHashMap;
 
-public class OlService implements Serializable {
+public class OlService implements Serializable
+{
 	
 	private static final long serialVersionUID = 6027640604576855291L;
 	private long id;
