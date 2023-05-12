@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.geojsf.interfaces.model.core.GeoJsfView;
-import org.jeesl.util.comparator.ejb.system.security.SecurityActionComparator;
+import org.jeesl.controller.util.comparator.ejb.system.security.SecurityActionComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
