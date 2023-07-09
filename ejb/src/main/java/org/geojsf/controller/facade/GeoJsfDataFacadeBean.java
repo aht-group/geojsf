@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import org.geojsf.interfaces.facade.GeoJsfDataFacade;
 import org.geojsf.interfaces.util.geometry.EjbWithMultiPolygon;
 import org.geojsf.interfaces.util.geometry.GeoJsfMultiPolygon;
-import org.jeesl.controller.facade.JeeslFacadeBean;
+import org.jeesl.controller.facade.jx.JeeslFacadeBean;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
