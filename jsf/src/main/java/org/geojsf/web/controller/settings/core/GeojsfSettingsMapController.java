@@ -156,7 +156,7 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 	
 	public void rmMap()
 	{
-		logger.info(AbstractLogMessage.rmEntity(map));
+		logger.info(AbstractLogMessage.deleteEntity(map));
 		try
 		{
 			logger.info("Views"+map.getViews().size());
@@ -217,7 +217,7 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 	
 	public void rmView() throws JeeslConstraintViolationException, JeeslLockingException
 	{
-		logger.info(AbstractLogMessage.rmEntity(view));
+		logger.info(AbstractLogMessage.deleteEntity(view));
 		fGeo.rm(fbCore.getClassView(),view);
 		view=null;
 		reloadMap();

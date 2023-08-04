@@ -147,7 +147,7 @@ public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 	
 	public void rmRule() throws JeeslConstraintViolationException, JeeslLockingException
 	{
-		logger.info(AbstractLogMessage.rmEntity(rule));
+		logger.info(AbstractLogMessage.deleteEntity(rule));
 		fSld.delete(fbSld.getClassSld(),sld,rule);
 		rule = null;
 		reloadSld();

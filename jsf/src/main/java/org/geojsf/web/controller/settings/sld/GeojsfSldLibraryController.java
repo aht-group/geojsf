@@ -149,7 +149,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	
 	public void deleteSld() throws JeeslConstraintViolationException, JeeslLockingException
 	{
-		logger.info(AbstractLogMessage.rmEntity(sld));
+		logger.info(AbstractLogMessage.deleteEntity(sld));
 		fSld.rm(sld);
 		reset(true,true);
 		this.reloadSlds();

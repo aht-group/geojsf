@@ -170,7 +170,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	
 	public void rmMap()
 	{
-		logger.info(AbstractLogMessage.rmEntity(map));
+		logger.info(AbstractLogMessage.deleteEntity(map));
 		try
 		{
 			logger.info("Views"+map.getViews().size());
@@ -233,7 +233,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 	
 	public void rmView() throws JeeslConstraintViolationException, JeeslLockingException
 	{
-		logger.info(AbstractLogMessage.rmEntity(view));
+		logger.info(AbstractLogMessage.deleteEntity(view));
 		fGeo.rm(fbCore.getClassView(),view);
 		view=null;
 		reloadMap();

@@ -392,7 +392,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	}
 	public void deleteEcql() throws JeeslConstraintViolationException, JeeslLockingException
 	{
-		logger.info(AbstractLogMessage.rmEntity(ecql));
+		logger.info(AbstractLogMessage.deleteEntity(ecql));
 		fGeo.rm(ecql);
 		ecql = null;
 		this.reloadAttributes();
