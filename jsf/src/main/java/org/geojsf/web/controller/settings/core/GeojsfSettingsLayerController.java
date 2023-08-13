@@ -62,7 +62,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsLayerController.class);
 	
 	private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo;
-	private JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision;
+	private JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision;
 	
 	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,VIEW> fbCore;
 	private final GeoMetaFactoryBuilder<L,D,LAYER,?,VP,?,ECQL> fbMeta;
@@ -113,7 +113,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	public void postConstructService(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
 										GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo,
 										GeoSldFacade<L,D,?,SLD,?,?> fSld,
-										JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision
+										JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision
 										)
 	{
 		super.postConstructWebController(lp,bMessage);

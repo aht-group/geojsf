@@ -10,8 +10,8 @@ import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
 import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.util.qualifier.GeoJsfProvideSldStatus;
 import org.geojsf.util.GeoJsfSldConfigurationProvider;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
@@ -48,7 +48,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	final static Logger logger = LoggerFactory.getLogger(GeojsfSldLibraryController.class);
 	
 	private GeoSldFacade<L,D,SDX,SLD,SDT,SDR> fSld;
-	private JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision;
+	private JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision;
 	
 	private final GeoSldFactoryBuilder<L,D,?,SDX,SLD,SDT,SDR,LE,LA> fbSld;
 	private final IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel;
@@ -86,7 +86,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	
 	public void postConstruct(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
 								GeoSldFacade<L,D,SDX,SLD,SDT,SDR> fSld,
-								JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fRevision)
+								JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision)
 	{
 		super.postConstructWebController(lp,bMessage);
 		this.fSld=fSld;
