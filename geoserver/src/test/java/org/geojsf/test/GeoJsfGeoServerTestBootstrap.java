@@ -1,15 +1,14 @@
 package org.geojsf.test;
 
+import org.apache.commons.configuration.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.exlp.exception.ExlpConfigurationException;
 import net.sf.exlp.util.config.ConfigLoader;
 import net.sf.exlp.util.io.ExlpCentralConfigPointer;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-
-import org.apache.commons.configuration.Configuration;
-import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class GeoJsfGeoServerTestBootstrap
 {
@@ -26,9 +25,8 @@ public class GeoJsfGeoServerTestBootstrap
 		
 		try
 		{
-			String cfn = ExlpCentralConfigPointer.getFile("geojsf","geoserver").getAbsolutePath();
-			ConfigLoader.add(cfn);
-			logger.info("Using additional config in: "+cfn );
+			ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance("geojsf").jaxb(JaxbUtil.instance());
+			ConfigLoader.add(ccp.toFile("geoserver"));
 		}
 		catch (ExlpConfigurationException e) {logger.warn("No additional "+ExlpCentralConfigPointer.class.getSimpleName()+" "+e.getMessage());}
 		ConfigLoader.add("config.geojsf-geoserver.test/geoserver.xml");

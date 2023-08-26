@@ -18,15 +18,14 @@ public class GeoJsfUtilsTestBootstrap
 	public static Configuration init()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
-			loggerInit.addAltPath("config.geojsf-util.test");
-			loggerInit.init();
+		loggerInit.addAltPath("config.geojsf-util.test");
+		loggerInit.init();
 		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
 		
 		try
 		{
-			String cfn = ExlpCentralConfigPointer.getFile("geojsf","util").getAbsolutePath();
-			ConfigLoader.add(cfn);
-			logger.info("Using additional config in: "+cfn );
+			ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance("geojsf").jaxb(JaxbUtil.instance());
+			ConfigLoader.add(ccp.toFile("util"));
 		}
 		catch (ExlpConfigurationException e) {e.printStackTrace();}
 		ConfigLoader.add("config.geojsf-util.test/geojsf.xml");

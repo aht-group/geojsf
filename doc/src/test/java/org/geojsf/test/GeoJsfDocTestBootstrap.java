@@ -32,9 +32,8 @@ public class GeoJsfDocTestBootstrap
 		
 		try
 		{
-			String cfn = ExlpCentralConfigPointer.getFile("geojsf","doc").getAbsolutePath();
-			ConfigLoader.add(cfn);
-			logger.info("Using additional config in: "+cfn );
+			ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance("geojsf").jaxb(JaxbUtil.instance());
+			ConfigLoader.add(ccp.toFile("doc"));
 		}
 		catch (ExlpConfigurationException e) {logger.info("No additional "+ExlpCentralConfigPointer.class.getSimpleName()+" because "+e.getMessage());}
 		ConfigLoader.add(configFile);

@@ -24,9 +24,8 @@ public class GeoJsfEjbTestBootstrap
 		
 		try
 		{
-			String cfn = ExlpCentralConfigPointer.getFile("geojsf","util").getAbsolutePath();
-			ConfigLoader.add(cfn);
-			logger.info("Using additional config in: "+cfn );
+			ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance("geojsf").jaxb(JaxbUtil.instance());
+			ConfigLoader.add(ccp.toFile("util"));
 		}
 		catch (ExlpConfigurationException e) {e.printStackTrace();}
 		ConfigLoader.add("config.geojsf-ejb.test/geojsf.xml");
