@@ -29,7 +29,7 @@
     <xsd:import namespace="http://www.opengis.net/wfs"				schemaLocation="specs/wfs.xsd"/>
     <xsd:import namespace="http://ahtutils.aht-group.com/status"	schemaLocation="../../../../../jeesl/xml/src/main/xsd/jeesl/status.xsd"/>
     <xsd:import namespace="http://exlp.sf.net/net"					schemaLocation="../../../../../exlp/xml/src/main/xsd/util/net.xsd"/>
-    <xsd:import namespace="http://exlp.sf.net/identity"				schemaLocation="../../../../../exlp/xml/src/main/xsd/util/identity.xsd"/>
+    <xsd:import namespace="http://exlp.sf.net/identity"				schemaLocation="../../../../../exlp/xml/src/main/xsd/identity.xsd"/>
     <xsd:annotation>
         <xsd:appinfo>
             <jaxb:globalBindings generateIsSetMethod="true">
