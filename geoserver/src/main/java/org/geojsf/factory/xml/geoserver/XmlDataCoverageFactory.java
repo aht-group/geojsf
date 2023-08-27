@@ -2,10 +2,9 @@ package org.geojsf.factory.xml.geoserver;
 
 import java.io.Serializable;
 
-import net.sf.exlp.xml.identity.User;
-import net.sf.exlp.xml.net.Host;
-
 import org.apache.commons.configuration.Configuration;
+import org.exlp.model.xml.identity.User;
+import org.exlp.model.xml.net.Host;
 import org.geojsf.factory.xml.exlp.XmlDatabaseFactory;
 import org.geojsf.factory.xml.exlp.XmlHostFactory;
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
