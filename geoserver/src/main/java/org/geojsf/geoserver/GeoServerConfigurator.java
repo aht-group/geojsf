@@ -57,12 +57,27 @@ public class GeoServerConfigurator
 	
 	private String configBaseDir;
 	
-	public GeoServerConfigurator(String configBaseDir, GeoServerRest rest, Configuration config) throws MalformedURLException
+	public GeoServerConfigurator(String configBaseDir, GeoServerRest rest, org.apache.commons.configuration.Configuration config) throws MalformedURLException
 	{
 		this.configBaseDir=configBaseDir;
 		logger.info("Using configuration directory: "+configBaseDir);
 		
 		configOverrider = new ConfigurationOverrider(config);
+
+		workspaceManager = new GeoServerWorkspaceManager(rest);
+		dataStoreManager = new GeoServerDataStoreManager(rest);
+		coverageManager = new GeoServerCoverageManager(rest);
+		styleManager = new GeoServerStyleManager(rest);
+		layerManager =  new GeoServerLayerManager(rest);
+		featureTypeManager = new GeoServerFeatureTypeManager(rest);
+	}
+	public GeoServerConfigurator(String configBaseDir, GeoServerRest rest, org.apache.commons.configuration2.Configuration config) throws MalformedURLException
+	{
+		this.configBaseDir=configBaseDir;
+		logger.info("Using configuration directory: "+configBaseDir);
+		
+		logger.warn("NYI : Configuration2");
+//		configOverrider = new ConfigurationOverrider(config);
 
 		workspaceManager = new GeoServerWorkspaceManager(rest);
 		dataStoreManager = new GeoServerDataStoreManager(rest);

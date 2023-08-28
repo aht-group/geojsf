@@ -68,6 +68,20 @@ public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
 		headerKeys.add("geojsfSldRuleTableHeaderBounds");
 		headerKeys.add("geojsfSldRuleTableHeaderLabel");
 	}
+	public OfxSldRuleTableFactory(org.apache.commons.configuration2.Configuration config, String[] langs,Translations translations)
+	{
+		super(config,langs,translations);
+		
+		fResources = new File(config.getString("doc.ofx.imagePathResourcesPrefix"));
+		imagePathPrefix = config.getString("doc.ofx.imagePathPrefix");
+		imagePath = config.getString("doc.ofx.imagePathGeoJsfSldRule");
+		
+		
+		headerKeys = new ArrayList<String>();
+		headerKeys.add("geojsfSldRuleTableHeaderSymbol");
+		headerKeys.add("geojsfSldRuleTableHeaderBounds");
+		headerKeys.add("geojsfSldRuleTableHeaderLabel");
+	}
 	
 	public Table build(String id, Sld sld, boolean withComment) throws OfxAuthoringException, UtilsConfigurationException
 	{	

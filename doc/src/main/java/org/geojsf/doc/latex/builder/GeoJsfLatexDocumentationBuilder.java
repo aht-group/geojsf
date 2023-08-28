@@ -86,6 +86,21 @@ public class GeoJsfLatexDocumentationBuilder extends AbstractLatexDocumentationB
 		headerKeysMapView.add("geoJsfTableMapViewLayerName");
 //		headerKeysMapView[2] = "geoJsfTableLayerDescription";
 	}
+	public GeoJsfLatexDocumentationBuilder(org.apache.commons.configuration2.Configuration config, Translations translations,String[] langs, ConfigurationProvider cp)
+	{
+		super(config,translations,langs,cp);
+		this.translations=translations;
+		
+		headerKeysLayer = new ArrayList<String>();
+		headerKeysLayer.add("geoJsfTableLayerNameCode");
+//		headerKeysLayer[1] = "geoJsfTableLayerName";
+		headerKeysLayer.add("geoJsfTableLayerDescription");
+		
+		headerKeysMapView = new ArrayList<String>();
+		headerKeysMapView.add("geoJsfTableMapViewNr");
+		headerKeysMapView.add("geoJsfTableMapViewLayerName");
+//		headerKeysMapView[2] = "geoJsfTableLayerDescription";
+	}
 	
 	@Override protected void applyBaseLatexDir()
 	{
