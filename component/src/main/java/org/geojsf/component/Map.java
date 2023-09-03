@@ -44,7 +44,7 @@ import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.util.component.GeoJsfScalesUtil;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.jsf.util.ComponentAttribute;
+import org.jeesl.jsf.jx.util.ComponentAttribute;
 import org.primefaces.PrimeFaces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
