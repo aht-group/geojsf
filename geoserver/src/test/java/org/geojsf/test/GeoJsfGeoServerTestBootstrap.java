@@ -1,11 +1,11 @@
 package org.geojsf.test;
 
 import org.apache.commons.configuration.Configuration;
+import org.exlp.controller.handler.system.property.ConfigLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.exception.ExlpConfigurationException;
-import net.sf.exlp.util.config.ConfigLoader;
 import net.sf.exlp.util.io.ExlpCentralConfigPointer;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
@@ -26,10 +26,10 @@ public class GeoJsfGeoServerTestBootstrap
 		try
 		{
 			ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance("geojsf").jaxb(JaxbUtil.instance());
-			ConfigLoader.add(ccp.toFile("geoserver"));
+			ConfigLoader.addFile(ccp.toFile("geoserver"));
 		}
 		catch (ExlpConfigurationException e) {logger.warn("No additional "+ExlpCentralConfigPointer.class.getSimpleName()+" "+e.getMessage());}
-		ConfigLoader.add("config.geojsf-geoserver.test/geoserver.xml");
+		ConfigLoader.addString("config.geojsf-geoserver.test/geoserver.xml");
 		
 		Configuration config = ConfigLoader.init();
 		return config;
