@@ -29,7 +29,7 @@ public class AbstractGeoJsfXmlTest <T extends Object> extends AbstractAhtUtilsXm
     public static void initLogger()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-		loggerInit.addAltPath("config.geojsf-entities.test");
+		loggerInit.path("config.geojsf-entities.test");
 		loggerInit.init();
     }
 	

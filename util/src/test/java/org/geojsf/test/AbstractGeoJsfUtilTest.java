@@ -24,7 +24,7 @@ public class AbstractGeoJsfUtilTest
 		if(!LoggerInit.isLog4jInited())
 		{
 			LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-			loggerInit.addAltPath("config.geojsf-util.test");
+			loggerInit.path("config.geojsf-util.test");
 			loggerInit.init();
 		}
     }

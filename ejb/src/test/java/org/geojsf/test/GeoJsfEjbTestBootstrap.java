@@ -18,7 +18,7 @@ public class GeoJsfEjbTestBootstrap
 	public static Configuration init()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
-			loggerInit.addAltPath("config.geojsf-ejb.test");
+			loggerInit.path("config.geojsf-ejb.test");
 			loggerInit.init();
 		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
 		

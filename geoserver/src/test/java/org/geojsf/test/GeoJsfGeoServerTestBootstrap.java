@@ -17,7 +17,7 @@ public class GeoJsfGeoServerTestBootstrap
 	public static Configuration init()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
-			loggerInit.addAltPath("config.geojsf-geoserver.test");
+			loggerInit.path("config.geojsf-geoserver.test");
 			loggerInit.init();
 			
 		logger.warn("NS Prefix mapper deavtivated");
