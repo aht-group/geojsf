@@ -11,7 +11,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
-import org.jeesl.controller.web.AbstractJeeslWebController;
+import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
@@ -29,7 +29,7 @@ public class GeoSldXmlWebController <L extends JeeslLang, D extends JeeslDescrip
 											TYPE extends GeoJsfSldType<L,D,TYPE,?>,
 											SLD extends GeoJsfSld<L,D,SXD,TYPE,RULE,?,?>,
 											RULE extends GeoJsfSldRule<L,D,?>>
-		extends AbstractJeeslWebController<L,D,LOC>
+		extends AbstractJeeslLocaleWebController<L,D,LOC>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -54,7 +54,7 @@ public class GeoSldXmlWebController <L extends JeeslLang, D extends JeeslDescrip
 	public void postConstructSldTemplate(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessag,
 										GeoSldFacade<L,D,SXD,SLD,TYPE,RULE> fSld)
 	{
-		super.postConstructWebController(lp,bMessage);
+		super.postConstructLocaleWebController(lp,bMessage);
 		this.fSld=fSld;
 		this.reloadTemplates();
 	}

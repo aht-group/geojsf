@@ -24,7 +24,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.api.facade.io.JeeslIoRevisionFacade;
-import org.jeesl.controller.web.AbstractJeeslWebController;
+import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
@@ -55,7 +55,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 									LE extends JeeslRevisionEntity<L,D,?,?,LA,?>,
 									LA extends JeeslRevisionAttribute<L,D,LE,?,?>,
 									SLD extends GeoJsfSld<L,D,?,?,?,?,?>>
-			extends AbstractJeeslWebController<L,D,LOC>
+			extends AbstractJeeslLocaleWebController<L,D,LOC>
 			implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -116,7 +116,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 										JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision
 										)
 	{
-		super.postConstructWebController(lp,bMessage);
+		super.postConstructLocaleWebController(lp,bMessage);
 		this.fGeo=fGeo;
 		this.fRevision=fRevision;
 

@@ -11,7 +11,7 @@ import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.meta.GeoJsfDataSource;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
-import org.jeesl.controller.web.AbstractJeeslWebController;
+import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
@@ -28,7 +28,7 @@ public class GeojsfMetaDataSourceController <L extends JeeslLang, D extends Jees
 									CATEGORY extends GeoJsfCategory<L,D,LAYER>,
 									LAYER extends GeoJsfLayer<L,D,CATEGORY,?,?,?,DS,?>,
 									DS extends GeoJsfDataSource<L,D,LAYER>>
-		extends AbstractJeeslWebController<L,D,LOC>
+		extends AbstractJeeslLocaleWebController<L,D,LOC>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -57,7 +57,7 @@ public class GeojsfMetaDataSourceController <L extends JeeslLang, D extends Jees
 	public void postConstructDataSource(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
 			GeoMetaFacade<L,D,?,DS,?,?> fGeo)
 	{
-		super.postConstructWebController(lp,bMessage);
+		super.postConstructLocaleWebController(lp,bMessage);
 		this.fGeo=fGeo;
 
 	    availableLayers = fGeo.all(fbCore.getClassLayer());

@@ -17,7 +17,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
-import org.jeesl.controller.web.AbstractJeeslWebController;
+import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
@@ -41,7 +41,7 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 										SCALE extends GeoJsfScale<L,D>, 
 										VIEW extends GeoJsfView<LAYER,MAP,VIEW>,
 										VP extends GeoJsfViewPort>
-			extends AbstractJeeslWebController<L,D,LOC>
+			extends AbstractJeeslLocaleWebController<L,D,LOC>
 			implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -77,7 +77,7 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 	public void postConstructThematic(GeoJsfFacade<L,D,CATEGORY,?,LAYER,MAP,VIEW,VP,?> fGeo,
 										JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
-		super.postConstructWebController(lp,bMessage);
+		super.postConstructLocaleWebController(lp,bMessage);
 		this.fGeo=fGeo;
 		categories = fGeo.allOrderedPositionVisible(fbCore.getClassCategory());
 		layers = fGeo.all(fbCore.getClassLayer());

@@ -11,7 +11,7 @@ import org.geojsf.interfaces.facade.GeoMetaFacade;
 import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.util.comparator.ejb.GeoScaleComparator;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
-import org.jeesl.controller.web.AbstractJeeslWebController;
+import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
@@ -28,7 +28,7 @@ public class GeojsfSettingsScaleController <L extends JeeslLang, D extends Jeesl
 									SCALE extends GeoJsfScale<L,D>
 
 									>
-		extends AbstractJeeslWebController<L,D,LOC>
+		extends AbstractJeeslLocaleWebController<L,D,LOC>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -55,7 +55,7 @@ public class GeojsfSettingsScaleController <L extends JeeslLang, D extends Jeesl
 	
 	public void postInit(GeoMetaFacade<L,D,?,?,?,SCALE> fGeo, JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage)
 	{
-		super.postConstructWebController(lp,bMessage);
+		super.postConstructLocaleWebController(lp,bMessage);
 		this.fGeo=fGeo;
 		reloadScales();
 	}

@@ -10,7 +10,7 @@ import org.geojsf.interfaces.model.json.GeoJsfJsonData;
 import org.geojsf.interfaces.model.json.GeoJsfJsonQuality;
 import org.geojsf.interfaces.model.json.GeoJsfLocationLevel;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
-import org.jeesl.controller.web.AbstractJeeslWebController;
+import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.interfaces.controller.handler.system.locales.JeeslLocaleProvider;
@@ -24,7 +24,7 @@ public class GeojsfGeoJsonController <L extends JeeslLang, D extends JeeslDescri
 									JSON extends GeoJsfJsonData<L,D,JQ,JL>,
 									JQ extends GeoJsfJsonQuality<JQ,L,D,?>,
 									JL extends GeoJsfLocationLevel<L,D,JL,?>>
-		extends AbstractJeeslWebController<L,D,LOC>
+		extends AbstractJeeslLocaleWebController<L,D,LOC>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -53,7 +53,7 @@ public class GeojsfGeoJsonController <L extends JeeslLang, D extends JeeslDescri
 	public void postConstructJson(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
 									GeoMetaFacade<L,D,?,?,?,?> fGeo)
 	{
-		super.postConstructWebController(lp,bMessage);
+		super.postConstructLocaleWebController(lp,bMessage);
 		this.fGeo=fGeo;
 
 		qualities.addAll(fGeo.allOrderedPositionVisible(fbMeta.getClassQuality()));

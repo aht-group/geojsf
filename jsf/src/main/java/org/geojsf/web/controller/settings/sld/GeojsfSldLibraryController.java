@@ -16,7 +16,7 @@ import org.geojsf.interfaces.util.qualifier.GeoJsfProvideSldStatus;
 import org.geojsf.util.GeoJsfSldConfigurationProvider;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
 import org.jeesl.api.facade.io.JeeslIoRevisionFacade;
-import org.jeesl.controller.web.AbstractJeeslWebController;
+import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.factory.builder.io.IoRevisionFactoryBuilder;
@@ -41,7 +41,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 										SDR extends GeoJsfSldRule<L,D,?>,
 										LE extends JeeslRevisionEntity<L,D,?,?,LA,?>,
 										LA extends JeeslRevisionAttribute<L,D,LE,?,?>>
-		extends AbstractJeeslWebController<L,D,LOC>
+		extends AbstractJeeslLocaleWebController<L,D,LOC>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -88,7 +88,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 								GeoSldFacade<L,D,SDX,SLD,SDT,SDR> fSld,
 								JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision)
 	{
-		super.postConstructWebController(lp,bMessage);
+		super.postConstructLocaleWebController(lp,bMessage);
 		this.fSld=fSld;
 		this.fRevision=fRevision;
 		

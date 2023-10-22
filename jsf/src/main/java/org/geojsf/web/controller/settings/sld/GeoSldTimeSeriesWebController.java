@@ -13,7 +13,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.interfaces.util.with.EjbWithSld;
 import org.geojsf.jsf.handler.SldRuleHandler;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
-import org.jeesl.controller.web.AbstractJeeslWebController;
+import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.factory.builder.module.TsFactoryBuilder;
@@ -45,7 +45,7 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 											CAT extends JeeslTsCategory<L,D,CAT,?>,
 											SCOPE extends JeeslTsScope<L,D,CAT,?,?,?,?>,
 											MP extends JeeslTsMultiPoint<L,D,SCOPE,?>>
-		extends AbstractJeeslWebController<L,D,LOC>
+		extends AbstractJeeslLocaleWebController<L,D,LOC>
 		implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -84,7 +84,7 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 	public void postConstruct(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
 								GeoSldFacade<L,D,?,SLD,TYPE,RULE> fSld)
 	{
-		super.postConstructWebController(lp,bMessage);
+		super.postConstructLocaleWebController(lp,bMessage);
 		this.fSld=fSld;
 		this.reloadTree();
 		
