@@ -5,7 +5,6 @@ import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.AjaxBehaviorListener;
 import javax.faces.event.FacesListener;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.model.xml.geojsf.Scale;

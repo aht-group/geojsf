@@ -8,7 +8,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.geojsf.model.xml.area.Areas;
 
-import net.sf.ahtutils.xml.aht.Aht;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public interface GeoJsfAreaBasinSurfaceRestImport

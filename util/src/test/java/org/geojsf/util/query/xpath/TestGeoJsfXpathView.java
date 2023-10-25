@@ -1,17 +1,16 @@
 package org.geojsf.util.query.xpath;
 
-import net.sf.ahtutils.test.AbstractAhtUtilsXmlTest;
-import net.sf.exlp.exception.ExlpXpathNotFoundException;
-import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-
 import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.Repository;
-import org.geojsf.util.query.xpath.GeoJsfXpath;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.ahtutils.test.AbstractAhtUtilsXmlTest;
+import net.sf.exlp.exception.ExlpXpathNotFoundException;
+import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 
 public class TestGeoJsfXpathView extends AbstractAhtUtilsXmlTest 
 {

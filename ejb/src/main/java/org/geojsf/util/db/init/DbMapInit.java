@@ -16,8 +16,8 @@ import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.View;
@@ -31,7 +31,6 @@ import org.jeesl.factory.ejb.system.status.EjbLangFactory;
 import org.jeesl.interfaces.facade.JeeslFacade;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
-import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
