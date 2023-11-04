@@ -1,5 +1,6 @@
 package org.geojsf.factory.wkt;
 
+import org.exlp.util.io.JsonUtil;
 import org.geojsf.model.xml.geojsf.Wkt;
 import org.geojson.Feature;
 import org.slf4j.Logger;
@@ -14,8 +15,6 @@ import com.vividsolutions.jts.geom.PrecisionModel;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 import com.vividsolutions.jts.io.geojson.GeoJsonReader;
-
-import net.sf.exlp.util.io.JsonUtil;
 
 public class MultiPolygonFactory
 {
