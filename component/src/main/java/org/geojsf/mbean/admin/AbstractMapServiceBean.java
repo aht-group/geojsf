@@ -38,10 +38,10 @@ import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.JeeslLocale;
 import org.jeesl.jsf.handler.PositionListReorderer;
+import org.jeesl.jsf.jx.util.FacesContextMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.jsf.util.FacesContextMessage;
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 @Deprecated //Use GeojsfSettingsLayerController instead
