@@ -174,7 +174,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		}
 		catch (JeeslConstraintViolationException e)
 		{
-			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
+			FacesContextMessage.instance().warn("WARN", "uieServiceWithLayer");
 		}
 	}
 	
@@ -233,7 +233,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 		}
 		catch (JeeslConstraintViolationException e)
 		{
-			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
+			FacesContextMessage.instance().warn("WARN", "uieServiceWithLayer");
 		}
 	}
 	

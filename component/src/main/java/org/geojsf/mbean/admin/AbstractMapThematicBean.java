@@ -182,7 +182,7 @@ public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescri
 		}
 		catch (JeeslConstraintViolationException e)
 		{
-			FacesContextMessage.warn("fmWarn","uieServiceWithLayer");
+			FacesContextMessage.instance().warn("fmWarn","uieServiceWithLayer");
 		}
 	}
 	

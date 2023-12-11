@@ -168,7 +168,7 @@ public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDe
 		}
 		catch (JeeslConstraintViolationException e)
 		{
-			FacesContextMessage.warn("fmWarn","uieServiceWithLayer");
+			FacesContextMessage.instance().warn("fmWarn","uieServiceWithLayer");
 		}
 	}
 	

@@ -144,7 +144,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 		}
 		catch (JeeslConstraintViolationException e)
 		{
-			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
+			FacesContextMessage.instance().warn("WARN", "uieServiceWithLayer");
 		}
 	}
 	
@@ -203,7 +203,7 @@ public class AbstractMapServiceBean <L extends JeeslLang, D extends JeeslDescrip
 		}
 		catch (JeeslConstraintViolationException e)
 		{
-			FacesContextMessage.warn("WARN", "uieServiceWithLayer");
+			FacesContextMessage.instance().warn("WARN", "uieServiceWithLayer");
 		}
 	}
 	
