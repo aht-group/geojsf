@@ -1,8 +1,8 @@
 package org.geojsf.model.xml;
 
-import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
-
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
+
+import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 public class GeoJsfNsPrefixMapper extends NamespacePrefixMapper implements NsPrefixMapperInterface
 {
