@@ -55,6 +55,13 @@
 	   		<groupId>org.geojsf</groupId>
 	   		<artifactId>geojsf-api</artifactId>
 	   	</dependency>
+	   	
+	   	<dependency>
+			<groupId>net.sf.exlp</groupId>
+			<artifactId>exlp-xml</artifactId>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
    	   	<dependency>
    	   		<groupId>net.sf.exlp</groupId>
    	   		<artifactId>exlp-util</artifactId>
