@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.openlayers;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.factory.xml.geojsf.meta.XmlViewPortFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -50,7 +51,7 @@ public class XmlMapFactory <L extends JeeslLang, D extends JeeslDescription,
 	public Map build (MAP ejb)
 	{
 		Map xml = new Map();
-		if(q.isSetCode()){xml.setCode(ejb.getCode());}
+		if(Objects.nonNull(q.getCode())) {xml.setCode(ejb.getCode());}
 				
 		if(ejb.getViews()!=null && ejb.getViews().size()>0)
 		{

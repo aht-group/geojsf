@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geojsf;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -45,7 +46,7 @@ public class XmlServiceFactory <L extends JeeslLang, D extends JeeslDescription,
 	public Service build (SERVICE ejb)
 	{
 		Service xml = new Service();
-		if(q.isSetCode()){xml.setCode(ejb.getCode());}
+		if(Objects.nonNull(q.getCode())) {xml.setCode(ejb.getCode());}
 		if(q.isSetWms()){xml.setWms(ejb.getWms());}
 		if(q.isSetWcs()){xml.setWcs(ejb.getWcs());}
 		

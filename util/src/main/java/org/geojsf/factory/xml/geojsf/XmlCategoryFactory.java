@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geojsf;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.model.xml.geojsf.Category;
@@ -35,7 +36,7 @@ public class XmlCategoryFactory <L extends JeeslLang, D extends JeeslDescription
 	public Category build (CATEGORY ejb)
 	{
 		Category xml = new Category();
-		if(q.isSetCode()){xml.setCode(ejb.getCode());}
+		if(Objects.nonNull(q.getCode())) {xml.setCode(ejb.getCode());}
 		if(q.isSetLangs()){xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
 		if(q.isSetDescriptions()){xml.setDescriptions(xfDescription.create(ejb.getDescription()));}
 		

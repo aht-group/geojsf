@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geojsf.sld;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
@@ -35,10 +36,8 @@ public class XmlSldXmlFactory <L extends JeeslLang, D extends JeeslDescription,
 	public SldTemplate build (SDX ejb)
 	{
 		SldTemplate xml = new SldTemplate();
-		if(q.isSetCode()){xml.setCode(ejb.getCode());}
-			
+		if(Objects.nonNull(q.getCode())) {xml.setCode(ejb.getCode());}
 
-		
 		if(q.isSetLangs())
 		{
 			XmlLangsFactory<L> f = new XmlLangsFactory<L>(q.getLangs());

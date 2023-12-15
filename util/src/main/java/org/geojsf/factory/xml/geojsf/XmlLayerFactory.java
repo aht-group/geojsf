@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geojsf;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.factory.xml.geojsf.meta.XmlViewPortFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -53,7 +54,7 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 	{
 		Layer xml = new Layer();
 		
-		if(q.isSetCode()){xml.setCode(ejb.getCode());}
+		if(Objects.nonNull(q.getCode())) {xml.setCode(ejb.getCode());}
 		if(q.isSetTemporal()){xml.setTemporal(ejb.isTemporalLayer());}
 		if(q.isSetSql())
 		{
