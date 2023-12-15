@@ -16,11 +16,10 @@ import org.jeesl.factory.xml.system.symbol.XmlSymbolFactory;
 import org.jeesl.interfaces.model.system.graphic.core.JeeslGraphicType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
+import org.jeesl.model.xml.io.graphic.Graphic;
+import org.jeesl.model.xml.io.graphic.Symbol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.ahtutils.xml.symbol.Graphic;
-import net.sf.ahtutils.xml.symbol.Symbol;
 
 public class XmlSldRuleFactory <L extends JeeslLang, D extends JeeslDescription,
 								SLD extends GeoJsfSld<L,D,SLDTEMPLATE,SLDTYPE,RULE,?,?>,
