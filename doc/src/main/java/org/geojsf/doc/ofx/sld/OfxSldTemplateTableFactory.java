@@ -9,6 +9,8 @@ import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.SldTemplate;
 import org.jeesl.doc.ofx.OfxMultiLangFactory;
 import org.jeesl.exception.processing.UtilsConfigurationException;
+import org.jeesl.model.xml.io.locale.status.Translation;
+import org.jeesl.model.xml.io.locale.status.Translations;
 import org.jeesl.util.query.xpath.StatusXpath;
 import org.openfuxml.content.ofx.Comment;
 import org.openfuxml.content.table.Body;
@@ -30,8 +32,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.doc.DocumentationCommentBuilder;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
-import net.sf.ahtutils.xml.status.Translation;
-import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 

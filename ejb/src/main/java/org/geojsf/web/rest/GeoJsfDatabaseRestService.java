@@ -41,6 +41,7 @@ import org.jeesl.factory.xml.system.status.XmlStatusFactory;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;
+import org.jeesl.model.xml.io.locale.status.Status;
 import org.jeesl.util.db.updater.JeeslDbStatusUpdater;
 import org.jeesl.util.query.xml.XmlStatusQuery;
 import org.slf4j.Logger;
@@ -48,7 +49,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.factory.xml.aht.XmlContainerFactory;
 import net.sf.ahtutils.xml.aht.Container;
-import net.sf.ahtutils.xml.status.Status;
 import net.sf.ahtutils.xml.sync.DataUpdate;
 
 public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDescription,

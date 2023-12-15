@@ -3,13 +3,13 @@ package org.geojsf.model.xml.geojsf;
 import java.io.FileNotFoundException;
 
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.jeesl.model.xml.io.locale.status.Descriptions;
+import org.jeesl.model.xml.io.locale.status.Langs;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.xml.status.Descriptions;
-import net.sf.ahtutils.xml.status.Langs;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestXmlService extends AbstractXmlGeojsfTest

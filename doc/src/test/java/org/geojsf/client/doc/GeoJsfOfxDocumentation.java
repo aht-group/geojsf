@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.test.GeoJsfDocTestBootstrap;
 import org.jeesl.exception.processing.UtilsConfigurationException;
+import org.jeesl.model.xml.io.locale.status.Translations;
 import org.jeesl.model.xml.system.io.db.Db;
 import org.openfuxml.content.table.Table;
 import org.openfuxml.exception.OfxAuthoringException;
@@ -20,7 +21,6 @@ import net.sf.ahtutils.db.xml.UtilsDbXmlSeedUtil;
 import net.sf.ahtutils.doc.UtilsDocumentation;
 import net.sf.ahtutils.doc.ofx.status.OfxStatusTableFactory;
 import net.sf.ahtutils.xml.aht.Aht;
-import net.sf.ahtutils.xml.status.Translations;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 @SuppressWarnings("unused")
