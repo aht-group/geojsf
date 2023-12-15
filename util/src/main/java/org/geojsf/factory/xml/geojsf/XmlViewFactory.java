@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geojsf;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -42,7 +43,7 @@ public class XmlViewFactory <L extends JeeslLang,D extends JeeslDescription,
 	{
 		View xml = new View();
 		
-		if(q.isSetVisible()){xml.setVisible(ejb.isVisible());}
+		if(Objects.nonNull(q.isVisible())) {xml.setVisible(ejb.isVisible());}
 		if(q.isSetLegend()){xml.setLegend(ejb.getLegend());}
 		if(q.isSetNr()){xml.setNr(ejb.getOrderNo());}
 		
