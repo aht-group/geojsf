@@ -29,16 +29,16 @@ public class XmlCategoryFactory <L extends JeeslLang, D extends JeeslDescription
 	public XmlCategoryFactory(Category q)
 	{
 		this.q=q;
-		if(q.isSetLangs()) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
-		if(q.isSetDescriptions()) {xfDescription = new XmlDescriptionsFactory<D>(q.getDescriptions());}
+		if(Objects.nonNull(q.getLangs())) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
+		if(Objects.nonNull(q.getDescriptions())) {xfDescription = new XmlDescriptionsFactory<D>(q.getDescriptions());}
 	}
 
 	public Category build (CATEGORY ejb)
 	{
 		Category xml = new Category();
 		if(Objects.nonNull(q.getCode())) {xml.setCode(ejb.getCode());}
-		if(q.isSetLangs()){xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
-		if(q.isSetDescriptions()){xml.setDescriptions(xfDescription.create(ejb.getDescription()));}
+		if(Objects.nonNull(q.getLangs())){xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
+		if(Objects.nonNull(q.getDescriptions())){xml.setDescriptions(xfDescription.create(ejb.getDescription()));}
 		
 		return xml;
 	}

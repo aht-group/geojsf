@@ -1,11 +1,12 @@
 package org.geojsf.factory.xml.geojsf.sld;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.model.xml.geojsf.SldRule;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
@@ -55,13 +56,13 @@ public class XmlSldRuleFactory <L extends JeeslLang, D extends JeeslDescription,
 		if(q.isSetLowerBound() && ejb.getLowerBound()!=null){xml.setLowerBound(ejb.getLowerBound());}
 		if(q.isSetUpperBound() && ejb.getUpperBound()!=null){xml.setUpperBound(ejb.getUpperBound());}
 				
-		if(q.isSetLangs())
+		if(Objects.nonNull(q.getLangs()))
 		{
 			XmlLangsFactory<L> f = new XmlLangsFactory<L>(q.getLangs());
 			xml.setLangs(f.getUtilsLangs(ejb.getName()));
 		}
 		
-		if(q.isSetDescriptions())
+		if(Objects.nonNull(q.getDescriptions()))
 		{
 			XmlDescriptionsFactory<D> f = new XmlDescriptionsFactory<D>(q.getDescriptions());
 			xml.setDescriptions(f.create(ejb.getDescription()));

@@ -43,8 +43,8 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 	{
 		this.q=q;
 		
-		if(q.isSetLangs()) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
-		if(q.isSetDescriptions()) {xfDescriptions = new XmlDescriptionsFactory<D>(q.getDescriptions());}
+		if(Objects.nonNull(q.getLangs())) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
+		if(Objects.nonNull(q.getDescriptions())) {xfDescriptions = new XmlDescriptionsFactory<D>(q.getDescriptions());}
 		if(q.isSetCategory()) {xfCatgory = new XmlCategoryFactory<>(q.getCategory());}
 		if(q.isSetViewPort()) {xfViewport = new XmlViewPortFactory<>(q.getViewPort());}
 		if(q.isSetService()) {xfService = new XmlServiceFactory<>(q.getService());}
@@ -62,8 +62,8 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 			else{xml.setSql(false);}
 		}
 		
-		if(q.isSetLangs()) {xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
-		if(q.isSetDescriptions()) {xml.setDescriptions(xfDescriptions.create(ejb.getDescription()));}
+		if(Objects.nonNull(q.getLangs())) {xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
+		if(Objects.nonNull(q.getDescriptions())) {xml.setDescriptions(xfDescriptions.create(ejb.getDescription()));}
 		
 		if(q.isSetService()) {xml.setService(xfService.build(ejb.getService()));}
 		if(q.isSetCategory() && ejb.getCategory()!=null) {xml.setCategory(xfCatgory.build(ejb.getCategory()));}
