@@ -31,9 +31,16 @@
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-interfaces</artifactId>
 		</dependency>
+		
+		<!-- XML Modules -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-xml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-xml</artifactId>
+			<scope>compile</scope>
 		</dependency>
 		
 		<dependency>
