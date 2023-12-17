@@ -113,7 +113,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	public void selectSld()
 	{
 		logger.info(AbstractLogMessage.selectEntity(sld));
-		efLang.persistMissingLangs(fSld,lp.getLocales(),sld);
+		efLang.persistMissingLangs(fSld,lp,sld);
 		efDescription.persistMissingLangs(fSld,lp.getLocales(),sld);
 		sld = fSld.load(sld);
 		this.reloadAttributes();

@@ -77,7 +77,7 @@ public class GeojsfSettingsScaleController <L extends JeeslLang, D extends Jeesl
 	public void selectTemplate() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info(AbstractLogMessage.selectEntity(scale));
-		scale = efLang.persistMissingLangs(fGeo,lp.getLocales(),scale);
+		scale = efLang.persistMissingLangs(fGeo,lp,scale);
 		scale = efDescription.persistMissingLangs(fGeo,lp.getLocales(),scale);
 	}
 

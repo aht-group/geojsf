@@ -67,7 +67,7 @@ public class GeoSldXmlWebController <L extends JeeslLang, D extends JeeslDescrip
 	public void selectTemplate() throws JeeslNotFoundException, JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info(AbstractLogMessage.selectEntity(template));
-		template = efLang.persistMissingLangs(fSld,lp.getLocales(),template);
+		template = efLang.persistMissingLangs(fSld,lp,template);
 		template = efDescription.persistMissingLangs(fSld,lp.getLocales(),template);
 	}
 	
