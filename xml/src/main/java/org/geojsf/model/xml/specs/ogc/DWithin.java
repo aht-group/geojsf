@@ -74,10 +74,6 @@ public class DWithin
         this.propertyName = value;
     }
 
-    public boolean isSetPropertyName() {
-        return (this.propertyName!= null);
-    }
-
     /**
      * Gets the value of the point property.
      * 
@@ -102,10 +98,6 @@ public class DWithin
         this.point = value;
     }
 
-    public boolean isSetPoint() {
-        return (this.point!= null);
-    }
-
     /**
      * Gets the value of the distance property.
      * 
@@ -128,10 +120,6 @@ public class DWithin
      */
     public void setDistance(Distance value) {
         this.distance = value;
-    }
-
-    public boolean isSetDistance() {
-        return (this.distance!= null);
     }
 
 }

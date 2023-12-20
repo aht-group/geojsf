@@ -65,8 +65,4 @@ public class PolygonSymbolizer
         this.fill = value;
     }
 
-    public boolean isSetFill() {
-        return (this.fill!= null);
-    }
-
 }

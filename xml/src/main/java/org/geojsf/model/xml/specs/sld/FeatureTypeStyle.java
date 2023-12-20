@@ -71,10 +71,6 @@ public class FeatureTypeStyle
         this.name = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
     /**
      * Gets the value of the rule property.
      * 
@@ -102,14 +98,6 @@ public class FeatureTypeStyle
             rule = new ArrayList<Rule>();
         }
         return this.rule;
-    }
-
-    public boolean isSetRule() {
-        return ((this.rule!= null)&&(!this.rule.isEmpty()));
-    }
-
-    public void unsetRule() {
-        this.rule = null;
     }
 
 }

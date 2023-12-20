@@ -69,10 +69,6 @@ public class NamedLayer
         this.name = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
     /**
      * Gets the value of the userStyle property.
      * 
@@ -95,10 +91,6 @@ public class NamedLayer
      */
     public void setUserStyle(UserStyle value) {
         this.userStyle = value;
-    }
-
-    public boolean isSetUserStyle() {
-        return (this.userStyle!= null);
     }
 
 }

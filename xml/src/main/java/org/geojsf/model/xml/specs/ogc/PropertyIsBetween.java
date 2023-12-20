@@ -73,10 +73,6 @@ public class PropertyIsBetween
         this.propertyName = value;
     }
 
-    public boolean isSetPropertyName() {
-        return (this.propertyName!= null);
-    }
-
     /**
      * Gets the value of the lowerBoundary property.
      * 
@@ -101,10 +97,6 @@ public class PropertyIsBetween
         this.lowerBoundary = value;
     }
 
-    public boolean isSetLowerBoundary() {
-        return (this.lowerBoundary!= null);
-    }
-
     /**
      * Gets the value of the upperBoundary property.
      * 
@@ -127,10 +119,6 @@ public class PropertyIsBetween
      */
     public void setUpperBoundary(UpperBoundary value) {
         this.upperBoundary = value;
-    }
-
-    public boolean isSetUpperBoundary() {
-        return (this.upperBoundary!= null);
     }
 
 }

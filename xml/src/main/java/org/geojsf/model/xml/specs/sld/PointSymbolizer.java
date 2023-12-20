@@ -65,8 +65,4 @@ public class PointSymbolizer
         this.graphic = value;
     }
 
-    public boolean isSetGraphic() {
-        return (this.graphic!= null);
-    }
-
 }

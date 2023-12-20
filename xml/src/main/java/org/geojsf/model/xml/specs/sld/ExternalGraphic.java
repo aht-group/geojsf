@@ -69,10 +69,6 @@ public class ExternalGraphic
         this.onlineResource = value;
     }
 
-    public boolean isSetOnlineResource() {
-        return (this.onlineResource!= null);
-    }
-
     /**
      * Gets the value of the format property.
      * 
@@ -95,10 +91,6 @@ public class ExternalGraphic
      */
     public void setFormat(Format value) {
         this.format = value;
-    }
-
-    public boolean isSetFormat() {
-        return (this.format!= null);
     }
 
 }

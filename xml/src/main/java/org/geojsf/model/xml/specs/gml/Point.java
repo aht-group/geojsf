@@ -69,10 +69,6 @@ public class Point
         this.coordinates = value;
     }
 
-    public boolean isSetCoordinates() {
-        return (this.coordinates!= null);
-    }
-
     /**
      * Gets the value of the srsName property.
      * 
@@ -95,10 +91,6 @@ public class Point
      */
     public void setSrsName(String value) {
         this.srsName = value;
-    }
-
-    public boolean isSetSrsName() {
-        return (this.srsName!= null);
     }
 
 }

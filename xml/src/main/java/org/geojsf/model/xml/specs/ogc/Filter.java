@@ -89,10 +89,6 @@ public class Filter
         this.and = value;
     }
 
-    public boolean isSetAnd() {
-        return (this.and!= null);
-    }
-
     /**
      * Gets the value of the dWithin property.
      * 
@@ -115,10 +111,6 @@ public class Filter
      */
     public void setDWithin(DWithin value) {
         this.dWithin = value;
-    }
-
-    public boolean isSetDWithin() {
-        return (this.dWithin!= null);
     }
 
     /**
@@ -145,10 +137,6 @@ public class Filter
         this.propertyIsBetween = value;
     }
 
-    public boolean isSetPropertyIsBetween() {
-        return (this.propertyIsBetween!= null);
-    }
-
     /**
      * Gets the value of the propertyIsEqualTo property.
      * 
@@ -171,10 +159,6 @@ public class Filter
      */
     public void setPropertyIsEqualTo(PropertyIsEqualTo value) {
         this.propertyIsEqualTo = value;
-    }
-
-    public boolean isSetPropertyIsEqualTo() {
-        return (this.propertyIsEqualTo!= null);
     }
 
     /**
@@ -201,10 +185,6 @@ public class Filter
         this.propertyIsLessThan = value;
     }
 
-    public boolean isSetPropertyIsLessThan() {
-        return (this.propertyIsLessThan!= null);
-    }
-
     /**
      * Gets the value of the propertyIsGreaterThanOrEqualTo property.
      * 
@@ -229,10 +209,6 @@ public class Filter
         this.propertyIsGreaterThanOrEqualTo = value;
     }
 
-    public boolean isSetPropertyIsGreaterThanOrEqualTo() {
-        return (this.propertyIsGreaterThanOrEqualTo!= null);
-    }
-
     /**
      * Gets the value of the propertyIsGreaterThan property.
      * 
@@ -255,10 +231,6 @@ public class Filter
      */
     public void setPropertyIsGreaterThan(PropertyIsGreaterThan value) {
         this.propertyIsGreaterThan = value;
-    }
-
-    public boolean isSetPropertyIsGreaterThan() {
-        return (this.propertyIsGreaterThan!= null);
     }
 
 }

@@ -69,10 +69,6 @@ public class UserStyle
         this.name = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
     /**
      * Gets the value of the featureTypeStyle property.
      * 
@@ -95,10 +91,6 @@ public class UserStyle
      */
     public void setFeatureTypeStyle(FeatureTypeStyle value) {
         this.featureTypeStyle = value;
-    }
-
-    public boolean isSetFeatureTypeStyle() {
-        return (this.featureTypeStyle!= null);
     }
 
 }

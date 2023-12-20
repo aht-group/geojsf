@@ -65,8 +65,4 @@ public class LowerBoundary
         this.function = value;
     }
 
-    public boolean isSetFunction() {
-        return (this.function!= null);
-    }
-
 }

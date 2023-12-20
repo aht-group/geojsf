@@ -64,8 +64,8 @@ public class Size
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Function }
      * {@link String }
+     * {@link Function }
      * 
      * 
      */
@@ -74,14 +74,6 @@ public class Size
             content = new ArrayList<Serializable>();
         }
         return this.content;
-    }
-
-    public boolean isSetContent() {
-        return ((this.content!= null)&&(!this.content.isEmpty()));
-    }
-
-    public void unsetContent() {
-        this.content = null;
     }
 
 }

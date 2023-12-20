@@ -69,10 +69,6 @@ public class OnlineResource
         this.type = value;
     }
 
-    public boolean isSetType() {
-        return (this.type!= null);
-    }
-
     /**
      * Gets the value of the href property.
      * 
@@ -95,10 +91,6 @@ public class OnlineResource
      */
     public void setHref(String value) {
         this.href = value;
-    }
-
-    public boolean isSetHref() {
-        return (this.href!= null);
     }
 
 }

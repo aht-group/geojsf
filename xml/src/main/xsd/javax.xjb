@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+            xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+            xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+	version="2.1">
+
+	<jxb:globalBindings generateIsSetMethod="false"> 
+		<jxb:serializable uid="1" />
+	</jxb:globalBindings>
+
+ 	<jxb:bindings schemaLocation="../xsd/specs/gml.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.specs.gml"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+    <jxb:bindings schemaLocation="../xsd/specs/ogc.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.specs.ogc"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/specs/sld.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.specs.sld"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>    
+	<jxb:bindings schemaLocation="../xsd/specs/xlink.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.specs.xlink"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+	<jxb:bindings schemaLocation="../xsd/specs/wfs.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.specs.wfs"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="../xsd/../../../../../exlp/xml/src/main/xsd/net.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.exlp.xml.net"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+        <jxb:bindings schemaLocation="../xsd/../../../../../exlp/xml/src/main/xsd/identity.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.exlp.xml.identity"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+</jxb:bindings>

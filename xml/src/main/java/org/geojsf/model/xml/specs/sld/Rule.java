@@ -82,10 +82,6 @@ public class Rule
         this.name = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
     /**
      * Gets the value of the description property.
      * 
@@ -108,10 +104,6 @@ public class Rule
      */
     public void setDescription(Description value) {
         this.description = value;
-    }
-
-    public boolean isSetDescription() {
-        return (this.description!= null);
     }
 
     /**
@@ -138,10 +130,6 @@ public class Rule
         this.filter = value;
     }
 
-    public boolean isSetFilter() {
-        return (this.filter!= null);
-    }
-
     /**
      * Gets the value of the pointSymbolizer property.
      * 
@@ -166,10 +154,6 @@ public class Rule
         this.pointSymbolizer = value;
     }
 
-    public boolean isSetPointSymbolizer() {
-        return (this.pointSymbolizer!= null);
-    }
-
     /**
      * Gets the value of the polygonSymbolizer property.
      * 
@@ -192,10 +176,6 @@ public class Rule
      */
     public void setPolygonSymbolizer(PolygonSymbolizer value) {
         this.polygonSymbolizer = value;
-    }
-
-    public boolean isSetPolygonSymbolizer() {
-        return (this.polygonSymbolizer!= null);
     }
 
 }

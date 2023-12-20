@@ -72,12 +72,4 @@ public class Stroke
         return this.svgParameter;
     }
 
-    public boolean isSetSvgParameter() {
-        return ((this.svgParameter!= null)&&(!this.svgParameter.isEmpty()));
-    }
-
-    public void unsetSvgParameter() {
-        this.svgParameter = null;
-    }
-
 }

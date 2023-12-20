@@ -76,14 +76,6 @@ public class StyledLayerDescriptor
         return this.namedLayer;
     }
 
-    public boolean isSetNamedLayer() {
-        return ((this.namedLayer!= null)&&(!this.namedLayer.isEmpty()));
-    }
-
-    public void unsetNamedLayer() {
-        this.namedLayer = null;
-    }
-
     /**
      * Gets the value of the version property.
      * 
@@ -106,10 +98,6 @@ public class StyledLayerDescriptor
      */
     public void setVersion(String value) {
         this.version = value;
-    }
-
-    public boolean isSetVersion() {
-        return (this.version!= null);
     }
 
 }

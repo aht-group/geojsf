@@ -73,10 +73,6 @@ public class Mark
         this.wellKnownName = value;
     }
 
-    public boolean isSetWellKnownName() {
-        return (this.wellKnownName!= null);
-    }
-
     /**
      * Gets the value of the fill property.
      * 
@@ -101,10 +97,6 @@ public class Mark
         this.fill = value;
     }
 
-    public boolean isSetFill() {
-        return (this.fill!= null);
-    }
-
     /**
      * Gets the value of the stroke property.
      * 
@@ -127,10 +119,6 @@ public class Mark
      */
     public void setStroke(Stroke value) {
         this.stroke = value;
-    }
-
-    public boolean isSetStroke() {
-        return (this.stroke!= null);
     }
 
 }

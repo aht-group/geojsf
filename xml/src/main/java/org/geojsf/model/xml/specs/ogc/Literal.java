@@ -61,8 +61,4 @@ public class Literal implements Serializable
         this.value = value;
     }
 
-    public boolean isSetValue() {
-        return (this.value!= null);
-    }
-
 }

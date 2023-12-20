@@ -82,14 +82,6 @@ public class Query
         return this.propertyName;
     }
 
-    public boolean isSetPropertyName() {
-        return ((this.propertyName!= null)&&(!this.propertyName.isEmpty()));
-    }
-
-    public void unsetPropertyName() {
-        this.propertyName = null;
-    }
-
     /**
      * Gets the value of the filter property.
      * 
@@ -114,10 +106,6 @@ public class Query
         this.filter = value;
     }
 
-    public boolean isSetFilter() {
-        return (this.filter!= null);
-    }
-
     /**
      * Gets the value of the typeName property.
      * 
@@ -140,10 +128,6 @@ public class Query
      */
     public void setTypeName(String value) {
         this.typeName = value;
-    }
-
-    public boolean isSetTypeName() {
-        return (this.typeName!= null);
     }
 
 }

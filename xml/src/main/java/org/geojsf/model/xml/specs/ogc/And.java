@@ -87,10 +87,6 @@ public class And
         this.dWithin = value;
     }
 
-    public boolean isSetDWithin() {
-        return (this.dWithin!= null);
-    }
-
     /**
      * Gets the value of the propertyIsBetween property.
      * 
@@ -118,14 +114,6 @@ public class And
             propertyIsBetween = new ArrayList<PropertyIsBetween>();
         }
         return this.propertyIsBetween;
-    }
-
-    public boolean isSetPropertyIsBetween() {
-        return ((this.propertyIsBetween!= null)&&(!this.propertyIsBetween.isEmpty()));
-    }
-
-    public void unsetPropertyIsBetween() {
-        this.propertyIsBetween = null;
     }
 
     /**
@@ -157,14 +145,6 @@ public class And
         return this.propertyIsEqualTo;
     }
 
-    public boolean isSetPropertyIsEqualTo() {
-        return ((this.propertyIsEqualTo!= null)&&(!this.propertyIsEqualTo.isEmpty()));
-    }
-
-    public void unsetPropertyIsEqualTo() {
-        this.propertyIsEqualTo = null;
-    }
-
     /**
      * Gets the value of the propertyIsLessThan property.
      * 
@@ -192,14 +172,6 @@ public class And
             propertyIsLessThan = new ArrayList<PropertyIsLessThan>();
         }
         return this.propertyIsLessThan;
-    }
-
-    public boolean isSetPropertyIsLessThan() {
-        return ((this.propertyIsLessThan!= null)&&(!this.propertyIsLessThan.isEmpty()));
-    }
-
-    public void unsetPropertyIsLessThan() {
-        this.propertyIsLessThan = null;
     }
 
     /**
@@ -231,14 +203,6 @@ public class And
         return this.propertyIsGreaterThanOrEqualTo;
     }
 
-    public boolean isSetPropertyIsGreaterThanOrEqualTo() {
-        return ((this.propertyIsGreaterThanOrEqualTo!= null)&&(!this.propertyIsGreaterThanOrEqualTo.isEmpty()));
-    }
-
-    public void unsetPropertyIsGreaterThanOrEqualTo() {
-        this.propertyIsGreaterThanOrEqualTo = null;
-    }
-
     /**
      * Gets the value of the propertyIsGreaterThan property.
      * 
@@ -266,14 +230,6 @@ public class And
             propertyIsGreaterThan = new ArrayList<PropertyIsGreaterThan>();
         }
         return this.propertyIsGreaterThan;
-    }
-
-    public boolean isSetPropertyIsGreaterThan() {
-        return ((this.propertyIsGreaterThan!= null)&&(!this.propertyIsGreaterThan.isEmpty()));
-    }
-
-    public void unsetPropertyIsGreaterThan() {
-        this.propertyIsGreaterThan = null;
     }
 
 }

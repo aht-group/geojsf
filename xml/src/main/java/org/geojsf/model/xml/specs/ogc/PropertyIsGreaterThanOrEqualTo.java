@@ -69,10 +69,6 @@ public class PropertyIsGreaterThanOrEqualTo
         this.propertyName = value;
     }
 
-    public boolean isSetPropertyName() {
-        return (this.propertyName!= null);
-    }
-
     /**
      * Gets the value of the literal property.
      * 
@@ -95,10 +91,6 @@ public class PropertyIsGreaterThanOrEqualTo
      */
     public void setLiteral(Literal value) {
         this.literal = value;
-    }
-
-    public boolean isSetLiteral() {
-        return (this.literal!= null);
     }
 
 }

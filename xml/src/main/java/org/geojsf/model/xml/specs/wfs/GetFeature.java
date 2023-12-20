@@ -78,10 +78,6 @@ public class GetFeature
         this.query = value;
     }
 
-    public boolean isSetQuery() {
-        return (this.query!= null);
-    }
-
     /**
      * Gets the value of the service property.
      * 
@@ -104,10 +100,6 @@ public class GetFeature
      */
     public void setService(String value) {
         this.service = value;
-    }
-
-    public boolean isSetService() {
-        return (this.service!= null);
     }
 
     /**
@@ -134,10 +126,6 @@ public class GetFeature
         this.version = value;
     }
 
-    public boolean isSetVersion() {
-        return (this.version!= null);
-    }
-
     /**
      * Gets the value of the outputFormat property.
      * 
@@ -162,10 +150,6 @@ public class GetFeature
         this.outputFormat = value;
     }
 
-    public boolean isSetOutputFormat() {
-        return (this.outputFormat!= null);
-    }
-
     /**
      * Gets the value of the viewParams property.
      * 
@@ -188,10 +172,6 @@ public class GetFeature
      */
     public void setViewParams(String value) {
         this.viewParams = value;
-    }
-
-    public boolean isSetViewParams() {
-        return (this.viewParams!= null);
     }
 
 }

@@ -66,10 +66,6 @@ public class Distance
         this.value = value;
     }
 
-    public boolean isSetValue() {
-        return (this.value!= null);
-    }
-
     /**
      * Gets the value of the units property.
      * 
@@ -92,10 +88,6 @@ public class Distance
      */
     public void setUnits(String value) {
         this.units = value;
-    }
-
-    public boolean isSetUnits() {
-        return (this.units!= null);
     }
 
 }

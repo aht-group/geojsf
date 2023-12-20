@@ -65,8 +65,4 @@ public class Description
         this.title = value;
     }
 
-    public boolean isSetTitle() {
-        return (this.title!= null);
-    }
-
 }

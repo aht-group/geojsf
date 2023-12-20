@@ -75,14 +75,6 @@ public class Function implements Serializable
         return this.literal;
     }
 
-    public boolean isSetLiteral() {
-        return ((this.literal!= null)&&(!this.literal.isEmpty()));
-    }
-
-    public void unsetLiteral() {
-        this.literal = null;
-    }
-
     /**
      * Gets the value of the name property.
      * 
@@ -105,10 +97,6 @@ public class Function implements Serializable
      */
     public void setName(String value) {
         this.name = value;
-    }
-
-    public boolean isSetName() {
-        return (this.name!= null);
     }
 
 }

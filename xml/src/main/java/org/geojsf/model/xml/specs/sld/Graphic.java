@@ -73,10 +73,6 @@ public class Graphic
         this.mark = value;
     }
 
-    public boolean isSetMark() {
-        return (this.mark!= null);
-    }
-
     /**
      * Gets the value of the externalGraphic property.
      * 
@@ -101,10 +97,6 @@ public class Graphic
         this.externalGraphic = value;
     }
 
-    public boolean isSetExternalGraphic() {
-        return (this.externalGraphic!= null);
-    }
-
     /**
      * Gets the value of the size property.
      * 
@@ -127,10 +119,6 @@ public class Graphic
      */
     public void setSize(Size value) {
         this.size = value;
-    }
-
-    public boolean isSetSize() {
-        return (this.size!= null);
     }
 
 }

@@ -76,14 +76,6 @@ public class Fill
         return this.svgParameter;
     }
 
-    public boolean isSetSvgParameter() {
-        return ((this.svgParameter!= null)&&(!this.svgParameter.isEmpty()));
-    }
-
-    public void unsetSvgParameter() {
-        this.svgParameter = null;
-    }
-
     /**
      * Gets the value of the cssParameter property.
      * 
@@ -111,14 +103,6 @@ public class Fill
             cssParameter = new ArrayList<CssParameter>();
         }
         return this.cssParameter;
-    }
-
-    public boolean isSetCssParameter() {
-        return ((this.cssParameter!= null)&&(!this.cssParameter.isEmpty()));
-    }
-
-    public void unsetCssParameter() {
-        this.cssParameter = null;
     }
 
 }
