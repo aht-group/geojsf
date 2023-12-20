@@ -2,6 +2,7 @@ package org.geojsf.geoserver.util;
 
 import java.io.File;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.geoserver.manager.GeoServerCoverageManager;
@@ -43,7 +44,7 @@ public class ConfigurationOverrider
 	
 	private void overrideDataStore(DataStore dataStore)
 	{
-		if(dataStore.isSetShapeDir())
+		if(Objects.nonNull(dataStore.getShapeDir()))
 		{
 			try
 			{
@@ -55,7 +56,7 @@ public class ConfigurationOverrider
 			}
 			catch (NoSuchElementException e){}
 		}
-		if(dataStore.isSetPostgis())
+		if(Objects.nonNull(dataStore.getPostgis()))
 		{
 			String base = getKey(dataStore);
 			String key;

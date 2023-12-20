@@ -65,8 +65,4 @@ public class Postgis
         this.connection = value;
     }
 
-    public boolean isSetConnection() {
-        return (this.connection!= null);
-    }
-
 }

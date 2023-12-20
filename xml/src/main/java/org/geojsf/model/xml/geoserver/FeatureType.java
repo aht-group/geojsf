@@ -72,10 +72,6 @@ public class FeatureType
         this.dataStore = value;
     }
 
-    public boolean isSetDataStore() {
-        return (this.dataStore!= null);
-    }
-
     /**
      * Gets the value of the name property.
      * 
@@ -100,10 +96,6 @@ public class FeatureType
         this.name = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
     /**
      * Gets the value of the nativeName property.
      * 
@@ -126,10 +118,6 @@ public class FeatureType
      */
     public void setNativeName(String value) {
         this.nativeName = value;
-    }
-
-    public boolean isSetNativeName() {
-        return (this.nativeName!= null);
     }
 
 }

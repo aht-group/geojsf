@@ -72,12 +72,4 @@ public class FeatureTypes
         return this.featureType;
     }
 
-    public boolean isSetFeatureType() {
-        return ((this.featureType!= null)&&(!this.featureType.isEmpty()));
-    }
-
-    public void unsetFeatureType() {
-        this.featureType = null;
-    }
-
 }

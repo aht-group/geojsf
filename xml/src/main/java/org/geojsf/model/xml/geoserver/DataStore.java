@@ -86,10 +86,6 @@ public class DataStore
         this.workspace = value;
     }
 
-    public boolean isSetWorkspace() {
-        return (this.workspace!= null);
-    }
-
     /**
      * Gets the value of the postgis property.
      * 
@@ -112,10 +108,6 @@ public class DataStore
      */
     public void setPostgis(Postgis value) {
         this.postgis = value;
-    }
-
-    public boolean isSetPostgis() {
-        return (this.postgis!= null);
     }
 
     /**
@@ -142,10 +134,6 @@ public class DataStore
         this.shapeDir = value;
     }
 
-    public boolean isSetShapeDir() {
-        return (this.shapeDir!= null);
-    }
-
     /**
      * Gets the value of the name property.
      * 
@@ -168,10 +156,6 @@ public class DataStore
      */
     public void setName(String value) {
         this.name = value;
-    }
-
-    public boolean isSetName() {
-        return (this.name!= null);
     }
 
     /**
@@ -198,10 +182,6 @@ public class DataStore
         this.description = value;
     }
 
-    public boolean isSetDescription() {
-        return (this.description!= null);
-    }
-
     /**
      * Gets the value of the type property.
      * 
@@ -226,10 +206,6 @@ public class DataStore
         this.type = value;
     }
 
-    public boolean isSetType() {
-        return (this.type!= null);
-    }
-
     /**
      * Gets the value of the enabled property.
      * 
@@ -238,7 +214,7 @@ public class DataStore
      *     {@link Boolean }
      *     
      */
-    public boolean isEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
@@ -250,16 +226,8 @@ public class DataStore
      *     {@link Boolean }
      *     
      */
-    public void setEnabled(boolean value) {
+    public void setEnabled(Boolean value) {
         this.enabled = value;
-    }
-
-    public boolean isSetEnabled() {
-        return (this.enabled!= null);
-    }
-
-    public void unsetEnabled() {
-        this.enabled = null;
     }
 
 }

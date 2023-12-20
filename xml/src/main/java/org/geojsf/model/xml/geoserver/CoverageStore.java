@@ -81,10 +81,6 @@ public class CoverageStore
         this.coverages = value;
     }
 
-    public boolean isSetCoverages() {
-        return (this.coverages!= null);
-    }
-
     /**
      * Gets the value of the name property.
      * 
@@ -107,10 +103,6 @@ public class CoverageStore
      */
     public void setName(String value) {
         this.name = value;
-    }
-
-    public boolean isSetName() {
-        return (this.name!= null);
     }
 
     /**
@@ -137,10 +129,6 @@ public class CoverageStore
         this.description = value;
     }
 
-    public boolean isSetDescription() {
-        return (this.description!= null);
-    }
-
     /**
      * Gets the value of the type property.
      * 
@@ -165,10 +153,6 @@ public class CoverageStore
         this.type = value;
     }
 
-    public boolean isSetType() {
-        return (this.type!= null);
-    }
-
     /**
      * Gets the value of the enabled property.
      * 
@@ -177,7 +161,7 @@ public class CoverageStore
      *     {@link Boolean }
      *     
      */
-    public boolean isEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
@@ -189,16 +173,8 @@ public class CoverageStore
      *     {@link Boolean }
      *     
      */
-    public void setEnabled(boolean value) {
+    public void setEnabled(Boolean value) {
         this.enabled = value;
-    }
-
-    public boolean isSetEnabled() {
-        return (this.enabled!= null);
-    }
-
-    public void unsetEnabled() {
-        this.enabled = null;
     }
 
     /**
@@ -223,10 +199,6 @@ public class CoverageStore
      */
     public void setUrl(String value) {
         this.url = value;
-    }
-
-    public boolean isSetUrl() {
-        return (this.url!= null);
     }
 
 }

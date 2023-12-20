@@ -2,6 +2,7 @@ package org.geojsf.geoserver.manager;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import net.sf.exlp.util.xml.JaxbUtil;
@@ -50,11 +51,11 @@ public class GeoServerLayerManager
 		{
 			JaxbUtil.trace(layer);
 			layer = rest.getLayer(layer.getName());
-			if(layer.isSetCoverageStore() && setCs.contains(layer.getCoverageStore().getName()))
+			if(Objects.nonNull(layer.getCoverageStore()) && setCs.contains(layer.getCoverageStore().getName()))
 			{
 				result.getLayer().add(layer);
 			}
-			else if(layer.isSetFeatureType() && setFt.contains(layer.getFeatureType().getName()))
+			else if(Objects.nonNull(layer.getFeatureType()) && setFt.contains(layer.getFeatureType().getName()))
 			{
 				result.getLayer().add(layer);
 			}
@@ -73,7 +74,7 @@ public class GeoServerLayerManager
 	{
 		logger.info("update Layer "+layer.getName());
 		layer.getStyle().setWorkspace(workspace);
-		if(layer.isSetStyles()){for(Style style : layer.getStyles().getStyle()){style.setWorkspace(workspace);}}
+		if(Objects.nonNull(layer.getStyles())) {for(Style style : layer.getStyles().getStyle()){style.setWorkspace(workspace);}}
 		layer.setCoverageStore(null);
 		rest.updateLayer(layer);
 	}

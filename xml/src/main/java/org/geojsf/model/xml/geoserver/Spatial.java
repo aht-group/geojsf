@@ -48,7 +48,7 @@ public class Spatial
      *     {@link Boolean }
      *     
      */
-    public boolean isCreateIndex() {
+    public Boolean isCreateIndex() {
         return createIndex;
     }
 
@@ -60,16 +60,8 @@ public class Spatial
      *     {@link Boolean }
      *     
      */
-    public void setCreateIndex(boolean value) {
+    public void setCreateIndex(Boolean value) {
         this.createIndex = value;
-    }
-
-    public boolean isSetCreateIndex() {
-        return (this.createIndex!= null);
-    }
-
-    public void unsetCreateIndex() {
-        this.createIndex = null;
     }
 
     /**
@@ -80,7 +72,7 @@ public class Spatial
      *     {@link Boolean }
      *     
      */
-    public boolean isEnableIndex() {
+    public Boolean isEnableIndex() {
         return enableIndex;
     }
 
@@ -92,16 +84,8 @@ public class Spatial
      *     {@link Boolean }
      *     
      */
-    public void setEnableIndex(boolean value) {
+    public void setEnableIndex(Boolean value) {
         this.enableIndex = value;
-    }
-
-    public boolean isSetEnableIndex() {
-        return (this.enableIndex!= null);
-    }
-
-    public void unsetEnableIndex() {
-        this.enableIndex = null;
     }
 
 }

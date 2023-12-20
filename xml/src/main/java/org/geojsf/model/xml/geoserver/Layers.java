@@ -72,12 +72,4 @@ public class Layers
         return this.layer;
     }
 
-    public boolean isSetLayer() {
-        return ((this.layer!= null)&&(!this.layer.isEmpty()));
-    }
-
-    public void unsetLayer() {
-        this.layer = null;
-    }
-
 }

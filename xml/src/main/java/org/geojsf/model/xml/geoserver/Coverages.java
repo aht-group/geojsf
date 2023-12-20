@@ -72,12 +72,4 @@ public class Coverages
         return this.coverage;
     }
 
-    public boolean isSetCoverage() {
-        return ((this.coverage!= null)&&(!this.coverage.isEmpty()));
-    }
-
-    public void unsetCoverage() {
-        this.coverage = null;
-    }
-
 }

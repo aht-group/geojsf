@@ -64,10 +64,6 @@ public class Workspace
         this.name = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
     /**
      * Gets the value of the namespace property.
      * 
@@ -90,10 +86,6 @@ public class Workspace
      */
     public void setNamespace(String value) {
         this.namespace = value;
-    }
-
-    public boolean isSetNamespace() {
-        return (this.namespace!= null);
     }
 
 }

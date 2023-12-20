@@ -72,12 +72,4 @@ public class DataStores
         return this.dataStore;
     }
 
-    public boolean isSetDataStore() {
-        return ((this.dataStore!= null)&&(!this.dataStore.isEmpty()));
-    }
-
-    public void unsetDataStore() {
-        this.dataStore = null;
-    }
-
 }

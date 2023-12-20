@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 import org.exlp.model.xml.net.Database;
 import org.exlp.model.xml.net.Host;
 
@@ -106,10 +105,6 @@ public class Connection
         this.host = value;
     }
 
-    public boolean isSetHost() {
-        return (this.host!= null);
-    }
-
     /**
      * Gets the value of the database property.
      * 
@@ -134,10 +129,6 @@ public class Connection
         this.database = value;
     }
 
-    public boolean isSetDatabase() {
-        return (this.database!= null);
-    }
-
     /**
      * Gets the value of the timeout property.
      * 
@@ -146,7 +137,7 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public int getTimeout() {
+    public Integer getTimeout() {
         return timeout;
     }
 
@@ -158,16 +149,8 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public void setTimeout(int value) {
+    public void setTimeout(Integer value) {
         this.timeout = value;
-    }
-
-    public boolean isSetTimeout() {
-        return (this.timeout!= null);
-    }
-
-    public void unsetTimeout() {
-        this.timeout = null;
     }
 
     /**
@@ -178,7 +161,7 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public int getMin() {
+    public Integer getMin() {
         return min;
     }
 
@@ -190,16 +173,8 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public void setMin(int value) {
+    public void setMin(Integer value) {
         this.min = value;
-    }
-
-    public boolean isSetMin() {
-        return (this.min!= null);
-    }
-
-    public void unsetMin() {
-        this.min = null;
     }
 
     /**
@@ -210,7 +185,7 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public int getMax() {
+    public Integer getMax() {
         return max;
     }
 
@@ -222,16 +197,8 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public void setMax(int value) {
+    public void setMax(Integer value) {
         this.max = value;
-    }
-
-    public boolean isSetMax() {
-        return (this.max!= null);
-    }
-
-    public void unsetMax() {
-        this.max = null;
     }
 
     /**
@@ -242,7 +209,7 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public int getFetchSize() {
+    public Integer getFetchSize() {
         return fetchSize;
     }
 
@@ -254,16 +221,8 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public void setFetchSize(int value) {
+    public void setFetchSize(Integer value) {
         this.fetchSize = value;
-    }
-
-    public boolean isSetFetchSize() {
-        return (this.fetchSize!= null);
-    }
-
-    public void unsetFetchSize() {
-        this.fetchSize = null;
     }
 
     /**
@@ -274,7 +233,7 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public boolean isPreparedStatements() {
+    public Boolean isPreparedStatements() {
         return preparedStatements;
     }
 
@@ -286,16 +245,8 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public void setPreparedStatements(boolean value) {
+    public void setPreparedStatements(Boolean value) {
         this.preparedStatements = value;
-    }
-
-    public boolean isSetPreparedStatements() {
-        return (this.preparedStatements!= null);
-    }
-
-    public void unsetPreparedStatements() {
-        this.preparedStatements = null;
     }
 
     /**
@@ -306,7 +257,7 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public int getMaxPreparedStatements() {
+    public Integer getMaxPreparedStatements() {
         return maxPreparedStatements;
     }
 
@@ -318,16 +269,8 @@ public class Connection
      *     {@link Integer }
      *     
      */
-    public void setMaxPreparedStatements(int value) {
+    public void setMaxPreparedStatements(Integer value) {
         this.maxPreparedStatements = value;
-    }
-
-    public boolean isSetMaxPreparedStatements() {
-        return (this.maxPreparedStatements!= null);
-    }
-
-    public void unsetMaxPreparedStatements() {
-        this.maxPreparedStatements = null;
     }
 
     /**
@@ -338,7 +281,7 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public boolean isValidate() {
+    public Boolean isValidate() {
         return validate;
     }
 
@@ -350,16 +293,8 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public void setValidate(boolean value) {
+    public void setValidate(Boolean value) {
         this.validate = value;
-    }
-
-    public boolean isSetValidate() {
-        return (this.validate!= null);
-    }
-
-    public void unsetValidate() {
-        this.validate = null;
     }
 
     /**
@@ -370,7 +305,7 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public boolean isLooseBbox() {
+    public Boolean isLooseBbox() {
         return looseBbox;
     }
 
@@ -382,16 +317,8 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public void setLooseBbox(boolean value) {
+    public void setLooseBbox(Boolean value) {
         this.looseBbox = value;
-    }
-
-    public boolean isSetLooseBbox() {
-        return (this.looseBbox!= null);
-    }
-
-    public void unsetLooseBbox() {
-        this.looseBbox = null;
     }
 
     /**
@@ -402,7 +329,7 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public boolean isEncodeFunctions() {
+    public Boolean isEncodeFunctions() {
         return encodeFunctions;
     }
 
@@ -414,16 +341,8 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public void setEncodeFunctions(boolean value) {
+    public void setEncodeFunctions(Boolean value) {
         this.encodeFunctions = value;
-    }
-
-    public boolean isSetEncodeFunctions() {
-        return (this.encodeFunctions!= null);
-    }
-
-    public void unsetEncodeFunctions() {
-        this.encodeFunctions = null;
     }
 
     /**
@@ -434,7 +353,7 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public boolean isExposePrimaryKeys() {
+    public Boolean isExposePrimaryKeys() {
         return exposePrimaryKeys;
     }
 
@@ -446,16 +365,8 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public void setExposePrimaryKeys(boolean value) {
+    public void setExposePrimaryKeys(Boolean value) {
         this.exposePrimaryKeys = value;
-    }
-
-    public boolean isSetExposePrimaryKeys() {
-        return (this.exposePrimaryKeys!= null);
-    }
-
-    public void unsetExposePrimaryKeys() {
-        this.exposePrimaryKeys = null;
     }
 
     /**
@@ -466,7 +377,7 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public boolean isEstimatedExtends() {
+    public Boolean isEstimatedExtends() {
         return estimatedExtends;
     }
 
@@ -478,16 +389,8 @@ public class Connection
      *     {@link Boolean }
      *     
      */
-    public void setEstimatedExtends(boolean value) {
+    public void setEstimatedExtends(Boolean value) {
         this.estimatedExtends = value;
-    }
-
-    public boolean isSetEstimatedExtends() {
-        return (this.estimatedExtends!= null);
-    }
-
-    public void unsetEstimatedExtends() {
-        this.estimatedExtends = null;
     }
 
 }

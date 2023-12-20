@@ -72,12 +72,4 @@ public class CoverageStores
         return this.coverageStore;
     }
 
-    public boolean isSetCoverageStore() {
-        return ((this.coverageStore!= null)&&(!this.coverageStore.isEmpty()));
-    }
-
-    public void unsetCoverageStore() {
-        this.coverageStore = null;
-    }
-
 }

@@ -10,12 +10,17 @@
 		<jxb:serializable uid="1" />
 	</jxb:globalBindings>
 
+	<jxb:bindings schemaLocation="../xsd/geojsf/geoserver.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.geoserver"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+
  	<jxb:bindings schemaLocation="../xsd/specs/gml.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.specs.gml"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-    
     <jxb:bindings schemaLocation="../xsd/specs/ogc.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.specs.ogc"/>
@@ -39,12 +44,12 @@
 
     <jxb:bindings schemaLocation="../xsd/../../../../../exlp/xml/src/main/xsd/net.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="org.exlp.xml.net"/>
+            <jxb:package name="org.exlp.model.xml.net"/>
         </jxb:schemaBindings>
     </jxb:bindings>
         <jxb:bindings schemaLocation="../xsd/../../../../../exlp/xml/src/main/xsd/identity.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="org.exlp.xml.identity"/>
+            <jxb:package name="org.exlp.model.xml.identity"/>
         </jxb:schemaBindings>
     </jxb:bindings>
 </jxb:bindings>

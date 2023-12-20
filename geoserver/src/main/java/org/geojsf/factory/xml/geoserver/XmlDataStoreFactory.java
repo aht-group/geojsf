@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geoserver;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.apache.commons.configuration.Configuration;
 import org.exlp.model.xml.identity.User;
@@ -94,8 +95,8 @@ public class XmlDataStoreFactory implements Serializable
 		eDs.addContent(XmlWorkspaceFactory.build(ws));
 		
 		Element eConnectionParameters = new Element("connectionParameters");
-		if(ds.isSetPostgis()){addPostgisConnectionParameter(eConnectionParameters,ds.getPostgis());}
-		else if(ds.isSetShapeDir()){addShapeDirConnectionParameter(eConnectionParameters,ds.getShapeDir());}
+		if(Objects.nonNull(ds.getPostgis())) {addPostgisConnectionParameter(eConnectionParameters,ds.getPostgis());}
+		else if(Objects.nonNull(ds.getShapeDir())) {addShapeDirConnectionParameter(eConnectionParameters,ds.getShapeDir());}
 		eDs.addContent(eConnectionParameters);
 		
 		return eDs;

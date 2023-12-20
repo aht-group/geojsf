@@ -78,10 +78,6 @@ public class ShapeDir
         this.spatial = value;
     }
 
-    public boolean isSetSpatial() {
-        return (this.spatial!= null);
-    }
-
     /**
      * Gets the value of the url property.
      * 
@@ -104,10 +100,6 @@ public class ShapeDir
      */
     public void setUrl(String value) {
         this.url = value;
-    }
-
-    public boolean isSetUrl() {
-        return (this.url!= null);
     }
 
     /**
@@ -134,10 +126,6 @@ public class ShapeDir
         this.charset = value;
     }
 
-    public boolean isSetCharset() {
-        return (this.charset!= null);
-    }
-
     /**
      * Gets the value of the memoryBuffer property.
      * 
@@ -146,7 +134,7 @@ public class ShapeDir
      *     {@link Boolean }
      *     
      */
-    public boolean isMemoryBuffer() {
+    public Boolean isMemoryBuffer() {
         return memoryBuffer;
     }
 
@@ -158,16 +146,8 @@ public class ShapeDir
      *     {@link Boolean }
      *     
      */
-    public void setMemoryBuffer(boolean value) {
+    public void setMemoryBuffer(Boolean value) {
         this.memoryBuffer = value;
-    }
-
-    public boolean isSetMemoryBuffer() {
-        return (this.memoryBuffer!= null);
-    }
-
-    public void unsetMemoryBuffer() {
-        this.memoryBuffer = null;
     }
 
     /**
@@ -178,7 +158,7 @@ public class ShapeDir
      *     {@link Boolean }
      *     
      */
-    public boolean isCacheMemoryMaps() {
+    public Boolean isCacheMemoryMaps() {
         return cacheMemoryMaps;
     }
 
@@ -190,16 +170,8 @@ public class ShapeDir
      *     {@link Boolean }
      *     
      */
-    public void setCacheMemoryMaps(boolean value) {
+    public void setCacheMemoryMaps(Boolean value) {
         this.cacheMemoryMaps = value;
-    }
-
-    public boolean isSetCacheMemoryMaps() {
-        return (this.cacheMemoryMaps!= null);
-    }
-
-    public void unsetCacheMemoryMaps() {
-        this.cacheMemoryMaps = null;
     }
 
 }

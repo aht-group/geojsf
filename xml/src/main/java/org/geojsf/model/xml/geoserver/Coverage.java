@@ -63,8 +63,4 @@ public class Coverage
         this.name = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
 }

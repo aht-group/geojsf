@@ -72,12 +72,4 @@ public class Workspaces
         return this.workspace;
     }
 
-    public boolean isSetWorkspace() {
-        return ((this.workspace!= null)&&(!this.workspace.isEmpty()));
-    }
-
-    public void unsetWorkspace() {
-        this.workspace = null;
-    }
-
 }

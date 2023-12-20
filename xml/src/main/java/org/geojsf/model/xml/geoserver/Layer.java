@@ -87,10 +87,6 @@ public class Layer
         this.coverageStore = value;
     }
 
-    public boolean isSetCoverageStore() {
-        return (this.coverageStore!= null);
-    }
-
     /**
      * Gets the value of the featureType property.
      * 
@@ -113,10 +109,6 @@ public class Layer
      */
     public void setFeatureType(FeatureType value) {
         this.featureType = value;
-    }
-
-    public boolean isSetFeatureType() {
-        return (this.featureType!= null);
     }
 
     /**
@@ -143,10 +135,6 @@ public class Layer
         this.styles = value;
     }
 
-    public boolean isSetStyles() {
-        return (this.styles!= null);
-    }
-
     /**
      * Gets the value of the style property.
      * 
@@ -169,10 +157,6 @@ public class Layer
      */
     public void setStyle(Style value) {
         this.style = value;
-    }
-
-    public boolean isSetStyle() {
-        return (this.style!= null);
     }
 
     /**
@@ -199,10 +183,6 @@ public class Layer
         this.name = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
     /**
      * Gets the value of the type property.
      * 
@@ -227,10 +207,6 @@ public class Layer
         this.type = value;
     }
 
-    public boolean isSetType() {
-        return (this.type!= null);
-    }
-
     /**
      * Gets the value of the enabled property.
      * 
@@ -239,7 +215,7 @@ public class Layer
      *     {@link Boolean }
      *     
      */
-    public boolean isEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
@@ -251,16 +227,8 @@ public class Layer
      *     {@link Boolean }
      *     
      */
-    public void setEnabled(boolean value) {
+    public void setEnabled(Boolean value) {
         this.enabled = value;
-    }
-
-    public boolean isSetEnabled() {
-        return (this.enabled!= null);
-    }
-
-    public void unsetEnabled() {
-        this.enabled = null;
     }
 
 }

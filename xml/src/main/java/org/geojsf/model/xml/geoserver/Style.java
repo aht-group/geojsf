@@ -69,10 +69,6 @@ public class Style
         this.workspace = value;
     }
 
-    public boolean isSetWorkspace() {
-        return (this.workspace!= null);
-    }
-
     /**
      * Gets the value of the name property.
      * 
@@ -95,10 +91,6 @@ public class Style
      */
     public void setName(String value) {
         this.name = value;
-    }
-
-    public boolean isSetName() {
-        return (this.name!= null);
     }
 
 }

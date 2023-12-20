@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geoserver;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.geoserver.util.SimpleXmlTranscoder;
 import org.geojsf.model.xml.geoserver.Layer;
@@ -63,7 +64,7 @@ public class XmlLayerFactory implements Serializable
 		eDefaultStyle.addContent(eStyleName);
 		
 		Element eEnabled =  new Element("enabled");
-		if(!layer.isSetEnabled()){layer.setEnabled(true);}
+		if(Objects.isNull(layer.isEnabled())) {layer.setEnabled(true);}
 		eEnabled.setText(""+layer.isEnabled());
 
 		Element eLayer = new Element("layer");
