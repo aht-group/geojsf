@@ -46,7 +46,38 @@
             <jxb:package name="org.geojsf.model.xml.specs.wfs"/>
         </jxb:schemaBindings>
     </jxb:bindings>
+    
+    <jxb:bindings schemaLocation="../xsd/../../../../../jeesl/xml/src/main/xsd/jeesl/status.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+           <jxb:package name="org.jeesl.model.xml.io.locale.status"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+	<jxb:bindings schemaLocation="../xsd/../../../../../jeesl/xml/src/main/xsd/jeesl/system/security.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.jeesl.model.xml.system.security"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/../../../../../jeesl/xml/src/main/xsd/aht/navigation.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.jeesl.model.xml.system.navigation"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+	<jxb:bindings schemaLocation="../xsd/../../../../../jeesl/xml/src/main/xsd/jeesl/text.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.jeesl.model.xml.io.cms.text"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/../../../../../jeesl/xml/src/main/xsd/jeesl/symbol.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.jeesl.model.xml.io.graphic"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
 
+    <jxb:bindings schemaLocation="../../../../../exlp/xml/src/main/xsd/io.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.exlp.model.xml.io"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
     <jxb:bindings schemaLocation="../xsd/../../../../../exlp/xml/src/main/xsd/net.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.exlp.model.xml.net"/>

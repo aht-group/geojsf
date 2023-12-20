@@ -2,7 +2,6 @@
 <xsd:schema targetNamespace="http://www.geojsf.org/monitoring"
     xmlns:m="http://www.geojsf.org/monitoring"
     xmlns:geojsf="http://www.geojsf.org"
-    xmlns:ol="http://geojsf.sf.net/openlayers"
     xmlns:us="http://ahtutils.aht-group.com/status"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:import namespace="http://www.geojsf.org"					schemaLocation="geojsf.xsd"/>
