@@ -14,7 +14,7 @@ public class TestXmlDistrict extends AbstractXmlGovernmentTest<District>
     public District build(boolean withChilds)
     {
     	District xml = new District();
-    	xml.setId(123);
+    	xml.setId(123l);
     	xml.setCode("myCode");
     	xml.setName("myName");
     	

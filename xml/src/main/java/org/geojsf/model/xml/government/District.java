@@ -75,10 +75,6 @@ public class District
         this.region = value;
     }
 
-    public boolean isSetRegion() {
-        return (this.region!= null);
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -87,7 +83,7 @@ public class District
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -99,16 +95,8 @@ public class District
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -135,10 +123,6 @@ public class District
         this.code = value;
     }
 
-    public boolean isSetCode() {
-        return (this.code!= null);
-    }
-
     /**
      * Gets the value of the name property.
      * 
@@ -161,10 +145,6 @@ public class District
      */
     public void setName(String value) {
         this.name = value;
-    }
-
-    public boolean isSetName() {
-        return (this.name!= null);
     }
 
 }

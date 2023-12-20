@@ -4,6 +4,7 @@
     xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
     jaxb:version="2.0">
 	
+	<xsd:import namespace="http://www.geojsf.org/government"		schemaLocation="geojsf/government.xsd"/>
 	<xsd:import namespace="http://www.geojsf.org/geoserver"			schemaLocation="geojsf/geoserver.xsd"/>
 	
 	<xsd:import namespace="http://www.opengis.net/gml"				schemaLocation="specs/gml.xsd"/>

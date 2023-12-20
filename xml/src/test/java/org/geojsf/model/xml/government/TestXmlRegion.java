@@ -14,7 +14,7 @@ public class TestXmlRegion extends AbstractXmlGovernmentTest<Region>
     public Region build(boolean withChilds)
     {
     	Region xml = new Region();
-    	xml.setId(123);
+    	xml.setId(123l);
     	xml.setCode("myCode");
     	xml.setName("myName");
     	

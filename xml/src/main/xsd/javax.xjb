@@ -15,6 +15,11 @@
             <jxb:package name="org.geojsf.model.xml.geoserver"/>
         </jxb:schemaBindings>
     </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/geojsf/government.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.government"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
 
  	<jxb:bindings schemaLocation="../xsd/specs/gml.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
