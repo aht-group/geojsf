@@ -3,6 +3,7 @@ package org.geojsf.factory.xml.geojsf;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.core.GeoJsfService;
@@ -40,20 +41,20 @@ public class XmlServiceFactory <L extends JeeslLang, D extends JeeslDescription,
 		this.q=q;
 		if(Objects.nonNull(q.getLangs())) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
 		if(Objects.nonNull(q.getDescriptions())) {xfDescriptions = new XmlDescriptionsFactory<D>(q.getDescriptions());}
-		if(q.isSetLayer()) {xfLayer = new XmlLayerFactory<>(q.getLayer().get(0));}
+		if(ObjectUtils.isNotEmpty(q.getLayer())) {xfLayer = new XmlLayerFactory<>(q.getLayer().get(0));}
 	}
 
 	public Service build (SERVICE ejb)
 	{
 		Service xml = new Service();
 		if(Objects.nonNull(q.getCode())) {xml.setCode(ejb.getCode());}
-		if(q.isSetWms()){xml.setWms(ejb.getWms());}
-		if(q.isSetWcs()){xml.setWcs(ejb.getWcs());}
+		if(Objects.nonNull(q.getWms())) {xml.setWms(ejb.getWms());}
+		if(Objects.nonNull(q.getWcs())) {xml.setWcs(ejb.getWcs());}
 		
 		if(Objects.nonNull(q.getLangs())) {xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
 		if(Objects.nonNull(q.getDescriptions())) {xml.setDescriptions(xfDescriptions.create(ejb.getDescription()));}
 		
-		if(q.isSetLayer() && ejb.getLayer()!=null)
+		if(ObjectUtils.isNotEmpty(q.getLayer())) 
 		{
 			for(LAYER layer : ejb.getLayer())
 			{

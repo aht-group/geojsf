@@ -1,6 +1,7 @@
 package org.geojsf.factory.ejb.monitoring;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.geojsf.factory.wkt.PointFactory;
 import org.geojsf.interfaces.model.domain.station.GeoStation;
@@ -63,7 +64,7 @@ public class EjbStationFactory<L extends JeeslLang,D extends JeeslDescription, S
 			ejb.setDescription(efDescription.create(station.getDescriptions()));
 			ejb.setCapabilities(capabilities);
 			
-			if(station.isSetWkt() && station.getWkt().isSetValue())
+			if(station.isSetWkt() && Objects.nonNull(station.getWkt().getValue()))
 			{
 				ejb.setGeometry(gisPointFactory.build(station.getWkt()));
 			}

@@ -44,8 +44,8 @@ public class XmlViewFactory <L extends JeeslLang,D extends JeeslDescription,
 		View xml = new View();
 		
 		if(Objects.nonNull(q.isVisible())) {xml.setVisible(ejb.isVisible());}
-		if(q.isSetLegend()){xml.setLegend(ejb.getLegend());}
-		if(q.isSetNr()){xml.setNr(ejb.getOrderNo());}
+		if(Objects.nonNull(q.isLegend())) {xml.setLegend(ejb.getLegend());}
+		if(Objects.nonNull(q.getNr())) {xml.setNr(ejb.getOrderNo());}
 		
 		if(Objects.nonNull(q.getLayer())) {xml.setLayer(xfLayer.build(ejb.getLayer()));}
 			

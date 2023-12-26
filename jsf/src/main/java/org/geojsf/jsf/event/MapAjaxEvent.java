@@ -118,7 +118,7 @@ public class MapAjaxEvent extends AjaxBehaviorEvent
 		viewPort.setRight(new Double(right));
 		Scale scale = new Scale();
 		scale.setValue((new Double(viewPortScale)).intValue());
-		scale.setZoom((new Double(viewPortZoom)).intValue());
+		scale.setZoom(Double.valueOf(viewPortZoom));
 		viewPort.setScale(scale);
 //		JaxbUtil.info(viewPort);
 		org.locationtech.jts.geom.Coordinate start = new org.locationtech.jts.geom.Coordinate(viewPort.getLeft(), viewPort.getTop());

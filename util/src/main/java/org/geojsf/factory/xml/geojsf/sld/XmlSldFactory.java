@@ -3,6 +3,7 @@ package org.geojsf.factory.xml.geojsf.sld;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
@@ -33,8 +34,8 @@ public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
 	public XmlSldFactory(Sld q)
 	{
 		this.q=q;
-		if(q.isSetSldTemplate()){xfTemplate = new XmlSldXmlFactory<>(q.getSldTemplate());}
-		if(q.isSetSldRule()) {xfRule = new XmlSldRuleFactory<>(q.getSldRule().get(0));}
+		if(Objects.nonNull(q.getSldTemplate())) {xfTemplate = new XmlSldXmlFactory<>(q.getSldTemplate());}
+		if(ObjectUtils.isNotEmpty(q.getSldRule())) {xfRule = new XmlSldRuleFactory<>(q.getSldRule().get(0));}
 	}
 
 	public Sld build (SLD ejb)
@@ -48,12 +49,9 @@ public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
 			xml.setType(f.build(ejb.getType()));
 		}
 */		
-		if(q.isSetSldTemplate() && ejb.getTemplate()!=null)
-		{
-			xml.setSldTemplate(xfTemplate.build(ejb.getTemplate()));
-		}
+		if(ObjectUtils.allNotNull(q.getSldTemplate(),ejb.getTemplate())) {xml.setSldTemplate(xfTemplate.build(ejb.getTemplate()));}
 		
-		if(q.isSetSldRule())
+		if(ObjectUtils.isNotEmpty(q.getSldRule()))
 		{
 			for(SDR rule : ejb.getRules())
 			{

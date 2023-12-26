@@ -1,5 +1,7 @@
 package org.geojsf.factory.txt;
 
+import java.util.Objects;
+
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.model.xml.geojsf.SldRule;
 
@@ -23,10 +25,8 @@ public class TxtSldRuleFactory<RULE extends GeoJsfSldRule<?,?,?>>
 	
 	public static String bounds(SldRule rule)
 	{
-		Double lower = null;
-		Double upper = null;
-		if(rule.isSetLowerBound()){lower=rule.getLowerBound();}
-		if(rule.isSetUpperBound()){upper=rule.getUpperBound();}
+		Double lower=null; if(Objects.nonNull(rule.getLowerBound())) {lower=rule.getLowerBound();}
+		Double upper=null; if(Objects.nonNull(rule.getUpperBound())) {upper=rule.getUpperBound();}
 		return bounds(lower,upper);
 	}
 	

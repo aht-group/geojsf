@@ -3,6 +3,7 @@ package org.geojsf.factory.xml.geojsf.sld;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
@@ -52,8 +53,8 @@ public class XmlSldRuleFactory <L extends JeeslLang, D extends JeeslDescription,
 	{
 		SldRule xml = new SldRule();
 		if(Objects.nonNull(q.getId())) {xml.setId(ejb.getId());}
-		if(q.isSetLowerBound() && ejb.getLowerBound()!=null){xml.setLowerBound(ejb.getLowerBound());}
-		if(q.isSetUpperBound() && ejb.getUpperBound()!=null){xml.setUpperBound(ejb.getUpperBound());}
+		if(ObjectUtils.allNotNull(q.getLowerBound(),ejb.getLowerBound())) {xml.setLowerBound(ejb.getLowerBound());}
+		if(ObjectUtils.allNotNull(q.getUpperBound(),ejb.getUpperBound())) {xml.setUpperBound(ejb.getUpperBound());}
 				
 		if(Objects.nonNull(q.getLangs()))
 		{

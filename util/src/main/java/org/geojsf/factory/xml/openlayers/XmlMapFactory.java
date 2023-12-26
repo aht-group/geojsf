@@ -3,6 +3,7 @@ package org.geojsf.factory.xml.openlayers;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.geojsf.factory.xml.geojsf.meta.XmlViewPortFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -37,7 +38,7 @@ public class XmlMapFactory <L extends JeeslLang, D extends JeeslDescription,
 	
 	private XmlLangsFactory<L> xfLangs;
 	private XmlDescriptionsFactory<D> xfDescriptions;
-	private XmlViewPortFactory xfViewport;
+	private XmlViewPortFactory<VP> xfViewport;
 	
 	public XmlMapFactory(Query query){this(query.getMap());}
 	public XmlMapFactory(Map q)
@@ -45,7 +46,7 @@ public class XmlMapFactory <L extends JeeslLang, D extends JeeslDescription,
 		this.q=q;
 		if(Objects.nonNull(q.getLangs())) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
 		if(Objects.nonNull(q.getDescriptions())) {xfDescriptions = new XmlDescriptionsFactory<D>(q.getDescriptions());}
-		if(q.isSetViewPort()) {xfViewport = new XmlViewPortFactory(q.getViewPort());}
+		if(Objects.nonNull(q.getViewPort())) {xfViewport = new XmlViewPortFactory<>(q.getViewPort());}
 	}
 
 	public Map build (MAP ejb)
@@ -61,7 +62,7 @@ public class XmlMapFactory <L extends JeeslLang, D extends JeeslDescription,
 		if(Objects.nonNull(q.getLangs())) {xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
 		if(Objects.nonNull(q.getDescriptions())) {xml.setDescriptions(xfDescriptions.create(ejb.getDescription()));}
 		
-		if(q.isSetViewPort() && ejb.getViewPort()!=null) {xml.setViewPort(xfViewport.build(ejb.getViewPort()));}
+		if(ObjectUtils.allNotNull(q.getViewPort(),ejb.getViewPort())) {xml.setViewPort(xfViewport.build(ejb.getViewPort()));}
 		
 		return xml;
 	}

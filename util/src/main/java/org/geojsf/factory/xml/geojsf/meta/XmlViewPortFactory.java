@@ -25,7 +25,7 @@ public class XmlViewPortFactory <VP extends GeoJsfViewPort> implements Serializa
 	{
 		this.q=q;
 		
-		if(q.isSetScale()) {xfScale = new XmlScaleFactory<>();}
+		if(Objects.nonNull(q.getScale())) {xfScale = new XmlScaleFactory<>();}
 	}
 	
 	public ViewPort build (VP ejb)
@@ -34,15 +34,15 @@ public class XmlViewPortFactory <VP extends GeoJsfViewPort> implements Serializa
 		
 		if(Objects.nonNull(q.getId())) {xml.setId(ejb.getId());}
 		
-		if(q.isSetLat()){xml.setLat(ejb.getLat());}
-		if(q.isSetLon()){xml.setLon(ejb.getLon());}
+		if(Objects.nonNull(q.getLat())) {xml.setLat(ejb.getLat());}
+		if(Objects.nonNull(q.getLon())) {xml.setLon(ejb.getLon());}
 		
-		if(q.isSetLeft()){xml.setLeft(ejb.getMarginLeft());}
-		if(q.isSetRight()){xml.setRight(ejb.getMarginRight());}
-		if(q.isSetTop()){xml.setTop(ejb.getMarginTop());}
-		if(q.isSetBottom()){xml.setBottom(ejb.getMarginBottom());}
+		if(Objects.nonNull(q.getLeft())) {xml.setLeft(ejb.getMarginLeft());}
+		if(Objects.nonNull(q.getRight())) {xml.setRight(ejb.getMarginRight());}
+		if(Objects.nonNull(q.getTop())) {xml.setTop(ejb.getMarginTop());}
+		if(Objects.nonNull(q.getBottom())) {xml.setBottom(ejb.getMarginBottom());}
 		
-		if(q.isSetScale()) {xml.setScale(xfScale.build(ejb));}
+		if(Objects.nonNull(q.getScale())) {xml.setScale(xfScale.build(ejb));}
 		
 		return xml;
 	}

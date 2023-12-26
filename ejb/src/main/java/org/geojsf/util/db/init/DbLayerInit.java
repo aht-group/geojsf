@@ -1,5 +1,7 @@
 package org.geojsf.util.db.init;
 
+import java.util.Objects;
+
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.ejb.core.EjbGeoLayerFactory;
@@ -153,7 +155,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 				
 				//TODO can be removed after applied to active projects
 				boolean layerSql = false;
-				if(layer.isSetSql()){layerSql = layer.isSql();}
+				if(Objects.nonNull(layer.isSql())) {layerSql = layer.isSql();}
 				ejb.setSqlLayer(layerSql);
 				
 				ejb.setTemporalLayer(layer.isTemporal());
@@ -161,7 +163,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 				
 				ejb=(LAYER)fUtils.update(ejb);
 				
-				if(layer.isSetViewPort())
+				if(Objects.nonNull(layer.getViewPort()))
 				{
 					ejb = fGeo.load(ejb);
 					dbVpInit.iuViewPort(ejb,layer.getViewPort());

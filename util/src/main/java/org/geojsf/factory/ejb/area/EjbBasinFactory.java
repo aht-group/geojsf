@@ -1,5 +1,7 @@
 package org.geojsf.factory.ejb.area;
 
+import java.util.Objects;
+
 import org.geojsf.factory.wkt.MultiPolygonFactory;
 import org.geojsf.interfaces.model.domain.area.GeoBasin;
 import org.geojsf.model.xml.area.Basin;
@@ -52,7 +54,7 @@ public class EjbBasinFactory<L extends JeeslLang,D extends JeeslDescription,BASI
 			ejb.setDescription(efDescription.create(basin.getDescriptions()));
 			ejb.setModel(model);
 			
-			if(basin.isSetWkt() && basin.getWkt().isSetValue())
+			if(basin.isSetWkt() && Objects.nonNull(basin.getWkt().getValue()))
 			{
 				ejb.setGeometry(gisMultiPolygonFactory.build(basin.getWkt()));
 			}

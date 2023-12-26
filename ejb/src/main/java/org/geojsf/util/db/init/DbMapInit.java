@@ -1,6 +1,7 @@
 package org.geojsf.util.db.init;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
@@ -143,7 +144,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 				ejb=fUtils.save(ejb);
 				
 				iuViews(ejb,map.getView());
-				if(map.isSetViewPort())
+				if(Objects.nonNull(map.getViewPort()))
 				{
 					ejb = fGeo.load(ejb);
 					dbVpInit.iuViewPort(ejb,map.getViewPort());
@@ -175,7 +176,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 		{
 			LAYER l = fUtils.fByCode(cLayer, view.getLayer().getCode());
 
-			VIEW vl = efView.create(ejbMap, l, i, (view.isSetVisible() && view.isVisible()), (view.isSetLegend() && view.isLegend()));
+			VIEW vl = efView.create(ejbMap, l, i, (Objects.nonNull(view.isVisible()) && view.isVisible()), (Objects.nonNull(view.isLegend()) && view.isLegend()));
 			fUtils.persist(vl);
 			i++;
 		}
