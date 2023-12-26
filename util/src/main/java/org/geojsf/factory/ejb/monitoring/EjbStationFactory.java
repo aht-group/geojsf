@@ -64,7 +64,7 @@ public class EjbStationFactory<L extends JeeslLang,D extends JeeslDescription, S
 			ejb.setDescription(efDescription.create(station.getDescriptions()));
 			ejb.setCapabilities(capabilities);
 			
-			if(station.isSetWkt() && Objects.nonNull(station.getWkt().getValue()))
+			if(Objects.nonNull(station.getWkt()) && Objects.nonNull(station.getWkt().getValue()))
 			{
 				ejb.setGeometry(gisPointFactory.build(station.getWkt()));
 			}

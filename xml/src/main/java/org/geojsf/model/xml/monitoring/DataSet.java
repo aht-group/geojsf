@@ -72,12 +72,4 @@ public class DataSet
         return this.data;
     }
 
-    public boolean isSetData() {
-        return ((this.data!= null)&&(!this.data.isEmpty()));
-    }
-
-    public void unsetData() {
-        this.data = null;
-    }
-
 }

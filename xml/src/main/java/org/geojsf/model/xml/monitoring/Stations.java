@@ -72,12 +72,4 @@ public class Stations
         return this.station;
     }
 
-    public boolean isSetStation() {
-        return ((this.station!= null)&&(!this.station.isEmpty()));
-    }
-
-    public void unsetStation() {
-        this.station = null;
-    }
-
 }

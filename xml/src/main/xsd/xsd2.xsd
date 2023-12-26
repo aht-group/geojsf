@@ -8,6 +8,7 @@
 	<xsd:import namespace="http://www.geojsf.org/area"				schemaLocation="geojsf/area.xsd"/>
 	<xsd:import namespace="http://www.geojsf.org/government"		schemaLocation="geojsf/government.xsd"/>
 	<xsd:import namespace="http://www.geojsf.org/geoserver"			schemaLocation="geojsf/geoserver.xsd"/>
+	<xsd:import namespace="http://www.geojsf.org/monitoring"		schemaLocation="geojsf/monitoring.xsd"/>
 	
 	<xsd:import namespace="http://www.opengis.net/gml"				schemaLocation="specs/gml.xsd"/>
     <xsd:import namespace="http://www.opengis.net/ogc"				schemaLocation="specs/ogc.xsd"/>

@@ -16,7 +16,7 @@ public class TestXmlCapability extends AbstractXmlMonitoringTest<Capability>
     public Capability build(boolean withChilds)
     {
     	Capability xml = new Capability();
-    	xml.setId(123);
+    	xml.setId(123l);
     	
     	if(withChilds)
     	{

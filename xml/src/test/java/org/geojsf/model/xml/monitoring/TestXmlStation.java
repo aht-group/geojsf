@@ -17,7 +17,7 @@ public class TestXmlStation extends AbstractXmlMonitoringTest<Station>
     public Station build(boolean withChilds)
     {
     	Station xml = new Station();
-    	xml.setId(123);
+    	xml.setId(123l);
     	xml.setCode("myCode");
     	
     	if(withChilds)

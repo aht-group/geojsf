@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.model.xml.geojsf.Wkt;
 import org.jeesl.model.xml.io.locale.status.Descriptions;
@@ -103,10 +102,6 @@ public class Station
         this.type = value;
     }
 
-    public boolean isSetType() {
-        return (this.type!= null);
-    }
-
     /**
      * Gets the value of the capability property.
      * 
@@ -136,14 +131,6 @@ public class Station
         return this.capability;
     }
 
-    public boolean isSetCapability() {
-        return ((this.capability!= null)&&(!this.capability.isEmpty()));
-    }
-
-    public void unsetCapability() {
-        this.capability = null;
-    }
-
     /**
      * Gets the value of the langs property.
      * 
@@ -166,10 +153,6 @@ public class Station
      */
     public void setLangs(Langs value) {
         this.langs = value;
-    }
-
-    public boolean isSetLangs() {
-        return (this.langs!= null);
     }
 
     /**
@@ -196,10 +179,6 @@ public class Station
         this.descriptions = value;
     }
 
-    public boolean isSetDescriptions() {
-        return (this.descriptions!= null);
-    }
-
     /**
      * Gets the value of the wkt property.
      * 
@@ -222,10 +201,6 @@ public class Station
      */
     public void setWkt(Wkt value) {
         this.wkt = value;
-    }
-
-    public boolean isSetWkt() {
-        return (this.wkt!= null);
     }
 
     /**
@@ -252,10 +227,6 @@ public class Station
         this.coordinate = value;
     }
 
-    public boolean isSetCoordinate() {
-        return (this.coordinate!= null);
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -264,7 +235,7 @@ public class Station
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -276,16 +247,8 @@ public class Station
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -312,10 +275,6 @@ public class Station
         this.code = value;
     }
 
-    public boolean isSetCode() {
-        return (this.code!= null);
-    }
-
     /**
      * Gets the value of the label property.
      * 
@@ -338,10 +297,6 @@ public class Station
      */
     public void setLabel(String value) {
         this.label = value;
-    }
-
-    public boolean isSetLabel() {
-        return (this.label!= null);
     }
 
 }
