@@ -27,7 +27,7 @@ public class TestXmlSld extends AbstractXmlGeojsfTest
     public static Sld create(boolean withChilds)
     {
     	Sld xml = new Sld();
-    	xml.setId(1);
+    	xml.setId(1l);
     	    	
     	if(withChilds)
     	{

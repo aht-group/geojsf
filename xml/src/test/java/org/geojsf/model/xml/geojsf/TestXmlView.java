@@ -31,7 +31,7 @@ public class TestXmlView extends AbstractXmlGeojsfTest
     public static View create(boolean withChilds)
     {
     	View xml = new View();
-    	xml.setId(123);
+    	xml.setId(123l);
     	xml.setNr(1);
     	xml.setVisible(true);
     	xml.setLegend(false);

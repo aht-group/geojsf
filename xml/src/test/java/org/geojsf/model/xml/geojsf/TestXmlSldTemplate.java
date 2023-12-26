@@ -30,7 +30,7 @@ public class TestXmlSldTemplate extends AbstractXmlGeojsfTest
     public static SldTemplate create(boolean withChilds)
     {
     	SldTemplate xml = new SldTemplate();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setCode("myCode");
     	    	
     	if(withChilds)

@@ -29,7 +29,7 @@ public class TestXmlCategory extends AbstractXmlGeojsfTest
     public static Category create(boolean withChilds)
     {
     	Category xml = new Category();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setCode("myCode");
     	    	
     	if(withChilds)

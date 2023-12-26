@@ -31,7 +31,7 @@ public class TestXmlSldRule extends AbstractXmlGeojsfTest
     public static SldRule create(boolean withChilds)
     {
     	SldRule xml = new SldRule();
-    	xml.setId(123);
+    	xml.setId(123l);
     	xml.setSize(1);
     	xml.setLowerBound(123.45);
     	xml.setUpperBound(987.65);

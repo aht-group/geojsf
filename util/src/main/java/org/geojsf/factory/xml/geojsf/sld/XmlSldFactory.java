@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geojsf.sld;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
@@ -39,7 +40,7 @@ public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
 	public Sld build (SLD ejb)
 	{
 		Sld xml = new Sld();
-		if(q.isSetId()){xml.setId(ejb.getId());}
+		if(Objects.nonNull(q.getId())) {xml.setId(ejb.getId());}
 			
 /*		if(q.isSetType())
 		{
@@ -66,7 +67,7 @@ public class XmlSldFactory <L extends JeeslLang, D extends JeeslDescription,
 	public static Sld id()
 	{
 		Sld xml = new Sld();
-		xml.setId(0);
+		xml.setId(0l);
 		return xml;
 	}
 }

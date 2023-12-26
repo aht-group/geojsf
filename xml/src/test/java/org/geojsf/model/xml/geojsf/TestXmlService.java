@@ -33,7 +33,7 @@ public class TestXmlService extends AbstractXmlGeojsfTest
     public static Service create(boolean withChilds)
     {
     	Service xml = new Service();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setCode("myCode");
     	xml.setWms("wms");
     	xml.setWcs("wcs");

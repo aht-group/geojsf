@@ -1,6 +1,7 @@
 package org.geojsf.factory.xml.geojsf.meta;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
@@ -31,7 +32,7 @@ public class XmlViewPortFactory <VP extends GeoJsfViewPort> implements Serializa
 	{
 		ViewPort xml = new ViewPort();
 		
-		if(q.isSetId()){xml.setId(ejb.getId());}
+		if(Objects.nonNull(q.getId())) {xml.setId(ejb.getId());}
 		
 		if(q.isSetLat()){xml.setLat(ejb.getLat());}
 		if(q.isSetLon()){xml.setLon(ejb.getLon());}

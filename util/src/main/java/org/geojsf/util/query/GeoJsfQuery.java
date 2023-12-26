@@ -107,13 +107,13 @@ public class GeoJsfQuery
 	public static ViewPort viewPort()
 	{
 		ViewPort xml = new ViewPort();
-		xml.setId(0);
-		xml.setLat(0);
-		xml.setLon(0);
-		xml.setLeft(0);
-		xml.setRight(0);
-		xml.setTop(0);
-		xml.setBottom(0);
+		xml.setId(0l);
+		xml.setLat(0d);
+		xml.setLon(0d);
+		xml.setLeft(0d);
+		xml.setRight(0d);
+		xml.setTop(0d);
+		xml.setBottom(0d);
 		xml.setScale(scale());
 		return xml;
 	}
@@ -168,9 +168,9 @@ public class GeoJsfQuery
 	public static Sld sldRules()
 	{	
 		SldRule rule = new SldRule();
-		rule.setId(0);
-		rule.setLowerBound(0);
-		rule.setUpperBound(0);
+		rule.setId(0l);
+		rule.setLowerBound(0d);
+		rule.setUpperBound(0d);
 		rule.setSize(0);
 		rule.setColor("");
 		rule.setStyle(XmlStyleFactory.build(""));

@@ -36,7 +36,7 @@ public class XmlViewFactory <L extends JeeslLang,D extends JeeslDescription,
 	public XmlViewFactory(View q)
 	{
 		this.q=q;
-		if(q.isSetLayer()) {xfLayer = new XmlLayerFactory<>(q.getLayer());}
+		if(Objects.nonNull(q.getLayer())) {xfLayer = new XmlLayerFactory<>(q.getLayer());}
 	}
 
 	public View build (VIEW ejb)
@@ -47,7 +47,7 @@ public class XmlViewFactory <L extends JeeslLang,D extends JeeslDescription,
 		if(q.isSetLegend()){xml.setLegend(ejb.getLegend());}
 		if(q.isSetNr()){xml.setNr(ejb.getOrderNo());}
 		
-		if(q.isSetLayer()) {xml.setLayer(xfLayer.build(ejb.getLayer()));}
+		if(Objects.nonNull(q.getLayer())) {xml.setLayer(xfLayer.build(ejb.getLayer()));}
 			
 		return xml;
 	}

@@ -34,7 +34,7 @@ public class TestXmlLayer extends AbstractXmlGeojsfTest
     public static Layer create(boolean withChilds)
     {
     	Layer xml = new Layer();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setCode("myCode");
     	xml.setWorkspace("myWorkspace");
     	xml.setName("myName");

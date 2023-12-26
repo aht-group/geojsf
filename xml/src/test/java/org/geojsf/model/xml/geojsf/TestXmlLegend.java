@@ -31,7 +31,7 @@ public class TestXmlLegend extends AbstractXmlGeojsfTest
     public static Legend create(boolean withChilds)
     {
     	Legend xml = new Legend();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setUrl("myUrl");
     	
     	return xml;

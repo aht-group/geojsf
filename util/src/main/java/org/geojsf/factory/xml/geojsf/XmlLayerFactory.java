@@ -3,6 +3,7 @@ package org.geojsf.factory.xml.geojsf;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.geojsf.factory.xml.geojsf.meta.XmlViewPortFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -45,9 +46,9 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 		
 		if(Objects.nonNull(q.getLangs())) {xfLangs = new XmlLangsFactory<L>(q.getLangs());}
 		if(Objects.nonNull(q.getDescriptions())) {xfDescriptions = new XmlDescriptionsFactory<D>(q.getDescriptions());}
-		if(q.isSetCategory()) {xfCatgory = new XmlCategoryFactory<>(q.getCategory());}
+		if(Objects.nonNull(q.getCategory())) {xfCatgory = new XmlCategoryFactory<>(q.getCategory());}
 		if(q.isSetViewPort()) {xfViewport = new XmlViewPortFactory<>(q.getViewPort());}
-		if(q.isSetService()) {xfService = new XmlServiceFactory<>(q.getService());}
+		if(Objects.nonNull(q.getService()))  {xfService = new XmlServiceFactory<>(q.getService());}
 	}
 
 	public Layer build (LAYER ejb)
@@ -65,8 +66,8 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 		if(Objects.nonNull(q.getLangs())) {xml.setLangs(xfLangs.getUtilsLangs(ejb.getName()));}
 		if(Objects.nonNull(q.getDescriptions())) {xml.setDescriptions(xfDescriptions.create(ejb.getDescription()));}
 		
-		if(q.isSetService()) {xml.setService(xfService.build(ejb.getService()));}
-		if(q.isSetCategory() && ejb.getCategory()!=null) {xml.setCategory(xfCatgory.build(ejb.getCategory()));}
+		if(Objects.nonNull(q.getService())) {xml.setService(xfService.build(ejb.getService()));}
+		if(ObjectUtils.allNotNull(q.getCategory(),ejb.getCategory())) {xml.setCategory(xfCatgory.build(ejb.getCategory()));}
 		if(q.isSetViewPort() && ejb.getViewPort()!=null) {xml.setViewPort(xfViewport.build(ejb.getViewPort()));}
 		
 		return xml;
@@ -76,7 +77,7 @@ public class XmlLayerFactory <L extends JeeslLang,D extends JeeslDescription,
 	{
 		Layer xml = new Layer();
 		
-		if(q.isSetCode()){xml.setCode(ejb.getLayer().getCode());}
+		if(Objects.nonNull(q.getCode())) {xml.setCode(ejb.getLayer().getCode());}
 				
 		return xml;
 	}

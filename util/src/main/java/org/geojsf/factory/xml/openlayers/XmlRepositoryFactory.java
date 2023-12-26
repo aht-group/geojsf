@@ -2,6 +2,7 @@ package org.geojsf.factory.xml.openlayers;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import org.geojsf.factory.xml.geojsf.XmlServiceFactory;
 import org.geojsf.interfaces.model.core.GeoJsfCategory;
@@ -37,14 +38,14 @@ public class XmlRepositoryFactory <L extends JeeslLang, D extends JeeslDescripti
 	public XmlRepositoryFactory(Repository q)
 	{
 		this.q=q;
-		if(q.isSetService()){xfService = new XmlServiceFactory<>(q.getService().get(0));}
+		if(Objects.nonNull(q.getService())) {xfService = new XmlServiceFactory<>(q.getService().get(0));}
 	}
 
 	public Repository build (List<SERVICE> list)
 	{
 		Repository xml = new Repository();
 		
-		if(q.isSetService())
+		if(Objects.nonNull(q.getService()))
 		{
 			for(SERVICE service : list)
 			{

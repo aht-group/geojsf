@@ -31,7 +31,7 @@ public class TestXmlViewPort extends AbstractXmlGeojsfTest
     public static ViewPort create(boolean withChilds)
     {
     	ViewPort xml = new ViewPort();
-    	xml.setId(123);
+    	xml.setId(123l);
     	xml.setLat(1.23);
     	xml.setLon(4.56);
     	xml.setTop(2.22);

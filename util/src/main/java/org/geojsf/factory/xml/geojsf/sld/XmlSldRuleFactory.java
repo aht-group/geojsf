@@ -51,7 +51,7 @@ public class XmlSldRuleFactory <L extends JeeslLang, D extends JeeslDescription,
 	public SldRule build (RULE ejb)
 	{
 		SldRule xml = new SldRule();
-		if(q.isSetId()){xml.setId(ejb.getId());}
+		if(Objects.nonNull(q.getId())) {xml.setId(ejb.getId());}
 		if(q.isSetLowerBound() && ejb.getLowerBound()!=null){xml.setLowerBound(ejb.getLowerBound());}
 		if(q.isSetUpperBound() && ejb.getUpperBound()!=null){xml.setUpperBound(ejb.getUpperBound());}
 				

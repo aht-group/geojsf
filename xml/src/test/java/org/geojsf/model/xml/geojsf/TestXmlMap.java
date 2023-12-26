@@ -33,7 +33,7 @@ public class TestXmlMap extends AbstractXmlGeojsfTest
     public static Map create(boolean withChilds)
     {
     	Map xml = new Map();
-    	xml.setId(123);
+    	xml.setId(123l);
     	xml.setCode("myCode");
      	
     	if(withChilds)

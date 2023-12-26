@@ -4,6 +4,7 @@
     xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
     jaxb:version="2.0">
 	
+	<xsd:import namespace="http://www.geojsf.org"					schemaLocation="geojsf/geojsf.xsd"/>
 	<xsd:import namespace="http://www.geojsf.org/government"		schemaLocation="geojsf/government.xsd"/>
 	<xsd:import namespace="http://www.geojsf.org/geoserver"			schemaLocation="geojsf/geoserver.xsd"/>
 	
@@ -15,7 +16,7 @@
 	
 	<xsd:import namespace="http://ahtutils.aht-group.com/status"	schemaLocation="../../../../../jeesl/xml/src/main/xsd/jeesl/status.xsd"/>
 	
-	<xsd:import namespace="http://exlp.sf.net/net"					schemaLocation="../../../../../exlp/xml/src/main/xsd/net.xsd"/>
-	<xsd:import namespace="http://exlp.sf.net/identity"				schemaLocation="../../../../../exlp/xml/src/main/xsd/identity.xsd"/>
+	<xsd:import namespace="http://exlp.sf.net/net"					schemaLocation="../../../../../exlp/xml/src/main/xsd/exlp/net.xsd"/>
+	<xsd:import namespace="http://exlp.sf.net/identity"				schemaLocation="../../../../../exlp/xml/src/main/xsd/exlp/identity.xsd"/>
 	
 </xsd:schema>
