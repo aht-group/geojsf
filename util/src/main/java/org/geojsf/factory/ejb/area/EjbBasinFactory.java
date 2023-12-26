@@ -54,7 +54,7 @@ public class EjbBasinFactory<L extends JeeslLang,D extends JeeslDescription,BASI
 			ejb.setDescription(efDescription.create(basin.getDescriptions()));
 			ejb.setModel(model);
 			
-			if(basin.isSetWkt() && Objects.nonNull(basin.getWkt().getValue()))
+			if(Objects.nonNull(basin.getWkt()) && Objects.nonNull(basin.getWkt().getValue()))
 			{
 				ejb.setGeometry(gisMultiPolygonFactory.build(basin.getWkt()));
 			}

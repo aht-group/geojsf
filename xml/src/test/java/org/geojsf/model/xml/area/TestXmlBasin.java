@@ -18,7 +18,7 @@ public class TestXmlBasin extends AbstractXmAreaTest<Basin>
     public Basin build(boolean withChilds)
     {
     	Basin xml = new Basin();
-    	xml.setId(123);
+    	xml.setId(123l);
     	xml.setSize(345.67);
     	xml.setLabel("label");
     	

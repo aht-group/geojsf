@@ -70,10 +70,6 @@ public class Area
         this.wkt = value;
     }
 
-    public boolean isSetWkt() {
-        return (this.wkt!= null);
-    }
-
     /**
      * Gets the value of the code property.
      * 
@@ -96,10 +92,6 @@ public class Area
      */
     public void setCode(String value) {
         this.code = value;
-    }
-
-    public boolean isSetCode() {
-        return (this.code!= null);
     }
 
 }

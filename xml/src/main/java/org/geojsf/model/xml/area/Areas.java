@@ -76,14 +76,6 @@ public class Areas
         return this.area;
     }
 
-    public boolean isSetArea() {
-        return ((this.area!= null)&&(!this.area.isEmpty()));
-    }
-
-    public void unsetArea() {
-        this.area = null;
-    }
-
     /**
      * Gets the value of the basin property.
      * 
@@ -111,14 +103,6 @@ public class Areas
             basin = new ArrayList<Basin>();
         }
         return this.basin;
-    }
-
-    public boolean isSetBasin() {
-        return ((this.basin!= null)&&(!this.basin.isEmpty()));
-    }
-
-    public void unsetBasin() {
-        this.basin = null;
     }
 
 }

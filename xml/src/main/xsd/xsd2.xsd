@@ -5,6 +5,7 @@
     jaxb:version="2.0">
 	
 	<xsd:import namespace="http://www.geojsf.org"					schemaLocation="geojsf/geojsf.xsd"/>
+	<xsd:import namespace="http://www.geojsf.org/area"				schemaLocation="geojsf/area.xsd"/>
 	<xsd:import namespace="http://www.geojsf.org/government"		schemaLocation="geojsf/government.xsd"/>
 	<xsd:import namespace="http://www.geojsf.org/geoserver"			schemaLocation="geojsf/geoserver.xsd"/>
 	

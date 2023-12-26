@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 import org.geojsf.model.xml.geojsf.Wkt;
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
@@ -92,10 +91,6 @@ public class Basin
         this.wkt = value;
     }
 
-    public boolean isSetWkt() {
-        return (this.wkt!= null);
-    }
-
     /**
      * Gets the value of the model property.
      * 
@@ -118,10 +113,6 @@ public class Basin
      */
     public void setModel(Model value) {
         this.model = value;
-    }
-
-    public boolean isSetModel() {
-        return (this.model!= null);
     }
 
     /**
@@ -148,10 +139,6 @@ public class Basin
         this.langs = value;
     }
 
-    public boolean isSetLangs() {
-        return (this.langs!= null);
-    }
-
     /**
      * Gets the value of the descriptions property.
      * 
@@ -176,10 +163,6 @@ public class Basin
         this.descriptions = value;
     }
 
-    public boolean isSetDescriptions() {
-        return (this.descriptions!= null);
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -188,7 +171,7 @@ public class Basin
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -200,16 +183,8 @@ public class Basin
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -220,7 +195,7 @@ public class Basin
      *     {@link Double }
      *     
      */
-    public double getSize() {
+    public Double getSize() {
         return size;
     }
 
@@ -232,16 +207,8 @@ public class Basin
      *     {@link Double }
      *     
      */
-    public void setSize(double value) {
+    public void setSize(Double value) {
         this.size = value;
-    }
-
-    public boolean isSetSize() {
-        return (this.size!= null);
-    }
-
-    public void unsetSize() {
-        this.size = null;
     }
 
     /**
@@ -266,10 +233,6 @@ public class Basin
      */
     public void setLabel(String value) {
         this.label = value;
-    }
-
-    public boolean isSetLabel() {
-        return (this.label!= null);
     }
 
 }

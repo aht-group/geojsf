@@ -10,43 +10,48 @@
 		<jxb:serializable uid="1" />
 	</jxb:globalBindings>
 
-	<jxb:bindings schemaLocation="../xsd/geojsf/geojsf.xsd" node="/xsd:schema">
+	<jxb:bindings schemaLocation="geojsf/geojsf.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.geojsf"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-	<jxb:bindings schemaLocation="../xsd/geojsf/geoserver.xsd" node="/xsd:schema">
+	<jxb:bindings schemaLocation="geojsf/area.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.geojsf.model.xml.area"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+	<jxb:bindings schemaLocation="geojsf/geoserver.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.geoserver"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-    <jxb:bindings schemaLocation="../xsd/geojsf/government.xsd" node="/xsd:schema">
+    <jxb:bindings schemaLocation="geojsf/government.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.government"/>
         </jxb:schemaBindings>
     </jxb:bindings>
 
- 	<jxb:bindings schemaLocation="../xsd/specs/gml.xsd" node="/xsd:schema">
+ 	<jxb:bindings schemaLocation="specs/gml.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.specs.gml"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-    <jxb:bindings schemaLocation="../xsd/specs/ogc.xsd" node="/xsd:schema">
+    <jxb:bindings schemaLocation="specs/ogc.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.specs.ogc"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-    <jxb:bindings schemaLocation="../xsd/specs/sld.xsd" node="/xsd:schema">
+    <jxb:bindings schemaLocation="specs/sld.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.specs.sld"/>
         </jxb:schemaBindings>
     </jxb:bindings>    
-	<jxb:bindings schemaLocation="../xsd/specs/xlink.xsd" node="/xsd:schema">
+	<jxb:bindings schemaLocation="specs/xlink.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.specs.xlink"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-	<jxb:bindings schemaLocation="../xsd/specs/wfs.xsd" node="/xsd:schema">
+	<jxb:bindings schemaLocation="specs/wfs.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.geojsf.model.xml.specs.wfs"/>
         </jxb:schemaBindings>
