@@ -78,10 +78,6 @@ public class View
         this.layer = value;
     }
 
-    public boolean isSetLayer() {
-        return (this.layer!= null);
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -90,7 +86,7 @@ public class View
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -102,16 +98,8 @@ public class View
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -122,7 +110,7 @@ public class View
      *     {@link Integer }
      *     
      */
-    public int getNr() {
+    public Integer getNr() {
         return nr;
     }
 
@@ -134,16 +122,8 @@ public class View
      *     {@link Integer }
      *     
      */
-    public void setNr(int value) {
+    public void setNr(Integer value) {
         this.nr = value;
-    }
-
-    public boolean isSetNr() {
-        return (this.nr!= null);
-    }
-
-    public void unsetNr() {
-        this.nr = null;
     }
 
     /**
@@ -154,7 +134,7 @@ public class View
      *     {@link Boolean }
      *     
      */
-    public boolean isVisible() {
+    public Boolean isVisible() {
         return visible;
     }
 
@@ -166,16 +146,8 @@ public class View
      *     {@link Boolean }
      *     
      */
-    public void setVisible(boolean value) {
+    public void setVisible(Boolean value) {
         this.visible = value;
-    }
-
-    public boolean isSetVisible() {
-        return (this.visible!= null);
-    }
-
-    public void unsetVisible() {
-        this.visible = null;
     }
 
     /**
@@ -186,7 +158,7 @@ public class View
      *     {@link Boolean }
      *     
      */
-    public boolean isLegend() {
+    public Boolean isLegend() {
         return legend;
     }
 
@@ -198,16 +170,8 @@ public class View
      *     {@link Boolean }
      *     
      */
-    public void setLegend(boolean value) {
+    public void setLegend(Boolean value) {
         this.legend = value;
-    }
-
-    public boolean isSetLegend() {
-        return (this.legend!= null);
-    }
-
-    public void unsetLegend() {
-        this.legend = null;
     }
 
 }

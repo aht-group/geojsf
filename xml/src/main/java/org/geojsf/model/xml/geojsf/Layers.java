@@ -79,14 +79,6 @@ public class Layers
         return this.layer;
     }
 
-    public boolean isSetLayer() {
-        return ((this.layer!= null)&&(!this.layer.isEmpty()));
-    }
-
-    public void unsetLayer() {
-        this.layer = null;
-    }
-
     /**
      * Gets the value of the wms property.
      * 
@@ -111,10 +103,6 @@ public class Layers
         this.wms = value;
     }
 
-    public boolean isSetWms() {
-        return (this.wms!= null);
-    }
-
     /**
      * Gets the value of the wcs property.
      * 
@@ -137,10 +125,6 @@ public class Layers
      */
     public void setWcs(String value) {
         this.wcs = value;
-    }
-
-    public boolean isSetWcs() {
-        return (this.wcs!= null);
     }
 
 }

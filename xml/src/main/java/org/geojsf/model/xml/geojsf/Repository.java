@@ -83,10 +83,6 @@ public class Repository
         this.layers = value;
     }
 
-    public boolean isSetLayers() {
-        return (this.layers!= null);
-    }
-
     /**
      * Gets the value of the maps property.
      * 
@@ -109,10 +105,6 @@ public class Repository
      */
     public void setMaps(Maps value) {
         this.maps = value;
-    }
-
-    public boolean isSetMaps() {
-        return (this.maps!= null);
     }
 
     /**
@@ -144,14 +136,6 @@ public class Repository
         return this.service;
     }
 
-    public boolean isSetService() {
-        return ((this.service!= null)&&(!this.service.isEmpty()));
-    }
-
-    public void unsetService() {
-        this.service = null;
-    }
-
     /**
      * Gets the value of the category property.
      * 
@@ -181,14 +165,6 @@ public class Repository
         return this.category;
     }
 
-    public boolean isSetCategory() {
-        return ((this.category!= null)&&(!this.category.isEmpty()));
-    }
-
-    public void unsetCategory() {
-        this.category = null;
-    }
-
     /**
      * Gets the value of the sldTemplate property.
      * 
@@ -216,14 +192,6 @@ public class Repository
             sldTemplate = new ArrayList<SldTemplate>();
         }
         return this.sldTemplate;
-    }
-
-    public boolean isSetSldTemplate() {
-        return ((this.sldTemplate!= null)&&(!this.sldTemplate.isEmpty()));
-    }
-
-    public void unsetSldTemplate() {
-        this.sldTemplate = null;
     }
 
 }

@@ -54,7 +54,7 @@ public class Coordinate
      *     {@link Double }
      *     
      */
-    public double getLat() {
+    public Double getLat() {
         return lat;
     }
 
@@ -66,16 +66,8 @@ public class Coordinate
      *     {@link Double }
      *     
      */
-    public void setLat(double value) {
+    public void setLat(Double value) {
         this.lat = value;
-    }
-
-    public boolean isSetLat() {
-        return (this.lat!= null);
-    }
-
-    public void unsetLat() {
-        this.lat = null;
     }
 
     /**
@@ -86,7 +78,7 @@ public class Coordinate
      *     {@link Double }
      *     
      */
-    public double getLon() {
+    public Double getLon() {
         return lon;
     }
 
@@ -98,16 +90,8 @@ public class Coordinate
      *     {@link Double }
      *     
      */
-    public void setLon(double value) {
+    public void setLon(Double value) {
         this.lon = value;
-    }
-
-    public boolean isSetLon() {
-        return (this.lon!= null);
-    }
-
-    public void unsetLon() {
-        this.lon = null;
     }
 
     /**
@@ -134,10 +118,6 @@ public class Coordinate
         this.code = value;
     }
 
-    public boolean isSetCode() {
-        return (this.code!= null);
-    }
-
     /**
      * Gets the value of the label property.
      * 
@@ -160,10 +140,6 @@ public class Coordinate
      */
     public void setLabel(String value) {
         this.label = value;
-    }
-
-    public boolean isSetLabel() {
-        return (this.label!= null);
     }
 
 }

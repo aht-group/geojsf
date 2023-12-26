@@ -48,7 +48,7 @@ public class Legend
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -60,16 +60,8 @@ public class Legend
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -94,10 +86,6 @@ public class Legend
      */
     public void setUrl(String value) {
         this.url = value;
-    }
-
-    public boolean isSetUrl() {
-        return (this.url!= null);
     }
 
 }

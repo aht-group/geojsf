@@ -76,14 +76,6 @@ public class Scales
         return this.scale;
     }
 
-    public boolean isSetScale() {
-        return ((this.scale!= null)&&(!this.scale.isEmpty()));
-    }
-
-    public void unsetScale() {
-        this.scale = null;
-    }
-
     /**
      * Gets the value of the unit property.
      * 
@@ -106,10 +98,6 @@ public class Scales
      */
     public void setUnit(String value) {
         this.unit = value;
-    }
-
-    public boolean isSetUnit() {
-        return (this.unit!= null);
     }
 
 }

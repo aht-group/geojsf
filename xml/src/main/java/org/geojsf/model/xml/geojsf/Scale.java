@@ -61,10 +61,6 @@ public class Scale
         this.value = value;
     }
 
-    public boolean isSetValue() {
-        return true;
-    }
-
     /**
      * Gets the value of the unit property.
      * 
@@ -89,10 +85,6 @@ public class Scale
         this.unit = value;
     }
 
-    public boolean isSetUnit() {
-        return (this.unit!= null);
-    }
-
     /**
      * Gets the value of the zoom property.
      * 
@@ -101,7 +93,7 @@ public class Scale
      *     {@link Double }
      *     
      */
-    public double getZoom() {
+    public Double getZoom() {
         return zoom;
     }
 
@@ -113,16 +105,8 @@ public class Scale
      *     {@link Double }
      *     
      */
-    public void setZoom(double value) {
+    public void setZoom(Double value) {
         this.zoom = value;
-    }
-
-    public boolean isSetZoom() {
-        return (this.zoom!= null);
-    }
-
-    public void unsetZoom() {
-        this.zoom = null;
     }
 
 }

@@ -87,10 +87,6 @@ public class ViewPort
         this.scale = value;
     }
 
-    public boolean isSetScale() {
-        return (this.scale!= null);
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -99,7 +95,7 @@ public class ViewPort
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -111,16 +107,8 @@ public class ViewPort
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -131,7 +119,7 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public double getLat() {
+    public Double getLat() {
         return lat;
     }
 
@@ -143,16 +131,8 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public void setLat(double value) {
+    public void setLat(Double value) {
         this.lat = value;
-    }
-
-    public boolean isSetLat() {
-        return (this.lat!= null);
-    }
-
-    public void unsetLat() {
-        this.lat = null;
     }
 
     /**
@@ -163,7 +143,7 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public double getLon() {
+    public Double getLon() {
         return lon;
     }
 
@@ -175,16 +155,8 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public void setLon(double value) {
+    public void setLon(Double value) {
         this.lon = value;
-    }
-
-    public boolean isSetLon() {
-        return (this.lon!= null);
-    }
-
-    public void unsetLon() {
-        this.lon = null;
     }
 
     /**
@@ -195,7 +167,7 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public double getBottom() {
+    public Double getBottom() {
         return bottom;
     }
 
@@ -207,16 +179,8 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public void setBottom(double value) {
+    public void setBottom(Double value) {
         this.bottom = value;
-    }
-
-    public boolean isSetBottom() {
-        return (this.bottom!= null);
-    }
-
-    public void unsetBottom() {
-        this.bottom = null;
     }
 
     /**
@@ -227,7 +191,7 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public double getLeft() {
+    public Double getLeft() {
         return left;
     }
 
@@ -239,16 +203,8 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public void setLeft(double value) {
+    public void setLeft(Double value) {
         this.left = value;
-    }
-
-    public boolean isSetLeft() {
-        return (this.left!= null);
-    }
-
-    public void unsetLeft() {
-        this.left = null;
     }
 
     /**
@@ -259,7 +215,7 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public double getRight() {
+    public Double getRight() {
         return right;
     }
 
@@ -271,16 +227,8 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public void setRight(double value) {
+    public void setRight(Double value) {
         this.right = value;
-    }
-
-    public boolean isSetRight() {
-        return (this.right!= null);
-    }
-
-    public void unsetRight() {
-        this.right = null;
     }
 
     /**
@@ -291,7 +239,7 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public double getTop() {
+    public Double getTop() {
         return top;
     }
 
@@ -303,16 +251,8 @@ public class ViewPort
      *     {@link Double }
      *     
      */
-    public void setTop(double value) {
+    public void setTop(Double value) {
         this.top = value;
-    }
-
-    public boolean isSetTop() {
-        return (this.top!= null);
-    }
-
-    public void unsetTop() {
-        this.top = null;
     }
 
 }

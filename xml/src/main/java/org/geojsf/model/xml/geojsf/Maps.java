@@ -72,12 +72,4 @@ public class Maps
         return this.map;
     }
 
-    public boolean isSetMap() {
-        return ((this.map!= null)&&(!this.map.isEmpty()));
-    }
-
-    public void unsetMap() {
-        this.map = null;
-    }
-
 }

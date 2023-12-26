@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 import org.jeesl.model.xml.io.graphic.Graphic;
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
@@ -102,10 +101,6 @@ public class SldRule
         this.sld = value;
     }
 
-    public boolean isSetSld() {
-        return (this.sld!= null);
-    }
-
     /**
      * Gets the value of the style property.
      * 
@@ -128,10 +123,6 @@ public class SldRule
      */
     public void setStyle(Style value) {
         this.style = value;
-    }
-
-    public boolean isSetStyle() {
-        return (this.style!= null);
     }
 
     /**
@@ -158,10 +149,6 @@ public class SldRule
         this.langs = value;
     }
 
-    public boolean isSetLangs() {
-        return (this.langs!= null);
-    }
-
     /**
      * Gets the value of the descriptions property.
      * 
@@ -184,10 +171,6 @@ public class SldRule
      */
     public void setDescriptions(Descriptions value) {
         this.descriptions = value;
-    }
-
-    public boolean isSetDescriptions() {
-        return (this.descriptions!= null);
     }
 
     /**
@@ -214,10 +197,6 @@ public class SldRule
         this.graphic = value;
     }
 
-    public boolean isSetGraphic() {
-        return (this.graphic!= null);
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -226,7 +205,7 @@ public class SldRule
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -238,16 +217,8 @@ public class SldRule
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -258,7 +229,7 @@ public class SldRule
      *     {@link Integer }
      *     
      */
-    public int getSize() {
+    public Integer getSize() {
         return size;
     }
 
@@ -270,16 +241,8 @@ public class SldRule
      *     {@link Integer }
      *     
      */
-    public void setSize(int value) {
+    public void setSize(Integer value) {
         this.size = value;
-    }
-
-    public boolean isSetSize() {
-        return (this.size!= null);
-    }
-
-    public void unsetSize() {
-        this.size = null;
     }
 
     /**
@@ -306,10 +269,6 @@ public class SldRule
         this.color = value;
     }
 
-    public boolean isSetColor() {
-        return (this.color!= null);
-    }
-
     /**
      * Gets the value of the lowerBound property.
      * 
@@ -318,7 +277,7 @@ public class SldRule
      *     {@link Double }
      *     
      */
-    public double getLowerBound() {
+    public Double getLowerBound() {
         return lowerBound;
     }
 
@@ -330,16 +289,8 @@ public class SldRule
      *     {@link Double }
      *     
      */
-    public void setLowerBound(double value) {
+    public void setLowerBound(Double value) {
         this.lowerBound = value;
-    }
-
-    public boolean isSetLowerBound() {
-        return (this.lowerBound!= null);
-    }
-
-    public void unsetLowerBound() {
-        this.lowerBound = null;
     }
 
     /**
@@ -350,7 +301,7 @@ public class SldRule
      *     {@link Double }
      *     
      */
-    public double getUpperBound() {
+    public Double getUpperBound() {
         return upperBound;
     }
 
@@ -362,16 +313,8 @@ public class SldRule
      *     {@link Double }
      *     
      */
-    public void setUpperBound(double value) {
+    public void setUpperBound(Double value) {
         this.upperBound = value;
-    }
-
-    public boolean isSetUpperBound() {
-        return (this.upperBound!= null);
-    }
-
-    public void unsetUpperBound() {
-        this.upperBound = null;
     }
 
 }

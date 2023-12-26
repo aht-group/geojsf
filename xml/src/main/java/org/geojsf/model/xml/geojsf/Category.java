@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
 
@@ -90,14 +89,6 @@ public class Category
         return this.layer;
     }
 
-    public boolean isSetLayer() {
-        return ((this.layer!= null)&&(!this.layer.isEmpty()));
-    }
-
-    public void unsetLayer() {
-        this.layer = null;
-    }
-
     /**
      * Gets the value of the langs property.
      * 
@@ -120,10 +111,6 @@ public class Category
      */
     public void setLangs(Langs value) {
         this.langs = value;
-    }
-
-    public boolean isSetLangs() {
-        return (this.langs!= null);
     }
 
     /**
@@ -150,10 +137,6 @@ public class Category
         this.descriptions = value;
     }
 
-    public boolean isSetDescriptions() {
-        return (this.descriptions!= null);
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -162,7 +145,7 @@ public class Category
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -174,16 +157,8 @@ public class Category
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -208,10 +183,6 @@ public class Category
      */
     public void setCode(String value) {
         this.code = value;
-    }
-
-    public boolean isSetCode() {
-        return (this.code!= null);
     }
 
 }

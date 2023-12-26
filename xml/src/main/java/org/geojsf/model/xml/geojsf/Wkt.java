@@ -69,10 +69,6 @@ public class Wkt
         this.value = value;
     }
 
-    public boolean isSetValue() {
-        return (this.value!= null);
-    }
-
     /**
      * Gets the value of the type property.
      * 
@@ -97,10 +93,6 @@ public class Wkt
         this.type = value;
     }
 
-    public boolean isSetType() {
-        return (this.type!= null);
-    }
-
     /**
      * Gets the value of the srid property.
      * 
@@ -109,7 +101,7 @@ public class Wkt
      *     {@link Integer }
      *     
      */
-    public int getSrid() {
+    public Integer getSrid() {
         return srid;
     }
 
@@ -121,16 +113,8 @@ public class Wkt
      *     {@link Integer }
      *     
      */
-    public void setSrid(int value) {
+    public void setSrid(Integer value) {
         this.srid = value;
-    }
-
-    public boolean isSetSrid() {
-        return (this.srid!= null);
-    }
-
-    public void unsetSrid() {
-        this.srid = null;
     }
 
 }

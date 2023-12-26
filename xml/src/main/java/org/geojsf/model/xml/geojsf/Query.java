@@ -93,10 +93,6 @@ public class Query
         this.repository = value;
     }
 
-    public boolean isSetRepository() {
-        return (this.repository!= null);
-    }
-
     /**
      * Gets the value of the service property.
      * 
@@ -119,10 +115,6 @@ public class Query
      */
     public void setService(Service value) {
         this.service = value;
-    }
-
-    public boolean isSetService() {
-        return (this.service!= null);
     }
 
     /**
@@ -149,10 +141,6 @@ public class Query
         this.category = value;
     }
 
-    public boolean isSetCategory() {
-        return (this.category!= null);
-    }
-
     /**
      * Gets the value of the layer property.
      * 
@@ -175,10 +163,6 @@ public class Query
      */
     public void setLayer(Layer value) {
         this.layer = value;
-    }
-
-    public boolean isSetLayer() {
-        return (this.layer!= null);
     }
 
     /**
@@ -205,10 +189,6 @@ public class Query
         this.map = value;
     }
 
-    public boolean isSetMap() {
-        return (this.map!= null);
-    }
-
     /**
      * Gets the value of the view property.
      * 
@@ -231,10 +211,6 @@ public class Query
      */
     public void setView(View value) {
         this.view = value;
-    }
-
-    public boolean isSetView() {
-        return (this.view!= null);
     }
 
     /**
@@ -261,10 +237,6 @@ public class Query
         this.viewPort = value;
     }
 
-    public boolean isSetViewPort() {
-        return (this.viewPort!= null);
-    }
-
     /**
      * Gets the value of the sldTemplate property.
      * 
@@ -287,10 +259,6 @@ public class Query
      */
     public void setSldTemplate(SldTemplate value) {
         this.sldTemplate = value;
-    }
-
-    public boolean isSetSldTemplate() {
-        return (this.sldTemplate!= null);
     }
 
 }

@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
 
@@ -110,10 +109,6 @@ public class Layer
         this.langs = value;
     }
 
-    public boolean isSetLangs() {
-        return (this.langs!= null);
-    }
-
     /**
      * Gets the value of the descriptions property.
      * 
@@ -136,10 +131,6 @@ public class Layer
      */
     public void setDescriptions(Descriptions value) {
         this.descriptions = value;
-    }
-
-    public boolean isSetDescriptions() {
-        return (this.descriptions!= null);
     }
 
     /**
@@ -166,10 +157,6 @@ public class Layer
         this.legend = value;
     }
 
-    public boolean isSetLegend() {
-        return (this.legend!= null);
-    }
-
     /**
      * Gets the value of the service property.
      * 
@@ -192,10 +179,6 @@ public class Layer
      */
     public void setService(Service value) {
         this.service = value;
-    }
-
-    public boolean isSetService() {
-        return (this.service!= null);
     }
 
     /**
@@ -222,10 +205,6 @@ public class Layer
         this.category = value;
     }
 
-    public boolean isSetCategory() {
-        return (this.category!= null);
-    }
-
     /**
      * Gets the value of the viewPort property.
      * 
@@ -250,10 +229,6 @@ public class Layer
         this.viewPort = value;
     }
 
-    public boolean isSetViewPort() {
-        return (this.viewPort!= null);
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -262,7 +237,7 @@ public class Layer
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -274,16 +249,8 @@ public class Layer
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -310,10 +277,6 @@ public class Layer
         this.code = value;
     }
 
-    public boolean isSetCode() {
-        return (this.code!= null);
-    }
-
     /**
      * Gets the value of the workspace property.
      * 
@@ -336,10 +299,6 @@ public class Layer
      */
     public void setWorkspace(String value) {
         this.workspace = value;
-    }
-
-    public boolean isSetWorkspace() {
-        return (this.workspace!= null);
     }
 
     /**
@@ -366,10 +325,6 @@ public class Layer
         this.name = value;
     }
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
     /**
      * Gets the value of the label property.
      * 
@@ -394,10 +349,6 @@ public class Layer
         this.label = value;
     }
 
-    public boolean isSetLabel() {
-        return (this.label!= null);
-    }
-
     /**
      * Gets the value of the temporal property.
      * 
@@ -406,7 +357,7 @@ public class Layer
      *     {@link Boolean }
      *     
      */
-    public boolean isTemporal() {
+    public Boolean isTemporal() {
         return temporal;
     }
 
@@ -418,16 +369,8 @@ public class Layer
      *     {@link Boolean }
      *     
      */
-    public void setTemporal(boolean value) {
+    public void setTemporal(Boolean value) {
         this.temporal = value;
-    }
-
-    public boolean isSetTemporal() {
-        return (this.temporal!= null);
-    }
-
-    public void unsetTemporal() {
-        this.temporal = null;
     }
 
     /**
@@ -438,7 +381,7 @@ public class Layer
      *     {@link Boolean }
      *     
      */
-    public boolean isSql() {
+    public Boolean isSql() {
         return sql;
     }
 
@@ -450,16 +393,8 @@ public class Layer
      *     {@link Boolean }
      *     
      */
-    public void setSql(boolean value) {
+    public void setSql(Boolean value) {
         this.sql = value;
-    }
-
-    public boolean isSetSql() {
-        return (this.sql!= null);
-    }
-
-    public void unsetSql() {
-        this.sql = null;
     }
 
 }

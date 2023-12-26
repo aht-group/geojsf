@@ -76,14 +76,6 @@ public class Coordinates
         return this.coordinate;
     }
 
-    public boolean isSetCoordinate() {
-        return ((this.coordinate!= null)&&(!this.coordinate.isEmpty()));
-    }
-
-    public void unsetCoordinate() {
-        this.coordinate = null;
-    }
-
     /**
      * Gets the value of the label property.
      * 
@@ -106,10 +98,6 @@ public class Coordinates
      */
     public void setLabel(String value) {
         this.label = value;
-    }
-
-    public boolean isSetLabel() {
-        return (this.label!= null);
     }
 
 }

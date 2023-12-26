@@ -72,12 +72,4 @@ public class ViewPorts
         return this.viewPort;
     }
 
-    public boolean isSetViewPort() {
-        return ((this.viewPort!= null)&&(!this.viewPort.isEmpty()));
-    }
-
-    public void unsetViewPort() {
-        this.viewPort = null;
-    }
-
 }

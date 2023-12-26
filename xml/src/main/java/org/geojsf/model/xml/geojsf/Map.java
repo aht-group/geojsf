@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
 
@@ -94,14 +93,6 @@ public class Map
         return this.view;
     }
 
-    public boolean isSetView() {
-        return ((this.view!= null)&&(!this.view.isEmpty()));
-    }
-
-    public void unsetView() {
-        this.view = null;
-    }
-
     /**
      * Gets the value of the langs property.
      * 
@@ -124,10 +115,6 @@ public class Map
      */
     public void setLangs(Langs value) {
         this.langs = value;
-    }
-
-    public boolean isSetLangs() {
-        return (this.langs!= null);
     }
 
     /**
@@ -154,10 +141,6 @@ public class Map
         this.descriptions = value;
     }
 
-    public boolean isSetDescriptions() {
-        return (this.descriptions!= null);
-    }
-
     /**
      * Gets the value of the viewPort property.
      * 
@@ -182,10 +165,6 @@ public class Map
         this.viewPort = value;
     }
 
-    public boolean isSetViewPort() {
-        return (this.viewPort!= null);
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -194,7 +173,7 @@ public class Map
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -206,16 +185,8 @@ public class Map
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
     /**
@@ -240,10 +211,6 @@ public class Map
      */
     public void setCode(String value) {
         this.code = value;
-    }
-
-    public boolean isSetCode() {
-        return (this.code!= null);
     }
 
 }

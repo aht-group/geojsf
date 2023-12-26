@@ -75,10 +75,6 @@ public class Sld
         this.sldTemplate = value;
     }
 
-    public boolean isSetSldTemplate() {
-        return (this.sldTemplate!= null);
-    }
-
     /**
      * Gets the value of the sldRule property.
      * 
@@ -108,14 +104,6 @@ public class Sld
         return this.sldRule;
     }
 
-    public boolean isSetSldRule() {
-        return ((this.sldRule!= null)&&(!this.sldRule.isEmpty()));
-    }
-
-    public void unsetSldRule() {
-        this.sldRule = null;
-    }
-
     /**
      * Gets the value of the id property.
      * 
@@ -124,7 +112,7 @@ public class Sld
      *     {@link Long }
      *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -136,16 +124,8 @@ public class Sld
      *     {@link Long }
      *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
-    }
-
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
-
-    public void unsetId() {
-        this.id = null;
     }
 
 }
