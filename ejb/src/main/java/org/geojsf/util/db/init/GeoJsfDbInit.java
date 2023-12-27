@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.web.rest.AbstractUtilsRest;
 import net.sf.ahtutils.xml.aht.Aht;
-import net.sf.ahtutils.xml.sync.DataUpdate;
+import org.jeesl.model.xml.io.ssi.sync.DataUpdate;
 
 public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 							CATEGORY extends GeoJsfCategory<L,D,LAYER>,
