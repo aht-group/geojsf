@@ -3,6 +3,7 @@ package org.geojsf.web.controller.settings.core;
 import java.io.Serializable;
 import java.util.List;
 
+import org.exlp.util.io.StringUtil;
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.ejb.core.EjbGeoMapFactory;
@@ -32,7 +33,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
-import net.sf.exlp.util.io.StringUtil;
 
 public class GeojsfSettingsMapController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,

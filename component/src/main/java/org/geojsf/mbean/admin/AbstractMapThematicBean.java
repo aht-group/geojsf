@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.exlp.util.io.StringUtil;
 import org.geojsf.factory.builder.GeoCoreFactoryBuilder;
 import org.geojsf.factory.builder.GeoMetaFactoryBuilder;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
@@ -42,7 +43,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
-import net.sf.exlp.util.io.StringUtil;
 
 @Deprecated //Use GeojsfSettingsMapController instead
 public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
