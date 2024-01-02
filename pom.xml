@@ -165,8 +165,6 @@
 			<snapshots><enabled>false</enabled></snapshots>
 		</repository>
 		
-
-		
 		<repository>
 			<id>hibernatespatial.org</id>
 			<name>Hibernate Spatial repo</name>
@@ -185,23 +183,12 @@
 			<layout>default</layout>
 		</repository>
 		
-		<repository>  
-		    <id>primefaces.org</id>  
-		    <name>PrimeFaces Maven Repository</name>  
-		    <url>https://repository.primefaces.org</url>  
-		    <layout>default</layout>  
-		</repository>
-		
 		<repository>
 		    <id>osgeo</id>
 		    <name>Open Source Geospatial Foundation Repository</name>
 		    <url>https://repo.osgeo.org/repository/release/</url>
-		    <releases>
-			<enabled>true</enabled>
-		    </releases>
-		    <snapshots>
-			<enabled>false</enabled>
-		    </snapshots>
+		    <releases><enabled>true</enabled></releases>
+		    <snapshots><enabled>false</enabled></snapshots>
 		</repository>
 	</repositories>
 
