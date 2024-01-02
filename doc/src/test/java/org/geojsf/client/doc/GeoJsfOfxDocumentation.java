@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import org.apache.commons.configuration.Configuration;
 import org.geojsf.test.GeoJsfDocTestBootstrap;
+import org.jeesl.controller.io.db.xml.UtilsDbXmlSeedUtil;
 import org.jeesl.exception.processing.UtilsConfigurationException;
 import org.jeesl.model.xml.io.db.Db;
 import org.jeesl.model.xml.io.locale.status.Translations;
@@ -17,7 +18,6 @@ import org.openfuxml.util.media.MediaSourceModificationTracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.db.xml.UtilsDbXmlSeedUtil;
 import net.sf.ahtutils.doc.UtilsDocumentation;
 import net.sf.ahtutils.doc.ofx.status.OfxStatusTableFactory;
 import net.sf.ahtutils.xml.aht.Aht;

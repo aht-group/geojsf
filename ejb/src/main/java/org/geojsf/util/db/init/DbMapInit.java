@@ -22,7 +22,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.View;
-import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
+import org.jeesl.controller.io.db.updater.JeeslDbCodeEjbUpdater;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;

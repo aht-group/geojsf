@@ -21,7 +21,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.model.xml.geojsf.Layer;
 import org.geojsf.model.xml.geojsf.Layers;
-import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
+import org.jeesl.controller.io.db.updater.JeeslDbCodeEjbUpdater;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;

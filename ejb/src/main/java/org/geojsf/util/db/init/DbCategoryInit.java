@@ -4,7 +4,7 @@ import org.geojsf.interfaces.model.core.GeoJsfCategory;
 import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.Service;
-import org.jeesl.controller.db.updater.JeeslDbCodeEjbUpdater;
+import org.jeesl.controller.io.db.updater.JeeslDbCodeEjbUpdater;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
