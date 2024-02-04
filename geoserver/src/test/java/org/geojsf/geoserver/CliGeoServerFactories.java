@@ -1,8 +1,7 @@
 package org.geojsf.geoserver;
 
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.apache.commons.configuration.Configuration;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
 import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;

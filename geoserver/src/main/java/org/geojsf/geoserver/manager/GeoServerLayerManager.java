@@ -5,8 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import net.sf.exlp.util.xml.JaxbUtil;
-
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.api.rest.geoserver.GeoServerLayerRest;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.model.xml.geoserver.CoverageStore;

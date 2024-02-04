@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.configuration.Configuration;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.doc.GeoJsfDocumentation;
 import org.geojsf.doc.ofx.OfxCategoryLayerSectionFactory;
 import org.geojsf.doc.ofx.OfxMapSectionFactory;
@@ -41,7 +42,6 @@ import org.slf4j.LoggerFactory;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.io.StringIO;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class GeoJsfLatexDocumentationBuilder extends AbstractLatexDocumentationBuilder
 {	

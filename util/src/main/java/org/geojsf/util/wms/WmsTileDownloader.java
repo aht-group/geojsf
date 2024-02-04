@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.apache.commons.io.FileUtils;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.Service;
 import org.geojsf.model.xml.geojsf.ViewPort;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.factory.builder.GeoSldFactoryBuilder;
 import org.geojsf.factory.ejb.sld.EjbGeoSldFactory;
 import org.geojsf.interfaces.facade.GeoSldFacade;
@@ -32,7 +33,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
 										SLD extends GeoJsfSld<L,D,SDX,SDT,SDR,LE,LA>,

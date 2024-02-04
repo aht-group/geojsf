@@ -3,6 +3,7 @@ package org.geojsf.doc.ofx;
 import java.util.List;
 
 import org.apache.commons.configuration.Configuration;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Layer;
 import org.jeesl.model.xml.io.locale.status.Description;
@@ -28,7 +29,6 @@ import org.slf4j.LoggerFactory;
 import net.sf.ahtutils.doc.ofx.AbstractUtilsOfxDocumentationFactory;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class OfxCategoryLayerSectionFactory extends AbstractUtilsOfxDocumentationFactory
 {

@@ -8,14 +8,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.specs.wfs.GetFeature;
 import org.jdom2.Document;
 import org.jdom2.Element;

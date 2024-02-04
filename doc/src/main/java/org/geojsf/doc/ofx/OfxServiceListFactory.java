@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 import org.apache.commons.configuration.Configuration;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.geojsf.Service;
 import org.jeesl.model.xml.io.locale.status.Description;
 import org.jeesl.model.xml.io.locale.status.Lang;
@@ -30,7 +31,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class OfxServiceListFactory
 {

@@ -1,7 +1,6 @@
 package org.geojsf.factory.txt;
 
-import net.sf.exlp.util.xml.JaxbUtil;
-
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
 import org.geojsf.model.xml.geojsf.Scales;
 import org.geojsf.test.AbstractGeoJsfUtilTest;

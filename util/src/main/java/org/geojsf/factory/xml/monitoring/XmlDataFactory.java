@@ -3,8 +3,7 @@ package org.geojsf.factory.xml.monitoring;
 import java.io.Serializable;
 import java.util.Date;
 
-import net.sf.exlp.util.DateUtil;
-
+import org.exlp.util.system.DateUtil;
 import org.geojsf.model.xml.monitoring.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

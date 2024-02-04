@@ -3,9 +3,8 @@ package org.geojsf.geoserver;
 import java.io.File;
 import java.io.IOException;
 
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.apache.commons.configuration.Configuration;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.factory.xml.geoserver.XmlWorkspaceFactory;

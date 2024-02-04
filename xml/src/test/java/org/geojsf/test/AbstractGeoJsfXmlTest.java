@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.exlp.util.io.log.LoggerInit;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -11,8 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.test.AbstractAhtUtilsXmlTest;
-import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 @Ignore
 public class AbstractGeoJsfXmlTest <T extends Object> extends AbstractAhtUtilsXmlTest<T>

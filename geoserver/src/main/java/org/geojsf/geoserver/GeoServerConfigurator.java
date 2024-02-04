@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.configuration.Configuration;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.exception.GeoServerConfigurationException;
 import org.geojsf.geoserver.manager.GeoServerCoverageManager;
@@ -34,7 +35,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.util.xml.JDomUtil;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class GeoServerConfigurator
 {

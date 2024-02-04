@@ -1,5 +1,6 @@
 package org.geojsf.factory.xml.spec.se;
 
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.factory.xml.specs.ogc.XmlFilterFactory;
 import org.geojsf.factory.xml.specs.sld.XmlGraphicFactory;
 import org.geojsf.factory.xml.specs.sld.XmlPointSymbolizerFactory;
@@ -12,8 +13,6 @@ import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class CliXmlRuleFactory extends AbstractGeoJsfUtilTest
 {

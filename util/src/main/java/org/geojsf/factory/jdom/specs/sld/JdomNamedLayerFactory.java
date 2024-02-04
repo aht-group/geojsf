@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import org.apache.commons.io.IOUtils;
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.factory.xml.specs.sld.XmlNameFactory;
 import org.geojsf.factory.xml.specs.sld.XmlNamedLayerFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -18,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.util.xml.JDomUtil;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomNamedLayerFactory <LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,SLD>,
 									SDX extends GeoJsfSldXml<?,?,SLD>,

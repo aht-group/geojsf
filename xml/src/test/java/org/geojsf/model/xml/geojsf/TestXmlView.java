@@ -2,13 +2,12 @@ package org.geojsf.model.xml.geojsf;
 
 import java.io.FileNotFoundException;
 
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfXmlTstBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestXmlView extends AbstractXmlGeojsfTest
 {

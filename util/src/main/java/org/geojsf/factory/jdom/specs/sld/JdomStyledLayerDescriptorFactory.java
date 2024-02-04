@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.factory.xml.specs.sld.XmlStyledLayerDescriptorFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
@@ -16,8 +17,6 @@ import org.jdom2.Namespace;
 import org.jeesl.exception.processing.UtilsConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class JdomStyledLayerDescriptorFactory < LAYER extends GeoJsfLayer<?,?,?,?,?,?,?,SLD>,
 												TEMPLATE extends GeoJsfSldXml<?,?,SLD>,

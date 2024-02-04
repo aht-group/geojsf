@@ -6,14 +6,13 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.exlp.util.system.DateUtil;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.util.DateUtil;
 
 public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 {

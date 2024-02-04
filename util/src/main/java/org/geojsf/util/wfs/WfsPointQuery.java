@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.exception.GeoJsfDeveloperException;
 import org.geojsf.factory.xml.specs.gml.XmlCoordinatesFactory;
 import org.geojsf.interfaces.model.core.GeoJsfLayer;
@@ -33,8 +34,6 @@ import org.jeesl.interfaces.facade.JeeslIdFacade;
 import org.jeesl.interfaces.model.with.primitive.number.EjbWithId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.util.xml.JaxbUtil;
 
 @SuppressWarnings("rawtypes")
 public class WfsPointQuery<W extends EjbWithGeometry, I extends EjbWithId,

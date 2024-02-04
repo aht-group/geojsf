@@ -1,13 +1,12 @@
 package org.geojsf.factory.xml.spec.ogc;
 
+import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.factory.xml.specs.ogc.XmlFilterFactory;
 import org.geojsf.model.xml.specs.ogc.Filter;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfUtilsTestBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class CliXmlFilterFactory extends AbstractGeoJsfUtilTest
 {
