@@ -1,7 +1,7 @@
 package org.geojsf.model.xml.specs.ogc;
 
 import org.geojsf.model.xml.specs.gml.TestXmlPoint;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +28,7 @@ public class TestXmlDWithin extends AbstractXmlOgcTest<DWithin>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlDWithin test = new TestXmlDWithin();
 		test.saveReferenceXml();
     }

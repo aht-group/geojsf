@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 import org.apache.commons.configuration.Configuration;
 import org.exlp.util.jx.JaxbUtil;
-import org.geojsf.test.GeoJsfDocTestBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.controller.io.db.xml.UtilsDbXmlSeedUtil;
 import org.jeesl.exception.processing.UtilsConfigurationException;
 import org.jeesl.model.xml.io.db.Db;
@@ -86,7 +86,7 @@ public class GeoJsfOfxDocumentation
 	
 	public static void main(String args[]) throws Exception
 	{
-		Configuration config = GeoJsfDocTestBootstrap.init();
+		Configuration config = GeoJsfBootstrap.init();
 		
 		config.setProperty(UtilsDocumentation.keyTranslationFile, "msg.geojsf/doc/ofx.xml");
 		config.setProperty(UtilsDocumentation.keyBaseLatexDir, "src/main/latex/common");

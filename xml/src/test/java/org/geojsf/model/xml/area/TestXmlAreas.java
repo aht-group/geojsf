@@ -1,6 +1,6 @@
 package org.geojsf.model.xml.area;
 
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +28,7 @@ public class TestXmlAreas extends AbstractXmAreaTest<Areas>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlAreas test = new TestXmlAreas();
 		test.saveReferenceXml();
     }

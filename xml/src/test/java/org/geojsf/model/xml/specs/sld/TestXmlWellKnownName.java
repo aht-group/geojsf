@@ -1,6 +1,6 @@
 package org.geojsf.model.xml.specs.sld;
 
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +20,7 @@ public class TestXmlWellKnownName extends AbstractXmlSldTest<WellKnownName>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlWellKnownName test = new TestXmlWellKnownName();
 		test.saveReferenceXml();
     }

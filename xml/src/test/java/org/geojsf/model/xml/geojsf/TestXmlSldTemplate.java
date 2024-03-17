@@ -3,7 +3,7 @@ package org.geojsf.model.xml.geojsf;
 import java.io.FileNotFoundException;
 
 import org.exlp.util.jx.JaxbUtil;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
@@ -46,7 +46,7 @@ public class TestXmlSldTemplate extends AbstractXmlGeojsfTest
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 			
 		TestXmlSldTemplate.initFiles();	
 		TestXmlSldTemplate test = new TestXmlSldTemplate();

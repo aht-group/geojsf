@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import org.exlp.model.xml.net.Database;
 import org.exlp.model.xml.net.Host;
 import org.exlp.util.jx.JaxbUtil;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -58,7 +58,7 @@ public class TestXmlConnection extends AbstractXmlGeoserverTest
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 			
 		TestXmlConnection.initFiles();	
 		TestXmlConnection test = new TestXmlConnection();

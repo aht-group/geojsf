@@ -135,6 +135,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-xml</artifactId>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 	 		<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 			<type>jar</type>

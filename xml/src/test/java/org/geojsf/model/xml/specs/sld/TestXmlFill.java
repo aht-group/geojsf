@@ -1,6 +1,6 @@
 package org.geojsf.model.xml.specs.sld;
 
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ public class TestXmlFill extends AbstractXmlSldTest<Fill>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlFill test = new TestXmlFill();
 		test.saveReferenceXml();
     }

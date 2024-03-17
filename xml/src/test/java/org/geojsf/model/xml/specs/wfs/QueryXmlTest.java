@@ -2,7 +2,7 @@ package org.geojsf.model.xml.specs.wfs;
 
 import org.geojsf.model.xml.specs.ogc.TestXmlFilter;
 import org.geojsf.model.xml.specs.ogc.TestXmlPropertyName;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class QueryXmlTest extends AbstractXmlWfsTest<Query>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		QueryXmlTest test = new QueryXmlTest();
 		test.saveReferenceXml();
     }

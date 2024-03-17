@@ -1,6 +1,6 @@
 package org.geojsf.model.xml.specs.ogc;
 
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +22,7 @@ public class TestXmlDistance extends AbstractXmlOgcTest<Distance>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();	
+		GeoJsfBootstrap.init();	
 		TestXmlDistance test = new TestXmlDistance();
 		test.saveReferenceXml();
     }

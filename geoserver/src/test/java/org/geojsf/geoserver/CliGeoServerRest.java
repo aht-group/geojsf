@@ -8,7 +8,7 @@ import org.apache.commons.configuration.Configuration;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.model.xml.geoserver.Styles;
-import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +53,7 @@ public class CliGeoServerRest
 		
 	public static void main (String[] args) throws Exception
 	{
-		Configuration config = GeoJsfGeoServerTestBootstrap.init();
+		Configuration config = GeoJsfBootstrap.init();
 			
 		CliGeoServerRest rest = new CliGeoServerRest(config);
 		rest.test();

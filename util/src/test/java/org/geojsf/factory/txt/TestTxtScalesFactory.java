@@ -4,7 +4,7 @@ import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
 import org.geojsf.model.xml.geojsf.Scales;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
-import org.geojsf.test.GeoJsfUtilsTestBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,7 +44,7 @@ public class TestTxtScalesFactory extends AbstractGeoJsfUtilTest
 	
 	public static void main(String[] args)
 	{
-		GeoJsfUtilsTestBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestTxtScalesFactory test = new TestTxtScalesFactory();
 		test.init();
 		test.testInt();

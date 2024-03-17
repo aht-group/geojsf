@@ -1,7 +1,7 @@
 package org.geojsf.model.xml.monitoring;
 
 import org.geojsf.model.xml.geojsf.TestXmlWkt;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public class TestXmlStation extends AbstractXmlMonitoringTest<Station>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlStation test = new TestXmlStation();
 		test.saveReferenceXml();
     }

@@ -1,5 +1,6 @@
 package org.geojsf.test;
 
+import org.exlp.controller.handler.io.log.LoggerBootstrap;
 import org.exlp.util.io.log.LoggerInit;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
@@ -22,9 +23,7 @@ public class AbstractGeoJsfUtilTest
 	{
 		if(!LoggerInit.isLog4jInited())
 		{
-			LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-			loggerInit.path("config.geojsf-util.test");
-			loggerInit.init();
+			LoggerBootstrap.instance("cli.xml.log4j2.xml").path("geojsf/system/io/log").init();
 		}
     }
 	

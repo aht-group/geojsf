@@ -2,7 +2,7 @@ package org.geojsf.model.xml.specs.sld;
 
 import org.geojsf.model.xml.specs.ogc.TestXmlFunction;
 import org.geojsf.model.xml.specs.ogc.TestXmlLiteral;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class TestXmlSvgParameter extends AbstractXmlSldTest<SvgParameter>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlSvgParameter test = new TestXmlSvgParameter();
 		test.saveReferenceXml();
     }

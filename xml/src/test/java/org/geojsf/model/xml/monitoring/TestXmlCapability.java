@@ -1,6 +1,6 @@
 package org.geojsf.model.xml.monitoring;
 
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.factory.xml.system.status.XmlStatusFactory;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public class TestXmlCapability extends AbstractXmlMonitoringTest<Capability>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlCapability test = new TestXmlCapability();
 		test.saveReferenceXml();
     }

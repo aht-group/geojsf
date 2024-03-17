@@ -10,7 +10,7 @@ import org.geojsf.model.xml.specs.sld.Graphic;
 import org.geojsf.model.xml.specs.sld.PointSymbolizer;
 import org.geojsf.model.xml.specs.sld.Rule;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
-import org.geojsf.test.GeoJsfUtilsTestBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,7 +48,7 @@ public class CliXmlRuleFactory extends AbstractGeoJsfUtilTest
 	
 	public static void main(String[] args)
 	{
-		GeoJsfUtilsTestBootstrap.init();
+		GeoJsfBootstrap.init();
 		CliXmlRuleFactory cli = new CliXmlRuleFactory();
 //		cli.interval();
 		cli.external();

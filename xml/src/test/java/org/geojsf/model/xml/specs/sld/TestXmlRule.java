@@ -1,7 +1,7 @@
 package org.geojsf.model.xml.specs.sld;
 
 import org.geojsf.model.xml.specs.ogc.TestXmlFilter;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class TestXmlRule extends AbstractXmlSldTest<Rule>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlRule test = new TestXmlRule();
 		test.saveReferenceXml();
     }

@@ -1,6 +1,6 @@
 package org.geojsf.model.xml.government;
 
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +30,7 @@ public class TestXmlRegion extends AbstractXmlGovernmentTest<Region>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlRegion test = new TestXmlRegion();
 		test.saveReferenceXml();
     }

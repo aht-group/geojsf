@@ -1,6 +1,6 @@
 package org.geojsf.model.xml.specs.sld;
 
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +24,7 @@ public class TestXmlExternalGraphic extends AbstractXmlSldTest<ExternalGraphic>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlExternalGraphic test = new TestXmlExternalGraphic();
 		test.saveReferenceXml();
     }

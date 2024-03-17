@@ -3,7 +3,7 @@ package org.geojsf.model.xml.geojsf;
 import java.io.FileNotFoundException;
 
 import org.exlp.util.jx.JaxbUtil;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
 import org.junit.BeforeClass;
@@ -51,7 +51,7 @@ public class TestXmlService extends AbstractXmlGeojsfTest
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 			
 		TestXmlService.initFiles();	
 		TestXmlService test = new TestXmlService();

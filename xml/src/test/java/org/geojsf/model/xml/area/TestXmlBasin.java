@@ -1,7 +1,7 @@
 package org.geojsf.model.xml.area;
 
 import org.geojsf.model.xml.geojsf.TestXmlWkt;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
 import org.jeesl.factory.xml.system.status.XmlModelFactory;
@@ -37,7 +37,7 @@ public class TestXmlBasin extends AbstractXmAreaTest<Basin>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();	
+		GeoJsfBootstrap.init();	
 		TestXmlBasin test = new TestXmlBasin();
 		test.saveReferenceXml();
     }

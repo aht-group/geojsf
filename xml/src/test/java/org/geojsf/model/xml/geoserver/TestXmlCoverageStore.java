@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.exlp.util.jx.JaxbUtil;
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -49,7 +49,7 @@ public class TestXmlCoverageStore extends AbstractXmlGeoserverTest
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 			
 		TestXmlCoverageStore.initFiles();	
 		TestXmlCoverageStore test = new TestXmlCoverageStore();

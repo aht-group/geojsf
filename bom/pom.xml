@@ -60,6 +60,12 @@
                 <groupId>org.geojsf</groupId>
                 <artifactId>geojsf-xml</artifactId>
                 <version>${project.version}</version>
+                <classifier>tests</classifier>
+            </dependency>
+             <dependency>
+                <groupId>org.geojsf</groupId>
+                <artifactId>geojsf-xml</artifactId>
+                <version>${project.version}</version>
             </dependency>
 			
             <dependency>

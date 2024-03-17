@@ -1,6 +1,6 @@
 package org.geojsf.model.xml.specs.ogc;
 
-import org.geojsf.test.GeoJsfXmlTstBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +24,7 @@ public class TestXmlUpperBoundary extends AbstractXmlOgcTest<UpperBoundary>
 	
 	public static void main(String[] args)
     {
-		GeoJsfXmlTstBootstrap.init();
+		GeoJsfBootstrap.init();
 		TestXmlUpperBoundary test = new TestXmlUpperBoundary();
 		test.saveReferenceXml();
     }

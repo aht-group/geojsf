@@ -12,7 +12,7 @@ import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.model.xml.geoserver.Workspace;
 import org.geojsf.model.xml.geoserver.Workspaces;
-import org.geojsf.test.GeoJsfGeoServerTestBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,7 +64,7 @@ public class CliGeoServerWorkspaceManager
 	
 	public static void main (String[] args) throws Exception
 	{
-		Configuration config = GeoJsfGeoServerTestBootstrap.init();
+		Configuration config = GeoJsfBootstrap.init();
 			
 		GeoServerRest rest = new GeoServerRestWrapper(config);
 		

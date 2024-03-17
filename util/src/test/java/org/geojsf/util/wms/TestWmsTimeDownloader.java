@@ -4,7 +4,7 @@ import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
 import org.geojsf.factory.xml.geojsf.meta.XmlViewPortFactory;
 import org.geojsf.model.xml.geojsf.ViewPort;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
-import org.geojsf.test.GeoJsfUtilsTestBootstrap;
+import org.geojsf.test.GeoJsfBootstrap;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class TestWmsTimeDownloader extends AbstractGeoJsfUtilTest
 {
-	private final static Logger logger = LoggerFactory.getLogger(GeoJsfUtilsTestBootstrap.class);
+	private final static Logger logger = LoggerFactory.getLogger(GeoJsfBootstrap.class);
 	
 	private WmsTileDownloader wmsDownloader;
 	private ViewPort viewPort;

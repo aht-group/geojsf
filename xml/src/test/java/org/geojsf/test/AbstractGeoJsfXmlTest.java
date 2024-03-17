@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.exlp.util.io.log.LoggerInit;
+import org.exlp.controller.handler.io.log.LoggerBootstrap;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
 import org.junit.BeforeClass;
@@ -28,9 +28,7 @@ public class AbstractGeoJsfXmlTest <T extends Object> extends AbstractAhtUtilsXm
 	@BeforeClass
     public static void initLogger()
 	{
-		LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-		loggerInit.path("config.geojsf-entities.test");
-		loggerInit.init();
+		LoggerBootstrap.instance("cli.xml.log4j2.xml").path("geojsf/system/io/log").init();
     }
 	
 	@BeforeClass
