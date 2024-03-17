@@ -37,7 +37,7 @@
 			<classifier>javax</classifier>
 		</dependency>
 		
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
             <artifactId>hibernate-spatial</artifactId>
@@ -59,7 +59,11 @@
 	         		<groupId>org.jboss.logging</groupId>
 	         		<artifactId>jboss-logging</artifactId>
 	         	</exclusion>
-	         </exclusions>
+	         	<exclusion>
+	         		<groupId>org.postgresql</groupId>
+	         		<artifactId>postgresql</artifactId>
+	         	</exclusion>
+            </exclusions>
         </dependency>
 		
 		<!-- XML -->
@@ -87,11 +91,6 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
 		</dependency>
    	   	
 		<!-- Testing -->

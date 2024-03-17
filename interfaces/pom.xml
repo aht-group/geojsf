@@ -71,7 +71,11 @@
 	         		<groupId>org.jboss.logging</groupId>
 	         		<artifactId>jboss-logging</artifactId>
 	         	</exclusion>
-	         </exclusions>
+	         	<exclusion>
+	         		<groupId>org.postgresql</groupId>
+	         		<artifactId>postgresql</artifactId>
+	         	</exclusion>
+            </exclusions>
         </dependency>
 	</dependencies>
 
