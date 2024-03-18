@@ -3,14 +3,8 @@ package org.geojsf.geoserver.rest;
 import java.io.IOException;
 import java.io.InputStream;
 
-import net.sf.exlp.util.xml.JDomUtil;
-import net.sf.exlp.util.xml.XmlUtil;
-
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.api.rest.geoserver.GeoServerRestInterface;
 import org.geojsf.model.xml.geoserver.CoverageStore;
@@ -26,15 +20,19 @@ import org.geojsf.model.xml.geoserver.Styles;
 import org.geojsf.model.xml.geoserver.Workspace;
 import org.geojsf.model.xml.geoserver.Workspaces;
 import org.geojsf.util.GeoServerConfigKeys;
-import org.jboss.resteasy.client.ProxyFactory;
-import org.jboss.resteasy.client.core.executors.ApacheHttpClient4Executor;
-import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.jboss.resteasy.client.jaxrs.BasicAuthentication;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
+import org.jeesl.util.web.RestLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.util.xml.JDomUtil;
+import net.sf.exlp.util.xml.XmlUtil;
 
 public class GeoServerRestWrapper implements GeoServerRest
 {
@@ -59,15 +57,20 @@ public class GeoServerRestWrapper implements GeoServerRest
 	
 	public GeoServerRestWrapper(String url, String user, String password)
 	{
-		RegisterBuiltin.register(ResteasyProviderFactory.getInstance());
+		ResteasyClient client = new ResteasyClientBuilder().build();
+		client.register(new BasicAuthentication(user, password));
+		client.register(new RestLogger());
+		ResteasyWebTarget target = client.target(url);
+		rest = target.proxy(GeoServerRestInterface.class);
 		
-		DefaultHttpClient client = new DefaultHttpClient();
-	    UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(user, password);
-	    AuthScope authscope = new AuthScope(AuthScope.ANY_HOST,AuthScope.ANY_PORT, AuthScope.ANY_REALM);
-	    client.getCredentialsProvider().setCredentials(authscope, credentials);
-	    ApacheHttpClient4Executor executer = new ApacheHttpClient4Executor(client);
+//		RegisterBuiltin.register(ResteasyProviderFactory.getInstance());
+//		DefaultHttpClient client = new DefaultHttpClient();
+//	    UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(user, password);
+//	    AuthScope authscope = new AuthScope(AuthScope.ANY_HOST,AuthScope.ANY_PORT, AuthScope.ANY_REALM);
+//	    client.getCredentialsProvider().setCredentials(authscope, credentials);
+//	    ApacheHttpClient4Executor executer = new ApacheHttpClient4Executor(client);
+//		rest = ProxyFactory.create(GeoServerRestInterface.class, url, executer);
 		
-		rest = ProxyFactory.create(GeoServerRestInterface.class, url, executer);
 		logger.info("REST proxy created with URL="+url);
 		styleWrapper = new GeoServerRestStyleWrapper(rest);
 		layerWrapper=new GeoServerRestLayerWrapper(rest);
