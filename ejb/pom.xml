@@ -39,7 +39,7 @@
    	   		<scope>provided</scope>
    	   	</dependency>
    	   	
-   	   	<!-- AHT Utils -->
+   	   	<!-- JEESL -->
 		<dependency>
 			<groupId>org.jeesl</groupId>
 			<artifactId>jeesl-jsf</artifactId>
@@ -87,13 +87,36 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-				
+		
+		<!-- Jakarta EE 
 		<dependency>
 		   <groupId>org.jboss.spec</groupId>
 		   <artifactId>jboss-javaee-6.0</artifactId>
 		   <type>pom</type>
 		   <scope>provided</scope>
+		</dependency> -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+		
 		<dependency>
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-util</artifactId>

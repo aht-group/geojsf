@@ -53,18 +53,26 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- JSF -->
+		<!-- Java EE -->
 		<dependency>
-		    <groupId>com.sun.faces</groupId>
-		    <artifactId>jsf-api</artifactId>
-		    <scope>provided</scope>
-		</dependency>
-		<dependency>
-  			<groupId>javax.el</groupId>
-			<artifactId>javax.el-api</artifactId>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>3.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 	    	<groupId>com.google.code.gson</groupId>
 	    	<artifactId>gson</artifactId>
@@ -75,11 +83,6 @@
    			<artifactId>primefaces</artifactId> 
    			<scope>provided</scope>
    		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
    		
    		<!--2022-09-04 tk Preparing removal  
    		<dependency>
