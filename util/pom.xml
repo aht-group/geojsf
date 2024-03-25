@@ -91,6 +91,14 @@
 			</exclusions>
 		</dependency>
 		
+		<!-- JavaEE -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		
 		<!--2022-09-04 tk Preparing removal  
 		<dependency>
 			<groupId>jola-time</groupId>
@@ -286,14 +294,7 @@
 		    <artifactId>commons-jxpath</artifactId>
 		    <scope>provided</scope>
 		</dependency>
-		
- 		<!-- JPA -->
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		
+				
 		<!-- GEO -->
 		<dependency>
 			<groupId>com.vividsolutions</groupId>
