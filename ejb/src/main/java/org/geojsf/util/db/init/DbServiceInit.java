@@ -50,7 +50,7 @@ public class DbServiceInit <L extends JeeslLang,D extends JeeslDescription,
 	{
 		logger.debug("i/u "+Repository.class.getSimpleName()+" with "+repository.getService().size()+" "+Service.class.getSimpleName());
 		
-		JeeslDbCodeEjbUpdater<SERVICE> ejbUpdater = JeeslDbCodeEjbUpdater.createFactory(cService);
+		JeeslDbCodeEjbUpdater<SERVICE> ejbUpdater = JeeslDbCodeEjbUpdater.instance(cService);
 		ejbUpdater.dbEjbs(fSecurity.all(cService));
 
 		for(Service service : repository.getService())

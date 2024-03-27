@@ -52,7 +52,7 @@ public class DbCategoryInit <L extends JeeslLang,D extends JeeslDescription,
 	{
 		logger.debug("i/u "+Repository.class.getSimpleName()+" with "+categories.getService().size()+" "+Service.class.getSimpleName());
 		
-		JeeslDbCodeEjbUpdater<CATEGORY> ejbUpdater = JeeslDbCodeEjbUpdater.createFactory(cCategory);
+		JeeslDbCodeEjbUpdater<CATEGORY> ejbUpdater = JeeslDbCodeEjbUpdater.instance(cCategory);
 		ejbUpdater.dbEjbs(fSecurity.all(cCategory));
 
 		for(Category category : categories.getCategory())

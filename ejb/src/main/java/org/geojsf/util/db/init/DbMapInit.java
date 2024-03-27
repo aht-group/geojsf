@@ -110,7 +110,7 @@ public class DbMapInit <L extends JeeslLang,D extends JeeslDescription,
 	{
 		logger.debug("i/u "+Maps.class.getSimpleName()+" with "+maps.getMap()+" "+Map.class.getSimpleName());
 		
-		JeeslDbCodeEjbUpdater<MAP> ejbUpdater = JeeslDbCodeEjbUpdater.createFactory(cMap);
+		JeeslDbCodeEjbUpdater<MAP> ejbUpdater = JeeslDbCodeEjbUpdater.instance(cMap);
 		ejbUpdater.dbEjbs(fUtils.all(cMap));
 
 		for(Map map : maps.getMap())

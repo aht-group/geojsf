@@ -112,7 +112,7 @@ public class DbLayerInit <L extends JeeslLang,D extends JeeslDescription,
 	{
 		logger.debug("i/u "+Layers.class.getSimpleName()+" with "+layers.getLayer().size()+" "+Layer.class.getSimpleName());
 		
-		JeeslDbCodeEjbUpdater<LAYER> updateLayer = JeeslDbCodeEjbUpdater.createFactory(cLayer);
+		JeeslDbCodeEjbUpdater<LAYER> updateLayer = JeeslDbCodeEjbUpdater.instance(cLayer);
 		
 		updateLayer.dbEjbs(fUtils.all(cLayer));
 
