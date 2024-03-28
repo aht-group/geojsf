@@ -10,6 +10,7 @@ import org.geojsf.factory.txt.TxtSldRuleFactory;
 import org.geojsf.interfaces.facade.GeoSldFacade;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
+import org.jeesl.controller.web.util.AbstractLogMessage;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.factory.builder.system.SvgFactoryBuilder;
@@ -25,8 +26,6 @@ import org.jeesl.jsf.handler.PositionListReorderer;
 import org.primefaces.event.ReorderEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 public class SldRuleHandler <L extends JeeslLang, D extends JeeslDescription,
 							G extends JeeslGraphic<GT,?,GS>, GT extends JeeslGraphicType<L,D,GT,G>, GS extends JeeslGraphicShape<L,D,GS,G>,

@@ -30,6 +30,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.jeesl.api.bean.JeeslTranslationBean;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
+import org.jeesl.controller.web.util.AbstractLogMessage;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
 import org.jeesl.exception.ejb.JeeslLockingException;
 import org.jeesl.exception.ejb.JeeslNotFoundException;
@@ -41,8 +42,6 @@ import org.jeesl.jsf.jx.util.FacesContextMessage;
 import org.primefaces.event.ReorderEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.ahtutils.web.mbean.util.AbstractLogMessage;
 
 @Deprecated //Use GeojsfSettingsMapController instead
 public class AbstractMapThematicBean <L extends JeeslLang, D extends JeeslDescription, LOC extends JeeslLocale<L,D,LOC,?>,
