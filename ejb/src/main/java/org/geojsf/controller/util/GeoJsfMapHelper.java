@@ -18,11 +18,11 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
+import org.jeesl.jsf.model.JeeslPrimefacesDataModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.jsf.interfaces.dm.DmSingleSelect;
-import net.sf.ahtutils.model.primefaces.PrimefacesEjbIdDataModel;
 
 //REmove au-jsf from pom when deleting!!
 
@@ -48,7 +48,7 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
 	
 	private List<SERVICE> layerServices;
 	private MAP map;
-	private PrimefacesEjbIdDataModel<LAYER> dmLayer;
+	private JeeslPrimefacesDataModel<LAYER> dmLayer;
 
 	private GeoJsfMapHelper(final Class<SERVICE> clService)
     {
@@ -119,7 +119,7 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
     	{
     		list.add(vl.getLayer());
     	}
-    	dmLayer = new PrimefacesEjbIdDataModel<LAYER>(list);
+    	dmLayer = new JeeslPrimefacesDataModel<LAYER>(list);
     	dmLayer.setSingleSelectCallback(this);
     }
     
@@ -170,6 +170,6 @@ public class GeoJsfMapHelper <L extends JeeslLang,D extends JeeslDescription,
     public MAP getMap() {return map;}
 	public void setMap(MAP view) {this.map = view;} 
     
-    public PrimefacesEjbIdDataModel<LAYER> getDmLayer() {return dmLayer;}
+    public JeeslPrimefacesDataModel<LAYER> getDmLayer() {return dmLayer;}
     public List<SERVICE> getLayerServices() {return layerServices;}
 }
