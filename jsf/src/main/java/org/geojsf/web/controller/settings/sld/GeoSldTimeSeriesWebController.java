@@ -60,8 +60,8 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 	private final GeoSldTimeSeriesCallback<SLD> callback;
 	private SldRuleHandler<L,D,G,GT,GS,SLD,RULE> ruleHandler; public SldRuleHandler<L,D,G,GT,GS,SLD,RULE> getRuleHandler() {return ruleHandler;}
 	
-	private final TreeNode tree; public TreeNode getTree() {return tree;}
-	private TreeNode node; public TreeNode getNode() {return node;} public void setNode(TreeNode node) {this.node = node;}
+	private final TreeNode<Object> tree; public TreeNode<Object> getTree() {return tree;}
+	private TreeNode<Object> node; public TreeNode<Object> getNode() {return node;} public void setNode(TreeNode<Object> node) {this.node = node;}
 	
 	private SCOPE scope; public SCOPE getScope() {return scope;}
 	private MP mp; public MP getMp() {return mp;}
@@ -78,7 +78,7 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 		this.fbSld=fbSld;
 		this.fbTs=fbTs;
 		
-		tree = new DefaultTreeNode("Root", null);
+		tree = new DefaultTreeNode<>("Root", null);
 	}
 	
 	public void postConstruct(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
@@ -101,16 +101,16 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 		{
 			if(mapScope.containsKey(category))
 			{
-				TreeNode nCategory = new DefaultTreeNode(category,tree);
+				TreeNode<CAT> nCategory = new DefaultTreeNode<>(category,tree);
 				for(SCOPE scope : mapScope.get(category))
 				{
-					TreeNode nScope = new DefaultTreeNode(scope,nCategory);
+					TreeNode<SCOPE> nScope = new DefaultTreeNode<>(scope,nCategory);
 					if(mapMp.containsKey(scope))
 					{
 						List<MP> mps = mapMp.get(scope);
 						for(MP mp : mps)
 						{
-							new DefaultTreeNode(mp,nScope);
+							new DefaultTreeNode<MP>(mp,nScope);
 						}
 					}
 				}
@@ -130,7 +130,7 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 
 	public void onNodeSelect(NodeSelectEvent event) throws JeeslConstraintViolationException, JeeslLockingException {this.nodeSelected(event.getTreeNode());}
 	@SuppressWarnings("unchecked")
-	public void nodeSelected(TreeNode node) throws JeeslConstraintViolationException, JeeslLockingException
+	public void nodeSelected(TreeNode<Object> node) throws JeeslConstraintViolationException, JeeslLockingException
 	{
 		logger.info("Selected "+node.toString());
 		this.reset();
