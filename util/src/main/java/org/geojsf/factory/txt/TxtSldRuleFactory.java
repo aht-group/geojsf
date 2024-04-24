@@ -6,16 +6,14 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.model.xml.geojsf.SldRule;
 
 public class TxtSldRuleFactory<RULE extends GeoJsfSldRule<?,?,?>>
-{	
+{
+	public static <RULE extends GeoJsfSldRule<?,?,?>> TxtSldRuleFactory<RULE> factory()
+	{
+		return new TxtSldRuleFactory<RULE>();
+	}
 	private TxtSldRuleFactory()
 	{
 
-	}
-	
-	public static <RULE extends GeoJsfSldRule<?,?,?>>
-		TxtSldRuleFactory<RULE> factory()
-	{
-		return new TxtSldRuleFactory<RULE>();
 	}
 	
 	public String build(RULE rule)
@@ -56,5 +54,14 @@ public class TxtSldRuleFactory<RULE extends GeoJsfSldRule<?,?,?>>
 	        return String.format("%d",(long)d);
 	    else
 	        return String.format("%s",d);
+	}
+	
+	public String toRgb(RULE rule)
+	{
+		int r = Integer.valueOf(rule.getGraphic().getColor().substring(0,2), 16);
+        int g = Integer.valueOf(rule.getGraphic().getColor().substring(2,4), 16);
+        int b = Integer.valueOf(rule.getGraphic().getColor().substring(4,6), 16);
+        
+        return String.format("%03d%03d%03d", r,g,b);
 	}
 }
