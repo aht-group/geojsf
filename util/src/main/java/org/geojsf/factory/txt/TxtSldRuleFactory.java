@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
 import org.geojsf.model.xml.geojsf.SldRule;
+import org.jeesl.factory.txt.io.graphic.TxtGraphicComponentFactory;
 
 public class TxtSldRuleFactory<RULE extends GeoJsfSldRule<?,?,?>>
 {
@@ -56,12 +57,5 @@ public class TxtSldRuleFactory<RULE extends GeoJsfSldRule<?,?,?>>
 	        return String.format("%s",d);
 	}
 	
-	public String toRgb(RULE rule)
-	{
-		int r = Integer.valueOf(rule.getGraphic().getColor().substring(0,2), 16);
-        int g = Integer.valueOf(rule.getGraphic().getColor().substring(2,4), 16);
-        int b = Integer.valueOf(rule.getGraphic().getColor().substring(4,6), 16);
-        
-        return String.format("%03d%03d%03d", r,g,b);
-	}
+	public String toRgb(RULE rule) {return TxtGraphicComponentFactory.toIntegerRgb(rule.getGraphic().getColor());}
 }
