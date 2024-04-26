@@ -1,11 +1,13 @@
 package org.geojsf.controller.processor;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
+import org.jeesl.factory.txt.io.graphic.TxtGraphicComponentFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +25,16 @@ public class SldRuleColorProcessor <SLD extends GeoJsfSld<?,?,?,?,RULE,?,?>,
 		rules = sld.getRules();
 	}
 	
+	public Color toColor(double value, Color fallback)
+	{
+		RULE rule = this.toRule(value);
+		if(Objects.nonNull(rule)) 
+		{
+			return TxtGraphicComponentFactory.toAwtColor(rule.getGraphic().getColor());
+		}
+		return fallback;
+	}
+	
 	public RULE toRule(double value)
 	{
 		RULE result = null;
@@ -37,5 +49,4 @@ public class SldRuleColorProcessor <SLD extends GeoJsfSld<?,?,?,?,RULE,?,?>,
 //		logger.info("RESULT "+result.toString()+" value:"+value);
 		return result;
 	}
-	
 }
