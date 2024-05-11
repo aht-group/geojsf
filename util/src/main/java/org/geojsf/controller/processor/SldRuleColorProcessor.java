@@ -1,10 +1,13 @@
 package org.geojsf.controller.processor;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
+import org.jeesl.factory.txt.io.graphic.TxtGraphicComponentFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,13 +25,28 @@ public class SldRuleColorProcessor <SLD extends GeoJsfSld<?,?,?,?,RULE,?,?>,
 		rules = sld.getRules();
 	}
 	
-	public RULE toRule(double value)
+	public Color toColor(double value, Color fallback)
 	{
-		for(RULE r : rules)
+		RULE rule = this.toRule(value);
+		if(Objects.nonNull(rule)) 
 		{
-			if(r.getLowerBound()<value && value<=r.getUpperBound()) {return r;}
+			return TxtGraphicComponentFactory.toAwtColor(rule.getGraphic().getColor());
 		}
-		return null;
+		return fallback;
 	}
 	
+	public RULE toRule(double value)
+	{
+		RULE result = null;
+		for(RULE r : rules)
+		{
+			boolean isAboveLower = Objects.isNull(r.getLowerBound()) || r.getLowerBound()<value;
+			boolean isBelowUpper = Objects.isNull(r.getUpperBound()) || value<=r.getUpperBound();
+//			logger.info(r.toString()+" value:"+value);
+			if(isAboveLower  && isBelowUpper) {result = r; break;}
+		}
+		if(Objects.isNull(result)) {logger.warn("NO RULE for "+value);}
+//		logger.info("RESULT "+result.toString()+" value:"+value);
+		return result;
+	}
 }
