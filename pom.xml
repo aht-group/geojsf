@@ -51,6 +51,17 @@
 		<developerConnection>scm:git:git@github.com/aht-group/geojsf.git</developerConnection>
 	</scm>
 	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype.snapshot.token</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+	
 	<developers>
 		<developer>
 			<id>1</id>
@@ -191,17 +202,6 @@
 		    <snapshots><enabled>false</enabled></snapshots>
 		</repository>
 	</repositories>
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
 
 	<profiles>
 		<profile>
