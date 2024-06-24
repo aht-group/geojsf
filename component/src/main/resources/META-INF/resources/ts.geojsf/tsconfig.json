@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+		"baseUrl": "./",
+		"types": ["primefaces"],
+        "noImplicitAny": true,
+        "target": "es5",
+         "module": "commonjs",
+		"moduleResolution": "node",
+		"paths": {
+			"*": [
+			  "../@types/*",
+			  "../node_modules/@types/*",
+				"../node_modules/primefaces/*"
+			]
+		  }
+    }
+}
