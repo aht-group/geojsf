@@ -45,6 +45,8 @@ var GeoJsfControl = {
 			
 	addGraticule : function()
 	{
+		console.error('Graticule not yet implemented');
+		/*
 		var style = new ol.style.Style();
 			style.setStroke (new ol.style.Stroke({ color: "rgba(255,120,0,0.9)", width:1 }));
 			//style.setFill (new ol.style.Fill({ color:  "#ffff"} ));
@@ -59,6 +61,7 @@ var GeoJsfControl = {
 		});
 		graticule.setStyle(style);
 		graticule.setMap(GeoJSF.map);
+		*/
 	},
 	
 	addRotation : function()
@@ -69,6 +72,11 @@ var GeoJsfControl = {
 
 	addNorthArrow : function(imagePath)
 	{
+		const northArrowControl = new NorthArrow({
+			imagePath: imagePath
+		});
+		GeoJSF.map.addControl(northArrowControl);
+		/*
 		ol.control.NorthArrow = function(opt_options) {
 			this.options = opt_options || {};
 			this.options.class = this.options.class || 'ol-northarrow';
@@ -103,6 +111,7 @@ var GeoJsfControl = {
 		}
 		var northArrowControlObj = new ol.control.NorthArrow();
 		GeoJSF.map.addControl(northArrowControlObj);
+		*/
 	},
 	
 	addPopUp : function()
@@ -179,3 +188,38 @@ var GeoJsfControl = {
 		GeoJSF.map.addOverlay(GeoJSF.popUpOverlay);
 	}
 };
+
+class NorthArrow extends ol.control.Control {
+    constructor(opt_options) {
+        const options = opt_options || {};
+        const element = document.createElement('div');
+        element.className = (options.class || 'ol-northarrow') + ' ol-unselectable';
+        const narrowImage = document.createElement('img');
+        narrowImage.src = options.imagePath;
+        element.appendChild(narrowImage);
+
+        super({
+            element: element,
+            target: options.target
+        });
+
+        this.map = null;
+        this.rotateArrow = this.rotateArrow.bind(this);
+    }
+
+    setMap(map) {
+        super.setMap(map);
+        if (map) {
+            map.getView().on('change:rotation', this.rotateArrow);
+            this.map = map;
+        } else if (this.map) {
+            this.map.getView().un('change:rotation', this.rotateArrow);
+            this.map = null;
+        }
+    }
+
+    rotateArrow(evt) {
+        const radian = evt.target.getRotation();
+        this.element.style.transform = 'rotate(' + radian * 180 / Math.PI + 'deg)';
+    }
+}
