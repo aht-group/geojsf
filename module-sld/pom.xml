@@ -27,8 +27,33 @@
 	
 	<dependencies>
 		<dependency>
+			<groupId>org.geojsf</groupId>
+			<artifactId>geojsf-interfaces</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.jeesl</groupId>
 			<artifactId>jeesl-interfaces</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-io-locale</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- Jakarta EE -->
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>2.2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- Apache Commons -->
+		<dependency>
+   			<groupId>org.apache.commons</groupId>
+   			<artifactId>commons-lang3</artifactId>
+   			<scope>provided</scope>
 		</dependency>
 		
 	</dependencies>
