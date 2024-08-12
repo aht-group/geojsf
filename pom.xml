@@ -23,6 +23,8 @@
 		<module>util</module>
 		<module>geoserver</module>
 		
+		<module>module-sld</module>
+		
 		<module>xml</module>
 	</modules>
 
