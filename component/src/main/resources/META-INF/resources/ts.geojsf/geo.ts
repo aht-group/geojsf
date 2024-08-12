@@ -315,7 +315,8 @@ import VectorSource from 'ol/source/Vector';
 	
 
 		// Animated cluster layer
-		var animatedClusterOptions : ClusterOptions = {};
+		//var animatedClusterOptions : ClusterOptions = {};
+		var animatedClusterOptions = {} as any;
 		animatedClusterOptions.animationDuration = 0;
 		animatedClusterOptions.source = clusterSource;
 		animatedClusterOptions.style = function(feature : Feature, resolution : number)
@@ -364,7 +365,8 @@ import VectorSource from 'ol/source/Vector';
 		var lonlat                 = olProj.transform(event.features.getArray()[0].getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326');
 		try {
 			var parameters : Partial<PrimeFaces.ajax.ShorthandConfiguration>;
-			var options : PrimeFaces.ajax.Configuration;
+			//var options : PrimeFaces.ajax.Configuration;
+			var options = {} as PrimeFaces.ajax.Configuration;
 			options.source = GeoJSF.map.getTarget();
 			options.event  = "markerMove";
 			options.update = GeoJSF.updateOnClick;
@@ -373,7 +375,7 @@ import VectorSource from 'ol/source/Vector';
 					{name: 'org.geojsf.click.lat',				value: lonlat[1]},
 					{name: 'org.geojsf.click.lon',				value: lonlat[0]},
 					];
-			options.oncomplete = function(xhr, status, args) {console.log('markerMovev AJAX request sent. Resolution : ' +GeoJSF.map.getView().getResolution()+ ' ' +GeoJSF.map.getView().getProjection().getUnits())};
+			options.oncomplete = function(xhr:any, status:any, args:any) {console.log('markerMovev AJAX request sent. Resolution : ' +GeoJSF.map.getView().getResolution()+ ' ' +GeoJSF.map.getView().getProjection().getUnits())};
 			
 			PrimeFaces.ab(
 				options
@@ -386,12 +388,13 @@ import VectorSource from 'ol/source/Vector';
 		  
 	initMap : function(mapDiv : string,baseMap : string)
 	{
-		var layers = [];
+		let layers: TileLayer<olSource.OSM>[] = [];
 		if (baseMap=="osm")
 		{
-			layers.push(new TileLayer({
-								source: new olSource.OSM()
-							}));
+			var titleLayer = new TileLayer({
+				source: new olSource.OSM()
+			})
+			layers.push(titleLayer);
 		}
 		// console.log(layers);
 		this.map = new ol.Map({
@@ -503,12 +506,13 @@ import VectorSource from 'ol/source/Vector';
 		console.log("Merging new Time parameter: " +isoTime);
 		layer.mergeNewParams(params);
 		
-		var options : PrimeFaces.ajax.Configuration;
+		//var options : PrimeFaces.ajax.Configuration;
+		var options = {} as PrimeFaces.ajax.Configuration;
 		options.source = GeoJSF.map.getTarget();
 		options.event  = "updateTime";
 		options.process = "@all";
 		options.params = [{name: 'org.geojsf.update.time', value: time}];
-		options.oncomplete = function(xhr, status, args) {console.log("Back in client.");};
+		options.oncomplete = function(xhr:any, status:any, args:any) {console.log("Back in client.");};
 		
 		PrimeFaces.ab(
 			options
@@ -557,13 +561,14 @@ import VectorSource from 'ol/source/Vector';
 		// jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
 		
 		console.log("switch request detected for layer " +layerId);
-		var options : PrimeFaces.ajax.Configuration;
+		//var options : PrimeFaces.ajax.Configuration;
+		var options = {} as PrimeFaces.ajax.Configuration;
 		options.source = GeoJSF.map.getTarget();
 		options.event  = "layerSwitch";
 		options.update = "@form";
 		options.process = "@form";
 		options.params = [{name: 'org.geojsf.switch.layer', value: layerId}];
-		options.oncomplete = function(xhr, status, args) {GeoJSF.performLayerSwitch(xhr, status, args);}
+		options.oncomplete = function(xhr:any, status:any, args:any) {GeoJSF.performLayerSwitch(xhr, status, args);}
 		
 		PrimeFaces.ab(
 			options
@@ -572,7 +577,8 @@ import VectorSource from 'ol/source/Vector';
 		  
 	secondRun : function()
 	{
-		var options : PrimeFaces.ajax.Configuration;
+		//var options : PrimeFaces.ajax.Configuration;
+		var options = {} as PrimeFaces.ajax.Configuration;
 		options.source = GeoJSF.map.getTarget();
 		options.event  = "updateModel";
 		options.update = "@form";
@@ -586,11 +592,14 @@ import VectorSource from 'ol/source/Vector';
 		  
 	refreshMap : function()
 	{
-		// This is the pure JSF based approach, not having an 'oncomplete' method:	 
-		// jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
+		console.log("Refreshing the map.");
 		
-		// This is the PrimeFaces based solution along with an 'oncomplete' call
-		var options : PrimeFaces.ajax.Configuration;
+		// This is the pure JSF based approach, not having an 'oncomplete' method:	 
+        // jsf.ajax.request(elementId, 'layerChange', {execute: '@form', 'javax.faces.behavior.event': 'layerSwitch','javax.faces.partial.event': 'layerSwitch','org.geojsf.switch.service': serviceId,  'org.geojsf.switch.layer': layerId, 'org.geojsf.switch.on': active});
+        // This is the PrimeFaces based solution along with an 'oncomplete' call
+		
+		//var options : PrimeFaces.ajax.Configuration;
+		var options = {} as PrimeFaces.ajax.Configuration;
 		options.source = GeoJSF.map.getTarget();
 		options.event  = "updateMap";
 		options.update = "@form";
@@ -604,7 +613,7 @@ import VectorSource from 'ol/source/Vector';
 				  
 	initMarker : function(lat : number, lon: number)
 	{
-		var options : any = {};
+		var options = {} as any;
 		options.projection = 'EPSG:3857';
 		GeoJSF.vectorSource = new olSource.Vector(options); 
 
@@ -782,8 +791,8 @@ import VectorSource from 'ol/source/Vector';
 				{ 
 					// Prepare the variables
 					// Sum is the sum of all values for this chart for calculations
-					var values = [];
-					var names  = [];
+					var values:any[] = [];
+					var names:any[]  = [];
 					var sum    =  0;
 					
 					// Activate in case of problems
