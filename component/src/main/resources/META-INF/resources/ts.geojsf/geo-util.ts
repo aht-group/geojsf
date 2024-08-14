@@ -9,6 +9,7 @@ import * as olExtent from 'ol/extent';
 import Layer from 'ol/layer/Layer';
 import * as olSphere from 'ol/sphere';
 import TileLayer from 'ol/layer/Tile';
+import { Coordinate } from 'ol/coordinate';
 
 // Include the types defined in PrimeFaces Node Types dependency
 /// <reference types="primefaces" />
@@ -61,14 +62,15 @@ export var GeoJsfUtil = {
 			console.log("Preparing State of Map to be send for event of Type " +jsfEventName);
 			
 			// Getting view information
-			var centerCoordinates	   = olProj.transform(olEventObject.map.getView().getCenter(), 'EPSG:3857', 'EPSG:4326');
+			let mapCenterCordinate : Coordinate = olEventObject.map.getView().getCenter() || [0, 0];
+			var centerCoordinates	   = olProj.transform(mapCenterCordinate, 'EPSG:3857', 'EPSG:4326');
 			var extent				   = olEventObject.map.getView().calculateExtent(olEventObject.map.getSize());
-			this.centerLat             = centerCoordinates[1];
-			this.centerLon             = centerCoordinates[0];
-			this.viewportBoundTop      = olProj.transform(olExtent.getTopLeft(extent), 'EPSG:3857', 'EPSG:4326')[1];
-			this.viewportBoundBottom   = olProj.transform(olExtent.getBottomLeft(extent), 'EPSG:3857', 'EPSG:4326')[1];
-			this.viewportBoundLeft     = olProj.transform(olExtent.getBottomLeft(extent), 'EPSG:3857', 'EPSG:4326')[0];
-			this.viewportBoundRight    = olProj.transform(olExtent.getBottomRight(extent), 'EPSG:3857', 'EPSG:4326')[0];
+			GeoJSF.centerLat             = centerCoordinates[1];
+			GeoJSF.centerLon             = centerCoordinates[0];
+			GeoJSF.viewportBoundTop      = olProj.transform(olExtent.getTopLeft(extent), 'EPSG:3857', 'EPSG:4326')[1];
+			GeoJSF.viewportBoundBottom   = olProj.transform(olExtent.getBottomLeft(extent), 'EPSG:3857', 'EPSG:4326')[1];
+			GeoJSF.viewportBoundLeft     = olProj.transform(olExtent.getBottomLeft(extent), 'EPSG:3857', 'EPSG:4326')[0];
+			GeoJSF.viewportBoundRight    = olProj.transform(olExtent.getBottomRight(extent), 'EPSG:3857', 'EPSG:4326')[0];
 			var latlon                 = [0.0,0.0];
 			if (olEventObject.coordinate)
 			{
@@ -77,7 +79,7 @@ export var GeoJsfUtil = {
 			var distance				= olSphere.getDistance(olExtent.getTopLeft(extent),olExtent.getBottomLeft(extent)); 
 			console.log("Distance from top to bottom of map is: " +distance);
 				// var options : PrimeFaces.ajax.Configuration = {};
-				var options : PrimeFaces.ajax.Configuration = {
+				var options : any = {
 					async: false,
 					delay: 0,
 					formId: '',
@@ -86,18 +88,18 @@ export var GeoJsfUtil = {
 					fragmentId: '',
 					global: false,
 					ignoreAutoUpdate: false,
-					oncomplete: function (xhrOrErrorThrown, status, pfArgs, dataOrXhr) {
+					oncomplete: function (xhrOrErrorThrown: any, status: any, pfArgs: any, dataOrXhr: any) {
 						console.log(pfArgs);
 					},
-					onerror: function (xhr, status, errorThrown) {
+					onerror: function (xhr: any, status: any, errorThrown: any) {
 						console.log(status);
 						console.log(errorThrown);
 					},
-					onstart: function (cfg) {
+					onstart: function (cfg: any) {
 						console.log(cfg);
 						return true;
 					},
-					onsuccess: function (data, status, xhr) {
+					onsuccess: function (data: any, status: any, xhr: any) {
 						console.log(data);
 						return true;
 					},
@@ -119,12 +121,12 @@ export var GeoJsfUtil = {
 				options.params = [
 					{name: 'org.geojsf.click.lat',						value: latlon[1]},
 					{name: 'org.geojsf.click.lon',						value: latlon[0]},
-					{name: 'org.geojsf.viewport.center.lon',            value: this.centerLon},
-					{name: 'org.geojsf.viewport.center.lat',            value: this.centerLat},
-					{name: 'org.geojsf.viewport.bottom',                value: this.viewportBoundBottom},
-					{name: 'org.geojsf.viewport.top',                   value: this.viewportBoundTop},
-					{name: 'org.geojsf.viewport.left',                  value: this.viewportBoundLeft},
-					{name: 'org.geojsf.viewport.right',                 value: this.viewportBoundRight},	
+					{name: 'org.geojsf.viewport.center.lon',            value: GeoJSF.centerLon},
+					{name: 'org.geojsf.viewport.center.lat',            value: GeoJSF.centerLat},
+					{name: 'org.geojsf.viewport.bottom',                value: GeoJSF.viewportBoundBottom},
+					{name: 'org.geojsf.viewport.top',                   value: GeoJSF.viewportBoundTop},
+					{name: 'org.geojsf.viewport.left',                  value: GeoJSF.viewportBoundLeft},
+					{name: 'org.geojsf.viewport.right',                 value: GeoJSF.viewportBoundRight},	
 					{name: 'org.geojsf.viewport.zoom',					value: (window as any).GeoJSF.map.getView().getZoom()},
 					{name: 'org.geojsf.viewport.unit',                  value: (window as any).GeoJSF.map.getView().getProjection().getUnits()},
 					{name: 'org.geojsf.viewport.scale',                 value: Math.floor( (window as any).GeoJSF.map.getView().getResolution() )}
