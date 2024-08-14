@@ -1,11 +1,26 @@
 {
+	"compileOnSave": false,
     "compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
 		"baseUrl": "./",
 		"types": ["primefaces"],
+		"strict": true,
         "noImplicitAny": true,
-        "target": "es5",
-         "module": "commonjs",
-		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"declaration": false,
+		"downlevelIteration": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+        "target": "ES5",
+         "module": "ES2015",
+		"moduleResolution": "bundler",
+		"outDir": "./dist/",
+		"lib": [
+			"ES2015",
+			"dom"
+		  ],
 		"paths": {
 			"*": [
 			  "../@types/*",
@@ -13,5 +28,7 @@
 				"../node_modules/primefaces/*"
 			]
 		  }
-    }
+	},
+	"include": ["*.ts", "*.test.ts"],
+	"exclude": ["node_modules"]
 }
