@@ -15,8 +15,15 @@
             <div id="info">
             </div>
         
-            <script src="dist/geojsf.js"></script>
-            
+            <script src="../js.geojsf/geojsf.js"></script>
+            <script src="../js.geojsf/control.js"></script>
+            <script>
+                GeoJSF.initMap('mapDiv','osm');
+                GeoJSF.centerMap(51.455643,7.011555);
+                GeoJsfControl.addGraticule();
+                
+                
+            </script>
             
             
             <h2>Access via API</h2>

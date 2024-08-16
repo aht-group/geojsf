@@ -37702,6 +37702,44 @@ var GeoJSF = window.GeoJSF;
 
 /***/ }),
 
+/***/ 991:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   N: () => (/* binding */ GeoJsfViewport)
+/* harmony export */ });
+/* harmony import */ var _geo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(606);
+/* harmony import */ var ol_proj__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(83);
+
+
+var GeoJsfViewport = {
+    center: function (lon, lat, resolution, zoom) {
+        // Coordinates must be transformed from GPS to Web Mercator
+        _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setCenter(ol_proj__WEBPACK_IMPORTED_MODULE_1__/* .transform */ .pd([lon, lat], 'EPSG:4326', 'EPSG:3857'));
+        // Set the resolution if given
+        if (resolution) {
+            console.log("Rendering Resolution of " + resolution);
+            _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setResolution(resolution);
+        }
+        // Alternatively set the zoom if given
+        if (zoom) {
+            console.log("Rendering with zoom factor " + zoom);
+            _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setZoom(zoom);
+        }
+    },
+    reset: function () {
+        // Resets the map to a standard viewport. To be used in Debugging via console.
+        // Coordinates must be transformed from GPS to Web Mercator
+        console.log("Reseting ViewPort");
+        _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setCenter(ol_proj__WEBPACK_IMPORTED_MODULE_1__/* .transform */ .pd([0.0, 0.0], 'EPSG:4326', 'EPSG:3857'));
+        _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setResolution(100000);
+    }
+};
+
+
+/***/ }),
+
 /***/ 17:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
@@ -49280,37 +49318,21 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/* unused harmony export GeoJsfViewport */
 /* harmony import */ var _geo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(606);
-/* harmony import */ var ol_proj__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(83);
+/* harmony import */ var ol__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(87);
+/* harmony import */ var _viewport__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(991);
+/* harmony import */ var _geo_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(153);
 
 
-var GeoJsfViewport = {
-    center: function (lon, lat, resolution, zoom) {
-        // Coordinates must be transformed from GPS to Web Mercator
-        _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setCenter(ol_proj__WEBPACK_IMPORTED_MODULE_1__/* .transform */ .pd([lon, lat], 'EPSG:4326', 'EPSG:3857'));
-        // Set the resolution if given
-        if (resolution) {
-            console.log("Rendering Resolution of " + resolution);
-            _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setResolution(resolution);
-        }
-        // Alternatively set the zoom if given
-        if (zoom) {
-            console.log("Rendering with zoom factor " + zoom);
-            _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setZoom(zoom);
-        }
-    },
-    reset: function () {
-        // Resets the map to a standard viewport. To be used in Debugging via console.
-        // Coordinates must be transformed from GPS to Web Mercator
-        console.log("Reseting ViewPort");
-        _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setCenter(ol_proj__WEBPACK_IMPORTED_MODULE_1__/* .transform */ .pd([0.0, 0.0], 'EPSG:4326', 'EPSG:3857'));
-        _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J.map.getView().setResolution(100000);
-    }
-};
+
+
+console.log("This ist GeoJSF 3 ... using OpenLayers version " + ol__WEBPACK_IMPORTED_MODULE_3__/* .VERSION */ .xv);
+window.GeoJSF = _geo__WEBPACK_IMPORTED_MODULE_0__/* .GeoJSF */ .J;
+window.GeoJsfViewport = _viewport__WEBPACK_IMPORTED_MODULE_1__/* .GeoJsfViewport */ .N;
+window.GeoJsfUtil = _geo_util__WEBPACK_IMPORTED_MODULE_2__/* .GeoJsfUtil */ .j;
 
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=viewport.js.map
+//# sourceMappingURL=index.bundle.js.map
