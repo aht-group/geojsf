@@ -116,7 +116,9 @@ public class Map <L extends JeeslLang, D extends JeeslDescription,
 		if(event instanceof PostAddToViewEvent)
 		{
 			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"ol.js");
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"GeoJSF3.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"geojsf.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"clicksearcher.js");
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"dtselectcallback.js");
 		}
 		else
 		{
