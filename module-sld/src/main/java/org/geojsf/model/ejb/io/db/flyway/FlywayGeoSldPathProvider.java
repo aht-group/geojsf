@@ -3,7 +3,10 @@ package org.geojsf.model.ejb.io.db.flyway;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.geojsf.model.ejb.sld.GeoSld;
+import org.geojsf.model.ejb.sld.GeoSldRule;
 import org.geojsf.model.ejb.sld.GeoSldStyle;
+import org.geojsf.model.ejb.sld.GeoSldTemplate;
 import org.geojsf.model.ejb.sld.GeoSldType;
 import org.jeesl.interfaces.controller.io.db.JeesDdlClassProvider;
 import org.jeesl.interfaces.controller.io.db.flyway.JeeslFlywayPathProvider;
@@ -24,6 +27,9 @@ public class FlywayGeoSldPathProvider implements JeeslFlywayPathProvider, JeesDd
 		list.addAll(FlywayIoLocalePathProvider.instance().getMdsClasses());
 		list.add(GeoSldStyle.class);
 		list.add(GeoSldType.class);
+		list.add(GeoSldTemplate.class);
+		list.add(GeoSld.class);
+		list.add(GeoSldRule.class);
 		return list;
 	}
 }
