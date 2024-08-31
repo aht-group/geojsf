@@ -10,6 +10,7 @@ import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.PostAddToViewEvent;
+import org.geojsf.util.GeoJsfJsLoader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,7 @@ public class ClickSearch extends UIComponentBase
 	{
 		if(event instanceof PostAddToViewEvent)
 		{
+			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"clicksearcher.js");
 		}
 		super.processEvent(event);
 	}

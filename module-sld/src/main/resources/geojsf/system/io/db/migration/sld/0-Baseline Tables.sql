@@ -1,0 +1,10 @@
+create table GeoSld (id  bigserial not null, library boolean, statusAttribute varchar(255), statusClass varchar(255), attribute_id int8, entity_id int8, template_id int8, type_id int8, primary key (id));
+create table GeoSldJtDescription (sld_id int8 not null, description_id int8 not null, primary key (sld_id, description_id));
+create table GeoSldJtLang (sld_id int8 not null, lang_id int8 not null, primary key (sld_id, lang_id));
+create table GeoSldJtRule (sld_id int8 not null, rule_id int8 not null);
+create table GeoSldRule (id  bigserial not null, lowerBound float8, position int4 not null, upperBound float8, graphic_id int8, primary key (id));
+create table GeoSldRuleJtDescription (rule_id int8 not null, description_id int8 not null, primary key (rule_id, description_id));
+create table GeoSldRuleJtLang (rule_id int8 not null, lang_id int8 not null, primary key (rule_id, lang_id));
+create table GeoSldTemplate (id  bigserial not null, code varchar(255), xml text, primary key (id));
+create table GeoSldTemplateJtDescription (template_id int8 not null, description_id int8 not null, primary key (template_id, description_id));
+create table GeoSldTemplateJtLang (template_id int8 not null, lang_id int8 not null, primary key (template_id, lang_id));

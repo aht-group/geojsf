@@ -146,7 +146,21 @@
 	</dependencies>
 	
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/ts.geojsf/node_modules/**</exclude>
+					<exclude>**/ts.geojsf/*.*</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
+			<plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>versions-maven-plugin</artifactId>
+				<configuration><rulesUri>${maven.ignore.versions}</rulesUri></configuration>
+			</plugin>
          	<plugin>
 				<groupId>org.jeesl</groupId>
 				<artifactId>jeesl-maven</artifactId>
@@ -175,4 +189,84 @@
 		</plugins>
 	</build>	
 	
+	<profiles>
+		<profile>
+			<id>tsDevEnv</id>
+			<dependencies>
+				<!-- Node.js and npm dependency -->
+				<dependency>
+					<groupId>com.github.eirslett</groupId>
+					<artifactId>frontend-maven-plugin</artifactId>
+					<version>1.8.0</version>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.eirslett</groupId>
+						<artifactId>frontend-maven-plugin</artifactId>
+						<version>1.11.3</version>
+						<configuration>
+							<installDirectory>target</installDirectory>
+							<workingDirectory>src/main/resources/META-INF/resources/ts.geojsf</workingDirectory>
+						</configuration>
+						<executions>
+							<execution>
+								<id>install node and npm</id>
+								<goals>
+									<goal>install-node-and-npm</goal>
+								</goals>
+								<configuration>
+									<nodeVersion>v14.17.1</nodeVersion>
+								</configuration>
+							</execution>
+							<execution>
+								<id>npm install</id>
+								<goals>
+									<goal>npm</goal>
+								</goals>
+								<configuration>
+									<arguments>install</arguments>
+								</configuration>
+							</execution>
+							<execution>
+								<id>npm run build</id>
+								<goals>
+									<goal>npm</goal>
+								</goals>
+								<configuration>
+									<arguments>run build</arguments>
+								</configuration>
+							</execution>
+							<!-- Add other executions as needed -->
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-ts-compiled-js-resources</id>
+								<phase>prepare-package</phase>
+								<goals><goal>copy-resources</goal></goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/classes/META-INF/resources/js.geojsf</outputDirectory>
+									<outputDirectory>${project.basedir}/src/main/resources/META-INF/resources/js.geojsf</outputDirectory>
+									<resources>          
+										<resource>
+											<directory>${project.basedir}/src/main/resources/META-INF/resources/ts.geojsf/dist</directory>
+											<includes>
+												<include>**/*.*</include>
+											</includes>
+										</resource>
+									</resources>              
+								</configuration>
+							</execution>
+						</executions>					
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
