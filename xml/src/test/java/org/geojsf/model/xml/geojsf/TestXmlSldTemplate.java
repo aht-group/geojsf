@@ -1,32 +1,21 @@
 package org.geojsf.model.xml.geojsf;
 
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.factory.xml.system.status.XmlTypeFactory;
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlSldTemplate extends AbstractXmlGeojsfTest
+public class TestXmlSldTemplate extends AbstractXmlGeojsfTest<SldTemplate>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlSldTemplate.class);
 	
-	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, SldTemplate.class);}
+	public TestXmlSldTemplate() {super(SldTemplate.class);}
+	public static SldTemplate create(boolean withChildren){return (new TestXmlSldTemplate()).build(withChildren);}
+
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	SldTemplate actual = create(true);
-    	SldTemplate expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), SldTemplate.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static SldTemplate create(boolean withChilds)
+    public SldTemplate build(boolean withChilds)
     {
     	SldTemplate xml = new SldTemplate();
     	xml.setId(1l);
@@ -47,9 +36,7 @@ public class TestXmlSldTemplate extends AbstractXmlGeojsfTest
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-			
-		TestXmlSldTemplate.initFiles();	
 		TestXmlSldTemplate test = new TestXmlSldTemplate();
-		test.save();
+		test.saveReferenceXml();
     }
 }

@@ -1,33 +1,17 @@
 package org.geojsf.model.xml.geojsf;
 
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlLegend extends AbstractXmlGeojsfTest
+public class TestXmlLegend extends AbstractXmlGeojsfTest<Legend>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlLegend.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		setXmlFile(dirSuffix, Legend.class);
-	}
+	public TestXmlLegend() {super(Legend.class);}
+	public static Legend create(boolean withChildren){return (new TestXmlLegend()).build(withChildren);}
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Legend actual = create(true);
-    	Legend expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Legend.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Legend create(boolean withChilds)
+    public Legend build(boolean withChilds)
     {
     	Legend xml = new Legend();
     	xml.setId(1l);
@@ -41,9 +25,7 @@ public class TestXmlLegend extends AbstractXmlGeojsfTest
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-			
-		TestXmlLegend.initFiles();	
 		TestXmlLegend test = new TestXmlLegend();
-		test.save();
+		test.saveReferenceXml();
     }
 }

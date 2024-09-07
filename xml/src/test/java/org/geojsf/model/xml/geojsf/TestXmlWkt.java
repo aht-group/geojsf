@@ -1,33 +1,18 @@
 package org.geojsf.model.xml.geojsf;
 
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlWkt extends AbstractXmlGeojsfTest
+public class TestXmlWkt extends AbstractXmlGeojsfTest<Wkt>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlWkt.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		setXmlFile(dirSuffix, Wkt.class);
-	}
+	public TestXmlWkt(){super(Wkt.class);}
+	public static Wkt create(boolean withChildren){return (new TestXmlWkt()).build(withChildren);}
+
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Wkt actual = create(true);
-    	Wkt expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Wkt.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Wkt create(boolean withChilds)
+    public Wkt build(boolean withChilds)
     {
     	Wkt xml = new Wkt();
     	xml.setType("myType");
@@ -46,9 +31,7 @@ public class TestXmlWkt extends AbstractXmlGeojsfTest
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-			
-		TestXmlWkt.initFiles();	
 		TestXmlWkt test = new TestXmlWkt();
-		test.save();
+		test.saveReferenceXml();
     }
 }

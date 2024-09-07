@@ -1,33 +1,18 @@
 package org.geojsf.model.xml.geojsf;
 
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlMaps extends AbstractXmlGeojsfTest
+public class TestXmlMaps extends AbstractXmlGeojsfTest<Maps>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlMaps.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		setXmlFile(dirSuffix, Maps.class);
-	}
+	public TestXmlMaps() {super(Maps.class);}
+	public static Maps create(boolean withChildren) {return (new TestXmlMaps()).build(withChildren);}
+
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Maps actual = create(true);
-    	Maps expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Maps.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Maps create(boolean withChilds)
+    public Maps build(boolean withChilds)
     {
     	Maps xml = new Maps();
 
@@ -44,9 +29,7 @@ public class TestXmlMaps extends AbstractXmlGeojsfTest
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-			
-		TestXmlMaps.initFiles();	
 		TestXmlMaps test = new TestXmlMaps();
-		test.save();
+		test.saveReferenceXml();
     }
 }

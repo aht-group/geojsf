@@ -1,33 +1,18 @@
 package org.geojsf.model.xml.geojsf;
 
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlViewPorts extends AbstractXmlGeojsfTest
+public class TestXmlViewPorts extends AbstractXmlGeojsfTest<ViewPorts>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlViewPorts.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		setXmlFile(dirSuffix, ViewPorts.class);
-	}
+	public TestXmlViewPorts(){super(ViewPorts.class);}
+	public static ViewPorts create(boolean withChildren){return (new TestXmlViewPorts()).build(withChildren);}
+
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	ViewPorts actual = create(true);
-    	ViewPorts expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), ViewPorts.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static ViewPorts create(boolean withChilds)
+    public ViewPorts build(boolean withChilds)
     {
     	ViewPorts xml = new ViewPorts();
      	
@@ -45,9 +30,7 @@ public class TestXmlViewPorts extends AbstractXmlGeojsfTest
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-			
-		TestXmlViewPorts.initFiles();	
 		TestXmlViewPorts test = new TestXmlViewPorts();
-		test.save();
+		test.saveReferenceXml();
     }
 }

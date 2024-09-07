@@ -1,36 +1,21 @@
 package org.geojsf.model.xml.geojsf;
 
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class TestXmlLayer extends AbstractXmlGeojsfTest
+public class TestXmlLayer extends AbstractXmlGeojsfTest<Layer>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlLayer.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		setXmlFile(dirSuffix, Layer.class);
-	}
+	public TestXmlLayer(){super(Layer.class);}
+	public static Layer create(boolean withChildren){return (new TestXmlLayer()).build(withChildren);}
+
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Layer actual = create(true);
-    	Layer expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Layer.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Layer create(boolean withChilds)
+    public Layer build(boolean withChilds)
     {
     	Layer xml = new Layer();
     	xml.setId(1l);
@@ -60,9 +45,7 @@ public class TestXmlLayer extends AbstractXmlGeojsfTest
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-			
-		TestXmlLayer.initFiles();	
 		TestXmlLayer test = new TestXmlLayer();
-		test.save();
+		test.saveReferenceXml();
     }
 }

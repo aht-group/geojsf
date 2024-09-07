@@ -8,23 +8,20 @@ public class TestXmlAreas extends AbstractXmAreaTest<Areas>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlAreas.class);
 	
-	public TestXmlAreas(){super(Areas.class);}
-	public static Areas create(boolean withChildren){return (new TestXmlAreas()).build(withChildren);}
-    
-    public Areas build(boolean withChilds)
+	public TestXmlAreas() {super(Areas.class);}
+ 
+    @Override public Areas build(boolean withChilds)
     {
     	Areas xml = new Areas();
     	
     	if(withChilds)
     	{
-    		xml.getBasin().add(TestXmlBasin.create(false));
-    		xml.getBasin().add(TestXmlBasin.create(false));
+    		xml.getBasin().add(TestXmlBasin.instance().build(false));
+    		xml.getBasin().add(TestXmlBasin.instance().build(false));
     	}
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {

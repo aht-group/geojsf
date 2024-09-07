@@ -1,33 +1,22 @@
 package org.geojsf.model.xml.geojsf;
 
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
 import org.jeesl.factory.xml.system.status.XmlStyleFactory;
 import org.jeesl.factory.xml.system.symbol.XmlGraphicFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlSldRule extends AbstractXmlGeojsfTest
+public class TestXmlSldRule extends AbstractXmlGeojsfTest<SldRule>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlSldRule.class);
 	
-	@BeforeClass public static void initFiles(){setXmlFile(dirSuffix, SldRule.class);}
+	public TestXmlSldRule() {super(SldRule.class);}
+	public static SldRule create(boolean withChildren){return (new TestXmlSldRule()).build(withChildren);}
+
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	SldRule actual = create(true);
-    	SldRule expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), SldRule.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static SldRule create(boolean withChilds)
+    public SldRule build(boolean withChilds)
     {
     	SldRule xml = new SldRule();
     	xml.setId(123l);
@@ -53,9 +42,7 @@ public class TestXmlSldRule extends AbstractXmlGeojsfTest
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-			
-		TestXmlSldRule.initFiles();	
 		TestXmlSldRule test = new TestXmlSldRule();
-		test.save();
+		test.saveReferenceXml();
     }
 }

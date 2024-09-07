@@ -1,33 +1,18 @@
 package org.geojsf.model.xml.geojsf;
 
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlScale extends AbstractXmlGeojsfTest
+public class TestXmlScale extends AbstractXmlGeojsfTest<Scale>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlScale.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		setXmlFile(dirSuffix, Scale.class);
-	}
+	public TestXmlScale() {super(Scale.class);}
+	public static Scale create(boolean withChildren){return (new TestXmlScale()).build(withChildren);}
+
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Scale actual = create(true);
-    	Scale expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Scale.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Scale create(boolean withChilds)
+    public Scale build(boolean withChilds)
     {
     	Scale xml = new Scale();
     	xml.setUnit("m");
@@ -41,9 +26,7 @@ public class TestXmlScale extends AbstractXmlGeojsfTest
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-			
-		TestXmlScale.initFiles();	
 		TestXmlScale test = new TestXmlScale();
-		test.save();
+		test.saveReferenceXml();
     }
 }
