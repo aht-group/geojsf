@@ -1,34 +1,18 @@
 package org.geojsf.model.xml.geoserver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlSpatial extends AbstractXmlGeoserverTest
+public class TestXmlSpatial extends AbstractXmlGeoserverTest<Spatial>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlSpatial.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new File(rootDir,Spatial.class.getSimpleName()+".xml");
-	}
+	public TestXmlSpatial() {super(Spatial.class);}
+	public static Spatial create(boolean withChildren){return (new TestXmlSpatial()).build(withChildren);}
+ 
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Spatial actual = create(true);
-    	Spatial expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Spatial.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Spatial create(boolean withChilds)
+    public Spatial build(boolean withChilds)
     {
     	Spatial xml = new Spatial();
     	xml.setCreateIndex(true);
@@ -43,13 +27,11 @@ public class TestXmlSpatial extends AbstractXmlGeoserverTest
     }
     
     public void save() {save(create(true), fXml);}
-	
-	public static void main(String[] args)
-    {
-		GeoJsfBootstrap.init();
-			
-		TestXmlSpatial.initFiles();	
-		TestXmlSpatial test = new TestXmlSpatial();
-		test.save();
-    }
+    
+  	public static void main(String[] args)
+	{
+  		GeoJsfBootstrap.init();	
+  		TestXmlSpatial test = new TestXmlSpatial();
+  		test.saveReferenceXml();
+	}
 }

@@ -1,34 +1,18 @@
 package org.geojsf.model.xml.geoserver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlFeatureTypes extends AbstractXmlGeoserverTest
+public class TestXmlFeatureTypes extends AbstractXmlGeoserverTest<FeatureTypes>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlFeatureTypes.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new File(rootDir,FeatureTypes.class.getSimpleName()+".xml");
-	}
+	public TestXmlFeatureTypes() {super(FeatureTypes.class);}
+	public static FeatureTypes create(boolean withChildren){return (new TestXmlFeatureTypes()).build(withChildren);}
+ 
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	FeatureTypes actual = create(true);
-    	FeatureTypes expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), FeatureTypes.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static FeatureTypes create(boolean withChilds)
+    public FeatureTypes build(boolean withChilds)
     {
     	FeatureTypes xml = new FeatureTypes();
     	
@@ -43,12 +27,10 @@ public class TestXmlFeatureTypes extends AbstractXmlGeoserverTest
     
     public void save() {save(create(true), fXml);}
 	
-	public static void main(String[] args)
-    {
-		GeoJsfBootstrap.init();
-			
-		TestXmlFeatureTypes.initFiles();	
-		TestXmlFeatureTypes test = new TestXmlFeatureTypes();
-		test.save();
-    }
+  	public static void main(String[] args)
+	{
+  		GeoJsfBootstrap.init();	
+  		TestXmlFeatureTypes test = new TestXmlFeatureTypes();
+  		test.saveReferenceXml();
+	}
 }

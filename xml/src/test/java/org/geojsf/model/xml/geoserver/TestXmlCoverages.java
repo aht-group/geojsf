@@ -1,34 +1,18 @@
 package org.geojsf.model.xml.geoserver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlCoverages extends AbstractXmlGeoserverTest
+public class TestXmlCoverages extends AbstractXmlGeoserverTest<Coverages>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlCoverages.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new File(rootDir,Coverages.class.getSimpleName()+".xml");
-	}
+	public TestXmlCoverages() {super(Coverages.class);}
+	public static Coverages create(boolean withChildren){return (new TestXmlCoverages()).build(withChildren);}
+ 
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Coverages actual = create(true);
-    	Coverages expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Coverages.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Coverages create(boolean withChilds)
+    public Coverages build(boolean withChilds)
     {
     	Coverages xml = new Coverages();
     	
@@ -43,12 +27,10 @@ public class TestXmlCoverages extends AbstractXmlGeoserverTest
     
     public void save() {save(create(true), fXml);}
 	
-	public static void main(String[] args)
-    {
-		GeoJsfBootstrap.init();
-			
-		TestXmlCoverages.initFiles();	
-		TestXmlCoverages test = new TestXmlCoverages();
-		test.save();
-    }
+  	public static void main(String[] args)
+	{
+  		GeoJsfBootstrap.init();	
+  		TestXmlCoverages test = new TestXmlCoverages();
+  		test.saveReferenceXml();
+	}
 }

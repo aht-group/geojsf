@@ -1,34 +1,18 @@
 package org.geojsf.model.xml.geoserver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlCoverageStore extends AbstractXmlGeoserverTest
+public class TestXmlCoverageStore extends AbstractXmlGeoserverTest<CoverageStore>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlCoverageStore.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new File(rootDir,CoverageStore.class.getSimpleName()+".xml");
-	}
+	public TestXmlCoverageStore() {super(CoverageStore.class);}
+	public static CoverageStore create(boolean withChildren){return (new TestXmlCoverageStore()).build(withChildren);}
+ 
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	CoverageStore actual = create(true);
-    	CoverageStore expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), CoverageStore.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static CoverageStore create(boolean withChilds)
+    public CoverageStore build(boolean withChilds)
     {
     	CoverageStore xml = new CoverageStore();
     	xml.setName("myName");
@@ -47,12 +31,10 @@ public class TestXmlCoverageStore extends AbstractXmlGeoserverTest
     
     public void save() {save(create(true), fXml);}
 	
-	public static void main(String[] args)
-    {
-		GeoJsfBootstrap.init();
-			
-		TestXmlCoverageStore.initFiles();	
-		TestXmlCoverageStore test = new TestXmlCoverageStore();
-		test.save();
-    }
+  	public static void main(String[] args)
+	{
+  		GeoJsfBootstrap.init();	
+  		TestXmlCoverageStore test = new TestXmlCoverageStore();
+  		test.saveReferenceXml();
+	}
 }

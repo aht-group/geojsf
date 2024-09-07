@@ -1,34 +1,18 @@
 package org.geojsf.model.xml.geoserver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlWorkspaces extends AbstractXmlGeoserverTest
+public class TestXmlWorkspaces extends AbstractXmlGeoserverTest<Workspaces>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlWorkspaces.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new File(rootDir,Workspaces.class.getSimpleName()+".xml");
-	}
+	public TestXmlWorkspaces() {super(Workspaces.class);}
+	public static Workspaces create(boolean withChildren){return (new TestXmlWorkspaces()).build(withChildren);}
+ 
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Workspaces actual = create(true);
-    	Workspaces expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Workspaces.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Workspaces create(boolean withChilds)
+    public Workspaces build(boolean withChilds)
     {
     	Workspaces xml = new Workspaces();
     		
@@ -41,13 +25,11 @@ public class TestXmlWorkspaces extends AbstractXmlGeoserverTest
     }
     
     public void save() {save(create(true), fXml);}
-	
-	public static void main(String[] args)
-    {
-		GeoJsfBootstrap.init();
-			
-		TestXmlWorkspaces.initFiles();	
-		TestXmlWorkspaces test = new TestXmlWorkspaces();
-		test.save();
-    }
+    
+  	public static void main(String[] args)
+	{
+  		GeoJsfBootstrap.init();	
+  		TestXmlWorkspaces test = new TestXmlWorkspaces();
+  		test.saveReferenceXml();
+	}
 }
