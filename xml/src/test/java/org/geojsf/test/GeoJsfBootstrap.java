@@ -4,13 +4,8 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.exlp.controller.handler.io.log.LoggerBootstrap;
 import org.exlp.controller.handler.system.property.ConfigLoader;
-import org.exlp.util.io.config.ExlpCentralConfigPointer;
-import org.exlp.util.jx.JaxbUtil;
-import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.exception.ExlpConfigurationException;
 
 public class GeoJsfBootstrap
 {
@@ -38,7 +33,7 @@ public class GeoJsfBootstrap
 		
 		try
 		{
-			ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance(IoSsiSystem.geojsf).jaxb(JaxbUtil.instance());
+//			ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance(IoSsiSystem.geojsf).jaxb(JaxbUtil.instance());
 			ConfigLoader configBootstrap = ConfigLoader.instance();
 //			configBootstrap.add(ccp.toPath("client"));
 //			configBootstrap.add(configFile);

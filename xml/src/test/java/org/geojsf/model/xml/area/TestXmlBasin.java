@@ -13,7 +13,7 @@ public class TestXmlBasin extends AbstractXmAreaTest<Basin>
 	final static Logger logger = LoggerFactory.getLogger(TestXmlBasin.class);
 	
 	public static TestXmlBasin instance() {return new TestXmlBasin();}
-	private TestXmlBasin(){super(Basin.class);}
+	private TestXmlBasin() {super(Basin.class);}
     
     @Override public Basin build(boolean withChildren)
     {
@@ -36,7 +36,6 @@ public class TestXmlBasin extends AbstractXmAreaTest<Basin>
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();	
-		TestXmlBasin test = new TestXmlBasin();
-		test.saveReferenceXml();
+		TestXmlBasin.instance().saveReferenceXml();
     }
 }

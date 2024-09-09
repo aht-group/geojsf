@@ -8,13 +8,14 @@ public class TestXmlAreas extends AbstractXmAreaTest<Areas>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlAreas.class);
 	
-	public TestXmlAreas() {super(Areas.class);}
+	public static TestXmlAreas instance() {return new TestXmlAreas();}
+	private TestXmlAreas() {super(Areas.class);}
  
-    @Override public Areas build(boolean withChilds)
+    @Override public Areas build(boolean wChildren)
     {
     	Areas xml = new Areas();
     	
-    	if(withChilds)
+    	if(wChildren)
     	{
     		xml.getBasin().add(TestXmlBasin.instance().build(false));
     		xml.getBasin().add(TestXmlBasin.instance().build(false));
@@ -26,7 +27,6 @@ public class TestXmlAreas extends AbstractXmAreaTest<Areas>
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-		TestXmlAreas test = new TestXmlAreas();
-		test.saveReferenceXml();
+		TestXmlAreas.instance().saveReferenceXml();
     }
 }

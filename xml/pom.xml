@@ -56,19 +56,6 @@
 			<scope>test</scope>
 		</dependency>
 		
-		
-		<!-- JPA 
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<scope>provided</scope>
-		</dependency> 
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
- 			<scope>provided</scope>
-		</dependency> -->
-		
 		<!-- JAXB 
      	<dependency>
   	   		<groupId>javax.xml.bind</groupId>
@@ -81,11 +68,18 @@
   	   		<scope>provided</scope>
   	   	</dependency> -->
   	   	
-  	   	<dependency>
+  	   	<dependency>	<!-- JAXB EE10 -->
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>2.3.3</version>
+			<version>4.0.0</version>
 			<scope>provided</scope>
+		</dependency> 
+      	<dependency>	<!-- JAXB: EE8 -->
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+    		<type>jar</type>
+    		<version>2.3.1</version>
+    		<scope>provided</scope>
 		</dependency>
   	   	
   	   	<!-- JSON -->
@@ -151,7 +145,7 @@
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
 			<version>2.3.9</version>
-			<scope>test</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 	 		<groupId>commons-configuration</groupId>
