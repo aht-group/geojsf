@@ -28,8 +28,6 @@ public class TestXmlShapeDir extends AbstractXmlGeoserverTest<ShapeDir>
     	return xml;
     }
     
-    public void save() {save(create(true), fXml);}
-    
   	public static void main(String[] args)
 	{
   		GeoJsfBootstrap.init();	

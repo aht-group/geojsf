@@ -30,8 +30,6 @@ public class TestXmlQuery extends AbstractXmlGeojsfTest<Query>
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {

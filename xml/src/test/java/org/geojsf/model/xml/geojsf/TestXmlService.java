@@ -31,8 +31,6 @@ public class TestXmlService extends AbstractXmlGeojsfTest<Service>
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {

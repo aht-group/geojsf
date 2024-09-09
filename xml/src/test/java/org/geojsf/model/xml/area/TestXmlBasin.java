@@ -32,8 +32,6 @@ public class TestXmlBasin extends AbstractXmAreaTest<Basin>
     	
     	return xml;
     }
-    
-    public void save() {save(this.build(true), fXml);}
 	
 	public static void main(String[] args)
     {

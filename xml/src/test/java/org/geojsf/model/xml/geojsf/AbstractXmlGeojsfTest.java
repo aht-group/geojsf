@@ -1,5 +1,7 @@
 package org.geojsf.model.xml.geojsf;
 
+import java.nio.file.Paths;
+
 import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,6 @@ public abstract class AbstractXmlGeojsfTest <T extends Object> extends AbstractG
 	
 	public AbstractXmlGeojsfTest(Class<T> cXml)
 	{
-   		super(cXml,"geojsf");
+   		super(cXml,Paths.get("geojsf"));
 	}
 }

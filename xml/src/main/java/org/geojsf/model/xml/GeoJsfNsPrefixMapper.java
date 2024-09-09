@@ -2,9 +2,8 @@ package org.geojsf.model.xml;
 
 import org.exlp.interfaces.io.NsPrefixMapperInterface;
 
-import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
-
-public class GeoJsfNsPrefixMapper extends NamespacePrefixMapper implements NsPrefixMapperInterface
+public class GeoJsfNsPrefixMapper //extends NamespacePrefixMapper
+									implements NsPrefixMapperInterface
 {
     public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix)
     {

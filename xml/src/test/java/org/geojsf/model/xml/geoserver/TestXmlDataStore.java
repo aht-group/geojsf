@@ -29,8 +29,6 @@ public class TestXmlDataStore extends AbstractXmlGeoserverTest<DataStore>
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
   	public static void main(String[] args)
 	{

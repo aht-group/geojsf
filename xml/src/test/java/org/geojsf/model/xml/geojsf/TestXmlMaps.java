@@ -23,8 +23,6 @@ public class TestXmlMaps extends AbstractXmlGeojsfTest<Maps>
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {

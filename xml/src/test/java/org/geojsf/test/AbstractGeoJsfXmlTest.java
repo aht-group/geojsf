@@ -1,10 +1,13 @@
 package org.geojsf.test;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.exlp.controller.handler.io.log.LoggerBootstrap;
+import org.exlp.test.AbstractXmlTest;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
 import org.junit.BeforeClass;
@@ -12,23 +15,20 @@ import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.test.AbstractAhtUtilsXmlTest;
-
 @Ignore
-public class AbstractGeoJsfXmlTest <T extends Object> extends AbstractAhtUtilsXmlTest<T>
+public class AbstractGeoJsfXmlTest <T extends Object> extends AbstractXmlTest<T>
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractGeoJsfXmlTest.class);
 	
-	public AbstractGeoJsfXmlTest(){this(null,null);}
-	public AbstractGeoJsfXmlTest(Class<T> cXml,String xmlDirSuffix)
+	public AbstractGeoJsfXmlTest(Class<T> cXml, Path pSuffix)
 	{
-		super(cXml,xmlDirSuffix);
+		super(cXml,Paths.get("geojsf","system","io","jaxb"),pSuffix);
 	}
 	
 	@BeforeClass
     public static void initLogger()
 	{
-		LoggerBootstrap.instance("cli.xml.log4j2.xml").path("geojsf/system/io/log").init();
+		LoggerBootstrap.instance().path("geojsf/system/io/log").init();
     }
 	
 	@BeforeClass
@@ -51,5 +51,4 @@ public class AbstractGeoJsfXmlTest <T extends Object> extends AbstractAhtUtilsXm
 		}
 		return c;
 	}
-	
 }

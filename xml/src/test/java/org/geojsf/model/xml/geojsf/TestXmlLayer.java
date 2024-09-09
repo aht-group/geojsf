@@ -39,8 +39,6 @@ public class TestXmlLayer extends AbstractXmlGeojsfTest<Layer>
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {

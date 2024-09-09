@@ -20,8 +20,6 @@ public class TestXmlScale extends AbstractXmlGeojsfTest<Scale>
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {

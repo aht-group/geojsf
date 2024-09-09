@@ -24,8 +24,6 @@ public class TestXmlFeatureTypes extends AbstractXmlGeoserverTest<FeatureTypes>
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
   	public static void main(String[] args)
 	{

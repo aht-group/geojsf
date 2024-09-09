@@ -24,8 +24,6 @@ public class TestXmlStyles extends AbstractXmlGeoserverTest<Styles>
     	return xml;
     }
     
-    public void save() {save(create(true), fXml);}
-    
   	public static void main(String[] args)
 	{
   		GeoJsfBootstrap.init();	
