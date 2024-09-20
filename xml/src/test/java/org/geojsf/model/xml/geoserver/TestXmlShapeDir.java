@@ -1,34 +1,18 @@
 package org.geojsf.model.xml.geoserver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlShapeDir extends AbstractXmlGeoserverTest
+public class TestXmlShapeDir extends AbstractXmlGeoserverTest<ShapeDir>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlShapeDir.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new File(rootDir,ShapeDir.class.getSimpleName()+".xml");
-	}
+	public TestXmlShapeDir() {super(ShapeDir.class);}
+	public static ShapeDir create(boolean withChildren){return (new TestXmlShapeDir()).build(withChildren);}
+ 
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	ShapeDir actual = create(true);
-    	ShapeDir expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), ShapeDir.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static ShapeDir create(boolean withChilds)
+    public ShapeDir build(boolean withChilds)
     {
     	ShapeDir xml = new ShapeDir();
     	xml.setUrl("myUrl");
@@ -44,14 +28,10 @@ public class TestXmlShapeDir extends AbstractXmlGeoserverTest
     	return xml;
     }
     
-    public void save() {save(create(true), fXml);}
-	
-	public static void main(String[] args)
-    {
-		GeoJsfBootstrap.init();
-			
-		TestXmlShapeDir.initFiles();	
-		TestXmlShapeDir test = new TestXmlShapeDir();
-		test.save();
-    }
+  	public static void main(String[] args)
+	{
+  		GeoJsfBootstrap.init();	
+  		TestXmlShapeDir test = new TestXmlShapeDir();
+  		test.saveReferenceXml();
+	}
 }

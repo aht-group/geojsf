@@ -1,5 +1,7 @@
 package org.geojsf.model.xml.specs.wfs;
 
+import java.nio.file.Paths;
+
 import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,6 @@ public abstract class AbstractXmlWfsTest <T extends Object> extends AbstractGeoJ
 	
 	public AbstractXmlWfsTest(Class<T> cXml)
 	{
-		super(cXml,"specs/wfs");
+		super(cXml,Paths.get("specs","wfs"));
 	}
 }

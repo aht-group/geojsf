@@ -1,33 +1,18 @@
 package org.geojsf.model.xml.geojsf;
 
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlCoordinate extends AbstractXmlGeojsfTest
+public class TestXmlCoordinate extends AbstractXmlGeojsfTest<Coordinate>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlCoordinate.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		setXmlFile(dirSuffix, "coordinate");
-	}
+	public TestXmlCoordinate() {super(Coordinate.class);}
+	public static Coordinate create(boolean withChildren){return (new TestXmlCoordinate()).build(withChildren);}
+
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	Coordinate actual = create(true);
-    	Coordinate expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Coordinate.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static Coordinate create(boolean withChilds)
+    public Coordinate build(boolean withChilds)
     {
     	Coordinate xml = new Coordinate();
     	xml.setLat(1.234);
@@ -40,15 +25,11 @@ public class TestXmlCoordinate extends AbstractXmlGeojsfTest
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();
-			
-		TestXmlCoordinate.initFiles();	
 		TestXmlCoordinate test = new TestXmlCoordinate();
-		test.save();
+		test.saveReferenceXml();
     }
 }

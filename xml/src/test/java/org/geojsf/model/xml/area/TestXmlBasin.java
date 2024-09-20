@@ -12,17 +12,17 @@ public class TestXmlBasin extends AbstractXmAreaTest<Basin>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlBasin.class);
 	
-	public TestXmlBasin(){super(Basin.class);}
-	public static Basin create(boolean withChildren){return (new TestXmlBasin()).build(withChildren);}
+	public static TestXmlBasin instance() {return new TestXmlBasin();}
+	private TestXmlBasin() {super(Basin.class);}
     
-    public Basin build(boolean withChilds)
+    @Override public Basin build(boolean withChildren)
     {
     	Basin xml = new Basin();
     	xml.setId(123l);
     	xml.setSize(345.67);
     	xml.setLabel("label");
     	
-    	if(withChilds)
+    	if(withChildren)
     	{
     		xml.setWkt(TestXmlWkt.create(false));
     		xml.setLangs(XmlLangsFactory.build());
@@ -32,13 +32,10 @@ public class TestXmlBasin extends AbstractXmAreaTest<Basin>
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
 	public static void main(String[] args)
     {
 		GeoJsfBootstrap.init();	
-		TestXmlBasin test = new TestXmlBasin();
-		test.saveReferenceXml();
+		TestXmlBasin.instance().saveReferenceXml();
     }
 }

@@ -198,13 +198,13 @@ public class GeoJsfDbInit <L extends JeeslLang,D extends JeeslDescription,
 			{
 				try
 				{
-					SLDTYPE type = fSecurity.fByCode(cSldType, xTemplate.getType().getCode());
+//					SLDTYPE type = fSecurity.fByCode(cSldType, xTemplate.getType().getCode());
 					eTemplate = efSldTemplate.build(xTemplate.getCode());
 					eTemplate = fSecurity.persist(eTemplate);
 				}
 
 				catch (JeeslConstraintViolationException e1) {dut.fail(e1,true);}
-				catch (JeeslNotFoundException e1) {dut.fail(e1,true);}
+//				catch (JeeslNotFoundException e1) {dut.fail(e1,true);}
 			}
 			
 			if(eTemplate!=null && eTemplate.getId()>0)

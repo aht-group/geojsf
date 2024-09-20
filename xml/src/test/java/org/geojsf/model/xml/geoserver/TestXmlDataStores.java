@@ -1,34 +1,18 @@
 package org.geojsf.model.xml.geoserver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestXmlDataStores extends AbstractXmlGeoserverTest
+public class TestXmlDataStores extends AbstractXmlGeoserverTest<DataStores>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlDataStores.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new File(rootDir,DataStores.class.getSimpleName()+".xml");
-	}
+	public TestXmlDataStores() {super(DataStores.class);}
+	public static DataStores create(boolean withChildren) {return (new TestXmlDataStores()).build(withChildren);}
+ 
     
-    @Test
-    public void test() throws FileNotFoundException
-    {
-    	DataStores actual = create(true);
-    	DataStores expected = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), DataStores.class);
-    	assertJaxbEquals(expected, actual);
-    }
-    
-    public static DataStores create(boolean withChilds)
+    public DataStores build(boolean withChilds)
     {
     	DataStores xml = new DataStores();
     	
@@ -40,15 +24,11 @@ public class TestXmlDataStores extends AbstractXmlGeoserverTest
     	
     	return xml;
     }
-    
-    public void save() {save(create(true), fXml);}
 	
-	public static void main(String[] args)
-    {
-		GeoJsfBootstrap.init();
-			
-		TestXmlDataStores.initFiles();	
-		TestXmlDataStores test = new TestXmlDataStores();
-		test.save();
-    }
+  	public static void main(String[] args)
+	{
+  		GeoJsfBootstrap.init();	
+  		TestXmlDataStores test = new TestXmlDataStores();
+  		test.saveReferenceXml();
+	}
 }

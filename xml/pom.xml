@@ -26,11 +26,6 @@
 	</dependencyManagement>
    	
 	<dependencies>
-		<dependency>
-   			<groupId>org.apache.commons</groupId>
-   			<artifactId>commons-lang3</artifactId>
-   			<scope>provided</scope>
-		</dependency>
 		
 		<!-- Interfaces -->
 		<dependency>
@@ -55,20 +50,13 @@
 			<classifier>javax</classifier>
 			<scope>provided</scope>
 		</dependency>
-		
-		<!-- JPA 
 		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<scope>provided</scope>
-		</dependency> 
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
- 			<scope>provided</scope>
-		</dependency> -->
+			<groupId>org.jeesl</groupId>
+			<artifactId>jeesl-xml</artifactId>
+			<scope>test</scope>
+		</dependency>
 		
-		<!-- JAXB -->
+		<!-- JAXB 
      	<dependency>
   	   		<groupId>javax.xml.bind</groupId>
   	   		<artifactId>jaxb-api</artifactId>
@@ -78,14 +66,21 @@
   	   		<groupId>com.sun.xml.bind</groupId>
   	   		<artifactId>jaxb-impl</artifactId>
   	   		<scope>provided</scope>
-  	   	</dependency>
+  	   	</dependency> -->
   	   	
-  	   	<dependency>
+  	   	<dependency>	<!-- JAXB EE10 -->
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>2.3.2</version>
+			<version>4.0.0</version>
 			<scope>provided</scope>
-	</dependency>
+		</dependency> 
+      	<dependency>	<!-- JAXB: EE8 -->
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+    		<type>jar</type>
+    		<version>2.3.1</version>
+    		<scope>provided</scope>
+		</dependency>
   	   	
   	   	<!-- JSON -->
    	   	<dependency>
@@ -100,6 +95,12 @@
 		   <scope>provided</scope>
 		</dependency>
 		
+		<dependency>
+   			<groupId>org.apache.commons</groupId>
+   			<artifactId>commons-lang3</artifactId>
+   			<scope>provided</scope>
+		</dependency>
+		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -111,7 +112,12 @@
 			<artifactId>log4j-slf4j2-impl</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+   			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -119,18 +125,7 @@
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-	 		<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<type>jar</type>
-			<scope>provided</scope>
-			<exclusions>
-        		<exclusion>
-        			<artifactId>commons-logging</artifactId>
-        			<groupId>commons-logging</groupId>
-        		</exclusion>
-        	</exclusions>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.jeesl</groupId>
 			<artifactId>jeesl-test</artifactId>
@@ -140,6 +135,29 @@
 			<groupId>org.jeesl</groupId>
 			<artifactId>jeesl-util</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+   	   		<groupId>net.sf.exlp</groupId>
+   	   		<artifactId>exlp-test</artifactId>
+   	   		<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.9</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+	 		<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<type>jar</type>
+			<scope>test</scope>
+			<exclusions>
+        		<exclusion>
+        			<artifactId>commons-logging</artifactId>
+        			<groupId>commons-logging</groupId>
+        		</exclusion>
+        	</exclusions>
 		</dependency>
 	</dependencies>
 	

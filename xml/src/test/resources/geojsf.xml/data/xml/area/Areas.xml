@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<a:areas xmlns:geojsf="http://www.geojsf.org" xmlns:us="http://ahtutils.aht-group.com/status" xmlns:ns3="http://ahtutils.aht-group.com/security" xmlns:a="http://www.geojsf.org/area">
-    <a:basin id="123" size="345.67" label="label"/>
-    <a:basin id="123" size="345.67" label="label"/>
-</a:areas>

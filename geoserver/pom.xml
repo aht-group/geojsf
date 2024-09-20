@@ -12,31 +12,7 @@
     <artifactId>geojsf-geoserver</artifactId>
     <packaging>jar</packaging>
     <name>GeoJSF - GeoServer</name>
-   
-	<build>
-		<plugins>
-			<!--
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>attach-sources-test</id>
-						<goals>
-							<goal>test-jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin> -->
-		</plugins>
-	</build>
-	
+   	
 	<dependencyManagement>
 		<dependencies>
 				     	         
@@ -121,27 +97,12 @@
    	   		</exclusions>
 		</dependency>
 
-		<!-- REST 
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<scope>provided</scope>
-			<exclusions>
-            	<exclusion>
-            		<artifactId>commons-logging</artifactId>
-            		<groupId>commons-logging</groupId>
-            	</exclusion>
-			</exclusions>
-		  </dependency>
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxb-provider</artifactId>
-			<scope>provided</scope>
-		</dependency>-->
+		<!-- REST -->
 		<dependency>
         	<groupId>org.jboss.resteasy</groupId>
         	<artifactId>resteasy-client</artifactId>
 			<version>3.12.1.Final</version>
+			<scope>provided</scope>
 			<exclusions>
             	<exclusion>
             		<artifactId>commons-logging</artifactId>
@@ -156,7 +117,8 @@
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
-			 <version>3.12.1.Final</version>
+			<version>3.12.1.Final</version>
+			<scope>provided</scope>
 			<exclusions>
             	<exclusion>
             		<artifactId>commons-logging</artifactId>
@@ -172,6 +134,7 @@
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxb-provider</artifactId>
 			<version>3.12.1.Final</version>
+			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.glassfish.jaxb</groupId>
@@ -238,5 +201,29 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<!--
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>attach-sources-test</id>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
+		</plugins>
+	</build>
    
 </project>
