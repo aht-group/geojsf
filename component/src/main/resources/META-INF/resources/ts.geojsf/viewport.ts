@@ -5,6 +5,7 @@ export var GeoJsfViewport = {
 
 		center : function(lon : number,lat : number ,resolution : number,zoom : number)
 		{
+			console.log("GeoJsfViewport:center Rendering ViewPort at " +lon + " / " +lat);
 			// Coordinates must be transformed from GPS to Web Mercator
 			GeoJSF.map.getView().setCenter(olProj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'));
 			

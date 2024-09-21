@@ -22,11 +22,12 @@ import Chart from 'ol-ext/style/Chart';
 import AnimatedCluster, { ClusterOptions } from 'ol-ext/layer/AnimatedCluster';
 import type { Options } from 'ol/layer/BaseVector'
 import { FitOptions } from 'ol/View';
-
-import {GeoJsfUtil} from './geo-util';
 import VectorSource from 'ol/source/Vector';
 
-(window as any).GeoJSF = {	
+import {GeoJsfUtil} from './geo-util';
+
+(window as any).GeoJsfUtil = GeoJsfUtil;
+(window as any).GeoJSF = {		
 	_map: new ol.Map(),
 	get map() : ol.Map {
 		return this._map;

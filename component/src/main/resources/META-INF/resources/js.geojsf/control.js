@@ -4,15 +4,15 @@ var GeoJsfControl = {
 	{
 				// Please use CSS to configure appearance
 				console.log('ZOOOOOOM.');
-				var zoomslider = new ol.control.ZoomSlider();
+				var zoomslider = new olControl.ZoomSlider();
 				GeoJSF.map.addControl(zoomslider);
 	},
 	
 	addScale : function(position, system, major, sub)
 	{
 				// Please use CSS to configure appearance
-				var mousePosition = new ol.control.MousePosition({
-									   coordinateFormat: ol.coordinate.createStringXY(2),
+				var mousePosition = new olControl.MousePosition({
+									   coordinateFormat: olCoordinate.createStringXY(2),
 									   projection      : 'EPSG:4326'
 									});
 				GeoJSF.map.addControl(mousePosition);
@@ -22,7 +22,7 @@ var GeoJsfControl = {
 	{
 				// Please use CSS to configure appearance
 				console.log('Adding scale line.');
-				GeoJSF.map.addControl(new ol.control.ScaleLine());
+				GeoJSF.map.addControl(new olControl.ScaleLine());
 	},
 	
 	removeScaleBar : function()
@@ -45,7 +45,7 @@ var GeoJsfControl = {
 			
 	addGraticule : function()
 	{
-		console.error('Graticule not yet implemented');
+		console.log('Graticule not yet implemented');
 		/*
 		var style = new ol.style.Style();
 			style.setStroke (new ol.style.Stroke({ color: "rgba(255,120,0,0.9)", width:1 }));
@@ -56,7 +56,7 @@ var GeoJsfControl = {
 			  font: "10px",
 			}));
 		// Create the graticule component
-		var graticule = new ol.control.Graticule({
+		var graticule = new olControl.Graticule({
 			maxResolution: 250, step: 0.1, stepCoord: 1, margin:0, projection: 'EPSG:4326', formatCoord:function(c){ return c.toFixed(1)+"°" },
 		});
 		graticule.setStyle(style);
@@ -66,7 +66,7 @@ var GeoJsfControl = {
 	
 	addRotation : function()
 	{
-		var rotation = new ol.control.Rotate();
+		var rotation = new olControl.Rotate();
 		GeoJSF.map.addControl(rotation);
 	},
 
@@ -77,7 +77,7 @@ var GeoJsfControl = {
 		});
 		GeoJSF.map.addControl(northArrowControl);
 		/*
-		ol.control.NorthArrow = function(opt_options) {
+		olControl.NorthArrow = function(opt_options) {
 			this.options = opt_options || {};
 			this.options.class = this.options.class || 'ol-northarrow';
 			this.options.imagePath = this.options.imagePath || imagePath;
@@ -86,11 +86,11 @@ var GeoJsfControl = {
 			narrowImage = document.createElement('img');
 			narrowImage.src = this.options.imagePath;
 			this.div.appendChild(narrowImage);
-			return new ol.control.Control({ element: this.div });
+			return new olControl.Control({ element: this.div });
 		};
-		ol.inherits(ol.control.NorthArrow, ol.control.Control);
-		ol.control.NorthArrow.prototype.setMap = function(map) {
-			ol.control.Control.prototype.setMap.call(this, map);
+		ol.inherits(olControl.NorthArrow, olControl.Control);
+		olControl.NorthArrow.prototype.setMap = function(map) {
+			olControl.Control.prototype.setMap.call(this, map);
 			var self = this;
 			var rotateArrow = function(evt){
 				var radian = evt.target.getRotation();
@@ -109,7 +109,7 @@ var GeoJsfControl = {
 				}
 			}
 		}
-		var northArrowControlObj = new ol.control.NorthArrow();
+		var northArrowControlObj = new olControl.NorthArrow();
 		GeoJSF.map.addControl(northArrowControlObj);
 		*/
 	},
@@ -134,30 +134,30 @@ var GeoJsfControl = {
 	  
 	  selectedFeature.getFeatures().on(['remove'], function(e) {
 		 GeoJSF.popUpOverlay.setPosition(undefined);
-		 ol.control.PopUp.popUpCloser.blur();
+		 olControl.PopUp.popUpCloser.blur();
 		 return false;
 	  })
 	},
 	
 	addPopUpOverlay : function()
 	{
-		ol.control.PopUp = {};
-		ol.control.PopUp.popUpContainer = document.createElement('div');
-		ol.control.PopUp.popUpContainer.className = 'ol-popup';
-		ol.control.PopUp.popUpContainer.id = 'popup';
+		olControl.PopUp = {};
+		olControl.PopUp.popUpContainer = document.createElement('div');
+		olControl.PopUp.popUpContainer.className = 'ol-popup';
+		olControl.PopUp.popUpContainer.id = 'popup';
 		
-		ol.control.PopUp.popUpCloser = document.createElement('a');
-		ol.control.PopUp.popUpCloser.id = 'popup-closer';
-		ol.control.PopUp.popUpCloser.className = 'ol-popup-closer';
+		olControl.PopUp.popUpCloser = document.createElement('a');
+		olControl.PopUp.popUpCloser.id = 'popup-closer';
+		olControl.PopUp.popUpCloser.className = 'ol-popup-closer';
 		
-		ol.control.PopUp.popUpContent = document.createElement('div');
-		ol.control.PopUp.popUpContent.id = 'popup-content';
+		olControl.PopUp.popUpContent = document.createElement('div');
+		olControl.PopUp.popUpContent.id = 'popup-content';
 		
-		ol.control.PopUp.popUpContainer.appendChild(ol.control.PopUp.popUpCloser);
-		ol.control.PopUp.popUpContainer.appendChild(ol.control.PopUp.popUpContent);
+		olControl.PopUp.popUpContainer.appendChild(olControl.PopUp.popUpCloser);
+		olControl.PopUp.popUpContainer.appendChild(olControl.PopUp.popUpContent);
 		
 		
-		ol.control.PopUp.content = function(coordinate){
+		olControl.PopUp.content = function(coordinate){
 						let ajaxPopUpContent = document.getElementById(PF('wgtPopupContent').id);
 						return ajaxPopUpContent.innerHTML;
 		}
@@ -166,7 +166,7 @@ var GeoJsfControl = {
 		 * Create an overlay to anchor the popup to the map.
 		 */
 		GeoJSF.popUpOverlay = new ol.Overlay({
-		  element: ol.control.PopUp.popUpContainer,
+		  element: olControl.PopUp.popUpContainer,
 		  autoPan: {
 			animation: {
 			  duration: 250,
@@ -178,9 +178,9 @@ var GeoJsfControl = {
 		 * Add a click handler to hide the popup.
 		 * @return {boolean} Don't follow the href.
 		 */
-		 ol.control.PopUp.popUpCloser.onclick = function () {
+		 olControl.PopUp.popUpCloser.onclick = function () {
 			GeoJSF.popUpOverlay.setPosition(undefined);
-			ol.control.PopUp.popUpCloser.blur();
+			olControl.PopUp.popUpCloser.blur();
 			return false;
 		};
 		
@@ -189,7 +189,7 @@ var GeoJsfControl = {
 	}
 };
 
-class NorthArrow extends ol.control.Control {
+class NorthArrow extends olControl.Control {
     constructor(opt_options) {
         const options = opt_options || {};
         const element = document.createElement('div');
