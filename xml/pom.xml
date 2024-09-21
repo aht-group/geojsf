@@ -95,11 +95,12 @@
 		   <scope>provided</scope>
 		</dependency>
 		
+		<!-- 2024-09-14 tk removed
 		<dependency>
    			<groupId>org.apache.commons</groupId>
    			<artifactId>commons-lang3</artifactId>
    			<scope>provided</scope>
-		</dependency>
+		</dependency> -->
 		
 		<!-- Logging -->
 		<dependency>
