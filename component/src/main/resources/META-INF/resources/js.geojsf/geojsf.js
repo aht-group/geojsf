@@ -50505,6 +50505,7 @@ window.GeoJSF = {
             return style;
         };
         var clusterLayer = new AnimatedCluster(animatedClusterOptions);
+        this.map.addLayer(clusterLayer);
     },
     processEventMarkerMove: function (event) {
         console.log("markerMove detected");
@@ -50549,8 +50550,8 @@ window.GeoJSF = {
         });
         // This is important due to the calculations of the extent needed
         // in initial TILED parameter TILESORIGIN in WMS
-        //this.map.getView().setCenter([0,0]);
-        //this.map.getView().setResolution(1000);
+        this.map.getView().setCenter([0, 0]);
+        this.map.getView().setResolution(1000);
     },
     centerMap: function (lat, lon) {
         // GeoJSF.map.getView().setCenter([lot,lan]);
@@ -50576,9 +50577,9 @@ window.GeoJSF = {
     },
     addLayer: function (name, url, params) {
         console.log("Trying to add " + params.layers);
-        var sizeOfMap = GeoJSF.map.getSize();
+        var sizeOfMap = this.map.getSize();
         console.log("Size of Map:" + sizeOfMap);
-        var viewOfMap = GeoJSF.map.getView();
+        var viewOfMap = this.map.getView();
         console.log("View of Map:" + viewOfMap);
         console.log("View Projection: " + viewOfMap.getProjection().getCode());
         //console.log("View Center: " +viewOfMap.getCenter());
@@ -50586,7 +50587,7 @@ window.GeoJSF = {
         console.log("Bounds: " + bounds);
         // Get an array of bounds
         // e.g. [1555173.7562473097, 1494886.6852190704, 1603273.7562473097, 1534886.6852190704]
-        var extents = GeoJSF.map.getView().calculateExtent(GeoJSF.map.getSize());
+        var extents = this.map.getView().calculateExtent(this.map.getSize());
         console.log("Extents:" + extents);
         // Transform this extent array to GPS coordinates (from Mercator)
         // e.g. [13.970363546985254, 13.30751144611122, 14.402453198646745, 13.656934756062881]

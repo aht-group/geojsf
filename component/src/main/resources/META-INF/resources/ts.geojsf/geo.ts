@@ -358,6 +358,7 @@ import {GeoJsfUtil} from './geo-util';
 						return style;
 					};
 		var clusterLayer : AnimatedCluster = new AnimatedCluster(animatedClusterOptions);
+		this.map.addLayer(clusterLayer);
 	},
 		  
 	processEventMarkerMove : function(event : any)
