@@ -358,6 +358,7 @@ import {GeoJsfUtil} from './geo-util';
 						return style;
 					};
 		var clusterLayer : AnimatedCluster = new AnimatedCluster(animatedClusterOptions);
+		this.map.addLayer(clusterLayer);
 	},
 		  
 	processEventMarkerMove : function(event : any)
@@ -418,11 +419,16 @@ import {GeoJsfUtil} from './geo-util';
 	{
 		
 		// GeoJSF.map.getView().setCenter([lot,lan]);
-					console.log("Centering map to lat/lon: " +lat +"/" +lon);
-					var centerPoint = new olGeom.Point(olProj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'));
-					console.log("Constructed Point: " +centerPoint);
-					console.log("Constructed Points' coordinates: " +centerPoint.getCoordinates());
-					this.map.getView().centerOn(centerPoint.getCoordinates(), this.map.getSize(), [this.map.getSize()[0]/2, this.map.getSize()[1]/2]);
+		console.log("Centering map to lat/lon: " +lat +"/" +lon);
+		var centerPoint = new olGeom.Point(olProj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'));
+		console.log("Constructed Point: " +centerPoint);
+		console.log("Constructed Points' coordinates: " +centerPoint.getCoordinates());
+		console.log("Map Size: " +this.map.getSize());
+		if (typeof(this.map.getSize()) == "undefined" || this.map.getSize() == null)
+		{
+			this.map.setSize([840,400]);
+		}
+		GeoJSF.map.getView().centerOn(centerPoint.getCoordinates(), this.map.getSize(), [this.map.getSize()[0]/2, this.map.getSize()[1]/2]);
 	},
 		  
 	// Remove all layers and add the base layer again
@@ -441,10 +447,10 @@ import {GeoJsfUtil} from './geo-util';
 	addLayer : function(name : string, url : string, params : any)
 	{
 		console.log("Trying to add " +params.layers);
-		var sizeOfMap = GeoJSF.map.getSize();
+		var sizeOfMap = this.map.getSize();
 		console.log("Size of Map:" +sizeOfMap);
 		
-		var viewOfMap = GeoJSF.map.getView();
+		var viewOfMap = this.map.getView();
 		console.log("View of Map:" +viewOfMap);
 		console.log("View Projection: " +viewOfMap.getProjection().getCode());
 		//console.log("View Center: " +viewOfMap.getCenter());
@@ -454,7 +460,7 @@ import {GeoJsfUtil} from './geo-util';
 		
 		// Get an array of bounds
 		// e.g. [1555173.7562473097, 1494886.6852190704, 1603273.7562473097, 1534886.6852190704]
-		var extents     = GeoJSF.map.getView().calculateExtent(GeoJSF.map.getSize());
+		var extents     = this.map.getView().calculateExtent(this.map.getSize());
 		console.log("Extents:" +extents);
 		
 		// Transform this extent array to GPS coordinates (from Mercator)
