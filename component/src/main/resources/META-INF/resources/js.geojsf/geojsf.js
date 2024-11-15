@@ -50107,7 +50107,7 @@ var GeoJsfUtil = {
         GeoJSF.viewportBoundRight = transform(extent_getBottomRight(extent), 'EPSG:3857', 'EPSG:4326')[0];
         var latlon = [0.0, 0.0];
         if (olEventObject.coordinate) {
-            var lonlat = transform(olEventObject.coordinate, 'EPSG:3857', 'EPSG:4326');
+            latlon = transform(olEventObject.coordinate, 'EPSG:3857', 'EPSG:4326');
         }
         var distance = getDistance(extent_getTopLeft(extent), extent_getBottomLeft(extent));
         console.log("Distance from top to bottom of map is: " + distance);
@@ -50123,6 +50123,9 @@ var GeoJsfUtil = {
             ignoreAutoUpdate: false,
             oncomplete: function (xhrOrErrorThrown, status, pfArgs, dataOrXhr) {
                 console.log(pfArgs);
+                if (jsfEventName === "mapClick") {
+                    window.clickSearcher.updateCircleOnClick(olEventObject);
+                }
             },
             onerror: function (xhr, status, errorThrown) {
                 console.log(status);
