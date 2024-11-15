@@ -74,7 +74,7 @@ export var GeoJsfUtil = {
 			var latlon                 = [0.0,0.0];
 			if (olEventObject.coordinate)
 			{
-				var lonlat                 = olProj.transform(olEventObject.coordinate, 'EPSG:3857', 'EPSG:4326');
+				latlon                 = olProj.transform(olEventObject.coordinate, 'EPSG:3857', 'EPSG:4326');
 			}
 			var distance				= olSphere.getDistance(olExtent.getTopLeft(extent),olExtent.getBottomLeft(extent)); 
 			console.log("Distance from top to bottom of map is: " +distance);
@@ -90,6 +90,7 @@ export var GeoJsfUtil = {
 					ignoreAutoUpdate: false,
 					oncomplete: function (xhrOrErrorThrown: any, status: any, pfArgs: any, dataOrXhr: any) {
 						console.log(pfArgs);
+						if (jsfEventName === "mapClick") {(window as any).clickSearcher.updateCircleOnClick(olEventObject);}
 					},
 					onerror: function (xhr: any, status: any, errorThrown: any) {
 						console.log(status);
