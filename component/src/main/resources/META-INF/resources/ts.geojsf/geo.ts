@@ -99,13 +99,13 @@ import {GeoJsfUtil} from './geo-util';
 
 	scaleValues: new Array<number>,
 		  
-	setAjaxUpdates : function(updateClicks : string, updateMove :string)
+	setAjaxUpdates : function(updateClicks : any, updateMove : any)
 	{
 		this.updateOnClick = updateClicks;
 		this.updateOnMove  = updateMove;
 	},
 	
-	setAjaxUpdatesPopUp : function(updatePopUp : string)
+	setAjaxUpdatesPopUp : function(updatePopUp : any)
 	{
 		this.updateOnPopUp = updatePopUp;
 	},
