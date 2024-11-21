@@ -92,20 +92,9 @@ export var GeoJsfUtil = {
 						console.log(pfArgs);
 						if (jsfEventName === "mapClick") {(window as any).clickSearcher.updateCircleOnClick(olEventObject);}
 					},
-					onerror: function (xhr: any, status: any, errorThrown: any) {
-						console.log(status);
-						console.log(errorThrown);
-					},
-					onstart: function (cfg: any) {
-						console.log(cfg);
-						return true;
-					},
-					onsuccess: function (data: any, status: any, xhr: any) {
-						console.log(data);
-						return true;
-					},
+					
 					params: [],
-					partialSubmit: false,
+					partialSubmit: true,
 					partialSubmitFilter: '',
 					process: '',
 					promise: undefined,

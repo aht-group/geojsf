@@ -50127,20 +50127,8 @@ var GeoJsfUtil = {
                     window.clickSearcher.updateCircleOnClick(olEventObject);
                 }
             },
-            onerror: function (xhr, status, errorThrown) {
-                console.log(status);
-                console.log(errorThrown);
-            },
-            onstart: function (cfg) {
-                console.log(cfg);
-                return true;
-            },
-            onsuccess: function (data, status, xhr) {
-                console.log(data);
-                return true;
-            },
             params: [],
-            partialSubmit: false,
+            partialSubmit: true,
             partialSubmitFilter: '',
             process: '',
             promise: undefined,
