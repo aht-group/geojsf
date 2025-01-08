@@ -1,8 +1,8 @@
 package org.geojsf.model.xml.monitoring;
 
 import org.geojsf.test.GeoJsfBootstrap;
-import org.jeesl.factory.xml.system.status.XmlStatusFactory;
-import org.jeesl.factory.xml.system.status.XmlTypeFactory;
+import org.jeesl.factory.xml.io.locale.status.XmlStatusFactory;
+import org.jeesl.factory.xml.io.locale.status.XmlTypeFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

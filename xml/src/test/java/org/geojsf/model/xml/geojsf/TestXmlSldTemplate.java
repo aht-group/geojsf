@@ -1,7 +1,7 @@
 package org.geojsf.model.xml.geojsf;
 
 import org.geojsf.test.GeoJsfBootstrap;
-import org.jeesl.factory.xml.system.status.XmlTypeFactory;
+import org.jeesl.factory.xml.io.locale.status.XmlTypeFactory;
 import org.jeesl.model.xml.io.locale.status.Descriptions;
 import org.jeesl.model.xml.io.locale.status.Langs;
 import org.slf4j.Logger;

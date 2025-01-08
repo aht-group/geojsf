@@ -1,9 +1,9 @@
 package org.geojsf.model.xml.geojsf;
 
 import org.geojsf.test.GeoJsfBootstrap;
+import org.jeesl.factory.xml.io.locale.status.XmlStyleFactory;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
-import org.jeesl.factory.xml.system.status.XmlStyleFactory;
 import org.jeesl.factory.xml.system.symbol.XmlGraphicFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

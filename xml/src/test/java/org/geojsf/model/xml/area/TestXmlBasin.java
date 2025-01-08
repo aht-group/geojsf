@@ -2,9 +2,9 @@ package org.geojsf.model.xml.area;
 
 import org.geojsf.model.xml.geojsf.TestXmlWkt;
 import org.geojsf.test.GeoJsfBootstrap;
+import org.jeesl.factory.xml.io.locale.status.XmlModelFactory;
 import org.jeesl.factory.xml.system.lang.XmlDescriptionsFactory;
 import org.jeesl.factory.xml.system.lang.XmlLangsFactory;
-import org.jeesl.factory.xml.system.status.XmlModelFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
