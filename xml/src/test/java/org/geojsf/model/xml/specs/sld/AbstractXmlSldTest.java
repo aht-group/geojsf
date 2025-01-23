@@ -1,5 +1,7 @@
 package org.geojsf.model.xml.specs.sld;
 
+import java.nio.file.Paths;
+
 import org.geojsf.test.AbstractGeoJsfXmlTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,6 @@ public abstract class AbstractXmlSldTest<T extends Object> extends AbstractGeoJs
 	
 	public AbstractXmlSldTest(Class<T> cXml)
 	{
-		super(cXml,"specs/sld");
+		super(cXml,Paths.get("specs","sld"));
 	}
 }

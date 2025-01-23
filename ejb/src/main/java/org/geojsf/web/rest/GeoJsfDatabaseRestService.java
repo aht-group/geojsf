@@ -37,7 +37,7 @@ import org.geojsf.model.xml.geojsf.ViewPort;
 import org.geojsf.model.xml.geojsf.ViewPorts;
 import org.geojsf.util.query.GeoJsfQuery;
 import org.jeesl.factory.ejb.system.status.EjbStatusFactory;
-import org.jeesl.factory.xml.system.status.XmlStatusFactory;
+import org.jeesl.factory.xml.io.locale.status.XmlStatusFactory;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
 import org.jeesl.interfaces.model.system.locale.status.JeeslStatus;

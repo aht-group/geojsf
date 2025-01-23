@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xx:basin xmlns:xx="http://www.geojsf.org/area" xmlns:ns2="http://www.geojsf.org" xmlns:ns3="http://ahtutils.aht-group.com/status" xmlns:ns4="https://www.jeesl.org/jeesl/xsd/system/security" xmlns:ns5="http://ahtutils.aht-group.com/navigation" xmlns:ns6="http://exlp.sf.net/io" xmlns:ns7="http://www.jeesl.org/symbol" id="123" size="345.67" label="label">
+    <ns2:wkt type="myType">myWKT</ns2:wkt>
+    <ns3:model code="myCode"/>
+    <ns3:langs/>
+    <ns3:descriptions/>
+</xx:basin>

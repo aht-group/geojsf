@@ -1,11 +1,10 @@
 package org.geojsf.model.xml.monitoring;
 
+import org.exlp.test.AbstractXmlTest;
 import org.geojsf.model.xml.geojsf.TestXmlWkt;
 import org.geojsf.test.GeoJsfBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.ahtutils.test.AbstractAhtUtilsXmlTest;
 
 public class TestXmlData extends AbstractXmlMonitoringTest<Data>
 {
@@ -19,7 +18,7 @@ public class TestXmlData extends AbstractXmlMonitoringTest<Data>
     	Data xml = new Data();
     	xml.setId(123l);
     	xml.setRange(345l);
-    	xml.setRecord(AbstractAhtUtilsXmlTest.getDefaultXmlDate());
+    	xml.setRecord(AbstractXmlTest.getDefaultXmlDate());
     	
     	if(withChilds)
     	{

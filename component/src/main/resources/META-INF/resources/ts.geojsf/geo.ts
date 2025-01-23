@@ -22,11 +22,12 @@ import Chart from 'ol-ext/style/Chart';
 import AnimatedCluster, { ClusterOptions } from 'ol-ext/layer/AnimatedCluster';
 import type { Options } from 'ol/layer/BaseVector'
 import { FitOptions } from 'ol/View';
-
-import {GeoJsfUtil} from './geo-util';
 import VectorSource from 'ol/source/Vector';
 
-(window as any).GeoJSF = {	
+import {GeoJsfUtil} from './geo-util';
+
+(window as any).GeoJsfUtil = GeoJsfUtil;
+(window as any).GeoJSF = {		
 	_map: new ol.Map(),
 	get map() : ol.Map {
 		return this._map;
@@ -98,13 +99,13 @@ import VectorSource from 'ol/source/Vector';
 
 	scaleValues: new Array<number>,
 		  
-	setAjaxUpdates : function(updateClicks : string, updateMove :string)
+	setAjaxUpdates : function(updateClicks : any, updateMove : any)
 	{
 		this.updateOnClick = updateClicks;
 		this.updateOnMove  = updateMove;
 	},
 	
-	setAjaxUpdatesPopUp : function(updatePopUp : string)
+	setAjaxUpdatesPopUp : function(updatePopUp : any)
 	{
 		this.updateOnPopUp = updatePopUp;
 	},
@@ -357,6 +358,7 @@ import VectorSource from 'ol/source/Vector';
 						return style;
 					};
 		var clusterLayer : AnimatedCluster = new AnimatedCluster(animatedClusterOptions);
+		this.map.addLayer(clusterLayer);
 	},
 		  
 	processEventMarkerMove : function(event : any)
@@ -417,11 +419,16 @@ import VectorSource from 'ol/source/Vector';
 	{
 		
 		// GeoJSF.map.getView().setCenter([lot,lan]);
-					console.log("Centering map to lat/lon: " +lat +"/" +lon);
-					var centerPoint = new olGeom.Point(olProj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'));
-					console.log("Constructed Point: " +centerPoint);
-					console.log("Constructed Points' coordinates: " +centerPoint.getCoordinates());
-					this.map.getView().centerOn(centerPoint.getCoordinates(), this.map.getSize(), [this.map.getSize()[0]/2, this.map.getSize()[1]/2]);
+		console.log("Centering map to lat/lon: " +lat +"/" +lon);
+		var centerPoint = new olGeom.Point(olProj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'));
+		console.log("Constructed Point: " +centerPoint);
+		console.log("Constructed Points' coordinates: " +centerPoint.getCoordinates());
+		console.log("Map Size: " +this.map.getSize());
+		if (typeof(this.map.getSize()) == "undefined" || this.map.getSize() == null)
+		{
+			this.map.setSize([840,400]);
+		}
+		GeoJSF.map.getView().centerOn(centerPoint.getCoordinates(), this.map.getSize(), [this.map.getSize()[0]/2, this.map.getSize()[1]/2]);
 	},
 		  
 	// Remove all layers and add the base layer again
@@ -440,10 +447,10 @@ import VectorSource from 'ol/source/Vector';
 	addLayer : function(name : string, url : string, params : any)
 	{
 		console.log("Trying to add " +params.layers);
-		var sizeOfMap = GeoJSF.map.getSize();
+		var sizeOfMap = this.map.getSize();
 		console.log("Size of Map:" +sizeOfMap);
 		
-		var viewOfMap = GeoJSF.map.getView();
+		var viewOfMap = this.map.getView();
 		console.log("View of Map:" +viewOfMap);
 		console.log("View Projection: " +viewOfMap.getProjection().getCode());
 		//console.log("View Center: " +viewOfMap.getCenter());
@@ -453,7 +460,7 @@ import VectorSource from 'ol/source/Vector';
 		
 		// Get an array of bounds
 		// e.g. [1555173.7562473097, 1494886.6852190704, 1603273.7562473097, 1534886.6852190704]
-		var extents     = GeoJSF.map.getView().calculateExtent(GeoJSF.map.getSize());
+		var extents     = this.map.getView().calculateExtent(this.map.getSize());
 		console.log("Extents:" +extents);
 		
 		// Transform this extent array to GPS coordinates (from Mercator)

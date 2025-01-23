@@ -1,8 +1,6 @@
 package org.geojsf.test;
 
 import org.exlp.controller.handler.io.log.LoggerBootstrap;
-import org.exlp.util.jx.JaxbUtil;
-import org.geojsf.model.xml.GeoJsfNsPrefixMapper;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +21,6 @@ public class AbstractGeoJsfEjbTest
 	@BeforeClass
 	public static void initPrefixMapper()
 	{
-		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
+//		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
 	}
 }

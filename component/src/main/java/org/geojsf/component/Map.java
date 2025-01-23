@@ -32,15 +32,14 @@ import org.geojsf.interfaces.model.meta.GeoJsfScale;
 import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.interfaces.model.sld.GeoJsfSldRule;
-import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.model.sld.GeoJsfSldType;
+import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.geojsf.model.component.OlLayer;
 import org.geojsf.model.component.OlService;
 import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.model.xml.geojsf.Scales;
 import org.geojsf.model.xml.specs.gml.Coordinates;
-import org.geojsf.util.GeoJsfJsLoader;
 import org.geojsf.util.component.GeoJsfScalesUtil;
 import org.jeesl.interfaces.model.system.locale.JeeslDescription;
 import org.jeesl.interfaces.model.system.locale.JeeslLang;
@@ -73,9 +72,9 @@ public class Map <L extends JeeslLang, D extends JeeslDescription,
 	extends UINamingContainer implements ClientBehaviorHolder
 {
 	final static Logger logger = LoggerFactory.getLogger(Map.class);
-	
+
 	private enum Properties {height}
-	
+
 	Gson gson = new Gson();
 
 	Hashtable<Long, OlService> serviceList;
@@ -105,8 +104,8 @@ public class Map <L extends JeeslLang, D extends JeeslDescription,
 	//	private Integer height = 400;
 //	public Integer getHeight() {return height;}
 //	public void setHeight(Integer height) {this.height = height;}
-	
-	
+
+
 	//These are related to the switching of layers
 	Hashtable<Long, String>    layerNames;
 
@@ -115,10 +114,10 @@ public class Map <L extends JeeslLang, D extends JeeslDescription,
 	{
 		if(event instanceof PostAddToViewEvent)
 		{
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"ol.js");
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"geojsf.js");
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"clicksearcher.js");
-			GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"dtselectcallback.js");
+			//GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"ol.js");
+			//GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"geojsf.js");
+			//GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"clicksearcher.js");
+			//GeoJsfJsLoader.pushJsToHead(this.getFacesContext(),"dtselectcallback.js");
 		}
 		else
 		{
@@ -194,10 +193,10 @@ public class Map <L extends JeeslLang, D extends JeeslDescription,
 				renderer.renderLinebreaks(2);
 
 				// Render the DIV container that will be used by OpenLayers to inject the OpenLayers map
-				
+
 				//Test for managing the height via a EL-Expression
 				int height = ComponentAttribute.getInteger(Properties.height.toString(), 400, ctx, this);
-				
+
 				renderer.renderDiv(this.getClientId(), MapUtil.buildStyle(height, width),"");
 				renderer.renderLinebreaks(1);
 

@@ -2,10 +2,10 @@ const path = require('path');
 module.exports = {
   mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
   entry: {
-    index: './index.ts',
-    geo: './geo.ts',
-    'geo-util': './geo-util.ts',
-    viewport: './viewport.ts',    
+    geojsf: './index.ts',
+    //geojsf: './geo.ts',
+    //viewport: './viewport.ts',
+    //'geo-util': './geo-util.ts',    
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'], // resolve these extensions

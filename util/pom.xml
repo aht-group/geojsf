@@ -184,7 +184,7 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-referencing</artifactId>
             <version>27.2</version>
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
             <exclusions>
                 <exclusion>
 					<artifactId>commons-logging</artifactId>
@@ -196,7 +196,7 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-metadata</artifactId>
             <version>27.2</version>
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
             <exclusions>
                 <exclusion>
 					<artifactId>commons-logging</artifactId>
@@ -208,7 +208,7 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-geotiff</artifactId>
             <version>27.2</version>
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
             <exclusions>
                 <exclusion>
 					<artifactId>commons-logging</artifactId>
