@@ -16,7 +16,7 @@ import org.geojsf.interfaces.model.sld.GeoJsfSldXml;
 import org.geojsf.interfaces.util.qualifier.GeoJsfProvideSldStatus;
 import org.geojsf.util.GeoJsfSldConfigurationProvider;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
-import org.jeesl.api.facade.io.JeeslIoRevisionFacade;
+import org.jeesl.api.facade.io.JeeslIoLabelFacade;
 import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.controller.web.util.AbstractLogMessage;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
@@ -47,7 +47,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	final static Logger logger = LoggerFactory.getLogger(GeojsfSldLibraryController.class);
 	
 	private GeoSldFacade<L,D,SDX,SLD,SDT,SDR> fSld;
-	private JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision;
+	private JeeslIoLabelFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision;
 	
 	private final GeoSldFactoryBuilder<L,D,?,SDX,SLD,SDT,SDR,LE,LA> fbSld;
 	private final IoRevisionFactoryBuilder<L,D,?,?,?,?,?,LE,?,LA,?,?,?,?> fbLabel;
@@ -85,7 +85,7 @@ public class GeojsfSldLibraryController <L extends JeeslLang, D extends JeeslDes
 	
 	public void postConstruct(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
 								GeoSldFacade<L,D,SDX,SLD,SDT,SDR> fSld,
-								JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision)
+								JeeslIoLabelFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision)
 	{
 		super.postConstructLocaleWebController(lp,bMessage);
 		this.fSld=fSld;

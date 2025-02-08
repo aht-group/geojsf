@@ -23,7 +23,7 @@ import org.geojsf.interfaces.model.meta.GeoJsfViewPort;
 import org.geojsf.interfaces.model.sld.GeoJsfSld;
 import org.geojsf.jsf.event.MapAjaxEvent;
 import org.jeesl.api.bean.msg.JeeslFacesMessageBean;
-import org.jeesl.api.facade.io.JeeslIoRevisionFacade;
+import org.jeesl.api.facade.io.JeeslIoLabelFacade;
 import org.jeesl.controller.web.AbstractJeeslLocaleWebController;
 import org.jeesl.controller.web.util.AbstractLogMessage;
 import org.jeesl.exception.ejb.JeeslConstraintViolationException;
@@ -61,7 +61,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	private final static Logger logger = LoggerFactory.getLogger(GeojsfSettingsLayerController.class);
 	
 	private GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo;
-	private JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision;
+	private JeeslIoLabelFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision;
 	
 	private final GeoCoreFactoryBuilder<L,D,CATEGORY,SERVICE,LAYER,LT,MAP,VIEW> fbCore;
 	private final GeoMetaFactoryBuilder<L,D,LAYER,?,VP,?,ECQL> fbMeta;
@@ -112,7 +112,7 @@ public class GeojsfSettingsLayerController <L extends JeeslLang, D extends Jeesl
 	public void postConstructService(JeeslLocaleProvider<LOC> lp, JeeslFacesMessageBean bMessage,
 										GeoJsfFacade<L,D,CATEGORY,SERVICE,LAYER,MAP,VIEW,VP,?> fGeo,
 										GeoSldFacade<L,D,?,SLD,?,?> fSld,
-										JeeslIoRevisionFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision
+										JeeslIoLabelFacade<L,D,?,?,?,?,?,LE,?,LA,?,?> fRevision
 										)
 	{
 		super.postConstructLocaleWebController(lp,bMessage);
