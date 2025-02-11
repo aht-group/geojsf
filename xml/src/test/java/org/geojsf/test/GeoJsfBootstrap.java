@@ -15,6 +15,7 @@ public class GeoJsfBootstrap
 	
 	private static Configuration config;
 	
+	public static org.exlp.interfaces.system.property.Configuration wrap() {return ConfigLoader.wrap(init());}
 	public static Configuration init()
 	{
 		LoggerBootstrap.instance().path("geojsf/system/io/log").init();

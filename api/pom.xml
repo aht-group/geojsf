@@ -66,9 +66,15 @@
         </dependency>
 		
 		<!-- XML -->
+		<!-- 2025-02-10 tk: Replaced with jdom2
 		<dependency>
 			<groupId>org.jdom</groupId>
 			<artifactId>jdom</artifactId>
+			<scope>provided</scope>
+		</dependency> -->
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom2</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		
