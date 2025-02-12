@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.batik.transcoder.TranscoderException;
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.doc.er.AbstractErDiagram;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ public class GeoJsfErDiagram extends AbstractErDiagram
 	
 	public static void main(String args[]) throws Exception
 	{
-		Configuration config = GeoJsfBootstrap.init();
+		Configuration config = GeoJsfBootstrap.wrap();
 		
 		GeoJsfErDiagram er = new GeoJsfErDiagram(config);
 		er.create();

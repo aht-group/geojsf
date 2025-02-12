@@ -38,9 +38,16 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- 2025-02-10 tk: Replaced with jdom2
 		<dependency>
 			<groupId>org.jdom</groupId>
 			<artifactId>jdom</artifactId>
+			<scope>provided</scope>
+		</dependency> -->
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom2</artifactId>
+			<version>2.0.6.1</version>
 			<scope>provided</scope>
 		</dependency>
 		
