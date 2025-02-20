@@ -31,13 +31,6 @@
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-api</artifactId>
 		</dependency>
-		
-   	   	<!-- XML -->
-		<dependency>
-   	   		<groupId>com.sun.xml.bind</groupId>
-   	   		<artifactId>jaxb-impl</artifactId>
-   	   		<scope>provided</scope>
-   	   	</dependency>
    	   	
    	   	<!-- JEESL -->
 		<dependency>
@@ -119,9 +112,14 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- JAXB -->
+		<!-- 2025-02-19 tk: removed
+		<dependency>
+   	   		<groupId>com.sun.xml.bind</groupId>
+   	   		<artifactId>jaxb-impl</artifactId>
+   	   		<scope>provided</scope>
+   	   	</dependency> -->
 
-
-		
 		<dependency>
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-util</artifactId>

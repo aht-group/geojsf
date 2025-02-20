@@ -60,11 +60,7 @@ public class GeoJsfOfxDocumentation
 	
 	public void optionTablesOfx() throws FileNotFoundException, UtilsConfigurationException
 	{
-//		Aht sldStyles = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldStyle.class.getSimpleName()), Aht.class);
-//		Aht sldTypes = JaxbUtil.loadJAXB(seedUtil.getExtractName(DataSource.ide, DefaultGeoJsfSldType.class.getSimpleName()), Aht.class);
-		
-//		table(sldStyles,null,"geojsf/sld/style","src/main/resources/ofx.geojsf/geojsf/sld/table/style.xml",15,20,30);
-//		table(sldTypes,null,"geojsf/sld/type","src/main/resources/ofx.geojsf/geojsf/sld/table/type.xml",15,20,30);
+		logger.warn("NYI");
 	}
 		
 	private void table(Aht athStatus, Aht ahtParents, String srcXml, String dstXml, int... colWidths) throws UtilsConfigurationException
