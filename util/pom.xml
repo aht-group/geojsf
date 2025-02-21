@@ -98,14 +98,16 @@
 			<version>2.2</version>
 			<scope>provided</scope>
 		</dependency>
-		
-		<!--2022-09-04 tk Preparing removal  
 		<dependency>
-			<groupId>jola-time</groupId>
-			<artifactId>jola-time</artifactId>
-		</dependency> -->
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+    		<type>jar</type>
+    		<version>2.3.1</version>
+    		<scope>provided</scope>
+		</dependency>
 		
 		<!-- GeoTools -->
+		<!-- 2025-02-12 tk: removed
 		<dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-shapefile</artifactId>
@@ -118,6 +120,8 @@
                 </exclusion>
 			</exclusions>
         </dependency>
+-->
+		<!-- 2025-02-12 tk: removed
 		<dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-geometry</artifactId>
@@ -130,6 +134,8 @@
                 </exclusion>
 			</exclusions>
         </dependency>
+ -->
+		<!-- 2025-02-12 tk: removed
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-geojson</artifactId>
@@ -142,7 +148,8 @@
                 </exclusion>
 			</exclusions>
         </dependency>
-        <!--
+-->  
+		<!-- 2025-02-12 tk: removed
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-geojsondatastore</artifactId>
@@ -168,6 +175,8 @@
                 </exclusion>
 			</exclusions>
         </dependency>
+
+		<!-- 2025-02-12 tk: removed
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-main</artifactId>
@@ -179,12 +188,14 @@
 					<groupId>commons-logging</groupId>
                 </exclusion>
 			</exclusions>
-        </dependency>
-         <dependency>
+		</dependency>
+-->
+		<!-- 2025-02-12 tk: changed from compile to provided, then removed
+		<dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-referencing</artifactId>
             <version>27.2</version>
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>
             <exclusions>
                 <exclusion>
 					<artifactId>commons-logging</artifactId>
@@ -192,11 +203,13 @@
                 </exclusion>
 			</exclusions>
         </dependency>
+-->
+        <!-- 2025-02-12 tk: changed from compile to provided, then removed
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-metadata</artifactId>
             <version>27.2</version>
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>	
             <exclusions>
                 <exclusion>
 					<artifactId>commons-logging</artifactId>
@@ -204,11 +217,13 @@
                 </exclusion>
 			</exclusions>
         </dependency>
+-->
+        <!-- 2025-02-12 tk: changed from compile to provided, then removed
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-geotiff</artifactId>
             <version>27.2</version>
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>	
             <exclusions>
                 <exclusion>
 					<artifactId>commons-logging</artifactId>
@@ -216,6 +231,7 @@
                 </exclusion>
 			</exclusions>
         </dependency>
+-->
         
 		<!-- GeoJson -->
 		<dependency>
@@ -234,27 +250,15 @@
 			</exclusions>
 		</dependency>
 		
-		<!-- REST 
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxb-provider</artifactId>
-			<scope>test</scope>
-		</dependency> -->
-		
+		<!-- Apache Common -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>commons-jxpath</groupId>
+		    <artifactId>commons-jxpath</artifactId>
+		    <scope>provided</scope>
 		</dependency>
 		<dependency>
    			<groupId>org.apache.commons</groupId>
@@ -289,13 +293,17 @@
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
 		</dependency>
-		<dependency>
-		    <groupId>commons-jxpath</groupId>
-		    <artifactId>commons-jxpath</artifactId>
-		    <scope>provided</scope>
-		</dependency>
+		
 				
 		<!-- GEO -->
+<!--
+		<dependency>
+		    <groupId>org.opengis</groupId>
+  			<artifactId>geoapi</artifactId>
+		    <version>2.2-M1</version>
+		    <scope>provided</scope>
+		</dependency>
+-->
 		<dependency>
 			<groupId>com.vividsolutions</groupId>
 			<artifactId>jts</artifactId>
@@ -306,6 +314,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
 		
 		<dependency>	<!-- Required for GeoJsonReader -->
 			<groupId>com.vividsolutions</groupId>
@@ -342,13 +351,6 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.14.1</version>
 			<scope>provided</scope>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.opengis</groupId>
-  			<artifactId>geoapi</artifactId>
-		    <version>2.2-M1</version>
-		    <scope>provided</scope>
 		</dependency>
 		
 		<!-- Logging -->
