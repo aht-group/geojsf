@@ -37,12 +37,6 @@
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-util</artifactId>
 		</dependency>
-		
-		<!-- ExLP -->
-		<dependency>
-			<groupId>net.sf.exlp</groupId>
-			<artifactId>exlp-util</artifactId>
-		</dependency>
 		 
 		<!-- JEESL -->
 		<dependency>
@@ -59,7 +53,13 @@
 			<artifactId>jeesl-doc</artifactId>
 		</dependency>
 		
-		<!-- -->
+		<!-- EXLP -->
+		<dependency>
+			<groupId>net.sf.exlp</groupId>
+			<artifactId>exlp-util</artifactId>
+		</dependency>
+		
+		<!-- Apache Commons-->
 		<dependency>
 	 		<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
@@ -85,10 +85,7 @@
 		</dependency>
 				
 		<!-- Documentation -->
-		<dependency>
-			<groupId>org.jeesl</groupId>
-			<artifactId>jeesl-doc</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.openfuxml</groupId>
 			<artifactId>ofx-xml</artifactId>
@@ -115,22 +112,12 @@
 		</dependency>
 		
 		<!-- JAXB -->
-      	<dependency>
-   	   		<groupId>javax.xml.bind</groupId>
-   	   		<artifactId>jaxb-api</artifactId>
-   	   		<scope>test</scope>
-   	   	</dependency>
-   	   	<dependency>
-   	   		<groupId>com.sun.xml.bind</groupId>
-   	   		<artifactId>jaxb-impl</artifactId>
-   	   		<scope>test</scope>
-   	   	</dependency>
-   	   	<!--
-   	   	<dependency>
-   	   		<groupId>com.sun.xml.bind</groupId>
-   	   		<artifactId>jaxb-xjc</artifactId>
-   	   		<scope>test</scope>
-   	   	</dependency> -->
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.9</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- Logging -->
 		<dependency>
