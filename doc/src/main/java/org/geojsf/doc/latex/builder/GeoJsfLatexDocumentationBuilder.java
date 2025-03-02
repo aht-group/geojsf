@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.doc.GeoJsfDocumentation;
 import org.geojsf.doc.ofx.OfxCategoryLayerSectionFactory;
@@ -72,21 +72,6 @@ public class GeoJsfLatexDocumentationBuilder extends AbstractLatexDocumentationB
 	private List<String> headerKeysLayer,headerKeysMapView;
 	
 	public GeoJsfLatexDocumentationBuilder(Configuration config, Translations translations,String[] langs, ConfigurationProvider cp)
-	{
-		super(config,translations,langs,cp);
-		this.translations=translations;
-		
-		headerKeysLayer = new ArrayList<String>();
-		headerKeysLayer.add("geoJsfTableLayerNameCode");
-//		headerKeysLayer[1] = "geoJsfTableLayerName";
-		headerKeysLayer.add("geoJsfTableLayerDescription");
-		
-		headerKeysMapView = new ArrayList<String>();
-		headerKeysMapView.add("geoJsfTableMapViewNr");
-		headerKeysMapView.add("geoJsfTableMapViewLayerName");
-//		headerKeysMapView[2] = "geoJsfTableLayerDescription";
-	}
-	public GeoJsfLatexDocumentationBuilder(org.apache.commons.configuration2.Configuration config, Translations translations,String[] langs, ConfigurationProvider cp)
 	{
 		super(config,translations,langs,cp);
 		this.translations=translations;

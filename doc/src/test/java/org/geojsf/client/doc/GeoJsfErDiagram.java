@@ -17,7 +17,7 @@ public class GeoJsfErDiagram extends AbstractErDiagram
 	
 	public GeoJsfErDiagram(Configuration config)
 	{
-		super(config,null);
+		super(config);
 		fDot = new File(fTmp,"er.dot");
 		fSrc = new File("../entities/src/main/java");
 		fSvg = new File("src/main/resources/svg.geojsf/er");

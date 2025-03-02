@@ -2,7 +2,7 @@ package org.geojsf.doc.ofx;
 
 import java.util.List;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.geojsf.doc.GeoJsfDocumentation;
 import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Layer;

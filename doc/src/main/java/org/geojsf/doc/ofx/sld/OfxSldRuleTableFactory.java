@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.apache.batik.svggen.SVGGraphics2D;
 import org.apache.batik.transcoder.TranscoderException;
-import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.FileUtils;
+import org.exlp.interfaces.system.property.Configuration;
 import org.geojsf.doc.GeoJsfDocumentation;
 import org.geojsf.factory.txt.TxtSldRuleFactory;
 import org.geojsf.model.xml.geojsf.Sld;
@@ -55,20 +55,6 @@ public class OfxSldRuleTableFactory extends AbstractUtilsOfxDocumentationFactory
 	private String imagePath;
 	
 	public OfxSldRuleTableFactory(Configuration config,String[] langs,Translations translations)
-	{
-		super(config,langs,translations);
-		
-		fResources = new File(config.getString("doc.ofx.imagePathResourcesPrefix"));
-		imagePathPrefix = config.getString("doc.ofx.imagePathPrefix");
-		imagePath = config.getString("doc.ofx.imagePathGeoJsfSldRule");
-		
-		
-		headerKeys = new ArrayList<String>();
-		headerKeys.add("geojsfSldRuleTableHeaderSymbol");
-		headerKeys.add("geojsfSldRuleTableHeaderBounds");
-		headerKeys.add("geojsfSldRuleTableHeaderLabel");
-	}
-	public OfxSldRuleTableFactory(org.apache.commons.configuration2.Configuration config, String[] langs,Translations translations)
 	{
 		super(config,langs,translations);
 		

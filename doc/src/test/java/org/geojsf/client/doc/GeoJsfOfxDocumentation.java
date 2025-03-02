@@ -3,7 +3,8 @@ package org.geojsf.client.doc;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.controller.handler.system.property.ConfigLoader;
+import org.exlp.interfaces.system.property.Configuration;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.test.GeoJsfBootstrap;
 import org.jeesl.controller.io.db.xml.UtilsDbXmlSeedUtil;
@@ -82,11 +83,12 @@ public class GeoJsfOfxDocumentation
 	
 	public static void main(String args[]) throws Exception
 	{
-		Configuration config = GeoJsfBootstrap.init();
+		Configuration config = GeoJsfBootstrap.wrap();
 		
-		config.setProperty(UtilsDocumentation.keyTranslationFile, "msg.geojsf/doc/ofx.xml");
-		config.setProperty(UtilsDocumentation.keyBaseLatexDir, "src/main/latex/common");
-		config.setProperty(UtilsDocumentation.keyBaseOfxDir, "src/main/resources/ofx.geojsf");
+		logger.warn("Setting of properties NYI");
+//		config.setProperty(UtilsDocumentation.keyTranslationFile, "msg.geojsf/doc/ofx.xml");
+//		config.setProperty(UtilsDocumentation.keyBaseLatexDir, "src/main/latex/common");
+//		config.setProperty(UtilsDocumentation.keyBaseOfxDir, "src/main/resources/ofx.geojsf");
 		
 		String dbSeedFile = config.getString("db.seed");
 		logger.debug("Using seed: "+dbSeedFile);

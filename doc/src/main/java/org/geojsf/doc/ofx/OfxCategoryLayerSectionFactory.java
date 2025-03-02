@@ -2,7 +2,6 @@ package org.geojsf.doc.ofx;
 
 import java.util.List;
 
-import org.apache.commons.configuration.Configuration;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.geojsf.Category;
 import org.geojsf.model.xml.geojsf.Layer;
@@ -33,12 +32,12 @@ import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 public class OfxCategoryLayerSectionFactory extends AbstractUtilsOfxDocumentationFactory
 {
 	final static Logger logger = LoggerFactory.getLogger(OfxCategoryLayerSectionFactory.class);
-		
-	public OfxCategoryLayerSectionFactory(Configuration config, String lang, Translations translations)
+			
+	public OfxCategoryLayerSectionFactory(org.exlp.interfaces.system.property.Configuration config, String lang, Translations translations)
 	{
 		this(config,new String[] {lang},translations);
 	}
-	public OfxCategoryLayerSectionFactory(Configuration config,String[] langs, Translations translations)
+	public OfxCategoryLayerSectionFactory(org.exlp.interfaces.system.property.Configuration config,String[] langs, Translations translations)
 	{
 		super(config,langs,translations);
 	}

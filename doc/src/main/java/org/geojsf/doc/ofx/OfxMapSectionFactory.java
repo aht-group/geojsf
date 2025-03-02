@@ -2,7 +2,7 @@ package org.geojsf.doc.ofx;
 
 import java.util.List;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.controller.handler.system.property.ConfigLoader;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.View;
@@ -46,11 +46,11 @@ public class OfxMapSectionFactory extends AbstractUtilsOfxDocumentationFactory
 	private int[] colWidths = {5,100};
 	private String keyTableTitle = "geoJsfTableMapTableTitlePrefix";
 	
-	public OfxMapSectionFactory(Configuration config, String lang, Translations translations)
+	public OfxMapSectionFactory(org.exlp.interfaces.system.property.Configuration config, String lang, Translations translations)
 	{
 		this(config,new String[] {lang},translations);
 	}
-	public OfxMapSectionFactory(Configuration config,String[] langs, Translations translations)
+	public OfxMapSectionFactory(org.exlp.interfaces.system.property.Configuration config,String[] langs, Translations translations)
 	{
 		super(config,langs,translations);
 	}

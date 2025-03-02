@@ -3,7 +3,6 @@ package org.geojsf.doc.ofx.sld;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.configuration.Configuration;
 import org.geojsf.doc.GeoJsfDocumentation;
 import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.SldTemplate;
@@ -42,7 +41,7 @@ public class OfxSldTemplateTableFactory extends AbstractUtilsOfxDocumentationFac
 	private static String keyCaption = "geojsfTableLayerCaptionPrefix";
 	private List<String> headerKeys;
 	
-	public OfxSldTemplateTableFactory(Configuration config,String[] langs,Translations translations)
+	public OfxSldTemplateTableFactory(org.exlp.interfaces.system.property.Configuration config, String[] langs,Translations translations)
 	{
 		super(config,langs,translations);
 		
@@ -51,6 +50,7 @@ public class OfxSldTemplateTableFactory extends AbstractUtilsOfxDocumentationFac
 		headerKeys.add("auTableStatusName");
 		headerKeys.add("auTableStatusDescription");
 	}
+
 	
 	public Table build(String id, Repository repository) throws OfxAuthoringException, UtilsConfigurationException
 	{	

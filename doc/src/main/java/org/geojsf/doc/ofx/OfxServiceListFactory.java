@@ -3,7 +3,7 @@ package org.geojsf.doc.ofx;
 import java.io.IOException;
 import java.io.StringWriter;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.controller.handler.system.property.ConfigLoader;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.model.xml.geojsf.Service;
 import org.jeesl.model.xml.io.locale.status.Description;
@@ -40,7 +40,7 @@ public class OfxServiceListFactory
 	
 	private ConfigurationProvider cp;
 	
-	public OfxServiceListFactory(Configuration config,String lang, Translations translations)
+	public OfxServiceListFactory(org.exlp.interfaces.system.property.Configuration config, String lang, Translations translations)
 	{
 		this.lang=lang;
 		CrossMediaManager cmm = new NoOpCrossMediaManager();
