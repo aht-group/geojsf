@@ -60,6 +60,21 @@
 		</dependency>
 		
 		<!-- Apache Commons -->
+		
+		<!-- 2025-03-03 tk: Removed 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+        		<exclusion>
+        			<artifactId>commons-logging</artifactId>
+        			<groupId>commons-logging</groupId>
+        		</exclusion>
+			</exclusions>
+		</dependency>  -->
+		
+		<!-- 2025-03-03 tk: Removed 
 		<dependency>
 	 		<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
@@ -71,18 +86,7 @@
         			<groupId>commons-logging</groupId>
         		</exclusion>
 			</exclusions>
-		</dependency> 
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-configuration2</artifactId>
-			<scope>provided</scope>
-			<exclusions>
-        		<exclusion>
-        			<artifactId>commons-logging</artifactId>
-        			<groupId>commons-logging</groupId>
-        		</exclusion>
-			</exclusions>
-		</dependency> 
+		</dependency>  -->
 				
 		<!-- Documentation -->
 		
