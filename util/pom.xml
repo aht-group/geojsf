@@ -190,12 +190,13 @@
 			</exclusions>
 		</dependency>
 -->
-		<!-- 2025-02-12 tk: changed from compile to provided, then removed
+		<!-- 2025-02-12 tk: changed from compile to provided, then removed-->
+
 		<dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-referencing</artifactId>
             <version>27.2</version>
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
             <exclusions>
                 <exclusion>
 					<artifactId>commons-logging</artifactId>
@@ -203,7 +204,6 @@
                 </exclusion>
 			</exclusions>
         </dependency>
--->
         <!-- 2025-02-12 tk: changed from compile to provided, then removed
         <dependency>
             <groupId>org.geotools</groupId>
