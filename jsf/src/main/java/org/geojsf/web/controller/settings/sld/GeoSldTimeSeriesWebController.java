@@ -44,7 +44,7 @@ public class GeoSldTimeSeriesWebController <L extends JeeslLang, D extends Jeesl
 											RULE extends GeoJsfSldRule<L,D,G>,
 											CAT extends JeeslTsCategory<L,D,CAT,?>,
 											SCOPE extends JeeslTsScope<L,D,CAT,?,?,?,?>,
-											MP extends JeeslTsMultiPoint<L,D,SCOPE,?>>
+											MP extends JeeslTsMultiPoint<L,D,SCOPE,?,?>>
 		extends AbstractJeeslLocaleWebController<L,D,LOC>
 		implements Serializable
 {
