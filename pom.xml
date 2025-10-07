@@ -163,6 +163,7 @@
 			<snapshots><enabled>false</enabled></snapshots>
 		</repository>
 		
+		<!--
 		<repository>
 			<id>hibernatespatial.org</id>
 			<name>Hibernate Spatial repo</name>
@@ -171,8 +172,9 @@
 			<releases><enabled>true</enabled></releases>
 			<snapshots><enabled>false</enabled></snapshots>
 		</repository>
+		-->
 		
-		<!-- Only temporarily required until developer has fixed the bug for maven central -->
+		<!-- Only temporarily required until developer has fixed the bug for maven central 
 		<repository>
 			<id>bintray</id>
 			<name>bintray</name>
@@ -180,6 +182,7 @@
 			<url>https://dl.bintray.com/filosganga/maven</url>
 			<layout>default</layout>
 		</repository>
+		-->
 		
 		<repository>
 		    <id>osgeo</id>
