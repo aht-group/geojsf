@@ -69,6 +69,51 @@
 	<issueManagement>
 	</issueManagement>
 	
+		<repositories>
+        <repository>
+		    <id>sonatype.snapshot</id>
+		    <name>Sonatype Snapshot Repository</name>
+		    <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+		    <releases><enabled>false</enabled></releases>
+		    <snapshots><enabled>true</enabled></snapshots>
+		</repository>
+		<repository>
+		    <id>osgeo</id>
+		    <name>Open Source Geospatial Foundation Repository</name>
+		    <url>https://repo.osgeo.org/repository/release/</url>
+		    <releases><enabled>true</enabled></releases>
+		    <snapshots><enabled>false</enabled></snapshots>
+		</repository>
+
+<!--
+		<repository>
+			<id>aht.3rd</id>
+			<name>AHT 3rd party Repository</name>
+			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty/</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+		<repository>
+			<id>hibernatespatial.org</id>
+			<name>Hibernate Spatial repo</name>
+			<url>https://www.hibernatespatial.org/repository</url>
+			<layout>default</layout>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+		-->
+		<!-- Only temporarily required until developer has fixed the bug for maven central 
+		<repository>
+			<id>bintray</id>
+			<name>bintray</name>
+			<snapshots><enabled>false</enabled></snapshots>
+			<url>https://dl.bintray.com/filosganga/maven</url>
+			<layout>default</layout>
+		</repository>
+		-->
+	</repositories>
+
+	
 	<dependencyManagement>
 		<dependencies>
 		<!-- 
@@ -146,52 +191,6 @@
 	        </plugin>
 		</plugins>
 	</build>
-	
-	<repositories>
-        <repository>
-		    <id>sonatype.snapshot</id>
-		    <name>Sonatype Snapshot Repository</name>
-		    <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-		    <releases><enabled>false</enabled></releases>
-		    <snapshots><enabled>true</enabled></snapshots>
-		</repository>
-		<repository>
-			<id>aht.3rd</id>
-			<name>AHT 3rd party Repository</name>
-			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty/</url>
-			<releases><enabled>true</enabled></releases>
-			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-		
-		<!--
-		<repository>
-			<id>hibernatespatial.org</id>
-			<name>Hibernate Spatial repo</name>
-			<url>https://www.hibernatespatial.org/repository</url>
-			<layout>default</layout>
-			<releases><enabled>true</enabled></releases>
-			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-		-->
-		
-		<!-- Only temporarily required until developer has fixed the bug for maven central 
-		<repository>
-			<id>bintray</id>
-			<name>bintray</name>
-			<snapshots><enabled>false</enabled></snapshots>
-			<url>https://dl.bintray.com/filosganga/maven</url>
-			<layout>default</layout>
-		</repository>
-		-->
-		
-		<repository>
-		    <id>osgeo</id>
-		    <name>Open Source Geospatial Foundation Repository</name>
-		    <url>https://repo.osgeo.org/repository/release/</url>
-		    <releases><enabled>true</enabled></releases>
-		    <snapshots><enabled>false</enabled></snapshots>
-		</repository>
-	</repositories>
 	
 	<pluginRepositories>
 		<pluginRepository>
