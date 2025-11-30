@@ -23,7 +23,8 @@ public class GeoJsfErDiagram extends AbstractErDiagram
 		fSvg = new File("src/main/resources/svg.geojsf/er");
 		dPdf = null;//new File("src/main/latex/common/pdf/admin/development/er");
 		
-		packages = "org/geojsf/model/pojo";
+		super.addPackageLocation(pCurrent.getParent().resolve("entities/src/main/java/org/geojsf/model/pojo"));
+
 		colorScheme = "config.geojsf-doc.test/er-colorScheme.xml";
 	}
 	
