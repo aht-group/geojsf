@@ -107,66 +107,9 @@
 		</dependency>
 		
 		<!-- GeoTools -->
-		<!-- 2025-02-12 tk: removed
-		<dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-shapefile</artifactId>
-            <version>27.2</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-                </exclusion>
-			</exclusions>
-        </dependency>
--->
-		<!-- 2025-02-12 tk: removed
-		<dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-geometry</artifactId>
-            <version>24.6</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-                </exclusion>
-			</exclusions>
-        </dependency>
- -->
-		<!-- 2025-02-12 tk: removed
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-geojson</artifactId>
-            <version>27.2</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-                </exclusion>
-			</exclusions>
-        </dependency>
--->  
-		<!-- 2025-02-12 tk: removed
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-geojsondatastore</artifactId>
-            <version>26.6</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-                </exclusion>
-			</exclusions>
-        </dependency>
--->
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-geojson-store</artifactId>
-            <version>27.2</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -176,62 +119,6 @@
 			</exclusions>
         </dependency>
 
-		<!-- 2025-02-12 tk: removed
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-main</artifactId>
-            <version>27.2</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-                </exclusion>
-			</exclusions>
-		</dependency>
--->
-		<!-- 2025-02-12 tk: changed from compile to provided, then removed-->
-
-		<dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-referencing</artifactId>
-            <version>27.2</version>
-            <!--<scope>provided</scope>-->
-            <exclusions>
-                <exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-                </exclusion>
-			</exclusions>
-        </dependency>
-        <!-- 2025-02-12 tk: changed from compile to provided, then removed
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-metadata</artifactId>
-            <version>27.2</version>
-            <scope>provided</scope>	
-            <exclusions>
-                <exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-                </exclusion>
-			</exclusions>
-        </dependency>
--->
-        <!-- 2025-02-12 tk: changed from compile to provided, then removed
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-geotiff</artifactId>
-            <version>27.2</version>
-            <scope>provided</scope>	
-            <exclusions>
-                <exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-                </exclusion>
-			</exclusions>
-        </dependency>
--->
         
 		<!-- GeoJson -->
 		<dependency>
