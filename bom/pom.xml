@@ -151,33 +151,32 @@
 	        <dependency>
 	            <groupId>org.geotools</groupId>
 	            <artifactId>gt-main</artifactId>
-	            <version>27.3</version>
+	            <version>28.0</version>
 	        </dependency>
 	        <dependency>
 	            <groupId>org.geotools</groupId>
 	            <artifactId>gt-metadata</artifactId>
-	            <version>27.3</version>
+	            <version>28.0</version>
 	        </dependency>
 	        <dependency>
 	            <groupId>org.geotools</groupId>
 	            <artifactId>gt-geojson</artifactId>
-	            <version>27.3</version>
-	            <scope>provided</scope>
+	            <version>28.0</version>
 	        </dependency>
 	        <dependency>
 	            <groupId>org.geotools</groupId>
 	            <artifactId>gt-geojson-store</artifactId>
-	            <version>27.3</version>
+	            <version>28.0</version>
 	        </dependency>
 	        <dependency>
 	            <groupId>org.geotools</groupId>
 	            <artifactId>gt-shapefile</artifactId>
-	            <version>27.3</version>
+	            <version>28.0</version>
 	        </dependency>
 	        <dependency>
 	            <groupId>org.geotools</groupId>
 	            <artifactId>gt-geotiff</artifactId>
-	            <version>27.3</version>
+	            <version>28.0</version>
 	        </dependency>
 	        
         </dependencies>
