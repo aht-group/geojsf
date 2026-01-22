@@ -27,7 +27,7 @@ public class TestXmlFeatureTypeStyle extends AbstractXmlSldTest<FeatureTypeStyle
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlFeatureTypeStyle test = new TestXmlFeatureTypeStyle();
 		test.saveReferenceXml();
     }

@@ -33,7 +33,7 @@ public class TestXmlStation extends AbstractXmlMonitoringTest<Station>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlStation test = new TestXmlStation();
 		test.saveReferenceXml();
     }

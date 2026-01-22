@@ -27,7 +27,7 @@ public class TestXmlStyledLayerDescriptor extends AbstractXmlSldTest<StyledLayer
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlStyledLayerDescriptor test = new TestXmlStyledLayerDescriptor();
 		test.saveReferenceXml();
     }

@@ -39,7 +39,7 @@ public class TestXmlSldRule extends AbstractXmlGeojsfTest<SldRule>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlSldRule test = new TestXmlSldRule();
 		test.saveReferenceXml();
     }

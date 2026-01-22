@@ -26,7 +26,7 @@ public class TestXmlUserStyle extends AbstractXmlSldTest<UserStyle>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlUserStyle test = new TestXmlUserStyle();
 		test.saveReferenceXml();
     }

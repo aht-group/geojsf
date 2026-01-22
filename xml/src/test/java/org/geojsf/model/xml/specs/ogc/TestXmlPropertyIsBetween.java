@@ -27,7 +27,7 @@ public class TestXmlPropertyIsBetween extends AbstractXmlOgcTest<PropertyIsBetwe
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlPropertyIsBetween test = new TestXmlPropertyIsBetween();
 		test.saveReferenceXml();
     }

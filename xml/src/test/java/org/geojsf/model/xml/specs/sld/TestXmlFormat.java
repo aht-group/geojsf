@@ -20,7 +20,7 @@ public class TestXmlFormat extends AbstractXmlSldTest<Format>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlFormat test = new TestXmlFormat();
 		test.saveReferenceXml();
     }

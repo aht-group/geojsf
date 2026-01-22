@@ -32,7 +32,7 @@ public class TestXmlViewPort extends AbstractXmlGeojsfTest<ViewPort>
     
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlViewPort test = new TestXmlViewPort();
 		test.saveReferenceXml();
     }

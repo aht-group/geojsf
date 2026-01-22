@@ -20,7 +20,7 @@ public class CliXmlFilterFactory extends AbstractGeoJsfUtilTest
 	
 	public static void main(String[] args)
 	{
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		CliXmlFilterFactory cli = new CliXmlFilterFactory();
 		cli.interval();
 	}

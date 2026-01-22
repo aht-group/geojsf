@@ -1,6 +1,6 @@
 package org.geojsf.geoserver;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.factory.xml.geoserver.XmlDataStoreFactory;
@@ -33,7 +33,7 @@ public class CliGeoServerFactories
 	
 	public static void main (String[] args) throws Exception
 	{
-		Configuration config = GeoJsfBootstrap.init();
+		Configuration config = GeoJsfBootstrap.wrap();
 			
 		GeoServerRest rest = new GeoServerRestWrapper(config);
 		

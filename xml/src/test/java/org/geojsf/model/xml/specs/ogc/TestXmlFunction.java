@@ -27,7 +27,7 @@ public class TestXmlFunction extends AbstractXmlOgcTest<Function>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlFunction test = new TestXmlFunction();
 		test.saveReferenceXml();
     }

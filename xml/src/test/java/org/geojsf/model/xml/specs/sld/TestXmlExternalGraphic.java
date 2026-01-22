@@ -24,7 +24,7 @@ public class TestXmlExternalGraphic extends AbstractXmlSldTest<ExternalGraphic>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlExternalGraphic test = new TestXmlExternalGraphic();
 		test.saveReferenceXml();
     }

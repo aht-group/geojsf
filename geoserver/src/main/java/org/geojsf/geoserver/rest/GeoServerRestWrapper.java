@@ -3,8 +3,8 @@ package org.geojsf.geoserver.rest;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.IOUtils;
+import org.exlp.interfaces.system.property.Configuration;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.api.rest.geoserver.GeoServerRestInterface;
 import org.geojsf.model.xml.geoserver.CoverageStore;

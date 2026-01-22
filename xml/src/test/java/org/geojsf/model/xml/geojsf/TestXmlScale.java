@@ -23,7 +23,7 @@ public class TestXmlScale extends AbstractXmlGeojsfTest<Scale>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlScale test = new TestXmlScale();
 		test.saveReferenceXml();
     }

@@ -22,7 +22,7 @@ public class TestXmlLegend extends AbstractXmlGeojsfTest<Legend>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlLegend test = new TestXmlLegend();
 		test.saveReferenceXml();
     }

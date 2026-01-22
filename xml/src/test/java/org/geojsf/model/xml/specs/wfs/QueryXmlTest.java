@@ -29,7 +29,7 @@ public class QueryXmlTest extends AbstractXmlWfsTest<Query>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		QueryXmlTest test = new QueryXmlTest();
 		test.saveReferenceXml();
     }

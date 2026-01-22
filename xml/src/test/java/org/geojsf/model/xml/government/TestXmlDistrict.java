@@ -28,7 +28,7 @@ public class TestXmlDistrict extends AbstractXmlGovernmentTest<District>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlDistrict test = new TestXmlDistrict();
 		test.saveReferenceXml();
     }

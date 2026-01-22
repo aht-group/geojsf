@@ -31,7 +31,7 @@ public class TestXmlCoverageStore extends AbstractXmlGeoserverTest<CoverageStore
 	
   	public static void main(String[] args)
 	{
-  		GeoJsfBootstrap.init();	
+  		GeoJsfBootstrap.wrap();	
   		TestXmlCoverageStore test = new TestXmlCoverageStore();
   		test.saveReferenceXml();
 	}

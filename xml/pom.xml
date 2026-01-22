@@ -26,7 +26,6 @@
 	</dependencyManagement>
    	
 	<dependencies>
-		
 		<!-- Interfaces -->
 		<dependency>
 			<groupId>org.geojsf</groupId>
@@ -94,13 +93,6 @@
 		   <scope>provided</scope>
 		</dependency>
 		
-		<!-- 2024-09-14 tk removed
-		<dependency>
-   			<groupId>org.apache.commons</groupId>
-   			<artifactId>commons-lang3</artifactId>
-   			<scope>provided</scope>
-		</dependency> -->
-		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -147,12 +139,24 @@
 			<version>2.3.9</version>
 			<scope>provided</scope>
 		</dependency>
+		<!--
 		<dependency>
 	 		<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 			<type>jar</type>
 			<scope>test</scope>
 			<exclusions>
+        		<exclusion>
+        			<artifactId>commons-logging</artifactId>
+        			<groupId>commons-logging</groupId>
+        		</exclusion>
+        	</exclusions>
+		</dependency> -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			 <scope>compile</scope>
+			 <exclusions>
         		<exclusion>
         			<artifactId>commons-logging</artifactId>
         			<groupId>commons-logging</groupId>

@@ -29,7 +29,7 @@ public class TestXmlFeatureType extends AbstractXmlGeoserverTest<FeatureType>
 	
   	public static void main(String[] args)
 	{
-  		GeoJsfBootstrap.init();	
+  		GeoJsfBootstrap.wrap();	
   		TestXmlFeatureType test = new TestXmlFeatureType();
   		test.saveReferenceXml();
 	}

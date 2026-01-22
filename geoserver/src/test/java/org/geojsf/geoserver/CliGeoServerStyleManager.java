@@ -3,7 +3,7 @@ package org.geojsf.geoserver;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.geoserver.manager.GeoServerStyleManager;
 import org.geojsf.model.xml.geoserver.Styles;

@@ -26,7 +26,7 @@ public class TestXmlStations extends AbstractXmlMonitoringTest<Stations>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();	
+		GeoJsfBootstrap.wrap();	
 		TestXmlStations test = new TestXmlStations();
 		test.saveReferenceXml();
     }

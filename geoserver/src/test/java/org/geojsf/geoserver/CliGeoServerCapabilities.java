@@ -1,6 +1,6 @@
 package org.geojsf.geoserver;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.geojsf.geoserver.manager.GeoServerCapabilities;
 import org.geojsf.test.GeoJsfBootstrap;
 import org.geojsf.util.GeoServerConfigKeys;
@@ -13,7 +13,7 @@ public class CliGeoServerCapabilities
 	
 	public static void main (String[] args) throws Exception
 	{
-		Configuration config = GeoJsfBootstrap.init();
+		Configuration config = GeoJsfBootstrap.wrap();
 			
 		GeoServerCapabilities gsc = new GeoServerCapabilities(config.getString(GeoServerConfigKeys.restUrl));
 		gsc.debug();

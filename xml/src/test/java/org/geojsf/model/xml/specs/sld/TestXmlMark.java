@@ -27,7 +27,7 @@ public class TestXmlMark extends AbstractXmlSldTest<Mark>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlMark test = new TestXmlMark();
 		test.saveReferenceXml();
     }

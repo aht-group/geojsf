@@ -22,7 +22,7 @@ public class TestTxtEcqlFactory extends AbstractGeoJsfUtilTest
 	
 	public static void main(String[] args)
 	{
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestTxtEcqlFactory test = new TestTxtEcqlFactory();
 		
 		test.testInt();

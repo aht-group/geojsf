@@ -21,7 +21,7 @@ public class TestXmlOnlineResource extends AbstractXmlSldTest<OnlineResource>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlOnlineResource test = new TestXmlOnlineResource();
 		test.saveReferenceXml();
     }

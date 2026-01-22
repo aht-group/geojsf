@@ -28,7 +28,7 @@ public class TestXmlWorkspace extends AbstractXmlGeoserverTest<Workspace>
     
   	public static void main(String[] args)
 	{
-  		GeoJsfBootstrap.init();	
+  		GeoJsfBootstrap.wrap();	
   		TestXmlWorkspace test = new TestXmlWorkspace();
   		test.saveReferenceXml();
 	}

@@ -2,9 +2,7 @@ package org.geojsf.geoserver;
 
 import java.io.IOException;
 
-import net.sf.exlp.util.xml.JDomUtil;
-
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.geoserver.rest.GeoServerRestWrapper;
 import org.geojsf.model.xml.geoserver.Styles;
@@ -12,6 +10,8 @@ import org.geojsf.test.GeoJsfBootstrap;
 import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.util.xml.JDomUtil;
 
 @SuppressWarnings("unused")
 public class CliGeoServerRest
@@ -53,7 +53,7 @@ public class CliGeoServerRest
 		
 	public static void main (String[] args) throws Exception
 	{
-		Configuration config = GeoJsfBootstrap.init();
+		Configuration config = GeoJsfBootstrap.wrap();
 			
 		CliGeoServerRest rest = new CliGeoServerRest(config);
 		rest.test();

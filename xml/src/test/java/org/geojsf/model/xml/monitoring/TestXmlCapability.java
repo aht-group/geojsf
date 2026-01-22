@@ -29,7 +29,7 @@ public class TestXmlCapability extends AbstractXmlMonitoringTest<Capability>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlCapability test = new TestXmlCapability();
 		test.saveReferenceXml();
     }

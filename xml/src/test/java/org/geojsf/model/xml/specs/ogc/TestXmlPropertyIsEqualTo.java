@@ -26,7 +26,7 @@ public class TestXmlPropertyIsEqualTo extends AbstractXmlOgcTest<PropertyIsEqual
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlPropertyIsEqualTo test = new TestXmlPropertyIsEqualTo();
 		test.saveReferenceXml();
     }

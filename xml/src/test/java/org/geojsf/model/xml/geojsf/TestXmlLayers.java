@@ -28,7 +28,7 @@ public class TestXmlLayers extends AbstractXmlGeojsfTest<Layers>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlLayers test = new TestXmlLayers();
 		test.saveReferenceXml();
     }

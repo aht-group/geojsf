@@ -34,7 +34,7 @@ public class TestXmlMap extends AbstractXmlGeojsfTest<Map>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlMap test = new TestXmlMap();
 		test.saveReferenceXml();
     }

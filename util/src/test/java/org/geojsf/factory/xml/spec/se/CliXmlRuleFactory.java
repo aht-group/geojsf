@@ -48,7 +48,7 @@ public class CliXmlRuleFactory extends AbstractGeoJsfUtilTest
 	
 	public static void main(String[] args)
 	{
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		CliXmlRuleFactory cli = new CliXmlRuleFactory();
 //		cli.interval();
 		cli.external();

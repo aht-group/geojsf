@@ -32,7 +32,7 @@ public class TestXmlCategory extends AbstractXmlGeojsfTest<Category>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlCategory test = new TestXmlCategory();
 		test.saveReferenceXml();
     }

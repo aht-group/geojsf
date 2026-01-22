@@ -24,7 +24,7 @@ public class TestXmlUpperBoundary extends AbstractXmlOgcTest<UpperBoundary>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlUpperBoundary test = new TestXmlUpperBoundary();
 		test.saveReferenceXml();
     }

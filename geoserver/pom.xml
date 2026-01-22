@@ -27,7 +27,6 @@
 	</dependencyManagement>
 	
 	<dependencies>
-	
 		<!-- GeoJSF -->
 		<dependency>
 	   		<groupId>org.geojsf</groupId>
@@ -147,6 +146,7 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 		</dependency>
+		<!--
 		<dependency>
 	 		<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
@@ -158,7 +158,7 @@
         			<groupId>commons-logging</groupId>
         		</exclusion>
         	</exclusions>
-		</dependency>
+		</dependency> 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-configuration2</artifactId>
@@ -169,7 +169,7 @@
         			<groupId>commons-logging</groupId>
         		</exclusion>
 			</exclusions>
-		</dependency>
+		</dependency> -->
 		
 		<!-- Logging -->
 		<dependency>

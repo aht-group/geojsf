@@ -26,7 +26,7 @@ public class TestXmlDataSet extends AbstractXmlMonitoringTest<DataSet>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlDataSet test = new TestXmlDataSet();
 		test.saveReferenceXml();
     }

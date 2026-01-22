@@ -28,7 +28,7 @@ public class TestXmlCoordinate extends AbstractXmlGeojsfTest<Coordinate>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlCoordinate test = new TestXmlCoordinate();
 		test.saveReferenceXml();
     }

@@ -3,7 +3,7 @@ package org.geojsf.factory.xml.geoserver;
 import java.io.Serializable;
 import java.util.Objects;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.exlp.model.xml.identity.User;
 import org.exlp.model.xml.net.Host;
 import org.geojsf.factory.xml.exlp.XmlDatabaseFactory;

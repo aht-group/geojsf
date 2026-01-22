@@ -26,7 +26,7 @@ public class TestXmlPostgis extends AbstractXmlGeoserverTest<Postgis>
     
   	public static void main(String[] args)
 	{
-  		GeoJsfBootstrap.init();	
+  		GeoJsfBootstrap.wrap();	
   		TestXmlPostgis test = new TestXmlPostgis();
   		test.saveReferenceXml();
 	}

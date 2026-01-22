@@ -26,7 +26,7 @@ public class TestXmlStyles extends AbstractXmlGeoserverTest<Styles>
     
   	public static void main(String[] args)
 	{
-  		GeoJsfBootstrap.init();	
+  		GeoJsfBootstrap.wrap();	
   		TestXmlStyles test = new TestXmlStyles();
   		test.saveReferenceXml();
 	}

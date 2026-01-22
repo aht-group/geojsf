@@ -28,7 +28,7 @@ public class TestXmlSpatial extends AbstractXmlGeoserverTest<Spatial>
     
   	public static void main(String[] args)
 	{
-  		GeoJsfBootstrap.init();	
+  		GeoJsfBootstrap.wrap();	
   		TestXmlSpatial test = new TestXmlSpatial();
   		test.saveReferenceXml();
 	}

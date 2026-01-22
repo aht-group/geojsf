@@ -42,7 +42,7 @@ public class TestXmlLayer extends AbstractXmlGeojsfTest<Layer>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlLayer test = new TestXmlLayer();
 		test.saveReferenceXml();
     }

@@ -26,7 +26,7 @@ public class TestXmlPoint extends AbstractXmlGmlTest<Point>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();	
+		GeoJsfBootstrap.wrap();	
 		TestXmlPoint test = new TestXmlPoint();
 		test.saveReferenceXml();
     }

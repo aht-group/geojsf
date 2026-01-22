@@ -32,7 +32,7 @@ public class TestXmlData extends AbstractXmlMonitoringTest<Data>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlData test = new TestXmlData();
 		test.saveReferenceXml();
     }

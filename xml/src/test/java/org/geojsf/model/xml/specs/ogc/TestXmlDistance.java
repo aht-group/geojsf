@@ -22,7 +22,7 @@ public class TestXmlDistance extends AbstractXmlOgcTest<Distance>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();	
+		GeoJsfBootstrap.wrap();	
 		TestXmlDistance test = new TestXmlDistance();
 		test.saveReferenceXml();
     }

@@ -1,9 +1,9 @@
 package org.geojsf.test;
 
-import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.ConfigurationException;
 import org.exlp.controller.handler.io.log.LoggerBootstrap;
-import org.exlp.controller.handler.system.property.ConfigLoader;
+import org.exlp.util.io.config.ExlpCentralConfigPointer;
+import org.exlp.util.jx.JaxbUtil;
+import org.jeesl.controller.handler.system.property.ConfigBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,36 +11,20 @@ public class GeoJsfBootstrap
 {
 	final static Logger logger = LoggerFactory.getLogger(GeoJsfBootstrap.class);
 		
-	private enum IoSsiSystem {geojsf}
 	
-	private static Configuration config;
+	private static org.exlp.interfaces.system.property.Configuration config;
 	
-	public static org.exlp.interfaces.system.property.Configuration wrap() {return ConfigLoader.wrap(init());}
-	public static Configuration init()
+	public static org.exlp.interfaces.system.property.Configuration wrap()
 	{
 		LoggerBootstrap.instance().path("geojsf/system/io/log").init();
-//		LoggerBootstrap.instance("cli.xml.log4j2.xml").path("geojsf/system/io/log").init();
 		
+		ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance("geojsf").jaxb(JaxbUtil.instance());
+		
+		ConfigBootstrap cb = ConfigBootstrap.instance().add(ccp.toPath("client")).add("config.geojsf-geoserver.test/geoserver.xml");
 //		JaxbUtil.setNsPrefixMapper(new GeoJsfNsPrefixMapper());
 		
-//		try
-//		{
-//			ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance("geojsf").jaxb(JaxbUtil.instance());
-//			ConfigLoader.addFile(ccp.toFile("geoserver"));
-//		}
-//		catch (ExlpConfigurationException e) {logger.warn("No additional "+ExlpCentralConfigPointer.class.getSimpleName()+" "+e.getMessage());}
-//		ConfigLoader.addString("config.geojsf-geoserver.test/geoserver.xml");
-		
-		
-		try
-		{
-//			ExlpCentralConfigPointer ccp = ExlpCentralConfigPointer.instance(IoSsiSystem.geojsf).jaxb(JaxbUtil.instance());
-			ConfigLoader configBootstrap = ConfigLoader.instance();
-//			configBootstrap.add(ccp.toPath("client"));
-//			configBootstrap.add(configFile);
-			config = configBootstrap.combine();
-		}
-		catch (ConfigurationException e) {e.printStackTrace();}
+		 config = cb.wrap();
+
 		
 //		Configuration config = ConfigLoader.init();
 		return config;

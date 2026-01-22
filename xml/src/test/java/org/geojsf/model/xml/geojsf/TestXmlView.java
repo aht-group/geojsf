@@ -30,7 +30,7 @@ public class TestXmlView extends AbstractXmlGeojsfTest<View>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlView test = new TestXmlView();
 		test.saveReferenceXml();
     }

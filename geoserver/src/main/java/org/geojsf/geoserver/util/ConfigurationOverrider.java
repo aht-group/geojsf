@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.geojsf.geoserver.manager.GeoServerCoverageManager;
 import org.geojsf.geoserver.manager.GeoServerWorkspaceManager;
 import org.geojsf.model.xml.geoserver.CoverageStore;

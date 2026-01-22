@@ -21,7 +21,7 @@ public class TestXmlLiteral extends AbstractXmlOgcTest<Literal>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlLiteral test = new TestXmlLiteral();
 		test.saveReferenceXml();
     }

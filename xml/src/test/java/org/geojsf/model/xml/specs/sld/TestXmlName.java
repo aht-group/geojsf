@@ -20,7 +20,7 @@ public class TestXmlName extends AbstractXmlSldTest<Name>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlName test = new TestXmlName();
 		test.saveReferenceXml();
     }

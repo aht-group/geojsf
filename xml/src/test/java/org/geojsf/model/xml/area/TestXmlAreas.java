@@ -26,7 +26,7 @@ public class TestXmlAreas extends AbstractXmAreaTest<Areas>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlAreas.instance().saveReferenceXml();
     }
 }

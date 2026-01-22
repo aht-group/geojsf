@@ -24,7 +24,7 @@ public class TestXmlLowerBoundary extends AbstractXmlOgcTest<LowerBoundary>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlLowerBoundary test = new TestXmlLowerBoundary();
 		test.saveReferenceXml();
     }

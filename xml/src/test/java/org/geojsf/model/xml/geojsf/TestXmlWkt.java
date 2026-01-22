@@ -28,7 +28,7 @@ public class TestXmlWkt extends AbstractXmlGeojsfTest<Wkt>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlWkt test = new TestXmlWkt();
 		test.saveReferenceXml();
     }

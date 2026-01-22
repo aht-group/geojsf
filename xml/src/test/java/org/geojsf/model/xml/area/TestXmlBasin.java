@@ -35,7 +35,7 @@ public class TestXmlBasin extends AbstractXmAreaTest<Basin>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();	
+		GeoJsfBootstrap.wrap();	
 		TestXmlBasin.instance().saveReferenceXml();
     }
 }

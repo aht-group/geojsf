@@ -29,7 +29,7 @@ public class GetFeatureXmlTest extends AbstractXmlWfsTest<GetFeature>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		GetFeatureXmlTest test = new GetFeatureXmlTest();
 		test.saveReferenceXml();
     }

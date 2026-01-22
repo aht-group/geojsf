@@ -44,7 +44,7 @@ public class TestTxtScalesFactory extends AbstractGeoJsfUtilTest
 	
 	public static void main(String[] args)
 	{
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestTxtScalesFactory test = new TestTxtScalesFactory();
 		test.init();
 		test.testInt();

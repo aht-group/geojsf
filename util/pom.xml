@@ -119,7 +119,6 @@
 			</exclusions>
         </dependency>
 
-        
 		<!-- GeoJson -->
 		<dependency>
 			<groupId>de.grundid.opendatalab</groupId>
@@ -152,6 +151,8 @@
    			<groupId>org.apache.commons</groupId>
    			<artifactId>commons-lang3</artifactId>
 		</dependency>
+		
+		<!--
 		<dependency>
 	 		<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
@@ -164,6 +165,7 @@
         		</exclusion>
         	</exclusions>
 		</dependency>
+		-->
 		
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -184,14 +186,6 @@
 		
 				
 		<!-- GEO -->
-<!--
-		<dependency>
-		    <groupId>org.opengis</groupId>
-  			<artifactId>geoapi</artifactId>
-		    <version>2.2-M1</version>
-		    <scope>provided</scope>
-		</dependency>
--->
 		<dependency>
 			<groupId>com.vividsolutions</groupId>
 			<artifactId>jts</artifactId>

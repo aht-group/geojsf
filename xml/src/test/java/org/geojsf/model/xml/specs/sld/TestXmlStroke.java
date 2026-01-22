@@ -26,7 +26,7 @@ public class TestXmlStroke extends AbstractXmlSldTest<Stroke>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlStroke test = new TestXmlStroke();
 		test.saveReferenceXml();
     }

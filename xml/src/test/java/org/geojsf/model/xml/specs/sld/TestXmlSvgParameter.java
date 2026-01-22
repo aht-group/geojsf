@@ -32,7 +32,7 @@ public class TestXmlSvgParameter extends AbstractXmlSldTest<SvgParameter>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlSvgParameter test = new TestXmlSvgParameter();
 		test.saveReferenceXml();
     }

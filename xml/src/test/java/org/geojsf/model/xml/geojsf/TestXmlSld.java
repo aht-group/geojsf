@@ -28,7 +28,7 @@ public class TestXmlSld extends AbstractXmlGeojsfTest<Sld>
 
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlSld test = new TestXmlSld();
 		test.saveReferenceXml();
     }

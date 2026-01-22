@@ -27,7 +27,7 @@ public class TestXmlFilter extends AbstractXmlOgcTest<Filter>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlFilter test = new TestXmlFilter();
 		test.saveReferenceXml();
     }

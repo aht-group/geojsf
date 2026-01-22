@@ -27,7 +27,7 @@ public class TestXmlValue extends AbstractXmlMonitoringTest<Value>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlValue test = new TestXmlValue();
 		test.saveReferenceXml();
     }

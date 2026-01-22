@@ -21,7 +21,7 @@ public class TestXmlPropertyName extends AbstractXmlOgcTest<PropertyName>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlPropertyName test = new TestXmlPropertyName();
 		test.saveReferenceXml();
     }

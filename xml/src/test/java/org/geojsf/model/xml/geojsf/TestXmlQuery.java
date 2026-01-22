@@ -33,7 +33,7 @@ public class TestXmlQuery extends AbstractXmlGeojsfTest<Query>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlQuery test = new TestXmlQuery();
 		test.saveReferenceXml();
     }

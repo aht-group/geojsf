@@ -30,7 +30,7 @@ public class TestXmlRepository extends AbstractXmlGeojsfTest<Repository>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlRepository test = new TestXmlRepository();
 		test.saveReferenceXml();
     }

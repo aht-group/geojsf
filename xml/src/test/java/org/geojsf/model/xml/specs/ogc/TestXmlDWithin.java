@@ -28,7 +28,7 @@ public class TestXmlDWithin extends AbstractXmlOgcTest<DWithin>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlDWithin test = new TestXmlDWithin();
 		test.saveReferenceXml();
     }

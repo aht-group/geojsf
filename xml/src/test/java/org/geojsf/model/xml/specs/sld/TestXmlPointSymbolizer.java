@@ -25,7 +25,7 @@ public class TestXmlPointSymbolizer extends AbstractXmlSldTest<PointSymbolizer>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlPointSymbolizer test = new TestXmlPointSymbolizer();
 		test.saveReferenceXml();
     }

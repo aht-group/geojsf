@@ -39,7 +39,7 @@ public class TestXmlConnection extends AbstractXmlGeoserverTest<Connection>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlConnection test = new TestXmlConnection();
 		test.saveReferenceXml();
     }

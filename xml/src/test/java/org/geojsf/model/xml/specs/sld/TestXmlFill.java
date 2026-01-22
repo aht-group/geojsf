@@ -26,7 +26,7 @@ public class TestXmlFill extends AbstractXmlSldTest<Fill>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlFill test = new TestXmlFill();
 		test.saveReferenceXml();
     }

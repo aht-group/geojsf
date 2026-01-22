@@ -30,7 +30,7 @@ public class TestXmlShapeDir extends AbstractXmlGeoserverTest<ShapeDir>
     
   	public static void main(String[] args)
 	{
-  		GeoJsfBootstrap.init();	
+  		GeoJsfBootstrap.wrap();	
   		TestXmlShapeDir test = new TestXmlShapeDir();
   		test.saveReferenceXml();
 	}

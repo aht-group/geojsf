@@ -26,7 +26,7 @@ public class TestXmlNamedLayer extends AbstractXmlSldTest<NamedLayer>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlNamedLayer test = new TestXmlNamedLayer();
 		test.saveReferenceXml();
     }

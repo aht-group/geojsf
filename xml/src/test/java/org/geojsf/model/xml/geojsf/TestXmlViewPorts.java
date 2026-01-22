@@ -27,7 +27,7 @@ public class TestXmlViewPorts extends AbstractXmlGeojsfTest<ViewPorts>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlViewPorts test = new TestXmlViewPorts();
 		test.saveReferenceXml();
     }

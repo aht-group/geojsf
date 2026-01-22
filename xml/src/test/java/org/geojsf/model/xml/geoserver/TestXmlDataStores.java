@@ -27,7 +27,7 @@ public class TestXmlDataStores extends AbstractXmlGeoserverTest<DataStores>
 	
   	public static void main(String[] args)
 	{
-  		GeoJsfBootstrap.init();	
+  		GeoJsfBootstrap.wrap();	
   		TestXmlDataStores test = new TestXmlDataStores();
   		test.saveReferenceXml();
 	}

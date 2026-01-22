@@ -28,7 +28,7 @@ public class TestXmlSize extends AbstractXmlSldTest<Size>
 	
 	public static void main(String[] args)
     {
-		GeoJsfBootstrap.init();
+		GeoJsfBootstrap.wrap();
 		TestXmlSize test = new TestXmlSize();
 		test.saveReferenceXml();
     }

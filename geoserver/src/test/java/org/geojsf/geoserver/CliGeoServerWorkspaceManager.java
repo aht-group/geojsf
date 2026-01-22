@@ -3,7 +3,7 @@ package org.geojsf.geoserver;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.exlp.util.jx.JaxbUtil;
 import org.geojsf.api.rest.geoserver.GeoServerRest;
 import org.geojsf.exception.GeoServerConfigurationException;
@@ -64,7 +64,7 @@ public class CliGeoServerWorkspaceManager
 	
 	public static void main (String[] args) throws Exception
 	{
-		Configuration config = GeoJsfBootstrap.init();
+		Configuration config = GeoJsfBootstrap.wrap();
 			
 		GeoServerRest rest = new GeoServerRestWrapper(config);
 		
