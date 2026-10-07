@@ -70,7 +70,7 @@ public class WfsHttpRequest
 		logger.info("Requesting URL: "+url);
 		HttpPost post = new HttpPost(url);
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
-		JaxbUtil.output(os, gf, true);
+		JaxbUtil.instance().output(os, gf, true);
 		InputStream is = new ByteArrayInputStream(os.toByteArray());
 		post.setEntity(new InputStreamEntity(is,os.size()));
         post.setHeader("Content-type", "text/xml; charset=UTF-8");
