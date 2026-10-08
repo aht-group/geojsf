@@ -43,16 +43,12 @@
    	   		<classifier>javax</classifier>
    	   		<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.jeesl</groupId>
 			<artifactId>jeesl-xml</artifactId>
 			<classifier>javax</classifier>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jeesl</groupId>
-			<artifactId>jeesl-xml</artifactId>
-			<scope>test</scope>
 		</dependency>
 		
 		<!-- JAXB 
