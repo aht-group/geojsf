@@ -5,9 +5,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import net.sf.ahtutils.xml.aht.Aht;
-
 import org.geojsf.model.xml.monitoring.Stations;
+import org.jeesl.model.xml.xsd.aht.Aht;
 
 public interface GeoJsfMonitoringStationRestExport
 {	

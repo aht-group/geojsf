@@ -9,8 +9,7 @@ import org.geojsf.model.xml.geojsf.Layers;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.Repository;
 import org.geojsf.model.xml.geojsf.ViewPorts;
-
-import net.sf.ahtutils.xml.aht.Container;
+import org.jeesl.model.xml.xsd.aht.Container;
 
 public interface GeoJsfDatabaseExportRest
 {	

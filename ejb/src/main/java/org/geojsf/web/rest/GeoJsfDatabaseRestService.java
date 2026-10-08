@@ -48,8 +48,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.ahtutils.factory.xml.aht.XmlContainerFactory;
-import net.sf.ahtutils.xml.aht.Container;
+
 import org.jeesl.model.xml.io.ssi.sync.DataUpdate;
+import org.jeesl.model.xml.xsd.aht.Container;
 
 public class GeoJsfDatabaseRestService <L extends JeeslLang, D extends JeeslDescription,
 										CATEGORY extends GeoJsfCategory<L,D,LAYER>,
