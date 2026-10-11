@@ -35,7 +35,8 @@ deployable application.
 - GIS: GeoTools and GeoServer administration over REST.
 - XML and JSON: JAXB and Jackson.
 - Test: JUnit 5.
-- Build: Apache Maven.
+- Build: Apache Maven; the build tool is maintained by the decision on the build tool
+  (`doc/decisions/ADR-0003-maven-build.md`).
 
 The versions of the platform, the language, the frameworks, and the build environment are maintained in the
 authoritative location named below.

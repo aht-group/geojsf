@@ -1,5 +1,13 @@
 # Change Log
 
+## 2026-10-11 – Docs: ADR-0003 Maven build tool as accepted
+
+- What: Adapted the copied Maven-build decision as ADR-0003 (translated), replaced its source-project references
+  with those of GeoJSF, and accepted it.
+- Result: Review "Approval recommended" (0 findings against the recommendation, 3 notes); the notes were answered.
+- Evidence: The line-width, duplicate, display-location, and meta-text checks – no match.
+- Files: doc/decisions/ADR-0003-maven-build.md, doc/status.md, doc/requirements/architecture.md, doc/changelog.md.
+
 ## 2026-10-11 – Build: Repair the JUnit 5 test programs
 
 - What: Repaired the test programs that the JUnit 5 migration activated. `GeoJsfNsPrefixMapper` now extends
