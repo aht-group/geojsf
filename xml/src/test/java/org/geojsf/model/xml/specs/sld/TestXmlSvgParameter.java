@@ -3,11 +3,9 @@ package org.geojsf.model.xml.specs.sld;
 import org.geojsf.model.xml.specs.ogc.TestXmlFunction;
 import org.geojsf.model.xml.specs.ogc.TestXmlLiteral;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Ignore
 public class TestXmlSvgParameter extends AbstractXmlSldTest<SvgParameter>
 {
 	final static Logger logger = LoggerFactory.getLogger(TestXmlSvgParameter.class);

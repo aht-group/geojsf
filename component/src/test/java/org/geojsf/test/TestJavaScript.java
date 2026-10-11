@@ -12,7 +12,7 @@ import org.geojsf.model.json.MapConfiguration;
 import org.geojsf.model.json.MapData;
 import org.geojsf.model.json.WmsLayer;
 import org.geojsf.model.json.WmsService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

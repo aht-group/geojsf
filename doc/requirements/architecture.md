@@ -34,7 +34,7 @@ deployable application.
 - Persistence and geometry: Hibernate Spatial with JTS and PostgreSQL/PostGIS.
 - GIS: GeoTools and GeoServer administration over REST.
 - XML and JSON: JAXB and Jackson.
-- Test: JUnit.
+- Test: JUnit 5.
 - Build: Apache Maven.
 
 The versions of the platform, the language, the frameworks, and the build environment are maintained in the

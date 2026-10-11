@@ -124,13 +124,6 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- Test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<type>jar</type>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 	
 	<build>

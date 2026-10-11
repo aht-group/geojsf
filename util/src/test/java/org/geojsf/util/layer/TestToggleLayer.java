@@ -5,7 +5,7 @@ import java.util.Hashtable;
 
 import org.geojsf.util.layer.LayerUtil.Order;
 import org.geojsf.util.layer.LayerUtil.Service;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestToggleLayer
 {

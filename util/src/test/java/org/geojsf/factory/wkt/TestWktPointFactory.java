@@ -3,9 +3,9 @@ package org.geojsf.factory.wkt;
 import org.geojsf.factory.xml.geojsf.XmlCoordinateFactory;
 import org.geojsf.model.xml.geojsf.Coordinate;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +17,7 @@ public class TestWktPointFactory extends AbstractGeoJsfUtilTest
 	
 	private PointFactory pf;
 	
-	@Before
+	@BeforeEach
 	public void init()
 	{
 		pf = new PointFactory();
@@ -31,6 +31,6 @@ public class TestWktPointFactory extends AbstractGeoJsfUtilTest
 		Point point = pf.build(lat,lon);
 		Coordinate cDirect = XmlCoordinateFactory.build(point);
 		
-		Assert.assertEquals(lat,cDirect.getLat(),0.5);
+		Assertions.assertEquals(lat,cDirect.getLat(),0.5);
 	}
 }

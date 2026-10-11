@@ -5,9 +5,9 @@ import org.geojsf.factory.xml.geojsf.meta.XmlViewPortFactory;
 import org.geojsf.model.xml.geojsf.ViewPort;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ public class TestWmsTimeDownloader extends AbstractGeoJsfUtilTest
 	private WmsTileDownloader wmsDownloader;
 	private ViewPort viewPort;
 	
-	@Before
+	@BeforeEach
 	public void init()
 	{
 		wmsDownloader = new WmsTileDownloader(null);
@@ -34,7 +34,7 @@ public class TestWmsTimeDownloader extends AbstractGeoJsfUtilTest
 		int dotsPerInch = 72;
 		double expected = 0.00015873908440210453;
 		double actual = wmsDownloader.calculateResolution(scale, dotsPerInch);
-		Assert.assertEquals(expected, actual,0.00001);
+		Assertions.assertEquals(expected, actual,0.00001);
 	}
 	
 	@Test

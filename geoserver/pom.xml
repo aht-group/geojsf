@@ -190,11 +190,6 @@
    	   	
 		<!-- Test -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-xml</artifactId>
 			<classifier>tests</classifier>

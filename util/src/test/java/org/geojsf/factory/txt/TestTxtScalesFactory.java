@@ -5,9 +5,9 @@ import org.geojsf.factory.xml.geojsf.XmlScaleFactory;
 import org.geojsf.model.xml.geojsf.Scales;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.geojsf.test.GeoJsfBootstrap;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ public class TestTxtScalesFactory extends AbstractGeoJsfUtilTest
 	private Scales scales;
 	private TxtScalesFactory txtScales;
 	
-	@Before
+	@BeforeEach
 	public void init()
 	{
 		scales = new Scales();
@@ -39,7 +39,7 @@ public class TestTxtScalesFactory extends AbstractGeoJsfUtilTest
 		logger.debug(JaxbUtil.toString(scales));
 		logger.debug("Factory: "+actual);
 		
-		Assert.assertEquals(expected, actual);
+		Assertions.assertEquals(expected, actual);
 	}
 	
 	public static void main(String[] args)

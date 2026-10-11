@@ -3,22 +3,23 @@ package org.geojsf.util.query.xpath;
 import org.geojsf.model.xml.geojsf.Map;
 import org.geojsf.model.xml.geojsf.Maps;
 import org.geojsf.model.xml.geojsf.Repository;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.ahtutils.test.AbstractAhtUtilsXmlTest;
+import net.sf.ahtutils.test.AbstractJeeslTest;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 
-public class TestGeoJsfXpathView extends AbstractAhtUtilsXmlTest 
+public class TestGeoJsfXpathView extends AbstractJeeslTest 
 {
 	final static Logger logger = LoggerFactory.getLogger(TestGeoJsfXpathView.class);
 	
 	private static Map xml1,xml2,xml3,xml4;
 	
-	@BeforeClass
+	@BeforeAll
 	public static void initUrls()
 	{
 		xml1 = new Map();
@@ -59,15 +60,15 @@ public class TestGeoJsfXpathView extends AbstractAhtUtilsXmlTest
     	assertJaxbEquals(xml2,actual);
     }
 
-    @Test(expected=ExlpXpathNotFoundException.class)
+    @Test
     public void testNotFound() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
-    	GeoJsfXpath.getView(createRepository(), "-1");
+    	Assertions.assertThrows(ExlpXpathNotFoundException.class, () -> GeoJsfXpath.getView(createRepository(), "-1"));
     }
     
-    @Test(expected=ExlpXpathNotUniqueException.class)
+    @Test
     public void testUnique() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
-    	GeoJsfXpath.getView(createRepository(), xml3.getCode());
+    	Assertions.assertThrows(ExlpXpathNotUniqueException.class, () -> GeoJsfXpath.getView(createRepository(), xml3.getCode()));
     }
 }

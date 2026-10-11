@@ -46,7 +46,7 @@ locations.
 - **Standards:** OGC WMS/WFS/WCS, SLD styles, GML, WKT, and GeoJSON.
 - **XML and JSON:** JAXB (`jakarta.xml.bind-api`, with a `javax` variant provided through JEESL) and
   Jackson.
-- **Tests:** JUnit 4 test programs; per-module configuration under `src/test/resources/config.geojsf-*.test`.
+- **Tests:** JUnit 5 (Jupiter) test programs; per-module configuration under `src/test/resources/config.geojsf-*.test`.
 
 ## Open Fundamental Decisions
 

@@ -3,9 +3,9 @@ package org.geojsf.util.wfs;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class TestDefaultWfsFeatureIdResolver extends AbstractGeoJsfUtilTest
 {
@@ -14,7 +14,7 @@ public class TestDefaultWfsFeatureIdResolver extends AbstractGeoJsfUtilTest
 	private Namespace ns;
 	private long id = 20;
 	
-	@Before
+	@BeforeEach
 	public void init()
 	{
 		ns = Namespace.getNamespace("my.Prefix", "http://my.ns.org");
@@ -28,6 +28,6 @@ public class TestDefaultWfsFeatureIdResolver extends AbstractGeoJsfUtilTest
 	public void geoserver2()
 	{
 		DefaultWfsFeatureIdResolver idr = new DefaultWfsFeatureIdResolver(layerCode);
-		Assert.assertEquals(id, idr.getId(e1));
+		Assertions.assertEquals(id, idr.getId(e1));
 	}
 }

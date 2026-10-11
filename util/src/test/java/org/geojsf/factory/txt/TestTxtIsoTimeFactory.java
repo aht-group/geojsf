@@ -8,9 +8,9 @@ import java.util.Date;
 
 import org.exlp.util.system.DateUtil;
 import org.geojsf.test.AbstractGeoJsfUtilTest;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +20,7 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 	
 	private ZonedDateTime zdt1,zdt2;
 	
-	@Before
+	@BeforeEach
 	public void init()
 	{
 		zdt1 = ZonedDateTime.of(LocalDateTime.of(2011,7,20,12,0,0),ZoneId.of("UTC"));
@@ -34,7 +34,7 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 		String actual = TxtIsoTimeFactory.toDate(DateUtil.toDate(zdt1));
 		
 		logger.info("ISO result       : " +actual);
-		Assert.assertEquals(expected, actual);
+		Assertions.assertEquals(expected, actual);
 	}
 	
 	@Test
@@ -44,7 +44,7 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 		String actual = TxtIsoTimeFactory.toRange(DateUtil.toDate(zdt1),DateUtil.toDate(zdt2));
 	
 		logger.info("ISO result       : " +actual);
-		Assert.assertEquals(expected, actual);
+		Assertions.assertEquals(expected, actual);
 	}
 	
 	@Test
@@ -57,6 +57,6 @@ public class TestTxtIsoTimeFactory extends AbstractGeoJsfUtilTest
 		String actual = TxtIsoTimeFactory.toList(list);
 	
 		logger.info("ISO result       : " +actual);
-		Assert.assertEquals(expected, actual);
+		Assertions.assertEquals(expected, actual);
 	}
 }
