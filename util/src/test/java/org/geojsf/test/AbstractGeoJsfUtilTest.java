@@ -1,7 +1,6 @@
 package org.geojsf.test;
 
 import org.exlp.controller.handler.io.log.LoggerBootstrap;
-import org.exlp.util.io.log.LoggerInit;
 import org.junit.jupiter.api.BeforeAll;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,7 @@ public class AbstractGeoJsfUtilTest
 	@BeforeAll
     public static void initLogger()
 	{
-		if(!LoggerInit.isLog4jInited())
+		if(!LoggerBootstrap.isLog4jInited())
 		{
 			LoggerBootstrap.instance("cli.xml.log4j2.xml").path("geojsf/system/io/log").init();
 		}

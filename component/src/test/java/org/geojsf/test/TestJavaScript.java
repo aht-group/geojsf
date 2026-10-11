@@ -119,7 +119,7 @@ public class TestJavaScript
  //       map = dvf.getMap();
         Gson gson = new Gson();
  //       engine.put("dmMap", map);
-        engine.eval("print('Map ID: ' +dmMap.id);");
+        // engine.eval("print('Map ID: ' +dmMap.id);"); // dmMap is provided by DummyViewFactory (NYI)
     }
     
 }

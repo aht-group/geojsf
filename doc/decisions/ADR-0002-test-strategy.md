@@ -61,9 +61,8 @@ The choice to be decided was how test programs are named, stored, and run.
   Maven 3.1 or newer.
 - The version of JUnit 5 is bound by `bom/pom.xml` (`geojsf-bom`) at 5.10.0; the imported `bom-core` still
   binds `junit:junit` 4.12, which no module declares anymore.
-- The activated XML test programs and the util test programs currently fail; they are known defects and are
-  repaired in a follow-up. Until then the root `pom.xml` runs `maven-surefire-plugin` with `testFailureIgnore`
-  `true`, so the verification command returns 0 although test programs fail (point 6 is not yet fulfilled).
+- The mixed `javax`/`jakarta` namespaces are not regulated by this decision
+  (`README.md`, `## Open Fundamental Decisions`); the XML test programs run against the `javax` JAXB API.
 
 ## Evidence
 
@@ -71,8 +70,8 @@ The choice to be decided was how test programs are named, stored, and run.
 
 - `bom/pom.xml` (`geojsf-bom`) – manages `org.junit.jupiter:junit-jupiter-api` and `junit-jupiter-engine` in
   version 5.10.0 (point 2)
-- `pom.xml` (root) – runs `maven-surefire-plugin` 3.5.2, which selects the test programs with the JUnit
-  Platform provider; currently configured with `testFailureIgnore` `true` (see `## Open Points`)
+- `pom.xml` (root) – pins `maven-surefire-plugin` 3.5.2, which selects the test programs with the JUnit
+  Platform provider
 - `util/pom.xml`, `xml/pom.xml`, `component/pom.xml`, and `ejb/pom.xml` – bind `junit-jupiter-api` and
   `junit-jupiter-engine` in the test scope in place of `junit:junit`; `api/pom.xml`, `jsf/pom.xml`, and
   `geoserver/pom.xml` no longer declare a test framework (point 2)
@@ -83,8 +82,7 @@ The choice to be decided was how test programs are named, stored, and run.
 ### Tests
 
 - `mvn -q -DskipTests=false verify` – the JUnit Platform provider runs the test programs and the build ends
-  with the return value 0; the activated legacy programs fail and are tolerated by `testFailureIgnore`
-  (point 6 is not yet fully fulfilled, see `## Open Points`)
+  with the return value 0 (point 6)
 
 ### Documentation
 

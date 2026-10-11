@@ -1,5 +1,25 @@
 # Change Log
 
+## 2026-10-11 – Build: Repair the JUnit 5 test programs
+
+- What: Repaired the test programs that the JUnit 5 migration activated. `GeoJsfNsPrefixMapper` now extends
+  `com.sun.xml.bind.marshaller.NamespacePrefixMapper`, so the `instanceof` check in `JaxbUtil` no longer tries
+  to load the absent `org.glassfish.jaxb.runtime` class; `AbstractGeoJsfUtilTest` initialises logging through
+  `LoggerBootstrap` instead of the log4j1-based `LoggerInit`; `TestJavaScript` no longer evaluates the NYI
+  `dmMap` script; the stale reference XML `Size.xml` and `SvgParameter.xml` were regenerated for the `sld`
+  namespace and the missing `Coordinate.xml` was added.
+- Result: `mvn -q -DskipTests=false verify` ends with the return value 0 without `testFailureIgnore`; the
+  `testFailureIgnore` setting was removed again.
+- Evidence: `clean test` of the reactor – xml 81 run / 0 errors / 1 skipped, util 14 / 0, component 1 / 0,
+  ejb 0.
+- Files: xml/src/main/java/org/geojsf/model/xml/GeoJsfNsPrefixMapper.java,
+  util/src/test/java/org/geojsf/test/AbstractGeoJsfUtilTest.java,
+  component/src/test/java/org/geojsf/test/TestJavaScript.java,
+  xml/src/test/resources/geojsf/system/io/jaxb/specs/sld/Size.xml,
+  xml/src/test/resources/geojsf/system/io/jaxb/specs/sld/SvgParameter.xml,
+  xml/src/test/resources/geojsf/system/io/jaxb/geojsf/Coordinate.xml, pom.xml,
+  doc/decisions/ADR-0002-test-strategy.md, doc/changelog.md.
+
 ## 2026-10-11 – Build: Test programs migrated from JUnit 4 to JUnit 5
 
 - What: Implemented ADR-0002. Bound `org.junit.jupiter:junit-jupiter-api`/`junit-jupiter-engine` 5.10.0 in
