@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-10-12 – Build: Compiler compile level migrated to `release` 8 (ADR-0001)
+
+- What: Implemented ADR-0001. The root `pom.xml` now manages `maven-compiler-plugin` in version 3.13.0 and
+  configures the parameter `release` with the value `8` in place of `source` and `target` `1.8`; the build
+  prerequisite rose to Maven 3.6.3 (required by the plugin), which the root `prerequisites`, `README.md`, and
+  ADR-0003 follow. The redundant `<inherited>true</inherited>` element of the plugin was removed because `true`
+  is its default.
+- Result: `JAVA_HOME=<JDK 11> mvn -DskipTests clean install` ends with BUILD SUCCESS; the class files carry
+  class-file version 52. The build must run on JDK 9 or newer because `--release` exists from JDK 9.
+- Evidence: `mvn -q -DskipTests clean install` on JDK 11 – BUILD SUCCESS; `javap -v` – major version 52.
+- Files: pom.xml, README.md, doc/decisions/ADR-0001-java-compile-level.md,
+  doc/decisions/ADR-0003-maven-build.md, doc/changelog.md.
+
 ## 2026-10-11 – Docs: ADR-0003 Maven build tool as accepted
 
 - What: Adapted the copied Maven-build decision as ADR-0003 (translated), replaced its source-project references

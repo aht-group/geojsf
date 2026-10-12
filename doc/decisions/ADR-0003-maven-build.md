@@ -24,14 +24,14 @@ the parent, the BOMs, and the target platform; the build tool was named in `READ
 3. The dependency versions come from the BOM `geojsf-bom`, which imports the JEESL BOM `org.jeesl.bom:bom-core`.
 4. Maven enforces banned dependencies with `maven-enforcer-plugin` and generates the Javadoc with
    `maven-javadoc-plugin` in the `release` profile.
-5. A fixed Maven version with its own build execution is not set; the root `pom.xml` names the minimum Maven 3.1
+5. A fixed Maven version with its own build execution is not set; the root `pom.xml` names the minimum Maven 3.6.3
    under `prerequisites`.
 
 ## Rationale
 
 - The parent and the BOMs come from the project itself and the JEESL environment and are Maven artifacts.
 - The packagings `pom` and `jar` map the BOM and the reusable libraries to Maven modules.
-- The minimum Maven 3.1 under `prerequisites` binds the Maven version sufficiently, so a fixed version with its
+- The minimum Maven 3.6.3 under `prerequisites` binds the Maven version sufficiently, so a fixed version with its
   own build execution is superfluous.
 
 ## Alternatives
@@ -50,7 +50,7 @@ the parent, the BOMs, and the target platform; the build tool was named in `READ
 - `pom.xml` (root) – packaging `pom`, twelve `<module>` entries
 - `pom.xml` (root) – `maven-enforcer-plugin` with `bannedDependencies`; `maven-javadoc-plugin` in the `release`
   profile
-- `pom.xml` (root) – `prerequisites` names Maven 3.1
+- `pom.xml` (root) – `prerequisites` names Maven 3.6.3
 - `bom/pom.xml` – packaging `pom`; imports `org.jeesl.bom:bom-core`
 - `interfaces/pom.xml`, `api/pom.xml`, `ejb/pom.xml`, `jsf/pom.xml`, `component/pom.xml`, `theme/pom.xml`,
   `util/pom.xml`, `geoserver/pom.xml`, `module-sld/pom.xml`, `xml/pom.xml`, `doc/pom.xml` – packaging `jar`

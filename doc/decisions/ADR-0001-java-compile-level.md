@@ -75,14 +75,15 @@ its own, and a separate signature artifact.
 
 ### Implementation
 
-- `pom.xml` (root) – open: the parameter `release` with the value `8` in place of `source` and `target` `1.8`
+- `pom.xml` (root) – `maven-compiler-plugin` 3.13.0 with the parameter `release` with the value `8` in place of
+  the parameters `source` and `target` `1.8`
 
 ### Tests
 
-- `mvn -DskipTests clean install` of the reactor on JDK 11 – open: the class files carry class-file
-  version 52 and use the Java 8 API only
+- `mvn -DskipTests clean install` of the reactor on JDK 11 – the build ends with BUILD SUCCESS and `javap -v`
+  reports class-file version 52 for the classes of the modules
 
 ### Documentation
 
-- `README.md` (`## Technical Assumptions`) – open: the language entry names the Java 8 API
-- `README.md` (`## Build and Start`) – open: the prerequisite names JDK 9 or newer
+- `README.md` (`## Technical Assumptions`) – the language entry names the Java 8 API of the compilation
+- `README.md` (`## Build and Start`) – the prerequisite names JDK 9 or newer

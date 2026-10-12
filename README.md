@@ -34,8 +34,8 @@ locations.
 
 ## Technical Assumptions
 
-- **Language and build:** Java 8 compile level (`maven-compiler-plugin` source/target `1.8`); Maven
-  (>= 3.1) multi-module build; artifacts are published under the group `org.geojsf`.
+- **Language and build:** Java 8 API of the compilation (`maven-compiler-plugin` `release` `8`); Maven
+  (>= 3.6.3) multi-module build; artifacts are published under the group `org.geojsf`.
 - **Platform:** Java EE — JSF (`javax.faces-api`) with PrimeFaces for the web layer; EJB and JPA
   (`javax.persistence-api`) for the business and persistence layer.
 - **Persistence and geometry:** Hibernate Spatial `5.3.18.Final` with JTS; PostgreSQL/PostGIS is the
@@ -76,7 +76,7 @@ locations.
 ## Build and Start
 
 GeoJSF is a library project: it builds and installs JARs, and there is no application to start.
-Prerequisites are JDK 8 and Maven 3.1 or newer with access to the Sonatype snapshot and OSGeo
+Prerequisites are JDK 9 or newer and Maven 3.6.3 or newer with access to the Sonatype snapshot and OSGeo
 repositories.
 
 ```bash
