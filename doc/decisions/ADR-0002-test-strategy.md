@@ -3,6 +3,8 @@ id: ADR-0002
 title: Test strategy
 status: accepted
 date: 2026-10-11
+related:
+  - ADR-0004
 ---
 
 # ADR-0002: Test strategy
@@ -63,6 +65,8 @@ The choice to be decided was how test programs are named, stored, and run.
   binds `junit:junit` 4.12, which no module declares anymore.
 - The mixed `javax`/`jakarta` namespaces are not regulated by this decision
   (`README.md`, `## Open Fundamental Decisions`); the XML test programs run against the `javax` JAXB API.
+- The POM packaging of the JAXB module (ADR-0004) binds no test phase; once it is adopted, the module
+  needs its own test compilation and test goal for the verification command.
 
 ## Evidence
 

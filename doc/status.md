@@ -46,3 +46,4 @@ the title, and the status; for a requirement, additionally the priority.
 | [ADR-0001](decisions/ADR-0001-java-compile-level.md) | Compile all modules against the Java 8 API | accepted | - |
 | [ADR-0002](decisions/ADR-0002-test-strategy.md) | Test strategy | accepted | - |
 | [ADR-0003](decisions/ADR-0003-maven-build.md) | Maven as the build tool | accepted | - |
+| [ADR-0004](decisions/ADR-0004-package-javax-jakarta-variants.md) | Build and publish the JAXB variants as classifier artifacts | proposed | - |

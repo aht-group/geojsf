@@ -5,6 +5,7 @@ status: accepted
 date: 2026-10-11
 related:
   - ADR-0001
+  - ADR-0004
 ---
 
 # ADR-0003: Maven as the build tool
@@ -20,7 +21,8 @@ the parent, the BOMs, and the target platform; the build tool was named in `READ
 1. Maven builds the project; the root project `geojsf` with packaging `pom` leads the modules `bom`,
    `interfaces`, `api`, `ejb`, `jsf`, `component`, `theme`, `util`, `geoserver`, `module-sld`, `xml`, and `doc`
    in one reactor.
-2. The packaging is `pom` for `bom` and `jar` for the other modules; the reactor contains no `war`.
+2. The packaging is `pom` for `bom` and `jar` for the other modules, except a module that publishes its
+   artifacts only as classifier jars, which uses `pom` (ADR-0004); the reactor contains no `war`.
 3. The dependency versions come from the BOM `geojsf-bom`, which imports the JEESL BOM `org.jeesl.bom:bom-core`.
 4. Maven enforces banned dependencies with `maven-enforcer-plugin` and generates the Javadoc with
    `maven-javadoc-plugin` in the `release` profile.

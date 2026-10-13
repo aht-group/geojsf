@@ -3,6 +3,8 @@ id: ADR-0001
 title: Compile all modules against the Java 8 API
 status: accepted
 date: 2026-10-11
+related:
+  - ADR-0004
 ---
 
 # ADR-0001: Compile all modules against the Java 8 API
@@ -66,7 +68,7 @@ its own, and a separate signature artifact.
 ## Open Points
 
 - A module that later needs Java 11 APIs configures its own `release` value; the decision does not
-  regulate which module that is.
+  regulate which module that is. The `jakarta` variant of the JAXB module is such a case (ADR-0004).
 - The mixed `javax`/`jakarta` namespaces across the modules are not regulated by this decision
   (`README.md`, `## Open Fundamental Decisions`).
 - The JDK that runs the build is not regulated beyond the minimum that the `release` argument requires.

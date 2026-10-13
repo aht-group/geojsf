@@ -1,5 +1,15 @@
 # Change Log
 
+## 2026-10-13 – Docs: ADR-0004 JAXB variants prepared as proposed
+
+- What: Adapted the copied JAXB-variant decision as ADR-0004 (`proposed`), removed the source-project
+  references, related it to ADR-0003, and added the cross-references to ADR-0001, ADR-0002, and ADR-0003.
+- Result: Review "Approval recommended" (0 findings against the recommendation, 2 notes).
+- Evidence: The line-width, duplicate, display-location, meta-text, and check-run patterns – no match.
+- Files: doc/decisions/ADR-0004-package-javax-jakarta-variants.md,
+  doc/decisions/ADR-0001-java-compile-level.md, doc/decisions/ADR-0002-test-strategy.md,
+  doc/decisions/ADR-0003-maven-build.md, doc/status.md, doc/changelog.md.
+
 ## 2026-10-12 – Build: Compiler compile level migrated to `release` 8 (ADR-0001)
 
 - What: Implemented ADR-0001. The root `pom.xml` now manages `maven-compiler-plugin` in version 3.13.0 and
