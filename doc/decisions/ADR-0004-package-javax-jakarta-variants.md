@@ -115,11 +115,16 @@ Jakarta compiler.
   `src/main/java` plus its own variant root; the jar executions `jar-javax` and `jar-jakarta` at
   `process-classes`; the module output directory is `xml.classes.javax`
 - `xml/src/main/javax` and `xml/src/main/jakarta` – the two JAXB model source roots, identical except the
-  annotation package; the variant-independent sources (`org/geojsf/model/component`, `org/geojsf/model/json`,
-  and `GeoJsfNsPrefixMapper`) stay under `xml/src/main/java`
+  annotation package (the JAXB compiler names its object `Jakarta XML Binding object` in the `jakarta`
+  variant); the variant-independent sources (`org/geojsf/model/component`, `org/geojsf/model/json`, and
+  `GeoJsfNsPrefixMapper`) stay under `xml/src/main/java`
+- `xml/pom.xml` – the `javax` and `jakarta` profiles fork the `cxf-xjc-plugin` with `-Duser.language=en`, so
+  the regenerated sources carry English Javadoc independent of the machine locale
 - `xml/src/main/xsd/jakarta.xjb` – the binding for the `jakarta` profile
 - `xml/pom.xml` – the `javax` and `jakarta` profiles regenerate the sources with `cxf-xjc-plugin` and do not
   select the build variant
+- `xml/pom.xml` – `maven-toolchains-plugin` binds the module to a JDK 11 toolchain, so the `jakarta` variant
+  compiles against `jakarta.xml.bind-api` although the JDK that runs Maven may be older
 - `bom/pom.xml` – manages `geojsf-xml` with the classifiers `javax` and `jakarta`
 - `util/pom.xml`, `component/pom.xml`, `jsf/pom.xml`, `api/pom.xml`, and `doc/pom.xml` – name the classifier
   `javax`

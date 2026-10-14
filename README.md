@@ -78,7 +78,8 @@ locations.
 
 GeoJSF is a library project: it builds and installs JARs, and there is no application to start.
 Prerequisites are JDK 9 or newer and Maven 3.6.3 or newer with access to the Sonatype snapshot and OSGeo
-repositories.
+repositories. The `xml` module compiles the `jakarta` variant with a JDK 11 toolchain, so this module needs a
+JDK 11 entry in `${user.home}/.m2/toolchains.xml`.
 
 ```bash
 mvn clean install                 # build and install all modules

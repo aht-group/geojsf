@@ -9,7 +9,10 @@
   at `process-classes`. The JAXB model sources moved to the two variant roots (identical except the
   annotation package); the variant-independent sources stay in `src/main/java`. A `jakarta.xjb` and a
   `jakarta` profile were added for regeneration, `bom` manages both classifiers, and the consumers (`util`,
-  `component`, `jsf`, `api`, `doc`) name the classifier `javax`; no artifact without a classifier exists.
+  `component`, `jsf`, `api`, `doc`) name the classifier `javax`; no artifact without a classifier exists. The
+  module binds a JDK 11 toolchain (`maven-toolchains-plugin`), so the `jakarta` variant builds although the
+  JDK that runs Maven may be older. Both profiles regenerate with a forked `cxf-xjc-plugin` pinned to the
+  English locale, so the generated Javadoc is English and not the machine locale.
 - Result: The module publishes exactly the POM and the `javax`, `jakarta`, and `tests` jars; the reactor
   builds and all test programs pass.
 - Evidence: `mvn -pl xml -DskipTests -Djava.awt.headless=true clean install` – the local repository holds

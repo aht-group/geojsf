@@ -175,6 +175,27 @@
 		<!-- The javax classes are the module output directory, so that the test compilation and the test goal resolve them -->
 		<outputDirectory>${xml.classes.javax}</outputDirectory>
 		<plugins>
+			<!-- Binds the build of this module to the JDK 11 of the toolchain, so that the jakarta variant compiles
+			     against jakarta.xml.bind-api (class-file version 55); requires a JDK 11 entry in
+			     ${user.home}/.m2/toolchains.xml. The JDK that runs Maven is irrelevant. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>jdk11-toolchain</id>
+						<goals><goal>toolchain</goal></goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>11</version>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
 			<!-- One compilation per JAXB variant; the module publishes no main artifact -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -309,6 +330,9 @@
 		            			<phase>generate-sources</phase>
 		            			<goals><goal>xsdtojava</goal></goals>
 		  	         			<configuration>
+									<!-- XJC localizes the generated Javadoc with the JVM default locale; the forked JVM pins it to English -->
+									<fork>true</fork>
+									<additionalJvmArgs>-Duser.language=en</additionalJvmArgs>
 									<sourceRoot>${basedir}/src/main/javax</sourceRoot>
 		                			<xsdOptions>
 		                    			<xsdOption>
@@ -355,6 +379,9 @@
 								<phase>generate-sources</phase>
 								<goals><goal>xsdtojava</goal></goals>
 								<configuration>
+									<!-- XJC localizes the generated Javadoc with the JVM default locale; the forked JVM pins it to English -->
+									<fork>true</fork>
+									<additionalJvmArgs>-Duser.language=en</additionalJvmArgs>
 									<sourceRoot>${basedir}/src/main/jakarta</sourceRoot>
 									<xsdOptions>
 										<xsdOption>
