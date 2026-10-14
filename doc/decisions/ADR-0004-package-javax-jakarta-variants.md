@@ -1,7 +1,7 @@
 ---
 id: ADR-0004
 title: Build and publish the JAXB variants as classifier artifacts
-status: proposed
+status: accepted
 date: 2026-10-13
 related:
   - ADR-0003

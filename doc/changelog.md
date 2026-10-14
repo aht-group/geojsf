@@ -1,5 +1,14 @@
 # Change Log
 
+## 2026-10-13 – Docs: ADR-0004 JAXB variants accepted
+
+- What: Set ADR-0004 to `accepted` on the instruction of the responsible person; the decision is binding and
+  its implementation may be based on it.
+- Result: The review had recommended approval (0 findings against the recommendation, 2 notes); the notes
+  were accepted.
+- Evidence: The index (`doc/status.md`) lists ADR-0004 with the status `accepted`.
+- Files: doc/decisions/ADR-0004-package-javax-jakarta-variants.md, doc/status.md, doc/changelog.md.
+
 ## 2026-10-13 – Docs: ADR-0004 JAXB variants prepared as proposed
 
 - What: Adapted the copied JAXB-variant decision as ADR-0004 (`proposed`), removed the source-project
