@@ -10,9 +10,15 @@
 	</parent>
 	
     <artifactId>geojsf-xml</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>GeoJSF - XML</name>
-   
+
+	<properties>
+		<!-- Each JAXB variant compiles and packages in its own output directory; neither is privileged -->
+		<xml.classes.javax>${project.build.directory}/classes-javax</xml.classes.javax>
+		<xml.classes.jakarta>${project.build.directory}/classes-jakarta</xml.classes.jakarta>
+	</properties>
+
 	<dependencyManagement>
 		<dependencies>      	         
 			<dependency>
@@ -166,12 +172,106 @@
 	</dependencies>
 	
 	<build>
+		<!-- The javax classes are the module output directory, so that the test compilation and the test goal resolve them -->
+		<outputDirectory>${xml.classes.javax}</outputDirectory>
 		<plugins>
+			<!-- One compilation per JAXB variant; the module publishes no main artifact -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>compile-javax</id>
+						<phase>compile</phase>
+						<goals><goal>compile</goal></goals>
+						<configuration>
+							<release>8</release>
+							<outputDirectory>${xml.classes.javax}</outputDirectory>
+							<compileSourceRoots>
+								<compileSourceRoot>${project.basedir}/src/main/java</compileSourceRoot>
+								<compileSourceRoot>${project.basedir}/src/main/javax</compileSourceRoot>
+							</compileSourceRoots>
+						</configuration>
+					</execution>
+					<execution>
+						<id>compile-jakarta</id>
+						<phase>compile</phase>
+						<goals><goal>compile</goal></goals>
+						<configuration>
+							<release>11</release>
+							<outputDirectory>${xml.classes.jakarta}</outputDirectory>
+							<compileSourceRoots>
+								<compileSourceRoot>${project.basedir}/src/main/java</compileSourceRoot>
+								<compileSourceRoot>${project.basedir}/src/main/jakarta</compileSourceRoot>
+							</compileSourceRoots>
+						</configuration>
+					</execution>
+					<execution>
+						<id>testCompile</id>
+						<phase>test-compile</phase>
+						<goals><goal>testCompile</goal></goals>
+						<configuration>
+							<compileSourceRoots>
+								<compileSourceRoot>${project.basedir}/src/test/java</compileSourceRoot>
+							</compileSourceRoots>
+							<outputDirectory>${project.build.testOutputDirectory}</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- POM packaging binds no resources or test phase; the copy and the test goal run explicitly -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>testResources</id>
+						<phase>process-test-resources</phase>
+						<goals><goal>testResources</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>test</id>
+						<phase>test</phase>
+						<goals><goal>test</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- The classifier jars are the artifacts of the module -->
 			<plugin>
   				<groupId>org.apache.maven.plugins</groupId>
   				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.4.2</version>
 				<executions>
-  					<execution><goals><goal>test-jar</goal></goals></execution>
+  					<execution>
+						<id>jar-javax</id>
+						<phase>process-classes</phase>
+						<goals><goal>jar</goal></goals>
+						<configuration>
+							<classifier>javax</classifier>
+							<classesDirectory>${xml.classes.javax}</classesDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>jar-jakarta</id>
+						<phase>process-classes</phase>
+						<goals><goal>jar</goal></goals>
+						<configuration>
+							<classifier>jakarta</classifier>
+							<classesDirectory>${xml.classes.jakarta}</classesDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>jar-tests</id>
+						<phase>package</phase>
+						<goals><goal>test-jar</goal></goals>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -209,7 +309,7 @@
 		            			<phase>generate-sources</phase>
 		            			<goals><goal>xsdtojava</goal></goals>
 		  	         			<configuration>
-									<sourceRoot>${basedir}/src/main/java</sourceRoot>
+									<sourceRoot>${basedir}/src/main/javax</sourceRoot>
 		                			<xsdOptions>
 		                    			<xsdOption>
 											<bindingFile>${basedir}/src/main/xsd/javax.xjb</bindingFile>
@@ -231,13 +331,59 @@
 								<goals><goal>clean</goal></goals>
 								<configuration>
 									<filesets>
-										<fileset><directory>src/main/java/org/exlp</directory><followSymlinks>false</followSymlinks></fileset>
-										<fileset><directory>src/main/java/org/jeesl</directory><followSymlinks>false</followSymlinks></fileset>
+										<fileset><directory>src/main/javax/org/exlp</directory><followSymlinks>false</followSymlinks></fileset>
+										<fileset><directory>src/main/javax/org/jeesl</directory><followSymlinks>false</followSymlinks></fileset>
 									</filesets>
 								</configuration>
 							</execution>
 						</executions>
  					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jakarta</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-xjc-plugin</artifactId>
+						<version>4.0.0</version>
+						<executions>
+							<execution>
+								<id>xjc</id>
+								<phase>generate-sources</phase>
+								<goals><goal>xsdtojava</goal></goals>
+								<configuration>
+									<sourceRoot>${basedir}/src/main/jakarta</sourceRoot>
+									<xsdOptions>
+										<xsdOption>
+											<bindingFile>${basedir}/src/main/xsd/jakarta.xjb</bindingFile>
+											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
+											<xsd>${basedir}/src/main/xsd/xsd.xsd</xsd>
+										</xsdOption>
+									</xsdOptions>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>3.3.2</version>
+						<executions>
+							<execution>
+								<id>xjc-clean</id>
+								<phase>process-sources</phase>
+								<goals><goal>clean</goal></goals>
+								<configuration>
+									<filesets>
+										<fileset><directory>src/main/jakarta/org/exlp</directory><followSymlinks>false</followSymlinks></fileset>
+										<fileset><directory>src/main/jakarta/org/jeesl</directory><followSymlinks>false</followSymlinks></fileset>
+									</filesets>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>

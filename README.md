@@ -44,8 +44,8 @@ locations.
   administration over REST via `it.geosolutions:geoserver-manager 1.3.0`; geometries via
   `com.github.filosganga:geogson`.
 - **Standards:** OGC WMS/WFS/WCS, SLD styles, GML, WKT, and GeoJSON.
-- **XML and JSON:** JAXB (`jakarta.xml.bind-api`, with a `javax` variant provided through JEESL) and
-  Jackson.
+- **XML and JSON:** JAXB in a `javax` and a `jakarta` variant, published as the classifier artifacts of the
+  `xml` module (ADR-0004); and Jackson.
 - **Tests:** JUnit 5 (Jupiter) test programs; per-module configuration under `src/test/resources/config.geojsf-*.test`.
 
 ## Open Fundamental Decisions
@@ -64,6 +64,7 @@ locations.
   built on the internal `org.jeesl` framework.
 - GIS integration via GeoTools, GeoServer (`geoserver-manager`), and Hibernate Spatial/PostGIS.
 - Java 8 as the compile level.
+- The `xml` module publishes its JAXB model as the classifier artifacts `javax` and `jakarta` (ADR-0004).
 - Architecture decisions are kept in the **Decision Repository** (`doc/decisions/`) and indexed in
   `doc/status.md`.
 
@@ -87,6 +88,10 @@ mvn -pl util test                 # run the tests of a single module
 ```bash
 mvn -Pram -DskipTests -Djava.awt.headless=true clean install    # full build as used locally
 ```
+
+The `xml` module builds its JAXB model in two variants and publishes them as classifier artifacts; a
+consumer selects the variant by classifier (`org.geojsf:geojsf-xml:<version>:javax` or `:jakarta`), and no
+artifact without a classifier exists (ADR-0004).
 
 Applications embed the installed `geojsf-*` artifacts; the `jsf` and `component` modules contribute
 the JSF tag library and views, and `theme` the PrimeFaces theme.

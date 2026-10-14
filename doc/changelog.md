@@ -1,5 +1,24 @@
 # Change Log
 
+## 2026-10-14 – Build: JAXB variants as classifier artifacts (ADR-0004)
+
+- What: Implemented ADR-0004. The `xml` module now uses `pom` packaging and builds both JAXB variants in one
+  Maven run: `compile-javax` (`release` `8`) compiles `src/main/java` plus `src/main/javax` into
+  `target/classes-javax` and `compile-jakarta` (`release` `11`) compiles `src/main/java` plus
+  `src/main/jakarta` into `target/classes-jakarta`; `jar-javax` and `jar-jakarta` attach the classifier jars
+  at `process-classes`. The JAXB model sources moved to the two variant roots (identical except the
+  annotation package); the variant-independent sources stay in `src/main/java`. A `jakarta.xjb` and a
+  `jakarta` profile were added for regeneration, `bom` manages both classifiers, and the consumers (`util`,
+  `component`, `jsf`, `api`, `doc`) name the classifier `javax`; no artifact without a classifier exists.
+- Result: The module publishes exactly the POM and the `javax`, `jakarta`, and `tests` jars; the reactor
+  builds and all test programs pass.
+- Evidence: `mvn -pl xml -DskipTests -Djava.awt.headless=true clean install` – the local repository holds
+  no jar without a classifier; `javap -v` – class-file version 52 for `javax` and 55 for `jakarta`;
+  `mvn -DskipTests=false -Djava.awt.headless=true clean verify` – `xml` 81, `util` 14, `component` 1.
+- Files: xml/pom.xml, xml/src/main/java, xml/src/main/javax, xml/src/main/jakarta,
+  xml/src/main/xsd/jakarta.xjb, bom/pom.xml, util/pom.xml, component/pom.xml, jsf/pom.xml, api/pom.xml,
+  doc/pom.xml, README.md, doc/decisions/ADR-0004-package-javax-jakarta-variants.md, doc/changelog.md.
+
 ## 2026-10-13 – Docs: ADR-0004 JAXB variants accepted
 
 - What: Set ADR-0004 to `accepted` on the instruction of the responsible person; the decision is binding and

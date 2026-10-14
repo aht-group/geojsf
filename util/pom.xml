@@ -36,6 +36,7 @@
 		<dependency>
 			<groupId>org.geojsf</groupId>
 			<artifactId>geojsf-xml</artifactId>
+			<classifier>javax</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.jeesl</groupId>

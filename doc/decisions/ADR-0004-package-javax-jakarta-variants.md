@@ -110,10 +110,30 @@ Jakarta compiler.
 
 ### Implementation
 
-- `xml/pom.xml` – POM packaging, both compile executions, both jar executions – open: not yet implemented
+- `xml/pom.xml` – packaging `pom`; the properties `xml.classes.javax` and `xml.classes.jakarta`; the
+  compile executions `compile-javax` (`release` `8`) and `compile-jakarta` (`release` `11`), each from
+  `src/main/java` plus its own variant root; the jar executions `jar-javax` and `jar-jakarta` at
+  `process-classes`; the module output directory is `xml.classes.javax`
+- `xml/src/main/javax` and `xml/src/main/jakarta` – the two JAXB model source roots, identical except the
+  annotation package; the variant-independent sources (`org/geojsf/model/component`, `org/geojsf/model/json`,
+  and `GeoJsfNsPrefixMapper`) stay under `xml/src/main/java`
+- `xml/src/main/xsd/jakarta.xjb` – the binding for the `jakarta` profile
+- `xml/pom.xml` – the `javax` and `jakarta` profiles regenerate the sources with `cxf-xjc-plugin` and do not
+  select the build variant
+- `bom/pom.xml` – manages `geojsf-xml` with the classifiers `javax` and `jakarta`
+- `util/pom.xml`, `component/pom.xml`, `jsf/pom.xml`, `api/pom.xml`, and `doc/pom.xml` – name the classifier
+  `javax`
 
 ### Tests
 
-- `mvn -pl xml -DskipTests -Djava.awt.headless=true clean install` – open: the local repository holds
-  `geojsf-xml-<version>.pom`, `geojsf-xml-<version>-javax.jar`, and `geojsf-xml-<version>-jakarta.jar`
-  and no jar without a classifier
+- `mvn -pl xml -DskipTests -Djava.awt.headless=true clean install` – the local repository holds
+  `geojsf-xml-0.1.2-SNAPSHOT.pom`, `geojsf-xml-0.1.2-SNAPSHOT-javax.jar`,
+  `geojsf-xml-0.1.2-SNAPSHOT-jakarta.jar`, and `geojsf-xml-0.1.2-SNAPSHOT-tests.jar`, and no jar without a
+  classifier; `javap -v` reports class-file version 52 for `javax` and 55 for `jakarta`
+- `mvn -DskipTests=false -Djava.awt.headless=true clean verify` – the reactor builds and the test programs of
+  `xml` (81), `util` (14), and `component` (1) pass
+
+### Documentation
+
+- `README.md` (`## Build and Start`) – names the classifier artifacts of the `xml` module
+- `doc/status.md` – lists ADR-0004
